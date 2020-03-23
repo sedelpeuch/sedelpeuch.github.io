@@ -1,0 +1,105 @@
+@import  "jekyll-theme-prologue";
+
+/* Basic */
+
+a {
+	&:hover {
+		color: #e5e539
+	}
+}
+
+/* Image */
+
+.image {
+	
+	&.intro {
+		max-width: 75%;
+		max-height: 300px;
+	}
+
+	&.avatar48 {
+		background: none;
+	}
+
+	&.sponsor {
+		max-width: 75%;
+		max-height: 150px;
+		margin: 5% 5% 5% 5%;
+	}
+
+	&.about {
+		max-width: 100%;
+		max-height: 400px;
+
+		&.left {
+			float: left;
+		}
+
+		&.right {
+			float: right;
+		}
+	}
+}
+
+/* Button */
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button,
+.button {
+	color: #e5e539 !important;
+	background-color: #41484c;
+
+	&:hover {
+		color: #41484c!important;
+		background-color: #e5e539;
+	}
+
+	&:active {
+		color: #41484c!important;
+		background-color: #e5e539;
+	}
+
+	&.reversed {
+		color: #41484c !important;
+		background-color: #e5e539;
+
+		&:hover {
+			color: #e5e539!important;
+			background-color: #41484c;
+		}
+
+		&:active {
+			color: #e5e539!important;
+			background-color: #41484c;
+		}
+	}
+}
+
+/* Header */
+
+#nav {
+	ul {
+		li {
+			a {
+				&.active {
+					span::before {
+						color: #e5e539;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Youtube integration */
+
+.yt {
+	width: 1280px;
+	height: 720px;
+	max-width: 100%;
+	frameborder: 0;
+	allow: "autoplay; encrypted-media"
+	allowfullscreen;
+}
