@@ -1,11 +1,12 @@
 ---
 title: Une erreur ?
-icon: fa-warning
+icon: fa-exclamation-triangle
 order: 9
 ---
 
 Tu as détecté une erreur sur le site ? Un lien mort ? Une faute de frappe ?
-N'hésite pas à me le dire ! 
+
+**N'hésite pas à me le dire !** 
 
 <form method="post" action="https://formspree.io/{{ site.email }}">
   <div class="row">
