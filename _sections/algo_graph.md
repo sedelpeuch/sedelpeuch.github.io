@@ -4,7 +4,11 @@ subtitle: Graphes
 icon: fa-project-diagram
 order: 2
 ---
+### Objectif du cours
+Après une brève introduction des graphes, ce cours présente des problèmes sur
+les graphes admettant une solution algorithmique efficace. L'étude de ces
+solutions sera l'occasion d'exhiber des propriétés classiques en Théorie des
+Graphes.
 
-![Bordeaux INP](assets/images/sponsors/bdx_inp.png){:class="image sponsor"}
-![RS](assets/images/sponsors/rs.png){:class="image sponsor"}
-![Elsys Design](assets/images/sponsors/elsys.png){:class="image sponsor"}
+### Contenu 
+    Le [polycopié contenant le cours]({sdelpeuch.github.io}/assets/pdf/cours-graphe.pdf)
