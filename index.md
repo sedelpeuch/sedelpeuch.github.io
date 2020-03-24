@@ -4,5 +4,6 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
 title: Travaux
+menu: main
 order: 1
 ---

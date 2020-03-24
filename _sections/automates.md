@@ -1,5 +1,5 @@
 ---
-title: Automates et applications finies 
+title: Automates & applications finies 
 icon: fa-robot 
 order: 3
 ---
