@@ -12,9 +12,11 @@ solutions sera l'occasion d'exhiber des propriétés classiques en Théorie des
 Graphes.
 
 
- | Ressources Pédagoggiques                                                     | Notes personnelles                                       |
- | :---                                                                         | :---                                                     |
- | Le [cours]({{https://Sdelpeuch.github.io}}/assets/pdf/cours-graphe.pdf)      | 1. Problème du [labyrinthe](/assets/md/graph_seance2403) |
- | Les [exercices]({{https://Sdelpeuch.github.io}}/assets/pdf/TDgraphe2012.pdf) | 2.                                                       |
+ | Ressources Pédagoggiques                                                     | Notes personnelles                                             |
+ | :---                                                                         | :---                                                           |
+ | Le [cours]({{https://Sdelpeuch.github.io}}/assets/pdf/cours-graphe.pdf)      | 1.  Problème du [labyrinthe](/assets/md/graph/graph_seance2403) |
+ | Les [exercices]({{https://Sdelpeuch.github.io}}/assets/pdf/TDgraphe2012.pdf) | 2.                                                             |
+ |                                                                              |                                                                |
+ |                                                                              |                                                                |
 
 
