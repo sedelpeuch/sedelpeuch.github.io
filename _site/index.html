@@ -50,7 +50,7 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
   <ul><li><a href="#" id="semestre-6-en-cours" class="active">
             <span class="icon fa-link">Semestre 6 - En cours</span>
           </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
-            <span class="icon fa-link">Semestre 5</span>
+            <span class="icon fa-check">Semestre 5</span>
           </a></li><hr><li><a href="#rassembler-les-cours" id="rassembler-les-cours-link" class="scrolly"><span class="icon fa-home">Rassembler les cours !</span></a></li><li><a href="#graphes" id="graphes-link" class="scrolly"><span class="icon fa-project-diagram">Graphes</span></a></li><li><a href="#automates-applications-finies" id="automates-applications-finies-link" class="scrolly"><span class="icon fa-robot">Automates, Applications finies</span></a></li><li><a href="#algorithmique-numérique" id="algorithmique-numérique-link" class="scrolly"><span class="icon fa-infinity">Algorithmique numérique</span></a></li><li><a href="#recherche-opérationnelle" id="recherche-opérationnelle-link" class="scrolly"><span class="icon fa-search">Recherche opérationnelle</span></a></li><li><a href="#prog-fonctionnelle" id="prog-fonctionnelle-link" class="scrolly"><span class="icon fa-code-branch">Prog fonctionnelle</span></a></li><li><a href="#prog-impérative" id="prog-impérative-link" class="scrolly"><span class="icon fa-code">Prog impérative</span></a></li><li><a href="#introduction-aux-réseaux" id="introduction-aux-réseaux-link" class="scrolly"><span class="icon fa-server">Introduction aux réseaux</span></a></li><li><a href="#une-erreur" id="une-erreur-link" class="scrolly"><span class="icon fa-exclamation-triangle">Une erreur ?</span></a></li></ul>
 </nav></div>
   <div class="bottom"><!-- Social Icons -->
@@ -242,7 +242,6 @@ d’algorithmes adaptés à la modélisation de problèmes numériques.</p>
 <section id="prog-impérative" class="shade-four">
   <div class="container"><header>
 			<h2>Prog impérative</h2></header><h3 id="objectif-du-cours">Objectif du cours</h3>
-
 <p>L’objectif de ce cours est d’approfondir l’étude de la programmation en langage
 C et l’usage des outils associés. On y aborde l’utilisation de constructions
 avancées du langage (typage, pointeurs de fonctions) permettant de mettre en
@@ -253,61 +252,86 @@ programmation.</p>
 
 <h3 id="ressources-pédagogiques">Ressources pédagogiques</h3>
 
+<h4 id="cours">Cours</h4>
+
 <table>
   <thead>
     <tr>
       <th style="text-align: center">Support</th>
       <th style="text-align: center">Notes</th>
-      <th style="text-align: center">Thème</th>
-      <th style="text-align: center">Sujet &amp; Source</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td style="text-align: center"><a href="/assets/pdf/pg106_cours1.pdf">cours 1</a></td>
       <td style="text-align: center"><a href="/assets/pdf/notes1">notes 1</a></td>
-      <td style="text-align: center">Convention de codage :</td>
-      <td style="text-align: center"><a href="/assets/pdf/TD1.pdf">TD 1</a></td>
     </tr>
     <tr>
       <td style="text-align: center"><a href="/assets/pdf/pg106_cours2.pdf">cours 2</a></td>
       <td style="text-align: center"><a href="/assets/pdf/notes2">notes 2</a></td>
-      <td style="text-align: center">Simulation mémoire :</td>
-      <td style="text-align: center"><a href="/assets/pdf/TD2.pdf">TD 2</a></td>
     </tr>
     <tr>
       <td style="text-align: center"><a href="/assets/pdf/pg106_cours3.pdf">cours 3</a></td>
       <td style="text-align: center"><a href="/assets/pdf/notes3">notes 3</a></td>
-      <td style="text-align: center">GDB :</td>
-      <td style="text-align: center"><a href="/assets/pdf/TD3.pdf">TD 3</a></td>
     </tr>
     <tr>
       <td style="text-align: center"><a href="/assets/pdf/pg106_cours4.pdf">cours 4</a></td>
       <td style="text-align: center"><a href="/assets/pdf/notes4">notes 4</a></td>
-      <td style="text-align: center">Valgrind :</td>
-      <td style="text-align: center"><a href="/assets/pdf/TD4.pdf">TD 4</a></td>
     </tr>
     <tr>
       <td style="text-align: center"><a href="/assets/pdf/pg106_cours5.pdf">cours 5</a></td>
       <td style="text-align: center"><a href="/assets/pdf/notes5">notes 5</a></td>
-      <td style="text-align: center">Cmake IDE Doxygen :</td>
-      <td style="text-align: center"><a href="/assets/pdf/TD5.pdf">TD 5</a></td>
     </tr>
     <tr>
       <td style="text-align: center"><a href="/assets/pdf/pg106_cours6.pdf">cours 6</a></td>
       <td style="text-align: center"><a href="/assets/pdf/notes6">notes 6</a></td>
-      <td style="text-align: center">Diff et patch :</td>
-      <td style="text-align: center"><a href="/assets/pdf/TD6.pdf">TD 6</a></td>
     </tr>
     <tr>
       <td style="text-align: center"><a href="/assets/pdf/pg106_cours7.pdf">cours 7</a></td>
       <td style="text-align: center"><a href="/assets/pdf/notes7">notes 7</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="travaux-dirigés">Travaux dirigés</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Thème</th>
+      <th style="text-align: center">Sujet &amp; Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Convention de codage :</td>
+      <td style="text-align: center"><a href="/assets/pdf/TD1.pdf">TD 1</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Simulation mémoire :</td>
+      <td style="text-align: center"><a href="/assets/pdf/TD2.pdf">TD 2</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">GDB :</td>
+      <td style="text-align: center"><a href="/assets/pdf/TD3.pdf">TD 3</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Valgrind :</td>
+      <td style="text-align: center"><a href="/assets/pdf/TD4.pdf">TD 4</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Cmake IDE Doxygen :</td>
+      <td style="text-align: center"><a href="/assets/pdf/TD5.pdf">TD 5</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Diff et patch :</td>
+      <td style="text-align: center"><a href="/assets/pdf/TD6.pdf">TD 6</a></td>
+    </tr>
+    <tr>
       <td style="text-align: center">Svn :</td>
       <td style="text-align: center"><a href="/assets/pdf/TD7.pdf">TD 7</a></td>
     </tr>
     <tr>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"> </td>
       <td style="text-align: center">Code legacy :</td>
       <td style="text-align: center"><a href="/assets/pdf/TD8.pdf">TD 8</a></td>
     </tr>
@@ -335,6 +359,7 @@ programmation.</p>
 <!--  [notes-td7]        |              -->
 <!--  [notes-td8]        |              -->
 <!---------------------------------------->
+
 </div>
 </section>
 <section id="introduction-aux-réseaux" class="shade-three">

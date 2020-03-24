@@ -5,7 +5,6 @@ order: 7
 ---
 
 ### Objectif du cours
-
 L'objectif de ce cours est d'approfondir l'étude de la programmation en langage
 C et l'usage des outils associés. On y aborde l'utilisation de constructions
 avancées du langage (typage, pointeurs de fonctions) permettant de mettre en
@@ -16,17 +15,30 @@ programmation.
 
 ### Ressources pédagogiques
 
-| Support   | Notes     | Thème                  | Sujet & Source |
-| :----:    | :----:    | :----:                 | :----: |
-| [cours 1] | [notes 1] | Convention de codage : | [TD 1] |
-| [cours 2] | [notes 2] | Simulation mémoire :   | [TD 2] |
-| [cours 3] | [notes 3] | GDB :                  | [TD 3] |
-| [cours 4] | [notes 4] | Valgrind :             | [TD 4] |
-| [cours 5] | [notes 5] | Cmake IDE Doxygen :    | [TD 5] |
-| [cours 6] | [notes 6] | Diff et patch :        | [TD 6] |
-| [cours 7] | [notes 7] | Svn :                  | [TD 7] |
-|           |           | Code legacy :          | [TD 8] |
+#### Cours 
 
+| Support   | Notes     |
+| :----:    | :----:    | 
+| [cours 1] | [notes 1] | 
+| [cours 2] | [notes 2] | 
+| [cours 3] | [notes 3] | 
+| [cours 4] | [notes 4] | 
+| [cours 5] | [notes 5] | 
+| [cours 6] | [notes 6] | 
+| [cours 7] | [notes 7] | 
+
+#### Travaux dirigés
+
+| Thème                  | Sujet & Source |
+| :----:                 | :----:         |
+| Convention de codage : | [TD 1]         |
+| Simulation mémoire :   | [TD 2]         |
+| GDB :                  | [TD 3]         |
+| Valgrind :             | [TD 4]         |
+| Cmake IDE Doxygen :    | [TD 5]         |
+| Diff et patch :        | [TD 6]         |
+| Svn :                  | [TD 7]         |
+| Code legacy :          | [TD 8]         |
 
 [cours 1]:/assets/pdf/pg106_cours1.pdf
 [cours 2]:/assets/pdf/pg106_cours2.pdf
@@ -75,3 +87,5 @@ programmation.
 <!--  [notes-td7]        |              -->
 <!--  [notes-td8]        |              -->
 <!---------------------------------------->
+
+

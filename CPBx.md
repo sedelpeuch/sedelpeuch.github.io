@@ -1,15 +1,47 @@
 ---
 layout: page
-title: CPBx
-menu: main
+title: Cycle Préparatoire De Bordeaux - Regroupements de ressources
 order: 3
 hide: true
 ---
+<div align="center">Juste une petite introduction pour vous dire que ce site </div>
 
-## Semestre 1
+<div align="center">NE DOIT PAS REMPLACER VOS COURS</div>
+
+<div align="center"> Il vous servira de complément de cours et pour les TDs
+mais votre mémoire travaillera bien mieux en écrivant en amphi… de plus
+n'oubliez pas que les cours peuvent légèrement changer d'une année à l'autre,
+qu'il peut y avoir des fautes de frappes (même dans des formules) où des
+éléments manquants pour certaines raisons. Gardez votre esprit critique. </div>
+
+## [Semestre 1](/cpbx_semestre_1.html)
 
 ## Semestre 2
 
 ## Semestre 3
 
 ## Semestre 4
+
+## Erreurs et contribution
+
+<div align="center"> Tu as détecté une erreur sur le site ? Un lien mort ? Une faute de frappe ?</div> 
+
+<div align="center">Tu as envie de contribuer ? Un document à ajouter ? </div>
+
+<div align="center"> N'hésite pas à me le dire ! </div> 
+
+<form method="post" action="https://formspree.io/{{ site.email }}">
+ <div align="center">
+ <div class="row">
+    <div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="Nom" /></div>
+    <div class="6u$ 12u$(mobile)"><input type="text" name="email" placeholder="Email" /></div>
+    <div class="12u$">
+      <textarea name="message" placeholder="Message"></textarea>
+    </div>
+    <div class="12u$">
+      <input type="submit" value="Envoyer" />
+    </div>
+  </div>
+  </div>
+</form>
+
