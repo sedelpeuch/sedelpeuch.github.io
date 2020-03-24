@@ -11,4 +11,4 @@ solutions sera l'occasion d'exhiber des propriétés classiques en Théorie des
 Graphes.
 
 ### Contenu 
-    Le [polycopié contenant le cours]({sdelpeuch.github.io}/assets/pdf/cours-graphe.pdf)
+    Le [polycopié contenant le cours]({{sdelpeuch.github.io}}/assets/pdf/cours-graphe.pdf)
