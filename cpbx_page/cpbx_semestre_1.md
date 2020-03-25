@@ -3,8 +3,11 @@ layout: page
 title: Cycle Préparatoire De Bordeaux - Semestre 1
 hide: true
 ---
+[Retour à la page principale](/CPBx.html)
 - TOC
 {:toc}
+
+
 
 ## Chimie 
 Responsable du cours : [Frédéric

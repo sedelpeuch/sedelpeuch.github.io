@@ -3,7 +3,7 @@ layout: page
 title: Cycle Préparatoire De Bordeaux - Semestre 2
 hide: true
 ---
-
+[Retour à la page principale](/CPBx.html)
 - TOC
 {:toc}
 
