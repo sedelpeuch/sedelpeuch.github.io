@@ -12,7 +12,7 @@ solutions sera l'occasion d'exhiber des propriétés classiques en Théorie des
 Graphes.
 
 
- | Ressources Pédagoggiques | Notes personnelles            |
+ | Ressources Pédagogiques | Notes personnelles            |
  | :---                     | :---                          |
  | Le [cours]               | 1. Définitions générales      |
  | Les [exercices]          | 2. Chemins et arbres          |
