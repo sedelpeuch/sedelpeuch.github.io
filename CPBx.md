@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Cycle Préparatoire De Bordeaux - Regroupements de ressources
-order: 3
 hide: true
+permalink:/CPBx.html
 ---
 <div align="center">Juste une petite introduction pour vous dire que ce site </div>
 
