@@ -24,15 +24,15 @@ Le support de [cours]
 | Modules, fermtures et macros | [TD 8] | [corrigé 8] |
 
 
-[cours]:/assets/pdf/scheme.pdf
-[TD 1]:/assets/pdf/td1
-[TD 2]:/assets/pdf/td2
-[TD 3]:/assets/pdf/td3
-[TD 4]:/assets/pdf/td4
-[TD 5]:/assets/pdf/td5
-[TD 6]:/assets/pdf/td6
-[TD 7]:/assets/pdf/td7
-[TD 8]:/assets/pdf/td8
+[cours]:https://www.labri.fr/perso/myriam/Enseignement/Scheme/scheme.pdf
+[TD 1]:https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td1.pdf
+[TD 2]:https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td2.pdf
+[TD 3]:https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td3.pdf
+[TD 4]:https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td4.pdf
+[TD 5]:https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td5.pdf
+[TD 6]:https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td6.pdf
+[TD 7]:https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td7.pdf
+[TD 8]:https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td8.pdf
 [corrigé 1]:/assets/txt/1
 [corrigé 2]:/assets/txt/2
 [corrigé 3]:/assets/txt/3

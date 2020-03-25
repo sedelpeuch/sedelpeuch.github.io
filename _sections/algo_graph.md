@@ -19,6 +19,6 @@ Graphes.
  | Problème du [labyrinthe] | 3. Représentation d'un graphe |
  |                          | 4. Parcours d'un graphe       |
 
-[cours]:/assets/pdf/cours-graphe.pdf
-[exercices]:/assets/pdf/TDgraphe2012.pdf
+[cours]:https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf
+[exercices]:https://moodle.bordeaux-inp.fr/pluginfile.php/51351/mod_resource/content/3/TDgraphe2012.pdf
 [labyrinthe]:/assets/md/graph/graph_seance2403
