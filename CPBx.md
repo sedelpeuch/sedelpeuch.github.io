@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Cycle Préparatoire De Bordeaux - Regroupements de ressources
+subtitle: Vers une transformation du Drive
 hide: true
 order: 3
 ---
