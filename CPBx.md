@@ -2,7 +2,7 @@
 layout: page
 title: Cycle Préparatoire De Bordeaux - Regroupements de ressources
 hide: true
-permalink:/CPBx.html
+order: 3
 ---
 <div align="center">Juste une petite introduction pour vous dire que ce site </div>
 
@@ -21,6 +21,8 @@ qu'il peut y avoir des fautes de frappes (même dans des formules) où des
 ## [Semestre 3](/cpbx_page/cpbx_semestre_3.html)
 
 ## [Semestre 4](/cpbx_page/cpbx_semestre_4.html)
+
+## [Annales](https://drive.google.com/drive/folders/1iUi3fgIwU2xYA9xYfzsXzyWoZMD29Jyo)
 
 ## Erreurs et contribution
 
