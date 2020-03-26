@@ -52,12 +52,13 @@ pas d'avoir un code fonctionnel à tout prix mais de vous sensibiliser à
 l'établissement d'une reflexion algorithmique et à faire de l'abstraction par
 rapport à la machine. Ainsi, recopier la correction sans comprendre ni réflechir est juste inutile.
 
-
+<hr>
 ## Chimie
 Responsable [Jean Christophe Soetens](http://theo.ism.u-bordeaux1.fr/index.php)
 
 Les [notes de cours](/assets/cpbx/semestre_3/Chimie-cours.pdf) et les [notes de TD](/assets/cpbx/semestre_3/Chimie-TD.pdf).
 
+<hr>
 ## Mathématiques
 
 ### Analyse
@@ -71,6 +72,7 @@ Responsable: [Nicolas Popoff](https://www.math.u-bordeaux.fr/~npopoff/)
 
 Les [notes de cours](/assets/cpbx/semestre_3/maths/gcours.pdf) et les [notes de TD](/assets/cpbx/semestre_3/maths/gtd.pdf)
 
+<hr>
 ## Physique
 
 ### Thermodynamique
@@ -83,6 +85,7 @@ Responsable:[Jérome Cayssol](https://www.loma.cnrs.fr/jerome-cayssol/)
 
 Les [notes de cours](/assets/cpbx/semestre_3/physique/Electromagnétisme-cours.pdf) et les [notes de TD](/assets/cpbx/semestre_3/physique/Electromagnétisme-TD.pdf) 
 
+<hr>
 ### Travaux Pratiques
 Pour l'instant les travaux pratiques du semestre 3 n'ont pas changés depuis 10
 ans. Voici une [proposition](/assets/cpbx/semestre_3/physique/TP-S3.pdf) de

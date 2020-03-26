@@ -80,6 +80,7 @@ Deffieux](http://www.sasn.u-bordeaux1.fr/annuaire/deffieux.html)
 [Aide de cours]:/assets/cpbx/semestre_2/chimie/orga/aide.pdf
 [Notes de cours]:/assets/cpbx/semestre_2/chimie/orga/cours.pdf
 
+<hr>
 ## Mathématiques
 
 ### Analyse
@@ -93,6 +94,7 @@ Responsable: [Eric Charpentier](https://www.math.u-bordeaux.fr/~echarpen/)
 
 Les [notes de cours](/assets/cpbx/semestre_2/maths/gcours.pdf) et les [notes de TD](/assets/cpbx/semestre_2/maths/gtd.pdf)
 
+<hr>
 ## Physique
 
 ### Electrocinétique
@@ -127,6 +129,7 @@ Responsable:[Jérome Cayssol](https://www.loma.cnrs.fr/jerome-cayssol/)
 
 Les [notes de cours](/assets/cpbx/semestre_2/physique/Cours-Electromagnétisme.pdf) et les [notes de TD](/assets/cpbx/semestre_2/physique/TD-Electromagnétisme.pdf) 
 
+<hr>
 ### Travaux Pratiques
 Pour l'instant les travaux pratiques du semestre 2 n'ont pas changés depuis 10
 ans. Voici une [proposition](/assets/cpbx/semestre_2/physique/TP.pdf) de solution. Faites attention à la partie

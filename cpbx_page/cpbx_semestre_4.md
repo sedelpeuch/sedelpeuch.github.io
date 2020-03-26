@@ -49,6 +49,7 @@ intéressé (souvent les ENSEIRB-Info) c'est une occasion de réaliser un projet
 complet en informatique. Ne foncez surtout pas tête baissée, prenez le temps de
 réflechir à comment va s'organiser les fichiers, les fonctions etc. Amusez vous !
 
+<hr>
 ## Mathématiques
 
 ### Calcul différentiel 
@@ -64,11 +65,13 @@ Les [notes de cours](/assets/cpbx/semestre_4/maths/int.pdf) et les [notes de
 TD](/assets/cpbx/semestre_4/maths/int-td.pdf) (! Attention ils ne sont plus à jour).
 La [fiche](/assets/cpbx/semestre_4/maths/int-fiches.pdf) portant sur le cours.
 
+
 ### Probabilité
 Responsable: [Hervé Joint]()
 
 Les [notes de cours](/assets/cpbx/semestre_4/maths/proba.pdf) et les [notes de TD](/assets/cpbx/semestre_4/maths/proba-td.pdf)
 
+<hr>
 ## Physique
 
 ### Physique Quantique & Relativité
@@ -88,7 +91,7 @@ Responsable:[Pierre Langot](https://www.loma.cnrs.fr/pierre-langot/)
 
 La [fiche](/assets/cpbx/semestre_4/physique/Optique-fiches.pdf) résumant le cours et les [notes de TD](/assets/cpbx/semestre_4/physique/opt-td.pdf) 
 
-
+<hr>
 ## Projet
 Au semestre 4 le projet est un élément central. Ils peuvent totalement sauver
 le semestre car ils fournissent des notes en LCO, Anglais mais aussi dans l'UE

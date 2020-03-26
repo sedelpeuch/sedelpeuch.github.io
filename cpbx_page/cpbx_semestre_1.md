@@ -82,6 +82,7 @@ Une version des [TD] à utiliser avec précaution.
 
 [TD]:/assets/cpbx/semestre_1/chimie/TD.pdf
 
+<hr>
 ## Informatique
 Responsable : [Carole Blanc](https://dept-info.labri.fr/~blanc/)
 
@@ -101,6 +102,7 @@ les corrections de l'informatique avec précaution. Les codes demandés sont
 relativement simple en 1A, l'idée est de vous faire réflechir et de vous
 sensibilier au paradigme de l'informatique. Ne foncez pas dessus !
 
+<hr>
 ## Mathématiques
 ### Mathématiques fondamentales 
 Responsable : [Ghislaine
@@ -124,7 +126,7 @@ tout accompagné de [TD].
 [Cours]:/assets/cpbx/semestre_1/mathematiques/cours.pdf
 [TD]:/assets/cpbx/semestre_1/mathematiques/spe_td.pdf
 
-
+<hr>
 ## Physique 
 ### Electrocinétique
 Responsable : [Mourad Aiche]()

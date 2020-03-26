@@ -21,7 +21,7 @@ Le support de [cours]
 | Listes et récursivité        | [TD 5] | [corrigé 5] |
 | Fonctionnelles               | [TD 6] | [corrigé 6] |
 | Map et reduce                | [TD 7] | [corrigé 7] |
-| Modules, fermtures et macros | [TD 8] | [corrigé 8] |
+| Modules, fermetures et macros | [TD 8] | [corrigé 8] |
 
 
 [cours]:https://www.labri.fr/perso/myriam/Enseignement/Scheme/scheme.pdf

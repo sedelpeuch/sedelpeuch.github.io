@@ -76,8 +76,6 @@ pour certaines raisons. Gardez votre esprit critique.
   </div>
 </form>
 
-</footer> Crée par Delpeuch Sébastien </footer>
-
 <style>#menu-demo2, #menu-demo2 ul{
 padding:0;
 margin:0;
