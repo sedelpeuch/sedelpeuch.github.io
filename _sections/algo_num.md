@@ -13,7 +13,7 @@ d'algorithmes adaptés à la modélisation de problèmes numériques.
 | Méthode de calcul numérique / Limite de la machine                                      | [sujet 1] | [rapport 1](/assets/pdf/projet_1.pdf) |
 | Résolution de système linéaire / Equation chaleur                                       | [sujet 2] | [rapport 2](/assets/pdf/projet_2.pdf) |
 | Compression image par algorithme de décomposition SVD                                   | [sujet 3] | [rapport 3](/assets/pdf/projet_3.pdf) |
-| Non-linear systems of equations / Newton-Rasphon Method                                 | [sujet 4] | rapport 4 - en cours                  |
+| Non-linear systems of equations / Newton-Rasphon Method                                 | [sujet 4] | [rapport 4 - en cours](https://thor.enseirb-matmeca.fr/cgit/cgit.cgi/is104-p4-8630/plain/Rapport/rapport.pdf)                  |
 | Interpolation and integration methods / Cubic splines and surface interpolation         | [sujet 5] | rapport 5 - début 06/04               |
 | Résolution approchée d'équations différentielles / Modélisation des systèmes dynamiques | [sujet 6] | rapport 6 - début 04/05               |
 

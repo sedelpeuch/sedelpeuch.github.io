@@ -65,16 +65,38 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 			<header>
 				<h2>Problème du Labyrinthe (23/03)</h2></header><h2 id="modélisation">Modélisation</h2>
 
-<p>Voici le Labyrinthe sur lequel nous allons travailler</p>
-
-<p><img src="/assets/images/graphe/labyrinthe.png" alt="alt text" /></p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Labyrinthe initial</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/assets/images/graphe/labyrinthe.png" alt="labyrinthe initial" /></td>
+    </tr>
+  </tbody>
+</table>
 
 <p>L’idée est de trouver une modélisation simple pour pouvoir se déplacer sur le
 graphe le modélisation se base sur les chemins possibles</p>
 
-<p><img src="/assets/images/graphe/labyrinthe1.png" alt="alt text" />
-<img src="/assets/images/graphe/labyrinthe2.png" alt="alt text" />
-<img src="/assets/images/graphe/labyrinthe3.png" alt="alt text" /></p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Modélisation des différents chemins</th>
+      <th style="text-align: center">Modélisation des sommets</th>
+      <th style="text-align: center">Modèle final</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/assets/images/graphe/labyrinthe1.png" alt="modélisation du labyrinthe 1" /></td>
+      <td style="text-align: center"><img src="/assets/images/graphe/labyrinthe2.png" alt="modélisation du labyrinthe 2" /></td>
+      <td style="text-align: center"><img src="/assets/images/graphe/labyrinthe3.png" alt="modélisation du labyrinthe final" /></td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="résolution-du-problème">Résolution du problème</h2>
 <p>On peut trouver la sortie d’un labyrinthe avec 2 couleurs en “simulant” un

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/graph/def.html" /><!-- Title, description, author --><title>Graphe - Définition Générale | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Graphe - Définition Générale | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/graph/def.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2>Graphe - Définition Générale</h2></header><hr />
+<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Cours inspiré des cours intégrés dispensés par <a href="https://www.labri.fr/index.php?n=Annuaires.Profile&amp;id=Hanusse_ID1084917714">Nicolas
+Hanusse</a>
+et du
+<a href="https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf">polycopié</a>
+de <a href="https://www.labri.fr/index.php?n=Annuaires.Profile&amp;id=Lapoire_ID1084917727">Denis Lapoire</a></p>
+<h2 id="graphes">Graphes</h2>
+<h3 id="graphes-orientés-à-arcs-multiples">Graphes orientés à arcs multiples</h3>
+<p>Un <strong>graphe orienté</strong> est un double <script type="math/tex">(V,E)</script> d’où:</p>
+<ul>
+  <li><script type="math/tex">V</script>, est un ensemble de sommets</li>
+  <li><script type="math/tex">E</script>, est un ensemble d’arcs</li>
+</ul>
+
+<h3 id="graphes-non-orientés">Graphes non orientés</h3>
+<p>Un graphe <strong>non orienté</strong> est un double <script type="math/tex">(V,E)</script> similaire à celui défni plus
+haut mais dans lequel tout élément <script type="math/tex">e \in E</script> est associé une paire de sommets
+<script type="math/tex">\{u,v\}</script> de <script type="math/tex">V</script> ou à un signleton <script type="math/tex">\{u\}</script> de <script type="math/tex">V</script>. Les éléments de <script type="math/tex">E</script>
+sont appelés les arêtes du graphes. Evidemment, tout graphe orienté induit un
+unique graphe non orienté.</p>
+
+<h3 id="degrés-et-autres-notions-locales">Degrés et autres notions locales</h3>
+<p>Soit <script type="math/tex">G</script> un graphe orienté ou non. Une <strong>boucle</strong> est un arc (ou une arête)
+incident à un unique sommet. Un <strong>sommet isolé</strong> est un sommet adjacent à aucun
+autre sommet. Le <strong>degré</strong> d’un sommet <script type="math/tex">s</script>, noté <script type="math/tex">deg_G(s)</script>, est le nombre
+d’arcs ou d’arêtes icidents à ce sommet (les boucles étant comptées double).
+Dans le cas des graphes orientés on peut distinguer les arcs entrants de ceux
+sortants. Ainsi le <strong>degré entrant</strong> d’un sommet <script type="math/tex">s</script> est le nom d’ars entrants
+de <script type="math/tex">s</script>. Similairement, on définit le <strong>degré sortant</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">Propriété 1 :</code> Tout graphe <script type="math/tex">G</script> orienté ou non vérifie : <script type="math/tex">\sum \limits_{a \in V_a}
+deg_G(s)= 2 card(E_G)</script>.</p>
+
+<h3 id="graphe-planaire-et-propriété">Graphe planaire et propriété</h3>
+<p>Un graphe est <strong>planaire</strong> si il peut être représenté sans intersection. En
+découle le théorème des 4 couleurs.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Théorème des 4 couleurs :</code> Si un graphe est planaire alors il est au moins 4 coloriable.</p>
+
+<hr />
+<h2 id="une-relation-déquivalence-sur-les-graphes--lisomorphisme">Une relation d’équivalence sur les graphes : l’isomorphisme</h2>
+<p>La notion de graphe est légerement biaisée, il serait plus correcte de parler de
+classe de graphes isomorphes, c’est à dire des graphes égaux à un renommage près
+des sommets et des arcs (ou arêtes).</p>
+
+<p><code class="language-plaintext highlighter-rouge">Définition Isomorphisme :</code> Soient deux ensembles <script type="math/tex">(E,r)</script> et <script type="math/tex">(F,s)</script> deux
+ensembles munis de deux relations d’arité commune quelque entier <script type="math/tex">k</script>. Un
+<strong>isomorphisme</strong> de <script type="math/tex">(E,r)</script> dans <script type="math/tex">(F,s)</script>, est une bijection <script type="math/tex">\phi : E
+\rightarrow F</script> telle que pour tout séquence <script type="math/tex">(e_1,...,e_k)</script> d’éléments de
+<script type="math/tex">E</script> on ait : <script type="math/tex">(e_1,...,e_k) \in r \Leftrightarrow
+(\phi(e_1),...,\phi(e_k))\in s</script></p>
+
+<hr />
+<h2 id="quelques-opérations-sur-les-graphes">Quelques opérations sur les graphes</h2>
+<h3 id="graphe-partiel">Graphe partiel</h3>
+<p>On peut déterminer à partir d’un graphe <script type="math/tex">G</script> et d’un ensemble d’arcs <script type="math/tex">D</script> un
+nouveau graphe : il suffit de conserver tous les sommets et ne conserver que les
+arcs (ou arêtes) de <script type="math/tex">D</script>. Ce graphe est le <strong>graphe partiel</strong> de <script type="math/tex">G</script> engendré
+par <script type="math/tex">D</script>. Ce graphe sera noté <script type="math/tex">G|D</script>.</p>
+
+<h3 id="sous-graphe">Sous-graphe</h3>
+<p>On peut déterminer à partir d’un graphe <script type="math/tex">G</script> et d’un ensemble de sommets <script type="math/tex">U</script>
+un nouveau graphe : il suffit de conserver pour sommets ceux de <script type="math/tex">U</script> et pour
+arcs (ou arêtes) seulement ceux à extrémités toutes dans <script type="math/tex">U</script>. Ce graphe est le
+<strong>sous-graphe</strong> de <script type="math/tex">G</script> induit par <script type="math/tex">U</script> est noté <script type="math/tex">G|U</script>. Formellement cela se
+traduit par <script type="math/tex">G_H=\{(u,v) \in G | u,v \in V_H\}</script></p>
+
+<h3 id="union-disjointe">Union disjointe</h3>
+<p>L’union de deux graphes simples orientés <script type="math/tex">G:=(U,E)</script> et <script type="math/tex">H:=(V,F)</script>
+vérifiant : <script type="math/tex">U \cap V = \emptyset</script> est le graphe simple orienté note <script type="math/tex">G \cup
+H</script> égal à <script type="math/tex">(U \cup V, E \cup F)</script></p>
+
+<h3 id="graphe-quotient">Graphe quotient</h3>
+<p>Soit un graphe <script type="math/tex">G=(V,E)</script>. Soit <script type="math/tex">P</script> une partition de <script type="math/tex">V=P_1 \cup P_2 \cup
+... \cup P_k</script>. Le graphe quotient de <script type="math/tex">G</script> par <script type="math/tex">P</script> est le graphe <script type="math/tex">(P,E')</script>
+où <script type="math/tex">E'=\{(u,v), u \in P_i, v \in P_j, \text{tel qu'il existe une arête entre le sommet
+} \; P_i \; \text{et le sommet de} \; P_j \; \text{dans} \; G\}</script></p>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

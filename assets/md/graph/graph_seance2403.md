@@ -6,16 +6,20 @@ title: Problème du Labyrinthe (23/03)
 
 ## Modélisation
 
-Voici le Labyrinthe sur lequel nous allons travailler
-
-![alt text]({{https://Sdelpeuch.github.io}}/assets/images/graphe/labyrinthe.png)
+|Labyrinthe initial|
+|:---:|
+|![labyrinthe initial](/assets/images/graphe/labyrinthe.png)|
 
 L'idée est de trouver une modélisation simple pour pouvoir se déplacer sur le
-graphe le modélisation se base sur les chemins possibles 
+graphe le modélisation se base sur les chemins possibles
 
-![alt text]({{https://Sdelpeuch.github.io}}/assets/images/graphe/labyrinthe1.png)
-![alt text]({{https://Sdelpeuch.github.io}}/assets/images/graphe/labyrinthe2.png)
-![alt text]({{https://Sdelpeuch.github.io}}/assets/images/graphe/labyrinthe3.png)
+|Modélisation des différents chemins| Modélisation des sommets | Modèle final|
+|:---:|:---:|:---:|
+|![modélisation du labyrinthe 1] | ![modélisation du labyrinthe 2] | ![modélisation du labyrinthe final] |
+
+[modélisation du labyrinthe 1]:/assets/images/graphe/labyrinthe1.png
+[modélisation du labyrinthe 2]:/assets/images/graphe/labyrinthe2.png 
+[modélisation du labyrinthe final]:/assets/images/graphe/labyrinthe3.png
 
 ## Résolution du problème 
 On peut trouver la sortie d’un labyrinthe avec 2 couleurs en "simulant" un
