@@ -1,7 +1,7 @@
 --- 
 layout: page
 hide: true
-title: Problème du Labyrinthe (23/03)
+title: <i class="fas fa-project-diagram"></i> Graphe - Problème du Labyrinthe
 ---
 
 ## Modélisation

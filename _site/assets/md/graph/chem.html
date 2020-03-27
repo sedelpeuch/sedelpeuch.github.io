@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/graph/chem.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Chemins et arbres | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Chemins et arbres | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/graph/chem.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-project-diagram fa-2x"></i> Graphe - Chemins et arbres</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Cours inspiré des cours intégrés dispensés par <a href="https://www.labri.fr/index.php?n=Annuaires.Profile&amp;id=Hanusse_ID1084917714">Nicolas
+Hanusse</a>
+et du
+<a href="https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf">polycopié</a>
+de <a href="https://www.labri.fr/index.php?n=Annuaires.Profile&amp;id=Lapoire_ID1084917727">Denis Lapoire</a></p>
+
+<h2 id="-chemins"><i class="fas fa-project-diagram"></i> Chemins</h2>
+
+<p>Une <strong>chemin</strong> dans un graphe <script type="math/tex">(V,E)</script> est une séquence <script type="math/tex">w</script> de la forme
+<script type="math/tex">(s_1,e_1,...,e_l,s_{l+1})</script> où pour pour tout <script type="math/tex">i \in [1,l]</script>, <script type="math/tex">e_i</script> est un
+arc allant du sommet <script type="math/tex">s_i</script> au sommet <script type="math/tex">s_i+1</script>. L’entier <script type="math/tex">l</script> éventuellement
+nul est noté <script type="math/tex">|w|</script> et est appelé la <strong>longueur</strong> de <script type="math/tex">w</script>.</p>
+
+<p>Un chemin est <strong>simple</strong> si il ne passe pas deux fois par le même arc. Il est
+<strong>élémentaire</strong> si il passe deux fois par le même sommet.</p>
+
+<h3 id="concaténation">Concaténation</h3>
+
+<p>Une opération naturelle sur les chemins est la concaténation : la concaténation
+de deux chemins <script type="math/tex">u</script> et <script type="math/tex">v</script> allant respectivement d’un sommet <script type="math/tex">x</script> à un
+sommet <script type="math/tex">y</script> et d’un somme <script type="math/tex">y</script> à un sommet <script type="math/tex">z</script> est le chemin noté <script type="math/tex">u \cdot
+v</script> obtenu en concaténant à la séquence <script type="math/tex">u</script> la séquence <script type="math/tex">v</script> débarassée de
+son premier élément <script type="math/tex">y</script>. Clairement, le chemin <script type="math/tex">u \cdot v</script> va de <script type="math/tex">x</script> à
+<script type="math/tex">z</script> et à pour longueur <script type="math/tex">|u \cdot v| = |u| + |v|</script></p>
+
+<h3 id="distance-dans-un-graphe">Distance dans un graphe</h3>
+
+<p>La <strong>distance</strong> dans un graphe <script type="math/tex">G</script> est notée <script type="math/tex">d_G(s,t)</script> et est la longueur
+du plus court chemin allant de <script type="math/tex">s</script> à <script type="math/tex">t</script> si il existe <script type="math/tex">+\infty</script> sinon.</p>
+
+<h2 id="-cycle"><i class="fas fa-project-diagram"></i> Cycle</h2>
+<p>Un <strong>cycle</strong> dans un graphe est un chemin dont les deux extrémités sont égales.
+Les adjectifs <strong>élémentaires</strong> et <strong>simples</strong> sont étendus aux cycle. Si un
+graphe contient un cycle, il contient un cycle élémentaire.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Fait 2 :</code> Si un graphe orienté possède un cycle, il possède un cycle simple et élémentaire</p>
+
+<p>Dans le cas non orienté, tout graphe possédant au moins une arête, possède un
+cycle : l’arête <script type="math/tex">e</script> d’extrémités <script type="math/tex">s</script> et <script type="math/tex">t</script> permet de construire le cycle
+<script type="math/tex">(s,e,t,e,s)</script>. Ainsi la notion intéressante n’est pas “cycle” mais “cycle
+simple”.</p>
+
+<p>Définition 4 : Un graphe est acyclique si il ne possède aucun cycle simple de
+longueur non nulle.</p>
+
+<h2 id="-arborescence-et-arbre"><i class="fas fa-project-diagram"></i> Arborescence et arbre</h2>
+
+<p>Une <strong>arboresence</strong> est un graphe orienté admettant un sommet, appelé
+<strong>racine</strong>, tel que pour tout sommet il existe un unique chemin de la racine
+vers ce sommet.</p>
+
+<p>Un <strong>arbre</strong> est un graphe non orienté connexe et acyclique.</p>
+
+<h2 id="-lexique-sur-les-graphes"><i class="fas fa-project-diagram"></i> Lexique sur les graphes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Nom du graphe</th>
+      <th style="text-align: center">Représentation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Graphes discrets</td>
+      <td style="text-align: center"><img src="/assets/images/graphe/graphe1.png" alt="alt txt" /></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Etoiles</td>
+      <td style="text-align: center"><img src="/assets/images/graphe/graphe2.png" alt="alt txt" /></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Peignes</td>
+      <td style="text-align: center"><img src="/assets/images/graphe/graphe3.png" alt="alt txt" /></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Chenilles</td>
+      <td style="text-align: center"><img src="/assets/images/graphe/graphe4.png" alt="alt txt" /></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Grille</td>
+      <td style="text-align: center"><img src="/assets/images/graphe/graphe5.png" alt="alt txt" /></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Hypercube</td>
+      <td style="text-align: center"><img src="/assets/images/graphe/graphe6.png" alt="alt txt" /></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

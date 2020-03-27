@@ -4,6 +4,5 @@
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
 title: Semestre 6 - En cours
-menu: main
 order: 1
 ---

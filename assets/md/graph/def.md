@@ -1,8 +1,7 @@
 ---
 layout: page
 hide: true
-title: Graphe - Définition Générale
----
+title: <i class="fas fa-project-diagram fa-2x"></i> Graphe - Définition Générale
 ---
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -13,7 +12,7 @@ Hanusse](https://www.labri.fr/index.php?n=Annuaires.Profile&id=Hanusse_ID1084917
 et du
 [polycopié](https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf)
 de [Denis Lapoire](https://www.labri.fr/index.php?n=Annuaires.Profile&id=Lapoire_ID1084917727)
-## Graphes
+## <i class="fas fa-project-diagram"></i> Graphes
 ### Graphes orientés à arcs multiples
 Un **graphe orienté** est un double $$(V,E)$$ d'où:
 + $$V$$, est un ensemble de sommets
@@ -44,8 +43,7 @@ découle le théorème des 4 couleurs.
 
 `Théorème des 4 couleurs :` Si un graphe est planaire alors il est au moins 4 coloriable.
 
----
-## Une relation d'équivalence sur les graphes : l'isomorphisme 
+## <i class="fas fa-project-diagram"></i> Une relation d'équivalence sur les graphes : l'isomorphisme 
 La notion de graphe est légerement biaisée, il serait plus correcte de parler de
 classe de graphes isomorphes, c'est à dire des graphes égaux à un renommage près
 des sommets et des arcs (ou arêtes).
@@ -57,8 +55,7 @@ ensembles munis de deux relations d'arité commune quelque entier $$k$$. Un
 $$E$$ on ait : $$(e_1,...,e_k) \in r \Leftrightarrow
 (\phi(e_1),...,\phi(e_k))\in s$$
 
----
-## Quelques opérations sur les graphes
+## <i class="fas fa-project-diagram"></i> Quelques opérations sur les graphes
 ### Graphe partiel 
 On peut déterminer à partir d'un graphe $$G$$ et d'un ensemble d'arcs $$D$$ un
 nouveau graphe : il suffit de conserver tous les sommets et ne conserver que les

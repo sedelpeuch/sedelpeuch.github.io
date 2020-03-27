@@ -84,7 +84,9 @@ chaque année).
 ### Mécanique des fluides
 Responsable: [Jean Stéphane Baste]()
 
-La [fiche](/assets/cpbx/semestre_4/physique/meca.pdf) résumant le cours
+La [fiche](/assets/cpbx/semestre_4/physique/meca.pdf) résumant le cours ainsi
+que des [prise de notes](/assets/cpbx/semestre_4/physique/meca-cours.pdf) et la
+[correction](/assets/cpbx/semestre_4/physique/meca-td.pdf) des premiers exercices.
 
 ### Optique
 Responsable:[Pierre Langot](https://www.loma.cnrs.fr/pierre-langot/) 
