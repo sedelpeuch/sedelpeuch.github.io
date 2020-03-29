@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/graph/PCC.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Plus Court Chemin | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Plus Court Chemin | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/graph/PCC.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-project-diagram fa-2x"></i> Graphe - Plus Court Chemin</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Cours inspiré des cours intégrés dispensés par <a href="https://www.labri.fr/index.php?n=Annuaires.Profile&amp;id=Hanusse_ID1084917714">Nicolas
+Hanusse</a>
+et du
+<a href="https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf">polycopié</a>
+de <a href="https://www.labri.fr/index.php?n=Annuaires.Profile&amp;id=Lapoire_ID1084917727">Denis Lapoire</a></p>
+
+<p>Le problème du plus court chemin considéré ici porte sur des graphes orientés à
+arcs pondérés. Le plus court chemin d’un sommet <script type="math/tex">s</script> à un sommet <script type="math/tex">t</script> est
+alorsun chemin de <script type="math/tex">s</script> à <script type="math/tex">t</script>, la somme des poids des arcs qu’il contient, est
+minimale.</p>
+
+<h2 id="-bellman-ford"><i class="fas fa-project-diagram"></i> Bellman-Ford</h2>
+<p>Le premier algorithme étudié est une algorithme que garantit que pour tout
+chemin <script type="math/tex">(s_1,...,s_l)</script> avec <script type="math/tex">l \leq n</script> les arcs
+<script type="math/tex">(s_1,s_2),...,(s_{l-1},s_l)</script> seront relachés dans cet ordre. L’intéret de cet
+algorithme est double</p>
+<ul>
+  <li>sa définition est très simple</li>
+  <li>il retourne un résultat correct pour des graphes possédant des arcs de poids
+négatifs</li>
+  <li>il détecte un cycle de poids négatif si il en existe</li>
+</ul>
+
+<p><img class="image featured" src="/assets/images/graphe/bellman-ford.gif" alt="bellman-ford" /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fonction Bellman-Ford(G : graphe à arcs pondérés, s : sommet de G) : (booléen, tableau V_G -&gt; R, tableau V_G -&gt; V_G)
+    (d,pere) = relacherInit(G,s)
+    
+    faire |V_G| - 1 fois
+        pour chaque arc (u,v) de G
+            relacher(u,v,G,d,pere)
+    retourner (d,pere)
+    
+procédure relacher(u:sommet, v:sommet, G:graphe à arcs pondérés, d: tableau, V_G -&gt; R, père : tableau V_G -&gt; V_G)
+    si d(v) &gt; d(u) + poids(u,v)
+        d[v] = d(u) + poids(u,v)
+        père[v] = u
+</code></pre></div></div>
+
+<h2 id="-dijkstra"><i class="fas fa-project-diagram"></i> Dijkstra</h2>
+<p><img class="image about right" src="/assets/images/graphe/dijkstra.gif" alt="dijkstra" /> Le second algorithme étudié a pour principales propriétés</p>
+<ul>
+  <li>sa correction établie que pour des graphes sans arcs de poids négatif</li>
+  <li>la simplicité de sa définition</li>
+  <li>une faible complexité en temps</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fonction Dijkstra(G: graphe à arcs pondérés, s: sommet):(fonction V_G -&gt; R, fonction V_G -&gt; V_G)
+    (d,père) = relacherInit(G,s)
+    Y = V_G
+    
+    tant que Y n'est pas l'ensemble vide faire
+        extraire un élément u de Y de valeur d minimale
+        pour chaque successeur v de u faire
+            si v appartient à Y faire
+                relacher(u,v,G,d,père)
+    retourner(d,père)
+
+procédure relacherInit(G: graphe à arcs pondérés, s: sommet):(tableau V_G -&gt; R, tableau V_G -&gt; V_G)
+    d = tableau indicé par V_G initialisé à l'infini
+    père = tableau indicé par V_G initialisé à NULL
+    d[s] = 0
+    retourner (d,père)
+</code></pre></div></div>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
