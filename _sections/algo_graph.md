@@ -17,8 +17,10 @@ Graphes.
  | :---                     | :---                            |
  | Le [cours]               | [1. Définitions générales]      |
  | Les [exercices]          | [2. Chemins et arbres]          |
- | Problème du [labyrinthe] | [3. Représentation d'un graphe] |
- |                          | [4. Parcours d'un graphe]       |
+ |                          | [3. Représentation d'un graphe] |
+ | Problème du [labyrinthe] | [4. Parcours d'un graphe]       |
+ |                          | [5. Arbre Couvrant Minimal]     |
+ |                          | [6. Plus Court Chemin]                                |
 
 [cours]:https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf
 [exercices]:https://moodle.bordeaux-inp.fr/pluginfile.php/51351/mod_resource/content/3/TDgraphe2012.pdf
@@ -28,3 +30,5 @@ Graphes.
 [2. Chemins et arbres]:/assets/md/graph/chem
 [3. Représentation d'un graphe]:/assets/md/graph/rep
 [4. Parcours d'un graphe]:/assets/md/graph/par
+[5. Arbre Couvrant Minimal]:/assets/md/graph/ACM
+[6. Plus Court Chemin]:/assets/md/graph/PCC
