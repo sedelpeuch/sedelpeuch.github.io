@@ -1,6 +1,8 @@
 ---
 title: Automates, Applications finies 
 icon: fa-robot 
+cover-photo: /assets/images/banner.jpg
+cover-photo-alt: banner
 order: 3
 ---
 

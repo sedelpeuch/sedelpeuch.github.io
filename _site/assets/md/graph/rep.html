@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/graph/rep.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Représentation des graphes | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Représentation des graphes | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/graph/rep.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-project-diagram fa-2x"></i> Graphe - Représentation des graphes</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Cours inspiré des cours intégrés dispensés par <a href="https://www.labri.fr/index.php?n=Annuaires.Profile&amp;id=Hanusse_ID1084917714">Nicolas
+Hanusse</a>
+et du
+<a href="https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf">polycopié</a>
+de <a href="https://www.labri.fr/index.php?n=Annuaires.Profile&amp;id=Lapoire_ID1084917727">Denis Lapoire</a></p>
+
+<p>Les graphes considéres ici auront pour ensemble de sommets des intervalles de la
+forme <script type="math/tex">[1,n]</script> avec <script type="math/tex">n \geq 0</script>, et dans e cas de graphes à arcs ou arêtes
+multiples auront pour ensembles d’arcs ou arêtes des intervalles de la forme
+<script type="math/tex">[1,m]</script> avec <script type="math/tex">m \geq 0</script></p>
+
+<p>Les deux représentations ont ceci en commun qu’elles permettent d’associer à
+chaque sommet <script type="math/tex">s</script> l’ensemble <script type="math/tex">T[s]</script> des arcs sortants de ce sommet. Ainsi,
+on peut décider de représetner cet ensemble d’arcs</p>
+<ul>
+  <li>par une liste chainée. La représentation est celle de tableaux de liste</li>
+  <li>par un tableau de booléen indiquant quels sont les sommets deuxièmes
+extrémites de ces arcs. La représetnation est celle de la matrice d’adjacence.</li>
+</ul>
+
+<h2 id="-représentation-par-tableaux-de-listes"><i class="fas fa-project-diagram"></i> Représentation par tableaux de listes</h2>
+<p>L’idée est de représenter un graphe par un tableau qui associe à chaque sommet
+une liste (chaînée) des arcs sortants ou des arêtes incidentes. Un graphe
+orienté simple <script type="math/tex">([1, n], E)</script> peut être représenté par un tableau T à indices
+dans <script type="math/tex">[1, n]</script> et à valeurs des listes de sommets. Un tel tableau doit vérifier
+pour tout couple de sommets <script type="math/tex">(i, j) : j \in T[i] \Leftrightarrow (i, j) \in E</script>
+On suppose souvent dans une telle représentation que de telles listes sont sans
+répétition.</p>
+
+<h3 id="avantages">Avantages</h3>
+<ul>
+  <li>L’espace mémoire est linéaire en la cardinalité du nombre de sommets et du nombre
+d’arêtes : <script type="math/tex">Θ(n + m)</script> (ce qui suppose les listes sans répétition).</li>
+</ul>
+
+<h3 id="inconvénients">Inconvénients</h3>
+<ul>
+  <li>Ce n’est pas un codage : un graphe peut être représenté de façons différentes.</li>
+  <li>Tester l’adjacence de deux somme</li>
+</ul>
+
+<h2 id="-représentation-par-matrice-dadjacence"><i class="fas fa-project-diagram"></i> Représentation par matrice d’adjacence</h2>
+<p>Cette représentation concerne les graphes dans lesuels seuls les sommets snt
+nommées. Tout graphe orienté simple <script type="math/tex">([1,n],E)</script> peut être représenté par sa
+<strong>matrice d’adjacence</strong> c’està dire la matrice <script type="math/tex">M</script> de booléens de taille <script type="math/tex">n
+\times n</script> définie par <script type="math/tex">M[i,j]:=((i,j)\in E)</script></p>
+
+<h3 id="avantages-1">Avantages</h3>
+<ul>
+  <li>Cette représentation est un <strong>codage</strong> : tout graphe admet une unique
+représentation.</li>
+  <li>Tester si un sommet est prédécesseur d’un second est réalisé en temps constant</li>
+</ul>
+
+<h3 id="inconvénients-1">Inconvénients</h3>
+<ul>
+  <li>La taille de la représentation est élevée : <script type="math/tex">O(n \times n)</script>. Un graphe peu
+dense à la même représentation qu’un graphe dense.</li>
+</ul>
+
+<h2 id="-conclusion"><i class="fas fa-project-diagram"></i> Conclusion</h2>
+<p>De la même façon que le type de graphe à choisir dépend du poblème à résoudre,
+la représentation de ce graphe dépend de la solution algorithmique retenue. Le
+recensement complet des primitives utilisées dans lalgorithme dans l’objectif
+d’avoir un algorithme efficace détermine le bon choix de cette représentation !</p>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

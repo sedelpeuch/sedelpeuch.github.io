@@ -56,8 +56,9 @@ Il faut remonter au père en marquant l’arête père 2.
 
 La résolution se fait via l'algorithme de
 [Trémaux](https://en.wikipedia.org/wiki/Maze_solving_algorithm#Tr%C3%A9maux's_algorithm)
-dont le fonctionnement est disponible en [video](https://www.youtube.com/watch?v=gVSEJdSQZVQ)
+dont le fonctionnement est disponible sur la vidéo suivante.
 
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/gVSEJdSQZVQ/0.jpg)](http://www.youtube.com/watch?v=gVSEJdSQZVQ)
 ## Pour Lundi 30 mars
 * Lire chapitre 9 sur les arbres couvrants: 
 * Dijkstra (PCC avec poids positif)

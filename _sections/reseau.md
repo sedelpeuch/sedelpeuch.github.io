@@ -2,6 +2,8 @@
 title: Introduction aux réseaux 
 icon: fa-server
 order: 9
+cover-photo: /assets/images/banner.jpg
+cover-photo-alt: banner
 ---
 
 ### Objectif du cours

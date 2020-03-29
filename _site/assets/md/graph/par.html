@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/graph/par.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Algorithmes de Parcours | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Algorithmes de Parcours | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/graph/par.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-project-diagram fa-2x"></i> Graphe - Algorithmes de Parcours</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Cours inspiré des cours intégrés dispensés par <a href="https://www.labri.fr/index.php?n=Annuaires.Profile&amp;id=Hanusse_ID1084917714">Nicolas
+Hanusse</a>
+et du
+<a href="https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf">polycopié</a>
+de <a href="https://www.labri.fr/index.php?n=Annuaires.Profile&amp;id=Lapoire_ID1084917727">Denis Lapoire</a></p>
+
+<p>Pour la plupart des problèmes sur des graphes, toute solution algorithmique doit
+visiter chacun des sommets et/ou chacun des arcs du graphe considéré, c’est à
+dire prendre en compte ses propriétés locales : quels sot ses sommets adjacents,
+quelles sont ses arêtes ou arcs incident, quels sont les étiquettes ou éventuels
+poids etc.</p>
+
+<p>Pour définir algorithmiquement un parcours, on utilise comme pour les arbres,
+une file (notée ici GRIS). A tout instant de l’algorithme, l’ensemble des
+sommets est partitionnée en trois ensemble disjoints BLANC, GRIS, NOIR dont
+l’union forme l’ensemble des sommes de G et dont la sémantique est la suivante</p>
+<ul>
+  <li>BLANC est l’ensemble des sommets non visités</li>
+  <li>NOIR est l’ensemble des sommets visités et dont on sait que tous les arcs
+sortants ont été visités; ainsi donc que leurs sommets extrémités</li>
+  <li>GRIS les autres sommets</li>
+</ul>
+
+<h2 id="-parcours-en-largeur"><i class="fas fa-project-diagram"></i> Parcours en Largeur</h2>
+<p><img class="image about right" src="/assets/images/graphe/BFS.gif" alt="BFS" />
+Le premier choix pour implémenter l’ensemble GRIS est d’utiliser une file.
+L’algorithme qui en découle est appelé un parcours en Largeur. La raison de ce
+nom est liée à l’ordre dans lequel les sommets sont visités à partir du premier
+sommet <script type="math/tex">s</script> : les premiers sommets visitées sont les sommets à distance 1 du
+sommet <script type="math/tex">s_1</script>, puis ceux à distance 2 et ainsi de suite. En conséquence,
+l’arborescence de liaison retournée fournit un ensemble de plus court-chemins du
+sommet <script type="math/tex">s</script> aux sommets accessibles à partir de <script type="math/tex">s</script>. Voici l’algorithme de
+parcours vu dans le chapitre précédennt moidifié uniquement par le triatmenet de
+l’ensemble GRIS comme une file.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>procédure parcoursLargeur(G: graphe, s: sommet)
+    n = nbrSommets(G)
+    couleur = constructTableau(n,'blanc')
+    pere = constructTableau(n,0)
+    GRIS = fileVide()
+    couleur[s] = gris
+    enfiler(s,GRIS)
+    
+    tant que non(estVide(GRIS)) faire
+        u = défiler(GRIS)
+        pour tout arc e sortant de u faire
+            v = 2ndeExtrémité(e)
+            si couleur[v]='blanc' alors
+                couleur[v] = 'gris'
+                enfiler(v,GRIS)
+                pere[v]=u
+        couleur[u] = noir
+</code></pre></div></div>
+
+<h2 id="-parcours-en-profondeur"><i class="fas fa-project-diagram"></i> Parcours en Profondeur</h2>
+<p><img class="image about right" src="/assets/images/graphe/DFS.gif" alt="DFS" />
+A la différence du parcours en largeur où l’on découvrait tous les successeurs
+blancs du sommet colorié le plus tardivement en gris, lors du parcours en
+profondeur le sommet gris dont on découvre les successeurs blancs est le sommet
+le plus récemment colorié en gris : en d’autres termes, on implémente l’ensemble
+GRIS à l’aide d’une pile. A l’image du parcours en profondeur dans les arbres
+binaires, la définition la plus simple d’un parcours en profondeur est
+assurément récursive. La pile GRIS mentionnée est alors cachée par la pile
+d’appel utilisée lors de ces appels récursifs.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>procédure parcoursProfondeur(G:graphe)
+    temps = 0
+    n =  nbrSommets(G)
+    coleur = constructTableau(n,'blanc')
+    pere = constructTableau(n,0)
+    d = constructTableau(n,0)
+    f = constructTableau(n,0)
+    
+    pour chaque sommet u faire
+        si couleur(u) = 'blanc' alors
+            explorer(G,u)
+
+procédure explorer(G: graphe,u: sommet)
+    couleur[u] = gris
+    d[u] = ++ temps
+    
+    pour chaque arc e sortant de u faire
+        v = 2ndeExtrémité(e)
+        si couleur[v]='blanc' alors
+            pere[v] = u
+            explorer(G,v)
+    couleur[u] = 'noir'
+    f[u] = ++temps
+</code></pre></div></div>
+
+<h3 id="première-application--reconnaissance-de-graphes-acycliques">Première application : reconnaissance de graphes acycliques</h3>
+<p>On s’intéresse ici à déceler la présence de cycles c’est à dire plus précisément
+de cycles simples ayant au moins un arc. L’algorithme décidant si un graphe est
+sans cycle est une variante imméduate du parcours en profondeur. Sa correction
+est basée sur les deux assertions suivantes qui sont équivalentes</p>
+<ul>
+  <li><script type="math/tex">G</script> contient un cycle simple</li>
+  <li>tout parcours en profondeur de <script type="math/tex">G</script> induit un arc de retour</li>
+</ul>
+
+<h3 id="deuxième-application--tri-topologique">Deuxième application : tri topologique</h3>
+<p>Comment numéroter des sommets de façon à ce que tout arc <script type="math/tex">(s,t)</script>, <script type="math/tex">s</script> ait un
+plus petit numéro de que <script type="math/tex">t</script></p>
+
+<p><code class="language-plaintext highlighter-rouge">Définition :</code> Un <strong>tri topologique</strong> d’un graphe orienté <script type="math/tex">G</script> est une
+numérotation <script type="math/tex">\phi</script> des sommets de <script type="math/tex">G</script> tels que pour tous sommets <script type="math/tex">s</script> et
+<script type="math/tex">t</script> on ait : <script type="math/tex">% <![CDATA[
+(s,t) \in E_G \Rightarrow \phi(s) < \phi(t) %]]></script></p>
+
+<p>Clairement tout graphe n’admet pas un tri topologique. Propriété remarquabe, la
+possession d’un tel tri est une caractérisation de l’acyclité.</p>
+
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
