@@ -79,3 +79,45 @@ Soit un graphe $$G=(V,E)$$. Soit $$P$$ une partition de $$V=P_1 \cup P_2 \cup
 ... \cup P_k$$. Le graphe quotient de $$G$$ par $$P$$ est le graphe $$(P,E')$$
 où $$E'=\{(u,v), u \in P_i, v \in P_j, \text{tel qu'il existe une arête entre le sommet
 } \; P_i \; \text{et le sommet de} \; P_j \; \text{dans} \; G\}$$ 
+<div class="header">
+  <div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
+  </div>
+</div>
+
+<style>
+/* Style the header: fixed position (always stay at the top) */
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+/* The progress container (grey background) */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+}
+
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  height: 8px;
+  background: #707070;
+  width: 0%;
+}
+</style>
+
+<script>
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+</script>

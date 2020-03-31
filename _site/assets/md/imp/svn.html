@@ -6,15 +6,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 -->
 <html><head><!-- Robots -->
-  <meta name="robots" content="noindex, nofollow" /><!-- Title, description, author --><title>404 Error | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/imp/svn.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-code fa-2x&quot;&gt;&lt;/i&gt; Impératif - svn-tests | Informatique - ENSEIRB-Matmeca</title>
   <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
   <meta name="author" content="Delpeuch Sébastien" />
   
   <!-- Open Graph -->
-  <meta property="og:title" content="404 Error | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-code fa-2x&quot;&gt;&lt;/i&gt; Impératif - svn-tests | Informatique - ENSEIRB-Matmeca" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
-  <meta property="og:url" content="http://localhost:4000/404" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/imp/svn.html" />
   <meta property="og:site_name" content="Informatique" />
   <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
   
@@ -63,14 +63,42 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 	<article class="shade-two">
 	  <div class="container">
 			<header>
-				<h2>404 Error</h2></header><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+				<h2><i class="fas fa-code fa-2x"></i> Impératif - svn-tests</h2></header><h2 id="-svn"><i class="fas fa-code"></i> SVN</h2>
 
-<p>Cette page n’existe pas ! Elle est peut être en construction <i class="fas fa-wrench"></i>.</p>
+<h3 id="exercice-1--création-dun-dépot-local">Exercice 1 : création d’un dépot local</h3>
+<p>La commande permettant de créer un dépot local est <code class="language-plaintext highlighter-rouge">svnadmin
+--compatible-version 1.5 create pg106</code>. Cependant <strong>on ne travaille jamais
+directement dans le dépot mais dans un autre répertoire synchronisé avec le
+dépôt</strong>. Pour synchroniser deux dossiers on utilise le commande <code class="language-plaintext highlighter-rouge">svn checkout
+file://$HOME/.depots/pg106</code>.</p>
 
-<p style="text-align:center">
-<img src="/assets/images/erreur.gif" />
-</p>
+<h3 id="exercice-2--structure-de-travail">Exercice 2 : structure de travail</h3>
+<p>Le travail se divise en trois répertoires <strong>trunk</strong>, <strong>branches</strong> et <strong>tags</strong>.</p>
 
+<h3 id="exercice-3--ajout-des-sources">Exercice 3 : ajout des sources</h3>
+<p>Ajout de sources se fait dans le <strong>trunk</strong>, pour transmettre ces modificaions au
+dépot on réalise un <strong>commit</strong>.</p>
+
+<h3 id="exercice-4--création-dune-branche">Exercice 4 : création d’une branche</h3>
+<p>La création d’une branche se faire avec la commande <code class="language-plaintext highlighter-rouge">svn copy</code> qui crée une
+branche de le répertoire <strong>branches</strong>.</p>
+
+<h3 id="exercice-9--de-la-branche-au-tronc">Exercice 9 : de la branche au tronc</h3>
+<p>Une fois la branche à jour et les développements de branche finis, on utilise la
+commande <code class="language-plaintext highlighter-rouge">svn merge</code> pour rapatrier les modifications de la branche dans le
+tronc.</p>
+
+<h2 id="-couverture"><i class="fas fa-code"></i> Couverture</h2>
+
+<h3 id="exercice-10--a-la-main">Exercice 10 : a la main</h3>
+<p>En utilisant <code class="language-plaintext highlighter-rouge">gcc</code> compiler à la main la bibliothèque avec l’option
+<code class="language-plaintext highlighter-rouge">--coverage</code>. Ensuite utiliser <code class="language-plaintext highlighter-rouge">gcov fichier.c</code> cela produit un
+<code class="language-plaintext highlighter-rouge">fichier.c.gcov</code>, le fichier contient toutes les informations de couveture de
+tests.</p>
+
+<h3 id="ecercice-12--en-utilisant-cmake">Ecercice 12 : en utilisant cmake</h3>
+<p>A faire : ajuster les options de compilation pour avoir des informations de
+courverture lors du lancement des tets.</p>
 </div>
 	</article>
 </div><!-- Footer -->

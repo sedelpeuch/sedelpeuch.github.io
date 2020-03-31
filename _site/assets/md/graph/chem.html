@@ -121,40 +121,57 @@ vers ce sommet.</p>
 
 <h2 id="-lexique-sur-les-graphes"><i class="fas fa-project-diagram"></i> Lexique sur les graphes</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">Nom du graphe</th>
-      <th style="text-align: center">Représentation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">Graphes discrets</td>
-      <td style="text-align: center"><img src="/assets/images/graphe/graphe1.png" alt="alt txt" /></td>
-    </tr>
-    <tr>
-      <td style="text-align: center">Etoiles</td>
-      <td style="text-align: center"><img src="/assets/images/graphe/graphe2.png" alt="alt txt" /></td>
-    </tr>
-    <tr>
-      <td style="text-align: center">Peignes</td>
-      <td style="text-align: center"><img src="/assets/images/graphe/graphe3.png" alt="alt txt" /></td>
-    </tr>
-    <tr>
-      <td style="text-align: center">Chenilles</td>
-      <td style="text-align: center"><img src="/assets/images/graphe/graphe4.png" alt="alt txt" /></td>
-    </tr>
-    <tr>
-      <td style="text-align: center">Grille</td>
-      <td style="text-align: center"><img src="/assets/images/graphe/graphe5.png" alt="alt txt" /></td>
-    </tr>
-    <tr>
-      <td style="text-align: center">Hypercube</td>
-      <td style="text-align: center"><img src="/assets/images/graphe/graphe6.png" alt="alt txt" /></td>
-    </tr>
-  </tbody>
-</table>
+<p>| Nom du graphe    | Représentation                                |
+| :–:             | :—:                                         |
+| Graphes discrets | <img src="/assets/images/graphe/graphe1.png" alt="alt txt" /> |
+| Etoiles          | <img src="/assets/images/graphe/graphe2.png" alt="alt txt" /> |
+| Peignes          | <img src="/assets/images/graphe/graphe3.png" alt="alt txt" /> |
+| Chenilles        | <img src="/assets/images/graphe/graphe4.png" alt="alt txt" /> |
+| Grille           | <img src="/assets/images/graphe/graphe5.png" alt="alt txt" /> |
+| Hypercube        | <img src="/assets/images/graphe/graphe6.png" alt="alt txt" /> |</p>
+<div class="header">
+  <div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
+  </div>
+</div>
+
+<style>
+/* Style the header: fixed position (always stay at the top) */
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+/* The progress container (grey background) */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+}
+
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  height: 8px;
+  background: #707070;
+  width: 0%;
+}
+</style>
+
+<script>
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+</script>
+
 </div>
 	</article>
 </div><!-- Footer -->

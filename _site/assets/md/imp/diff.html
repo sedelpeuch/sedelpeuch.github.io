@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/imp/diff.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-code fa-2x&quot;&gt;&lt;/i&gt; Impératif - diff-patch-svn-git | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-code fa-2x&quot;&gt;&lt;/i&gt; Impératif - diff-patch-svn-git | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/imp/diff.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-code fa-2x"></i> Impératif - diff-patch-svn-git</h2></header><h2 id="-une-nouvelle-bibliothèque"><i class="fas fa-code"></i> Une nouvelle bibliothèque</h2>
+
+<h4 id="exercice-1">Exercice 1</h4>
+
+<p>La bibiliothèque permet de faire de la manipulation d’automates. L’auteur est
+<em>Julien Allali</em>. Licence MIT.</p>
+
+<h4 id="exercice-2">Exercice 2</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/allali/statelib.git
+</code></pre></div></div>
+
+<p>Le système de compilation utilisé est <strong>Cmake</strong>. Compilable avec</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make install
+</code></pre></div></div>
+
+<p>Le système de documentation utilisé est <strong>doxygen</strong></p>
+
+<h4 id="exercie-3">Exercie 3</h4>
+
+<p>Ce sont les trois lignes suivantes</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>install(TARGETS state DESTINATION lib)
+install(TARGETS state_static DESTINATION lib)
+install(FILES src/state.h DESTINATION include)
+</code></pre></div></div>
+
+<p>Il faut donc réaliser les commandes suivant pour compiler</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake -S &lt;path_to_source&gt; -B &lt;path_to_build&gt;
+sudo make install
+</code></pre></div></div>
+
+<h2 id="-diff-et-patch"><i class="fas fa-code"></i> Diff et patch</h2>
+
+<h4 id="exercice-4">Exercice 4</h4>
+
+<p>Précision du cas de renvoie -1.
+Pour recompiler la doc</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make doc
+</code></pre></div></div>
+
+<h4 id="exercice-5">Exercice 5</h4>
+
+<p>La commande nous affiche les différences entre deux fichiers.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>diff -r original new
+</code></pre></div></div>
+
+<h4 id="exercice-6">Exercice 6</h4>
+
+<p>La commande suivante permet d’analyser tous les fichiers et donne un compte
+rendu des différences qui sera pas la suite applicable.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>diff -rupN statelib statelib_new &gt; patch
+</code></pre></div></div>
+
+<h4 id="exercice-7">Exercice 7</h4>
+
+<p>La commande <strong>patch</strong> permet de fusionner les différences avec un patch</p>
+
+<h2 id="-git"><i class="fas fa-code"></i> Git</h2>
+
+<p>Cette partie présente des évidences sur git, je la passe</p>
+
+<h2 id="-svn"><i class="fas fa-code"></i> SVN</h2>
+
+<p>SVN repose sur un système de versionning centralisé. Cela signifie qu’un seul
+répertoire général existe et tous les utilisateurs y ont accès. Etant donné que
+les modifications ne peuvent être fusionnées, le système empêche que deux
+utilisateurs modifient un même fichier simultanément. Ce dernier est attribué au
+premier internaute qui l’ouvre et il reste protégé des autres utilisateurs tant
+qu’il n’a pas été fermé. Apache Subversion permet également de charger et de
+modifier les sous-chemins indépendamment du reste de l’arborescence. C’est ainsi
+que les droits de lecture et d’écriture sont affectés pour la totalité des
+chemins aux différents utilisateurs. En outre, Suversion se caractérise par le
+fait que des répertoires vides, renommés voire déplacés peuvent être enregistrés
+sans causer de perte dans l’historique.</p>
+
+<p>SVN fonctionne comme git en ce qui concerne les <strong>commits</strong> et les <strong>add</strong>.
+Cependant pour initialiser le dossier il faut réalilser les commandes suivantes.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>svnadmin --compatible-version 1.5 create pg106
+</code></pre></div></div>
+
+<p><strong>Attention : on ne travaille jamais directement dans le dépôt mais dans un</strong>
+<strong>autre répertoire synchronisé avec le dépôt !</strong>
+Puis dans le répertoire de travail</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>svn checkout file://$HOME/.depots/pg106
+</code></pre></div></div>
+
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

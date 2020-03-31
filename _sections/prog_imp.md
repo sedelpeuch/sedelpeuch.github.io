@@ -29,16 +29,16 @@ programmation.
 
 #### Travaux dirigés
 
-| Thème                          | Source si présente |
-| :----:                         | :----:             |
-| Convention de codage :  [TD 1] | [hash.c]           |
-| Simulation mémoire :    [TD 2] | [CI-memoire]       |
-| GDB :                   [TD 3] | [gdb1.c]           |
-| Valgrind :              [TD 4] | [list.c]           |
-| Cmake IDE Doxygen :     [TD 5] |                    |
-| Diff et patch :         [TD 6] | [patch.print]      |
-| Svn :                   [TD 7] |                    |
-| Code legacy :           [TD 8] |                    |
+| Thème                          | Source si présente | Notes personnelles |
+| :----:                         | :----:             | :----:             |
+| Convention de codage :  [TD 1] | [hash.c]           |                    |
+| Simulation mémoire :    [TD 2] | [CI-memoire]       |                    |
+| GDB :                   [TD 3] | [gdb1.c]           |                    |
+| Valgrind :              [TD 4] | [list.c]           |                    |
+| Cmake IDE Doxygen :     [TD 5] |                    |                    |
+| Diff et patch :         [TD 6] | [patch.print]      | [Notes 6]          |
+| Svn :                   [TD 7] |                    | [Notes 7]          |
+| Code legacy :           [TD 8] |                    |                    |
 
 [cours 1]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours1.pdf
 [cours 2]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours2.pdf
@@ -70,6 +70,9 @@ programmation.
 [TD 6]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-diff-patch-svn-git-sujet.pdf
 [TD 7]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-svn-tests-sujet.pdf
 [TD 8]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-code-legacy-sujet.pdf
+
+[Notes 6]:/assets/md/imp/diff
+[Notes 7]:/assets/md/imp/svn
 
 <!---------------------------------------->
 <!-- [notes-td 1]:/assets/pdf/notes-td1 -->
