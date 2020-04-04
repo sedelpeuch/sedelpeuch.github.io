@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/automates/cours1.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-robot fa-2x&quot;&gt;&lt;/i&gt; Automates finis et langages | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-robot fa-2x&quot;&gt;&lt;/i&gt; Automates finis et langages | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/automates/cours1.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-robot fa-2x"></i> Automates finis et langages</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Cours inspiré du
+<a href="https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf">polycopié</a>
+de <a href="https://www.labri.fr/perso/herbrete/">Frédéric Herbreteau</a>.</p>
+
+<p>Un algorithme est réalisé dans le but de résoudre un problème. Nous commençons
+donc logiquement par introduire une formalisation des problèmes en terme de
+langages, puis nous formalisons la notion d’algorithme par les automates finis.</p>
+
+<h2 id="-formalisation-de-la-notion-de-problème"><i class="fas fa-robot"></i> Formalisation de la notion de problème</h2>
+
+<p>Les seuls problèmes abordés ici seront les <code class="language-plaintext highlighter-rouge">problèmes de décision</code>. Ceux ci
+admettent uniquement 2 réponses : oui noté <script type="math/tex">E_\text{oui}</script> ou non noté
+<script type="math/tex">E_\text{non}</script>.</p>
+
+<p>Nous définissons alors une <code class="language-plaintext highlighter-rouge">instance</code> d’un problème de décision qui pose la
+question pour un élément particulier <script type="math/tex">x</script> de <script type="math/tex">E</script>. Tout instance admet une
+réponse, qui est positive lorsque <script type="math/tex">x \in E_\text{oui}</script> et négative lorsque
+<script type="math/tex">x \in E_\text{non}</script>.</p>
+
+<p>En informatique, il existe d’autres problèmes d’intérêt que les problèmes de
+décision. Cependant, tout problème peut s’exprimer sous la forme d’un problème
+de décision. Cette approche permet de définir une théorie du calcul dans un cadre
+simple et unique. C’est pourquoi nous nous plaçons dans ce cadre.</p>
+
+<blockquote>
+  <p>La notion de problèmes est indépendante de la notion d’algorithme. Un
+algorithme peut résoudre un problème, mais il ne le définit pas. Par ailleurs,
+un problème solvable l’est généralement par plusieurs algorithmes.</p>
+</blockquote>
+
+<h3 id="les-langages">Les langages</h3>
+<p>Un algorithme est déterminé pour résoudre un problème donné. Cependant, tout
+question qui lui est soumise est une instance de ce problème. Il est donc
+nécessaire de disposer d’un encodage des instances de problèmes afin de les
+fourni aux algorithmes. D’une façon générale, une instance d’un problème est
+représentée par une séquence de symboles.</p>
+
+<p>Un <code class="language-plaintext highlighter-rouge">alphabet</code> est un ensemble <strong>fini</strong> et <strong>non vide</strong> de symboles, un alphabet
+est généralement désigné par <script type="math/tex">\Sigma</script></p>
+
+<p>Un <code class="language-plaintext highlighter-rouge">mot</code> sur un alphabet <script type="math/tex">\Sigma</script> est une séquence finie de symboles de
+<script type="math/tex">\Sigma</script></p>
+
+<p>La <code class="language-plaintext highlighter-rouge">longueur</code> d’un mot <script type="math/tex">\omega = \omega_1 ... \omega_n</script> avec <script type="math/tex">\omega_i \in
+\Sigma</script> est définie par <script type="math/tex">|\omega|=n</script>.</p>
+
+<p>Le <code class="language-plaintext highlighter-rouge">mot vide</code> noté <script type="math/tex">\epsilon</script> est le mot de longueur nulle <script type="math/tex">\epsilon=0</script></p>
+
+<p>La <code class="language-plaintext highlighter-rouge">concaténation</code> de deux mots <script type="math/tex">\omega = \omega_1 ... \omega_n</script> sur
+<script type="math/tex">\Sigma</script>, et <script type="math/tex">\omega'=\omega'_1 ... \omega'_k</script> sur <script type="math/tex">\Sigma'</script>, est définie
+par le mot <script type="math/tex">\omega . \omega'=\omega_1 ... \omega_n \omega'_1 ... \omega'_k</script>
+sur <script type="math/tex">\Sigma \cup \Sigma'</script>. La longueur de <script type="math/tex">\omega . \omega'</script> est donnée par
+<script type="math/tex">|\omega . \omega'|=|\omega|+|\omega'| = n+k</script></p>
+
+<p>Un mot <script type="math/tex">\omega'</script> est un <code class="language-plaintext highlighter-rouge">sous facteur</code> de <script type="math/tex">\omega</script> s’il existe deux mots
+<script type="math/tex">u</script> et <script type="math/tex">v</script> tels que <script type="math/tex">\omega=u.\omega'.v</script>. Un sous facteur <script type="math/tex">\omega'</script> est
+propre si <script type="math/tex">\omega' \neq \epsilon</script>. Nous appelons <code class="language-plaintext highlighter-rouge">prefixe</code> de <script type="math/tex">\omega</script> tout
+sous facteur <script type="math/tex">\omega'</script> tel que <script type="math/tex">u=\epsilon</script>, ie. <script type="math/tex">\omega=\omega'.v</script>.
+Symétriquement, un <code class="language-plaintext highlighter-rouge">suffixe</code> de <script type="math/tex">\omega</script> est un sous facteur <script type="math/tex">\omega'</script> tel
+que <script type="math/tex">v=\epsilon</script>, ie <script type="math/tex">\omega = u . \omega'</script>.</p>
+
+<p>Un <code class="language-plaintext highlighter-rouge">langage</code> sur un alphabet <script type="math/tex">\Sigma</script> est un ensemble fini ou infini de mots
+sur <script type="math/tex">\Sigma</script></p>
+
+<blockquote>
+  <p>Attention à ne pas confondre le langage vide <script type="math/tex">\emptyset</script>, et le langage
+contenant uniquement le mode vide <script type="math/tex">\{\epsilon\}</script></p>
+</blockquote>
+
+<h3 id="représentation-dun-problème-par-un-langage">Représentation d’un problème par un langage</h3>
+
+<p>Chaque instance <script type="math/tex">x</script> est modélisée par un mot <script type="math/tex">\omega</script>. Le problème est alors
+le langage <script type="math/tex">L</script> formé par l’ensemble <script type="math/tex">E</script> de ses instances. Notons que la
+<strong>description, et non pas sa définition</strong>, de l’ensemble <script type="math/tex">E_\text{oui}</script> des
+instances positives et la description <script type="math/tex">E_\text{non}</script> de l’ensemble des
+instances négatives, dépendant de l’encodage choisi.</p>
+
+<h2 id="-automates-finis"><i class="fas fa-robot"></i> Automates finis</h2>
+<p>Nous savons maintenant comment représenter un problème de décision par un
+langage sur un alphabet choisi : l’ensemble <script type="math/tex">E</script> de ses instances <script type="math/tex">x</script>,
+chacune d’elle représentée par un mot <script type="math/tex">\omega</script> sur cet alphabet. L’ensemble
+des instances positives <script type="math/tex">E_\text{oui}</script> est lui aussi représenté pas un langage
+<script type="math/tex">L</script>, tout comme l’ensemble des instances négatives <script type="math/tex">E_\text{non}</script> qui est
+représenté par la complémentarité de <script type="math/tex">L</script>. Un algorithme qui résout un problème
+donné prend en entrée une instance particulière <script type="math/tex">x</script> et doit décider si <script type="math/tex">x \in
+E_\text{oui}</script>, c’est à dire si <script type="math/tex">\omega \in L</script>. Pour cela, l’algorithme doit
+lire certains symboles du mot <script type="math/tex">\omega</script> qui lui permettent de prendre sa
+décision. Un <strong>modèle d’algorithme</strong> ou <strong>modèle de calcul</strong> doit donc permettre
+de lire un mot <script type="math/tex">\omega</script> en entrée, de mémoriser certaines informations et et
+de prendre des décisions pour in fine décider si <script type="math/tex">\omega \in L</script>.</p>
+
+<p>Nous introduisons maintenant les automates finis comme modèle de calcul. Un
+automate fini lit le mot d’entrée <script type="math/tex">\omega</script>, symbole par symbole, de gauche à
+droite et sans pouvoir revenir en arrière. L’automate est une machine à états
+qui en représentent la mémoire. l’état de l’automate change pour refléter
+l’information qu’il mémorise en fonction des symboles de <script type="math/tex">\omega</script> qu’il lit.
+Il possède certains états particuliers. Les états <strong>initiaux</strong> correspondent aux
+connaissances élémentaires qu’il possède avant de lire <script type="math/tex">\omega</script>. Les états
+<strong>accepteurs</strong> correspondent aux connaissances permettant de décider si <script type="math/tex">\omega
+\in L</script> C’est à dire, si après avoir lu <script type="math/tex">\omega</script> l’automate se trouve dans un
+état accepteur alors <script type="math/tex">\omega</script> est accepté, c’est à dire <script type="math/tex">\omega \in L</script></p>
+
+<p><img class="image about right" src="/assets/images/automates/exemple_automates.png" alt="exemple-automates-finis" /> Un <code class="language-plaintext highlighter-rouge">automate fini</code> <script type="math/tex">A=(Q,\Sigma,\delta,I,F)</script> est défini par</p>
+<ul>
+  <li><script type="math/tex">Q</script> est un ensemble fini d’états</li>
+  <li><script type="math/tex">\Sigma</script> est l’alphabet de <script type="math/tex">A</script></li>
+  <li><script type="math/tex">delta \subseteq Q \times (\Sigma \cup \{\epsilon \}) \times Q</script> est la
+relation de transition</li>
+  <li><script type="math/tex">I \subseteq Q</script> est l’ensemble des états initiaux</li>
+  <li><script type="math/tex">F \subseteq Q</script> est l’ensemble des états accepteurs</li>
+</ul>
+
+<blockquote>
+  <p>Notons qu’en présence d’une transition étiquetée <script type="math/tex">\epsilon</script> l’automate
+change d’état sans lire aucun symbole du mot d’entrée. Nous en verrons les
+conséquences au <a href="/assets/md/automates/cours5.md">chapitre 5</a></p>
+</blockquote>
+
+<p>Un automate fini <script type="math/tex">A=(Q,\Sigma,\delta,I,F)</script> est <code class="language-plaintext highlighter-rouge">complet</code> si pour tout <script type="math/tex">q \in
+Q</script> et pour tout <script type="math/tex">s \in \Sigma</script> il existe <script type="math/tex">q' \in Q</script> tel que <script type="math/tex">(q,s,q') \in
+\delta</script></p>
+
+<p>Un automate fini complet possède une transition pour chaque lettre de l’alphabet
+depuis tout état. Il peut donc traiter tout mot d’entrée entièrement, sans
+jamais être bloqué avant d’avoir lu l’intégralité du mot d’entrée. Cependant,
+cela ne suffit pas pour pouvoir programmer l’automate. Il faut de plus que
+celui-ci soit déterministe. C’est à dire que connaissant l’état de l’automate et
+la lettre lu, il doit être possible de déterminer l’état suivant de manière
+unique.</p>
+
+<p>Un automate fini <script type="math/tex">A=(Q,\Sigma,\delta,I,F)</script> est <code class="language-plaintext highlighter-rouge">déterministe</code> si et seulement
+si</p>
+<ul>
+  <li>il possède un unique état initial : <script type="math/tex">I=\{q_0\}</script></li>
+  <li>il n’existe pas de transition étiquetée <script type="math/tex">\epsilon : (Q \times \{\epsilon\}
+\times) \cap \delta = \emptyset</script></li>
+  <li>et pour tout état <script type="math/tex">q \in Q</script>, pour tout <script type="math/tex">s \in \Sigma</script>, il existe au plus
+un état <script type="math/tex">q' \in Q</script> tel que <script type="math/tex">(q,s,q') \in \delta</script></li>
+</ul>
+
+<h3 id="langage-accepté">Langage accepté</h3>
+<p>Un automate fini est appliqué à un mot d’entrée donné, encodé dans l’alphabet de
+l’automate. C’est à dire que l’automate, à partir d’un état initial, lit le mot
+d’entrée lettre à lettre et il franchit, pour chacune d’elles, une transition de
+même étiquette. Cela définit une exécution de l’automate fini.</p>
+
+<p>Une <code class="language-plaintext highlighter-rouge">exécution</code> d’un automate fini <script type="math/tex">A=(Q,\Sigma,\delta,I,F)</script> sur un mot
+d’entrée <script type="math/tex">\omega \in \Sigma*</script> est une séquence finie de transitions <script type="math/tex">q_0
+\stackrel{a_0}{\rightarrow} q_1 \stackrel{a_1}{\rightarrow} ... q_n
+\stackrel{a_n}{\rightarrow} q_{n+1}</script></p>
+
+<blockquote>
+  <p>Un automate fini déterministe admet donc au plus une exécution pour tout mot
+d’entrée. A contrario, un automate fini complet admet au moins une exéution
+pour tout mot d’entrée. Finalement, un automate fini déterministe et complet
+admet exactement une exécution pour tout mot d’entrée</p>
+</blockquote>
+
+<p>Une exécution d’un automate fini pour un mot d’entrée <script type="math/tex">\omega</script> aboutit dans un
+état donné, ici <script type="math/tex">q_{n+1}</script>. C’est alors que l’automate rend une décision : soit
+<script type="math/tex">q_{n+1} \in F</script> est accepteur et alors <script type="math/tex">\omega</script> est accepté. Soit au
+contraire <script type="math/tex">q_{n+1} \notin F</script> n’est pas accepteur, et le mot <script type="math/tex">\omega</script> est
+rejeté.</p>
+
+<p>Le <code class="language-plaintext highlighter-rouge">langage accepté</code> par un automate fini <script type="math/tex">A=(Q,\Sigma,\delta, I,F)</script> est
+l’ensemble des mots <script type="math/tex">\omega</script> pour lesquels il existe une exécution de <script type="math/tex">A</script>
+qui aboutit dans un état accepteur : <script type="math/tex">\mathcal{L}(A)=\{\omega \in \Sigma* | g_0
+\stackrel{\omega}{\rightarrow}\}</script></p>
+
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
