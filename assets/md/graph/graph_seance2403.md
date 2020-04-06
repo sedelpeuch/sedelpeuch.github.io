@@ -1,10 +1,28 @@
 --- 
 layout: page
 hide: true
-title: <i class="fas fa-project-diagram"></i> Graphe - Problème du Labyrinthe
+title: <i class="fas fa-project-diagram fa-2x"></i> Graphe - Parcours en largeur et en profondeur
 ---
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
-## Modélisation
+## <i class="fas fa-project-diagram"></i> Quelques exercices
+
+> Une k-coloration d'un graphe $$G$$ est une fonction $$V(G) \rightarrow [1,k]$$
+> telle que toute paire de sommets adjacents (et distincts) sont coloriés
+> différemment (c'est à dire associé par $$f$$ deux entiers distincts). Un
+> graphe est biparti si il admet une 2-coloration. Ecrire un algorithme qui
+> décide si un graphe non orienté connexe est biparti.
+
+Principe de résolution : Colorier avec une couleur le sommet de départ $$s$$,
+lorsqu on marque un sommet, sa couleur est différente de celle de son père. Si
+on tombe sur un sommet déjà marqué, on teste si sa couleur est différente de son
+sommet voisin. L'idée d'une implémentation réside sur un parcours en largeur.
+
+## <i class="fas fa-project-diagram"></i> Problème du Labyrinthe
+
+### Modélisation
 
 |Labyrinthe initial|
 |:---:|
@@ -21,7 +39,7 @@ graphe le modélisation se base sur les chemins possibles
 [modélisation du labyrinthe 2]:/assets/images/graphe/labyrinthe2.png 
 [modélisation du labyrinthe final]:/assets/images/graphe/labyrinthe3.png
 
-## Résolution du problème 
+### Résolution du problème 
 On peut trouver la sortie d’un labyrinthe avec 2 couleurs en "simulant" un
 parcours en profondeur (**DFS**): Au lieu d’utiliser une mémoire globale de taille `n`
 (la pile), on va utiliser un marquage local, à chaque nœud/arête, avec
@@ -58,15 +76,10 @@ La résolution se fait via l'algorithme de
 [Trémaux](https://en.wikipedia.org/wiki/Maze_solving_algorithm#Tr%C3%A9maux's_algorithm)
 dont le fonctionnement est disponible sur la vidéo suivante.
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/gVSEJdSQZVQ/0.jpg)](http://www.youtube.com/watch?v=gVSEJdSQZVQ)
-## Pour Lundi 30 mars
-* Lire chapitre 9 sur les arbres couvrants: 
-* Dijkstra (PCC avec poids positif)
-* Bellman-Ford (PPC avec poids négatif sans cycle absorbant, cad négatif) 
-* Algorithme de Prim (poids minimal, ajout de l’arête de poids minimal dont une extrémité a été visité – Dijskstra Like)
-* Kruskal (tri des arêtes par poids croissant - facultatif)
-* Chercher les meilleurs vidéos et mettre les liens sur discord d’ici vendredi
-* Exercice : écrire un algorithme de complexité `O(n)` qui vérifie si un graphe est un arbre
+<center>
+<iframe width="1013" height="760" src="https://www.youtube.com/embed/gVSEJdSQZVQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</center>
+
 <div class="header">
   <div class="progress-container">
     <div class="progress-bar" id="myBar"></div>

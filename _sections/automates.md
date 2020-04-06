@@ -17,17 +17,17 @@ utilisation pour la résolution de problèmes concrets.
 
 ### Ressources pédagogiques
 Le support de
-[cours](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/content/6/poly-if114-etd.pdf)
+[cours](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/poly/content/6-if114-etd.pdf)
 
-| Notes de cours | Sujet de TD | Notes de TD |
-| :---:          | :---:       | :---:       |
-| [cours1]       | [td1-sujet] | [td1-notes] |
-| [cours2]       | [td2-sujet] | [td2-notes] |
-| [cours3]       | [td3-sujet] | [td3-notes] |
-| [cours4]       | [td4-sujet] | [td4-notes] |
-| [cours5]       | [td5-sujet] | [td5-notes] |
-| [cours6]       | [td6-sujet] | [td6-notes] |
-| [cours7]       | [td7-sujet] | [td7-notes] |
+| Thème                                        | Notes de cours | Sujet de TD | Notes de TD |
+| :---:                                        | :---:          | :---:       | :---:       |
+| Automates finis et language                  | [cours1]       | [td1-sujet] | [td1-notes] |
+| Expressions régulières et théorème de Kleene | [cours2]       | [td2-sujet] | [td2-notes] |
+| Langages non réguliers                       | [cours3]       | [td3-sujet] | [td3-notes] |
+| Grammaires                                   | [cours4]       | [td4-sujet] | [td4-notes] |
+| Non déterminisme et déterminisation          | [cours5]       | [td5-sujet] | [td5-notes] |
+| Automate minimal et minimisation             | [cours6]       | [td6-sujet] | [td6-notes] |
+| Introduction à l'analyse lexicale            | [cours7]       | [td7-sujet] | [td7-notes] |
 
 [cours1]:/assets/md/automates/cours1
 [cours2]:/assets/md/automates/cours2
