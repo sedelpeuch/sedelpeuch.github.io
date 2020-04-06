@@ -67,7 +67,7 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 </script>
 
 <p>Cours inspiré du
-<a href="https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf">polycopié</a>
+<a href="https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/content/6/poly-if114-etd.pdf">polycopié</a>
 de <a href="https://www.labri.fr/perso/herbrete/">Frédéric Herbreteau</a>.</p>
 
 <p>Un algorithme est réalisé dans le but de résoudre un problème. Nous commençons
@@ -201,7 +201,7 @@ si</p>
 <ul>
   <li>il possède un unique état initial : <script type="math/tex">I=\{q_0\}</script></li>
   <li>il n’existe pas de transition étiquetée <script type="math/tex">\epsilon : (Q \times \{\epsilon\}
-\times) \cap \delta = \emptyset</script></li>
+\times Q) \cap \delta = \emptyset</script></li>
   <li>et pour tout état <script type="math/tex">q \in Q</script>, pour tout <script type="math/tex">s \in \Sigma</script>, il existe au plus
 un état <script type="math/tex">q' \in Q</script> tel que <script type="math/tex">(q,s,q') \in \delta</script></li>
 </ul>
@@ -233,7 +233,7 @@ rejeté.</p>
 <p>Le <code class="language-plaintext highlighter-rouge">langage accepté</code> par un automate fini <script type="math/tex">A=(Q,\Sigma,\delta, I,F)</script> est
 l’ensemble des mots <script type="math/tex">\omega</script> pour lesquels il existe une exécution de <script type="math/tex">A</script>
 qui aboutit dans un état accepteur : <script type="math/tex">\mathcal{L}(A)=\{\omega \in \Sigma* | g_0
-\stackrel{\omega}{\rightarrow}\}</script></p>
+\stackrel{\omega}{\rightarrow}\ q_F}</script></p>
 
 </div>
 	</article>
