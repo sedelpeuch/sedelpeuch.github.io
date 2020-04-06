@@ -8,7 +8,7 @@ title: <i class="fas fa-robot fa-2x"></i> Automates finis et langages
 </script>
 
 Cours inspiré du
-[polycopié](https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf)
+[polycopié](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/content/6/poly-if114-etd.pdf)
 de [Frédéric Herbreteau](https://www.labri.fr/perso/herbrete/).
 
 Un algorithme est réalisé dans le but de résoudre un problème. Nous commençons
@@ -136,7 +136,7 @@ Un automate fini $$A=(Q,\Sigma,\delta,I,F)$$ est `déterministe` si et seulement
 si 
 + il possède un unique état initial : $$I=\{q_0\}$$
 + il n'existe pas de transition étiquetée $$\epsilon : (Q \times \{\epsilon\}
-  \times) \cap \delta = \emptyset$$
+  \times Q) \cap \delta = \emptyset$$
 + et pour tout état $$q \in Q$$, pour tout $$s \in \Sigma$$, il existe au plus
   un état $$q' \in Q$$ tel que $$(q,s,q') \in \delta$$
   
@@ -165,6 +165,6 @@ rejeté.
 Le `langage accepté` par un automate fini $$A=(Q,\Sigma,\delta, I,F)$$ est
 l'ensemble des mots $$\omega$$ pour lesquels il existe une exécution de $$A$$
 qui aboutit dans un état accepteur : $$\mathcal{L}(A)=\{\omega \in \Sigma* | g_0
-\stackrel{\omega}{\rightarrow}\}$$
+\stackrel{\omega}{\rightarrow}\ q_F}$$
 
 
