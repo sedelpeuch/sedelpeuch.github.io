@@ -35,7 +35,7 @@ Graphes.
 [1. Graphes notions générales]:/assets/md/graph/1
 [3. Implémentation de graphes]:/assets/md/graph/2
 [4. Parcours en largeur et en profondeur]:/assets/md/graph/graph_seance2403
-[5. Arbres]:/assets/md/graph/4
+[5. Arbres]:/assets/md/graph/graph_seance0704
 [6. Plus court chemin]:/assets/md/graph/5
 [7. Flot maximal]:/assets/md/graph/6
 [8. Théorème de Menger]:/assets/md/graph/7

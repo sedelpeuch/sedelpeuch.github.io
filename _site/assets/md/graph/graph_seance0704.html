@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/graph/graph_seance0704.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Abres | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Abres | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/graph/graph_seance0704.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-project-diagram fa-2x"></i> Graphe - Abres</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h2 id="-union-find"><i class="fas fa-project-diagram"></i> Union Find</h2>
+
+<p>On dispose d’ensembles disjoints sur <script type="math/tex">n</script> éléments, on veut</p>
+<ul>
+  <li>Tester si 2 éléments <script type="math/tex">x,y</script> appartiennent au même ensemble ? <code class="language-plaintext highlighter-rouge">Find(x)=Find(y)</code></li>
+  <li>Fusionner 2 ensembles disjoints contenant <script type="math/tex">x</script> et <script type="math/tex">y</script> <code class="language-plaintext highlighter-rouge">Union(x,y)</code></li>
+</ul>
+
+<h3 id="une-première-structure-naïve">Une première structure naïve</h3>
+
+<p>Les ensembles sont indicés de <script type="math/tex">1</script> à <script type="math/tex">n</script>. Chaque élément connait l’indice de
+son ensemble et au début <code class="language-plaintext highlighter-rouge">x.indice=identifiant(x)&lt;=n</code></p>
+
+<blockquote>
+  <ul>
+    <li>Question 1 : Quelle est la complexité du test <code class="language-plaintext highlighter-rouge">Find(x)=Find(y)</code> ?</li>
+    <li>Question 2 : Quelle est la complexité de <code class="language-plaintext highlighter-rouge">Union(x,y)</code> dans le pire des cas ?</li>
+    <li>Question 3 : Quelle est la complexité totale si, en partant de <script type="math/tex">n</script> ensembles
+de taille unitaire, on itère <script type="math/tex">k</script> opération d’<code class="language-plaintext highlighter-rouge">Union</code></li>
+  </ul>
+</blockquote>
+
+<p>La complexité est constant si on décide de renommer avec l’indice le plus petit
+dans un ensemble lors de l’opération d’<code class="language-plaintext highlighter-rouge">Union(x,y)</code>. Pour l’Union tous les
+éléments <script type="math/tex">z</script> de l’ensemble de <script type="math/tex">y</script> doivent mettre à jour leur indice donc
+linéaire. Finalement la complexité totale est en <script type="math/tex">O(k^2)</script> car Union se fait en
+temps <script type="math/tex">O(k)</script> si les ensembles ont une taille maximale <script type="math/tex">k</script> et comme on part
+d’ensemble unitaires, les ensembles ont taille max <script type="math/tex">k</script>.</p>
+
+<h3 id="vers-une-version-efficace">Vers une version efficace</h3>
+
+<p>On considère maintenant une structure de données dans laquelle chaque classe est
+représentée par un arbre dans lequel chaque noeud contient une référence vers
+son noeud père. Une telle structure de forêt a été introduite.</p>
+
+<p>Dans une telle forêt, le représentant de chaque classe est la racine de l’arbre
+crrespondant. Find se contente de suivre les liens vers les noeuds pères jusqu’à
+atteindre la racine. Union réunit deux arbres en attachant la racine de l’un à
+la racine de l’autre. Une manière d’écrire ces opérations est la suivante.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fonction MakeSet(x)
+    x.parent = null
+
+fonction Find(x)
+    si x.parent == null
+        retourner x
+    retourner Find(x.parent)
+    
+fonction Union(x,y)
+    xRacine = Find(x)
+    yRacine = Find(y)
+    si xRacine != yRacine
+        xRacine.parent = yRacine
+</code></pre></div></div>
+
+<blockquote>
+  <p>Quetion 5 : Quelle est la complexité de la séquence <code class="language-plaintext highlighter-rouge">Union(1,2)...Union(1,n)</code>?
+Question 6 : Si <script type="math/tex">p</script> est père de <script type="math/tex">q</script>, quelle relation y a t’il entre le
+rang de <script type="math/tex">p</script> et celui de <script type="math/tex">q</script> ?</p>
+</blockquote>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
