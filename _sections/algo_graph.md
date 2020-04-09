@@ -36,7 +36,7 @@ Graphes.
 [3. Implémentation de graphes]:/assets/md/graph/2
 [4. Parcours en largeur et en profondeur]:/assets/md/graph/graph_seance2403
 [5. Arbres]:/assets/md/graph/graph_seance0704
-[6. Plus court chemin]:/assets/md/graph/5
+[6. Chemin le plus court]:/assets/md/graph/5
 [7. Flot maximal]:/assets/md/graph/6
 [8. Théorème de Menger]:/assets/md/graph/7
 [9. Couplages, Recouvrements, cliques]:/assets/md/graph/8
