@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/graph/free-dm-graph-corona/rapport/dm.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Devoir Maison propagation du Covid-19 | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Devoir Maison propagation du Covid-19 | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/graph/free-dm-graph-corona/rapport/dm.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-project-diagram fa-2x"></i> Graphe - Devoir Maison propagation du Covid-19</h2><p>Decou Nathan , Delpeuch Sébastien, Moinel Aurélien, Pringalle Antoine</p></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Le but de ce devoir maison est d’utiliser l’algorithmique des graphes pour
+modéliser une version simpliste de la propagation du Covid-19. Le devoir se
+décompose en 3 parties d’implémentation, tout d’abord nous mettons en place les
+différentes paramètres (mortalité, durée de maladie) et les différents graphes. Vient ensuite le rajout de
+paramètres simples comme des tests sur la population etc. Finalement nous avons
+tenté de rajouter des facteurs plus réalistes  à compléter.</p>
+
+<p>Notre travail est résumé dans l’outil de visualisation que nous avons crée
+disponible en fin de page.</p>
+
+<h2 id="-partie-i---implémentation-dune-base"><i class="fas fa-project-diagram"></i> Partie I - Implémentation d’une base</h2>
+<p>La première partie permet de définir les bases de la modélisation c’est à dire
+les différents états, les différents paramètres, les règles de changement
+d’état, les topologies de graphes étudiés et les différents modèles de ces
+derniers. La population est pour l’instant considérée comme uniforme (chaque
+individu est sujet à la maladie de la même manière), ils peuvent être dans
+quatre états, Sain (<script type="math/tex">S</script>), Infecté (<script type="math/tex">M</script>), Guéri et donc imunisés (<script type="math/tex">G</script>) ou
+décédé (<script type="math/tex">D</script>). De plus chaque personne suit les règles suivantes</p>
+<ul>
+  <li>Si une personne saine <script type="math/tex">X</script> fréquente une personne malade <script type="math/tex">Y</script> alors, avec la
+probabilité <script type="math/tex">q</script>, <script type="math/tex">X</script> devient malade par l’intermédiaire de <script type="math/tex">Y</script> pour une
+durée <script type="math/tex">r</script>.</li>
+  <li>Si une personne est malade depuis <script type="math/tex">r</script> jours alors soit elle décède avec une
+probabilité <script type="math/tex">p</script> soit elle devient immunisé avec une probabilité <script type="math/tex">(1-p)</script>.</li>
+  <li>Une personne immunisée ou décédée ne change jamais d’état.</li>
+  <li>Une personne décédée ne peut pas contaminer une personne saine.</li>
+</ul>
+
+<p>Nous allons aussi définir les différents graphes de contact permettant de
+simuler les différentes relations de chaque individu, trois graphes sont alors
+mis en oeuvre</p>
+<ul>
+  <li>Un graphe circulaire, les personnes sont numérotés de 1 à <script type="math/tex">n</script> et chaque
+personne, numérotés <script type="math/tex">i</script>, est relié aux personnes <script type="math/tex">(i-1)</script> et <script type="math/tex">(i+1)</script>
+modulo <script type="math/tex">n</script>,</li>
+</ul>
+
+<h2 id="-partie-ii---rajout-de-tests-simples"><i class="fas fa-project-diagram"></i> Partie II - Rajout de tests simples</h2>
+
+<h2 id="-partie-iii---rajouts-de-facteurs-plus-réalistes"><i class="fas fa-project-diagram"></i> Partie III - Rajouts de facteurs plus réalistes</h2>
+
+<h2 id="-partie-iv---outil-de-visualisation"><i class="fas fa-project-diagram"></i> Partie IV - Outil de visualisation</h2>
+<html>
+<head><TITLE>Exercice avec Python</TITLE></head>
+<body>
+
+<div align="center">
+<img src="penguin.gif" />
+<h2>Page Web interactive</h2>
+<p>Cette page est associée à un script Python</p>
+
+<form action="/assets/md/graph/free-dm-graph-corona/rapport/input_query.py" method="post">
+<input type="submit" name="send" value="Exécuter le script" />
+</form>
+
+</div></body></html>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

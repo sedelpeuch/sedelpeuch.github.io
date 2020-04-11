@@ -4,8 +4,6 @@ icon: fa-search
 order: 5
 ---
 
-## Objectif de cours
-
 ## Ressources Pédagogiques
 
 | Cours  | Sujet du TD | Notes de cours | Notes de TD |

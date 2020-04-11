@@ -17,7 +17,7 @@ utilisation pour la résolution de problèmes concrets.
 
 ### Ressources pédagogiques
 Le support de
-[cours](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/poly/content/6-if114-etd.pdf)
+[cours](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/content/6/poly-if114-etd.pdf)
 
 | Thème                                        | Notes de cours | Sujet de TD | Notes de TD |
 | :---:                                        | :---:          | :---:       | :---:       |
@@ -38,12 +38,12 @@ Le support de
 [cours7]:/assets/md/automates/cours7
 
 [td1-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/19862/mod_resource/content/10/td1.etd.pdf
-[td2-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/19862/mod_resource/content/10/td2.etd.pdf
-[td3-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/19862/mod_resource/content/10/td3.etd.pdf
-[td4-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/19862/mod_resource/content/10/td4.etd.pdf
-[td5-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/19862/mod_resource/content/10/td5.etd.pdf
-[td6-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/19862/mod_resource/content/10/td6.etd.pdf
-[td7-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/19862/mod_resource/content/10/td7.etd.pdf
+[td2-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/19863/mod_resource/content/10/td2.etd.pdf
+[td3-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/19955/mod_resource/content/10/td3.etd.pdf
+[td4-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/19957/mod_resource/content/7/grammaires.etd.pdf
+[td5-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/31236/mod_resource/content/10/td4.etd.pdf
+[td6-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/19960/mod_resource/content/6/td5.etd.pdf
+[td7-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/31825/mod_resource/content/6/td6.etd.pdf
 
 [td1-notes]:/assets/md/automates/td1-notes
 [td2-notes]:/assets/md/automates/td2-notes

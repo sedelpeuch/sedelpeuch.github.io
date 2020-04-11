@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/reseau/notes1.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-server fa-2x&quot;&gt;&lt;/i&gt; Introduction aux réseaux - Historique et notion de bases | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-server fa-2x&quot;&gt;&lt;/i&gt; Introduction aux réseaux - Historique et notion de bases | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/reseau/notes1.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-server fa-2x"></i> Introduction aux réseaux - Historique et notion de bases</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h2 id="-quest-ce-quun-réseau-de-communication-"><i class="fas fa-server"></i> Qu’est ce qu’un réseau de communication ?</h2>
+
+<ul>
+  <li>Un réseau de communication peut être défini comme l’ensemble des ressources
+matérielles et logicielles liées à la transmission et l’échange d’information
+ntre différentes entités. Suivant leur organisation, ou architecture, les
+distances, les vitesses de transmission et la nature des informations
+transmises, les réseaux ont l’objet d’un certain nombre de spécifications et
+normes.</li>
+  <li>Les réseaux de communications peuvent être classés en fonction :
+    <ul>
+      <li>du type d’informations transportées</li>
+      <li>de la nature des entités impliquées</li>
+    </ul>
+  </li>
+  <li>On distingue trois principals catégories de réseaux
+    <ul>
+      <li>Les réseaux de télécommunications</li>
+      <li>Les réseaux téléinformatiques</li>
+      <li>Les réseaux de télédiffusion</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="-les-réseaux-de-télécommunications"><i class="fas fa-server"></i> Les réseaux de télécommunications</h2>
+
+<p>Ce soit les réseaux de communications les plus anciens, ils ont pour objectif
+l’acheminement de communications vocales entre indivdus. La parole pouvant être
+envoyée brute sous la forme d’ondes électromagnétiques, on parle alors de
+communication vocale analogique, ou sous la forme d’une suite d’information
+binaire (0 ou 1) après avoir subi un traitement appelé numérisation.</p>
+
+<h3 id="historique-des-télécommunications">Historique des télécommunications</h3>
+
+<p>Les télécommunications recouvrent toutes les techniques de transfert de
+l’information quelle qu’en soit sa nature. LE terme “Télécommunication” a été
+introduit en 1904 par Edouard Estaunié, ingénieur général des télégraphes
+1863-1942. En 1932 (conférence de Madrid), l’Union Télégraphique Internationnale
+est renommée Union Internationnale des Télécommunication</p>
+
+<h3 id="mise-en-relation-des-correspondants-dans-les-réseaux-de-télécommunications">Mise en relation des correspondants dans les réseaux de télécommunications</h3>
+
+<p>La mise en relation c’est la communication, la commutation de circuits
+(communication spatiale) consiste à juxtaposer de bout en bout les voies
+physiques de communication, la liaison est maintenu durant tout l’échange et
+réalisée manuellement par des opérateurs. En 1970, le réseau téléphonique
+français est entièrement automatisé.</p>
+
+<h2 id="-les-réseaux-téléinformatiques"><i class="fas fa-server"></i> Les réseaux téléinformatiques</h2>
+
+<p>Ils sont destinés à relier des équipements informatiques (serveurs, ordinateur,
+imprimantes …). L’échange de données binaires issues d’applications ou
+processus informatiques tels que les traitements de textes, les bases de
+données, ou les navigateurs Internet, le partage de ressources informatiques.</p>
+
+<h3 id="historique-de-linternet">Historique de l’Internet</h3>
+
+<p><img src="/assets/images/reseau/historique.png" alt="historique internet" class="image about
+right" />
+Le 7 février 1958, création de l’agence ARPA comme agence pour les projets de
+recherche avancée, en 1969 développement du premier réseau à transfert de
+paquets ou ARPANET, au milieu des années 1970, début des travaux de l’ARPA sur
+une technologie internet.</p>
+
+<h3 id="classification-des-réseaux-téléinformatiques">Classification des réseaux téléinformatiques</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Bus des ordinateurs</td>
+      <td>ISA, MCA, PCI</td>
+    </tr>
+    <tr>
+      <td>Réseaux personnells  (PAN)</td>
+      <td>Bluetooth, Infrarouge, ZigBee</td>
+    </tr>
+    <tr>
+      <td>Réseaux locaux (LAN)</td>
+      <td>Ethernet, Token Ring, ATM</td>
+    </tr>
+    <tr>
+      <td>Réseaux départementaux (DAN)</td>
+      <td>Fast Ethernet, Fast Token Ring, ATM</td>
+    </tr>
+    <tr>
+      <td>Réseaux métropolitains (MAN)</td>
+      <td>Metro Ethernet</td>
+    </tr>
+    <tr>
+      <td>Réseaux étendus (WAN)</td>
+      <td>RTCP, RNIS, Internet, Frame Relay, ATM, Metro Ethern</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="image featured"><img src="/assets/images/reseau/distance.png" alt="distance" /></p>
+
+<p><img class="image about right" src="/assets/images/reseau/topologie.png" alt="topologie" /></p>
+<ul>
+  <li>Topologie du réseau : un réseau de communication est composé de terminaux, de
+noeuds et de liens</li>
+  <li>Totpolgie physique : décrit comment les différents noeuds sont reliés entre
+eux</li>
+  <li>Topologie logique : décrit comment l’information est transmise d’un noeud à
+l’autre</li>
+  <li>On distingue 2 classes de réseaux
+    <ul>
+      <li>Utilisant le mode de diffusion</li>
+      <li>Utilisant des liaisons point à point</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="mode-de-connexion--connecté">Mode de connexion : connecté</h4>
+
+<p>Identique au principe de fonctionnement du téléphone : toute communication entre
+2 entités du réseau (<script type="math/tex">A</script> et <script type="math/tex">B</script> par exemple) suit le processus suivant en 3 phases</p>
+<ol>
+  <li>Etablissement de la connexion
+    <ul>
+      <li><script type="math/tex">A</script> demande une connexion avec <script type="math/tex">B</script> par l’envoi d’un message spécial
+(paquet d’appel)</li>
+      <li>Le paquet d’appel trace un chemin entre <script type="math/tex">A</script> et <script type="math/tex">B</script> dans le réseau</li>
+      <li><script type="math/tex">B</script> confirme ou non la connexion avec un autre message spécial (paquet
+d’acquittement)</li>
+    </ul>
+  </li>
+  <li>Transfert des données
+    <ul>
+      <li>Tous les paquets du message sont envoyés à <script type="math/tex">B</script> en suivant le même chemin
+dans le réseau</li>
+      <li>Les paquets du message contiennent le numéro du circuit et non plus
+l’adresse de <script type="math/tex">B</script></li>
+    </ul>
+  </li>
+  <li>Libération de la connexion
+    <ul>
+      <li>un paquet de libération du circuit est envoyé à l’initiative de <script type="math/tex">A</script> ou
+<script type="math/tex">B</script></li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="mode-de-connexion--non-connecté">Mode de connexion : non connecté</h4>
+<p>Identitque au principe de fonctionnement du courrier postal</p>
+<ul>
+  <li><script type="math/tex">A</script> envoie vers <script type="math/tex">B</script> les différents messages (ou paquets de son message)
+avec l’adresse de destination <script type="math/tex">B</script> sans demande préalable de connexion (pas
+de circuit virtuel entre <script type="math/tex">A</script> et <script type="math/tex">B</script>)</li>
+  <li>C’est aux équipements de réseau d’acheminer ces paquets individuellement par
+des chemins pouvant être différents, et en les temporisant si nécessaire</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Connecté</th>
+      <th style="text-align: left">Non connecté</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Négocaitation à l’avance des paramètre de communications</td>
+      <td style="text-align: left">Simplicité</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Efficacité</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Robustesse aux pannes du réseau</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Temps de connexion long</td>
+      <td style="text-align: left">De-séquencement des paquets à l’arrivée</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Multipoint peu aisé à mettre en place</td>
+      <td style="text-align: left">Mémoire tampon des équipements réseaux</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Pas de qualité négociée</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="techniques-de-commutation">Techniques de commutation</h4>
+<p><img class="image about right" src="/assets/images/reseau/commutation.png" alt="commutation" /> On s’intéresse au mode de fonctionnement des noeuds et du réseau, la commutation
+est la technique utilisée par les noeuds dans le réseau pour acheminer
+(aiguiller) les messages de l’émetteur vers le récepteur. Il existe plusieurs
+variantes</p>
+<ul>
+  <li>Commutation de circuit</li>
+  <li>Commutation de messages</li>
+  <li>Commutation de paquets</li>
+</ul>
+
+<h2 id="-les-réseaux-de-télédiffusion"><i class="fas fa-server"></i> Les réseaux de télédiffusion</h2>
+
+<p>Plus précents, ils sevent à la diffusion de canaux de télévisions entre les
+sutidios TV et les particuliers. On retrouver les réseaux de distribution
+terrestre des câblo-opérateurs et les réseaux satellites</p>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

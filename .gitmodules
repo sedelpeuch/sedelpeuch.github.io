@@ -1,0 +1,3 @@
+[submodule "free"]
+	path = assets/md/graph/free-dm-graph-corona
+	url = https://sedelpeuch@thor.enseirb-matmeca.fr/git/free-dm-graph-corona

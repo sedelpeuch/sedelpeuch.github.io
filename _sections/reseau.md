@@ -2,8 +2,6 @@
 title: Introduction aux réseaux 
 icon: fa-server
 order: 9
-cover-photo: /assets/images/banner.jpg
-cover-photo-alt: banner
 ---
 
 ### Objectif du cours
@@ -14,4 +12,25 @@ des réseaux, les couches ISO et TCP/IP, technologies pour les LAN, notion de
 base sur l’Ethernet : adressage, commutation, type ethernet, équipements
 d’interconnexions réseaux, autres protocoles pour les LAN, travaux pratiques 
 
-### Début le 05/04
+### Resources pédagogiques 
+
+Le
+[cours](https://moodle.bordeaux-inp.fr/pluginfile.php/111539/mod_resource/content/1/Cours%20RE100.pdf),
+le
+[td1](https://moodle.bordeaux-inp.fr/pluginfile.php/111540/mod_resource/content/3/TD1.pdf)
+et le [td2](https://moodle.bordeaux-inp.fr/pluginfile.php/111542/mod_resource/content/4/TD2.pdf)
+
+| Thème                             | Notes de cours |
+| :---                             | :---:          |
+| Histoiriques des notions de bases | [notes1]       |
+| Le modèle de référence OSI        | [notes2]       |
+| Le modèle TCP/IP                  | [notes3]       |
+| Exercices et TP                   | [notes4]       |
+
+[notes1]:/assets/md/reseau/notes1
+[notes2]:/assets/md/reseau/notes2
+[notes3]:/assets/md/reseau/notes3
+[notes4]:/assets/md/reseau/notes4
+
+
+
