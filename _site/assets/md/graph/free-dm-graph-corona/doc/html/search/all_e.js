@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertice_5fcolor',['vertice_color',['../namespacecorona.html#a40ec903f8812cc87e4d249d9d61cb81b',1,'corona']]]
+  ['tirage',['tirage',['../namespacecorona.html#a00ec6633075e1e360dccda6e2dfe9f01',1,'corona']]]
 ];

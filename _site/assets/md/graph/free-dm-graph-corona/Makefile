@@ -6,7 +6,7 @@
 
 all:build rapport doc
 
-.PHONY: doc
+.PHONY: doc rapport
 
 build:
 	python3 src/corona.py
@@ -18,8 +18,8 @@ visu:
 	firefox dm_graph_covid_19.html
 
 rapport:
-	pandoc dm_graph_covid_19.md -o dm_graph_covid_19.tex
-	pdflatex dm_graph_covid_19.tex
+	pandoc -s rapport/dm.md -o rapport/dm_graph_covid_19.tex
+	pdflatex rapport/dm_graph_covid_19.tex
 
 doc:
 	doxygen Doxyfile
@@ -31,5 +31,5 @@ clean:
 	rm -f rapport/*.aux
 	rm -f rapport/*.log
 	rm -f rapport/*.out
-	rm -r doc/*
+	rm -f *.log *.aux *.out
 # end

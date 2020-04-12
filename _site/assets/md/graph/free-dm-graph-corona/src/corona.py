@@ -1,5 +1,6 @@
-# @package corona
-#  Documentation for this module.
+"""@package corona
+Documentation for this module.
+"""
 
 import numpy as np
 import networkx
@@ -14,11 +15,12 @@ decede = "black"
 ## La class qui represente un individu de la population
 class individu:
 
-    ## Constructeur d'un individu
+    ##Constructeur d'un individu
     #@param num : le numéro de l'individu dans la population
     #@param etat : l'état de l'individu. 0 = sain, 1 = malade, 2 = gueris, 3 = decedé
     #@param duree_infection : depuis quand l'individu est infécté. 0 si individu sain
     #@param nb_freq : nombre de frequentation de l'individu
+
     def __init__(self, num, etat, duree_infection, nb_freq):
         self.num = num
         self.etat = etat

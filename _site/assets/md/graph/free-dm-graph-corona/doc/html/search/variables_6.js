@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['p',['p',['../namespacecorona.html#af10c7d66eabb3bd1134bc7858217f409',1,'corona']]],
-  ['popu_5fconfine',['popu_confine',['../namespacecorona.html#a242cb411482fecb1582c68b3f7df129e',1,'corona']]],
-  ['popu_5fconfine_5fmalade',['popu_confine_malade',['../namespacecorona.html#a0d08ad949451eee92c5a487a46f69349',1,'corona']]],
-  ['popu_5ffin',['popu_fin',['../namespacecorona.html#a9e142e6b063e08550c1e24546fb10072',1,'corona']]]
+  ['n',['n',['../namespacecorona.html#a7e144ffd31966014584c55e096b85729',1,'corona']]],
+  ['nb_5ffreq',['nb_freq',['../classcorona_1_1individu.html#a1e6402cdc69a726823e2f1d8a2d0b97b',1,'corona::individu']]],
+  ['num',['num',['../classcorona_1_1individu.html#a75d60c7ab3b6ff4909d5b7fa919a82a7',1,'corona::individu']]]
 ];
