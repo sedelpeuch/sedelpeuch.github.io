@@ -122,9 +122,36 @@ fonction Union(x,y)
 </code></pre></div></div>
 
 <blockquote>
-  <p>Quetion 5 : Quelle est la complexité de la séquence <code class="language-plaintext highlighter-rouge">Union(1,2)...Union(1,n)</code>?
-Question 6 : Si <script type="math/tex">p</script> est père de <script type="math/tex">q</script>, quelle relation y a t’il entre le
+  <p>Quetion 5 : Quelle est la complexité de la séquence <code class="language-plaintext highlighter-rouge">Union(1,2)...Union(1,n)</code>?</p>
+</blockquote>
+
+<p>La complexité de find(1) va être 1 puis 2 puis 3 … n-1. En sommant, on obtient
+<script type="math/tex">\Theta(n^2)</script></p>
+
+<blockquote>
+  <p>Question 6 : Si <script type="math/tex">p</script> est père de <script type="math/tex">q</script>, quelle relation y a t’il entre le
 rang de <script type="math/tex">p</script> et celui de <script type="math/tex">q</script> ?</p>
+</blockquote>
+
+<p>On a rang(p)&gt;rang(q)</p>
+
+<blockquote>
+  <p>Question 8 : Supposons qu’une séquence de <script type="math/tex">m</script> opérations comportant <script type="math/tex">m</script>
+Makeset et <script type="math/tex">n</script> UNION ou FIND. Quelle est la complexité de UNION-FIND en
+utilisant UnionbyRank ?</p>
+</blockquote>
+
+<p>La complexité tombe à <script type="math/tex">O(n)</script> produit par la fonction inverse d’Ackermann qui
+est une fonction croissante mais d’une croissance ridicule. En pratique, on
+considère que même pour <script type="math/tex">n>10^100</script>. On peut également montrer que la
+complexité est <script type="math/tex">O(n \log^\ast(n))</script> où <script type="math/tex">\log^\ast(n)</script> désigne le logarithme
+itéré de <script type="math/tex">n</script>, c’est à dire le plus petit nombre d’itération de logarithme
+jusqu’à obtenir <script type="math/tex">% <![CDATA[
+\log(\log(\log(...(\log n)))) < 1 %]]></script>.</p>
+
+<blockquote>
+  <p>Question 9 Construire un exemple où le rang atteint 2 si on utilise la
+compression de chemins</p>
 </blockquote>
 </div>
 	</article>

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/automates/td2-notes.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-robot fa-2x&quot;&gt;&lt;/i&gt; Automates finis et application - TD2 | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-robot fa-2x&quot;&gt;&lt;/i&gt; Automates finis et application - TD2 | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/automates/td2-notes.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-robot fa-2x"></i> Automates finis et application - TD2</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h2 id="-expression-régulières"><i class="fas fa-robot"></i> Expression régulières</h2>
+
+<h3 id="exercice-1-syntaxe-des-expressions-régulières">Exercice 1 (Syntaxe des expressions régulières)</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Définition:</code> L’ensemble des expression régulières sur un alphabet <script type="math/tex">\Sigma</script>
+est défini par</p>
+<ol>
+  <li><script type="math/tex">\varnothing, \epsilon, s</script> quel que soit <script type="math/tex">s \in \Sigma</script> sont des
+expressions régulières</li>
+  <li>Si <script type="math/tex">\alpha</script> et <script type="math/tex">\beta</script> sont deux expressions régulières, alors
+<script type="math/tex">(\alpha+\beta)</script>, <script type="math/tex">\alpha\beta</script> et <script type="math/tex">(\alpha)^\ast</script> sont des expressions
+régulières</li>
+</ol>
+
+<p>Identification des expressions régulières</p>
+
+<ol>
+  <li><script type="math/tex">a</script> est une expression régulière car membre de l’alphabet</li>
+  <li><script type="math/tex">c</script> n’est pas une expression régulière car non membre de l’alphabet</li>
+  <li><script type="math/tex">a</script> est une expression régulière et <script type="math/tex">b</script> aussi donc <script type="math/tex">(a+b)</script> est une
+expression régulière et aussi <script type="math/tex">(b)^\ast</script> donc <script type="math/tex">(a+b^\ast)</script> est une
+expression régulière</li>
+  <li></li>
+  <li><script type="math/tex">a^\ast b</script> est une expression régulière puisque <script type="math/tex">(a)^\ast</script> et <script type="math/tex">b</script> le
+sont</li>
+  <li><script type="math/tex">(abba+baba)^\ast=bababa</script> est une expression régulière</li>
+</ol>
+
+<h3 id="exercice-2-langage-défini-par-une-expression-régulière">Exercice 2 (Langage défini par une expression régulière)</h3>
+
+<ol>
+  <li>Le seul mot accepté est <script type="math/tex">a</script> , exemple <script type="math/tex">a</script></li>
+  <li>Toute combinaison de un <script type="math/tex">a</script> suivi d’un nombre de <script type="math/tex">b</script> quelconque, exemple
+<script type="math/tex">abbbb</script></li>
+  <li>Toute combinaison commençant par un <script type="math/tex">a</script> et suivi de <script type="math/tex">a</script> ou de <script type="math/tex">b</script>,
+exemple <script type="math/tex">aababa</script></li>
+  <li>Toute combinaison de <script type="math/tex">abba</script> et <script type="math/tex">baba</script>, exemple <script type="math/tex">abbababa</script></li>
+</ol>
+
+<h3 id="exercice-3-construction-de-kleene">Exercice 3 (Construction de Kleene)</h3>
+
+<p>Tentative : 
+<img src="/assets/images/automates/2.3.png" alt="2.3" /></p>
+
+<h3 id="exercice-4-simplifier-la-concaténation">Exercice 4 (Simplifier la concaténation)</h3>
+
+<h3 id="exercice-5-utilisation-de-grep">Exercice 5 (Utilisation de grep)</h3>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">grep -e PATH .bash_export</code></li>
+  <li><code class="language-plaintext highlighter-rouge">last | grep -e sedelpeuch</code></li>
+  <li><code class="language-plaintext highlighter-rouge">grep -e .c</code></li>
+</ol>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

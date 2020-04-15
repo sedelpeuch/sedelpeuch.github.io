@@ -128,8 +128,7 @@ dans tous les cas le graphe possède <script type="math/tex">n</script> sommets.
 construction des arêtes du graphe. Pour le graphe circulaire, cela est effectué
 dans l’initialisation, en effet les individus ne sont reliés que à leurs voisins
 de droite et de gauche, cela est indépendant du jour. Par construction ce graphe
-est connexe. En revanche pour le graphe aléatoire et mixte, <script type="math/tex">E_i \neq
-E_{i+1}</script>, chaque jour les arêtes du graphe sont remises à jour.</p>
+est connexe.</p>
 
 <p>De plus chaque jour, nous devons appliquer les règles de changement d’état à
 tous les individus, ainsi peut importe la topologie du graphe nous parcourons le
@@ -140,56 +139,79 @@ sur une personne malade depuis une durée <script type="math/tex">r</script> nou
 <script type="math/tex">p</script> de décéder. A noter que si une personne décède la liste de ses voisins est
 vidée.</p>
 
-<p>Une fois cela présenté, nous pouvons réaliser une base de l’implémentation, nous
-pouvons commencer, comme le sujet nous y invite, à simuler la propagation dans
-une graphe circulaire, tout d’abord dans le modèle statique puis dynamique avec
-des populations de 100, 1000 et 10000 individu en prenant comme paramètres
+<p>Une fois cela présenté, nous pouvons réaliser une base de l’implémentation. Nous
+définissons donc une classe python <code class="language-plaintext highlighter-rouge">individu</code>. Cela nous permet de renseigner
+les informations importante sur chaque individu, son état, son identificateur,
+le nombre de jour depuis lequel il est malade si il est malade. Finalement dans
+cette version un individu possède aussi un tableau avec l’identificateur de ses
+actuels voisins.</p>
+
+<p>Résumons la construction de ce modèle. Tout d’abord nous créons une population
+de taille <script type="math/tex">n</script>. Cela se fait en initialisant <script type="math/tex">n</script> individu et donc en temps
+linéaire en fonction de <script type="math/tex">n</script>. Ensuite nous créons le graphe circulaire, nous
+utilisons une matrice d’adjacence, nous parcourons tous les individus <script type="math/tex">i</script> et à
+chaque fois nous mettons un 1 dans la case <script type="math/tex">(i-1)%n</script> et <script type="math/tex">(i+1)%n</script>. Dans le
+même temps nous remplissons le tableau des voisins de chaque individu. La
+création de ce graphe est donc réalisé en <code class="language-plaintext highlighter-rouge">O(n)</code> où <script type="math/tex">n</script> est
+le nombre d’individu. Nous devons ensuite appliquer le modèle en fonction
+de <script type="math/tex">k</script> ou <script type="math/tex">k'</script>, cette fonction à une complexité <code class="language-plaintext highlighter-rouge">O(n*k')</code> en effet il faut
+pour chaque individu lui faire choisir <script type="math/tex">k'</script> contact parmis ses <script type="math/tex">k</script>
+fréquentation. Dans le graphe circulaire <script type="math/tex">k</script> vaut toujours 2, ainsi <script type="math/tex">k'</script>
+peut valoir 2 et donc cela ne change rien ou 1. A ce stade nous avons initialisé
+correctement le graphe, la complexité de l’initialisation est majorée par
+<code class="language-plaintext highlighter-rouge">O(n*m)</code> où <script type="math/tex">m</script> est le nombre moyen de voisins.</p>
+
+<p>Passons maintenant au détail de la propagation jour par jour. Chaque jour nous
+devons parcourir tous les individu. Si nous sommes dans un modèle dynamique nous
+devons actualiser les voisins. Ensuite si l’individu est malade depuis <script type="math/tex">r</script>
+jour, lui appliquer une chance de mourir, si l’individu est en contact avec des
+malades lui appliquer une chance de devenir malade. Finalement ajoutons un jour
+de maladie à tous les malades. Ainsi pour calculer l’état du graphe au jour
+<script type="math/tex">i+1</script> nous avons une fonction de complexité è <code class="language-plaintext highlighter-rouge">O(n+m)</code> où <script type="math/tex">m</script> est le nombre
+moyen de voisin d’un individu.</p>
+
+<p>Nous pouvons à partir de cela établir notre code final pour le graphe en modèle
+statique et dynamique. Nous initialisons dans un premiers temps le graphe et la
+population. Nous faisons ensuite appel à la fonction de propagation jour par
+jour le nombre de jours que nous voulons (par défaut 180), nous avons ajouté
+certainnes fonctionnalités nous permettant de récupèrer chaque jour une image du
+graphe et le nombre de malade, sain, remis ou décédés. <em>In fine</em> notre
+algortihme principal à une complexité de <code class="language-plaintext highlighter-rouge">O(nbr jours * n * m)</code>.</p>
+
+<p>Nous pouvons commencer, comme le sujet nous y invite, à simuler la propagation
+dans une graphe circulaire, tout d’abord dans le modèle statique et dynamique
+avec des populations de 100, 1000 et 10000 individu en prenant comme paramètres
 <script type="math/tex">r=14, p=0.01,q=0.02, k=50</script> et en faisant varier <script type="math/tex">k'</script> de <script type="math/tex">1</script> à <script type="math/tex">k</script>.
 Voici quelques animations permettant de visualiser la propagation dans les
 différents graphes au fur et à mesure des jours.</p>
 
-<p>&lt;/head&gt;</p>
-<body>
-<table border="0" width="1530">
-<tr><td>
-<p>
-</p>
+<p>GIF &amp; ANALYSE</p>
 
-<applet name="ggbApplet" code="geogebra.GeoGebraApplet" archive="geogebra.jar" codebase="http://www.geogebra.org/webstart/4.0/unsigned/" width="1530" height="729">
-	<param name="ggbBase64" value="UEsDBBQACAgIACKRi1AAAAAAAAAAAAAAAAAWAAAAZ2VvZ2VicmFfamF2YXNjcmlwdC5qc0srzUsuyczPU0hPT/LP88zLLNHQVKiuBQBQSwcI1je9uRkAAAAXAAAAUEsDBBQACAgIACKRi1AAAAAAAAAAAAAAAAAMAAAAZ2VvZ2VicmEueG1svVdZj9s2EH5OfsVAj228FnU7sBM0AYoG2KQFNi2KvlESbTMriapI+Qjy4ztDSrK8OZA0RY318hrO/c3Q6+enuoKD6LRUzcZjN74HoilUKZvdxuvNdpF5z589Xu+E2om847BVXc3NxouIUpYbr4hTkbMgWyTR1l9EcZIuVquQLbIkCLarIt+u8tgDOGn5tFFveC10ywtxV+xFzW9VwY0VvDemfbpcHo/Hm1HUjep2y90uvznp0gNUs9Ebb5g8RXZXl46hJQ98ny3/fH3r2C9kow1vCuEBmdDLZ48frY+yKdURjrI0ezQ4DtGOvZC7PRqVpaEHS6Jq0SOtKIw8CI13Z0trtKlbz5Lxhs4fuRlUkz0elPIgS9FtPP8mTIM4WvlslfhpFoUM/aE6KRozELNB6HJktz5IcXR8aWZFRh4YpaqcE0v48AECP/DhCQ3MDQEOSeKOfLfnh24I3BC5IXY0kbseOdLI0USOJkJHHKSWeSU23pZXGn0om22H8ZvW2pwrYfUZNi7msydok5bvkTj00cHO6bjv+0/om+A3ooPltZFsJtV0/TcKHUWu4m8QGXyPyHAUGaefEBnEn7Ey+YJznQ5fYyabm4mi7J/9fiQxDL5Bolt/n8Ak+l9MXC9HpKwHcIDeE+0QSSNqTXAJVxCvKOsZxAiNJMUkj4GtcEgDQDAAiyGKcckySGhMIUzxIIIQMiA6FoLFRpzhvyi1zBKIkRntpghJYCgogjgEZiEVAQIJLCwRokGIFHEMMV4i8SwgFmECUYKrMIMIdSREpgwJQ7yIaxQfQMggpMsshSCBhPixiJCeZKQ6sgwg8SFhxBBBjYB2YEb6DEKyJhncJZu2N1cuKupynBrVTrFAaixHl6rnytNVUXy0rnguKmwUdxRJgAOvCBFW0FY1BsYgBm5v1/F2Lwt9J4zBWxre8QO/5UacfkZqPcq2tIVq9G+dMi9V1deNBihU5U86q4rN5sGkNS7C2UE0P4hnB8lsnn5SrsIT6LVA+arTIzkvy1dEcSkN6Mlfm+r8ohP8vlXy2oz10vacteiLSpaSN39gspIU8guMLchWq7EDpYyNiqiuvDtrzGA4/SU6hZWKxdR0z24V0mr+wRjrghPeYt/SzVbzzyBAHKY48JOYTNx1BN/BPFq80i9UddmyRr7krek7+0TACtiR6j81u0rYRLDwxf5b3OfqdOcyIHS83p5bXPlOgXxnnQtYAIIYW+JuGHM3WhrSbKLyLY1vKfwxpWQ5nbNVYCnsmLvRUmGOOtUGS9loJvNHMVLbsuV7V+CwCU7NvG+kuR0XRhb3F0uJ/k1f52JKk2uW7D9iuV4+SKP1vegaUQ1Zi5HsVa8dCGcJXYpC1rh0B4NDOAXrd1TA7ZZi14lR78o+vpy77Kk/T8iPti2rnztVv2oObzETHiiwXo5arnXRyZYSDnKs9PfiklOl1BwbRTm/RzBD0wtqCOgeQ65BAPZmrzr7vMK6gSOhqxI1vqXA2ORq+lp0spgcze07DZXqB73ZzQAA8jKo/B0WtAfBuUQRjz+TfsCrds/pdTewq/hZdFeusdxeq3IUPIit6FkItcQ+t8B0r/kJMYr8co21zuDLGGPRXF7GTrPxuepbaOONzD7Az7iV2aqwlScxVXL0kXyPOcGvjLnAwGAZvsenprbPHzOg0k5+kWUpmklb3mD22BhgJWqduYBNQLjMnq62aL6tB7PID4GhEJ3aDqURm8HFOf7MOCG/M2yAww9wgh9hUoUUdS3oOrZuf+Lw5SDOMPA1UfS/MopzNGgKxIISygaCwvAeN4KJ2b9wuPi7cVe0KwfopUoW0jx06XIOENtqhp9Nz/4BUEsHCKZIR0BkBQAA0w0AAFBLAQIUABQACAgIACKRi1DWN725GQAAABcAAAAWAAAAAAAAAAAAAAAAAAAAAABnZW9nZWJyYV9qYXZhc2NyaXB0LmpzUEsBAhQAFAAICAgAIpGLUKZIR0BkBQAA0w0AAAwAAAAAAAAAAAAAAAAAXQAAAGdlb2dlYnJhLnhtbFBLBQYAAAAAAgACAH4AAAD7BQAAAAA=" />
-	<param name="image" value="http://www.geogebra.org/webstart/loading.gif" />
-	<param name="boxborder" value="false" />
-	<param name="centerimage" value="true" />
-	<param name="java_arguments" value="-Xmx512m -Djnlp.packEnabled=true" />
-	<param name="cache_archive" value="geogebra.jar, geogebra_main.jar, geogebra_gui.jar, geogebra_cas.jar, geogebra_algos.jar, geogebra_export.jar, geogebra_javascript.jar, jlatexmath.jar, jlm_greek.jar, jlm_cyrillic.jar, geogebra_properties.jar" />
-	<param name="cache_version" value="4.0.34.0, 4.0.34.0, 4.0.34.0, 4.0.34.0, 4.0.34.0, 4.0.34.0, 4.0.34.0, 4.0.34.0, 4.0.34.0, 4.0.34.0, 4.0.34.0" />
-	<param name="showResetIcon" value="false" />
-	<param name="enableRightClick" value="false" />
-	<param name="errorDialogsActive" value="true" />
-	<param name="enableLabelDrags" value="false" />
-	<param name="showMenuBar" value="false" />
-	<param name="showToolBar" value="false" />
-	<param name="showToolBarHelp" value="false" />
-	<param name="showAlgebraInput" value="false" />
-	<param name="useBrowserForJS" value="true" />
-	<param name="allowRescaling" value="true" />
-C'est une appliquette Java créée avec GeoGebra ( www.geogebra.org) - Il semble que Java ne soit pas installé sur votre ordinateur, merci d'aller sur www.java.com
-</applet>
-<p>
-</p>
-<p><span style="font-size:small">Cr&#233;&#233; avec <a href="http://www.geogebra.org/" target="_blank">GeoGebra</a></span></p>
-</td></tr>
-</table><script type="text/javascript">
-var ggbApplet = document.ggbApplet;
-function ggbOnInit() {}
-</script>
-</body>
+<p>Nous pouvons tout d’abord voir qu’il y a une propagation au fur et à mesure des
+jours, cependant il apparait clairement que les résultats sont peu satisfaisant,
+en effet le graphe circulaire est relativement simpliste et ne représente que
+très peu les connexions humaines. Nous nous tournons donc vers la deuxième
+topologie proposée, le graphe aléatoire. Celui ci relie les sommets de manière
+aléatoire (il est à noter qu’il n’est pas forcément connexe). Pour gérer plus
+facilement le modèle statique et dynamique nous remplissons dans
+l’initialisation le tableau des voisins par <script type="math/tex">k</script> voisin choisis de manière
+aléatoire, si nous sommes dans un modèle statique nous sélectionnons
+aléatoirement pour chaque individu dans l’initialisation <script type="math/tex">k'</script> voisins parmi
+ses <script type="math/tex">k</script> voisins. En revanche si nous sommes dans un modèle dynamique, à chaque
+jour nous devons sélectionner aléatoirement <script type="math/tex">k'</script> voisins parmis ses <script type="math/tex">k</script>
+contacts autorisés. Grâce à notre implémentation basé sur un tableau contenant
+les <script type="math/tex">k</script> contacts possibles et un tableau contenant ses <script type="math/tex">k'</script> voisins pour le
+jour <script type="math/tex">i</script> la complexité de l’initialisation et de la boucle principale reste
+inchangée.</p>
+
+<p>Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
+précédemment</p>
+
+<p>GIF &amp; ANALYSE</p>
 
 <h2 id="-partie-ii---rajout-de-tests-simples"><i class="fas fa-project-diagram"></i> Partie II - Rajout de tests simples</h2>
 
 <h2 id="-partie-iii---rajouts-de-facteurs-plus-réalistes"><i class="fas fa-project-diagram"></i> Partie III - Rajouts de facteurs plus réalistes</h2>
-
-<h2 id="-partie-iv---outil-de-visualisation"><i class="fas fa-project-diagram"></i> Partie IV - Outil de visualisation</h2>
 
 </div>
 	</article>

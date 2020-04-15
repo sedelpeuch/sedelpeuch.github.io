@@ -58,5 +58,25 @@ fonction Union(x,y)
 ```
 
 > Quetion 5 : Quelle est la complexité de la séquence `Union(1,2)...Union(1,n)`?
+
+La complexité de find(1) va être 1 puis 2 puis 3 ... n-1. En sommant, on obtient
+$$\Theta(n^2)$$
+
 > Question 6 : Si $$p$$ est père de $$q$$, quelle relation y a t'il entre le
 > rang de $$p$$ et celui de $$q$$ ?
+
+On a rang(p)>rang(q)
+
+> Question 8 : Supposons qu'une séquence de $$m$$ opérations comportant $$m$$
+> Makeset et $$n$$ UNION ou FIND. Quelle est la complexité de UNION-FIND en
+> utilisant UnionbyRank ? 
+
+La complexité tombe à $$O(n)$$ produit par la fonction inverse d'Ackermann qui
+est une fonction croissante mais d'une croissance ridicule. En pratique, on
+considère que même pour $$n>10^100$$. On peut également montrer que la
+complexité est $$O(n \log^\ast(n))$$ où $$\log^\ast(n)$$ désigne le logarithme
+itéré de $$n$$, c'est à dire le plus petit nombre d'itération de logarithme
+jusqu'à obtenir $$\log(\log(\log(...(\log n)))) < 1$$. 
+
+> Question 9 Construire un exemple où le rang atteint 2 si on utilise la
+> compression de chemins
