@@ -21,9 +21,6 @@ Les 7 couches du modèle ISO/OSI sont à connaitre par coeur.
 ![principe](/assets/images/reseau/principe.png)
 {:class="image featured"}
 
-![7 couches OSI](/assets/images/reseau/7couches.png)
-{:class="image featured"}
-
 ##  <i class="fas fa-server"></i>  Fonctionnement des couches 
 
 | Nom de la couche | Rôle                                         |
@@ -43,6 +40,8 @@ mécaniques ...) nécessaire à la transmission des données binaires (train
 binaire). Elle implémente des fonctionnalités telles que codage, modulation ou
 multiplexage. La conception de la couche physique relève du domaine d'ingénieur
 en électronique.
+
+
 
 ### Couche Liaison
 
@@ -122,3 +121,115 @@ messagerie électronique, transfert de fichier, IPTV, téléponique ...
 
 [comparaison]:/assets/images/reseau/OSI-TCPIP.png
 {:class="image about right"}
+
+
+## <i class="fas fa-server"></i> Explication de la couche physique
+
+### La bande passante 
+La largeur de bande est la mesure de la quantité d'information pouvant circuler
+d'un endroiit à un autre en une période d'un endroit à un autre en une période
+de temps donné, l'unité est le `bit/s`. Le **débit effectif** d'une connexion
+est inférieur à la bande passante du câble ou du support physique. 
+
+### La couche physique
+Fournit les procédure et les fonctions mécaniques, électriques ou électroniques
++ pour établir maintenir et libérer les connexions physiques entre équipements
++ représente tout ce qui constitue le support physique de l'information
+
+Assure la transmission de données sous forme de signaux électriques
++ Selon une connexion permanente ou dynamique 
++ En l'alternat ou en bidirectionnel (flux duplex, simplex, half duplex)
++ En série ou en parallèle
++ Entre une ou plusieurs extrémités : point à point ou multipoint
+
+Assure la compatibilité des interfaces
++ pour le codage de la bande de base ou modulation
++ pour l'amplification du signal
++ pour le multiplexage de plusieurs signaux provenant de sources différentes 
+
+### Transmission de données
+La transmission consiste à faire transiter des informations sur le support
+physique de communication sous forme de signau numériques ou analogiques. Pour
+que la transmission soit optimale, ilest nécessaire que le signal soit codé de
+façon à faciliter sa transmission sur le support physique. 
+
+1. Données numériques, signaux numériques
++ Comment représenter des bits ? 
++ Exemple : réseaux locaux (LAN), connexion entre PCs
++ Codage NRZ (non return to zero), NRZI, Manchester . Le principe du NRZ repose sur le codage de 1 par $$+V$$ volt et le 0 par $$-V$$
+volt. En revanche pour le NRZi le codage du bit courant dépend du bit
+précédemment émis.  Le codage Manchester duplique la quantité d'information pour assurer une
+transition de front il est utilisé dans l'Ethernet 10base-t. 
+
+2. Données analogiques, signaux numériques 
++ Comment représenter un voltage (échantillonnage)
++ Exemple : Transmission de la voix sur un canal numériques
++ Codage PCM à 8KH
+
+3. Données numériques, signaux analogiques 
++ Comment représenter des bits
++ Exemple : Transmission de données numériques sur un canal téléphonique
++ Exemple : modulation d'amplitude (ASK), de fréquence (FSK) et de phase (PSK).
+
+
+4. Données analogiques, signaux analogiques
++ Comment représenter un voltage
++ Exemple : modulation d'amplitude, de fréquence et de phase
+
+### Exemple de l'ADSL
+
+1. Utilisation 
++ Mode asymétrique 
++ Mode de connexion permanente
++ Communications simultanées voix et données
+
+2. Caractéristiques 
++ Spectre divisé en 3 régions (Téléphone 4Khz, Canal data montant 100Khz, Canal
+  data descendant 1Mhz)
++ Codage DMT, divisé en 256 canaux de 4kHz
+
+### Les spécifications des câbles 
+1. A quelles vitesses la transmission de données peut-elle être réalisée ? 
++ La vitesse de transmission des bits dans un câble est extrêmement important
++ Le type de conduit utilisé influence la vitesse de transmission
+2. Les transmissions doivent-elles être numériques ou analogiques ? 
++ La transmission numérique (ou à bande de base) nécessiste des types de câble
+  différents de ceux utilisés pour la transmission analogique 
+3. Quelle distance un signal peut-il parcourir avant que l'atténuation n'affecte
+   la transmission ? 
+ + Si le signal est dégradé, les équipements réseau ne peuvent ni recevoir ni
+   l'interpréter 
+ + La dégradation est directement liée à la distance parcourue par le signal et
+   au type de câble utilisé
+
+### Ethernet
+Il existe plusieurs variantes d'Ethernet, ils diffèrent par leurs **type de
+support**, leurs **topologie** et leurs **débit**
+
++ Ethernet 802.3 1-10 Mbps 
++ Ethernet 802.3a - 10 base 2 (Thinnet ou Cheapernet)
++ Ethernet 802.3 - 10 base T
+
+### Câbles à paires torsadées 
+Le câble est constitué de deux paires (émission & réception), lune distance est
+maintenant entre les deux paires pour diminuer la diaphonie, plus il y a de
+torsades, moins il y a de diaphonie
+
+### Câble à paires torsadées blindées (STP)
+Chaque paire de fils est enveloppée dans une feuille métallique et lles deux
+paires sont enveloppées ensemble dans un revêtement tressé ou un film
+métallique. Il s'agit généralement d'un câble de 150 ohms. Comme l'indiquent les
+instructions d'installation de réseau Token Ring, les paires torsadées blindées
+réduisent le bruit électrique à l'intérieur du câble (couplage paire à paire ou
+diaphonie), ainsi qu'à l'extérieur du câble (interférences électromagniques et
+radio). 
+
+### Câble à paire torsadées non blindées 
+Le câble à paires torsadées non blindées (UTP) est un média constitué de quatre
+paires de fils, présent dans divers types de réseau. Chacun des huit fils de
+cuivre du câble est protégé par un matériau isolant. De plus les paires de fil
+sont tressées entre elles. Ce type de câble repose uniquement sur l'effet
+d'annulation produit par les paires torsadées pour limiter la dégradation du
+signal due aux interférences électromagnétiques et radio. 
+
+## <i class="fas fa-server"></i> Explication de la couche liaison de données et notion d'Ethernet.

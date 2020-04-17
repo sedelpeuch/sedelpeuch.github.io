@@ -79,8 +79,6 @@ ordinateurs.</p>
 
 <p class="image featured"><img src="/assets/images/reseau/principe.png" alt="principe" /></p>
 
-<p class="image featured"><img src="/assets/images/reseau/7couches.png" alt="7 couches OSI" /></p>
-
 <h2 id="--fonctionnement-des-couches"><i class="fas fa-server"></i>  Fonctionnement des couches</h2>
 
 <table>
@@ -215,6 +213,152 @@ OSI dans la couche d’accès réseau</li>
   <li>Les protocoles TCP/IP constituent la norme sur laquelle s’est développé Internet</li>
 </ul>
 
+<h2 id="-explication-de-la-couche-physique"><i class="fas fa-server"></i> Explication de la couche physique</h2>
+
+<h3 id="la-bande-passante">La bande passante</h3>
+<p>La largeur de bande est la mesure de la quantité d’information pouvant circuler
+d’un endroiit à un autre en une période d’un endroit à un autre en une période
+de temps donné, l’unité est le <code class="language-plaintext highlighter-rouge">bit/s</code>. Le <strong>débit effectif</strong> d’une connexion
+est inférieur à la bande passante du câble ou du support physique.</p>
+
+<h3 id="la-couche-physique">La couche physique</h3>
+<p>Fournit les procédure et les fonctions mécaniques, électriques ou électroniques</p>
+<ul>
+  <li>pour établir maintenir et libérer les connexions physiques entre équipements</li>
+  <li>représente tout ce qui constitue le support physique de l’information</li>
+</ul>
+
+<p>Assure la transmission de données sous forme de signaux électriques</p>
+<ul>
+  <li>Selon une connexion permanente ou dynamique</li>
+  <li>En l’alternat ou en bidirectionnel (flux duplex, simplex, half duplex)</li>
+  <li>En série ou en parallèle</li>
+  <li>Entre une ou plusieurs extrémités : point à point ou multipoint</li>
+</ul>
+
+<p>Assure la compatibilité des interfaces</p>
+<ul>
+  <li>pour le codage de la bande de base ou modulation</li>
+  <li>pour l’amplification du signal</li>
+  <li>pour le multiplexage de plusieurs signaux provenant de sources différentes</li>
+</ul>
+
+<h3 id="transmission-de-données">Transmission de données</h3>
+<p>La transmission consiste à faire transiter des informations sur le support
+physique de communication sous forme de signau numériques ou analogiques. Pour
+que la transmission soit optimale, ilest nécessaire que le signal soit codé de
+façon à faciliter sa transmission sur le support physique.</p>
+
+<ol>
+  <li>Données numériques, signaux numériques
+    <ul>
+      <li>Comment représenter des bits ?</li>
+      <li>Exemple : réseaux locaux (LAN), connexion entre PCs</li>
+      <li>Codage NRZ (non return to zero), NRZI, Manchester . Le principe du NRZ repose sur le codage de 1 par <script type="math/tex">+V</script> volt et le 0 par <script type="math/tex">-V</script>
+volt. En revanche pour le NRZi le codage du bit courant dépend du bit
+précédemment émis.  Le codage Manchester duplique la quantité d’information pour assurer une
+transition de front il est utilisé dans l’Ethernet 10base-t.</li>
+    </ul>
+  </li>
+  <li>Données analogiques, signaux numériques
+    <ul>
+      <li>Comment représenter un voltage (échantillonnage)</li>
+      <li>Exemple : Transmission de la voix sur un canal numériques</li>
+      <li>Codage PCM à 8KH</li>
+    </ul>
+  </li>
+  <li>Données numériques, signaux analogiques
+    <ul>
+      <li>Comment représenter des bits</li>
+      <li>Exemple : Transmission de données numériques sur un canal téléphonique</li>
+      <li>Exemple : modulation d’amplitude (ASK), de fréquence (FSK) et de phase (PSK).</li>
+    </ul>
+  </li>
+  <li>Données analogiques, signaux analogiques
+    <ul>
+      <li>Comment représenter un voltage</li>
+      <li>Exemple : modulation d’amplitude, de fréquence et de phase</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="exemple-de-ladsl">Exemple de l’ADSL</h3>
+
+<ol>
+  <li>Utilisation
+    <ul>
+      <li>Mode asymétrique</li>
+      <li>Mode de connexion permanente</li>
+      <li>Communications simultanées voix et données</li>
+    </ul>
+  </li>
+  <li>Caractéristiques
+    <ul>
+      <li>Spectre divisé en 3 régions (Téléphone 4Khz, Canal data montant 100Khz, Canal
+data descendant 1Mhz)</li>
+      <li>Codage DMT, divisé en 256 canaux de 4kHz</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="les-spécifications-des-câbles">Les spécifications des câbles</h3>
+<ol>
+  <li>A quelles vitesses la transmission de données peut-elle être réalisée ?
+    <ul>
+      <li>La vitesse de transmission des bits dans un câble est extrêmement important</li>
+      <li>Le type de conduit utilisé influence la vitesse de transmission</li>
+    </ul>
+  </li>
+  <li>Les transmissions doivent-elles être numériques ou analogiques ?
+    <ul>
+      <li>La transmission numérique (ou à bande de base) nécessiste des types de câble
+différents de ceux utilisés pour la transmission analogique</li>
+    </ul>
+  </li>
+  <li>Quelle distance un signal peut-il parcourir avant que l’atténuation n’affecte
+la transmission ?
+    <ul>
+      <li>Si le signal est dégradé, les équipements réseau ne peuvent ni recevoir ni
+l’interpréter</li>
+      <li>La dégradation est directement liée à la distance parcourue par le signal et
+au type de câble utilisé</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="ethernet">Ethernet</h3>
+<p>Il existe plusieurs variantes d’Ethernet, ils diffèrent par leurs <strong>type de
+support</strong>, leurs <strong>topologie</strong> et leurs <strong>débit</strong></p>
+
+<ul>
+  <li>Ethernet 802.3 1-10 Mbps</li>
+  <li>Ethernet 802.3a - 10 base 2 (Thinnet ou Cheapernet)</li>
+  <li>Ethernet 802.3 - 10 base T</li>
+</ul>
+
+<h3 id="câbles-à-paires-torsadées">Câbles à paires torsadées</h3>
+<p>Le câble est constitué de deux paires (émission &amp; réception), lune distance est
+maintenant entre les deux paires pour diminuer la diaphonie, plus il y a de
+torsades, moins il y a de diaphonie</p>
+
+<h3 id="câble-à-paires-torsadées-blindées-stp">Câble à paires torsadées blindées (STP)</h3>
+<p>Chaque paire de fils est enveloppée dans une feuille métallique et lles deux
+paires sont enveloppées ensemble dans un revêtement tressé ou un film
+métallique. Il s’agit généralement d’un câble de 150 ohms. Comme l’indiquent les
+instructions d’installation de réseau Token Ring, les paires torsadées blindées
+réduisent le bruit électrique à l’intérieur du câble (couplage paire à paire ou
+diaphonie), ainsi qu’à l’extérieur du câble (interférences électromagniques et
+radio).</p>
+
+<h3 id="câble-à-paire-torsadées-non-blindées">Câble à paire torsadées non blindées</h3>
+<p>Le câble à paires torsadées non blindées (UTP) est un média constitué de quatre
+paires de fils, présent dans divers types de réseau. Chacun des huit fils de
+cuivre du câble est protégé par un matériau isolant. De plus les paires de fil
+sont tressées entre elles. Ce type de câble repose uniquement sur l’effet
+d’annulation produit par les paires torsadées pour limiter la dégradation du
+signal due aux interférences électromagnétiques et radio.</p>
+
+<h2 id="-explication-de-la-couche-liaison-de-données-et-notion-dethernet"><i class="fas fa-server"></i> Explication de la couche liaison de données et notion d’Ethernet.</h2>
 </div>
 	</article>
 </div><!-- Footer -->

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/graph/5.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Cycle et voyageur de commerce | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-project-diagram fa-2x&quot;&gt;&lt;/i&gt; Graphe - Cycle et voyageur de commerce | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/graph/5.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-project-diagram fa-2x"></i> Graphe - Cycle et voyageur de commerce</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<center>
+<iframe src="/assets/pdf/voyageur.pdf" height="600" width="60%"></iframe>
+</center>
+
+<h2 id="exercice-1">Exercice 1</h2>
+
+<ol>
+  <li>Une première version naïve serait d’utiliser un algortihme de type brute
+force. On part des <script type="math/tex">n</script> sommets et à chaque itération on appelle l’algorithme
+sur les <script type="math/tex">n-1</script> arêtes possibles etc. Cela nous donne <script type="math/tex">n!</script> possibilités, soit
+la pire complexité possible</li>
+  <li>On peut appliquer la programmation dynamique pour tenter de diminuer la
+complexité. L’idée est de décomposer le graphe en des sous ensemble de sommet,
+pour chaque sous ensemble <script type="math/tex">S</script> on vérifie pour chaque sommet <script type="math/tex">u</script> de chaque sous ensemble
+s’il existe une chaine couvrant les sommets de <script type="math/tex">S</script> et se terminant en <script type="math/tex">v</script></li>
+</ol>
+
+<h2 id="exercice-2">Exercice 2</h2>
+<p>Nous poouvons utiliser le cours et le théorème de Dirac pour le montrer.
+Théorème de Dirac : Un graphe à <script type="math/tex">n</script> sommets (avec <script type="math/tex">n>3</script>) dont chaque sommet
+est au moins de degré <script type="math/tex">\dfrac{n}{2}</script> est hamiltonien. Pour rappel un graphe
+complet est un graphe simple dont tous les sommets sont adjacents deux à deux.
+Chaque sommet à donc un degrés de <script type="math/tex">n-1 > n/2</script> pour <script type="math/tex">n>3</script>. Ainsi tout graphe
+complet est hamiltonien.</p>
+
+<blockquote>
+  <p>On considère le problème du voyageur de Commerce :</p>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Entrée : un graphe complet pondéré
+Sortie : un cycle minimal qui passe exactement une fois par chaque sommet 
+</code></pre></div>  </div>
+  <p>Proposer une algorithme simple qui calcule un cycle de poids minimal. Quelle est sa complexité ?</p>
+</blockquote>
+
+<p>Réponse</p>
+
+<blockquote>
+  <p>Proposer un algorithme d’approximation de facteur 2 pour le problème du voyageur de commerce. Montrer que votre algorithme est une algorithme d’approximation</p>
+</blockquote>
+
+<p>Réponse</p>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
