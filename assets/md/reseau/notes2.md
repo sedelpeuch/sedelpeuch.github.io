@@ -233,3 +233,85 @@ d'annulation produit par les paires torsadées pour limiter la dégradation du
 signal due aux interférences électromagnétiques et radio. 
 
 ## <i class="fas fa-server"></i> Explication de la couche liaison de données et notion d'Ethernet.
+
+### Protocoles d'accès au support
+Suivant la façon dont les sollicitations d'accès au support de communications
+sont gérées on distingue essentiellement deux approches
++ Allocation aléatoire : le délai d'accès n'est pas borné (Aloha, Carrier Sense
+  Multiple access)
++ Allocation déterministe : il est possible de borner le delai d'accès (polling,
+  jeton)
+  
+L'ethernet exploite la technique d'accès aléatoire au support
+
+### L'Ethernet 
+Aujourd'hui l'ethernet est la technologie de réseau local dominante sur le plan
+mondial. L'Ethernet est une famille de technologies de réseau local que le
+modèle de référence OSI rend plus facile à appréhender. Tous les réseaux locaux
+doivent traiter le problème de base qui est l'attribution des noms à chaque
+station au noeud. Les spécifications Ethernet prennent en charge différents
+médias, bandes passantes et autres variantes des couches 1 et 2. Le format de
+trame de base et le système d'adressage sont les mêmes pour toutes les variantes
+d'Ethernet.
+
+### L'ancêtre d'Ethernet : Alohanet 
+L'idée était de permettre à deux hôtes au moins d'utiliser le même média sans
+aucune interférence entre les signaux. Ce problème d'accès multiple de
+l'utilisateur à un média partagé a été étudié au début des années 70 à
+l'Université d'Hawaï. Un système nommé Alohanet a été développé pour donner à
+plusieurs stations des îles Hawaï un accès structuré à la fréquence radio
+partagée dans l'atmospère. Ce travail a par la suite constitué la base de la
+méthode d'accès Ethernet connue sous l'acronyme CSMA/CD. Le principe est qu'une
+station émet dès lors qu'elle souhaite, en cas de collision, la station
+réémettra sa trame au terme d'un délai aléatoire, au bout de $$N$$ collisions
+successives, la station abandonne. L'efficacité est très faible $$18 \%$$
+(définit par le rapport du débit utile sur le débit brut).
+
+### Slotted aloha 
+Le principe est que le temps est discrétisé et découpé en tranches de temps
+appelées slots (temps de propagation aller-retour maximum). Les stations sont
+synchronisées et une station ne tramet un paquet uniquement au début d'un slot.
+Le système est amélioré puisque 2 trames qui se superposent ne le font que sur
+un slot au maximum, au lieu de 2 slots (car ils commencent au début du même
+slot). Le nouveau problème est la mauvaise utilisation du canal. 
+
+### Technique de CSMA/CD
+Accès aléatoire avec écoute de la porteuse : CSMA
++ Une satiation qui désire émettre se met à l'écoute du canal
++ Si elle détecte un signal en ligne, elle diffère l'émission de sa trame
+
+Les variantes selon le type de décision prile lorsque le canal est détecté
+occupé
++ CSMA non persistant: lorsque la station détecte un signal, elle attend un
+  délai aléatoire avant de réitérer la procédure (écoute de la porteuse)
++ CSMA persistant la station persisste à écouter le canal jusqu'à ce que
+  celui-ci devienne libre, puis émet
++ CSMA p-persistant lorsque le canal devient libre, la station émet avec une
+  probabilité $$p$$, et diffère son emission avec une probabilité $$(1-p)$$.
+  Ceci permet de diminuer la probabilité de collision par rapport au CSMA persistant.
+
+On a l'apparition d'une période de vulnérabilité : le temps de propagation entre
+le couple de stations les plus éloignées. Si la durée des trames est
+considérablement supérieur à la période de vulnérabilité alors le débit peut
+s'approcher de $$100\%$$
+C'est la technique la plus utilisée parmi les disciplines d'accès aléatoire.
+Elle est normalisée par l'ISO. A l'écoute préalable du canal s'ajoute l'écoute
+pendant la transmission un coupleur prêt à emettre, ayant détecté le canal
+libre, transmet et continue à écouter le canal. S'il se produit une collision,
+il interrompt immédiatement sa transmission et il envoie des signaux spéciaux
+appelés bits de bourrage que tous les coupleurs soient prévenus de la collision,
+il tentera la réémission ultérieurement. 
+![CSMA](/assets/images/reseau/csma.png)
+{:class="images featured"}
+
+### Le succès d'Ethernet
+Le succès d'Ethernet est dû aux facteurs suivants : 
++ Simplicité et facilité de maintenance
++ Capacité à incorporer de nouvelles technologies 
++ Fiabilité 
++ Faible coût d'installation et de mise à niveau
+
+### Adresse Universelle MAC 802
++ Adresse sur 6 octets 
++ Unique pour chaque carte réseau
++ @MAC = partie Constructeur + Numéro Séquentiel

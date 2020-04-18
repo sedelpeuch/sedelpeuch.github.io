@@ -359,6 +359,97 @@ d’annulation produit par les paires torsadées pour limiter la dégradation du
 signal due aux interférences électromagnétiques et radio.</p>
 
 <h2 id="-explication-de-la-couche-liaison-de-données-et-notion-dethernet"><i class="fas fa-server"></i> Explication de la couche liaison de données et notion d’Ethernet.</h2>
+
+<h3 id="protocoles-daccès-au-support">Protocoles d’accès au support</h3>
+<p>Suivant la façon dont les sollicitations d’accès au support de communications
+sont gérées on distingue essentiellement deux approches</p>
+<ul>
+  <li>Allocation aléatoire : le délai d’accès n’est pas borné (Aloha, Carrier Sense
+Multiple access)</li>
+  <li>Allocation déterministe : il est possible de borner le delai d’accès (polling,
+jeton)</li>
+</ul>
+
+<p>L’ethernet exploite la technique d’accès aléatoire au support</p>
+
+<h3 id="lethernet">L’Ethernet</h3>
+<p>Aujourd’hui l’ethernet est la technologie de réseau local dominante sur le plan
+mondial. L’Ethernet est une famille de technologies de réseau local que le
+modèle de référence OSI rend plus facile à appréhender. Tous les réseaux locaux
+doivent traiter le problème de base qui est l’attribution des noms à chaque
+station au noeud. Les spécifications Ethernet prennent en charge différents
+médias, bandes passantes et autres variantes des couches 1 et 2. Le format de
+trame de base et le système d’adressage sont les mêmes pour toutes les variantes
+d’Ethernet.</p>
+
+<h3 id="lancêtre-dethernet--alohanet">L’ancêtre d’Ethernet : Alohanet</h3>
+<p>L’idée était de permettre à deux hôtes au moins d’utiliser le même média sans
+aucune interférence entre les signaux. Ce problème d’accès multiple de
+l’utilisateur à un média partagé a été étudié au début des années 70 à
+l’Université d’Hawaï. Un système nommé Alohanet a été développé pour donner à
+plusieurs stations des îles Hawaï un accès structuré à la fréquence radio
+partagée dans l’atmospère. Ce travail a par la suite constitué la base de la
+méthode d’accès Ethernet connue sous l’acronyme CSMA/CD. Le principe est qu’une
+station émet dès lors qu’elle souhaite, en cas de collision, la station
+réémettra sa trame au terme d’un délai aléatoire, au bout de <script type="math/tex">N</script> collisions
+successives, la station abandonne. L’efficacité est très faible <script type="math/tex">18 \%</script>
+(définit par le rapport du débit utile sur le débit brut).</p>
+
+<h3 id="slotted-aloha">Slotted aloha</h3>
+<p>Le principe est que le temps est discrétisé et découpé en tranches de temps
+appelées slots (temps de propagation aller-retour maximum). Les stations sont
+synchronisées et une station ne tramet un paquet uniquement au début d’un slot.
+Le système est amélioré puisque 2 trames qui se superposent ne le font que sur
+un slot au maximum, au lieu de 2 slots (car ils commencent au début du même
+slot). Le nouveau problème est la mauvaise utilisation du canal.</p>
+
+<h3 id="technique-de-csmacd">Technique de CSMA/CD</h3>
+<p>Accès aléatoire avec écoute de la porteuse : CSMA</p>
+<ul>
+  <li>Une satiation qui désire émettre se met à l’écoute du canal</li>
+  <li>Si elle détecte un signal en ligne, elle diffère l’émission de sa trame</li>
+</ul>
+
+<p>Les variantes selon le type de décision prile lorsque le canal est détecté
+occupé</p>
+<ul>
+  <li>CSMA non persistant: lorsque la station détecte un signal, elle attend un
+délai aléatoire avant de réitérer la procédure (écoute de la porteuse)</li>
+  <li>CSMA persistant la station persisste à écouter le canal jusqu’à ce que
+celui-ci devienne libre, puis émet</li>
+  <li>CSMA p-persistant lorsque le canal devient libre, la station émet avec une
+probabilité <script type="math/tex">p</script>, et diffère son emission avec une probabilité <script type="math/tex">(1-p)</script>.
+Ceci permet de diminuer la probabilité de collision par rapport au CSMA persistant.</li>
+</ul>
+
+<p class="images featured">On a l’apparition d’une période de vulnérabilité : le temps de propagation entre
+le couple de stations les plus éloignées. Si la durée des trames est
+considérablement supérieur à la période de vulnérabilité alors le débit peut
+s’approcher de <script type="math/tex">100\%</script>
+C’est la technique la plus utilisée parmi les disciplines d’accès aléatoire.
+Elle est normalisée par l’ISO. A l’écoute préalable du canal s’ajoute l’écoute
+pendant la transmission un coupleur prêt à emettre, ayant détecté le canal
+libre, transmet et continue à écouter le canal. S’il se produit une collision,
+il interrompt immédiatement sa transmission et il envoie des signaux spéciaux
+appelés bits de bourrage que tous les coupleurs soient prévenus de la collision,
+il tentera la réémission ultérieurement. 
+<img src="/assets/images/reseau/csma.png" alt="CSMA" /></p>
+
+<h3 id="le-succès-dethernet">Le succès d’Ethernet</h3>
+<p>Le succès d’Ethernet est dû aux facteurs suivants :</p>
+<ul>
+  <li>Simplicité et facilité de maintenance</li>
+  <li>Capacité à incorporer de nouvelles technologies</li>
+  <li>Fiabilité</li>
+  <li>Faible coût d’installation et de mise à niveau</li>
+</ul>
+
+<h3 id="adresse-universelle-mac-802">Adresse Universelle MAC 802</h3>
+<ul>
+  <li>Adresse sur 6 octets</li>
+  <li>Unique pour chaque carte réseau</li>
+  <li>@MAC = partie Constructeur + Numéro Séquentiel</li>
+</ul>
 </div>
 	</article>
 </div><!-- Footer -->
