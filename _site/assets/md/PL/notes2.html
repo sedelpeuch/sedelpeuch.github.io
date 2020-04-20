@@ -66,7 +66,7 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 				<h2><i class="fas fa-search fa-2x"></i> PL - Cours 2</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-<p>On dispose d’un formalisme pour médliser des problèmes réels : la programmation
+<p>On dispose d’un formalisme pour modéliser des problèmes réels : la programmation
 linéaire. On a appris à résoudre le problème à la main en deux dimensions.
 Intuition pour résoudre en dimension supérieure : se déplacer de sommet en
 sommet du polyèdre convexe formé par les contraintes linéaires.</p>
@@ -74,7 +74,7 @@ sommet du polyèdre convexe formé par les contraintes linéaires.</p>
 <h2 id="-résumé--forme-standard-points-extrèmes-et-bases"><i class="fas fa-search"></i> Résumé : Forme standard, points extrèmes et bases</h2>
 
 <p>Les variables supplémentaies <script type="math/tex">s_i</script> sont appelées <strong>variables d’écart</strong>. Chaque
-variable d’écrat est associée à une contrainte.</p>
+variable d’écart est associée à une contrainte.</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align*} && \text{forme standard} \\
@@ -299,8 +299,50 @@ initiales n’est pas une bonne stratégie</li>
 <h2 id="-phase-1"><i class="fas fa-search"></i> Phase 1</h2>
 <p>Cette phase permet de trouver une solution de base réalisable initiale lorsque
 la base donnée par les variables d’écart n’est pas réalisable.</p>
-<h2 id="-dégénérescense"><i class="fas fa-search"></i> Dégénérescense</h2>
-<h2 id="-bilan-"><i class="fas fa-search"></i> Bilan :</h2>
+<h3 id="doù-vient-le-problème-">D’où vient le problème ?</h3>
+<p><script type="math/tex">% <![CDATA[
+\sum \limits_j a_{ij} x_j \leq b_i \; \text{avec} \; b_i < 0 %]]></script></p>
+
+<p>Après l’ajout de la variable d’écart et écriture sous forme de dictionnaire, on obtient <script type="math/tex">x_{n+i} = b_i - \sum_j a_{ij} x_j</script>. Comme <script type="math/tex">% <![CDATA[
+b_i<0 %]]></script> la solution de base n’est pas réalisable.</p>
+
+<h3 id="calculer-une-solution-initiale">Calculer une solution initiale</h3>
+<ol>
+  <li>Pour chaque contrainte <script type="math/tex">i</script> tel que <script type="math/tex">% <![CDATA[
+b_i<0 %]]></script> on ajoute une variable artificielle <script type="math/tex">x'_{n+i}</script> avec une coefficient de -1 en plus de la variable d’écart <script type="math/tex">\sum_j a_{ij} x_j + x_{n+i} - x'_{n+i} = b_i</script></li>
+  <li>On crée un objectif artificiel <script type="math/tex">% <![CDATA[
+\max \sum \limits_{i:b_i<0} - x'_{n+i} %]]></script></li>
+  <li>Une base initiale pour le problème artificiel est obtenue avec les variables artificielles des contraintes avec <script type="math/tex">% <![CDATA[
+b_i<0 %]]></script> et les variables d’écarts des contraintes avec <script type="math/tex">b_i\geq 0</script></li>
+  <li>On résout le problème avec l’algorithme du simplex à partir de cette solution</li>
+</ol>
+
+<h3 id="résultat-de-la-phase-1">Résultat de la phase 1</h3>
+<p>A la fin de cette résolution</p>
+<ul>
+  <li>S’il existe au moins un <script type="math/tex">i</script> tel que <script type="math/tex">x'_{n+i} > 0</script>, alors les variables artificielles sont nécessaire pour avoir une solution réalisable. Alors, le problème initial est irréalisable</li>
+  <li>Si <script type="math/tex">x'_{n+1}=0</script> pour tout <script type="math/tex">i</script> tel que <script type="math/tex">% <![CDATA[
+b_i<0 %]]></script>, toutes les variables artificielles sont hors-base. On a une solution de base réalisable pour le problème initial donnée par la base optimale de la Phase I
+    <ol>
+      <li>Supprimer les variables artificielles</li>
+      <li>Reprendre l’objectif initial</li>
+      <li>Utiliser l’algorithme du simplex avec la solution initiale trouvée
+        <h2 id="-dégénérescense"><i class="fas fa-search"></i> Dégénérescense</h2>
+        <p>Quand plusieurs variables sont candidates pour sortir de la base, la nouvelle solution de base aura une (ou plusieurs) variables de base prenant la valeur 0. On dit alors que la solution de base est dégénérée</p>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="solution-optimales-multiples">Solution optimales multiples</h3>
+<p>Il peut arriver que dans le dictionnaire optimal, des variables hors-bases possèdent des coûts réduits nuls <script type="math/tex">\overline{c}_i = 0, \; \text{pour} \; i \in \mathcal{N}</script> En effectuant une itération supplémentaire du simplex et en faisant entre en base une variable <script type="math/tex">x_i</script> telle que <script type="math/tex">\overline{c}_i=0</script>, on obtient une nouvelle solution optimale de base (avec le même objectif). Si <script type="math/tex">x_1^\ast</script> et <script type="math/tex">x_2^\ast</script> sont deux solutions optimales, alors toutes solutions obtenues par une combinaison convexe de <script type="math/tex">x_1^\ast</script> et <script type="math/tex">x_2^\ast</script> est également une solution optimale <script type="math/tex">x=\alpha x_1^\ast + (1-\alpha)x_2^\ast</script></p>
+
+<h3 id="terminaison">Terminaison</h3>
+<p>En cas de dégénérescence, l’algorithme peut revenir sur une solution de base déjà visitée (cycle). En pratique néanmoins, cela se passe rarement. Il existe des règles de pivotage limitant les risques de cycle.</p>
+<ul>
+  <li>règle de plus petit indice</li>
+  <li>perturbation des données : ajouter aux membres de droite des contraintes des <script type="math/tex">\varepsilon</script> suffisamment petits.</li>
+</ul>
 </div>
 	</article>
 </div><!-- Footer -->

@@ -7,7 +7,7 @@ title: <i class="fas fa-search fa-2x"></i> PL - Cours 2
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-On dispose d'un formalisme pour médliser des problèmes réels : la programmation
+On dispose d'un formalisme pour modéliser des problèmes réels : la programmation
 linéaire. On a appris à résoudre le problème à la main en deux dimensions.
 Intuition pour résoudre en dimension supérieure : se déplacer de sommet en
 sommet du polyèdre convexe formé par les contraintes linéaires. 
@@ -16,7 +16,7 @@ sommet du polyèdre convexe formé par les contraintes linéaires.
 ## <i class="fas fa-search"></i> Résumé : Forme standard, points extrèmes et bases
 
 Les variables supplémentaies $$s_i$$ sont appelées **variables d'écart**. Chaque
-variable d'écrat est associée à une contrainte. 
+variable d'écart est associée à une contrainte. 
 
 $$\begin{align*} && \text{forme standard} \\
 \max z = \sum \limits_{i=1}^n c_i x_i && \max z = \sum
@@ -216,5 +216,31 @@ coefficient de $$x_k$$ à 1. On élimine $$x_k$$ de l'expression de $$z$$. On
 ## <i class="fas fa-search"></i> Phase 1
 Cette phase permet de trouver une solution de base réalisable initiale lorsque
 la base donnée par les variables d'écart n'est pas réalisable.
+### D'où vient le problème ? 
+$$\sum \limits_j a_{ij} x_j \leq b_i \; \text{avec} \; b_i < 0$$
+
+Après l'ajout de la variable d'écart et écriture sous forme de dictionnaire, on obtient $$x_{n+i} = b_i - \sum_j a_{ij} x_j$$. Comme $$b_i<0$$ la solution de base n'est pas réalisable. 
+
+### Calculer une solution initiale
+1. Pour chaque contrainte $$i$$ tel que $$b_i<0$$ on ajoute une variable artificielle $$x'_{n+i}$$ avec une coefficient de -1 en plus de la variable d'écart $$\sum_j a_{ij} x_j + x_{n+i} - x'_{n+i} = b_i$$
+2. On crée un objectif artificiel $$\max \sum \limits_{i:b_i<0} - x'_{n+i}$$ 
+3. Une base initiale pour le problème artificiel est obtenue avec les variables artificielles des contraintes avec $$b_i<0$$ et les variables d'écarts des contraintes avec $$b_i\geq 0$$
+4. On résout le problème avec l'algorithme du simplex à partir de cette solution
+
+### Résultat de la phase 1
+A la fin de cette résolution 
+* S'il existe au moins un $$i$$ tel que $$x'_{n+i} > 0$$, alors les variables artificielles sont nécessaire pour avoir une solution réalisable. Alors, le problème initial est irréalisable 
+* Si $$x'_{n+1}=0$$ pour tout $$i$$ tel que $$b_i<0$$, toutes les variables artificielles sont hors-base. On a une solution de base réalisable pour le problème initial donnée par la base optimale de la Phase I
+1. Supprimer les variables artificielles 
+2. Reprendre l'objectif initial
+3. Utiliser l'algorithme du simplex avec la solution initiale trouvée 
 ## <i class="fas fa-search"></i> Dégénérescense
-## <i class="fas fa-search"></i> Bilan :
+Quand plusieurs variables sont candidates pour sortir de la base, la nouvelle solution de base aura une (ou plusieurs) variables de base prenant la valeur 0. On dit alors que la solution de base est dégénérée
+
+### Solution optimales multiples
+Il peut arriver que dans le dictionnaire optimal, des variables hors-bases possèdent des coûts réduits nuls $$\overline{c}_i = 0, \; \text{pour} \; i \in \mathcal{N}$$ En effectuant une itération supplémentaire du simplex et en faisant entre en base une variable $$x_i$$ telle que $$\overline{c}_i=0$$, on obtient une nouvelle solution optimale de base (avec le même objectif). Si $$x_1^\ast$$ et $$x_2^\ast$$ sont deux solutions optimales, alors toutes solutions obtenues par une combinaison convexe de $$x_1^\ast$$ et $$x_2^\ast$$ est également une solution optimale $$x=\alpha x_1^\ast + (1-\alpha)x_2^\ast$$ 
+
+### Terminaison 
+En cas de dégénérescence, l'algorithme peut revenir sur une solution de base déjà visitée (cycle). En pratique néanmoins, cela se passe rarement. Il existe des règles de pivotage limitant les risques de cycle.
+* règle de plus petit indice 
+* perturbation des données : ajouter aux membres de droite des contraintes des $$\varepsilon$$ suffisamment petits.
