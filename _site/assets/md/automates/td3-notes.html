@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/automates/td3-notes.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-robot fa-2x&quot;&gt;&lt;/i&gt; Automates finis et application - TD3 | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-robot fa-2x&quot;&gt;&lt;/i&gt; Automates finis et application - TD3 | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/automates/td3-notes.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-robot fa-2x"></i> Automates finis et application - TD3</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h2 id="exercice-1">Exercice 1</h2>
+
+<h2 id="exercice-2">Exercice 2</h2>
+<p>Il suffit de montrer qu’il existe un automate fini qui accepte le langage <script type="math/tex">L</script>.</p>
+
+<h2 id="exercice-3">Exercice 3</h2>
+<p>Voir la contraposée sur les <a href="/assets/md/cours3">notes du cours 3</a>, il faut ensuite saisir que la contraposé du Lemme implique une non régularité</p>
+
+<h2 id="exercice-4">Exercice 4</h2>
+
+<ol>
+  <li>Oui, l’expression régulière <script type="math/tex">(aa+ab+ba+bb)^\ast</script> nous permet de traduire l’automate</li>
+  <li>Non car l’automate a une mémoire bornée. Supposons <script type="math/tex">L</script> accepté par un automate fini à <script type="math/tex">N>0</script> états
+    <ul>
+      <li>soit le mot <script type="math/tex">\omega = a^N b^N</script>, on a bien <script type="math/tex">\omega \in L</script> et <script type="math/tex">\| \omega\|\geq N</script></li>
+      <li>[même décomposition que les slides]
+En prenant <script type="math/tex">i</script> suffisamment grand on trouve un mot qui n’appartient pas à <script type="math/tex">L</script>. On peut prendre <script type="math/tex">i=2</script> pour <script type="math/tex">a^N b^N</script></li>
+    </ul>
+  </li>
+  <li>La condition de primalité est complexe donc on imagine difficilement qu’elle puisse être reconnue par un automate, on utilise encore la contraposée du lemme de l’étoile. Supposons encore une fois que <script type="math/tex">L_3</script> est accepté par un automate fini à <script type="math/tex">N>0</script> états. Soit <script type="math/tex">p \geq N</script> un nombre premier. Le mot <script type="math/tex">a^p</script> est donc dans <script type="math/tex">L_3</script>. On obtient une décomposition <script type="math/tex">xuy=a^i a^j a^k</script> avec <script type="math/tex">% <![CDATA[
+i+j < N %]]></script> et <script type="math/tex">j > 0</script>. On prend <script type="math/tex">a^i a^{(i+k)j}a^k=a^{i+k}a^{j+1}</script> dont la longueur n’est pas un nombre premier, qui n’est pas dans le langage <script type="math/tex">L_3</script></li>
+  <li>Oui</li>
+  <li>Prenons <script type="math/tex">N>0</script>. On prend un mot suffisamment long <script type="math/tex">a^N \# a^N</script>. En supprimant le facteur <script type="math/tex">u</script>, on obtiendra un mot qui contiendra moins de <script type="math/tex">a</script> à gauche qu’à droite</li>
+</ol>
+
+<h2 id="exercice-5">Exercice 5</h2>
+<p>C’est le point (iii) qui pose problème : tout sous ensemble d’un langage régulier n’est pas forcément régulier. Cependant, <script type="math/tex">L'</script> est ici bien régulier, puisqu’il suffit de se souvenir de la parité globale, mais ce n’est pas cette preuve qui le montre. On pourrait dire que <script type="math/tex">L'=L \cap L_1</script> et l’intersection de deux langages réguliers est un langage régulier.</p>
+
+<h2 id="exercice-6">Exercice 6</h2>
+<p>Le raisonnement est correct on le montre par la contraposée. Pour passer de (iv) à (v) : si <script type="math/tex">L</script> était régulier, alors son intersection avec un langage régulier serait aussi un langage régulier, ce qui n’est pas le cas (iii), donc <script type="math/tex">L</script> n’est pas régulier</p>
+
+<h2 id="exercice-7">Exercice 7</h2>
+<ol>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>On prend le miroir de <script type="math/tex">L_6</script> : $$L_{6}^R={b^m a^n</td>
+          <td> n \geq m}<script type="math/tex">et on applique le lemme de l'étoile (ou on utilise l'exo 4.2) pour montrer que</script>L_6^R$$ n’est pas régulier</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><script type="math/tex">L_7 \cup a^\ast b^\ast = a^n b^n</script> donc comme pour l’exercice 6, <script type="math/tex">L_7</script> n’est pas régulier</li>
+  <li>On considère un automate qui accepte <script type="math/tex">L_8</script> et on transforme les états pour lesquels il existe un chemin menant à un état accepteur en états accepteurs</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Oui si $$</td>
+          <td>\Sigma</td>
+          <td>=1<script type="math/tex">. Sinon on utilise encore la contraposée du lemme de l'étoile en choisissant bien le mot. On prend</script>\omega=a^N bb a^N<script type="math/tex">qui permet d'obtenir une décomposition pour laquelle les</script>bb$$ ne sont plus au milieu et c’est gagné</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

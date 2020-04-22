@@ -80,85 +80,46 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 
 <h3 id="une-première-structure-naïve">Une première structure naïve</h3>
 
-<p>Les ensembles sont indicés de <script type="math/tex">1</script> à <script type="math/tex">n</script>. Chaque élément connait l’indice de
-son ensemble et au début <code class="language-plaintext highlighter-rouge">x.indice=identifiant(x)&lt;=n</code></p>
-
-<blockquote>
-  <ul>
-    <li>Question 1 : Quelle est la complexité du test <code class="language-plaintext highlighter-rouge">Find(x)=Find(y)</code> ?</li>
-    <li>Question 2 : Quelle est la complexité de <code class="language-plaintext highlighter-rouge">Union(x,y)</code> dans le pire des cas ?</li>
-    <li>Question 3 : Quelle est la complexité totale si, en partant de <script type="math/tex">n</script> ensembles
-de taille unitaire, on itère <script type="math/tex">k</script> opération d’<code class="language-plaintext highlighter-rouge">Union</code></li>
-  </ul>
-</blockquote>
-
-<p>La complexité est constant si on décide de renommer avec l’indice le plus petit
-dans un ensemble lors de l’opération d’<code class="language-plaintext highlighter-rouge">Union(x,y)</code>. Pour l’Union tous les
-éléments <script type="math/tex">z</script> de l’ensemble de <script type="math/tex">y</script> doivent mettre à jour leur indice donc
-linéaire. Finalement la complexité totale est en <script type="math/tex">O(k^2)</script> car Union se fait en
-temps <script type="math/tex">O(k)</script> si les ensembles ont une taille maximale <script type="math/tex">k</script> et comme on part
-d’ensemble unitaires, les ensembles ont taille max <script type="math/tex">k</script>.</p>
+<h4 id="question-1">Question 1.</h4>
+<p>Test si <script type="math/tex">x</script> et <script type="math/tex">y</script> appartient au même ensemble en temps <script type="math/tex">O(1)</script></p>
+<h4 id="question-2">Question 2.</h4>
+<p>UNION : Tous les éléments <script type="math/tex">z</script> de l’ensemble de <script type="math/tex">x</script> doivent mettre à jour leur indice <code class="language-plaintext highlighter-rouge">z.indice = y.indice</code> en temps linéaire en fonction de <script type="math/tex">n</script></p>
+<h4 id="question-3-complexité-totale-ok2">Question 3. Complexité totale <script type="math/tex">O(k^2)</script></h4>
 
 <h3 id="vers-une-version-efficace">Vers une version efficace</h3>
 
-<p>On considère maintenant une structure de données dans laquelle chaque classe est
-représentée par un arbre dans lequel chaque noeud contient une référence vers
-son noeud père. Une telle structure de forêt a été introduite.</p>
+<h4 id="question-4">Question 4.</h4>
+<p class="images featured"><img src="/assets/images/graphe/unionexec.png" alt="unionexec" /></p>
 
-<p>Dans une telle forêt, le représentant de chaque classe est la racine de l’arbre
-crrespondant. Find se contente de suivre les liens vers les noeuds pères jusqu’à
-atteindre la racine. Union réunit deux arbres en attachant la racine de l’un à
-la racine de l’autre. Une manière d’écrire ces opérations est la suivante.</p>
+<h4 id="question-5">Question 5.</h4>
+<p>La complexité de la séquence <code class="language-plaintext highlighter-rouge">Union(1,2)...Union(1,n)</code> est <script type="math/tex">\Theta (n^2)</script></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fonction MakeSet(x)
-    x.parent = null
+<h4 id="question-6">Question 6.</h4>
+<p>On a <script type="math/tex">rang(p)>rang(q)</script></p>
 
-fonction Find(x)
-    si x.parent == null
-        retourner x
-    retourner Find(x.parent)
-    
-fonction Union(x,y)
-    xRacine = Find(x)
-    yRacine = Find(y)
-    si xRacine != yRacine
-        xRacine.parent = yRacine
-</code></pre></div></div>
+<h4 id="question-7">Question 7.</h4>
+<p>On va utiliser le principe de récurrence forte: Soit <script type="math/tex">P(n)</script> une propriété définie
+sur <script type="math/tex">N</script>, si</p>
+<ul>
+  <li><script type="math/tex">P(0)</script>.</li>
+  <li><script type="math/tex">[\forall k\leq n P(k)] \Rightarrow P(n + 1)</script> (pour tout <script type="math/tex">n \in N</script>)</li>
+</ul>
 
-<blockquote>
-  <p>Quetion 5 : Quelle est la complexité de la séquence <code class="language-plaintext highlighter-rouge">Union(1,2)...Union(1,n)</code>?</p>
-</blockquote>
+<p>alors <script type="math/tex">P(n)</script> pour tout entier <script type="math/tex">n ∈ N</script>.</p>
 
-<p>La complexité de find(1) va être 1 puis 2 puis 3 … n-1. En sommant, on obtient
-<script type="math/tex">\Theta(n^2)</script></p>
+<p>Soit <script type="math/tex">P(r)</script> la proposition: “Tout ensemble dont la racine est de rang r possède au moins <script type="math/tex">2^r</script> éléments”.
+Supposons que <script type="math/tex">P(0),...,P(r)</script> soit vérifiés. Soient 2 ensembles <script type="math/tex">S_1</script> et <script type="math/tex">S_2</script> de rang <script type="math/tex">r_1 \leq r</script> et <script type="math/tex">r_2 \leq r</script>. 
+Si <script type="math/tex">% <![CDATA[
+r_1 \leq r_2 < r %]]></script>, le rang de l’union est inférieur à <script type="math/tex">r</script>, hypothèse vérifiée.
+Si <script type="math/tex">% <![CDATA[
+r1<r2=r %]]></script>, le rang de l’union est <script type="math/tex">r</script>. l’ensemble possède au moins <script type="math/tex">2^r1+2^r \geq 2^r</script>.
+Si <script type="math/tex">r1=r2=r</script>, le rang de l’union est <script type="math/tex">r+1</script>, l’ensemble possède au moins <script type="math/tex">2^r+2^r \geq 2^{r+1}</script>. On a <script type="math/tex">P(r+1)</script> vérifiée. Il s’agit de l’unique cas où le rang dépasse <script type="math/tex">r</script>.
+Dans tous les cas, on a que <script type="math/tex">P(0),...,P(r)</script> implique <script type="math/tex">P(r+1)</script>.</p>
 
-<blockquote>
-  <p>Question 6 : Si <script type="math/tex">p</script> est père de <script type="math/tex">q</script>, quelle relation y a t’il entre le
-rang de <script type="math/tex">p</script> et celui de <script type="math/tex">q</script> ?</p>
-</blockquote>
+<h4 id="question-8">Question 8.</h4>
+<p>Par récurrence, on sait que si une racine est de rang <script type="math/tex">r</script> alors son ensemble possède au moins <script type="math/tex">2^r</script> éléments (question 7). Or <script type="math/tex">2^r \leq n</script> donc <script type="math/tex">r \leq \log_2(n)</script>. Comme il y a croissance du rang dans un chemin qui va vers la racine, on a que la hauteur maximale de l’arbre est donc <script type="math/tex">\lceil \log_2(n) \rceil</script>. Toute opération FIND et UNION prend un temps <script type="math/tex">O(\log(n))</script>. Chaque opération MakeSet prend un temps  <script type="math/tex">O(1)</script>. Ainsi la complexité est <script type="math/tex">O(m+n \log n)</script>.</p>
 
-<p>On a rang(p)&gt;rang(q)</p>
-
-<blockquote>
-  <p>Question 8 : Supposons qu’une séquence de <script type="math/tex">m</script> opérations comportant <script type="math/tex">m</script>
-Makeset et <script type="math/tex">n</script> UNION ou FIND. Quelle est la complexité de UNION-FIND en
-utilisant UnionbyRank ?</p>
-</blockquote>
-
-<p>La complexité tombe à <script type="math/tex">O(n)</script> produit par la fonction inverse d’Ackermann qui
-est une fonction croissante mais d’une croissance ridicule. En pratique, on
-considère que même pour <script type="math/tex">n>10^100</script>. On peut également montrer que la
-complexité est <script type="math/tex">O(n \log^\ast(n))</script> où <script type="math/tex">\log^\ast(n)</script> désigne le logarithme
-itéré de <script type="math/tex">n</script>, c’est à dire le plus petit nombre d’itération de logarithme
-jusqu’à obtenir <script type="math/tex">% <![CDATA[
-\log(\log(\log(...(\log n)))) < 1 %]]></script>.</p>
-
-<blockquote>
-  <p>Question 9 Construire un exemple où le rang atteint 2 si on utilise la
-compression de chemins</p>
-</blockquote>
-
-<p>Question à réflechir</p>
+<p>Notons qu’on peut encore améliorer la structure avec une opération simple de compressions de chemins pour diminuer encore la profondeur de l’arbre.</p>
 </div>
 	</article>
 </div><!-- Footer -->
