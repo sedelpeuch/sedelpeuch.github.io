@@ -450,6 +450,123 @@ il tentera la réémission ultérieurement.
   <li>Unique pour chaque carte réseau</li>
   <li>@MAC = partie Constructeur + Numéro Séquentiel</li>
 </ul>
+
+<h2 id="-bilan"><i class="fas fa-server"></i> Bilan</h2>
+
+<h3 id="trame-ethernet">Trame Ethernet</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Taille</th>
+      <th style="text-align: left">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Preamble</td>
+      <td style="text-align: center">7o</td>
+      <td style="text-align: left">pour la synchronisation</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">SoF</td>
+      <td style="text-align: center">1o</td>
+      <td style="text-align: left">délimiteur début de la trame</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">@Ethernet Destination</td>
+      <td style="text-align: center">6o</td>
+      <td style="text-align: left">@MAC de destination</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">@Ethernet Source</td>
+      <td style="text-align: center">6o</td>
+      <td style="text-align: left">@MAC source</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Length/Type</td>
+      <td style="text-align: center">2o</td>
+      <td style="text-align: left">indique longueur type de la trame</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Data</td>
+      <td style="text-align: center">46 à 1500o</td>
+      <td style="text-align: left">les données</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">FCS</td>
+      <td style="text-align: center">4o</td>
+      <td style="text-align: left">contrôle d’intégrité de la trame</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="csmacd">CSMA/CD</h3>
+<ul>
+  <li>Toute station d’un réseau Ethernet qui souhaite transmettre un message “écoute” d’abord pour s’assurer qu’aucune autre station n’est en cours de transmission</li>
+  <li>Si le câble est silencieux, elle entame immédiatement la transmission</li>
+  <li>Le signal électrique met un certain temps à parcourir le câble, et chaque répéteur introduit un bref temps de latence lors de la transmission de la trame entre deux ports</li>
+  <li>En raison du délai et du temps de latence, il est possible pour plusieurs stations de commencer la transmission au même moment ou quasiment au même moment, ce qui engendre une collision</li>
+</ul>
+
+<h3 id="fonctionnement">Fonctionnement</h3>
+<ul>
+  <li>La station émettrice transmet 64 bits d’informations de synchronisation appelées ppréambule. LA station émettrice transmet alors les informations suivant
+    <ol>
+      <li>Informations sur les adresses MAC destination et source</li>
+      <li>Certainnes autres informations d’en tête</li>
+      <li>Charge utile réelle de données</li>
+      <li>Somme de contrôle : FCS(CRC) utilisée pour s’assurer que le message n’ap as été corrompu en cours de route</li>
+    </ol>
+  </li>
+  <li>Les stations qui reçoivent la trame recalculent le CRC pour déterminer si les messages entrant est valide, puis transmettent les messages valides à la couche supérieure suivante de la pile de protocoles.</li>
+  <li>Remarque : La taille maximale d’une trame de niveau liaison de données (niveau 2) est appelée MTU (Maximum Transmission Unit)</li>
+</ul>
+
+<h3 id="détection-et-prévention-de-collision-sur-un-réseau-csmacd">Détection et prévention de collision sur un réseau CSMA/CD</h3>
+
+<p class="image intro"><img src="/assets/images/reseau/collision.png" alt="collision" /></p>
+
+<h4 id="principe">Principe.</h4>
+
+<p><img class="image intro" src="/assets/images/reseau/principe_collision.png" alt="principe" /></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Emetteur 
+- Ecoute du canal
+- Si le canal est libre alors 
+  transmission de l'information et écoute simultanée du canal pour détecter une éventuelle collision 
+  si collision détectée
+      arrête immédiat de la transmission et notification de la collision à toutes les stations
+      gestion de la collision (procédure du Backoff)
+  sinon reporter la transmission
+</code></pre></div></div>
+
+<h3 id="algortihme-backoff-beb">Algortihme backoff (BEB)</h3>
+
+<p>La procédure Backoff utilise 3 fonctions</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">random()</code> tire un nombre réel aléatoire entre 0 et 1</li>
+  <li>̀int()` rend la partie entière d’un réel</li>
+  <li><code class="language-plaintext highlighter-rouge">délai()</code> calcul le délai d’attente multiple d’un slot_time (51.2 microsec) et est compris entre <script type="math/tex">[0,2^k[</script>. Avec <script type="math/tex">k=\min(n,10)</script>, où <script type="math/tex">n</script> est le nombre de ré-émission déjà faites</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>procédure BACKOFF(no_tentative:entier, VAR maxbackoff:entier)
+Const : slot_time=51.2 (microsecondes); limite_tentative=16
+var : delai : entier
+BEGIN
+    Si (no_tentative=1)
+    Alors maxbackoff=2 (borne de temps d'attente maximale)
+    Sinon 
+        Si (tentative &lt; limite_tentative)
+        Alors maxbackoff=2 maxbackoff
+        Sinon maxbackoff=2^10 (au dela de 10 essais la borne devient constante)
+    délai = int(random()*maxbackoff)
+    attendre(delai*slot_time)
+END
+</code></pre></div></div>
+
+<h3 id="tranche-de-temps-ethernet">Tranche de temps Ethernet</h3>
+<p>Pour tous les débits de transmission Ethernet égales ou inférieures à 1000Mbits/S, la norme stipule qu’une transmission ne peut pas être inférieure à une tranche de temps. La tranche de temps pour l’Ethenet 10 à 100 Mbits/s est de 512 temps de bit, soit 64 octets. Pour l’éthernet 1000 Mbits/s est de 512 octets. La tranche de temps est calculée en se basant sur des longueurs de câble maximale dans l’architecture de réseau légale la plus étendue. Tous les délais de propagation sont au maximum légal et le signal de bourrage 32 bits est utilisé lorsque des collisions sont détectées.</p>
 </div>
 	</article>
 </div><!-- Footer -->

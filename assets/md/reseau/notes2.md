@@ -315,3 +315,80 @@ Le succès d'Ethernet est dû aux facteurs suivants :
 + Adresse sur 6 octets 
 + Unique pour chaque carte réseau
 + @MAC = partie Constructeur + Numéro Séquentiel
+
+## <i class="fas fa-server"></i> Bilan
+
+### Trame Ethernet
+
+| Type                  | Taille     | Role                         |
+| :---:                 | :---:      | :---                        |
+| Preamble              | 7o         | pour la synchronisation      |
+| SoF                   | 1o         | délimiteur début de la trame |
+| @Ethernet Destination | 6o         | @MAC de destination          |
+| @Ethernet Source      | 6o         | @MAC source                  |
+| Length/Type           | 2o         | indique longueur type de la trame                      |
+| Data                  | 46 à 1500o | les données                             |
+| FCS                   | 4o         | contrôle d'intégrité de la trame                             |
+
+### CSMA/CD 
+* Toute station d'un réseau Ethernet qui souhaite transmettre un message "écoute" d'abord pour s'assurer qu'aucune autre station n'est en cours de transmission 
+* Si le câble est silencieux, elle entame immédiatement la transmission
+* Le signal électrique met un certain temps à parcourir le câble, et chaque répéteur introduit un bref temps de latence lors de la transmission de la trame entre deux ports
+* En raison du délai et du temps de latence, il est possible pour plusieurs stations de commencer la transmission au même moment ou quasiment au même moment, ce qui engendre une collision 
+
+### Fonctionnement
+* La station émettrice transmet 64 bits d'informations de synchronisation appelées ppréambule. LA station émettrice transmet alors les informations suivant 
+1. Informations sur les adresses MAC destination et source
+1. Certainnes autres informations d'en tête
+1. Charge utile réelle de données 
+1. Somme de contrôle : FCS(CRC) utilisée pour s'assurer que le message n'ap as été corrompu en cours de route 
+* Les stations qui reçoivent la trame recalculent le CRC pour déterminer si les messages entrant est valide, puis transmettent les messages valides à la couche supérieure suivante de la pile de protocoles. 
+* Remarque : La taille maximale d'une trame de niveau liaison de données (niveau 2) est appelée MTU (Maximum Transmission Unit)
+
+### Détection et prévention de collision sur un réseau CSMA/CD
+
+![collision](/assets/images/reseau/collision.png)
+{:class="image intro"}
+
+[principe]:/assets/images/reseau/principe_collision.png
+{:class="image intro"}
+
+#### Principe.
+
+![principe]
+```
+Emetteur 
+- Ecoute du canal
+- Si le canal est libre alors 
+  transmission de l'information et écoute simultanée du canal pour détecter une éventuelle collision 
+  si collision détectée
+      arrête immédiat de la transmission et notification de la collision à toutes les stations
+      gestion de la collision (procédure du Backoff)
+  sinon reporter la transmission
+```
+
+### Algortihme backoff (BEB)
+
+La procédure Backoff utilise 3 fonctions 
++ `random()` tire un nombre réel aléatoire entre 0 et 1
++ ̀int()` rend la partie entière d'un réel 
++ `délai()` calcul le délai d'attente multiple d'un slot_time (51.2 microsec) et est compris entre $$[0,2^k[$$. Avec $$k=\min(n,10)$$, où $$n$$ est le nombre de ré-émission déjà faites
+
+``` 
+procédure BACKOFF(no_tentative:entier, VAR maxbackoff:entier)
+Const : slot_time=51.2 (microsecondes); limite_tentative=16
+var : delai : entier
+BEGIN
+    Si (no_tentative=1)
+    Alors maxbackoff=2 (borne de temps d'attente maximale)
+    Sinon 
+        Si (tentative < limite_tentative)
+        Alors maxbackoff=2 maxbackoff
+        Sinon maxbackoff=2^10 (au dela de 10 essais la borne devient constante)
+    délai = int(random()*maxbackoff)
+    attendre(delai*slot_time)
+END
+```
+
+### Tranche de temps Ethernet 
+Pour tous les débits de transmission Ethernet égales ou inférieures à 1000Mbits/S, la norme stipule qu'une transmission ne peut pas être inférieure à une tranche de temps. La tranche de temps pour l'Ethenet 10 à 100 Mbits/s est de 512 temps de bit, soit 64 octets. Pour l'éthernet 1000 Mbits/s est de 512 octets. La tranche de temps est calculée en se basant sur des longueurs de câble maximale dans l'architecture de réseau légale la plus étendue. Tous les délais de propagation sont au maximum légal et le signal de bourrage 32 bits est utilisé lorsque des collisions sont détectées.
