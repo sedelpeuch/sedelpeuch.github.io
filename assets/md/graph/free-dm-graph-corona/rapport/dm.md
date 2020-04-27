@@ -118,7 +118,7 @@ algortihme principal à une complexité de `O(nbr jours * n * m)`.
 
 Nous pouvons commencer, comme le sujet nous y invite, à simuler la propagation
 dans une graphe circulaire, tout d'abord dans le modèle statique et dynamique
-avec des populations de 100, 1000 et 10000 individu en prenant comme paramètres
+avec des populations de 100 et 10000 individus en prenant comme paramètres
 $$r=14, p=0.01,q=0.02, k=50$$ dans cette topologie la variation de $$k'$$
 influe peu sur les résultats nous prenons $$k'=2$$.
 Voici quelques animations permettant de visualiser la propagation dans les
@@ -126,7 +126,6 @@ différents graphes au fur et à mesure des jours.
 
 GIF & ANALYSE
 1. GIF graphe + courbe individus, 100 individus k'=2
-2. GIF graphe + courbe individus, 1000 individus k'=2
 3. courbe individus, 10 000 individus k'=2
 
 Nous pouvons tout d'abord voir qu'il y a une propagation au fur et à mesure des
@@ -149,13 +148,15 @@ tableau contenant ses $$k'$$ voisins pour le jour $$i$$ la complexité de
 l'initialisation et de la boucle principale reste inchangée.
 
 Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
-précédemment avec une population de 1 000 et 10 000 individus. Pour ne pas faire trop de
-graphes nous faisons trois tests avec $$k'=2,25,50$$, l'ensemble des variations
-de $$k'$$ peut être réalisé avec nos codes. 
+précédemment avec une population de 1 000 et 10 000 individus en faisant varier
+$$k'$$ de $$1$$ à $$k=50$$. 
 
 GIF & ANALYSE
-1. GIF graphe (à un k fixe) + gif courbe individus variation k , 1000 individus
-2. gif courbe individus variation k, 10 000 individus
+1. GIF graphe (à un k fixe) + gif courbe individus variation k' , 100 individus
+   STATIQUE
+2. GIF graphe (à un k fixe) + gif courbe individus variation k' , 100 individus
+   DYNAMIQUE
+3. GIF courbe individus variation k, 10 000 individus
 
 Les résultats sont plus satisfaisant en effet nous pouvons voir une rapide
 propagation de l'épidémie dans la population, rappelons que l'idée de cette
@@ -193,8 +194,9 @@ Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
 précédemment 
 
 GIF & ANALYSE
-1. GIF graphe 1 000 individus, GIF courbe individus variation de k
-2. GIF courbe individus variation de k , 10 000 individus 
+1. GIF graphe 1 000 individus, GIF courbe individus variation de k STATIQUE
+2. GIF graphe 1 000 individus, GIF courbe individus variation de k CIRCULAIRE
+3. GIF courbe individus variation de k , 10 000 individus 
 
 Nous avons donc définit une topologie de graphe et des modèles de graphe nous
 permettant de simuler la propagation d'une maladie dans un population ayant des
@@ -212,14 +214,104 @@ total.
 Remarquons que la première partie fera office d'exemple du déroulement "normal"
 de l'épidémie sans tests ni confinement obligatoire. 
 
+Cette partie va parler de tests sur la population. Cependant les tests pendant
+une épidémie ne sont pas magiques, en effet les tests ne détectent pas avec 100%
+de chance un individu malade et dans le même temps ils peuvent détecter un
+individu positif alors qu'il n'est pas malade (faux positif). L'évocation de
+tests dans ce rapport ne peut aller sans l'évocation du paradoxe de Simpson. Ce
+dernier stipule que lors d'un test statistique dans certainnes conditions les
+résultats du tests s'inversent et nous induisent donc en erreur. 
+
+![arbre] Lorsque nous effectuons un test lors d'une épidémie le paradoxe de
+Simpson est très facile à montrer. Prenons les conditions du sujet, la maladie
+touche $$1\%$$ de la population, si un individu est malade, le test est positif
+avec $$70\%$$ de chance. Finalement nous devons ajouter la probabilité de faux
+positifs, à l'heure actuelle plusieurs
+[sources](https://la1ere.francetvinfo.fr/nouvellecaledonie/tests-covid-19-un-faux-positif-et-un-faux-negatif-confirmes-par-le-cht-819510.html)
+nous indiquent qu'avec les tests actuelles une personne non malade est détectée
+positive avec $$10\%$$ de chance. L'arbre ci contre résume la situation où $$M$$
+indique que l'individu est malade et $$T$$ indique que le test est positif. Si
+nous prenons un échantillon de 10 000 individus, nous aurons alors 70 individus
+malades et testé positifs, 30 malades et testé négatifs, 990 non malades testés
+positifs et 8910 non malades. Le paradoxe de Simpson est mis en lumière, le
+nombre de malade selon le test est supérieur au nombre de malade réel, il y a
+même plus de gens non malades qui sont testé positifs que de malades qui sont
+testés positifs. L'utilisation des tests est donc délicat, se faisant nous
+allons confiner une partie de la population qui en réalité n'est pas malade
+(dans notre cas $$9.9\%$$ de la population) et *a contrario* ne pas confiner une
+partie de la population qui est vraiment malade (dans notre cas $$0.03\%$$). 
+
+[arbre]:arbre.png
+{:class="image about right"}
+
 ### Réaction sur les proches des défunts
+Nous allons tout d'abord étudier des réactions de confinement et de tests suite
+au décès d'une personne de son entourage. Tout d'abord nous allons mettre en
+place la stratégie suivante : si une personne meurt de l'épidémie, alors toutes
+les personnes l'ayant contacté dans les $$r'\leq r$$ jours est placé en
+confinement (faible ou fort). Pour coller à la réalité nous prenons toujours
+$$r'=r$$ car lors d'une maladie nous sommes contagieux plusieurs jours avant
+d'avoir des symptômes. 
+
+Algorithmiquement cette notion se traduit par la création du tableau de
+voisins fréquentés depuis $$r$$ jours. Ce tableau est un tableau de tableau
+contenant à chaque ligne les voisins que l'individu a fréquenté. Cela nous
+permet de retenir les voisins de l'individu depuis $$r$$ jours. Cette opération
+est coûteuse puisque chaque jour, si nous détectons un décès nous devons
+parcourir le tableau d'historique des connexions et parcourir chaque ligne pour
+confiner chaque individu qu'il a contacté. En somme l'ajout de cette fonction
+donne une complexité à la boucle principale en temps $$O(nbr jour * n * m * r)$$
+où $$r$$ est le nombre de jour que dure la maladie, $$m$$ le nombre moyen de
+voisin.
+
+
 
 ### Tests aléatoires sur la population
 
 ### Mise en place de tests globals
 
 
-
 ##  <i class="fas fa-project-diagram"></i> Partie III - Rajouts de facteurs plus réalistes
 
 
+<div class="header">
+  <div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
+  </div>
+</div>
+
+<style>
+/* Style the header: fixed position (always stay at the top) */
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+/* The progress container (grey background) */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+}
+
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  height: 8px;
+  background: #707070;
+  width: 0%;
+}
+
+#scroll_to_top { 
+  position: fixed; 
+  width: 25px; 
+  height: 25px; 
+  bottom: 50px; 
+  right: 30px; 
+} 
+#scroll_to_top img { 
+  width: 25px; 
+}
+</style>
