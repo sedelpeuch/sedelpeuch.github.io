@@ -393,7 +393,7 @@ Finalement nous plaçons l'équation du nombre de guéris en fonction du temps,
 $$dR(t)/dt=I/r$$. En somme le modèle s'écrit
 
 $$\begin{align*} \dfrac{dS(t)}{dt} &= - q I S \\ \dfrac{dI(t)}{dt} &= q I S -
-\dfrac{I}{r} \\ \dfrac{dR(t)}{dt} &= \dfrac{1}{r}\end{align*}
+\dfrac{I}{r} \\ \dfrac{dR(t)}{dt} &= \dfrac{1}{r}\end{align*}$$
 
 Nous avons simulé le comportement des variables $$I(t), S(t)$$ et $$R(t)$$,
 comme toute simulation il est nécessaire de fixer
@@ -401,14 +401,13 @@ comme toute simulation il est nécessaire de fixer
    $$S$$ et de $$R$$ au temps $$t=0$$.
 2. Les valeurs des paramètres, ici $$q,p,r$$.  
 
-[Simulation](SIR.html){:class="button fix"}
-
-<iframe scrolling="no"
-src="https://www.geogebra.org/material/iframe/id/23587/width/1600/height/715/border/888888/rc/false/ai/false/sdz/false/smb/false/stb/false/stbh/true/ld/false/sri/false"
-width="1600px"
-height="715px"
-style="border:0px;" allowfullscreen>
+<iframe id="inlineFrameExample"
+    title="Simulation modèle SIR"
+    width="100%"
+    height="400"
+    src="SIR.html">
 </iframe>
+Si la fenêtre ne charge pas [lien vers la simulation](SIR.html) 
 
 <div class="header">
   <div class="progress-container">
