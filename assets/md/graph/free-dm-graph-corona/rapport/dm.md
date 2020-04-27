@@ -332,9 +332,83 @@ GIF & ANALYSE
 CONCLUSION SUR LES TESTS
 
 Nous avons pu étudier dans cette partie les différentes stratégies de tests de
-la population pour tenter de contenir la contamination.
-##  <i class="fas fa-project-diagram"></i> Partie III - Rajouts de facteurs plus réalistes
+la population pour tenter de contenir la contamination. FINIR
 
+##  <i class="fas fa-project-diagram"></i> Partie III - Outils et amélioration
+Nous allons maintenant discuter d'outils que nous avons rajoutés dans ce projet
+pour compléter notre travail ou rajouter de la manipulation d'algorithmique des
+graphes. 
+
+### Visualisation à partir d'équations différentielles
+#### Sébastien (Théorie & Rapport), Antoine (Implémentation dans Géogébra)
+Cette partie présente un autre mode de réprésentation de la propagation de la
+maladie. La représentation se fera par équation différentielles en s'inspirant
+du travail de [David
+Louapre](https://sciencetonnante.wordpress.com/2020/03/12/epidemie-nuage-radioactif-et-distanciation-sociale/),
+*in fine* le but de cette section est de reproduire l'animation [disponible
+ici](https://sciencetonnante-epidemie.netlify.app/) en utilisant le modèle SIR.
+Cette section ne présente pas un travail uniquement personnel puisqu'il
+s'inspire des pages précedemment mentionnées. L'idée est de présenter une
+représentation qui a intéressé les membres du groupe et sur laquelle nous avons
+réalisé un travail de recherche, l'implémentation réalisée avec Géogébra est de
+notre oeuvre.
+
+Le modèle $$SIR$$ est un modèle simpliste modélisant la propagation d'un agent
+infectieux. Le $$S$$ désigne les individus sains, le $$I$$ désigne les individus
+infectés et le $$R$$ ceux qui sont guéris. Les différents effectifs sont
+exprimés en pourcentage de la population ce qui nous permet de nous détacher du
+nombre d'individus. L'effectif de chacun de ces populations est évidemment
+variable dans le temps, modélisable de ce par une fonction de la variable
+indépendante $$t$$, le temps : $$S(t),I(t)$$ et $$R(t)$$. Si au cours de la
+propagation de l'épidémie, l'effectif $$P$$ de la population peut être considéré
+constant, on écrit 
+
+$$S(t)+I(t)+R(t)=P$$ 
+
+L'épidémie se propage par les contacts entre les individus infectés et les
+individus sains. Le nombre de ces contacts est proportionnel à $$S$$ et à $$I$$.
+Les malades guérissent en moyenne au bout d'un temps $$r$$, ils sont alors
+immunisés et ne peuvent plus, ni infecter d'autres personnes, ni être
+réinfectés. Il s'agit maintenant d'écrire un système d'équations différentielles
+qui relier la dérivée des fonctions $$\dfrac{dS(t)}{dt}$$,$$\dfrac{dI(t)}{dt}$$
+et $$\dfrac{dR(t)}{dt}$$, aux fonctions elles mêmes $$S(t),I(t)$$ et $$R(t)$$.
+Les valeurs de $$S$$, $$I$$ et $$R$$ sont toujours positives sans dimension. 
+
+La première équation est la variation des personnes infectés dans le temps, cette
+variation est proportionnelles à l'effectif de la population infectée et à
+l'effectif de la population saines multiplié par un coeffcient de propagation
+$$q$$. Cela nous donne l'équation $$dI(t)/dt=qIS$$, nous rajoutons aussi le fait que
+le malade reste en moyenne malade pendant $$r$$ jours, nous modifions l'équation
+pour l'intégrer ainsi $$dI(t)/dt=qIS-I/r$$. Finalement nous devons ajouter terme
+représentant la mortalité de la maladie, nous récrivons alors l'équation en
+intégrant l'indice $$p$$ de mortalité : $$dI(t)/dt=qIS-I/r-pI$$. Avec
+l'adjonction de ce terme, la population totale ne peux plus rester constante.
+Elle diminue sous l'effet de cette mortalité, la simulation permet de le montrer facilement.
+
+La deuxième équation est la variation des personnes saines dans le temps, cette
+variation est symétrique par rapport à la variation des personnes infectés dans
+le temps. L'équation est donc $$dS(t)/dt=-qIS$$.
+
+Finalement nous plaçons l'équation du nombre de guéris en fonction du temps,
+$$dR(t)/dt=I/r$$. En somme le modèle s'écrit
+
+$$\begin{align*} \dfrac{dS(t)}{dt} &= - q I S \\ \dfrac{dI(t)}{dt} &= q I S -
+\dfrac{I}{r} \\ \dfrac{dR(t)}{dt} &= \dfrac{1}{r}\end{align*}
+
+Nous avons simulé le comportement des variables $$I(t), S(t)$$ et $$R(t)$$,
+comme toute simulation il est nécessaire de fixer
+1. La valeur des conditions initialies, c'est à dire les valeurs de $$I$$, de
+   $$S$$ et de $$R$$ au temps $$t=0$$.
+2. Les valeurs des paramètres, ici $$q,p,r$$.  
+
+[Simulation](SIR.html){:class="button fix"}
+
+<iframe scrolling="no"
+src="https://www.geogebra.org/material/iframe/id/23587/width/1600/height/715/border/888888/rc/false/ai/false/sdz/false/smb/false/stb/false/stbh/true/ld/false/sri/false"
+width="1600px"
+height="715px"
+style="border:0px;" allowfullscreen>
+</iframe>
 
 <div class="header">
   <div class="progress-container">
