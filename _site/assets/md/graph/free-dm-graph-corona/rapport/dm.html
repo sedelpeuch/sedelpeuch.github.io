@@ -76,7 +76,7 @@ tenté de rajouter des facteurs plus réalistes  à compléter.</p>
 <p>Notre travail est résumé dans l’outil de visualisation que nous avons crée
 disponible en fin de page.</p>
 
-<h2 id="-partie-i---implémentation-dune-base"><i class="fas fa-project-diagram"></i> Partie I - Implémentation d’une base</h2>
+<h2 id="-partie-i---implémentation-dune-base-nathan--aurélien"><i class="fas fa-project-diagram"></i> Partie I - Implémentation d’une base (Nathan &amp; Aurélien)</h2>
 <p>La première partie permet de définir les bases de la modélisation c’est à dire
 les différents états, les différents paramètres, les règles de changement
 d’état, les topologies de graphes étudiés et les différents modèles de ces
@@ -181,11 +181,17 @@ algortihme principal à une complexité de <code class="language-plaintext highl
 <p>Nous pouvons commencer, comme le sujet nous y invite, à simuler la propagation
 dans une graphe circulaire, tout d’abord dans le modèle statique et dynamique
 avec des populations de 100, 1000 et 10000 individu en prenant comme paramètres
-<script type="math/tex">r=14, p=0.01,q=0.02, k=50</script> et en faisant varier <script type="math/tex">k'</script> de <script type="math/tex">1</script> à <script type="math/tex">k</script>.
+<script type="math/tex">r=14, p=0.01,q=0.02, k=50</script> dans cette topologie la variation de <script type="math/tex">k'</script>
+influe peu sur les résultats nous prenons <script type="math/tex">k'=2</script>.
 Voici quelques animations permettant de visualiser la propagation dans les
 différents graphes au fur et à mesure des jours.</p>
 
 <p>GIF &amp; ANALYSE</p>
+<ol>
+  <li>GIF graphe + courbe individus, 100 individus k’=2</li>
+  <li>GIF graphe + courbe individus, 1000 individus k’=2</li>
+  <li>courbe individus, 10 000 individus k’=2</li>
+</ol>
 
 <p>Nous pouvons tout d’abord voir qu’il y a une propagation au fur et à mesure des
 jours, cependant il apparait clairement que les résultats sont peu satisfaisant,
@@ -205,11 +211,62 @@ jour <script type="math/tex">i</script> la complexité de l’initialisation et 
 inchangée.</p>
 
 <p>Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
+précédemment avec une population de 1 000 et 10 000 individus. Pour ne pas faire trop de
+graphes nous faisons trois tests avec <script type="math/tex">k'=2,25,50</script>, l’ensemble des variations
+de <script type="math/tex">k'</script> peut être réalisé avec nos codes.</p>
+
+<p>GIF &amp; ANALYSE</p>
+<ol>
+  <li>GIF graphe (à un k fixe) + gif courbe individus variation k , 1000 individus</li>
+  <li>gif courbe individus variation k, 10 000 individus</li>
+</ol>
+
+<p>Les résultats sont plus satisfaisant en effet nous pouvons voir une rapide
+propagation de l’épidémie dans la population, rappelons que l’idée de cette
+partie est de réussir à mettre en place un graphe représentant une population
+ainsi que des connexions entre les individus de manière se rapprochant le plus
+de la réalité possible. Faisons un point sur les deux graphes présentés. Nous
+avons d’une part un graphe circulaire, représentant des individus connectés
+uniquement avec leurs voisins. D’autre part nous avons un graphe aléatoire qui
+simule des connexions totalement aléatoire avec les autres personnes. Nous
+allons donc maintenant utiliser un graphe mixte, union des deux qui nous permet
+de simuler une population qui est en contact avec ses voisins et un nombre
+aléatoire d’individus. Ce graphe est le graphe le plus représentatif d’une
+population humaine, après cette partie nous n’utiliserons que ce dernier.</p>
+
+<p>La boucle principale n’a que très peu de modifications, dans l’initialisation
+nous établissons un graphe à <script type="math/tex">n</script> sommets, les arrêtes de ce derniers sont
+définie telles que pour un individu <script type="math/tex">i</script> il soit voisin de <script type="math/tex">(i-1) \equiv n</script>
+et <script type="math/tex">(i+1) \equiv n</script> et au maximum <script type="math/tex">k'-2</script> voisins choisi aléatoirement parmi
+les <script type="math/tex">k</script> voisins (eux aussi choisis aléatoirement) qu’il a le droit de voir.
+Grâce à notre implémentation des individus, nous pouvons réussir cette
+initialisation en un temps <script type="math/tex">O(n+m)</script> où <script type="math/tex">m</script> est le nombre moyen de voisins.</p>
+
+<p>Ensuite si nous regardons la propagation jour par jour, cette dernière ne change
+pas des autres implémentations, si le modèle est statiques les arêtes sont
+définies au dans l’initialisation et nous appliquons les règles de changements
+d’états jours par jours. Si le modèle est dynamique, chaque jour nous modifions
+les arêtes tels que chaque individu soit connecté à ses deux voisins et qu’il
+soit connecté à au plus <script type="math/tex">k'-2</script> voisins choisi parmi ses <script type="math/tex">k</script> voisins
+possibles. La boucle de simulation est donc en complexité <script type="math/tex">O(nbr jour * n *
+m)</script>.</p>
+
+<p>Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
 précédemment</p>
 
 <p>GIF &amp; ANALYSE</p>
+<ol>
+  <li>GIF graphe 1 000 individus, GIF courbe individus variation de k</li>
+  <li>GIF courbe individus variation de k , 10 000 individus</li>
+</ol>
 
-<h2 id="-partie-ii---rajout-de-tests-simples"><i class="fas fa-project-diagram"></i> Partie II - Rajout de tests simples</h2>
+<p>Nous avons donc définit une topologie de graphe et des modèles de graphe nous
+permettant de simuler la propagation d’une maladie dans un population ayant des
+intéractions ressemblant à des relations humaines. Cependant pour l’instant nous
+laissons l’épidémie se développer naturellement.</p>
+
+<h2 id="-partie-ii---rajout-de-tests-simples-sébastien--antoine"><i class="fas fa-project-diagram"></i> Partie II - Rajout de tests simples (Sébastien &amp; Antoine)</h2>
+<p>Nous allons maintenant im</p>
 
 <h2 id="-partie-iii---rajouts-de-facteurs-plus-réalistes"><i class="fas fa-project-diagram"></i> Partie III - Rajouts de facteurs plus réalistes</h2>
 
