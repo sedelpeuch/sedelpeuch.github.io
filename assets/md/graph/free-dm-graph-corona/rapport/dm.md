@@ -56,6 +56,8 @@ De plus nous définissons aussi 2 modèles de graphe
   sélectionne parmi ses $$k$$ contacts. Il peut donc voir des personnes
   différentes d'un jour à l'autre
 
+### Graphe circulaire 
+
 Dans un premier temps nous allons définir la séquence de graphe $$G_i$$
 permettant de réprésenter l'état du graphe $$G$$ au jour $$i$$. Peu importe le
 jour, les sommets du graphe ne change pas. Ainsi dans une première partie
@@ -130,19 +132,21 @@ GIF & ANALYSE
 Nous pouvons tout d'abord voir qu'il y a une propagation au fur et à mesure des
 jours, cependant il apparait clairement que les résultats sont peu satisfaisant,
 en effet le graphe circulaire est relativement simpliste et ne représente que
-très peu les connexions humaines. Nous nous tournons donc vers la deuxième
-topologie proposée, le graphe aléatoire. Celui ci relie les sommets de manière
-aléatoire (il est à noter qu'il n'est pas forcément connexe). Pour gérer plus
-facilement le modèle statique et dynamique nous remplissons dans
-l'initialisation le tableau des voisins par $$k$$ voisin choisis de manière
-aléatoire, si nous sommes dans un modèle statique nous sélectionnons
-aléatoirement pour chaque individu dans l'initialisation $$k'$$ voisins parmi
-ses $$k$$ voisins. En revanche si nous sommes dans un modèle dynamique, à chaque
-jour nous devons sélectionner aléatoirement $$k'$$ voisins parmis ses $$k$$
-contacts autorisés. Grâce à notre implémentation basé sur un tableau contenant
-les $$k$$ contacts possibles et un tableau contenant ses $$k'$$ voisins pour le
-jour $$i$$ la complexité de l'initialisation et de la boucle principale reste
-inchangée.
+très peu les connexions humaines. 
+
+### Graphe Aléatoire 
+Nous nous tournons donc vers la deuxième topologie proposée, le graphe
+aléatoire. Celui ci relie les sommets de manière aléatoire (il est à noter qu'il
+n'est pas forcément connexe). Pour gérer plus facilement le modèle statique et
+dynamique nous remplissons dans l'initialisation le tableau des voisins par
+$$k$$ voisin choisis de manière aléatoire, si nous sommes dans un modèle
+statique nous sélectionnons aléatoirement pour chaque individu dans
+l'initialisation $$k'$$ voisins parmi ses $$k$$ voisins. En revanche si nous
+sommes dans un modèle dynamique, à chaque jour nous devons sélectionner
+aléatoirement $$k'$$ voisins parmis ses $$k$$ contacts autorisés. Grâce à notre
+implémentation basé sur un tableau contenant les $$k$$ contacts possibles et un
+tableau contenant ses $$k'$$ voisins pour le jour $$i$$ la complexité de
+l'initialisation et de la boucle principale reste inchangée.
 
 Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
 précédemment avec une population de 1 000 et 10 000 individus. Pour ne pas faire trop de
@@ -160,11 +164,13 @@ ainsi que des connexions entre les individus de manière se rapprochant le plus
 de la réalité possible. Faisons un point sur les deux graphes présentés. Nous
 avons d'une part un graphe circulaire, représentant des individus connectés
 uniquement avec leurs voisins. D'autre part nous avons un graphe aléatoire qui
-simule des connexions totalement aléatoire avec les autres personnes. Nous
-allons donc maintenant utiliser un graphe mixte, union des deux qui nous permet
-de simuler une population qui est en contact avec ses voisins et un nombre
-aléatoire d'individus. Ce graphe est le graphe le plus représentatif d'une
-population humaine, après cette partie nous n'utiliserons que ce dernier.
+simule des connexions totalement aléatoire avec les autres personnes.
+
+### Graphe mixte
+Nous allons donc maintenant utiliser un graphe mixte, union des deux qui nous
+permet de simuler une population qui est en contact avec ses voisins et un
+nombre aléatoire d'individus. Ce graphe est le graphe le plus représentatif
+d'une population humaine, après cette partie nous n'utiliserons que ce dernier.
 
 La boucle principale n'a que très peu de modifications, dans l'initialisation
 nous établissons un graphe à $$n$$ sommets, les arrêtes de ce derniers sont
@@ -196,7 +202,23 @@ intéractions ressemblant à des relations humaines. Cependant pour l'instant no
 laissons l'épidémie se développer naturellement.
 
 ##  <i class="fas fa-project-diagram"></i> Partie II - Rajout de tests simples (Sébastien & Antoine)
-Nous allons maintenant im 
+Nous allons maintenant implémenter des stratégies de réponse à l'épidémie que
+vont adopter les individus. Cela se traduit par exemple par la mise en
+confinement de la population ou le test massif de la population. Le but ici est
+d'étudier l'efficacité des mesures de lutte contre l'épidémie. Nous serons donc
+particulièrement attentif à la taille du pic épidémique et le nombre de mort
+total. 
+
+Remarquons que la première partie fera office d'exemple du déroulement "normal"
+de l'épidémie sans tests ni confinement obligatoire. 
+
+### Réaction sur les proches des défunts
+
+### Tests aléatoires sur la population
+
+### Mise en place de tests globals
+
+
 
 ##  <i class="fas fa-project-diagram"></i> Partie III - Rajouts de facteurs plus réalistes
 
