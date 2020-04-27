@@ -152,11 +152,11 @@ précédemment avec une population de 1 000 et 10 000 individus en faisant varie
 $$k'$$ de $$1$$ à $$k=50$$. 
 
 GIF & ANALYSE
-1. GIF graphe (à un k fixe) + gif courbe individus variation k' , 100 individus
+1. GIF graphe (à un k' fixe) + gif courbe individus variation k' , 100 individus
    STATIQUE
-2. GIF graphe (à un k fixe) + gif courbe individus variation k' , 100 individus
+2. GIF graphe (à un k' fixe) + gif courbe individus variation k' , 100 individus
    DYNAMIQUE
-3. GIF courbe individus variation k, 10 000 individus
+3. Courbe individus (à un k' fixe), 10 000 individus
 
 Les résultats sont plus satisfaisant en effet nous pouvons voir une rapide
 propagation de l'épidémie dans la population, rappelons que l'idée de cette
@@ -194,9 +194,9 @@ Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
 précédemment 
 
 GIF & ANALYSE
-1. GIF graphe 1 000 individus, GIF courbe individus variation de k STATIQUE
-2. GIF graphe 1 000 individus, GIF courbe individus variation de k CIRCULAIRE
-3. GIF courbe individus variation de k , 10 000 individus 
+1. GIF graphe 1 00 individus, GIF courbe individus variation de k' STATIQUE
+2. GIF graphe 1 00 individus, GIF courbe individus variation de k' DYNAMIQUE
+3. Courbe individus (k' fixé) , 10 000 individus 
 
 Nous avons donc définit une topologie de graphe et des modèles de graphe nous
 permettant de simuler la propagation d'une maladie dans un population ayant des
