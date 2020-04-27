@@ -13,48 +13,45 @@ modéliser une version simpliste de la propagation du Covid-19. Le devoir se
 décompose en 3 parties d'implémentation, tout d'abord nous mettons en place les
 différentes paramètres (mortalité, durée de maladie) et les différents graphes. Vient ensuite le rajout de
 paramètres simples comme des tests sur la population etc. Finalement nous avons
-tenté de rajouter des facteurs plus réalistes  à compléter.
-
-Notre travail est résumé dans l'outil de visualisation que nous avons crée
-disponible en fin de page.
+tenté de rajouter des facteurs plus réalistes et nous nous sommes un peu écartés du sujet pour proposer des compléments sur la propagation d'une épidémie et pour manipuler les notions de l'algorithmique des graphes.
 
 ## <i class="fas fa-project-diagram"></i> Partie I - Implémentation d'une base (Nathan & Aurélien)
 La première partie permet de définir les bases de la modélisation c'est à dire
 les différents états, les différents paramètres, les règles de changement
 d'état, les topologies de graphes étudiés et les différents modèles de ces
-derniers. La population est pour l'instant considérée comme uniforme (chaque
-individu est sujet à la maladie de la même manière), ils peuvent être dans
-quatre états, Sain ($$S$$), Infecté ($$M$$), Guéri et donc imunisés ($$G$$) ou
-décédé ($$D$$). De plus chaque personne suit les règles suivantes 
-+ Si une personne saine $$X$$ fréquente une personne malade $$Y$$ alors, avec la
-  probabilité $$q$$, $$X$$ devient malade par l'intermédiaire de $$Y$$ pour une
-  durée $$r$$. 
-+ Si une personne est malade depuis $$r$$ jours alors soit elle décède avec une
-  probabilité $$p$$ soit elle devient immunisé avec une probabilité $$(1-p)$$.
-+ Une personne immunisée ou décédée ne change jamais d'état.
-+ Une personne décédée ne peut pas contaminer une personne saine.
+derniers. Nous reprennons précisément les définitions du sujet. <!--  La population est pour l'instant considérée comme uniforme (chaque -->
+<!-- individu est sujet à la maladie de la même manière), ils peuvent être dans -->
+<!-- quatre états, Sain ($$S$$), Infecté ($$M$$), Guéri et donc imunisés ($$G$$) ou -->
+<!-- décédé ($$D$$). De plus chaque personne suit les règles suivantes  -->
+<!-- + Si une personne saine $$X$$ fréquente une personne malade $$Y$$ alors, avec la -->
+<!--   probabilité $$q$$, $$X$$ devient malade par l'intermédiaire de $$Y$$ pour une -->
+<!--   durée $$r$$.  -->
+<!-- + Si une personne est malade depuis $$r$$ jours alors soit elle décède avec une -->
+<!--   probabilité $$p$$ soit elle devient immunisé avec une probabilité $$(1-p)$$. -->
+<!-- + Une personne immunisée ou décédée ne change jamais d'état. -->
+<!-- + Une personne décédée ne peut pas contaminer une personne saine. -->
 
-Nous allons aussi définir les différents graphes de contact permettant de
-simuler les différentes relations de chaque individu, trois graphes sont alors
-mis en oeuvre 
-+ Un graphe circulaire, les personnes sont numérotés de 1 à $$n$$ et chaque
-  personne, numérotés $$i$$, est relié aux personnes $$(i-1)$$ et $$(i+1)$$
-  modulo $$n$$, 
-+ Un graphe aléatoire, on tire un graphe aléatoire de taille $$n$$ de la manière
-  suivante. Chaque noeud choisit $$k$$ noeuds choisis au hasard. Cela permet de
-  représenter de manière simpliste la population, chaque individu à un nombre
-  aléatoire de contact avec les autres individus
-+ Finalement le graphe mixe, issu de l'union du graphe circulaire et du graphe
-  aléatoire
+<!-- Nous allons aussi définir les différents graphes de contact permettant de -->
+<!-- simuler les différentes relations de chaque individu, trois graphes sont alors -->
+<!-- mis en oeuvre  -->
+<!-- + Un graphe circulaire, les personnes sont numérotés de 1 à $$n$$ et chaque -->
+<!--   personne, numérotés $$i$$, est relié aux personnes $$(i-1)$$ et $$(i+1)$$ -->
+<!--   modulo $$n$$,  -->
+<!-- + Un graphe aléatoire, on tire un graphe aléatoire de taille $$n$$ de la manière -->
+<!--   suivante. Chaque noeud choisit $$k$$ noeuds choisis au hasard. Cela permet de -->
+<!--   représenter de manière simpliste la population, chaque individu à un nombre -->
+<!--   aléatoire de contact avec les autres individus -->
+<!-- + Finalement le graphe mixe, issu de l'union du graphe circulaire et du graphe -->
+<!--   aléatoire -->
   
-De plus nous définissons aussi 2 modèles de graphe
-+ statique (graphe de confinement de paramère $$k'$$) : une personne confinée
-  fréquence $$k' \leq k$$ personnes sélectionnées au hasard. Il n'est pas
-  autorisée à voir les autres personnes pendant le confinement.
-+ dynamique (graphe de baisse de fréquentation de paramètre $$k'$$) : chaque
-  jour, chaque personne est autorisée à voir $$k'$$ personnes qu'elle
-  sélectionne parmi ses $$k$$ contacts. Il peut donc voir des personnes
-  différentes d'un jour à l'autre
+<!-- De plus nous définissons aussi 2 modèles de graphe -->
+<!-- + statique (graphe de confinement de paramère $$k'$$) : une personne confinée -->
+<!--   fréquence $$k' \leq k$$ personnes sélectionnées au hasard. Il n'est pas -->
+<!--   autorisée à voir les autres personnes pendant le confinement. -->
+<!-- + dynamique (graphe de baisse de fréquentation de paramètre $$k'$$) : chaque -->
+<!--   jour, chaque personne est autorisée à voir $$k'$$ personnes qu'elle -->
+<!--   sélectionne parmi ses $$k$$ contacts. Il peut donc voir des personnes -->
+<!--   différentes d'un jour à l'autre -->
 
 ### Graphe circulaire 
 
@@ -409,10 +406,56 @@ comme toute simulation il est nécessaire de fixer
 </iframe>
 Si la fenêtre ne charge pas [lien vers la simulation](SIR.html) 
 
-<div class="header">
-  <div class="progress-container">
-    <div class="progress-bar" id="myBar"></div>
-  </div>
+### Mise en place d'une recherche de Chemin - Hors sujet
+#### Sébastien
+*Cette section présente l'implémentation d'une fonction supplémentaire dont le
+rapport avec le sujet est discutable. L'idée de cette section est de nous faire
+manipuler les notions d'algortihmique des graphes et l'implémentation de ces notions* 
+
+Toujours dans le cadre du covid-19 nous allons simuler la propagation du virus
+dans une pièce d'une personne à une autre, l'idée est qu'il y a deux personnes
+dans la pièce, l'une malade et l'autre non. Le but de cette section est de
+trouver le chemin le plus court pour que le virus aille de la personne malade à
+la personne saine. La pièce est modélisé comprenant des murs, des zones chaudes
+et des zones froides est modélisée par une grille. Nous supposons qu'il est plus
+difficile pour le virus de se propager dans une zone froide et plus facile pour
+lui de se propager dans une zone chaude. 
+
+Ce sujet nous invite à mettre en place un moyen d'effectuer une recherche de
+chemin, pour ce faire nous allons utiliser un algorithme de recherche de chemin
+rapide, l'algorithme A*.
+
+#### Présentation et principe de l'algorithme.
+L'algorithme A* est un algorithme basé sur un principe très simple. A chaque
+itération nous allons tenter de nous rapprocher de la destionation, nous allons
+donc privilégier les possibilités directement plus proches de la destination, en
+mettant de côté toutes les autres.
+
+Toutes les possibilités ne permettant pas de
+se rapprocher de la destination sont mises de côté mais pas supprimées. Elles
+sont simplement mises dans une liste de possibilités à explorer si jamais la
+solution explorée actuellement s'avère mauvaise. En effet, nous ne pouvons pas
+savvoir à l'avance si un chemin va aboutir ou sera le plus court. Il suffit que
+ce chemin amène à une impasse pour que cette solution devienne inexploitable.
+
+L'algorithme va donc d'abord se diriger vers les chemins les plus directs. Et si
+ces chemins n'aboutissent pas ou bien s'avèrent mauvais par la suite, il
+examinera les solutions mises de côté. C'est ce retour en arrière pour examiner
+les solutions mises de côté qui nous garantit que l'algorithme nous trouvera
+toujours une solution.
+
+Nous pouvons donc lui donner un terrain avec autant d'obstacles que nous
+voulons, si il y a une solution l'A* la trouvera. Un résumé du fonctionnement de l'algorithme est disponible sur le graphe ci dessous.
+
+
+![astar](astar.gif){:class="image about center"}
+
+Une description des itérations de l'algorithme est disponible [ici](https://www.createursdemondes.fr/2015/03/pathfinding-algorithmes-en-a/)
+
+La complexité de cet algorithme dépend de l'implémentation des structures de données des listes et le temps que nous mettons à acceder à ces éléments. Nous utilisons un tas comme implémentation, la complexité de l'A* est donc `O(n+m log(n))` avec $$n$$ le nombre de sommets et $$m$$ le nombre d'arềtes moyenne d'un sommet.
+
+<div class="header"> <div
+class="progress-container"> <div class="progress-bar" id="myBar"></div> </div>
 </div>
 
 <style>
