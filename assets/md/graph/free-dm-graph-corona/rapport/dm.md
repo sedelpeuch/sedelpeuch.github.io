@@ -280,16 +280,59 @@ puisque cette opération est faites en temps constante
 GIF & ANALYSE 
 1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
 2. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
+2. GIF propagation 100 individus même carac
+2. GIF courbe variation q 100 individus même carac
+2. GIF courbe variation p 100 individus même carac
+2. GIF courbe variation r 100 individus même carac
 
-Nous pouvons voir, sans surprise, que le confinement fort est bien plus efficace
-que le confinement faible, nous ne considérerons plus que ce dernier pour le
-reste des implémentations. 
 CONCLUSION SUR TESTS PROCHE DES DEFUNTS
+
 ### Tests aléatoires sur la population
+Nous allons maintenant regarder une autre stratégie pour tenter de limiter le
+pic épidémique et diminuer le nombre de mort. L'idée n'est plus de tester les
+gens en contact avec un défunt qui correspond à une réaction spontannée. Il
+s'âgit plutôt de tenter de prévenir les futurs cas en effectuant des tests
+aléatoires sur la population et confiner les gens positifs. 
 
-### Mise en place de tests globals
+L'implémentation de cette technique se traduit par le fait que chaque jour nous
+choissons aléatoirement $$n'$$ individu à tester (pour coler à la réalité $$n'$$
+est proportionnel au nombre de malade, ce qui fait que plus il y a de malade
+plus nous testons les gens), cela ne change pas la complexité de la boucle
+principale toujours en `O(nbr jour * n * m)` avec $$m$$ le nombre moyen de
+voisins.
 
+Nous réalisons alors des tests avec les paramètres 
 
+GIF & ANALYSE
+1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
+1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
+2. GIF propagation 100 individus même carac
+2. GIF courbe variation q 100 individus même carac
+2. GIF courbe variation p 100 individus même carac
+2. GIF courbe variation r 100 individus même carac
+
+CONCLUSION SUR TEST ALEATOIRES
+
+### Mise en place de tests globaux
+Nous avons vu l'efficacité des tests sur les proches des défunts qui sont une
+réponse instantané à l'apparition de la maladie. De plus nous avons vu
+l'efficacité des tests aléatoires sur la population qui permettent d'être
+préventif. Nous allons maintenant immaginer une stratégie de tests où nous
+réalisons à la fois des tests sur les proches des défunts et des tests
+aléatoires sur la population. Cette stratégie devrait être la plus bénéfique et
+la plus réaliste (même si cela dépend des pays). 
+
+GIF & ANALYSE
+ 1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
+1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
+2. GIF courbe variation q 100 individus même carac
+2. GIF courbe variation p 100 individus même carac
+2. GIF courbe variation r 100 individus même carac
+
+CONCLUSION SUR LES TESTS
+
+Nous avons pu étudier dans cette partie les différentes stratégies de tests de
+la population pour tenter de contenir la contamination.
 ##  <i class="fas fa-project-diagram"></i> Partie III - Rajouts de facteurs plus réalistes
 
 
@@ -334,3 +377,15 @@ CONCLUSION SUR TESTS PROCHE DES DEFUNTS
   width: 25px; 
 }
 </style>
+<script>
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+</script>
+	
