@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/reseau/notes-td1.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-server fa-2x&quot;&gt;&lt;/i&gt; Introduction aux réseaux - TD1 | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-server fa-2x&quot;&gt;&lt;/i&gt; Introduction aux réseaux - TD1 | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/reseau/notes-td1.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-server fa-2x"></i> Introduction aux réseaux - TD1</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h2 id="exercice-1">Exercice 1</h2>
+<p>On considère le transfert d’un fichier de 1 Mo entre deux stations</p>
+<ul>
+  <li>Temps de propagation : calculé avec la vitesse de propagation dans le câble
+(le signal se propage et prend un certain temps pour arriver)</li>
+  <li>Temps d’émission d’une trame : en lien avec le débit de transmission et
+proportionnel à la taille de la trame</li>
+  <li>Acquittement = accusé de réception, générallement un signal positif</li>
+  <li>Débit utile : combien de données réelles ont été transmises pendant un
+intervalle de temps</li>
+</ul>
+
+<p>Attention aux unités bits/octes. On note F la taille du fichier</p>
+
+<ol>
+  <li>Réseau en étoile :
+    <ul>
+      <li>propagation <script type="math/tex">T_p = \text{distance}/\text{vitesse} = D/V = 0.1ms</script></li>
+      <li>émission : <script type="math/tex">T_e = \text{longueur trame}/\text{débit} = F/C = 125 s</script></li>
+      <li>débit : <script type="math/tex">D_u = \text{taille}/\text{temps}=64 Kbits/s</script></li>
+    </ul>
+  </li>
+  <li>Réseau en bus : On divise le fichier global en trames, composées de <script type="math/tex">O=80
+bits</script> d’overhead et <script type="math/tex">L</script> bits de données utiles. Une fois la trame reçue,
+l’autre machine renvoie une trame d’acquittement <script type="math/tex">(A=88 bits)</script>.
+    <ul>
+      <li>émission : <script type="math/tex">T_e = (L+O)/C</script></li>
+      <li>propagation : <script type="math/tex">T_p = D/V</script></li>
+      <li>acquittement : <script type="math/tex">T_{ack}=A/C</script></li>
+      <li><script type="math/tex">T_{\text{trame}}=T_e + T_p + T_{ack} + T_p = T_e + T_{ack} + 2T_p</script>.</li>
+      <li>nombre de trames : <script type="math/tex">n=ceil(F/L)</script></li>
+      <li><script type="math/tex">T_tot = n.T_{\text{trame}}</script>.</li>
+      <li><script type="math/tex">D_u = F/T_{tot} = L/T_{\text{trame}}</script>.</li>
+    </ul>
+  </li>
+  <li>Réseau en anneau : Pour l’acquittement, on renvoie la trame en modifiant 1
+bit spécifique. Chaque répéteur introduit un retard de 1 temps-bit. Il faudra
+considérer 2 <script type="math/tex">T_p</script> car la trame va de l’émetteur au récepteur, puis du
+récepteur à l’émetteur
+    <ul>
+      <li>émission : <script type="math/tex">T_e = L/C</script></li>
+      <li>propagation : <script type="math/tex">T_p = D/V</script></li>
+      <li>retard : <script type="math/tex">T_{\text{retard}} = N * t_{bit} = N/C</script></li>
+      <li><script type="math/tex">T_{\text{trame}} = T_e + T_p</script>.</li>
+      <li><script type="math/tex">T_{\text{aller}}=T_{\text{retour}}= T_e + T_p + T_{\text{retard}}/2</script>.</li>
+      <li>Temps total pour la transmission d’une trame
+<script type="math/tex">T_{\text{tot}_\text{trame}}=2(T_e +T_p)+T_{\text{retard}}</script>.</li>
+      <li><script type="math/tex">T_{tot}=ceil(F/(L-O))*T_{\text{tot}_\text{retard}}</script>.</li>
+      <li><script type="math/tex">D_u = F/T_{tot}</script>.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="exercice-2">Exercice 2</h2>
+<ol>
+  <li>Il faut que <script type="math/tex">T_e > RTT</script> c’est à dire <script type="math/tex">L/C > 2D/V</script> et donc <script type="math/tex">L > 2 D
+\dfrac{C}{V}=500 bits</script></li>
+  <li><script type="math/tex">L=2C\dfrac{D}{V}</script> Soit on divise la distance par 10, soit on multiplie la
+longueur de la trame par 10</li>
+</ol>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

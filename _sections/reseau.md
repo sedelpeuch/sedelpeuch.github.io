@@ -20,17 +20,18 @@ le
 [td1](https://moodle.bordeaux-inp.fr/pluginfile.php/111540/mod_resource/content/3/TD1.pdf)
 et le [td2](https://moodle.bordeaux-inp.fr/pluginfile.php/111542/mod_resource/content/4/TD2.pdf)
 
-| Thème                             | Notes de cours |
-| :---                             | :---:          |
-| Histoiriques des notions de bases | [notes1]       |
-| Le modèle de référence OSI        | [notes2]       |
-| Le modèle TCP/IP                  | [notes3]       |
-| Exercices et TP                   | [notes4]       |
+| Thème                             | Notes de cours | Notes de TD |
+| :---                              | :---:          | :---:       |
+| Histoiriques des notions de bases | [notes1]       | [notes-td1]            |
+| Le modèle de référence OSI        | [notes2]       |             |
+| Le modèle TCP/IP                  | [notes3]       |             |
+| Exercices et TP                   | [notes4]       |             |
 
 [notes1]:/assets/md/reseau/notes1
 [notes2]:/assets/md/reseau/notes2
 [notes3]:/assets/md/reseau/notes3
 [notes4]:/assets/md/reseau/notes4
 
-
+[notes-td1]:/assets/md/reseau/notes-td1
+[notes-td2]:/assets/md/reseau/notes-td2
 

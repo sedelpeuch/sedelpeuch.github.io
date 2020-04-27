@@ -122,9 +122,9 @@ différentes d’un jour à l’autre</li>
 
 <p>Dans un premier temps nous allons définir la séquence de graphe <script type="math/tex">G_i</script>
 permettant de réprésenter l’état du graphe <script type="math/tex">G</script> au jour <script type="math/tex">i</script>. Peu importe le
-jour, les sommets du graphe ne change pas ainsi, dans une première partie
-d’initialisation nous construisons le graphe en fonction de la topologie choisi,
-dans tous les cas le graphe possède <script type="math/tex">n</script> sommets. Ensuite vient ensuite la
+jour, les sommets du graphe ne change pas. Ainsi dans une première partie
+d’initialisation nous construisons le graphe en fonction de la topologie choisie,
+dans tous les cas le graphe possède <script type="math/tex">n</script> sommets. Ensuite vient la
 construction des arêtes du graphe. Pour le graphe circulaire, cela est effectué
 dans l’initialisation, en effet les individus ne sont reliés que à leurs voisins
 de droite et de gauche, cela est indépendant du jour. Par construction ce graphe
@@ -165,12 +165,12 @@ correctement le graphe, la complexité de l’initialisation est majorée par
 devons parcourir tous les individu. Si nous sommes dans un modèle dynamique nous
 devons actualiser les voisins. Ensuite si l’individu est malade depuis <script type="math/tex">r</script>
 jour, lui appliquer une chance de mourir, si l’individu est en contact avec des
-malades lui appliquer une chance de devenir malade. Finalement ajoutons un jour
+malades lui appliquer une chance de devenir malade. Finalement nous ajoutons un jour
 de maladie à tous les malades. Ainsi pour calculer l’état du graphe au jour
 <script type="math/tex">i+1</script> nous avons une fonction de complexité è <code class="language-plaintext highlighter-rouge">O(n+m)</code> où <script type="math/tex">m</script> est le nombre
 moyen de voisin d’un individu.</p>
 
-<p>Nous pouvons à partir de cela établir notre code final pour le graphe en modèle
+<p>Nous pouvons à partir de cela établir notre code final pour le graphe circulaire en modèle
 statique et dynamique. Nous initialisons dans un premiers temps le graphe et la
 population. Nous faisons ensuite appel à la fonction de propagation jour par
 jour le nombre de jours que nous voulons (par défaut 180), nous avons ajouté
@@ -208,6 +208,10 @@ inchangée.</p>
 précédemment</p>
 
 <p>GIF &amp; ANALYSE</p>
+
+<p>Les résultats sont plus satisfaisant en effet nous pouvons une rapide
+propagation de l’épidémie dans la population, rappelons que l’idée de cette
+partie est de réussir à mettre en place</p>
 
 <h2 id="-partie-ii---rajout-de-tests-simples"><i class="fas fa-project-diagram"></i> Partie II - Rajout de tests simples</h2>
 
