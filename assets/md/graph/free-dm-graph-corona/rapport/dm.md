@@ -264,8 +264,27 @@ donne une complexité à la boucle principale en temps $$O(nbr jour * n * m * r)
 où $$r$$ est le nombre de jour que dure la maladie, $$m$$ le nombre moyen de
 voisin.
 
+Nous réalisons alors un test avec les paramètres et 
 
+GIF & ANALYSE
+1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
+2. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
 
+Nous allons maintenant modifier la façon de confiner l'entourage d'une personne
+décédée. Lorsque quelqu'un décédé les personnes qu'il a contacté depuis $$r$$
+jours sont testés. Le test fonctionne comme suit, si la personne est malade il a
+$$70\%$$ de chance d'être confiné, si la personne n'est pas malade il a $$10 \%$$ de
+chance d'être confiné. Cela ne change rien à la complexité de la fonction
+puisque cette opération est faites en temps constante 
+
+GIF & ANALYSE 
+1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
+2. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
+
+Nous pouvons voir, sans surprise, que le confinement fort est bien plus efficace
+que le confinement faible, nous ne considérerons plus que ce dernier pour le
+reste des implémentations. 
+CONCLUSION SUR TESTS PROCHE DES DEFUNTS
 ### Tests aléatoires sur la population
 
 ### Mise en place de tests globals
