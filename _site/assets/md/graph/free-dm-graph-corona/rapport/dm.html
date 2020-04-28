@@ -71,54 +71,47 @@ modéliser une version simpliste de la propagation du Covid-19. Le devoir se
 décompose en 3 parties d’implémentation, tout d’abord nous mettons en place les
 différentes paramètres (mortalité, durée de maladie) et les différents graphes. Vient ensuite le rajout de
 paramètres simples comme des tests sur la population etc. Finalement nous avons
-tenté de rajouter des facteurs plus réalistes  à compléter.</p>
-
-<p>Notre travail est résumé dans l’outil de visualisation que nous avons crée
-disponible en fin de page.</p>
+tenté de rajouter des facteurs plus réalistes et nous nous sommes un peu écartés du sujet pour proposer des compléments sur la propagation d’une épidémie et pour manipuler les notions de l’algorithmique des graphes.</p>
 
 <h2 id="-partie-i---implémentation-dune-base-nathan--aurélien"><i class="fas fa-project-diagram"></i> Partie I - Implémentation d’une base (Nathan &amp; Aurélien)</h2>
 <p>La première partie permet de définir les bases de la modélisation c’est à dire
 les différents états, les différents paramètres, les règles de changement
 d’état, les topologies de graphes étudiés et les différents modèles de ces
-derniers. La population est pour l’instant considérée comme uniforme (chaque
-individu est sujet à la maladie de la même manière), ils peuvent être dans
-quatre états, Sain (<script type="math/tex">S</script>), Infecté (<script type="math/tex">M</script>), Guéri et donc imunisés (<script type="math/tex">G</script>) ou
-décédé (<script type="math/tex">D</script>). De plus chaque personne suit les règles suivantes</p>
-<ul>
-  <li>Si une personne saine <script type="math/tex">X</script> fréquente une personne malade <script type="math/tex">Y</script> alors, avec la
-probabilité <script type="math/tex">q</script>, <script type="math/tex">X</script> devient malade par l’intermédiaire de <script type="math/tex">Y</script> pour une
-durée <script type="math/tex">r</script>.</li>
-  <li>Si une personne est malade depuis <script type="math/tex">r</script> jours alors soit elle décède avec une
-probabilité <script type="math/tex">p</script> soit elle devient immunisé avec une probabilité <script type="math/tex">(1-p)</script>.</li>
-  <li>Une personne immunisée ou décédée ne change jamais d’état.</li>
-  <li>Une personne décédée ne peut pas contaminer une personne saine.</li>
-</ul>
+derniers. Nous reprennons précisément les définitions du sujet. <!--  La population est pour l'instant considérée comme uniforme (chaque -->
+<!-- individu est sujet à la maladie de la même manière), ils peuvent être dans -->
+<!-- quatre états, Sain ($$S$$), Infecté ($$M$$), Guéri et donc imunisés ($$G$$) ou -->
+<!-- décédé ($$D$$). De plus chaque personne suit les règles suivantes  -->
+<!-- + Si une personne saine $$X$$ fréquente une personne malade $$Y$$ alors, avec la -->
+<!--   probabilité $$q$$, $$X$$ devient malade par l'intermédiaire de $$Y$$ pour une -->
+<!--   durée $$r$$.  -->
+<!-- + Si une personne est malade depuis $$r$$ jours alors soit elle décède avec une -->
+<!--   probabilité $$p$$ soit elle devient immunisé avec une probabilité $$(1-p)$$. -->
+<!-- + Une personne immunisée ou décédée ne change jamais d'état. -->
+<!-- + Une personne décédée ne peut pas contaminer une personne saine. --></p>
 
-<p>Nous allons aussi définir les différents graphes de contact permettant de
-simuler les différentes relations de chaque individu, trois graphes sont alors
-mis en oeuvre</p>
-<ul>
-  <li>Un graphe circulaire, les personnes sont numérotés de 1 à <script type="math/tex">n</script> et chaque
-personne, numérotés <script type="math/tex">i</script>, est relié aux personnes <script type="math/tex">(i-1)</script> et <script type="math/tex">(i+1)</script>
-modulo <script type="math/tex">n</script>,</li>
-  <li>Un graphe aléatoire, on tire un graphe aléatoire de taille <script type="math/tex">n</script> de la manière
-suivante. Chaque noeud choisit <script type="math/tex">k</script> noeuds choisis au hasard. Cela permet de
-représenter de manière simpliste la population, chaque individu à un nombre
-aléatoire de contact avec les autres individus</li>
-  <li>Finalement le graphe mixe, issu de l’union du graphe circulaire et du graphe
-aléatoire</li>
-</ul>
+<!-- Nous allons aussi définir les différents graphes de contact permettant de -->
+<!-- simuler les différentes relations de chaque individu, trois graphes sont alors -->
+<!-- mis en oeuvre  -->
+<!-- + Un graphe circulaire, les personnes sont numérotés de 1 à $$n$$ et chaque -->
+<!--   personne, numérotés $$i$$, est relié aux personnes $$(i-1)$$ et $$(i+1)$$ -->
+<!--   modulo $$n$$,  -->
+<!-- + Un graphe aléatoire, on tire un graphe aléatoire de taille $$n$$ de la manière -->
+<!--   suivante. Chaque noeud choisit $$k$$ noeuds choisis au hasard. Cela permet de -->
+<!--   représenter de manière simpliste la population, chaque individu à un nombre -->
+<!--   aléatoire de contact avec les autres individus -->
+<!-- + Finalement le graphe mixe, issu de l'union du graphe circulaire et du graphe -->
+<!--   aléatoire -->
 
-<p>De plus nous définissons aussi 2 modèles de graphe</p>
-<ul>
-  <li>statique (graphe de confinement de paramère <script type="math/tex">k'</script>) : une personne confinée
-fréquence <script type="math/tex">k' \leq k</script> personnes sélectionnées au hasard. Il n’est pas
-autorisée à voir les autres personnes pendant le confinement.</li>
-  <li>dynamique (graphe de baisse de fréquentation de paramètre <script type="math/tex">k'</script>) : chaque
-jour, chaque personne est autorisée à voir <script type="math/tex">k'</script> personnes qu’elle
-sélectionne parmi ses <script type="math/tex">k</script> contacts. Il peut donc voir des personnes
-différentes d’un jour à l’autre</li>
-</ul>
+<!-- De plus nous définissons aussi 2 modèles de graphe -->
+<!-- + statique (graphe de confinement de paramère $$k'$$) : une personne confinée -->
+<!--   fréquence $$k' \leq k$$ personnes sélectionnées au hasard. Il n'est pas -->
+<!--   autorisée à voir les autres personnes pendant le confinement. -->
+<!-- + dynamique (graphe de baisse de fréquentation de paramètre $$k'$$) : chaque -->
+<!--   jour, chaque personne est autorisée à voir $$k'$$ personnes qu'elle -->
+<!--   sélectionne parmi ses $$k$$ contacts. Il peut donc voir des personnes -->
+<!--   différentes d'un jour à l'autre -->
+
+<h3 id="graphe-circulaire">Graphe circulaire</h3>
 
 <p>Dans un premier temps nous allons définir la séquence de graphe <script type="math/tex">G_i</script>
 permettant de réprésenter l’état du graphe <script type="math/tex">G</script> au jour <script type="math/tex">i</script>. Peu importe le
@@ -180,7 +173,7 @@ algortihme principal à une complexité de <code class="language-plaintext highl
 
 <p>Nous pouvons commencer, comme le sujet nous y invite, à simuler la propagation
 dans une graphe circulaire, tout d’abord dans le modèle statique et dynamique
-avec des populations de 100, 1000 et 10000 individu en prenant comme paramètres
+avec des populations de 100 et 10000 individus en prenant comme paramètres
 <script type="math/tex">r=14, p=0.01,q=0.02, k=50</script> dans cette topologie la variation de <script type="math/tex">k'</script>
 influe peu sur les résultats nous prenons <script type="math/tex">k'=2</script>.
 Voici quelques animations permettant de visualiser la propagation dans les
@@ -189,36 +182,39 @@ différents graphes au fur et à mesure des jours.</p>
 <p>GIF &amp; ANALYSE</p>
 <ol>
   <li>GIF graphe + courbe individus, 100 individus k’=2</li>
-  <li>GIF graphe + courbe individus, 1000 individus k’=2</li>
   <li>courbe individus, 10 000 individus k’=2</li>
 </ol>
 
 <p>Nous pouvons tout d’abord voir qu’il y a une propagation au fur et à mesure des
 jours, cependant il apparait clairement que les résultats sont peu satisfaisant,
 en effet le graphe circulaire est relativement simpliste et ne représente que
-très peu les connexions humaines. Nous nous tournons donc vers la deuxième
-topologie proposée, le graphe aléatoire. Celui ci relie les sommets de manière
-aléatoire (il est à noter qu’il n’est pas forcément connexe). Pour gérer plus
-facilement le modèle statique et dynamique nous remplissons dans
-l’initialisation le tableau des voisins par <script type="math/tex">k</script> voisin choisis de manière
-aléatoire, si nous sommes dans un modèle statique nous sélectionnons
-aléatoirement pour chaque individu dans l’initialisation <script type="math/tex">k'</script> voisins parmi
-ses <script type="math/tex">k</script> voisins. En revanche si nous sommes dans un modèle dynamique, à chaque
-jour nous devons sélectionner aléatoirement <script type="math/tex">k'</script> voisins parmis ses <script type="math/tex">k</script>
-contacts autorisés. Grâce à notre implémentation basé sur un tableau contenant
-les <script type="math/tex">k</script> contacts possibles et un tableau contenant ses <script type="math/tex">k'</script> voisins pour le
-jour <script type="math/tex">i</script> la complexité de l’initialisation et de la boucle principale reste
-inchangée.</p>
+très peu les connexions humaines.</p>
+
+<h3 id="graphe-aléatoire">Graphe Aléatoire</h3>
+<p>Nous nous tournons donc vers la deuxième topologie proposée, le graphe
+aléatoire. Celui ci relie les sommets de manière aléatoire (il est à noter qu’il
+n’est pas forcément connexe). Pour gérer plus facilement le modèle statique et
+dynamique nous remplissons dans l’initialisation le tableau des voisins par
+<script type="math/tex">k</script> voisin choisis de manière aléatoire, si nous sommes dans un modèle
+statique nous sélectionnons aléatoirement pour chaque individu dans
+l’initialisation <script type="math/tex">k'</script> voisins parmi ses <script type="math/tex">k</script> voisins. En revanche si nous
+sommes dans un modèle dynamique, à chaque jour nous devons sélectionner
+aléatoirement <script type="math/tex">k'</script> voisins parmis ses <script type="math/tex">k</script> contacts autorisés. Grâce à notre
+implémentation basé sur un tableau contenant les <script type="math/tex">k</script> contacts possibles et un
+tableau contenant ses <script type="math/tex">k'</script> voisins pour le jour <script type="math/tex">i</script> la complexité de
+l’initialisation et de la boucle principale reste inchangée.</p>
 
 <p>Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
-précédemment avec une population de 1 000 et 10 000 individus. Pour ne pas faire trop de
-graphes nous faisons trois tests avec <script type="math/tex">k'=2,25,50</script>, l’ensemble des variations
-de <script type="math/tex">k'</script> peut être réalisé avec nos codes.</p>
+précédemment avec une population de 1 000 et 10 000 individus en faisant varier
+<script type="math/tex">k'</script> de <script type="math/tex">1</script> à <script type="math/tex">k=50</script>.</p>
 
 <p>GIF &amp; ANALYSE</p>
 <ol>
-  <li>GIF graphe (à un k fixe) + gif courbe individus variation k , 1000 individus</li>
-  <li>gif courbe individus variation k, 10 000 individus</li>
+  <li>GIF graphe (à un k’ fixe) + gif courbe individus variation k’ , 100 individus
+STATIQUE</li>
+  <li>GIF graphe (à un k’ fixe) + gif courbe individus variation k’ , 100 individus
+DYNAMIQUE</li>
+  <li>Courbe individus (à un k’ fixe), 10 000 individus</li>
 </ol>
 
 <p>Les résultats sont plus satisfaisant en effet nous pouvons voir une rapide
@@ -228,11 +224,13 @@ ainsi que des connexions entre les individus de manière se rapprochant le plus
 de la réalité possible. Faisons un point sur les deux graphes présentés. Nous
 avons d’une part un graphe circulaire, représentant des individus connectés
 uniquement avec leurs voisins. D’autre part nous avons un graphe aléatoire qui
-simule des connexions totalement aléatoire avec les autres personnes. Nous
-allons donc maintenant utiliser un graphe mixte, union des deux qui nous permet
-de simuler une population qui est en contact avec ses voisins et un nombre
-aléatoire d’individus. Ce graphe est le graphe le plus représentatif d’une
-population humaine, après cette partie nous n’utiliserons que ce dernier.</p>
+simule des connexions totalement aléatoire avec les autres personnes.</p>
+
+<h3 id="graphe-mixte">Graphe mixte</h3>
+<p>Nous allons donc maintenant utiliser un graphe mixte, union des deux qui nous
+permet de simuler une population qui est en contact avec ses voisins et un
+nombre aléatoire d’individus. Ce graphe est le graphe le plus représentatif
+d’une population humaine, après cette partie nous n’utiliserons que ce dernier.</p>
 
 <p>La boucle principale n’a que très peu de modifications, dans l’initialisation
 nous établissons un graphe à <script type="math/tex">n</script> sommets, les arrêtes de ce derniers sont
@@ -256,8 +254,9 @@ précédemment</p>
 
 <p>GIF &amp; ANALYSE</p>
 <ol>
-  <li>GIF graphe 1 000 individus, GIF courbe individus variation de k</li>
-  <li>GIF courbe individus variation de k , 10 000 individus</li>
+  <li>GIF graphe 1 00 individus, GIF courbe individus variation de k’ STATIQUE</li>
+  <li>GIF graphe 1 00 individus, GIF courbe individus variation de k’ DYNAMIQUE</li>
+  <li>Courbe individus (k’ fixé) , 10 000 individus</li>
 </ol>
 
 <p>Nous avons donc définit une topologie de graphe et des modèles de graphe nous
@@ -266,9 +265,312 @@ intéractions ressemblant à des relations humaines. Cependant pour l’instant 
 laissons l’épidémie se développer naturellement.</p>
 
 <h2 id="-partie-ii---rajout-de-tests-simples-sébastien--antoine"><i class="fas fa-project-diagram"></i> Partie II - Rajout de tests simples (Sébastien &amp; Antoine)</h2>
-<p>Nous allons maintenant im</p>
+<p>Nous allons maintenant implémenter des stratégies de réponse à l’épidémie que
+vont adopter les individus. Cela se traduit par exemple par la mise en
+confinement de la population ou le test massif de la population. Le but ici est
+d’étudier l’efficacité des mesures de lutte contre l’épidémie. Nous serons donc
+particulièrement attentif à la taille du pic épidémique et le nombre de mort
+total.</p>
 
-<h2 id="-partie-iii---rajouts-de-facteurs-plus-réalistes"><i class="fas fa-project-diagram"></i> Partie III - Rajouts de facteurs plus réalistes</h2>
+<p>Remarquons que la première partie fera office d’exemple du déroulement “normal”
+de l’épidémie sans tests ni confinement obligatoire.</p>
+
+<p>Cette partie va parler de tests sur la population. Cependant les tests pendant
+une épidémie ne sont pas magiques, en effet les tests ne détectent pas avec 100%
+de chance un individu malade et dans le même temps ils peuvent détecter un
+individu positif alors qu’il n’est pas malade (faux positif). L’évocation de
+tests dans ce rapport ne peut aller sans l’évocation du paradoxe de Simpson. Ce
+dernier stipule que lors d’un test statistique dans certainnes conditions les
+résultats du tests s’inversent et nous induisent donc en erreur.</p>
+
+<p><img class="image about right" src="arbre.png" alt="arbre" /> Lorsque nous effectuons un test lors d’une épidémie le paradoxe de
+Simpson est très facile à montrer. Prenons les conditions du sujet, la maladie
+touche <script type="math/tex">1\%</script> de la population, si un individu est malade, le test est positif
+avec <script type="math/tex">70\%</script> de chance. Finalement nous devons ajouter la probabilité de faux
+positifs, à l’heure actuelle plusieurs
+<a href="https://la1ere.francetvinfo.fr/nouvellecaledonie/tests-covid-19-un-faux-positif-et-un-faux-negatif-confirmes-par-le-cht-819510.html">sources</a>
+nous indiquent qu’avec les tests actuelles une personne non malade est détectée
+positive avec <script type="math/tex">10\%</script> de chance. L’arbre ci contre résume la situation où <script type="math/tex">M</script>
+indique que l’individu est malade et <script type="math/tex">T</script> indique que le test est positif. Si
+nous prenons un échantillon de 10 000 individus, nous aurons alors 70 individus
+malades et testé positifs, 30 malades et testé négatifs, 990 non malades testés
+positifs et 8910 non malades. Le paradoxe de Simpson est mis en lumière, le
+nombre de malade selon le test est supérieur au nombre de malade réel, il y a
+même plus de gens non malades qui sont testé positifs que de malades qui sont
+testés positifs. L’utilisation des tests est donc délicat, se faisant nous
+allons confiner une partie de la population qui en réalité n’est pas malade
+(dans notre cas <script type="math/tex">9.9\%</script> de la population) et <em>a contrario</em> ne pas confiner une
+partie de la population qui est vraiment malade (dans notre cas <script type="math/tex">0.03\%</script>).</p>
+
+<h3 id="réaction-sur-les-proches-des-défunts">Réaction sur les proches des défunts</h3>
+<p>Nous allons tout d’abord étudier des réactions de confinement et de tests suite
+au décès d’une personne de son entourage. Tout d’abord nous allons mettre en
+place la stratégie suivante : si une personne meurt de l’épidémie, alors toutes
+les personnes l’ayant contacté dans les <script type="math/tex">r'\leq r</script> jours est placé en
+confinement (faible ou fort). Pour coller à la réalité nous prenons toujours
+<script type="math/tex">r'=r</script> car lors d’une maladie nous sommes contagieux plusieurs jours avant
+d’avoir des symptômes.</p>
+
+<p>Algorithmiquement cette notion se traduit par la création du tableau de
+voisins fréquentés depuis <script type="math/tex">r</script> jours. Ce tableau est un tableau de tableau
+contenant à chaque ligne les voisins que l’individu a fréquenté. Cela nous
+permet de retenir les voisins de l’individu depuis <script type="math/tex">r</script> jours. Cette opération
+est coûteuse puisque chaque jour, si nous détectons un décès nous devons
+parcourir le tableau d’historique des connexions et parcourir chaque ligne pour
+confiner chaque individu qu’il a contacté. En somme l’ajout de cette fonction
+donne une complexité à la boucle principale en temps <script type="math/tex">O(nbr jour * n * m * r)</script>
+où <script type="math/tex">r</script> est le nombre de jour que dure la maladie, <script type="math/tex">m</script> le nombre moyen de
+voisin.</p>
+
+<p>Nous réalisons alors un test avec les paramètres et</p>
+
+<p>GIF &amp; ANALYSE</p>
+<ol>
+  <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE</li>
+  <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT</li>
+</ol>
+
+<p>Nous allons maintenant modifier la façon de confiner l’entourage d’une personne
+décédée. Lorsque quelqu’un décédé les personnes qu’il a contacté depuis <script type="math/tex">r</script>
+jours sont testés. Le test fonctionne comme suit, si la personne est malade il a
+<script type="math/tex">70\%</script> de chance d’être confiné, si la personne n’est pas malade il a <script type="math/tex">10 \%</script> de
+chance d’être confiné. Cela ne change rien à la complexité de la fonction
+puisque cette opération est faites en temps constante</p>
+
+<p>GIF &amp; ANALYSE</p>
+<ol>
+  <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE</li>
+  <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT</li>
+  <li>GIF propagation 100 individus même carac</li>
+  <li>GIF courbe variation q 100 individus même carac</li>
+  <li>GIF courbe variation p 100 individus même carac</li>
+  <li>GIF courbe variation r 100 individus même carac</li>
+</ol>
+
+<p>CONCLUSION SUR TESTS PROCHE DES DEFUNTS</p>
+
+<h3 id="tests-aléatoires-sur-la-population">Tests aléatoires sur la population</h3>
+<p>Nous allons maintenant regarder une autre stratégie pour tenter de limiter le
+pic épidémique et diminuer le nombre de mort. L’idée n’est plus de tester les
+gens en contact avec un défunt qui correspond à une réaction spontannée. Il
+s’âgit plutôt de tenter de prévenir les futurs cas en effectuant des tests
+aléatoires sur la population et confiner les gens positifs.</p>
+
+<p>L’implémentation de cette technique se traduit par le fait que chaque jour nous
+choissons aléatoirement <script type="math/tex">n'</script> individu à tester (pour coler à la réalité <script type="math/tex">n'</script>
+est proportionnel au nombre de malade, ce qui fait que plus il y a de malade
+plus nous testons les gens), cela ne change pas la complexité de la boucle
+principale toujours en <code class="language-plaintext highlighter-rouge">O(nbr jour * n * m)</code> avec <script type="math/tex">m</script> le nombre moyen de
+voisins.</p>
+
+<p>Nous réalisons alors des tests avec les paramètres</p>
+
+<p>GIF &amp; ANALYSE</p>
+<ol>
+  <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT</li>
+  <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE</li>
+  <li>GIF propagation 100 individus même carac</li>
+  <li>GIF courbe variation q 100 individus même carac</li>
+  <li>GIF courbe variation p 100 individus même carac</li>
+  <li>GIF courbe variation r 100 individus même carac</li>
+</ol>
+
+<p>CONCLUSION SUR TEST ALEATOIRES</p>
+
+<h3 id="mise-en-place-de-tests-globaux">Mise en place de tests globaux</h3>
+<p>Nous avons vu l’efficacité des tests sur les proches des défunts qui sont une
+réponse instantané à l’apparition de la maladie. De plus nous avons vu
+l’efficacité des tests aléatoires sur la population qui permettent d’être
+préventif. Nous allons maintenant immaginer une stratégie de tests où nous
+réalisons à la fois des tests sur les proches des défunts et des tests
+aléatoires sur la population. Cette stratégie devrait être la plus bénéfique et
+la plus réaliste (même si cela dépend des pays).</p>
+
+<p>GIF &amp; ANALYSE</p>
+<ol>
+  <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT</li>
+  <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE</li>
+  <li>GIF courbe variation q 100 individus même carac</li>
+  <li>GIF courbe variation p 100 individus même carac</li>
+  <li>GIF courbe variation r 100 individus même carac</li>
+</ol>
+
+<p>CONCLUSION SUR LES TESTS</p>
+
+<p>Nous avons pu étudier dans cette partie les différentes stratégies de tests de
+la population pour tenter de contenir la contamination. FINIR</p>
+
+<h2 id="-partie-iii---outils-et-amélioration"><i class="fas fa-project-diagram"></i> Partie III - Outils et amélioration</h2>
+<p>Nous allons maintenant discuter d’outils que nous avons rajoutés dans ce projet
+pour compléter notre travail ou rajouter de la manipulation d’algorithmique des
+graphes.</p>
+
+<h3 id="visualisation-à-partir-déquations-différentielles">Visualisation à partir d’équations différentielles</h3>
+<h4 id="sébastien-théorie--rapport-antoine-implémentation-dans-géogébra">Sébastien (Théorie &amp; Rapport), Antoine (Implémentation dans Géogébra)</h4>
+<p>Cette partie présente un autre mode de réprésentation de la propagation de la
+maladie. La représentation se fera par équation différentielles en s’inspirant
+du travail de <a href="https://sciencetonnante.wordpress.com/2020/03/12/epidemie-nuage-radioactif-et-distanciation-sociale/">David
+Louapre</a>,
+<em>in fine</em> le but de cette section est de reproduire l’animation <a href="https://sciencetonnante-epidemie.netlify.app/">disponible
+ici</a> en utilisant le modèle SIR.
+Cette section ne présente pas un travail uniquement personnel puisqu’il
+s’inspire des pages précedemment mentionnées. L’idée est de présenter une
+représentation qui a intéressé les membres du groupe et sur laquelle nous avons
+réalisé un travail de recherche, l’implémentation réalisée avec Géogébra est de
+notre oeuvre.</p>
+
+<p>Le modèle <script type="math/tex">SIR</script> est un modèle simpliste modélisant la propagation d’un agent
+infectieux. Le <script type="math/tex">S</script> désigne les individus sains, le <script type="math/tex">I</script> désigne les individus
+infectés et le <script type="math/tex">R</script> ceux qui sont guéris. Les différents effectifs sont
+exprimés en pourcentage de la population ce qui nous permet de nous détacher du
+nombre d’individus. L’effectif de chacun de ces populations est évidemment
+variable dans le temps, modélisable de ce par une fonction de la variable
+indépendante <script type="math/tex">t</script>, le temps : <script type="math/tex">S(t),I(t)</script> et <script type="math/tex">R(t)</script>. Si au cours de la
+propagation de l’épidémie, l’effectif <script type="math/tex">P</script> de la population peut être considéré
+constant, on écrit</p>
+
+<script type="math/tex; mode=display">S(t)+I(t)+R(t)=P</script>
+
+<p>L’épidémie se propage par les contacts entre les individus infectés et les
+individus sains. Le nombre de ces contacts est proportionnel à <script type="math/tex">S</script> et à <script type="math/tex">I</script>.
+Les malades guérissent en moyenne au bout d’un temps <script type="math/tex">r</script>, ils sont alors
+immunisés et ne peuvent plus, ni infecter d’autres personnes, ni être
+réinfectés. Il s’agit maintenant d’écrire un système d’équations différentielles
+qui relier la dérivée des fonctions <script type="math/tex">\dfrac{dS(t)}{dt}</script>,<script type="math/tex">\dfrac{dI(t)}{dt}</script>
+et <script type="math/tex">\dfrac{dR(t)}{dt}</script>, aux fonctions elles mêmes <script type="math/tex">S(t),I(t)</script> et <script type="math/tex">R(t)</script>.
+Les valeurs de <script type="math/tex">S</script>, <script type="math/tex">I</script> et <script type="math/tex">R</script> sont toujours positives sans dimension.</p>
+
+<p>La première équation est la variation des personnes infectés dans le temps, cette
+variation est proportionnelles à l’effectif de la population infectée et à
+l’effectif de la population saines multiplié par un coeffcient de propagation
+<script type="math/tex">q</script>. Cela nous donne l’équation <script type="math/tex">dI(t)/dt=qIS</script>, nous rajoutons aussi le fait que
+le malade reste en moyenne malade pendant <script type="math/tex">r</script> jours, nous modifions l’équation
+pour l’intégrer ainsi <script type="math/tex">dI(t)/dt=qIS-I/r</script>. Finalement nous devons ajouter terme
+représentant la mortalité de la maladie, nous récrivons alors l’équation en
+intégrant l’indice <script type="math/tex">p</script> de mortalité : <script type="math/tex">dI(t)/dt=qIS-I/r-pI</script>. Avec
+l’adjonction de ce terme, la population totale ne peux plus rester constante.
+Elle diminue sous l’effet de cette mortalité, la simulation permet de le montrer facilement.</p>
+
+<p>La deuxième équation est la variation des personnes saines dans le temps, cette
+variation est symétrique par rapport à la variation des personnes infectés dans
+le temps. L’équation est donc <script type="math/tex">dS(t)/dt=-qIS</script>.</p>
+
+<p>Finalement nous plaçons l’équation du nombre de guéris en fonction du temps,
+<script type="math/tex">dR(t)/dt=I/r</script>. En somme le modèle s’écrit</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*} \dfrac{dS(t)}{dt} &= - q I S \\ \dfrac{dI(t)}{dt} &= q I S -
+\dfrac{I}{r} \\ \dfrac{dR(t)}{dt} &= \dfrac{1}{r}\end{align*} %]]></script>
+
+<p>Nous avons simulé le comportement des variables <script type="math/tex">I(t), S(t)</script> et <script type="math/tex">R(t)</script>,
+comme toute simulation il est nécessaire de fixer</p>
+<ol>
+  <li>La valeur des conditions initialies, c’est à dire les valeurs de <script type="math/tex">I</script>, de
+<script type="math/tex">S</script> et de <script type="math/tex">R</script> au temps <script type="math/tex">t=0</script>.</li>
+  <li>Les valeurs des paramètres, ici <script type="math/tex">q,p,r</script>.</li>
+</ol>
+
+<iframe id="inlineFrameExample" title="Simulation modèle SIR" width="100%" height="400" src="SIR.html">
+</iframe>
+<p>Si la fenêtre ne charge pas <a href="SIR.html">lien vers la simulation</a></p>
+
+<h3 id="mise-en-place-dune-recherche-de-chemin---hors-sujet">Mise en place d’une recherche de Chemin - Hors sujet</h3>
+<h4 id="sébastien">Sébastien</h4>
+<p><em>Cette section présente l’implémentation d’une fonction supplémentaire dont le
+rapport avec le sujet est discutable. L’idée de cette section est de nous faire
+manipuler les notions d’algortihmique des graphes et l’implémentation de ces notions</em></p>
+
+<p>Toujours dans le cadre du covid-19 nous allons simuler la propagation du virus
+dans une pièce d’une personne à une autre, l’idée est qu’il y a deux personnes
+dans la pièce, l’une malade et l’autre non. Le but de cette section est de
+trouver le chemin le plus court pour que le virus aille de la personne malade à
+la personne saine. La pièce est modélisé comprenant des murs, des zones chaudes
+et des zones froides est modélisée par une grille. Nous supposons qu’il est plus
+difficile pour le virus de se propager dans une zone froide et plus facile pour
+lui de se propager dans une zone chaude.</p>
+
+<p>Ce sujet nous invite à mettre en place un moyen d’effectuer une recherche de
+chemin, pour ce faire nous allons utiliser un algorithme de recherche de chemin
+rapide, l’algorithme A*.</p>
+
+<h4 id="présentation-et-principe-de-lalgorithme">Présentation et principe de l’algorithme.</h4>
+<p>L’algorithme A* est un algorithme basé sur un principe très simple. A chaque
+itération nous allons tenter de nous rapprocher de la destionation, nous allons
+donc privilégier les possibilités directement plus proches de la destination, en
+mettant de côté toutes les autres.</p>
+
+<p>Toutes les possibilités ne permettant pas de
+se rapprocher de la destination sont mises de côté mais pas supprimées. Elles
+sont simplement mises dans une liste de possibilités à explorer si jamais la
+solution explorée actuellement s’avère mauvaise. En effet, nous ne pouvons pas
+savvoir à l’avance si un chemin va aboutir ou sera le plus court. Il suffit que
+ce chemin amène à une impasse pour que cette solution devienne inexploitable.</p>
+
+<p>L’algorithme va donc d’abord se diriger vers les chemins les plus directs. Et si
+ces chemins n’aboutissent pas ou bien s’avèrent mauvais par la suite, il
+examinera les solutions mises de côté. C’est ce retour en arrière pour examiner
+les solutions mises de côté qui nous garantit que l’algorithme nous trouvera
+toujours une solution.</p>
+
+<p>Nous pouvons donc lui donner un terrain avec autant d’obstacles que nous
+voulons, si il y a une solution l’A* la trouvera. Un résumé du fonctionnement de l’algorithme est disponible sur le graphe ci dessous.</p>
+
+<p><img src="astar.gif" alt="astar" class="image about center" /></p>
+
+<p>Une description des itérations de l’algorithme est disponible <a href="https://www.createursdemondes.fr/2015/03/pathfinding-algorithmes-en-a/">ici</a></p>
+
+<p>La complexité de cet algorithme dépend de l’implémentation des structures de données des listes et le temps que nous mettons à acceder à ces éléments. Nous utilisons un tas comme implémentation, la complexité de l’A* est donc <code class="language-plaintext highlighter-rouge">O(n+m log(n))</code> avec <script type="math/tex">n</script> le nombre de sommets et <script type="math/tex">m</script> le nombre d’arềtes moyenne d’un sommet.</p>
+
+<div class="header"> <div class="progress-container"> <div class="progress-bar" id="myBar"></div> </div>
+</div>
+
+<style>
+/* Style the header: fixed position (always stay at the top) */
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+/* The progress container (grey background) */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+}
+
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  height: 8px;
+  background: #707070;
+  width: 0%;
+}
+
+#scroll_to_top { 
+  position: fixed; 
+  width: 25px; 
+  height: 25px; 
+  bottom: 50px; 
+  right: 30px; 
+} 
+#scroll_to_top img { 
+  width: 25px; 
+}
+</style>
+
+<script>
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+</script>
 
 </div>
 	</article>

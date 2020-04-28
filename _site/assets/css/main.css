@@ -644,12 +644,14 @@ a:hover { color: #e5e539; }
 .image.sponsor { max-width: 75%; max-height: 150px; margin: 5% 5% 5% 5%; }
 .image.about { max-width: 100%; max-height: 400px; }
 .image.about.left { float: left; }
+.image.about.center { margin-left: auto; margin-right: auto; }
 .image.about.right { float: right; }
 
 /* Button */
 input[type="button"], input[type="submit"], input[type="reset"], button, .button { color: #e5e539 !important; background-color: #41484c; }
 input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover, button:hover, .button:hover { color: #41484c !important; background-color: #e5e539; }
 input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:active, button:active, .button:active { color: #41484c !important; background-color: #e5e539; }
+input[type="button"].fix, input[type="submit"].fix, input[type="reset"].fix, button.fix, .button.fix { color: #e5e539 !important; background-color: #41484c; text-align: center; margin-right: 35%; margin-left: 35%; }
 input[type="button"].reversed, input[type="submit"].reversed, input[type="reset"].reversed, button.reversed, .button.reversed { color: #41484c !important; background-color: #e5e539; }
 input[type="button"].reversed:hover, input[type="submit"].reversed:hover, input[type="reset"].reversed:hover, button.reversed:hover, .button.reversed:hover { color: #e5e539 !important; background-color: #41484c; }
 input[type="button"].reversed:active, input[type="submit"].reversed:active, input[type="reset"].reversed:active, button.reversed:active, .button.reversed:active { color: #e5e539 !important; background-color: #41484c; }

@@ -34,6 +34,10 @@ a {
 		&.left {
 			float: left;
 		}
+		&.center {
+			margin-left: auto;
+			margin-right: auto;
+		}
 
 		&.right {
 			float: right;
@@ -60,6 +64,14 @@ button,
 		color: #41484c!important;
 		background-color: #e5e539;
 	}
+	&.fix {
+		color: #e5e539 !important;
+		background-color: #41484c;
+		text-align: center;
+		margin-right: 35%;
+		margin-left: 35%;
+	}
+
 
 	&.reversed {
 		color: #41484c !important;
