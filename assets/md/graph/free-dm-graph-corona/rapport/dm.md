@@ -278,9 +278,6 @@ GIF & ANALYSE
 1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
 2. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
 2. GIF propagation 100 individus même carac
-2. GIF courbe variation q 100 individus même carac
-2. GIF courbe variation p 100 individus même carac
-2. GIF courbe variation r 100 individus même carac
 
 CONCLUSION SUR TESTS PROCHE DES DEFUNTS
 
@@ -304,9 +301,6 @@ GIF & ANALYSE
 1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
 1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
 2. GIF propagation 100 individus même carac
-2. GIF courbe variation q 100 individus même carac
-2. GIF courbe variation p 100 individus même carac
-2. GIF courbe variation r 100 individus même carac
 
 CONCLUSION SUR TEST ALEATOIRES
 
@@ -322,9 +316,6 @@ la plus réaliste (même si cela dépend des pays).
 GIF & ANALYSE
  1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
 1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
-2. GIF courbe variation q 100 individus même carac
-2. GIF courbe variation p 100 individus même carac
-2. GIF courbe variation r 100 individus même carac
 
 CONCLUSION SUR LES TESTS
 
