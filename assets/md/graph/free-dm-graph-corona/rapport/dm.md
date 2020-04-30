@@ -160,15 +160,15 @@ $$k'$$ de $$1$$ à $$k=50$$. Nous utilisons à chaque fois le modèle statique e
 
 Commençons par regarder les propagations, tout d'abord sur le statique, nous pouvons voir que nous avons un modèle plus réaliste, la maladie se propage au cours du temps dans la population de manière plus où moins aléatoire, certains meurt mais la majorité de la population reste saine (cela est du à la faible mortalité), de plus nous pouvons voir que la majorité de la population est infectée durant les 180 jours. Si l'on regarde le graphe dynamique nous avons visuellement une confirmation que chaque jour les connexions changent, la maladie se propage alors très vite mais peu de personnes meurent, cela est du à la population réduite que nous avons. Nous allons donc regarder ce qu'il se passe sur des populations de 1 000 individus et en faisant varier $$k'$$.
 
-![5](/img/random_1000_50_variant_14_0.01_0.02_statique.gif){:class="image about center"}
+![5](/img/random_1000_50_variant_14_0.01_0.02_statique.gif){:class="image center"}
 
-![6](/img/random_1000_50_variant_14_0.01_0.02_dynamique.gif){:class="image about center"}
+![6](/img/random_1000_50_variant_14_0.01_0.02_dynamique.gif){:class="image center"}
 
 Nous voyons tout d'abord quelque chose, plus $$k'$$ augmente plus le pic épidémique est élevé et tôt, cela nous montre que les contacts favorisent la propagation de la maladie, lorsque $$k'$$ est très élevé, la propagation de la maladie à toute la population ne prend que quelques jours. Cela est encore plus visible sur le modèle dynamique, lorsque $$k'$$ est supérieur à 5, la maladie prend moins de 3 jours à infecter toute la population. 
 
 Ce graphe est déjà plus réaliste et nous montre qu'une maladie non contrôler peut se propager rapidement, dans notre cas la mortalité est peu élevée, si nous avions une maladie plus létale elle aurait décimée rapidement toute la population. Sur une population de 10 000 individus et pour $$k'=25$$ nous obtenons le graphe suivant qui nous montre un pic épidémique très élevé (toute la population) et très tôt (15 ième jour)
 
-![7](/img/random_10000_50_25_14_0.01_0.02.png){:class="image about center graph"}
+![7](/img/random_10000_50_25_14_0.01_0.02.png){:class="image center graph"}
 
 Les résultats sont plus satisfaisant en effet nous pouvons voir une rapide
 propagation de l'épidémie dans la population, rappelons que l'idée de cette
@@ -204,9 +204,9 @@ m)$$.
 
 Nous pouvons alors réaliser des tests en prenant $$k'=10$$ et les mêmes paramètres que précédemment.
 
-![7](/img/mixte_51_50_10_20_0.01_0.02_stati.gif){:class="image about center"}
+![7](/img/mixte_51_50_10_20_0.01_0.02_stati.gif){:class="image center"}
 
-![8](/img/mixte_51_50_10_20_0.01_0.02_dyna.gif){:class="image about center"}
+![8](/img/mixte_51_50_10_20_0.01_0.02_dyna.gif){:class="image center"}
 
 Les résultats du graphe mixte sont très similaires aux résultats du graphe aléatoire, cependant nous notons en plus une propagation voisin par voisin, la maladie se propage toujours à une vitesse incroyable. Et toute la population est touchée. 
 
@@ -277,7 +277,7 @@ voisin.
 
 Nous réalisons alors un test avec les paramètres $$k'=25$$ (pour avoir une franche différence entre le confinement fort et le normal), $$r=5, p=0.02, q=0.2$$ nous prenons une maladie avec une forte mortalité et avec une periode assez courte, le but ici est de montrer que le confinement permet de diminuer les effets d'une maladie violente et donc sera encore plus efficace sur une maladie plus classique. La topologie du graphe mixte et le modèle dynamique sont utilisées. La stratégie de confinement adoptée est le confinement fort. 
 
-![10](/img/mixte_1000_50_25_5_0.2_0.02_confidefunt.png){:class="image about center"}
+![10](/img/mixte_1000_50_25_5_0.2_0.02_confidefunt.png){:class="image center"}
 
 Nous pouvons remarquer que à contrario des résultats que nous pouvions obtenir avec le graphe mixte dynamique dans la première partie, la totalite de la population n'est pas infectée et que le pic épidémique est relativement plus faible. Nous pouvons donc voir que le confinement autour des défunts permet de conserver une partie de la population saine tout au long de la maladie et de diminuer le pic épidémique. Rappelons de plus que la maladie était très violente et foudroyante, cela nous montre d'autant plus que si la maladie était "normale" le confinement fort des proches des défunts serait efficace. 
 
@@ -456,7 +456,7 @@ Nous pouvons donc lui donner un terrain avec autant d'obstacles que nous
 voulons, si il y a une solution l'A* la trouvera. Un résumé du fonctionnement de l'algorithme est disponible sur le graphe ci dessous.
 
 
-![astar](astar.gif){:class="image about center"}
+![astar](astar.gif){:class="image center"}
 
 Une description des itérations de l'algorithme est disponible [ici](https://www.createursdemondes.fr/2015/03/pathfinding-algorithmes-en-a/)
 
