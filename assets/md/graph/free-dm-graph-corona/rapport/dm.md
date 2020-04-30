@@ -115,20 +115,20 @@ algortihme principal à une complexité de `O(nbr jours * n * m)`.
 
 Nous pouvons commencer, comme le sujet nous y invite, à simuler la propagation
 dans une graphe circulaire, tout d'abord dans le modèle statique et dynamique
-avec des populations de 100 et 10000 individus en prenant comme paramètres
+avec des populations de 50 et 10000 individus en prenant comme paramètres
 $$r=14, p=0.01,q=0.02, k=50$$ dans cette topologie la variation de $$k'$$
 influe peu sur les résultats nous prenons $$k'=2$$.
 Voici quelques animations permettant de visualiser la propagation dans les
 différents graphes au fur et à mesure des jours.
 
-GIF & ANALYSE
-1. GIF graphe + courbe individus, 100 individus k'=2
-3. courbe individus, 10 000 individus k'=2
+![1](/img/circ_50_2_2_14_0.01_0.02.gif){:class="image about right"}
+![2](img/circ_10000_2_2_14_0.01_0.02.png){:class="image about right"}
 
-Nous pouvons tout d'abord voir qu'il y a une propagation au fur et à mesure des
-jours, cependant il apparait clairement que les résultats sont peu satisfaisant,
+Nous pouvons tout d'abord observer la propagation de la maladie sur le graphe circulaire, cela est conforme à nos attentes, la maladie se propage de voisin en voisin et au bout de 14 jours chaque malade devient soit guéri soit mort. Etant donné que nous avons une chance de $$2\%$$ de mourir nous avons aucun mort car nous avons une population restreinte uniquement de 50 individus. 
+
+Nous avons en parallèle tracé l'évolution des quatre groupes (malades, guéris, jamais infectés, décédés) sur une population de 10 000 individus, nous voyons que à cause de la faible propagation du virus la maladie ne c'est pas diffusée dans la population. Cependant il apparait clairement que les résultats sont peu satisfaisant,
 en effet le graphe circulaire est relativement simpliste et ne représente que
-très peu les connexions humaines. 
+très peu les connexions humaines. Nous devons alors parfaire notre modèle.
 
 ### Graphe Aléatoire 
 Nous nous tournons donc vers la deuxième topologie proposée, le graphe
@@ -145,15 +145,22 @@ tableau contenant ses $$k'$$ voisins pour le jour $$i$$ la complexité de
 l'initialisation et de la boucle principale reste inchangée.
 
 Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
-précédemment avec une population de 1 000 et 10 000 individus en faisant varier
-$$k'$$ de $$1$$ à $$k=50$$. 
+précédemment avec une population de 100 et en fixant $$k'=3$$ et 10 000 individus en faisant varier
+$$k'$$ de $$1$$ à $$k=50$$. Nous utilisons à chaque fois le modèle statique et dynamique
 
-GIF & ANALYSE
-1. GIF graphe (à un k' fixe) + gif courbe individus variation k' , 100 individus
-   STATIQUE
-2. GIF graphe (à un k' fixe) + gif courbe individus variation k' , 100 individus
-   DYNAMIQUE
-3. Courbe individus (à un k' fixe), 10 000 individus
+![3](/img/random_100_50_3_14_0.01_0.02_stati.gif){:class="image about right"}
+![4](/img/random_100_50_3_14_0.01_0.02_dyna.gif){:class="image about right"}
+
+Commençons par regarder les propagations, tout d'abord sur le statique, nous pouvons voir que nous avons un modèle plus réaliste, la maladie se propage au cours du temps dans la population de manière plus où moins aléatoire, certains meurt mais la majorité de la population reste saine (cela est du à la faible mortalité), de plus nous pouvons voir que la majorité de la population est infectée durant les 180 jours. Si l'on regarde le graphe dynamique nous avons visuellement une confirmation que chaque jour les connexions changent, la maladie se propage alors très vite mais peu de personnes meurent, cela est du à la population réduite que nous avons. Nous allons donc regarder ce qu'il se passe sur des populations de 1 000 individus et en faisant varier $$k'$$.
+
+![5](/img/random_1000_50_variant_14_0.01_0.02_statique.gif){:class="image about center"}
+![6](/img/random_1000_50_variant_14_0.01_0.02_dynamique.gif){:class="image about center"}
+
+Nous voyons tout d'abord quelque chose, plus $$k'$$ augmente plus le pic épidémique est élevé et tôt, cela nous montre que les contacts favorisent la propagation de la maladie, lorsque $$k'$$ est très élevé, la propagation de la maladie à toute la population ne prend que quelques jours. Cela est encore plus visible sur le modèle dynamique, lorsque $$k'$$ est supérieur à 5, la maladie prend moins de 3 jours à infecter toute la population. 
+
+Ce graphe est déjà plus réaliste et nous montre qu'une maladie non contrôler peut se propager rapidement, dans notre cas la mortalité est peu élevée, si nous avions une maladie plus létale elle aurait décimée rapidement toute la population. Sur une population de 10 000 individus et pour $$k'=25$$ nous obtenons le graphe suivant qui nous montre un pic épidémique très élevé (toute la population) et très tôt (15 ième jour)
+
+![7](/img/random_10000_50_25_14_0.01_0.02.png){:class="image about center graph"}
 
 Les résultats sont plus satisfaisant en effet nous pouvons voir une rapide
 propagation de l'épidémie dans la population, rappelons que l'idée de cette
@@ -162,7 +169,7 @@ ainsi que des connexions entre les individus de manière se rapprochant le plus
 de la réalité possible. Faisons un point sur les deux graphes présentés. Nous
 avons d'une part un graphe circulaire, représentant des individus connectés
 uniquement avec leurs voisins. D'autre part nous avons un graphe aléatoire qui
-simule des connexions totalement aléatoire avec les autres personnes.
+simule des connexions totalement aléatoire avec les autres personnes. Nous allons présenter une dernière topologie. 
 
 ### Graphe mixte
 Nous allons donc maintenant utiliser un graphe mixte, union des deux qui nous
@@ -187,18 +194,16 @@ soit connecté à au plus $$k'-2$$ voisins choisi parmi ses $$k$$ voisins
 possibles. La boucle de simulation est donc en complexité $$O(nbr jour * n *
 m)$$. 
 
-Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
-précédemment 
+Nous pouvons alors réaliser des tests en prenant $$k'=10$$ et les mêmes paramètres que précédemment.
 
-GIF & ANALYSE
-1. GIF graphe 1 00 individus, GIF courbe individus variation de k' STATIQUE
-2. GIF graphe 1 00 individus, GIF courbe individus variation de k' DYNAMIQUE
-3. Courbe individus (k' fixé) , 10 000 individus 
+![7](/img/mixte_51_50_10_20_0.01_0.02_stati.gif){:class="image about center"}
+![8](/img/mixte_51_50_10_20_0.01_0.02_dyna.gif){:class="image about center"}
+
+Les résultats du graphe mixte sont très similaires aux résultats du graphe aléatoire, cependant nous notons en plus une propagation voisin par voisin, la maladie se propage toujours à une vitesse incroyable. Et toute la population est touchée. 
 
 Nous avons donc définit une topologie de graphe et des modèles de graphe nous
 permettant de simuler la propagation d'une maladie dans un population ayant des
-intéractions ressemblant à des relations humaines. Cependant pour l'instant nous
-laissons l'épidémie se développer naturellement.
+intéractions ressemblant à des relations humaines. Nous avons actuellement une modélisation d'une propagation naturelle d'une maladie, cette maladie se propage rapidement et toute la population est rapidement touchée. Nous avons dans nos modèles peu de morts mais si nous avions 67 000 000 d'individus cela représente tout de même 670 000 personnes (70 millions de morts sur l'ensemble de la planète sans aucune mesure pour contenir et ralentir la maladie). 
 
 ##  <i class="fas fa-project-diagram"></i> Partie II - Rajout de tests simples (Sébastien & Antoine)
 Nous allons maintenant implémenter des stratégies de réponse à l'épidémie que
@@ -261,11 +266,14 @@ donne une complexité à la boucle principale en temps $$O(nbr jour * n * m * r)
 où $$r$$ est le nombre de jour que dure la maladie, $$m$$ le nombre moyen de
 voisin.
 
-Nous réalisons alors un test avec les paramètres et 
+Nous réalisons alors un test avec les paramètres $$k'=25$$ (pour avoir une franche différence entre le confinement fort et le normal), $$r=5, p=0.02, q=0.2$$ nous prenons une maladie avec une forte mortalité et avec une periode assez courte, le but ici est de montrer que le confinement permet de diminuer les effets d'une maladie violente et donc sera encore plus efficace sur une maladie plus classique. La topologie du graphe mixte et le modèle dynamique sont utilisées. La stratégie de confinement adoptée est le confinement fort. 
+
+![10](/img/mixte_1000_50_25_5_0.2_0.02_confidefunt.png){:class="image about center"}
+
+Nous pouvons remarquer que à contrario des résultats que nous pouvions obtenir avec le graphe mixte dynamique dans la première partie, la totalite de la population n'est pas infectée et que le pic épidémique est relativement plus faible. Nous pouvons donc voir que le confinement autour des défunts permet de conserver une partie de la population saine tout au long de la maladie et de diminuer le pic épidémique. Rappelons de plus que la maladie était très violente et foudroyante, cela nous montre d'autant plus que si la maladie était "normale" le confinement fort des proches des défunts serait efficace. 
 
 GIF & ANALYSE
 1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
-2. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
 
 Nous allons maintenant modifier la façon de confiner l'entourage d'une personne
 décédée. Lorsque quelqu'un décédé les personnes qu'il a contacté depuis $$r$$
