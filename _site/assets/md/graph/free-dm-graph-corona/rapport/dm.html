@@ -173,22 +173,20 @@ algortihme principal à une complexité de <code class="language-plaintext highl
 
 <p>Nous pouvons commencer, comme le sujet nous y invite, à simuler la propagation
 dans une graphe circulaire, tout d’abord dans le modèle statique et dynamique
-avec des populations de 100 et 10000 individus en prenant comme paramètres
+avec des populations de 50 et 10000 individus en prenant comme paramètres
 <script type="math/tex">r=14, p=0.01,q=0.02, k=50</script> dans cette topologie la variation de <script type="math/tex">k'</script>
 influe peu sur les résultats nous prenons <script type="math/tex">k'=2</script>.
 Voici quelques animations permettant de visualiser la propagation dans les
 différents graphes au fur et à mesure des jours.</p>
 
-<p>GIF &amp; ANALYSE</p>
-<ol>
-  <li>GIF graphe + courbe individus, 100 individus k’=2</li>
-  <li>courbe individus, 10 000 individus k’=2</li>
-</ol>
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/circ_50_2_2_14_0.01_0.02.gif" alt="1" class="image about right" />
+<img src="/assets/md/graph/free-dm-graph-corona/rapport/img/circ_10000_2_2_14_0.01_0.02.png" alt="2" class="image about right" /></p>
 
-<p>Nous pouvons tout d’abord voir qu’il y a une propagation au fur et à mesure des
-jours, cependant il apparait clairement que les résultats sont peu satisfaisant,
+<p>Nous pouvons tout d’abord observer la propagation de la maladie sur le graphe circulaire, cela est conforme à nos attentes, la maladie se propage de voisin en voisin et au bout de 14 jours chaque malade devient soit guéri soit mort. Etant donné que nous avons une chance de <script type="math/tex">2\%</script> de mourir nous avons aucun mort car nous avons une population restreinte uniquement de 50 individus.</p>
+
+<p>Nous avons en parallèle tracé l’évolution des quatre groupes (malades, guéris, jamais infectés, décédés) sur une population de 10 000 individus, nous voyons que à cause de la faible propagation du virus la maladie ne c’est pas diffusée dans la population. Cependant il apparait clairement que les résultats sont peu satisfaisant,
 en effet le graphe circulaire est relativement simpliste et ne représente que
-très peu les connexions humaines.</p>
+très peu les connexions humaines. Nous devons alors parfaire notre modèle.</p>
 
 <h3 id="graphe-aléatoire">Graphe Aléatoire</h3>
 <p>Nous nous tournons donc vers la deuxième topologie proposée, le graphe
@@ -205,17 +203,22 @@ tableau contenant ses <script type="math/tex">k'</script> voisins pour le jour <
 l’initialisation et de la boucle principale reste inchangée.</p>
 
 <p>Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
-précédemment avec une population de 1 000 et 10 000 individus en faisant varier
-<script type="math/tex">k'</script> de <script type="math/tex">1</script> à <script type="math/tex">k=50</script>.</p>
+précédemment avec une population de 100 et en fixant <script type="math/tex">k'=3</script> et 10 000 individus en faisant varier
+<script type="math/tex">k'</script> de <script type="math/tex">1</script> à <script type="math/tex">k=50</script>. Nous utilisons à chaque fois le modèle statique et dynamique</p>
 
-<p>GIF &amp; ANALYSE</p>
-<ol>
-  <li>GIF graphe (à un k’ fixe) + gif courbe individus variation k’ , 100 individus
-STATIQUE</li>
-  <li>GIF graphe (à un k’ fixe) + gif courbe individus variation k’ , 100 individus
-DYNAMIQUE</li>
-  <li>Courbe individus (à un k’ fixe), 10 000 individus</li>
-</ol>
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_100_50_3_14_0.01_0.02_stati.gif" alt="3" class="image about right" />
+<img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_100_50_3_14_0.01_0.02_dyna.gif" alt="4" class="image about right" /></p>
+
+<p>Commençons par regarder les propagations, tout d’abord sur le statique, nous pouvons voir que nous avons un modèle plus réaliste, la maladie se propage au cours du temps dans la population de manière plus où moins aléatoire, certains meurt mais la majorité de la population reste saine (cela est du à la faible mortalité), de plus nous pouvons voir que la majorité de la population est infectée durant les 180 jours. Si l’on regarde le graphe dynamique nous avons visuellement une confirmation que chaque jour les connexions changent, la maladie se propage alors très vite mais peu de personnes meurent, cela est du à la population réduite que nous avons. Nous allons donc regarder ce qu’il se passe sur des populations de 1 000 individus et en faisant varier <script type="math/tex">k'</script>.</p>
+
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_1000_50_variant_14_0.01_0.02_statique.gif" alt="5" class="image about center" />
+<img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_1000_50_variant_14_0.01_0.02_dynamique.gif" alt="6" class="image about center" /></p>
+
+<p>Nous voyons tout d’abord quelque chose, plus <script type="math/tex">k'</script> augmente plus le pic épidémique est élevé et tôt, cela nous montre que les contacts favorisent la propagation de la maladie, lorsque <script type="math/tex">k'</script> est très élevé, la propagation de la maladie à toute la population ne prend que quelques jours. Cela est encore plus visible sur le modèle dynamique, lorsque <script type="math/tex">k'</script> est supérieur à 5, la maladie prend moins de 3 jours à infecter toute la population.</p>
+
+<p>Ce graphe est déjà plus réaliste et nous montre qu’une maladie non contrôler peut se propager rapidement, dans notre cas la mortalité est peu élevée, si nous avions une maladie plus létale elle aurait décimée rapidement toute la population. Sur une population de 10 000 individus et pour <script type="math/tex">k'=25</script> nous obtenons le graphe suivant qui nous montre un pic épidémique très élevé (toute la population) et très tôt (15 ième jour)</p>
+
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_10000_50_25_14_0.01_0.02.png" alt="7" class="image about center graph" /></p>
 
 <p>Les résultats sont plus satisfaisant en effet nous pouvons voir une rapide
 propagation de l’épidémie dans la population, rappelons que l’idée de cette
@@ -224,7 +227,7 @@ ainsi que des connexions entre les individus de manière se rapprochant le plus
 de la réalité possible. Faisons un point sur les deux graphes présentés. Nous
 avons d’une part un graphe circulaire, représentant des individus connectés
 uniquement avec leurs voisins. D’autre part nous avons un graphe aléatoire qui
-simule des connexions totalement aléatoire avec les autres personnes.</p>
+simule des connexions totalement aléatoire avec les autres personnes. Nous allons présenter une dernière topologie.</p>
 
 <h3 id="graphe-mixte">Graphe mixte</h3>
 <p>Nous allons donc maintenant utiliser un graphe mixte, union des deux qui nous
@@ -249,20 +252,16 @@ soit connecté à au plus <script type="math/tex">k'-2</script> voisins choisi p
 possibles. La boucle de simulation est donc en complexité <script type="math/tex">O(nbr jour * n *
 m)</script>.</p>
 
-<p>Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
-précédemment</p>
+<p>Nous pouvons alors réaliser des tests en prenant <script type="math/tex">k'=10</script> et les mêmes paramètres que précédemment.</p>
 
-<p>GIF &amp; ANALYSE</p>
-<ol>
-  <li>GIF graphe 1 00 individus, GIF courbe individus variation de k’ STATIQUE</li>
-  <li>GIF graphe 1 00 individus, GIF courbe individus variation de k’ DYNAMIQUE</li>
-  <li>Courbe individus (k’ fixé) , 10 000 individus</li>
-</ol>
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/mixte_51_50_10_20_0.01_0.02_stati.gif" alt="7" class="image about center" />
+<img src="/assets/md/graph/free-dm-graph-corona/rapport/img/mixte_51_50_10_20_0.01_0.02_dyna.gif" alt="8" class="image about center" /></p>
+
+<p>Les résultats du graphe mixte sont très similaires aux résultats du graphe aléatoire, cependant nous notons en plus une propagation voisin par voisin, la maladie se propage toujours à une vitesse incroyable. Et toute la population est touchée.</p>
 
 <p>Nous avons donc définit une topologie de graphe et des modèles de graphe nous
 permettant de simuler la propagation d’une maladie dans un population ayant des
-intéractions ressemblant à des relations humaines. Cependant pour l’instant nous
-laissons l’épidémie se développer naturellement.</p>
+intéractions ressemblant à des relations humaines. Nous avons actuellement une modélisation d’une propagation naturelle d’une maladie, cette maladie se propage rapidement et toute la population est rapidement touchée. Nous avons dans nos modèles peu de morts mais si nous avions 67 000 000 d’individus cela représente tout de même 670 000 personnes (70 millions de morts sur l’ensemble de la planète sans aucune mesure pour contenir et ralentir la maladie).</p>
 
 <h2 id="-partie-ii---rajout-de-tests-simples-sébastien--antoine"><i class="fas fa-project-diagram"></i> Partie II - Rajout de tests simples (Sébastien &amp; Antoine)</h2>
 <p>Nous allons maintenant implémenter des stratégies de réponse à l’épidémie que
@@ -322,12 +321,15 @@ donne une complexité à la boucle principale en temps <script type="math/tex">O
 où <script type="math/tex">r</script> est le nombre de jour que dure la maladie, <script type="math/tex">m</script> le nombre moyen de
 voisin.</p>
 
-<p>Nous réalisons alors un test avec les paramètres et</p>
+<p>Nous réalisons alors un test avec les paramètres <script type="math/tex">k'=25</script> (pour avoir une franche différence entre le confinement fort et le normal), <script type="math/tex">r=5, p=0.02, q=0.2</script> nous prenons une maladie avec une forte mortalité et avec une periode assez courte, le but ici est de montrer que le confinement permet de diminuer les effets d’une maladie violente et donc sera encore plus efficace sur une maladie plus classique. La topologie du graphe mixte et le modèle dynamique sont utilisées. La stratégie de confinement adoptée est le confinement fort.</p>
+
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/mixte_1000_50_25_5_0.2_0.02_confidefunt.png" alt="10" class="image about center" /></p>
+
+<p>Nous pouvons remarquer que à contrario des résultats que nous pouvions obtenir avec le graphe mixte dynamique dans la première partie, la totalite de la population n’est pas infectée et que le pic épidémique est relativement plus faible. Nous pouvons donc voir que le confinement autour des défunts permet de conserver une partie de la population saine tout au long de la maladie et de diminuer le pic épidémique. Rappelons de plus que la maladie était très violente et foudroyante, cela nous montre d’autant plus que si la maladie était “normale” le confinement fort des proches des défunts serait efficace.</p>
 
 <p>GIF &amp; ANALYSE</p>
 <ol>
   <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE</li>
-  <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT</li>
 </ol>
 
 <p>Nous allons maintenant modifier la façon de confiner l’entourage d’une personne
@@ -342,9 +344,6 @@ puisque cette opération est faites en temps constante</p>
   <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE</li>
   <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT</li>
   <li>GIF propagation 100 individus même carac</li>
-  <li>GIF courbe variation q 100 individus même carac</li>
-  <li>GIF courbe variation p 100 individus même carac</li>
-  <li>GIF courbe variation r 100 individus même carac</li>
 </ol>
 
 <p>CONCLUSION SUR TESTS PROCHE DES DEFUNTS</p>
@@ -370,9 +369,6 @@ voisins.</p>
   <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT</li>
   <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE</li>
   <li>GIF propagation 100 individus même carac</li>
-  <li>GIF courbe variation q 100 individus même carac</li>
-  <li>GIF courbe variation p 100 individus même carac</li>
-  <li>GIF courbe variation r 100 individus même carac</li>
 </ol>
 
 <p>CONCLUSION SUR TEST ALEATOIRES</p>
@@ -390,9 +386,6 @@ la plus réaliste (même si cela dépend des pays).</p>
 <ol>
   <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT</li>
   <li>courbe k’ fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE</li>
-  <li>GIF courbe variation q 100 individus même carac</li>
-  <li>GIF courbe variation p 100 individus même carac</li>
-  <li>GIF courbe variation r 100 individus même carac</li>
 </ol>
 
 <p>CONCLUSION SUR LES TESTS</p>
@@ -472,7 +465,7 @@ comme toute simulation il est nécessaire de fixer</p>
 
 <iframe id="inlineFrameExample" title="Simulation modèle SIR" width="100%" height="400" src="SIR.html">
 </iframe>
-<p>Si la fenêtre ne charge pas <a href="SIR.html">lien vers la simulation</a></p>
+<p>Si la fenêtre ne charge pas <a href="/assets/md/graph/free-dm-graph-corona/rapport/SIR.html">lien vers la simulation</a></p>
 
 <h3 id="mise-en-place-dune-recherche-de-chemin---hors-sujet">Mise en place d’une recherche de Chemin - Hors sujet</h3>
 <h4 id="sébastien">Sébastien</h4>
@@ -515,7 +508,7 @@ toujours une solution.</p>
 <p>Nous pouvons donc lui donner un terrain avec autant d’obstacles que nous
 voulons, si il y a une solution l’A* la trouvera. Un résumé du fonctionnement de l’algorithme est disponible sur le graphe ci dessous.</p>
 
-<p><img src="astar.gif" alt="astar" class="image about center" /></p>
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/astar.gif" alt="astar" class="image about center" /></p>
 
 <p>Une description des itérations de l’algorithme est disponible <a href="https://www.createursdemondes.fr/2015/03/pathfinding-algorithmes-en-a/">ici</a></p>
 
