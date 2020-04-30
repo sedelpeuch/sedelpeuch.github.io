@@ -149,11 +149,13 @@ précédemment avec une population de 100 et en fixant $$k'=3$$ et 10 000 indivi
 $$k'$$ de $$1$$ à $$k=50$$. Nous utilisons à chaque fois le modèle statique et dynamique
 
 ![3](/img/random_100_50_3_14_0.01_0.02_stati.gif){:class="image about right"}
+
 ![4](/img/random_100_50_3_14_0.01_0.02_dyna.gif){:class="image about right"}
 
 Commençons par regarder les propagations, tout d'abord sur le statique, nous pouvons voir que nous avons un modèle plus réaliste, la maladie se propage au cours du temps dans la population de manière plus où moins aléatoire, certains meurt mais la majorité de la population reste saine (cela est du à la faible mortalité), de plus nous pouvons voir que la majorité de la population est infectée durant les 180 jours. Si l'on regarde le graphe dynamique nous avons visuellement une confirmation que chaque jour les connexions changent, la maladie se propage alors très vite mais peu de personnes meurent, cela est du à la population réduite que nous avons. Nous allons donc regarder ce qu'il se passe sur des populations de 1 000 individus et en faisant varier $$k'$$.
 
 ![5](/img/random_1000_50_variant_14_0.01_0.02_statique.gif){:class="image about center"}
+
 ![6](/img/random_1000_50_variant_14_0.01_0.02_dynamique.gif){:class="image about center"}
 
 Nous voyons tout d'abord quelque chose, plus $$k'$$ augmente plus le pic épidémique est élevé et tôt, cela nous montre que les contacts favorisent la propagation de la maladie, lorsque $$k'$$ est très élevé, la propagation de la maladie à toute la population ne prend que quelques jours. Cela est encore plus visible sur le modèle dynamique, lorsque $$k'$$ est supérieur à 5, la maladie prend moins de 3 jours à infecter toute la population. 
@@ -197,6 +199,7 @@ m)$$.
 Nous pouvons alors réaliser des tests en prenant $$k'=10$$ et les mêmes paramètres que précédemment.
 
 ![7](/img/mixte_51_50_10_20_0.01_0.02_stati.gif){:class="image about center"}
+
 ![8](/img/mixte_51_50_10_20_0.01_0.02_dyna.gif){:class="image about center"}
 
 Les résultats du graphe mixte sont très similaires aux résultats du graphe aléatoire, cependant nous notons en plus une propagation voisin par voisin, la maladie se propage toujours à une vitesse incroyable. Et toute la population est touchée. 

@@ -206,13 +206,15 @@ l’initialisation et de la boucle principale reste inchangée.</p>
 précédemment avec une population de 100 et en fixant <script type="math/tex">k'=3</script> et 10 000 individus en faisant varier
 <script type="math/tex">k'</script> de <script type="math/tex">1</script> à <script type="math/tex">k=50</script>. Nous utilisons à chaque fois le modèle statique et dynamique</p>
 
-<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_100_50_3_14_0.01_0.02_stati.gif" alt="3" class="image about right" />
-<img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_100_50_3_14_0.01_0.02_dyna.gif" alt="4" class="image about right" /></p>
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_100_50_3_14_0.01_0.02_stati.gif" alt="3" class="image about right" /></p>
+
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_100_50_3_14_0.01_0.02_dyna.gif" alt="4" class="image about right" /></p>
 
 <p>Commençons par regarder les propagations, tout d’abord sur le statique, nous pouvons voir que nous avons un modèle plus réaliste, la maladie se propage au cours du temps dans la population de manière plus où moins aléatoire, certains meurt mais la majorité de la population reste saine (cela est du à la faible mortalité), de plus nous pouvons voir que la majorité de la population est infectée durant les 180 jours. Si l’on regarde le graphe dynamique nous avons visuellement une confirmation que chaque jour les connexions changent, la maladie se propage alors très vite mais peu de personnes meurent, cela est du à la population réduite que nous avons. Nous allons donc regarder ce qu’il se passe sur des populations de 1 000 individus et en faisant varier <script type="math/tex">k'</script>.</p>
 
-<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_1000_50_variant_14_0.01_0.02_statique.gif" alt="5" class="image about center" />
-<img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_1000_50_variant_14_0.01_0.02_dynamique.gif" alt="6" class="image about center" /></p>
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_1000_50_variant_14_0.01_0.02_statique.gif" alt="5" class="image about center" /></p>
+
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_1000_50_variant_14_0.01_0.02_dynamique.gif" alt="6" class="image about center" /></p>
 
 <p>Nous voyons tout d’abord quelque chose, plus <script type="math/tex">k'</script> augmente plus le pic épidémique est élevé et tôt, cela nous montre que les contacts favorisent la propagation de la maladie, lorsque <script type="math/tex">k'</script> est très élevé, la propagation de la maladie à toute la population ne prend que quelques jours. Cela est encore plus visible sur le modèle dynamique, lorsque <script type="math/tex">k'</script> est supérieur à 5, la maladie prend moins de 3 jours à infecter toute la population.</p>
 
@@ -254,8 +256,9 @@ m)</script>.</p>
 
 <p>Nous pouvons alors réaliser des tests en prenant <script type="math/tex">k'=10</script> et les mêmes paramètres que précédemment.</p>
 
-<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/mixte_51_50_10_20_0.01_0.02_stati.gif" alt="7" class="image about center" />
-<img src="/assets/md/graph/free-dm-graph-corona/rapport/img/mixte_51_50_10_20_0.01_0.02_dyna.gif" alt="8" class="image about center" /></p>
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/mixte_51_50_10_20_0.01_0.02_stati.gif" alt="7" class="image about center" /></p>
+
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/mixte_51_50_10_20_0.01_0.02_dyna.gif" alt="8" class="image about center" /></p>
 
 <p>Les résultats du graphe mixte sont très similaires aux résultats du graphe aléatoire, cependant nous notons en plus une propagation voisin par voisin, la maladie se propage toujours à une vitesse incroyable. Et toute la population est touchée.</p>
 
