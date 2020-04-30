@@ -8,6 +8,12 @@ subtitle: Decou Nathan , Delpeuch Sébastien, Moinel Aurélien, Pringalle Antoin
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
 Le but de ce devoir maison est d'utiliser l'algorithmique des graphes pour
 modéliser une version simpliste de la propagation du Covid-19. Le devoir se
 décompose en 3 parties d'implémentation, tout d'abord nous mettons en place les
