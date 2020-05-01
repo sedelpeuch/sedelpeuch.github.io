@@ -47,6 +47,8 @@ différentes paramètres (mortalité, durée de maladie) et les différents grap
 paramètres simples comme des tests sur la population etc. Finalement nous avons
 tenté de rajouter des facteurs plus réalistes et nous nous sommes un peu écartés du sujet pour proposer des compléments sur la propagation d'une épidémie et pour manipuler les notions de l'algorithmique des graphes.
 
+Avant de commencer nous pouvons mettons à votre disposition, la [documentation de notre code](doc/html/files.html) et l'[archive contenant nos codes](code.tar.gz). La date de la dernière modification du site est présente en début de page pour vous assurer que nous n'avons pas dépassé la date limite.
+
 ## <i class="fas fa-project-diagram"></i> Partie I - Implémentation d'une base (Nathan & Aurélien)
 La première partie permet de définir les bases de la modélisation c'est à dire
 les différents états, les différents paramètres, les règles de changement
@@ -177,9 +179,9 @@ tableau contenant ses $$k'$$ voisins pour le jour $$i$$ la complexité de
 l'initialisation et de la boucle principale reste inchangée.
 
 
-![3](/img/random_100_50_3_14_0.01_0.02_stati.gif){:class="image about right"}
+![3](/img/random_100_50_3_14_0.01_0.02_stati.gif){:class="image about center"}
 
-![4](/img/random_100_50_3_14_0.01_0.02_dyna.gif){:class="image about right"}
+![4](/img/random_100_50_3_14_0.01_0.02_dyna.gif){:class="image about center"}
 
 Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
 précédemment avec une population de 100 et en fixant $$k'=3$$ et 10 000 individus en faisant varier
@@ -488,15 +490,15 @@ Une description des itérations de l'algorithme est disponible [ici](https://www
 La complexité de cet algorithme dépend de l'implémentation des structures de données des listes et le temps que nous mettons à acceder à ces éléments. Nous utilisons un tas comme implémentation, la complexité de l'A* est donc `O(n+m log(n))` avec $$n$$ le nombre de sommets et $$m$$ le nombre d'arềtes moyenne d'un sommet.
 
 Nous avons alors implémenté notre Astar en python, ce dernier se base sur un
-Astar développé en c++ réalisé par Sébastien dans le cadre de Eirbot (les codes
-des deux implémentations sont disponibles dans les sources). L'idée est que
-chaque individu choisisse aléatoirement un point auquel il va aller un jour puis
-revient chez lui. Si il croise quelqu'un dans un rayon autour de lui il a une
-chance de tomber malade et initie un compteur de jour, si il est malade depuis
-$$r$$ jour il a une chance de mourir. Nous lançons deux simulations, pour des
-soucis de lisibilité nous ne marquons pas les obstacles et nous ne faisons
-qu'une itération du programme pour comprendre le processus, les itérations
-suivantes ramènent à des résultats que nous avons déjà présenté.
+Astar développé en c++ réalisé par Sébastien dans le cadre de Eirbot. Voici les [sources du Github Eirbot](https://github.com/eirbot/eirbot2020-1A/blob/master/code/rasp/src/navigation.cpp)
+
+L'idée est que chaque individu choisisse aléatoirement un point auquel il va
+aller un jour puis revient chez lui. Si il croise quelqu'un dans un rayon autour
+de lui il a une chance de tomber malade et initie un compteur de jour, si il est
+malade depuis $$r$$ jour il a une chance de mourir. Nous lançons deux
+simulations, pour des soucis de lisibilité nous ne marquons pas les obstacles et
+nous ne faisons qu'une itération du programme pour comprendre le processus, les
+itérations suivantes ramènent à des résultats que nous avons déjà présenté.
 
 Tout d'abord si les individus n'ont aucune limite sur leurs déplacement. Les
 contacts sont représentés par une marque grise et les marques rouge
@@ -525,7 +527,11 @@ connexion ce qui nous a permis de trouver celui le plus représentatif. Ensuite
 nous avons étudié comment contenir la maladie en mettant en place du
 confinement, des tests etc. Finalement nous avons réalisé une ouverture en
 regardant 2 modèles différents le modèle SIR et l'utilisation de l'A* pour faire
-notre modèle.
+notre modèle. La répartition des tâches est disponible tout au long du rapport, nous l'avons résumé via gitinspector dans l'image suivante
+
+![14](img/git.png){:class="image about center"}
+
+
 
 
 <div class="header"> <div

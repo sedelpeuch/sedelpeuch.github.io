@@ -105,6 +105,8 @@ différentes paramètres (mortalité, durée de maladie) et les différents grap
 paramètres simples comme des tests sur la population etc. Finalement nous avons
 tenté de rajouter des facteurs plus réalistes et nous nous sommes un peu écartés du sujet pour proposer des compléments sur la propagation d’une épidémie et pour manipuler les notions de l’algorithmique des graphes.</p>
 
+<p>Avant de commencer nous pouvons mettons à votre disposition, la <a href="doc/html/files.html">documentation de notre code</a> et l’<a href="code.tar.gz">archive contenant nos codes</a>. La date de la dernière modification du site est présente en début de page pour vous assurer que nous n’avons pas dépassé la date limite.</p>
+
 <h2 id="-partie-i---implémentation-dune-base-nathan--aurélien"><i class="fas fa-project-diagram"></i> Partie I - Implémentation d’une base (Nathan &amp; Aurélien)</h2>
 <p>La première partie permet de définir les bases de la modélisation c’est à dire
 les différents états, les différents paramètres, les règles de changement
@@ -234,9 +236,9 @@ implémentation basé sur un tableau contenant les <script type="math/tex">k</sc
 tableau contenant ses <script type="math/tex">k'</script> voisins pour le jour <script type="math/tex">i</script> la complexité de
 l’initialisation et de la boucle principale reste inchangée.</p>
 
-<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_100_50_3_14_0.01_0.02_stati.gif" alt="3" class="image about right" /></p>
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_100_50_3_14_0.01_0.02_stati.gif" alt="3" class="image about center" /></p>
 
-<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_100_50_3_14_0.01_0.02_dyna.gif" alt="4" class="image about right" /></p>
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/random_100_50_3_14_0.01_0.02_dyna.gif" alt="4" class="image about center" /></p>
 
 <p>Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
 précédemment avec une population de 100 et en fixant <script type="math/tex">k'=3</script> et 10 000 individus en faisant varier
@@ -546,28 +548,28 @@ voulons, si il y a une solution l’A* la trouvera. Un résumé du fonctionnemen
 <p>La complexité de cet algorithme dépend de l’implémentation des structures de données des listes et le temps que nous mettons à acceder à ces éléments. Nous utilisons un tas comme implémentation, la complexité de l’A* est donc <code class="language-plaintext highlighter-rouge">O(n+m log(n))</code> avec <script type="math/tex">n</script> le nombre de sommets et <script type="math/tex">m</script> le nombre d’arềtes moyenne d’un sommet.</p>
 
 <p>Nous avons alors implémenté notre Astar en python, ce dernier se base sur un
-Astar développé en c++ réalisé par Sébastien dans le cadre de Eirbot (les codes
-des deux implémentations sont disponibles dans les sources). L’idée est que
-chaque individu choisisse aléatoirement un point auquel il va aller un jour puis
-revient chez lui. Si il croise quelqu’un dans un rayon autour de lui il a une
-chance de tomber malade et initie un compteur de jour, si il est malade depuis
-<script type="math/tex">r</script> jour il a une chance de mourir. Nous lançons deux simulations, pour des
-soucis de lisibilité nous ne marquons pas les obstacles et nous ne faisons
-qu’une itération du programme pour comprendre le processus, les itérations
-suivantes ramènent à des résultats que nous avons déjà présenté.</p>
+Astar développé en c++ réalisé par Sébastien dans le cadre de Eirbot. Voici les <a href="https://github.com/eirbot/eirbot2020-1A/blob/master/code/rasp/src/navigation.cpp">sources du Github Eirbot</a></p>
+
+<p>L’idée est que chaque individu choisisse aléatoirement un point auquel il va
+aller un jour puis revient chez lui. Si il croise quelqu’un dans un rayon autour
+de lui il a une chance de tomber malade et initie un compteur de jour, si il est
+malade depuis <script type="math/tex">r</script> jour il a une chance de mourir. Nous lançons deux
+simulations, pour des soucis de lisibilité nous ne marquons pas les obstacles et
+nous ne faisons qu’une itération du programme pour comprendre le processus, les
+itérations suivantes ramènent à des résultats que nous avons déjà présenté.</p>
 
 <p>Tout d’abord si les individus n’ont aucune limite sur leurs déplacement. Les
 contacts sont représentés par une marque grise et les marques rouge
 correspondent à une infection.</p>
 
-<p><img src="img/Astar_deconf.png" alt="12" class="image about center" /></p>
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/Astar_deconf.png" alt="12" class="image about center" /></p>
 
 <p>Nous voyons que nous obtenons beaucoup de contact et donc d’infections, ainsi
 laisser les gens évoluer librement n’est pas une idée concevable. Nous avons
 donc relancé la simulation en forçant les individus à rester dans un rayon
 autour de chez eux. Nous obtenons alors les résultats suivants</p>
 
-<p><img src="img/Astar_conf.png" alt="13" class="image about center" /></p>
+<p><img src="/assets/md/graph/free-dm-graph-corona/rapport/img/Astar_conf.png" alt="13" class="image about center" /></p>
 
 <p>Nous obtenons alors un résultat radicalement différent, comme les gens ne sont
 en contact avec personne d’autre nous n’avons aucune infection. Cela démontre
@@ -582,7 +584,9 @@ connexion ce qui nous a permis de trouver celui le plus représentatif. Ensuite
 nous avons étudié comment contenir la maladie en mettant en place du
 confinement, des tests etc. Finalement nous avons réalisé une ouverture en
 regardant 2 modèles différents le modèle SIR et l’utilisation de l’A* pour faire
-notre modèle.</p>
+notre modèle. La répartition des tâches est disponible tout au long du rapport, nous l’avons résumé via gitinspector dans l’image suivante</p>
+
+<p><img src="img/git.png" alt="14" class="image about center" /></p>
 
 <div class="header"> <div class="progress-container"> <div class="progress-bar" id="myBar"></div> </div>
 </div>
