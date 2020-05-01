@@ -14,6 +14,32 @@ html {
 }
 </style>
 
+<script LANGUAGE="JavaScript">
+<!--
+
+//on prend la date du fichier
+var lastMod = document.lastModified;
+
+//un tableau contenant les noms des mois
+var tabMois = new Array("Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre");
+
+//on construit un objet de type date avec la date du fichier
+var lastDate = new Date(lastMod);
+var annee = lastDate.getFullYear();
+var hh = lastDate.getHours();
+var mm = lastDate.getMinutes();
+
+var heure = (hh > 9? hh:"0" + hh);
+heure += ":" + (mm > 9? mm:"0" + mm);
+
+document.write("<center>Dernière date de mise à jour : ");
+document.write(lastDate.getDate() + " ");
+document.write(tabMois[lastDate.getMonth()] + " ");
+document.write(annee + " ");
+document.write(" à " + heure + "</center>");
+//-->
+</script>
+
 Le but de ce devoir maison est d'utiliser l'algorithmique des graphes pour
 modéliser une version simpliste de la propagation du Covid-19. Le devoir se
 décompose en 3 parties d'implémentation, tout d'abord nous mettons en place les
@@ -150,25 +176,26 @@ implémentation basé sur un tableau contenant les $$k$$ contacts possibles et u
 tableau contenant ses $$k'$$ voisins pour le jour $$i$$ la complexité de
 l'initialisation et de la boucle principale reste inchangée.
 
-Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
-précédemment avec une population de 100 et en fixant $$k'=3$$ et 10 000 individus en faisant varier
-$$k'$$ de $$1$$ à $$k=50$$. Nous utilisons à chaque fois le modèle statique et dynamique
 
 ![3](/img/random_100_50_3_14_0.01_0.02_stati.gif){:class="image about right"}
 
 ![4](/img/random_100_50_3_14_0.01_0.02_dyna.gif){:class="image about right"}
 
-Commençons par regarder les propagations, tout d'abord sur le statique, nous pouvons voir que nous avons un modèle plus réaliste, la maladie se propage au cours du temps dans la population de manière plus où moins aléatoire, certains meurt mais la majorité de la population reste saine (cela est du à la faible mortalité), de plus nous pouvons voir que la majorité de la population est infectée durant les 180 jours. Si l'on regarde le graphe dynamique nous avons visuellement une confirmation que chaque jour les connexions changent, la maladie se propage alors très vite mais peu de personnes meurent, cela est du à la population réduite que nous avons. Nous allons donc regarder ce qu'il se passe sur des populations de 1 000 individus et en faisant varier $$k'$$.
+Nous pouvons alors réaliser des tests en prenant les mêmes paramètres que
+précédemment avec une population de 100 et en fixant $$k'=3$$ et 10 000 individus en faisant varier
+$$k'$$ de $$1$$ à $$k=50$$. Nous utilisons à chaque fois le modèle statique et dynamique
 
-![5](/img/random_1000_50_variant_14_0.01_0.02_statique.gif){:class="image center"}
+Commençons par regarder les propagations, tout d'abord sur le statique, nous pouvons voir que nous avons un modèle plus réaliste, la maladie se propage au cours du temps dans la population de manière plus où moins aléatoire, certains meurt mais la majorité de la population reste saine (cela est du à la faible mortalité), de plus nous pouvons voir que la majorité de la population est infectée durant les 180 jours. Si l'on regarde le graphe dynamique nous avons visuellement une confirmation que chaque jour les connexions changent, la maladie se propage alors très vite mais peu de personnes meurent, cela est du à la population réduite que nous avons. Nous allons donc regarder ce qu'il se passe sur des populations de 1 000 individus et en faisant varier $$k'$$ entre 1 et 50 cela nous permet de voir l'influence de la fréquentation de chacun et de mettre en lumière l'effet de la distanciation sociale.
 
-![6](/img/random_1000_50_variant_14_0.01_0.02_dynamique.gif){:class="image center"}
+![5](img/random_1000_50_variant_14_0.01_0.02_statique.gif){:class="image about center"}
+
+![6](img/random_1000_50_variant_14_0.01_0.02_dynamique.gif){:class="image about center"}
 
 Nous voyons tout d'abord quelque chose, plus $$k'$$ augmente plus le pic épidémique est élevé et tôt, cela nous montre que les contacts favorisent la propagation de la maladie, lorsque $$k'$$ est très élevé, la propagation de la maladie à toute la population ne prend que quelques jours. Cela est encore plus visible sur le modèle dynamique, lorsque $$k'$$ est supérieur à 5, la maladie prend moins de 3 jours à infecter toute la population. 
 
 Ce graphe est déjà plus réaliste et nous montre qu'une maladie non contrôler peut se propager rapidement, dans notre cas la mortalité est peu élevée, si nous avions une maladie plus létale elle aurait décimée rapidement toute la population. Sur une population de 10 000 individus et pour $$k'=25$$ nous obtenons le graphe suivant qui nous montre un pic épidémique très élevé (toute la population) et très tôt (15 ième jour)
 
-![7](/img/random_10000_50_25_14_0.01_0.02.png){:class="image center graph"}
+![7](/img/random_10000_50_25_14_0.01_0.02.png){:class="image about center graph"}
 
 Les résultats sont plus satisfaisant en effet nous pouvons voir une rapide
 propagation de l'épidémie dans la population, rappelons que l'idée de cette
@@ -202,11 +229,12 @@ soit connecté à au plus $$k'-2$$ voisins choisi parmi ses $$k$$ voisins
 possibles. La boucle de simulation est donc en complexité $$O(nbr jour * n *
 m)$$. 
 
+
+![7](/img/mixte_51_50_10_20_0.01_0.02_stati.gif){:class="image about right"}
+![8](/img/mixte_51_50_10_20_0.01_0.02_dyna.gif){:class="image about right"}
+
+
 Nous pouvons alors réaliser des tests en prenant $$k'=10$$ et les mêmes paramètres que précédemment.
-
-![7](/img/mixte_51_50_10_20_0.01_0.02_stati.gif){:class="image center"}
-
-![8](/img/mixte_51_50_10_20_0.01_0.02_dyna.gif){:class="image center"}
 
 Les résultats du graphe mixte sont très similaires aux résultats du graphe aléatoire, cependant nous notons en plus une propagation voisin par voisin, la maladie se propage toujours à une vitesse incroyable. Et toute la population est touchée. 
 
@@ -277,7 +305,7 @@ voisin.
 
 Nous réalisons alors un test avec les paramètres $$k'=25$$ (pour avoir une franche différence entre le confinement fort et le normal), $$r=5, p=0.02, q=0.2$$ nous prenons une maladie avec une forte mortalité et avec une periode assez courte, le but ici est de montrer que le confinement permet de diminuer les effets d'une maladie violente et donc sera encore plus efficace sur une maladie plus classique. La topologie du graphe mixte et le modèle dynamique sont utilisées. La stratégie de confinement adoptée est le confinement fort. 
 
-![10](/img/mixte_1000_50_25_5_0.2_0.02_confidefunt.png){:class="image center"}
+![10](/img/mixte_1000_50_25_5_0.2_0.02_confidefunt.png){:class="image about center"}
 
 Nous pouvons remarquer que à contrario des résultats que nous pouvions obtenir avec le graphe mixte dynamique dans la première partie, la totalite de la population n'est pas infectée et que le pic épidémique est relativement plus faible. Nous pouvons donc voir que le confinement autour des défunts permet de conserver une partie de la population saine tout au long de la maladie et de diminuer le pic épidémique. Rappelons de plus que la maladie était très violente et foudroyante, cela nous montre d'autant plus que si la maladie était "normale" le confinement fort des proches des défunts serait efficace. 
 
@@ -414,20 +442,17 @@ comme toute simulation il est nécessaire de fixer
 </iframe>
 Si la fenêtre ne charge pas [lien vers la simulation](SIR.html) 
 
-### Mise en place d'une recherche de Chemin - Hors sujet
+### Mise en lumière de l'efficacité du confinement par la modélisation simpliste des déplacements 
 #### Sébastien
 *Cette section présente l'implémentation d'une fonction supplémentaire dont le
 rapport avec le sujet est discutable. L'idée de cette section est de nous faire
 manipuler les notions d'algortihmique des graphes et l'implémentation de ces notions* 
 
-Toujours dans le cadre du covid-19 nous allons simuler la propagation du virus
-dans une pièce d'une personne à une autre, l'idée est qu'il y a deux personnes
-dans la pièce, l'une malade et l'autre non. Le but de cette section est de
-trouver le chemin le plus court pour que le virus aille de la personne malade à
-la personne saine. La pièce est modélisé comprenant des murs, des zones chaudes
-et des zones froides est modélisée par une grille. Nous supposons qu'il est plus
-difficile pour le virus de se propager dans une zone froide et plus facile pour
-lui de se propager dans une zone chaude. 
+Toujours dans le cadre du Covid-19 nous voulons montrer l'effet du confinement
+en modélisant les déplacements humains et en autorisant plus ou moins de
+distance maximale de déplacement. Nous regardons ensuite en fonction de la
+distance autorisée le nombre de malade. Pour cela nous modélisons un monde
+réduit avec 18 individus et des obstacles mis aléatoirement sur la carte. 
 
 Ce sujet nous invite à mettre en place un moyen d'effectuer une recherche de
 chemin, pour ce faire nous allons utiliser un algorithme de recherche de chemin
@@ -456,11 +481,52 @@ Nous pouvons donc lui donner un terrain avec autant d'obstacles que nous
 voulons, si il y a une solution l'A* la trouvera. Un résumé du fonctionnement de l'algorithme est disponible sur le graphe ci dessous.
 
 
-![astar](astar.gif){:class="image center"}
+![astar](astar.gif){:class="image about center"}
 
 Une description des itérations de l'algorithme est disponible [ici](https://www.createursdemondes.fr/2015/03/pathfinding-algorithmes-en-a/)
 
 La complexité de cet algorithme dépend de l'implémentation des structures de données des listes et le temps que nous mettons à acceder à ces éléments. Nous utilisons un tas comme implémentation, la complexité de l'A* est donc `O(n+m log(n))` avec $$n$$ le nombre de sommets et $$m$$ le nombre d'arềtes moyenne d'un sommet.
+
+Nous avons alors implémenté notre Astar en python, ce dernier se base sur un
+Astar développé en c++ réalisé par Sébastien dans le cadre de Eirbot (les codes
+des deux implémentations sont disponibles dans les sources). L'idée est que
+chaque individu choisisse aléatoirement un point auquel il va aller un jour puis
+revient chez lui. Si il croise quelqu'un dans un rayon autour de lui il a une
+chance de tomber malade et initie un compteur de jour, si il est malade depuis
+$$r$$ jour il a une chance de mourir. Nous lançons deux simulations, pour des
+soucis de lisibilité nous ne marquons pas les obstacles et nous ne faisons
+qu'une itération du programme pour comprendre le processus, les itérations
+suivantes ramènent à des résultats que nous avons déjà présenté.
+
+Tout d'abord si les individus n'ont aucune limite sur leurs déplacement. Les
+contacts sont représentés par une marque grise et les marques rouge
+correspondent à une infection. 
+
+![12](img/Astar_deconf.png){:class="image about center"}
+
+Nous voyons que nous obtenons beaucoup de contact et donc d'infections, ainsi
+laisser les gens évoluer librement n'est pas une idée concevable. Nous avons
+donc relancé la simulation en forçant les individus à rester dans un rayon
+autour de chez eux. Nous obtenons alors les résultats suivants 
+
+![13](img/Astar_conf.png){:class="image about center"}
+
+Nous obtenons alors un résultat radicalement différent, comme les gens ne sont
+en contact avec personne d'autre nous n'avons aucune infection. Cela démontre
+l'importance du confinement. Bien-sur le modèle est simpliste puisqu'il est
+impossible de rester chez soi pendant une durée illimitée, pour rappel ici le
+but était de nous faire manipuler des notions d'algorithmique des graphes. 
+
+
+##  <i class="fas fa-project-diagram"></i> Conclusion
+Nous avons donc réalisée une modélisation simpliste de la propagation du
+covid-19. Cela nous a permis de nous intéresser aux différents graphes de
+connexion ce qui nous a permis de trouver celui le plus représentatif. Ensuite
+nous avons étudié comment contenir la maladie en mettant en place du
+confinement, des tests etc. Finalement nous avons réalisé une ouverture en
+regardant 2 modèles différents le modèle SIR et l'utilisation de l'A* pour faire
+notre modèle.
+
 
 <div class="header"> <div
 class="progress-container"> <div class="progress-bar" id="myBar"></div> </div>
