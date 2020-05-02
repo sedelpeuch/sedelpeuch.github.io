@@ -22,7 +22,7 @@ et le [td2](https://moodle.bordeaux-inp.fr/pluginfile.php/111542/mod_resource/co
 
 | Thème                             | Notes de cours | Notes de TD |
 | :---                              | :---:          | :---:       |
-| Histoiriques des notions de bases | [notes1]       | [notes-td1]            |
+| Historiques des notions de bases | [notes1]       | [notes-td1]            |
 | Le modèle de référence OSI        | [notes2]       |             |
 | Le modèle TCP/IP                  | [notes3]       |             |
 | Exercices et TP                   | [notes4]       |             |
