@@ -311,8 +311,8 @@ Tout d'abord un test visuel avec un modèle statique, un graphe mixte, et un con
 ![15](/img/propagation_iso_defunt-100-10-5-14-0.15-0.05.gif){:class="image about center"}
 
 Nous voyons donc que le confinement fort ne réduit pas la mortalité mais permet de protéger une partie de la population. Nous allons essayer de confirmer cela avec une population plus large et en comparant le confinement faible et fort.La topologie du graphe mixte et le modèle dynamique sont utilisées. La stratégie de confinement adoptée est le confinement faible puis fort. 
-![10](img/stat-conffaible-all_defunts.png){:class="image about center"}
-![23](img/stat-conffort-all_defunts.png){:class="image about center"}
+![10](/img/stat-conffaible-all_defunts.png){:class="image about center"}
+![23](/img/stat-conffort-all_defunts.png){:class="image about center"}
 
 Nous pouvons remarquer que au contraire des résultats que nous pouvions obtenir avec le graphe mixte dynamique dans la première partie, la totalité de la population n'est pas infectée (dans le confinement fort) et que le pic épidémique est relativement plus faible. Nous pouvons donc voir que le confinement fort autour des défunts permet de conserver une partie de la population saine tout au long de la maladie et de diminuer le pic épidémique. Rappelons de plus que la maladie était très violente et foudroyante, cela nous montre d'autant plus que si la maladie était "normale" le confinement fort des proches des défunts serait efficace. 
 
@@ -325,9 +325,9 @@ puisque cette opération est faite en temps constant.
 
 Premièrement nous prenons une population de 10 000 individus et une maladie de paramètre $$r=14, p=0.01, q=0.02, k=10$$ et nous prenons $$k'=5$$, nous utilisons le graphe mixte en modèle statique et un confinement fort.
 
-![21](img/stat-conffaible-test_defunt.png){:class="image about center"}
+![21](/img/stat-conffaible-test_defunt.png){:class="image about center"}
 
-![22](img/stat-conffort-test_defunt.png){:class="image about center"}
+![22](/img/stat-conffort-test_defunt.png){:class="image about center"}
 
 Nous voyons que le confinement des proches des défunts avec test à un effet, la maladie se propage moins vite que d'habitude et surtout nous avons une certainne population qui n'a jamais été infecté grâce au confinement fort. Nous avons donc l'intuition de l'effet du confinement, il permet de ralentir la maladie (et donc de désengorger les services hospitaliers) mais aussi de protéger une partie de la population qui pourrait s'avérer fragile face à la maladie. Cependant le simple confinement sur test des proches des défunts ne ralentit que très peu la mortalité et la taille du pic épidémique. Nous avons donc une stratégie qui de test qui permet de réagir spontanément à l'apparition d'une maladie et donc protéger une partie de la population. Il est à noter que cette stratégie ne permet pas de diminuer la mortalité.
 
@@ -347,12 +347,12 @@ voisins.
 
 Nous réalisons alors des tests aléatoire sur la population avec les paramètres de la maladie du sujet. Pour nous donner une première intuition nous réalisons l'animation suivante
 
-![19](img/propagation_tests_alea_iso-100-10-5-14-0.15-0.05.gif){:class="image about center"}
+![19](/img/propagation_tests_alea_iso-100-10-5-14-0.15-0.05.gif){:class="image about center"}
 
 Nous avons une première intuition de l'effet des tests aléatoires sur la population, ils permettent de contenir la maladie et éviter qu'elle se propage, nous voyons aussi le paradoxe de Simpson puisque les tests continuent à s'effectuer et à confiner des gens alors que tout la maladie a disparue. Nous allons montrer sur un plus grand échantillon de la population l'efficacité des tests aléatoires. Nous utilisons le confinement fort puis faible avec un graphe mixte dans le modèle dynamique.
 
-![25](img/stat-conffaible-test_alea.png){:class="image about center"}
-![26](img/stat-conffort-test_alea.png){:class="image about center"}
+![25](/img/stat-conffaible-test_alea.png){:class="image about center"}
+![26](/img/stat-conffort-test_alea.png){:class="image about center"}
 
 L'effet est flagrant, dans les deux cas le pic épidémique est largement réduit, le fait de tester la population nous permet donc de réduire le pic épidémique, il est d'ailleurs bien plus efficace que le test sur les proches des défunts car c'est une réaction en amont et non en réponse. De plus nous pouvons revoir que le confinement fort permet de protéger une partie de la population de la maladie. 
 
@@ -369,7 +369,7 @@ la plus réaliste (même si cela dépend des pays).
 
 Combinons les deux stratégies et donnons nous une intuition en effectuant une animation sur 100 individus en utilisant le confinement fort sur le graphe mixte.
 
-![20](img/propagation_defunt_tests_alea_iso-100-10-5-14-0.15-0.05.gif){:class="image about center"}
+![20](/img/propagation_defunt_tests_alea_iso-100-10-5-14-0.15-0.05.gif){:class="image about center"}
 
 Nous avons donc une première intuition, la combinaison des deux politiques de tests a l'air très efficace car la maladie se propage très peu et est vite contenue. Cependant cette propagation est biasée puisque la population est très réduite.
 
@@ -377,9 +377,9 @@ Nous allons alors comparer les proportions des différentes population en
 effectuant un test sur 1 000 individu, en utilisant les paramètres de la maladie
 précédent et nous utilisons tout d'abord le confinement fort puis le faible.
 
-![16](img/mixte_defunts_test_alea_statique.png){:class="image about center"}
+![16](/img/mixte_defunts_test_alea_statique.png){:class="image about center"}
 
-![17](img/mixte_defunts_test_alea_statique_faible.png){:class="image about
+![17](/img/mixte_defunts_test_alea_statique_faible.png){:class="image about
 center"}
 
 Nous voyons tout d'abord une différence flagrante entre le confinement faible et
