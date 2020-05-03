@@ -570,6 +570,9 @@ notre modèle. La répartition des tâches est disponible tout au long du rappor
 
 ![14](img/git.png){:class="image about center"}
 
+manque image
+
+
 <div class="header"> <div
 class="progress-container"> <div class="progress-bar" id="myBar"></div> </div>
 </div>
