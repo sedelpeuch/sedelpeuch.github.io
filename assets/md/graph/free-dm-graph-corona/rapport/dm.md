@@ -306,24 +306,31 @@ voisin.
 
 Nous réalisons alors un test avec les paramètres $$k'=25$$ (pour avoir une franche différence entre le confinement fort et le normal), $$r=5, p=0.02, q=0.2$$ nous prenons une maladie avec une forte mortalité et avec une période assez courte, le but ici est de montrer que le confinement permet de diminuer les effets d'une maladie violente et donc sera encore plus efficace sur une maladie plus classique. La topologie du graphe mixte et le modèle dynamique sont utilisées. La stratégie de confinement adoptée est le confinement fort. 
 
+
+![15](/img/propagation_iso_defunt-100-10-5-14-0.15-0.05.gif){:class="image about center"}
 ![10](/img/mixte_1000_50_25_5_0.2_0.02_confidefunt.png){:class="image about center"}
 
 Nous pouvons remarquer que au contraire des résultats que nous pouvions obtenir avec le graphe mixte dynamique dans la première partie, la totalité de la population n'est pas infectée et que le pic épidémique est relativement plus faible. Nous pouvons donc voir que le confinement autour des défunts permet de conserver une partie de la population saine tout au long de la maladie et de diminuer le pic épidémique. Rappelons de plus que la maladie était très violente et foudroyante, cela nous montre d'autant plus que si la maladie était "normale" le confinement fort des proches des défunts serait efficace. 
 
 GIF & ANALYSE
 1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
+1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
+
 
 Nous allons maintenant modifier la façon de confiner l'entourage d'une personne
 décédée. Lorsque quelqu'un décédé les personnes qu'il a contacté depuis $$r$$
 jours sont testés. Le test fonctionne comme suit, si la personne est malade il a
 $$70\%$$ de chance d'être confiné, si la personne n'est pas malade il a $$10 \%$$ de
 chance d'être confiné. Cela ne change rien à la complexité de la fonction
-puisque cette opération est faite en temps constant
+puisque cette opération est faite en temps constant.
+
+<!-- Premièrement nous réalisons une analyse visuelle, nous prenons une population de 100 individus et une maladie de paramètre $$r=14, p=0.01, q=0.02, k=10$$ et nous prenons $$k'=5$$, nous utilisons le graphe mixte en modèle statique et un confinement fort.  -->
+
+Nous voyons que le confinement des proches des défunts à un effet drastique, la maladie se propage moins vite que d'habitude et surtout nous avons une certainne population qui n'a jamais été infecté. Nous avons donc l'intuition de l'effet du confinement, il permet de ralentir la maladie (et donc de désengorger les services hospitaliers) mais aussi de protéger une partie de la population qui pourrait s'avérer fragile face à la maladie. Nous allons maintenant regarder sur des groupes d'individus plus importants pour confirmer notre intuition
 
 GIF & ANALYSE 
 1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
 2. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
-2. GIF propagation 100 individus même carac
 
 CONCLUSION SUR TESTS PROCHE DES DEFUNTS
 
@@ -341,12 +348,15 @@ plus nous testons les gens), cela ne change pas la complexité de la boucle
 principale toujours en `O(nbr jour * n * m)` avec $$m$$ le nombre moyen de
 voisins.
 
-Nous réalisons alors des tests avec les paramètres 
+Nous réalisons alors des tests aléatoire sur la population avec les paramètres de la maladie du sujet. Pour nous donner une première intuition nous réalisons l'animation suivante
+
+![19](img/propagation_tests_alea_iso-100-10-5-14-0.15-0.05.gif){:class="image about center"}
+
+Nous avons une première intuition de l'effet des tests aléatoires sur la population, ils permettent de contenir la maladie et éviter qu'elle se propage, nous voyons aussi le paradoxe de Simpson puisque les tests continuent à s'effectuer et à confiner des gens alors que tout la maladie a disparue. Nous allons montrer sur un plus grand échantillon de la population l'efficacité des tests aléatoires. 
 
 GIF & ANALYSE
 1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
 1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
-2. GIF propagation 100 individus même carac
 
 CONCLUSION SUR TEST ALEATOIRES
 
@@ -357,16 +367,49 @@ l'efficacité des tests aléatoires sur la population qui permettent d'être
 préventifs. Nous allons maintenant immaginer une stratégie de tests où nous
 réalisons à la fois des tests sur les proches des défunts et des tests
 aléatoires sur la population. Cette stratégie devrait être la plus bénéfique et
-la plus réaliste (même si cela dépend des pays). 
+la plus réaliste (même si cela dépend des pays).
 
-GIF & ANALYSE
- 1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FORT
-1. courbe k' fixé 10 000 individus graphe mixte dynamique CONFINEMENT FAIBLE
+Combinons les deux stratégies et donnons nous une intuition en effectuant une animation sur 100 individus en utilisant le confinement fort sur le graphe mixte.
 
-CONCLUSION SUR LES TESTS
+![20](img/propagation_defunt_tests_alea_iso-100-10-5-14-0.15-0.05.gif){:class="image about center"}
+
+Nous avons donc une première intuition, la combinaison des deux politiques de tests a l'air très efficace car la maladie se propage très peu et est vite contenue. Cependant cette propagation est biasée puisque la population est très réduite.
+
+Nous allons alors comparer les proportions des différentes population en
+effectuant un test sur 1 000 individu, en utilisant les paramètres de la maladie
+précédent et nous utilisons tout d'abord le confinement fort puis le faible.
+
+![16](img/mixte_defunts_test_alea_statique.png){:class="image about center"}
+
+![17](img/mixte_defunts_test_alea_statique_faible.png){:class="image about
+center"}
+
+Nous voyons tout d'abord une différence flagrante entre le confinement faible et
+le confinement fort. Le confinement faible n'a presque pas d'incidence. Cela est
+normal puisque par essence le confinement faible n'empêche pas la propagation
+entre les individus, cela pourrait être utile si notre graphe n'était pas
+connexe, cela contiendrai la maladie à un groupe, cependant la définition du
+graphe mixte nous force à avoir un graphe connexe, dans notre cas ce confinement
+n'est pas utile. 
+
+En regardant le confinement fort nous pouvons voir tout d'abord que le pic
+épidémique est très faible en comparaison des autres graphes, cela implique que
+la population de gens jamais infectée est très grande. Le confinement fort
+semble alors performant lorsque nous utilisons les tests aléatoires et les tests
+sur les proches des défunts. Cette stratégie est donc la meilleure que nous
+avons malgré le paradoxe de Simpson mais c'est aussi la plus couteuse (du au
+grand nombre de test). 
 
 Nous avons pu étudier dans cette partie les différentes stratégies de tests de
-la population pour tenter de contenir la contamination. FINIR
+la population pour tenter de contenir la contamination. Nous avons surtout
+étudié l'effet des tests (sur les défunts, aléatoirement, combiné) et nous avons
+montré que la politique la plus efficace est la combinaison des tests sur les
+proches des défunts et des tests aléatoires. Cette politique a plusieurs failles :
+l'effet Simpson, une propagation très rapide de la maladie qui irait plus vite
+que la vitesse de confinement et une maladie très longue qui rendrait les tests
+sur les proches des défunts inopérants (tout le monde serait infecté avant que
+le premier meurt). Cela conclut cette partie et l'implémentation de base de
+notre modélisation, nous allons maintenant passer à une partie d'ouverture.
 
 ##  <i class="fas fa-project-diagram"></i> Partie III - Outils et amélioration
 Nous allons maintenant discuter d'outils que nous avons rajoutés dans ce projet
@@ -528,6 +571,9 @@ regardant 2 modèles différents le modèle SIR et l'utilisation de l'A* pour fa
 notre modèle. La répartition des tâches est disponible tout au long du rapport, nous l'avons résumé via gitinspector dans l'image suivante
 
 ![14](img/git.png){:class="image about center"}
+
+manque image
+
 
 <div class="header"> <div
 class="progress-container"> <div class="progress-bar" id="myBar"></div> </div>
