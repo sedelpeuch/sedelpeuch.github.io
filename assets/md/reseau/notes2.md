@@ -21,7 +21,7 @@ Les 7 couches du modèle ISO/OSI sont à connaitre par coeur.
 ![principe](/assets/images/reseau/principe.png)
 {:class="image featured"}
 
-##  <i class="fas fa-server"></i>  Fonctionnement des couches 
+###  Fonctionnement des couches 
 
 | Nom de la couche | Rôle                                         |
 | :---             | :---                                         |
@@ -33,7 +33,7 @@ Les 7 couches du modèle ISO/OSI sont à connaitre par coeur.
 | Liaison          | Quelles sont les caractérisation du réseau ? |
 | Physique         | Quel est le support physique ?               |
 
-### Couche Physique
+#### Couche Physique.
 
 La couche pysique fournit les moyens (logiciels, matériels, électroniques,
 mécaniques ...) nécessaire à la transmission des données binaires (train
@@ -43,7 +43,7 @@ en électronique.
 
 
 
-### Couche Liaison
+#### Couche Liaison.
 
 La couche liaison fournit les moyens nécessaires à l'établissement, le maintient
 et la libération des connexions de liaison de données entre les entités
@@ -59,7 +59,7 @@ Pour les réseaux locaux, cette couche peut être décomposée en deux sous-couc
 + Sous-couche LLC : gère la détection des erreurs et la gestion de trames et
   liaison logique
   
-### Couche réseau
+#### Couche réseau.
 La couche réseau assure les fonctionnalité 
 + Routage : recherche de chemin ou d'une route selon des critères de
   performances
@@ -71,7 +71,7 @@ La couche réseau assure les fonctionnalité
   sous-jacent
 + Deux modes de fonctionnement : connecté / non-connecté
 
-### Couche transport
+#### Couche transport.
 La couche transport assure les fonctionnalités
 + Transport de bout en bout des données
 + Découpage des flux de données reçus des couches supérieures 
@@ -80,35 +80,35 @@ La couche transport assure les fonctionnalités
 + Fiabilité par acquittement et retransmission des données
 + Multiplexage des messages (appelés segments de donnée)
 
-### Couche session
+#### Couche session.
 La couche session assure les fonctionnalités 
 + Gestion du dialogue entre entités communicantes : gestion de tour de parole,
   transaction
 + Synchronisation : sauvegarde de contexte et reprise après échec 
 + Orchestration des communication
 
-### Couche présentation
+#### Couche présentation.
 La couche présentation assure les fonctionnalités
 + Structuration des donnés pour assurer leurs vérifications 
 
-### Couche application
+#### Couche application.
 La couche application assure les fonctionnalité de communications à travers
 l'environnement OI en offrant des applications (ou des services) de Web,
 messagerie électronique, transfert de fichier, IPTV, téléponique ...
 
-##  <i class="fas fa-server"></i>  Principe de l'encapsulation 
+### Principe de l'encapsulation 
 ![schema](/assets/images/reseau/schema.png)
 {:class="image featured"}
 
-##  <i class="fas fa-server"></i>  Terminologie : Trame, paquet, message 
+### Terminologie : Trame, paquet, message 
 ![term](/assets/images/reseau/7couches2.png)
 {:class="image featured"}
 
-##  <i class="fas fa-server"></i>  Principe du relais 
+### Principe du relais 
 ![relais](/assets/images/reseau/protocolecouches.png)
 {:class="image featured"}
 
-##  <i class="fas fa-server"></i>  Comparaison du modèle OSI et TCP/IP 
+### Comparaison du modèle OSI et TCP/IP 
 ![comparaison]
 + TCP/ip intègre la couche présentation et la couche session dans sa couche
   application
@@ -302,7 +302,7 @@ il interrompt immédiatement sa transmission et il envoie des signaux spéciaux
 appelés bits de bourrage que tous les coupleurs soient prévenus de la collision,
 il tentera la réémission ultérieurement. 
 ![CSMA](/assets/images/reseau/csma.png)
-{:class="images featured"}
+{:class="images about center"}
 
 ### Le succès d'Ethernet
 Le succès d'Ethernet est dû aux facteurs suivants : 
@@ -316,7 +316,7 @@ Le succès d'Ethernet est dû aux facteurs suivants :
 + Unique pour chaque carte réseau
 + @MAC = partie Constructeur + Numéro Séquentiel
 
-## <i class="fas fa-server"></i> Bilan
+## <i class="fas fa-server"></i> Bilan sur l'Ethernet
 
 ### Trame Ethernet
 
@@ -348,10 +348,10 @@ Le succès d'Ethernet est dû aux facteurs suivants :
 ### Détection et prévention de collision sur un réseau CSMA/CD
 
 ![collision](/assets/images/reseau/collision.png)
-{:class="image intro"}
+{:class="image about center"}
 
 [principe]:/assets/images/reseau/principe_collision.png
-{:class="image intro"}
+{:class="image about center"}
 
 #### Principe.
 
@@ -392,3 +392,68 @@ END
 
 ### Tranche de temps Ethernet 
 Pour tous les débits de transmission Ethernet égales ou inférieures à 1000Mbits/S, la norme stipule qu'une transmission ne peut pas être inférieure à une tranche de temps. La tranche de temps pour l'Ethenet 10 à 100 Mbits/s est de 512 temps de bit, soit 64 octets. Pour l'éthernet 1000 Mbits/s est de 512 octets. La tranche de temps est calculée en se basant sur des longueurs de câble maximale dans l'architecture de réseau légale la plus étendue. Tous les délais de propagation sont au maximum légal et le signal de bourrage 32 bits est utilisé lorsque des collisions sont détectées.
+
+##  <i class="fas fa-server"></i> Equipements d'interconnexion 
+* Interconnexion de niveau 1 : répéteur, concentrateur : amplification du signal
+* Interconnexion de niveau 2 : pont, commutateur : amplificateur de signal et traitement de niveau 2 
+* Interconnexion de niveau 3 : routeur 
+* Interconnexion de niveau 4 à 7 : passerelle
+
+![quelques-symboles](/assets/images/reseau/symboles.png){:class="image about center"}
+
+### Les équipements de couche 1
+Les équipements de couche 1 : les répéteurs et les concentrateur (HUB), sont principalement utiisés pour étendre les segments de câble Ethernet. Ils permettent d'ajouter d'avantage d'hôtes. Cependant, chaque hôte ajouté augmente la quantité de trafic potentiel sur le réseau. Les équipements de couche 1 transmettent la totalité des données qui sont reçues sur le média. Plus le trafic est dense dans un domaine de collision, plus les risques de collisions sont importants. Les équipements de couche 1 peuvent être à l'origine de collisions en raison d'une augmentation trop important du réseau LAN.
+
+### Commutation Ethernet 
+Un réseau Ethernet partagé fonctionne parfaitement dans des conditions optimales d'utilisation. Lorsque le nombre des équipements qui tentent d'accéder au réseau est peu élevé, le nombre de collisions se maintient à un niveau acceptable. En revanche, lorsque le nombre des utilisateurs augmente, le nombre croissant de collisions peut considérablement réduire les performanes du réseau. Les problèmes de broadcas et de collision sont des événements connus dans les réseaux modernes. Afin d'en limiter les effets, des domaines de collision et de broadcast doivent être créés en installant des points ou encore des commutateurs. 
+
+### Définition
+On appelle domaines de collisions des segments du réseau physique dans lesquels des collisions peuvent se produire. Les collisions rendent le réseau inefficace. Chaque fois qu'une collision survient sur un réseau, les transmissions s'interrompent momentanément. La durée de cette interruption est variable et est fonction d'un algorithme de réémission temporisée pour chaque équipement du réseau. Les types d'équipements assurant l'interconnexion des segments de médias définissent les domaines de collision. 
+
+### Fonctionnement d'un pont
+Plus le nombre de noeuds situés sur un segment Ethernet augmente, plus le média est utilisé. Ethernet étant un média partagé, un seul noeud à la fois peut transmettre des données. L'ajout de noeuds entraîne un besoin croissant de bande passante et occasionne des charges supplémentaires sur le média. En outre, la probabilité de collisions est plus forte, ce qui entraîne d'avantage de retransmissions. L'une des solutions consiste à fragmenter le segment principal en plusieurs parties et à le diviser en domaine de collision distincts.
+
+Lorsqu'un pont vient d'être installé, sa table est vide. Le pont attend le transfert de données sur le segment. Dés qu'une transmission est détectée, le pont la traite. L'hôte A émet une requête vers l'hôte B. Les données étant transmises sur l'ensemble du segment de domaine de collision, le pont et l'hôte B traitent le paquet. Le pont ajoute l'adresse source de la trame à sa table de pontage. Sachant que l'adresse se trouve dans le champ d'adresse source et que la trame est reçue sur le port 1, la trame doit être associée au port 1 dans la table. L'adresse de destination de la trame est comparée à toutes les adresses de la table de pontage. Bien que les deux adresses se trouvent dans le même domaine de collision, si l'adresse de destination ne se trouve pas dans la table, la trame est transférée vers le segment suivant. L'adresse de l'hôte B n'est pas encore enregistrée. Et ainsi de suite jusqu'à l'apprentissage total des machines dans le segments Ethernet. 
+
+### Pont et commutateur 
+En règle générale, un pont comprend deux ports et subdivise un domaine de collision en deux segments. Les décisions prises par un pont dépendent uniquement des adresses MAC et n'affectent pas les adresses de la couche 3. Un commutateur est en fait un pont multiport très rapide qui peut contenir des douzaines de ports. Chaque port crée son propre domaine de collision. Lorsqu'un réseau comporte 20 noeuds, 20 domaines de collision doivent exister si chaque noeud est connecté à son propre port de commutation. Un commutateur crée et gère de façon dynamique une table de mémoire associative, qui contient toutes les informations MAC nécessaires aux ports 
+
+#### Principe d'un commutateur Ethernet. 
+* Réduire les collisions pour accroître les débits 
+* Remplacer le noeud central passif par un commutateur
+* Mettre à peu de frais des réseaux virtuels
+
+### Modes de commutation
+La commutation d'une trame vers un port de destination est fonction du niveau de latence et de fiabilité. Un commutateur peut commencer à transférer la trame dès que l'adresse MAC est reçue. Ce mode de commutation des paquets est appelé "Cut-through". Avec le mode de commutation "Cut-through", les débits des ports source et de destination doivent être identiques pour ne pas endommager la trame. 
+
+Un commutateur peut également attendre de recevoir la trame entière avant de la transférer vers le port de destination. Cela permet au logiciel de commutation de vérifier la séquence de contrôle de trame. Si la trame n'est pas correcte, elle est rejetée au niveau du commutateur. Étant donné que la trame entière est stockée avant d'être transmise, ce mode de commutation des paquets est appelé "Store and Forward". 
+
+Une solution intermédiaire de commutation des paquets est le mode "Fragment-Free". Ce mode lit les 64 premiers octets, incluant l'en-tête de la trame, puis il commence à transmettre le paquet avant même d'avoir terminé la lecture du champ de données et de la somme de contrôle. Ce mode vérifie la fiabilité des adresses et des informations relatives au protocole de niveau supérieur afin de garantir que les données sont correctement traitées et qu'elles sont acheminées vers la destination appropriée. Permet la détection des collisions (détectée pendant les 64 premiers octets selon la norme Ethernet. Cette taille correspond en nombre d'octets nécessaire à l'occupation du bus pendant la durée aller/retour entre stations les plus éloignées)
+
+### Les équipements de couche 2
+* Les équipements de couche 2 segmentent ou divisent les domaines
+  de collision.
+*  Ils utilisent les adresses MAC affectées à chaque équipement
+Ethernet pour effectuer le contrôle de propagation de la trame.
+*  Les équipements de couche 2 sont des ponts et des commutateurs
+qui permettent d'effectuer le suivi des adresses MAC et de leurs
+segments.
+*  Les équipements peuvent contrôler le flux de trafic au niveau de la
+couche 2.
+*  Grâce à cette caractéristique, les réseaux s'avèrent plus efficaces.
+*  Cela permet au réseau de transporter des données simultanément
+sur différents segments sans collisions.
+*  Les ponts et les commutateurs subdivisent les domaines de collision
+en éléments plus petits.
+*  Chaque élément devient alors son propre domaine de collision. 
+
+### Boucles de commutation 
+En cas de présence de boucles entre équipements de couche 2, les trames risquent de boucler avant d'atteindre leur destination 
+* Perte d'efficacité
+* Congestion sur le support
+* Retard de transmission 
+
+Plusieurs solution possible
+* Elimination logique des boucles en désactivant certains ports
+* Trouver un arbre couvrant : Spanning Tree Protocole 
+* Idée du STP : les équipements d'interconnexion communiquent entre eux pour déterminer un arbre couvrant, et ainsi supprimer les boucles de commutation

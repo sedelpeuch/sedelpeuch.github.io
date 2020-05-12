@@ -21,7 +21,7 @@ Graphes.
  |                         | [4. Parcours d'un graphe]        | [4. Parcours en largeur et en profondeur : labyrinthe] |
  |                         | [5. Arbre Couvrant Minimal]      | [5. Union Find]                                        |
  |                         | [6. Plus Court Chemin]           | [6. Cycle et voyageur de commerce]                     |
- |                         | [7. Le problème du flot maximal] |                                                        |
+ |                         | [7. Le problème du flot maximal] | [7. Flot maximal]                                      |
 
 [cours]:https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf
 [exercices]:https://moodle.bordeaux-inp.fr/pluginfile.php/51351/mod_resource/content/3/TDgraphe2012.pdf
@@ -40,6 +40,6 @@ Graphes.
 [4. Parcours en largeur et en profondeur : labyrinthe]:/assets/md/graph/3
 [5. Union Find]:/assets/md/graph/4
 [6. Cycle et voyageur de commerce]:/assets/md/graph/5
-<!-- [7. Le problème du flot maximal]:/assets/md/graph/6 -->
+[7. Flot maximal]:/assets/md/graph/6
 [8. Théorème de Menger]:/assets/md/graph/7
 [9. Couplages, Recouvrements, cliques]:/assets/md/graph/8
