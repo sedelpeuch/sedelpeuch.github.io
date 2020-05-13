@@ -22,6 +22,7 @@ Graphes.
  |                         | [5. Arbre Couvrant Minimal]      | [5. Union Find]                                        |
  |                         | [6. Plus Court Chemin]           | [6. Cycle et voyageur de commerce]                     |
  |                         | [7. Le problème du flot maximal] | [7. Flot maximal]                                      |
+ |                         | [8. Couplage]                                 |                                                        |
 
 [cours]:https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf
 [exercices]:https://moodle.bordeaux-inp.fr/pluginfile.php/51351/mod_resource/content/3/TDgraphe2012.pdf
@@ -33,6 +34,7 @@ Graphes.
 [5. Arbre Couvrant Minimal]:/assets/md/graph/ACM
 [6. Plus Court Chemin]:/assets/md/graph/PCC
 [7. Le problème du flot maximal]:/assets/md/graph/flot
+[8. Couplage]:/assets/md/graph/coup
 
 
 [1. Graphes notions générales]:/assets/md/graph/1

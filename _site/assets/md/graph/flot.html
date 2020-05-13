@@ -214,8 +214,30 @@ sommets <script type="math/tex">X</script> et <script type="math/tex">Y</script>
 <p>Nous conclurons ce chapitre en présentant les Théorèmes de Menger. Chacun de ces théorèmes établit pour tous sommets <script type="math/tex">s \neq t</script> l’égalité de deux entiers</p>
 <ul>
   <li>le plus petit nombre d’objet qu’il faut retirer pour déconnecter <script type="math/tex">s</script> de <script type="math/tex">t</script></li>
-  <li>le plus grand nombre de chemins objet disjoint connectant <script type="math/tex">s</script> à <script type="math/tex">t</script></li>
+  <li>le plus grand nombre de chemins objet disjoint connectant <script type="math/tex">s</script> à <script type="math/tex">t</script> 
+Fait remarquable, cette propriété concerne des graphes orientés ou non et des
+“séparateurs” formés de sommets, d’arcs ou d’arêtes.</li>
 </ul>
+
+<p>Un ensemble <script type="math/tex">S</script> d’arc (resp. d’arêtes, de sommets) d’un graphe séparer un
+sommet <script type="math/tex">s</script> d’un sommet <script type="math/tex">t</script> si il ne contient ni <script type="math/tex">s</script> ni <script type="math/tex">t</script> et si tout
+chemin <script type="math/tex">G</script> allant de <script type="math/tex">s</script> à <script type="math/tex">t</script> contient un élément de <script type="math/tex">S</script>. Un tel
+ensemble est dit séparateur.</p>
+
+<p>Cette définition en appelle d’autres, qui permettent de quantifier le nombre de
+sommets, d’arcs ou d’arêtes nécessaires à déconnecter le graphe, c’est à dire à
+séparer deux sommets.</p>
+
+<p>Soit <script type="math/tex">k</script> un entier. Un graphe <script type="math/tex">G</script> est :</p>
+<ul>
+  <li><script type="math/tex">k</script> arc connexe si tout ensemble d’arcs séparateur est de cardinalité
+supérieur à <script type="math/tex">k</script></li>
+  <li><script type="math/tex">k</script> arête connexe si tout ensemble d’arêtes séparateur est de cardinalité
+supérieur à <script type="math/tex">k</script></li>
+  <li><script type="math/tex">k</script> connexe si tout ensemble de sommets séparateur est de cardinalité
+supérieur à <script type="math/tex">k</script></li>
+</ul>
+
 </div>
 	</article>
 </div><!-- Footer -->

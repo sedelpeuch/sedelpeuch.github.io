@@ -154,3 +154,24 @@ Le temps d'exécution de $$O(n m^2)$$ s'obtient en constatant que chaque chemin 
 Nous conclurons ce chapitre en présentant les Théorèmes de Menger. Chacun de ces théorèmes établit pour tous sommets $$s \neq t$$ l'égalité de deux entiers 
 * le plus petit nombre d'objet qu'il faut retirer pour déconnecter $$s$$ de $$t$$
 * le plus grand nombre de chemins objet disjoint connectant $$s$$ à $$t$$ 
+Fait remarquable, cette propriété concerne des graphes orientés ou non et des
+"séparateurs" formés de sommets, d'arcs ou d'arêtes.
+
+Un ensemble $$S$$ d'arc (resp. d'arêtes, de sommets) d'un graphe séparer un
+sommet $$s$$ d'un sommet $$t$$ si il ne contient ni $$s$$ ni $$t$$ et si tout
+chemin $$G$$ allant de $$s$$ à $$t$$ contient un élément de $$S$$. Un tel
+ensemble est dit séparateur. 
+
+Cette définition en appelle d'autres, qui permettent de quantifier le nombre de
+sommets, d'arcs ou d'arêtes nécessaires à déconnecter le graphe, c'est à dire à
+séparer deux sommets. 
+
+Soit $$k$$ un entier. Un graphe $$G$$ est : 
+* $$k$$ arc connexe si tout ensemble d'arcs séparateur est de cardinalité
+  supérieur à $$k$$
+* $$k$$ arête connexe si tout ensemble d'arêtes séparateur est de cardinalité
+  supérieur à $$k$$
+* $$k$$ connexe si tout ensemble de sommets séparateur est de cardinalité
+  supérieur à $$k$$
+  
+  
