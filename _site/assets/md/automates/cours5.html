@@ -149,10 +149,46 @@ de la façon suivante</p>
 \stackrel{\epsilon}{\rightarrow} q\} des états</script>q<script type="math/tex">pour lesquels il existe
 une séquence (éventuellement vide) de transitions</script>\epsilon<script type="math/tex">d'un état
 initial à</script>q$$</li>
-  <li>Puis <script type="math/tex">A</script> lit le premier symbole <script type="math/tex">\omega_1</script> et atteint l’ensemble $$X_1 =
-{q’ \in Q | \exists q \in X_0 , q \stackrel{\omega_1, \epsilon}{\rightarrow}
-q’}</li>
+  <li>Puis <script type="math/tex">A</script> lit le premier symbole <script type="math/tex">\omega_1</script> et atteint l’ensemble <script type="math/tex">X_1 =
+\{q' \in Q | \exists q \in X_0 , q \stackrel{\omega_1, \epsilon}{\rightarrow}
+q'\}</script> des états <script type="math/tex">q'</script> pour lesquels il existe une séquence de transition issue d’un état <script type="math/tex">q \in X_0</script>, débutant par <script type="math/tex">w_1</script> et suivie d’une séquence (éventullement vide) de transistions <script type="math/tex">\epsilon</script>
+    <ol>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Puis <script type="math/tex">$A</script> lit le second symbole <script type="math/tex">w_2</script> et atteint l’ensemble d’états $$X_2 = { q’ \in Q</td>
+              <td>\exists q \in X_1, q \stackrel{w_2, \epsilon} q’}$$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>et ainsi de suite</li>
+    </ol>
+  </li>
 </ol>
+
+<p>Nous pouvons in fine éliminer les <script type="math/tex">\epsilon</script> pour obtenir la séquence de transitions qui suit</p>
+
+<script type="math/tex; mode=display">\{q_0,q_1,q_3\} \stackrel{a}{\rightarrow} \{q_1,q_2,q_3\} \stackrel{a}{\rightarrow}\{q_1,q_2,q_3\} \stackrel{b}{\rightarrow}\{q_1,q_3,q_4\} \stackrel{b}{\rightarrow} \{q_3,q_4\}</script>
+
+<p>Nous présentons maintenant, une construction de déterminisation des automates finis non déterministe qui généralise le principe exposé ci-dessus. Celle-ci requiert donc deux phases</p>
+<ol>
+  <li>L’élimination des transitions instantanées</li>
+  <li>Et l’élimination des choix non déterministes</li>
+</ol>
+
+<h3 id="clôture-instantanée">Clôture instantanée</h3>
+
+<p>Reprenons la séquence des transitions de l’équation. La première transition <script type="math/tex">\{q_0\} \stackrel{\epsilon}{\rightarrow} \{q_0,q_1,q_3\}</script> définit l’ensemble des états accessibles depuis <script type="math/tex">\{q_0\}</script>.</p>
+
+<p>Soit un automate fini <script type="math/tex">A=(Q,\Sigma,\delta,I,F)</script> et <script type="math/tex">q</script> un état de <script type="math/tex">A</script>. La <code class="language-plaintext highlighter-rouge">cloture instantanée</code> de <script type="math/tex">q</script> notée <script type="math/tex">cl_{\epsilon}(q)</script> est l’ensemble des états de <script type="math/tex">A</script> accessibles depuis <script type="math/tex">q</script> par une séquence (éventuellement vide) de transitions instantanées</p>
+
+<script type="math/tex; mode=display">cl_\epsilon(q)=\{q' \in Q | q \stackrel{\epsilon}{\rightarrow} q'\}</script>
+
+<p>La cloture instantanée se généralise à un ensemble d’états <script type="math/tex">X \subseteq Q</script></p>
+
+<script type="math/tex; mode=display">cl_\epsilon(X)= \bigcup \limits_{q \in X} cl_\epsilon(q)</script>
 </div>
 	</article>
 </div><!-- Footer -->

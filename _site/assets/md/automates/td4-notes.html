@@ -6,12 +6,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 -->
 <html><head><!-- Robots -->
-  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/automates/td4-notes.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-robot fa-2x&quot;&gt;&lt;/i&gt; Automates finis et application - TD3 | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/automates/td4-notes.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-robot fa-2x&quot;&gt;&lt;/i&gt; Automates finis et application - TD4 | Informatique - ENSEIRB-Matmeca</title>
   <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
   <meta name="author" content="Delpeuch Sébastien" />
   
   <!-- Open Graph -->
-  <meta property="og:title" content="&lt;i class=&quot;fas fa-robot fa-2x&quot;&gt;&lt;/i&gt; Automates finis et application - TD3 | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-robot fa-2x&quot;&gt;&lt;/i&gt; Automates finis et application - TD4 | Informatique - ENSEIRB-Matmeca" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
   <meta property="og:url" content="http://localhost:4000/assets/md/automates/td4-notes.html" />
@@ -63,21 +63,239 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 	<article class="shade-two">
 	  <div class="container">
 			<header>
-				<h2><i class="fas fa-robot fa-2x"></i> Automates finis et application - TD3</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+				<h2><i class="fas fa-robot fa-2x"></i> Automates finis et application - TD4</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <h2 id="exercice-1">Exercice 1</h2>
 
-<h2 id="exercice-2">Exercice 2</h2>
-<p>L’intuition naïve qu’on pourrait avoir serait “d’inverser” les résultats de chaque règle. Cependant, cette méthode génère en fait le miroir du langage de la grammaire de départ. A partir d’une grammaire linéaire droite <script type="math/tex">G</script>, on peut obtenir un automate fini <script type="math/tex">A</script> qui accepte le langage de la grammaire. Ensuite, on calcucule l’automate <script type="math/tex">A'</script> qui accepte le langage miroir, ce qui permet d’obtenir une grammaire linéaire droite <script type="math/tex">G'</script>. Enfin, on inverse “naïvement” <script type="math/tex">G'</script> et on obteint une grammaire linéaire gauche <script type="math/tex">G''</script> de même langage que <script type="math/tex">G</script> (on peut bien sûr effectuer l’opération inverse). On peut aussi convertir en automate fini puis inverser les états initiaux et finaux du résultat, ainsi que toutes les transitions.</p>
+<p>Lemme d’Arden : <script type="math/tex">A^\ast.B</script> est une solution de <script type="math/tex">X = A.X U B</script> (et si A ne
+contient pas eps, cette solution est unique)</p>
 
-<p>Petite parenthèse sur un arbre de dérivation pour une grammaire régulière</p>
+<ul>
+  <li>En pratique, il faut choisir la variable qui sera éliminée en premier. Ici, on
+  va remplacer <script type="math/tex">X_2</script> par sa valeur dans <script type="math/tex">X_1</script> (on se permet de confondre
+  les singletons avec l’élement par concision) : <script type="math/tex">X1 = b.X_1 U (b.A.X_0 U
+  \{a, b\}.X_1) U \epsilon</script> <script type="math/tex">X1 = \{b, ba, bb\}.X_1 U ba.X_0 U \epsilon</script></li>
+</ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>S -&gt; aS | bT
-T -&gt; aT | bS | eps
+<p>D’après le Lemme d’Arden, on a : <script type="math/tex">X_1 = \{b, ba, bb\}^\ast . (ba.X_0 U
+    \epsilon)</script></p>
+
+<p>On remplace dans X0 : <script type="math/tex">X_0 = (a U b.\{b, ba, bb\}^\ast .ba).X_0 U b.\{b, ba,
+    bb\}^\ast U \epsilon</script></p>
+
+<p>Encore une fois, avec le lemme : <script type="math/tex">X0 = (a U b.\{b, ba, bb\}^\ast.ba)^\ast .
+    (b.{b, ba, bb}* U \epsilon)</script></p>
+
+<p>Et on termine en remplaçant <script type="math/tex">X_0</script> et <script type="math/tex">X_1</script> dans <script type="math/tex">X_2</script>.</p>
+
+<ul>
+  <li>On veut montrer que <script type="math/tex">\Sigma^\ast</script> est toujours solution si <script type="math/tex">A</script> contient le
+mot vide.</li>
+</ul>
+
+<p>Si A contient eps, alors <script type="math/tex">A.Σ* = Σ*</script> de plus, <script type="math/tex">B</script> est inclus dans <script type="math/tex">Σ*</script>
+donc <script type="math/tex">A.Σ* U B = Σ*</script></p>
+
+<p>donc <script type="math/tex">Σ*</script> est bien solution de l’équation <script type="math/tex">X = A.X U B</script></p>
+
+<ul>
+  <li>
+    <p>Pour prouver le lemme, il faut montrer que A*.B est bien une solution puis
+l’unicité (ce qu’on va faire en montrant qu’elle est la plus petit et la plus
+grande)</p>
+  </li>
+  <li>
+    <p>Montrons d’abord que <script type="math/tex">A*.B</script> est une solution de <script type="math/tex">X = A.X U B</script></p>
+  </li>
+</ul>
+
+<p><script type="math/tex">A*.B = (eps U A.A*).B = B U A.A*.B</script>
+or le produit de langages est associatif, donc
+<script type="math/tex">A*.B = A(A*.B U B)</script></p>
+
+<ul>
+  <li>Dans la cas où <script type="math/tex">A</script> ne contient pas le mot vide Soit <script type="math/tex">S</script> une solution, et
+<script type="math/tex">w</script> un mot de <script type="math/tex">S</script> Supposons que <script type="math/tex">w</script> est le plus court possible tel que
+<script type="math/tex">w</script> n’est pas dans <script type="math/tex">A*.B</script> <script type="math/tex">w</script> est dans <script type="math/tex">S = A.S U B</script> donc <script type="math/tex">w</script> est soit :
+    <ul>
+      <li>dans <script type="math/tex">B</script> (impossible)</li>
+      <li>soit dans <script type="math/tex">AS</script></li>
+    </ul>
+  </li>
+</ul>
+
+<p>donc <script type="math/tex">w = u.v</script> avec <script type="math/tex">u</script> dans <script type="math/tex">A</script> et <script type="math/tex">v</script> dans <script type="math/tex">S v</script> est aussi dans <script type="math/tex">A*.B</script> (car <script type="math/tex">% <![CDATA[
+|v| < |w| %]]></script>)
+donc <script type="math/tex">w</script> est dans <script type="math/tex">A.A*.B</script>, donc dans <script type="math/tex">A*.B</script></p>
+
+<p>Supposons maintenant que <script type="math/tex">S</script> est une solution et <script type="math/tex">w</script> dans <script type="math/tex">A*.B</script> qui n’est pas dans <script type="math/tex">S</script>, de longueur minimale</p>
+
+<p>On a toujours que <script type="math/tex">A*.B = A.A*B U B</script> donc <script type="math/tex">w</script> appartient à l’un des deux
+ensembles Or <script type="math/tex">B</script> est inclus dans <script type="math/tex">S</script>, donc <script type="math/tex">w</script> est dans <script type="math/tex">A.A*.B</script> Ainsi,
+<script type="math/tex">w = x.y.z</script> avec <script type="math/tex">x</script> non-vide, <script type="math/tex">y</script> dans <script type="math/tex">A*</script> et <script type="math/tex">z</script> dans <script type="math/tex">B</script></p>
+
+<p><script type="math/tex">yz</script> est dans <script type="math/tex">A*.B</script>, donc dans <script type="math/tex">S</script>
+or <script type="math/tex">S = AS U B</script>, donc <script type="math/tex">x.yz</script> est dans <script type="math/tex">S</script>      -&gt; contradiction</p>
+
+<ul>
+  <li>On construit l’automate en créant un état par variable + un état final et on crée les transitions pour chaque règle (cf. cours)</li>
+</ul>
+
+<h2 id="exercice-2-">Exercice 2 :</h2>
+
+<p>L’intuition naïve qu’on pourrait avoir serait “d’inverser” les résultats de
+chaque règle. Cependant, cette méthode génère en fait le miroir du langage de la
+grammaire de départ.</p>
+
+<p>À partir d’une grammaire linéaire droite G, on peut obtenir un automate fini A
+qui accepte le langage de la grammaire. Ensuite, on calcule l’automate A’ qui
+accepte le langage miroir, ce qui permet d’obtenir une grammaire linéaire droite
+G’. Enfin, on inverse “naïvement” G’ et on obtient une grammaire linéaire gauche
+G’’ de même langage que G. (on peut bien sûr effectuer l’opération inverse)</p>
+
+<p>On peut aussi convertir en automate fini puis inverser les états initiaux et
+finaux du résultat, ainsi que toutes les transitions. FH: cette transformation
+correspond au calcul de l’automate miroir dans la solution ci-dessus. C’est une
+étape de la construction, mais elle ne répond pas totalement à la question</p>
+
+<h3 id="parenthèse-sur-un-arbre-de-dérivation-pour-une-grammaire-régulière">Parenthèse sur un arbre de dérivation pour une grammaire régulière</h3>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align} S &\rightarrow aS | bT \\
+T &\rightarrow aT | bS | \epsilon \end{align} %]]></script>
+
+<p>pour une génération <script type="math/tex">S \Rightarrow aS \Rightarrow abT \Rightarrow ab</script></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     S
+    / \
+   a   S
+      / \
+      b  T
+         |
+        eps
 </code></pre></div></div>
 
-<p>Pour une génération $$S \Rightarrow aS \Rightarrow abT \Rightarrow a</p>
+<script type="math/tex; mode=display">S \rightarrow S + S | x</script>
+
+<p>On peut avoir deux suites de dérivations différentes, mais le même arbre</p>
+<ol>
+  <li>
+    <script type="math/tex; mode=display">S \Rightarrow S + S \Rightarrow x + S \Rightarrow x + x</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">S \Rightarrow S + S \Rightarrow S + x \Rightarrow x + x</script>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       S
+    /  |  \
+   S   +   S
+   |       |
+   x       x
+</code></pre></div></div>
+
+<p><script type="math/tex">S \Rightarrow S+S \Rightarrow S+S+S \Rightarrow</script>
+Dans ce cas, on peut choisir de remplacer le premier ou le deuxième <script type="math/tex">S</script> par <script type="math/tex">S + S</script></p>
+
+<p>En remplaçant le deuxième, on trouve l’arbre suivant :</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       S
+    /  |  \
+   S   +   S
+   |     / | \
+   x     S +  S
+         |    |
+         x    x
+</code></pre></div></div>
+
+<h2 id="exercice-3">Exercice 3</h2>
+
+<p>On est en présence d’une grammaire non-linéaire (à cause de la première règle qui mène à A1B avec deux symboles non-terminaux)</p>
+
+<ol>
+  <li>
+    <script type="math/tex; mode=display">S \rightarrow A1B
+A1B \rightarrow 0A1B | 1B
+B \rightarrow 0B | 1B | eps</script>
+  </li>
+</ol>
+
+<script type="math/tex; mode=display">S \rightarrow A'
+A' \rightarrow 0A' | 1B
+B \rightarrow 0B | 1B | eps</script>
+
+<p>Finalement en supprimant la variable inutile
+<script type="math/tex">S \rightarrow 0S | 1B \\
+B \rightarrow 0B | 1B | eps</script></p>
+
+<p>Il faut garder à l’esprit que les grammaire hors-contexte ne sont pas toutes équivalentes à des grammaires linéaires.</p>
+
+<h2 id="exercice-4">Exercice 4</h2>
+<p>Conversion de langages en grammaires</p>
+
+<ol>
+  <li>
+    <script type="math/tex; mode=display">\{a^n.b^n\} : S \rightarrow aSb | eps</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">% <![CDATA[
+\{a^n.b^m, m <= n\} : S \rightarrow aS | aSb| eps %]]></script>
+  </li>
+</ol>
+
+<p>D’ailleurs, cette grammaire est ambigüe</p>
+
+<p><script type="math/tex">S \Rightarrow aS \Rightarrow aaSb \Rightarrow aab</script>
+mais aussi <script type="math/tex">S \Rightarrow aSb \Rightarrow aaSb \Rightarrow aab</script>
+qui ont deux arbres différents donc on a deux façon différentes de construire <script type="math/tex">aab</script></p>
+
+<ol>
+  <li>
+    <p><script type="math/tex">{w.w^R} : S \rightarrow aSa | bSb | eps</script>
+qui n’est pas ambigüe</p>
+  </li>
+  <li>
+    <p>Les mots de Dyck : <script type="math/tex">S \rightarrow SS | (S) | [S] | {S} | \epsilon</script>
+qui est ambigüe</p>
+  </li>
+  <li>
+    <p>variante avec les parenthèses dans l’ordre :
+<script type="math/tex">1: {}, 2: (), 3: []</script></p>
+  </li>
+</ol>
+
+<script type="math/tex; mode=display">S \rightarrow SS | {T} | \epsilon \\
+T \rightarrow TT | (U) | \epsilon \\
+U \rightarrow UU | [] | \epsilon</script>
+
+<h2 id="exercice-5">Exercice 5</h2>
+
+<script type="math/tex; mode=display">S \rightarrow S + S | S * S \\
+S \rightarrow 0 | 1</script>
+
+<ol>
+  <li>
+    <p>Cette grammaire est hors-contexte</p>
+  </li>
+  <li>
+    <p>On exhibe deux arbres différents qui génèrent le même mot
+cf. la Parenthèse au début de ces notes</p>
+  </li>
+</ol>
+
+<p>Problème : difficulté pour évaluer l’expression (arithmétique) car on ne sait pas quel arbre choisir</p>
+
+<ol>
+  <li>
+    <p>On peut se baser sur l’expression régulière <script type="math/tex">({0,1}{+,x})*{0,1}</script>, 
+on trouve <script type="math/tex">S \rightarrow 0+S | 1+S | 0*S | 1*S | 0 | 1</script></p>
+  </li>
+  <li>
+    <p>on ajoute la règle <script type="math/tex">S \rightarrow (S)</script>
+Il n’y a pas de grammaire régulière qui décrit ce nouveau langage, car ce n’est pas un langage régulier</p>
+  </li>
+</ol>
+
 </div>
 	</article>
 </div><!-- Footer -->

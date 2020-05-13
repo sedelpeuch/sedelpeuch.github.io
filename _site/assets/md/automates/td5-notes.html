@@ -1,0 +1,410 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/automates/td5-notes.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-robot fa-2x&quot;&gt;&lt;/i&gt; Automates finis et application - TD5 | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-robot fa-2x&quot;&gt;&lt;/i&gt; Automates finis et application - TD5 | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/automates/td5-notes.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-robot fa-2x"></i> Automates finis et application - TD5</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h2 id="1-automates-finis-non-déterministes">1. Automates finis non-déterministes</h2>
+
+<h3 id="exercice-1--mots-acceptés">Exercice 1 : Mots acceptés</h3>
+<p>Indiquez si les mots suivants sont acceptés par les automates <script type="math/tex">A_1</script> et <script type="math/tex">A_2</script> en figure <script type="math/tex">1</script> (cf. feuille de TD).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mots</th>
+      <th><script type="math/tex">A_1</script></th>
+      <th><script type="math/tex">A_2</script></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1. <script type="math/tex">a</script></td>
+      <td>:smile:</td>
+      <td>Oui</td>
+    </tr>
+    <tr>
+      <td>2. <script type="math/tex">aba</script></td>
+      <td>Oui</td>
+      <td>Oui</td>
+    </tr>
+    <tr>
+      <td>3. <script type="math/tex">baba</script></td>
+      <td>Oui</td>
+      <td>Oui</td>
+    </tr>
+    <tr>
+      <td>4. <script type="math/tex">baabab</script></td>
+      <td>Oui</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>5. <script type="math/tex">bbbaabba</script></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="exercice-2--simulation">Exercice 2 : Simulation</h3>
+<p>Donner un algorithme permettant de décider si <script type="math/tex">w \in \Sigma^*</script> est accepté par un AFN <script type="math/tex">A</script>.</p>
+
+<p>On pourrait faire un algorithme qui examine toutes les exécutions possibles, mais on risque de trouver un arbre de taille exponentielle, donc c’est une idée peu efficace.
+Au lieu d’explorer cet arbre, on stocke seulement à chaque “étage” les états différents. Ainsi, il suffit de se souvenir à chaque étape des états accessibles. Si la dernière étape contient un état acceptant, c’est que le mot <script type="math/tex">w</script> est accepté par l’automate.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fonction appartient(A = (Q, Σ, d, I, F), w=w1...wk) : booléen
+
+    X[0] = I
+    
+    pour i de 1 à k
+        X[i] = {}
+        
+        pour tout p dans X[i-1]
+            pour toute transition p -- wi --&gt; q
+                insérer q dans X[i]
+                
+        pour tout p dans X[k]:
+            si p est un état acceptant
+                retourner Vrai
+                
+    retourner Faux
+</code></pre></div></div>
+
+<p>On peut étudier la complexité de cet algorithme : on suppose que l’insertion de <code class="language-plaintext highlighter-rouge">q</code> dans <code class="language-plaintext highlighter-rouge">X[i]</code> est constante. Dans le pire des cas, 
+<script type="math/tex">\mathcal{O}(|w| * n^2)</script> avec <script type="math/tex">n</script> le nombre de transitions dans l’automate.</p>
+
+<p>NB : Cet algo n’est pas valide s’il y a des transitions <script type="math/tex">\varepsilon</script>, il faut dans ce cas faire des clôtures instantanées pour déterminer les successeurs correctement.
+Ce qui amènerait à une complexité… ?</p>
+
+<h2 id="2-algorithme-de-déterminisation">2. Algorithme de déterminisation</h2>
+
+<p>Nous avons vu que pour simuler un automate non-déterministe, il suffit de calculer l’ensemble des états atteints après avoir lu un préfixe du mot d’entrée, et de maintenir cet ensemble à jour à chaque lecture d’une lettre.
+Le tableau de la figure <script type="math/tex">2</script> généralise ce calcul en prenant en compte non pas la lettre lue, mais toutes les lettres possibles de <script type="math/tex">\Sigma</script>. On commence naturellement par l’ensemble <script type="math/tex">\{q_0\}</script> (colonne <script type="math/tex">E</script>), et l’on calcule les ensembles d’états atteints par une transition <script type="math/tex">a</script> et <script type="math/tex">b</script> (colonnes <script type="math/tex">l</script> et <script type="math/tex">F</script>). Lorsqu’un ensemble d’états apparaît dans <script type="math/tex">F</script> mais pas dans <script type="math/tex">E</script>, il y est recopié, et le même calcul est effectué sur cet ensemble (cas de <script type="math/tex">\{q_0, q_1\}</script> ici).</p>
+
+<h3 id="exercice-3--power-set-construction">Exercice 3 : Power-set construction</h3>
+<p>Complétez le tableau pour l’AFN <script type="math/tex">A_1</script> de la figure <script type="math/tex">1</script> (cf feuille TD).
+<em>Nota bene</em> : il y a exactement le bon nombre de lignes.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><script type="math/tex">E</script></th>
+      <th><script type="math/tex">l</script></th>
+      <th><script type="math/tex">F</script></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><script type="math/tex">\{q_0\}</script></td>
+      <td><script type="math/tex">a</script></td>
+      <td><script type="math/tex">\{q_0, q_1\}</script></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><script type="math/tex">b</script></td>
+      <td><script type="math/tex">\{q_0\}</script></td>
+    </tr>
+    <tr>
+      <td><script type="math/tex">\{q_0, q_1\}</script></td>
+      <td><script type="math/tex">a</script></td>
+      <td><script type="math/tex">\{q_0, q_1\}</script></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><script type="math/tex">b</script></td>
+      <td><script type="math/tex">\{q_0, q_2\}</script></td>
+    </tr>
+    <tr>
+      <td><script type="math/tex">\{q_0, q_2\}</script></td>
+      <td><script type="math/tex">a</script></td>
+      <td><script type="math/tex">\{q_0, q_1, q_3\}</script></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><script type="math/tex">b</script></td>
+      <td><script type="math/tex">\{q_0\}</script></td>
+    </tr>
+    <tr>
+      <td><script type="math/tex">\{q_0, q_1, q_3\}</script></td>
+      <td><script type="math/tex">a</script></td>
+      <td><script type="math/tex">\{q_0, q_1, q_3\}</script></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><script type="math/tex">b</script></td>
+      <td><script type="math/tex">\{q_0, q_2, q_3\}</script></td>
+    </tr>
+    <tr>
+      <td><script type="math/tex">\{q_0, q_1, q_3\}</script></td>
+      <td><script type="math/tex">a</script></td>
+      <td><script type="math/tex">\{q_0, q_1, q_3\}</script></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><script type="math/tex">b</script></td>
+      <td><script type="math/tex">\{q_0, q_3\}</script></td>
+    </tr>
+    <tr>
+      <td><script type="math/tex">\{q_0, q_3\}</script></td>
+      <td><script type="math/tex">a</script></td>
+      <td><script type="math/tex">\{q_0, q_1, q_3\}</script></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><script type="math/tex">b</script></td>
+      <td><script type="math/tex">\{q_0, q_3\}</script></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="exercice-4--propriétés-de-la-construction">Exercice 4 : Propriétés de la construction</h3>
+<p>Dessinez l’automate dons les états sont les ensembles représentés en colonne <script type="math/tex">E</script> du tableau de la figure <script type="math/tex">2</script> (cf. Tableau ci-dessus), et donc les transitions sont données par les lignes de ce tableau.</p>
+
+<ol>
+  <li>D’après la construction de <script type="math/tex">eqdet(A)</script> vue en cours, quel est l’état initial de l’automate et quels sont ses états accepteurs ?</li>
+</ol>
+
+<p>La cloture <script type="math/tex">\varepsilon</script> de l’ensemble des états initiaux.
+Les états accepteurs sont les états de <script type="math/tex">E</script> qui contiennent un état accepteur de l’automate de départ.</p>
+
+<ol>
+  <li>Quelle(s) propriété(s) remarquable(s) cet automate possède-t-il ?</li>
+</ol>
+
+<p>Il est <strong>déterministe</strong> et <strong>complet</strong>.</p>
+
+<h3 id="exercice-5--application-de-lalgorithme">Exercice 5 : Application de l’algorithme</h3>
+
+<p>A l’aide de l’algorithme vu en cours, calculez les automates déterministes correspondant à l’automate <script type="math/tex">A_2</script> de la figure <script type="math/tex">1</script> (cf. feuille de TD), ainsi qu’aux automates suivants.</p>
+
+<p><em>Hint :</em> JFLAP le fait très bien pour vérifier vos résultats, <code class="language-plaintext highlighter-rouge">Convert &gt; Convert to DFA</code>.</p>
+
+<h2 id="3-algorithmes-sur-les-automates-non-déterministes">3. Algorithmes sur les automates non-déterministes</h2>
+
+<h3 id="exercice-6--langage-vide">Exercice 6 : Langage vide</h3>
+<p>Donner un algorithme permettant de décider si le langage accepté par un automate fini
+déterministe <script type="math/tex">A</script> est vide ou non. Cet algorithme est-il correct pour les automate non-déterministes ?
+Quelle est sa complexité ?</p>
+
+<h3 id="exercice-7--langage-universel">Exercice 7 : Langage universel</h3>
+<p>Le langage d’automate A est universel s’il contient tous les mots, c’est à dire <script type="math/tex">\mathcal{L}(A) = \Sigma^*</script></p>
+<ol>
+  <li>Donner un algorithme permettant de décider si le langage de <script type="math/tex">A</script> est universel pour un AFD <script type="math/tex">A</script>. Quel est sa complexité ?</li>
+  <li>Expliquer pourquoi l’algorithme précédent n’est pas correct si <script type="math/tex">A</script> est non-déterministe ?
+Donner un algorithme pour les AFN. Quel est sa complexité.</li>
+</ol>
+
+<h3 id="exercice-8--inclusion-des-langages">Exercice 8 : Inclusion des langages</h3>
+<p>Soient <script type="math/tex">A</script> et <script type="math/tex">B</script> deux automates finis. On cherche à décider si <script type="math/tex">\mathcal{L}(A) \subseteq \mathcal{L}(B)</script>.</p>
+<ol>
+  <li>Donner un algorithme dans le cas où <script type="math/tex">B</script> est déterministe et <script type="math/tex">A</script> quelconque. Quelle est sa complexité ?</li>
+  <li>Expliquer pourquoi cet algorithme n’est pas correct dans le cas où <script type="math/tex">B</script> n’est pas déterministe.
+Donner un algorithme dans ce cas. Quelle est sa complexité ?</li>
+</ol>
+
+<h2 id="4-complexité-de-la-déterminisation">4. Complexité de la déterminisation</h2>
+<p>On s’intéresse à la taille de l’automate déterministe équivalent à un automate non-déterministe donné obtenu par la <em>power-set construction</em>. Le nombre d’itérations de la boucle <code class="language-plaintext highlighter-rouge">Tant que</code> de l’algorithme est égal au nombre d’états de l’automate déterministe. Nous cherchons donc à estimer
+ce nombre.</p>
+
+<h3 id="exercice-9--des-automates-non-déterministes-particuliers">Exercice 9 : Des automates non-déterministes particuliers</h3>
+<p>On définit le langage <script type="math/tex">\mathcal{L_i}</script> comme celui des mots <script type="math/tex">\{a, b\}</script> dont la i-ème lettre en partant de la fin est un <script type="math/tex">a</script>. Donnez <script type="math/tex">3</script> automates finis qui acceptent respectivement <script type="math/tex">\mathcal{L_1}</script>, <script type="math/tex">\mathcal{L_2}</script> et <script type="math/tex">\mathcal{L_3}</script>. (indication : le non-déterminisme est une aide précieuse).</p>
+
+<h3 id="exercice-10--taille-de-lautomate-déterministe">Exercice 10 : Taille de l’automate déterministe</h3>
+
+<p>Remplissez le tableau suivant. Pour obtenir les automates déterministes demandés, utilisez <strong>JFLAP</strong> (menu <code class="language-plaintext highlighter-rouge">Convert/Convert to DFA</code>). Vous extrapolerez le cas de <script type="math/tex">\mathcal{L_n}</script>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Langage</th>
+      <th>Nb. états AND</th>
+      <th>Nb. états AFD</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><script type="math/tex">L_1</script></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><script type="math/tex">L_2</script></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><script type="math/tex">L_3</script></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><script type="math/tex">L_n</script> ?</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="exercice-11--expression-régulière-et-taille-de-lafd">Exercice 11 : Expression régulière et taille de l’AFD</h3>
+<p>On considère l’alphabet <script type="math/tex">\Sigma = \{a, b\}</script>.</p>
+<ol>
+  <li>Donner une famille d’AFN pour la famille des langages représentés par les expression régulière <script type="math/tex">\Sigma^*a\Sigma^n</script> pour <script type="math/tex">n \ge 0</script>.</li>
+  <li>A partir de la construction précédente et en utilisant le théorème de <strong>Kleene</strong>, donner une famille d’AFN <script type="math/tex">A_n</script> pour les expressions régulières <script type="math/tex">E_n</script> définie par <script type="math/tex">E_n = \Sigma^*a\Sigma^n + \Sigma^*b\Sigma^n</script>. Quelle est la taille de <script type="math/tex">A_n</script> et de <script type="math/tex">eqdet(A_n)</script> pour <script type="math/tex">n</script> valant 1, 2 et 3 ? Extrapolez pour le cas général.</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th><script type="math/tex">n</script></th>
+      <th>Nb. états <script type="math/tex">A_n</script></th>
+      <th>Nb. états <script type="math/tex">eqdet(A_n)</script></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>cas général</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ol>
+  <li>On considère maintenant la famille d’expressions régulières <script type="math/tex">F_n</script> définie par <script type="math/tex">F_n = \Sigma^*\Sigma^{n+1}</script>.
+Donner une famille d’AFN <script type="math/tex">B_n</script> qui acceptent le langage des <script type="math/tex">F_n</script>. Quelle est la taille de <script type="math/tex">B_n</script> ? Quelle est la taille de <script type="math/tex">eqdet(B_n)</script> pour <script type="math/tex">n</script> valant 1, 2 et 3 ? Extrapolez le cas général.</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th><script type="math/tex">n</script></th>
+      <th>Nb. états <script type="math/tex">B_n</script></th>
+      <th>Nb. états <script type="math/tex">eqdet(B_n)</script></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>cas général</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ol>
+  <li>Comparer les langages de <script type="math/tex">E_n</script> et <script type="math/tex">F_n</script> ainsi que les tailles de <script type="math/tex">eqdet(A_n)</script> et <script type="math/tex">eqdet(B_n)</script>.</li>
+</ol>
+
+<h3 id="exercice-12--complexité-au-pire-de-la-déterminisation">Exercice 12 : Complexité au pire de la déterminisation</h3>
+
+<p>Si <script type="math/tex">A</script> est un AFD à <script type="math/tex">n</script> états, quel est au pire cas le nombre d’états de
+l’automate déterministe équivalent obtenu par la <em>power-set construction</em> ? En supposant que l’on dispose d’un programme ne nécessitant qu’une milliseconde pour calculer un état, calculez le temps nécessaire pour rendre déterministe des automates à 5, 10, 50 et 100 états.</p>
+
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

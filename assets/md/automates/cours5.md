@@ -91,4 +91,27 @@ $$\omega=\omega_1 ... \omega_n$$ peut donc être vue comme suit.
    initial à $$q$$
 2. Puis $$A$$ lit le premier symbole $$\omega_1$$ et atteint l'ensemble $$X_1 =
    \{q' \in Q | \exists q \in X_0 , q \stackrel{\omega_1, \epsilon}{\rightarrow}
-   q'\}
+   q'\}$$ des états $$q'$$ pour lesquels il existe une séquence de transition issue d'un état $$q \in X_0$$, débutant par $$w_1$$ et suivie d'une séquence (éventullement vide) de transistions $$\epsilon$$
+   3. Puis $$$A$$ lit le second symbole $$w_2$$ et atteint l'ensemble d'états $$X_2 = \{ q' \in Q | \exists q \in X_1, q \stackrel{w_2, \epsilon} q'\}$$ 
+   4. et ainsi de suite 
+   
+Nous pouvons in fine éliminer les $$\epsilon$$ pour obtenir la séquence de transitions qui suit 
+
+$$ \{q_0,q_1,q_3\} \stackrel{a}{\rightarrow} \{q_1,q_2,q_3\} \stackrel{a}{\rightarrow}\{q_1,q_2,q_3\} \stackrel{b}{\rightarrow}\{q_1,q_3,q_4\} \stackrel{b}{\rightarrow} \{q_3,q_4\}$$
+
+
+Nous présentons maintenant, une construction de déterminisation des automates finis non déterministe qui généralise le principe exposé ci-dessus. Celle-ci requiert donc deux phases
+1. L'élimination des transitions instantanées 
+2. Et l'élimination des choix non déterministes
+
+### Clôture instantanée
+
+Reprenons la séquence des transitions de l'équation. La première transition $$\{q_0\} \stackrel{\epsilon}{\rightarrow} \{q_0,q_1,q_3\}$$ définit l'ensemble des états accessibles depuis $$\{q_0\}$$. 
+
+Soit un automate fini $$A=(Q,\Sigma,\delta,I,F)$$ et $$q$$ un état de $$A$$. La `cloture instantanée` de $$q$$ notée $$cl_{\epsilon}(q)$$ est l'ensemble des états de $$A$$ accessibles depuis $$q$$ par une séquence (éventuellement vide) de transitions instantanées 
+
+$$cl_\epsilon(q)=\{q' \in Q | q \stackrel{\epsilon}{\rightarrow} q'\}$$
+
+La cloture instantanée se généralise à un ensemble d'états $$X \subseteq Q$$ 
+
+$$cl_\epsilon(X)= \bigcup \limits_{q \in X} cl_\epsilon(q)$$
