@@ -6,33 +6,6 @@ order: 2
 icon: fa-check
 ---
 
-<ul id="menu-demo2">
-	<li><a href="/Semestre_5.html#algorithmique-et-mathématiques-1">Théorique</a>
-		<ul>
-			<li><a
-	href="/Semestre_5.html#initiation-à-lalgorithmique">Initiation à l'algorithmique</a></li>
-			<li><a href="/Semestre_5.html#structures-arborescentes">Structure Arborescentes</a></li>
-			<li><a href="/Semestre_5.html#traitement-de-linformation">Traitement
-	de l'information</a></li>
-			<li><a
-	href="/Semestre_5.html#probabilités-et-statistiques">Probabilités et statistiques</a></li>
-            <li><a href="/Semestre_5.html#logique-et-preuve">Logique et preuve</a></li>
-		</ul>
-	</li>
-	<li><a href="/Semestre_5.html#programmation-et-environnement-1">Pratique</a>
-		<ul>
-			<li><a
-	href="/Semestre_5.html#environnement-de-travail">Environnement de travail</a></li>
-			<li><a href="/Semestre_5.html#structure-des-ordinateurs">Structure
-	des ordinateurs</a></li>
-			<li><a
-	href="/Semestre_5.html#programmation-impérative-1">Programmation impérative</a></li>
-		</ul>
-	</li>
-	<li><a href="/Semestre_5.html#projets">Projets</a>
-	</li>
-</ul>
-
 ## <i class="fas fa-calculator"></i> Algorithmique et mathématiques 1
 
 ### Initiation à l'algorithmique

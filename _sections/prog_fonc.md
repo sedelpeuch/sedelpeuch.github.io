@@ -33,11 +33,12 @@ Le support de [cours]
 [TD 6]:https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td6.pdf
 [TD 7]:https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td7.pdf
 [TD 8]:https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td8.pdf
-[corrigé 1]:/assets/txt/1
-[corrigé 2]:/assets/txt/2
-[corrigé 3]:/assets/txt/3
-[corrigé 4]:/assets/txt/4
-[corrigé 5]:/assets/txt/5
-[corrigé 6]:/assets/txt/6
-[corrigé 7]:/assets/txt/7
-[corrigé 8]:/assets/txt/8
+
+[corrigé 1]:/assets/txt/1.rkt
+[corrigé 2]:/assets/txt/2.rkt
+[corrigé 3]:/assets/txt/3.rkt
+[corrigé 4]:/assets/txt/4.rkt
+[corrigé 5]:/assets/txt/5.rkt
+[corrigé 6]:/assets/txt/6.rkt
+[corrigé 7]:/assets/txt/7.rkt
+[corrigé 8]:/assets/txt/8.rkt
