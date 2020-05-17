@@ -45,3 +45,10 @@ Le modèle IP est la glue qui lie l'internet. Plusieurs protocoles d'accès exis
 L'adresse de la couche accès est une adresse physique, elle est fixée par le constructeur, non modifiable. Elle est utilisée seulement sur les réseaux physique (Ethernet), c'est une adresse plate  et elle identifie physiquement un équipement. 
 
 L'adresse IP est l'adresse logique choisie par l'administrateur du réseau. 
+
+### Adressage IPv4
+
+* Adressage : pour l'identification d'un équipement réseau, pour le routage
+* Plant d'adressage homogène : format : 4 octets => 4.3 milliards d'adresses, notation décimale pointée 
+* Adresse globalement unique et hiérarchique 
+* Format : `<réseau><machine>`

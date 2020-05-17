@@ -12,6 +12,18 @@ Initiation à la programmation fonctionnelle (evaluation, environnements, récur
 
 Le support de [cours]
 
+| Thème                                     | Notes    |
+| :---                                      | :---     |
+| Introduction                              | [notes1] |
+| Types et constructions de base du langage | [notes2] |
+| Environnements                            | [notes3] |
+| Récursivité                               | [notes4] |
+| Les listes                                | [notes5] |
+| Système de type                           | [notes6] |
+| Les fonctionnelles                        | [notes7] |
+| Les formes impératives                    | [notes8] |
+| Les macroexpansions                       | [notes9] |
+
 | Thème                        | Sujet  | Correction  |
 | :---                         | :---   | :---        |
 | Expressions, fonctions       | [TD 1] | [corrigé 1] |
@@ -42,3 +54,14 @@ Le support de [cours]
 [corrigé 6]:/assets/txt/6.rkt
 [corrigé 7]:/assets/txt/7.rkt
 [corrigé 8]:/assets/txt/8.rkt
+
+[notes1]:/assets/md/fonc/notes1
+[notes2]:/assets/md/fonc/notes2
+[notes3]:/assets/md/fonc/notes3
+[notes4]:/assets/md/fonc/notes4
+[notes5]:/assets/md/fonc/notes5
+[notes6]:/assets/md/fonc/notes6
+[notes7]:/assets/md/fonc/notes7
+[notes8]:/assets/md/fonc/notes8
+[notes9]:/assets/md/fonc/notes9
+

@@ -66,6 +66,8 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 				<h2><i class="fas fa-robot fa-2x"></i> Automates finis et application - TD5</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
+<p>Merci à Aurélien et Fabien pour la <a href="https://demo.codimd.org/-tD9c40zTo27BX15QCPfyA?both">prise de note</a> durant les séances de questions réponses.</p>
+
 <h2 id="1-automates-finis-non-déterministes">1. Automates finis non-déterministes</h2>
 
 <h3 id="exercice-1--mots-acceptés">Exercice 1 : Mots acceptés</h3>
@@ -82,7 +84,7 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
   <tbody>
     <tr>
       <td>1. <script type="math/tex">a</script></td>
-      <td>:smile:</td>
+      <td>Non</td>
       <td>Oui</td>
     </tr>
     <tr>
@@ -98,12 +100,12 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
     <tr>
       <td>4. <script type="math/tex">baabab</script></td>
       <td>Oui</td>
-      <td> </td>
+      <td>Non</td>
     </tr>
     <tr>
       <td>5. <script type="math/tex">bbbaabba</script></td>
-      <td> </td>
-      <td> </td>
+      <td>Non</td>
+      <td>Oui</td>
     </tr>
   </tbody>
 </table>
@@ -132,8 +134,15 @@ Au lieu d’explorer cet arbre, on stocke seulement à chaque “étage” les �
     retourner Faux
 </code></pre></div></div>
 
-<p>On peut étudier la complexité de cet algorithme : on suppose que l’insertion de <code class="language-plaintext highlighter-rouge">q</code> dans <code class="language-plaintext highlighter-rouge">X[i]</code> est constante. Dans le pire des cas, 
-<script type="math/tex">\mathcal{O}(|w| * n^2)</script> avec <script type="math/tex">n</script> le nombre de transitions dans l’automate.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>On peut étudier la complexité de cet algorithme : on suppose que l’insertion de <code class="language-plaintext highlighter-rouge">q</code> dans <code class="language-plaintext highlighter-rouge">X[i]</code> est constante. Dans le pire des cas, $$\mathcal{O}(</td>
+      <td>w</td>
+      <td>* n^2)<script type="math/tex">avec</script>n$$ le nombre de transitions dans l’automate.</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>NB : Cet algo n’est pas valide s’il y a des transitions <script type="math/tex">\varepsilon</script>, il faut dans ce cas faire des clôtures instantanées pour déterminer les successeurs correctement.
 Ce qui amènerait à une complexité… ?</p>
@@ -245,31 +254,58 @@ Les états accepteurs sont les états de <script type="math/tex">E</script> qui 
 
 <h3 id="exercice-6--langage-vide">Exercice 6 : Langage vide</h3>
 <p>Donner un algorithme permettant de décider si le langage accepté par un automate fini
-déterministe <script type="math/tex">A</script> est vide ou non. Cet algorithme est-il correct pour les automate non-déterministes ?
+déterministe <script type="math/tex">A</script> est vide ou non. Cet algorithme est-il correct pour les automates non-déterministes ?
 Quelle est sa complexité ?</p>
 
+<p>Un mot est accepté ssi <script type="math/tex">\exists</script> une <strong>exécution acceptante</strong>
+ssi <script type="math/tex">\exists</script> un <strong>état acceptant accessible depuis un état initial</strong>.</p>
+
+<p>On fait donc un parcours en profondeur, dont la complexité est linéaire (<script type="math/tex">\mathcal{O}(\text{nb_transitions} + \text{nb_etats})</script>) par rapport au nombre de transitions + le nombre d’états.</p>
+
 <h3 id="exercice-7--langage-universel">Exercice 7 : Langage universel</h3>
-<p>Le langage d’automate A est universel s’il contient tous les mots, c’est à dire <script type="math/tex">\mathcal{L}(A) = \Sigma^*</script></p>
+<p>Le langage d’automate <script type="math/tex">A</script> est universel s’il contient tous les mots, c’est à dire <script type="math/tex">\mathcal{L}(A) = \Sigma^*</script></p>
 <ol>
-  <li>Donner un algorithme permettant de décider si le langage de <script type="math/tex">A</script> est universel pour un AFD <script type="math/tex">A</script>. Quel est sa complexité ?</li>
+  <li>Donner un algorithme permettant de décider si le langage de <script type="math/tex">A</script> est <strong>universel</strong> pour un AFD <script type="math/tex">A</script>. Quel est sa complexité ?</li>
+</ol>
+
+<p><strong>universel</strong> = accepte tous les mots sur l’alphabet correspondant</p>
+
+<p>On teste si <script type="math/tex">\overline{A}</script> est vide (il faut s’assurer du <strong>déterminisme</strong> et de la <strong>complétude</strong> de <script type="math/tex">A</script>)</p>
+
+<ol>
   <li>Expliquer pourquoi l’algorithme précédent n’est pas correct si <script type="math/tex">A</script> est non-déterministe ?
 Donner un algorithme pour les AFN. Quel est sa complexité.</li>
 </ol>
+
+<p>Si <script type="math/tex">A</script> n’est pas déterministe, l’algorithme précédent n’est pas valide car la complémentation n’est pas correcte. Il peut exister un mot accepté à la fois par l’automate et son “prétendu” complémentaire.
+Dans ce cas, il suffit de <strong>déterminiser</strong> l’automate <script type="math/tex">A</script> et ensuite vérifier <script type="math/tex">\overline{\text{eqdet}({A})} = \varnothing</script> (complémentaire est vide).</p>
+
+<p>Il faut cependant noter que l’opération de déterminisation est de complexité exponentielle dans le pire des cas (problème P-SPACE). D’autre part, le calcul du complémentaire est “seulement” polynomial.</p>
 
 <h3 id="exercice-8--inclusion-des-langages">Exercice 8 : Inclusion des langages</h3>
 <p>Soient <script type="math/tex">A</script> et <script type="math/tex">B</script> deux automates finis. On cherche à décider si <script type="math/tex">\mathcal{L}(A) \subseteq \mathcal{L}(B)</script>.</p>
 <ol>
   <li>Donner un algorithme dans le cas où <script type="math/tex">B</script> est déterministe et <script type="math/tex">A</script> quelconque. Quelle est sa complexité ?</li>
+</ol>
+
+<p><script type="math/tex">\mathcal{L}(A)</script> inclus dans <script type="math/tex">\mathcal{L}(B) \Leftrightarrow \mathcal{L}(A) \cap \mathcal{L}(\bar{B})</script> est vide</p>
+
+<ol>
   <li>Expliquer pourquoi cet algorithme n’est pas correct dans le cas où <script type="math/tex">B</script> n’est pas déterministe.
 Donner un algorithme dans ce cas. Quelle est sa complexité ?</li>
 </ol>
 
 <h2 id="4-complexité-de-la-déterminisation">4. Complexité de la déterminisation</h2>
-<p>On s’intéresse à la taille de l’automate déterministe équivalent à un automate non-déterministe donné obtenu par la <em>power-set construction</em>. Le nombre d’itérations de la boucle <code class="language-plaintext highlighter-rouge">Tant que</code> de l’algorithme est égal au nombre d’états de l’automate déterministe. Nous cherchons donc à estimer
-ce nombre.</p>
+<p>On s’intéresse à la taille de l’automate déterministe équivalent à un automate non-déterministe donné obtenu par la <em>power-set construction</em>. Le nombre d’itérations de la boucle <code class="language-plaintext highlighter-rouge">Tant que</code> de l’algorithme est égal au nombre d’états de l’automate déterministe. Nous cherchons donc à estimer ce nombre.</p>
 
 <h3 id="exercice-9--des-automates-non-déterministes-particuliers">Exercice 9 : Des automates non-déterministes particuliers</h3>
 <p>On définit le langage <script type="math/tex">\mathcal{L_i}</script> comme celui des mots <script type="math/tex">\{a, b\}</script> dont la i-ème lettre en partant de la fin est un <script type="math/tex">a</script>. Donnez <script type="math/tex">3</script> automates finis qui acceptent respectivement <script type="math/tex">\mathcal{L_1}</script>, <script type="math/tex">\mathcal{L_2}</script> et <script type="math/tex">\mathcal{L_3}</script>. (indication : le non-déterminisme est une aide précieuse).</p>
+
+<p>On s’appuie sur l’exemple du cours…</p>
+
+<p>L1 : <img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_afc9c38adc5977736dd10cd5030fec7a.png" alt="" /></p>
+
+<p>L2 : <img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_972f0f7d7273939a4ee008a5d95fc096.png" alt="" /></p>
 
 <h3 id="exercice-10--taille-de-lautomate-déterministe">Exercice 10 : Taille de l’automate déterministe</h3>
 
@@ -286,31 +322,38 @@ ce nombre.</p>
   <tbody>
     <tr>
       <td><script type="math/tex">L_1</script></td>
-      <td> </td>
-      <td> </td>
+      <td>2</td>
+      <td>2</td>
     </tr>
     <tr>
       <td><script type="math/tex">L_2</script></td>
-      <td> </td>
-      <td> </td>
+      <td>3</td>
+      <td>4</td>
     </tr>
     <tr>
       <td><script type="math/tex">L_3</script></td>
-      <td> </td>
-      <td> </td>
+      <td>4</td>
+      <td>8</td>
     </tr>
     <tr>
       <td><script type="math/tex">L_n</script> ?</td>
-      <td> </td>
-      <td> </td>
+      <td><script type="math/tex">n+1</script></td>
+      <td><script type="math/tex">2^n</script></td>
     </tr>
   </tbody>
 </table>
 
+<p>Coût de l’opération : <strong>exponentiel</strong></p>
+
 <h3 id="exercice-11--expression-régulière-et-taille-de-lafd">Exercice 11 : Expression régulière et taille de l’AFD</h3>
 <p>On considère l’alphabet <script type="math/tex">\Sigma = \{a, b\}</script>.</p>
 <ol>
-  <li>Donner une famille d’AFN pour la famille des langages représentés par les expression régulière <script type="math/tex">\Sigma^*a\Sigma^n</script> pour <script type="math/tex">n \ge 0</script>.</li>
+  <li>Donner une famille d’AFN pour la famille des langages représentés par les expressions régulières <script type="math/tex">\Sigma^*a\Sigma^n</script> pour <script type="math/tex">n \ge 0</script>.</li>
+</ol>
+
+<p>Comme dans l’exercice précédent mais il y a un décalage d’indice.</p>
+
+<ol>
   <li>A partir de la construction précédente et en utilisant le théorème de <strong>Kleene</strong>, donner une famille d’AFN <script type="math/tex">A_n</script> pour les expressions régulières <script type="math/tex">E_n</script> définie par <script type="math/tex">E_n = \Sigma^*a\Sigma^n + \Sigma^*b\Sigma^n</script>. Quelle est la taille de <script type="math/tex">A_n</script> et de <script type="math/tex">eqdet(A_n)</script> pour <script type="math/tex">n</script> valant 1, 2 et 3 ? Extrapolez pour le cas général.</li>
 </ol>
 
@@ -325,23 +368,23 @@ ce nombre.</p>
   <tbody>
     <tr>
       <td>1</td>
-      <td> </td>
-      <td> </td>
+      <td>8</td>
+      <td>7</td>
     </tr>
     <tr>
       <td>2</td>
-      <td> </td>
-      <td> </td>
+      <td>10</td>
+      <td>15</td>
     </tr>
     <tr>
       <td>3</td>
-      <td> </td>
-      <td> </td>
+      <td>12</td>
+      <td>31</td>
     </tr>
     <tr>
       <td>cas général</td>
-      <td> </td>
-      <td> </td>
+      <td><script type="math/tex">2(n+2) + 2</script></td>
+      <td><script type="math/tex">2^{2+N} - 1</script></td>
     </tr>
   </tbody>
 </table>
@@ -350,6 +393,9 @@ ce nombre.</p>
   <li>On considère maintenant la famille d’expressions régulières <script type="math/tex">F_n</script> définie par <script type="math/tex">F_n = \Sigma^*\Sigma^{n+1}</script>.
 Donner une famille d’AFN <script type="math/tex">B_n</script> qui acceptent le langage des <script type="math/tex">F_n</script>. Quelle est la taille de <script type="math/tex">B_n</script> ? Quelle est la taille de <script type="math/tex">eqdet(B_n)</script> pour <script type="math/tex">n</script> valant 1, 2 et 3 ? Extrapolez le cas général.</li>
 </ol>
+
+<p><script type="math/tex">\mathcal{L}(F_n) = \mathcal{L}(E_n)</script>
+<script type="math/tex">\Sigma^*a\Sigma^n + \Sigma^*b\Sigma^n = \Sigma^*\Sigma^{n+1}</script></p>
 
 <table>
   <thead>
@@ -362,22 +408,22 @@ Donner une famille d’AFN <script type="math/tex">B_n</script> qui acceptent le
   <tbody>
     <tr>
       <td>1</td>
-      <td> </td>
-      <td> </td>
+      <td>3</td>
+      <td>idem</td>
     </tr>
     <tr>
       <td>2</td>
-      <td> </td>
+      <td>4</td>
       <td> </td>
     </tr>
     <tr>
       <td>3</td>
-      <td> </td>
+      <td>5</td>
       <td> </td>
     </tr>
     <tr>
       <td>cas général</td>
-      <td> </td>
+      <td><script type="math/tex">n+2</script></td>
       <td> </td>
     </tr>
   </tbody>
@@ -389,9 +435,23 @@ Donner une famille d’AFN <script type="math/tex">B_n</script> qui acceptent le
 
 <h3 id="exercice-12--complexité-au-pire-de-la-déterminisation">Exercice 12 : Complexité au pire de la déterminisation</h3>
 
-<p>Si <script type="math/tex">A</script> est un AFD à <script type="math/tex">n</script> états, quel est au pire cas le nombre d’états de
-l’automate déterministe équivalent obtenu par la <em>power-set construction</em> ? En supposant que l’on dispose d’un programme ne nécessitant qu’une milliseconde pour calculer un état, calculez le temps nécessaire pour rendre déterministe des automates à 5, 10, 50 et 100 états.</p>
+<p>Si <script type="math/tex">A</script> est un AFD à <script type="math/tex">n</script> états, quel est au pire cas le nombre d’états de l’automate déterministe équivalent obtenu par la <em>power-set construction</em> ? En supposant que l’on dispose d’un programme ne nécessitant qu’une milliseconde pour calculer un état, calculez le temps nécessaire pour rendre déterministe des automates à 5, 10, 50 et 100 états.</p>
 
+<p><strong>Exponentiel</strong></p>
+
+<p><script type="math/tex">2^{10} = 10^3</script> donc 1 seconde
+<script type="math/tex">2^{50} = 10^{15}</script>
+Dans 1 heure <script type="math/tex">3.6 \times 10^6</script> ms
+Dans 3 heure <script type="math/tex">10^7</script> ms
+Dans 1 jour <script type="math/tex">8\times10^7</script> ms
+Dans 1 mois <script type="math/tex">24\times10^8</script> ms
+Dans 1 an <script type="math/tex">275\times10^8</script> ms
+Dans 4 ans <script type="math/tex">10^{11}</script> ms 
+Donc <strong>40 000</strong> ans.</p>
+
+<p><script type="math/tex">2^{100} = 10^{15}\times10^{15}</script>
+Donc plus longtemps que le confinement.
+…</p>
 </div>
 	</article>
 </div><!-- Footer -->
