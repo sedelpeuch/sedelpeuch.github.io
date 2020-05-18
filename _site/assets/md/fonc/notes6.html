@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/fonc/notes6.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-code-branch fa-2x&quot;&gt;&lt;/i&gt; Système de type | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-code-branch fa-2x&quot;&gt;&lt;/i&gt; Système de type | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/fonc/notes6.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-code-branch fa-2x"></i> Système de type</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Cours inspiré du
+<a href="https://www.labri.fr/perso/myriam/Enseignement/Scheme/scheme.pdf">polycopié</a>
+de <a href="https://www.labri.fr/perso/myriam/">Myriam Desainte-Catherine</a> &amp; <a href="https://www.labri.fr/perso/renault/working/index.php">David Renault</a>.</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<p>Classification des valeurs en ensembles appelés <strong>types</strong> de manière à garantir la correction de certains programmes</p>
+
+<p><img src="/assets/images/fonc/types.png" alt="types" class="image about center" /></p>
+
+<h2 id="-styles-de-typage"><i class="fas fa-code-branch"></i> Styles de typage</h2>
+
+<ul>
+  <li>Le typage <strong>dynamique</strong> : déterminé pendant l’exécution par le runtime, il ne nécessite aucune intervention du programmeur</li>
+  <li>Le typage <strong>statique</strong> : fixé avant l’exécution par le compilateur, il est soit inféré automatiquement, soit indiqué par des annotations dans le code</li>
+</ul>
+
+<p>Afin d’annoter une valeur <code class="language-plaintext highlighter-rouge">&lt;val&gt;</code> par un type <code class="language-plaintext highlighter-rouge">&lt;typ&gt;</code>, il suffit d’écrire avant la définition de <code class="language-plaintext highlighter-rouge">&lt;val&gt;</code></p>
+
+<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="err">:</span> <span class="nv">&lt;val&gt;</span> <span class="nv">&lt;typ&gt;</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Les types primitifs contiennent en particulier : <code class="language-plaintext highlighter-rouge">Number Integer Float Char String</code></p>
+
+<p>Le typage possède plusieurs intérêts</p>
+<ul>
+  <li>Détection d’erreurs de type : passer une valeur de type String à une fonction Int -&gt; Int est incohérent</li>
+  <li>Compatibilités de type : passer une valeur de type Integer à une fonction Number -&gt; Number est cohérent car un Integer est aussi un Number</li>
+  <li>Optimisations : le compilateur peut écrire du code dédié à des types particuliers</li>
+</ul>
+
+<h2 id="-définir-ses-propres-types"><i class="fas fa-code-branch"></i> Définir ses propres types</h2>
+
+<p>Le code suivant définit un <code class="language-plaintext highlighter-rouge">Struct</code> représentant des points du plan</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(struct : point ([x : Real] [y : Real]))
+
+(: distance (point point -&gt; Real))
+(define (distance p1 p2)
+    (sqrt (+ (sqr (- (point-x p2) (point-x p1)))
+             (sqr (- (point-y p2) (point-y p1))))))
+</code></pre></div></div>
+
+<p>Cette construction définit en même temps les fonctions suivantes</p>
+<ul>
+  <li>Un constructeur point permettant de construire des instances comme par exemple <code class="language-plaintext highlighter-rouge">(point 3 4)</code></li>
+  <li>Deux accesseurs <code class="language-plaintext highlighter-rouge">point-x</code> et <code class="language-plaintext highlighter-rouge">point-y</code> permettant d’accéder aux champs de la structure</li>
+</ul>
+
+<h2 id="-reconnaissance-de-motif"><i class="fas fa-code-branch"></i> Reconnaissance de motif</h2>
+<p>La reconnaissance de motif ou <code class="language-plaintext highlighter-rouge">pattern-matching</code> s’effectue avec la forme <code class="language-plaintext highlighter-rouge">match</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(match t 
+    [&lt;pat1&gt; res1]
+    [&lt;pat2&gt; res2]
+    ...
+    [&lt;patn&gt; resn]
+    [- default])
+</code></pre></div></div>
+
+<ul>
+  <li>Compare l’expression <code class="language-plaintext highlighter-rouge">t</code> à chacun des motifs <code class="language-plaintext highlighter-rouge">&lt;patk&gt;</code></li>
+  <li>renvoie le résultat associé au premier indice pour lequel <code class="language-plaintext highlighter-rouge">t</code> correspond</li>
+</ul>
+
+<p>Les motifs peuvent introduire des liaisons utilisées dans le résultat</p>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

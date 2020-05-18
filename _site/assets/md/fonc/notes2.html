@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/fonc/notes2.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-code-branch fa-2x&quot;&gt;&lt;/i&gt; Types et constructions de base du langage | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-code-branch fa-2x&quot;&gt;&lt;/i&gt; Types et constructions de base du langage | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/fonc/notes2.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-code-branch fa-2x"></i> Types et constructions de base du langage</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Cours inspiré du
+<a href="https://www.labri.fr/perso/myriam/Enseignement/Scheme/scheme.pdf">polycopié</a>
+de <a href="https://www.labri.fr/perso/myriam/">Myriam Desainte-Catherine</a> &amp; <a href="https://www.labri.fr/perso/renault/working/index.php">David Renault</a>.</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<p>Résumé des constructions syntaxiques du langage</p>
+
+<p><img src="/assets/images/fonc/resume.png" alt="resume" class="image about center" /></p>
+
+<p>Résumé des opérations numériques</p>
+
+<p><img src="/assets/images/fonc/operation.png" alt="operation" class="image about center" /></p>
+
+<h2 id="-les-caractères-et-les-chaînes-de-caractères"><i class="fas fa-code-branch"></i> Les caractères et les chaînes de caractères</h2>
+
+<ul>
+  <li>Caractère : ̀#\a`</li>
+  <li>Chaîne : “de caracteres”</li>
+  <li>Type : ̀char?<code class="language-plaintext highlighter-rouge"> </code>string?`</li>
+  <li>Comparaisons <code class="language-plaintext highlighter-rouge">char=?, char&lt;?, char&gt;?, string=?, string&lt;?, string&gt;?</code></li>
+  <li>Constructeurs : <code class="language-plaintext highlighter-rouge">make-string, string</code></li>
+  <li>Accesseurs : <code class="language-plaintext highlighter-rouge">string-ref</code></li>
+  <li>Longueur : <code class="language-plaintext highlighter-rouge">string-length</code></li>
+  <li>Conversion : <code class="language-plaintext highlighter-rouge">number-&gt;string, string-&gt;number</code></li>
+</ul>
+
+<h2 id="-les-expressions-conditionnelles"><i class="fas fa-code-branch"></i> Les expressions conditionnelles</h2>
+
+<p><code class="language-plaintext highlighter-rouge">(if &lt;condition&gt; &lt;alors&gt; &lt;sinon&gt;)</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">(when &lt;condition&gt; &lt;e1&gt; ... &lt;en&gt;)</code></p>
+
+<p>Cette forme évalue les expression <code class="language-plaintext highlighter-rouge">&lt;ei&gt;</code> et renvoie le résultat de la dernière quand l’expression <code class="language-plaintext highlighter-rouge">&lt;condition&gt;</code> vaut vrai.</p>
+
+<p><code class="language-plaintext highlighter-rouge">(cond [&lt;condition&gt; &lt;e1&gt; ... &lt;en&gt;] ... [&lt;condition&gt; &lt;e1&gt; ... &lt;en&gt;])</code></p>
+
+<p>Les crochets définissant les clauses peuvent être remplaccés par des parenthèses, conformément à la norme R6RS du langage Scheme</p>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

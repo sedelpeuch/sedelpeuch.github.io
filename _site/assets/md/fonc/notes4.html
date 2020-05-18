@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/fonc/notes4.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-code-branch fa-2x&quot;&gt;&lt;/i&gt; Récursivité | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-code-branch fa-2x&quot;&gt;&lt;/i&gt; Récursivité | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/fonc/notes4.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-code-branch fa-2x"></i> Récursivité</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Cours inspiré du
+<a href="https://www.labri.fr/perso/myriam/Enseignement/Scheme/scheme.pdf">polycopié</a>
+de <a href="https://www.labri.fr/perso/myriam/">Myriam Desainte-Catherine</a> &amp; <a href="https://www.labri.fr/perso/renault/working/index.php">David Renault</a>.</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h3 id="exemple-dintroduction">Exemple d’introduction</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fact(0)=1
+fact(n)=n * fact(n-1)
+
+(define (fact n)
+    (if (zero? n)
+        1
+        (* n (fact (sub1 n)))))
+</code></pre></div></div>
+
+<h2 id="-récursivité-terminale"><i class="fas fa-code-branch"></i> Récursivité terminale</h2>
+
+<p>Pour rendre une fonction récursive terminale, on déplace le calcul effectuée après l’appel récursif pour le faire avant. Ceci modifie l’ordre des calculs.</p>
+
+<p>Les appels récursifs sont dits terminaux si aucun calcul n’est effectué après leur retour.</p>
+
+<p>L’exemple de la factorielle devient alors</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(define (fact-t n r)
+    (if (zero? n)
+        r
+        (fact-t (sub1 n)
+                (* n r))))
+</code></pre></div></div>
+
+<p>Les valeurs successives de <script type="math/tex">n</script> sont utilisées dans les calculs qui sont effectués avant les appels récursifs. Il est inutile de les conserver dans une pile.</p>
+
+<h3 id="problème-de-paramètres">Problème de paramètres</h3>
+
+<p>Notre fonction <code class="language-plaintext highlighter-rouge">fact-t</code> demande un paramètre supplémentaire qui doit être initialisé à 1. Pour garantir son bon fonctionnement, il faut définir deux fonction, l’une faisant l’appel initial et l’autre le calcul récursif terminal.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(define (factorielle n)
+    (letrec ((fact-t
+              (lambda (n r)
+                  (if (zero? n)
+                      r)
+                      (fact-t (sub1 n)
+                              (* n r)))))
+    (fact-t n 1)))
+</code></pre></div></div>
+
+<h2 id="-continuation-fonctionnelle"><i class="fas fa-code-branch"></i> Continuation fonctionnelle</h2>
+
+<p>Une <code class="language-plaintext highlighter-rouge">continuation</code> représente le futur d’un calcul, c’est à dire le calcul à faire après le calcul d’une expression. Une continuation est modélisée par une fonction qui s’applique au résultat d’une expression. Elle représente un <code class="language-plaintext highlighter-rouge">Goto</code> fonctionnel.</p>
+
+<p>Pour construire la continuation d’un appel récursif, on effectue une abstraction de l’expression contenant le calcul récursif par une application : <code class="language-plaintext highlighter-rouge">(k a)</code>. La paramètre <code class="language-plaintext highlighter-rouge">a</code> de l’application est le résultat de l’appel récursif. La fonction <code class="language-plaintext highlighter-rouge">k</code> est la continuation.</p>
+
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

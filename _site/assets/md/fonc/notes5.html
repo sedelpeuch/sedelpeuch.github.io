@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/fonc/notes5.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-code-branch fa-2x&quot;&gt;&lt;/i&gt; Les listes | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-code-branch fa-2x&quot;&gt;&lt;/i&gt; Les listes | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/fonc/notes5.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-code-branch fa-2x"></i> Les listes</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Cours inspiré du
+<a href="https://www.labri.fr/perso/myriam/Enseignement/Scheme/scheme.pdf">polycopié</a>
+de <a href="https://www.labri.fr/perso/myriam/">Myriam Desainte-Catherine</a> &amp; <a href="https://www.labri.fr/perso/renault/working/index.php">David Renault</a>.</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<p>Résumé des différents objets en Scheme</p>
+
+<p><img src="/assets/images/fonc/objet.png" alt="objet" class="image about center" /></p>
+
+<h2 id="--les-listes"><i class="fas fa-code-branch"></i>  Les listes</h2>
+
+<h3 id="définition-récursive-des-listes">Définition récursive des listes</h3>
+<ul>
+  <li>Liste vide : <code class="language-plaintext highlighter-rouge">'()</code> ou <code class="language-plaintext highlighter-rouge">null</code></li>
+  <li>Une paire pointée dont le <code class="language-plaintext highlighter-rouge">car</code> est un élément de la liste, et le <code class="language-plaintext highlighter-rouge">cdr</code> est une liste</li>
+  <li><strong>Liste impropre</strong> : une liste qui ne se termine pas par la liste vide</li>
+  <li><strong>Liste circulaire</strong> : une chaîne de <code class="language-plaintext highlighter-rouge">cons</code> sans fin</li>
+</ul>
+
+<h3 id="fonctions-de-base-sur-les-listes">Fonctions de base sur les listes</h3>
+
+<ul>
+  <li><strong>Prédicat</strong> : <code class="language-plaintext highlighter-rouge">list? empty? null?</code></li>
+  <li><strong>Prédicats d’égalité</strong> : <code class="language-plaintext highlighter-rouge">eq? equal?</code></li>
+  <li><strong>Fonction de construction</strong> : <code class="language-plaintext highlighter-rouge">list list* make-list</code></li>
+  <li><strong>Fonctions prédéfinies</strong> : <code class="language-plaintext highlighter-rouge">length append reverse membre remove first...tenth nth rest last</code></li>
+  <li><strong>Fonctions de a-listes</strong> : <code class="language-plaintext highlighter-rouge">assq assoc</code></li>
+</ul>
+
+<h2 id="-fonction-append--concaténation-de-listes"><i class="fas fa-code-branch"></i> Fonction <code class="language-plaintext highlighter-rouge">append</code> : Concaténation de listes</h2>
+
+<ul>
+  <li>Fonction n-aire</li>
+  <li>Les arguments sont des listes, sauf le dernier qui est un objet quelconque</li>
+  <li>La dernière paire pointée de l’argument <script type="math/tex">n</script> est remplacée par la première de l’argument <script type="math/tex">n+1</script></li>
+  <li>Sans effets de bord : recopie des paires pointées de toutes les listes en argument, sauf le dernier argument qui est partagé</li>
+</ul>
+
+<h2 id="-fonction-remove--filtrage-de-listes"><i class="fas fa-code-branch"></i> Fonction <code class="language-plaintext highlighter-rouge">remove</code> : Filtrage de listes</h2>
+
+<p>La fonction <code class="language-plaintext highlighter-rouge">remove</code> prend en argument un élément et une liste et elle renvoie la liste privée de la première occurence de l’élément. Elle admet un troisième argument optionnel, qui est le prédicat de test de l’égalité. Par défaut c’est ̀equal?` qui est utilisé.</p>
+
+<h2 id="-fonction-member--appartenance-à-une-liste"><i class="fas fa-code-branch"></i> Fonction <code class="language-plaintext highlighter-rouge">member</code> : Appartenance à une liste</h2>
+
+<p>La fonction <code class="language-plaintext highlighter-rouge">member</code> prend en arguments un élément <code class="language-plaintext highlighter-rouge">e</code> et une liste <code class="language-plaintext highlighter-rouge">l</code> et elle renvoie <code class="language-plaintext highlighter-rouge">#f</code> si <code class="language-plaintext highlighter-rouge">e</code> n’appartient pas à <code class="language-plaintext highlighter-rouge">l</code>, et la liste <code class="language-plaintext highlighter-rouge">l</code> privée de ses éléments jusqu’à l’occurence de <code class="language-plaintext highlighter-rouge">e</code> si celui-ci apparaît dans la liste. Le prédicat d’égalité utilisé est <code class="language-plaintext highlighter-rouge">equal?</code></p>
+
+<h2 id="-les-listes-dassociation--a-listes"><i class="fas fa-code-branch"></i> Les listes d’association : a-listes</h2>
+
+<p>C’est une liste de paires pointées. Le <code class="language-plaintext highlighter-rouge">car</code> de chaque paire est également une clef et ces listes servent à représenter des tables (indexées), des dictionnaires, des environnements</p>
+
+<p>La fonction <code class="language-plaintext highlighter-rouge">assoc</code> admet deux paramètres : une clef et une a-liste. Elle parcourt la liste et renvoie la première paire pointée dont le <code class="language-plaintext highlighter-rouge">car</code> est égal au sens de ̀equal?<code class="language-plaintext highlighter-rouge"> à la clef, et </code>#f` sinon.</p>
+
+<p>La fonction <code class="language-plaintext highlighter-rouge">assq</code> réalise le même travail avec <code class="language-plaintext highlighter-rouge">eq?</code> (<code class="language-plaintext highlighter-rouge">assv</code> pour eqv)</p>
+
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
