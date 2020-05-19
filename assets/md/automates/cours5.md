@@ -11,6 +11,13 @@ Cours inspiré du
 [polycopié](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/content/6/poly-if114-etd.pdf)
 de [Frédéric Herbreteau](https://www.labri.fr/perso/herbrete/).
 
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+
 Nous avons introduit au chapitre 1 une distinction entre automates finis
 déterministes et automates finis non-déterministes. La notion de non
 déterministe provient de l'impossiblité de déterminer l'état courant de

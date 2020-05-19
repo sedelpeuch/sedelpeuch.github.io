@@ -10,6 +10,11 @@ title: <i class="fas fa-robot fa-2x"></i> Grammaires
 Cours inspiré du
 [polycopié](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/content/6/poly-if114-etd.pdf)
 de [Frédéric Herbreteau](https://www.labri.fr/perso/herbrete/).
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
 
 Un automate fini est une description analytique d'un langage régulier : c'est un algorithme pour reconnaître les mots du langage. Les grammaires donnent une description générative d'un langage : elles explicitent des règles de construction des mots du langage. Nous connaissans déjà la notion de grammaires en lagage naturel. Par exemple, en français, une phrase déclarative à la forme : "sujet" + "verbe" + "complément". La grammaire a pour rôle de fixer la structure des phrases. En informatique, les grammaires sont couramment utilisées pour définir la syntaxe des langages de programmation et pour construire les compilateurs.
 

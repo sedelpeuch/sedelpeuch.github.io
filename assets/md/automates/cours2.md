@@ -10,6 +10,11 @@ title: <i class="fas fa-robot fa-2x"></i> Automates finis et langages - Expressi
 Cours inspiré du
 [polycopié](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/content/6/poly-if114-etd.pdf)
 de [Frédéric Herbreteau](https://www.labri.fr/perso/herbrete/).
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
 
 Grâce au chapitre précédent nus pouvons représenter $$x$$ par un mot,
 l'algorithme par un automate fini, mais comment représenter $$\mathcal{L}$$ ?

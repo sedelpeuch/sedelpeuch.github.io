@@ -10,7 +10,12 @@ title: <i class="fas fa-robot fa-2x"></i> Langages non réguliers
 Cours inspiré du
 [polycopié](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/content/6/poly-if114-etd.pdf)
 de [Frédéric Herbreteau](https://www.labri.fr/perso/herbrete/).
- 
+ <style>
+html {
+ zoom: 0.80;
+}
+</style>
+
 Au chapitre précédent, nous avons étudié les langages réguliers. Nous avons particulièrement montré que les langages réguliers. Ainsi donc, le problème de décision $$\omega \in L$$ peut être résolu par un automate fini uniquement si $$L$$ est un langage régulier. Il se pose donc la question de l'existence de langages non réguliers. Nous allons tout d'abord montrer l'existence de tels langages, puis nous donnons une condition nécessaire pour qu'un langage soit régulier. La négation de cette condition nécessaire donne une condition suffisante pour qu'un langage ne soit pas régulier, et donc pour prouver l'irrégularité. 
 
 ## <i class="fas fa-robot"></i> Existence de langages non réguliers
