@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/fonc/notes7.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-code-branch fa-2x&quot;&gt;&lt;/i&gt; Les fonctionnelles | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-code-branch fa-2x&quot;&gt;&lt;/i&gt; Les fonctionnelles | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/fonc/notes7.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-code-branch fa-2x"></i> Les fonctionnelles</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Cours inspiré du
+<a href="https://www.labri.fr/perso/myriam/Enseignement/Scheme/scheme.pdf">polycopié</a>
+de <a href="https://www.labri.fr/perso/myriam/">Myriam Desainte-Catherine</a> &amp; <a href="https://www.labri.fr/perso/renault/working/index.php">David Renault</a>.</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<p>pygments&lt;/li&gt;</p>
+
+<h2 id="-la-forme-lambda--rappel-et-utilisation"><i class="fas fa-code-branch"></i> La forme lambda : rappel et utilisation</h2>
+
+<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">&lt;p1&gt;</span> <span class="nv">&lt;p2&gt;</span> <span class="o">...</span> <span class="nv">&lt;pn&gt;</span><span class="p">)</span> <span class="nv">&lt;e&gt;</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Nommage de <script type="math/tex">\lambda</script>-expressions : <code class="language-plaintext highlighter-rouge">(define f (lambda (x y) (+ (* 10 x)
+y)))</code></li>
+  <li>Application de <script type="math/tex">\lambda</script>-expressions : mise en position fonctionnelle,
+stratégie applicative (par valeur)</li>
+  <li>Passage de <script type="math/tex">\lambda</script>-expressions en paramètres : juxtaposition</li>
+  <li><script type="math/tex">\lambda</script>-expressions en retour de fonction : imbrication</li>
+</ul>
+
+<h3 id="juxtaposition">Juxtaposition</h3>
+
+<p>On appelle rédex un terme de la forme <script type="math/tex">(\lambda x.u) v</script>. On définit alors la
+bêta-réduction</p>
+
+<script type="math/tex; mode=display">(\lambda x.u) v \rightarrow u[x:=v]</script>
+
+<ul>
+  <li>Soit le terme <script type="math/tex">:(\lambda x.xy)(\lambda x.ux)</script>, on a la suite de réductions
+suivante : <script type="math/tex">xy[x:=\lambda x.ux] \rightarrow (\lambda x.ux)y \rightarrow
+ux[x:=y] \rightarrow uy</script></li>
+  <li>Soit <script type="math/tex">(\lambda f.f0)(\lambda x.(*2 x))</script>, on a la suite de réductions
+suivante : <script type="math/tex">f0[f:=\lambda x.(* 2x)]\rightarrow (\lambda x .(*2 x)) 0
+\rightarrow (* 2 x)[x:=0] \rightarrow (* 2 0) \rightarrow 0</script></li>
+  <li>
+    <p>En scheme : <script type="math/tex">((lambda(f) (f 0)) (lambda (x) (* 2 x)))</script>, on a la suite de
+réduction suivante</p>
+
+    <script type="math/tex; mode=display">((lambda(x) (* 2 x)) 0) \rightarrow (* 2 0) \rightarrow 0</script>
+  </li>
+</ul>
+
+<h3 id="imbrication">Imbrication</h3>
+
+<ul>
+  <li>Soit <script type="math/tex">\lambda x.(\lambda y.xy)f</script>, on a <script type="math/tex">\lambda y . xy [x:=f]\rightarrow
+\lambda y.fy</script></li>
+  <li>Soit <script type="math/tex">(\lambda x.(\lambda y.xy)f)z</script>, on a <script type="math/tex">(\lambda y.xy [x:=f])z
+\rightarrow (\lambda y.fy) z \rightarrow fy[y:=z] \rightarrow fz</script></li>
+</ul>
+
+<h2 id="-itération--la-forme-̀map"><i class="fas fa-code-branch"></i> Itération : la forme ̀map`</h2>
+
+<p>La forme <code class="language-plaintext highlighter-rouge">map</code> prend une fonction <code class="language-plaintext highlighter-rouge">f</code> et <code class="language-plaintext highlighter-rouge">n</code> listes en arguments <script type="math/tex">(n>0)</script> où
+<script type="math/tex">n</script> est l’arité de la fonction <script type="math/tex">f</script>. Soit <code class="language-plaintext highlighter-rouge">I1=(&lt;a1&gt; &lt;a2&gt; ... &lt;an&gt;)</code> et <code class="language-plaintext highlighter-rouge">I2 =
+(&lt;b1&gt; &lt;b2&gt; ... &lt;bn&gt;)</code></p>
+<ul>
+  <li>Cas d’une fonction unaire : `(map <f> <I1>) -&gt; ((<f> <a1>)(<f> <a2>) ... (<f>
+</f></a2></f></a1></f></I1></f>    <an>))`
+</an>
+  </li>
+  <li>Cas d’une fonction <script type="math/tex">n</script>-aire : `(map <f> <I1> <I2> ...) \rightarrow ((<f>
+</f></I2></I1></f>    <a1> <b1> ...)(<f> <a2> ...)...(<f> <an> ...))`
+  
+</an></f></a2></f></b1></a1>
+  </li>
+</ul>
+<h3 id="forme-andmap">Forme andmap</h3>
+
+<p>Cette forme à la même signature que la forme ̀map`. Elle applique la fonction aux
+éléments de la liste dans l’ordre. LE résultat est celui de la dernière
+application, pas de mise en liste. S’arrête au premier résultat faux.</p>
+
+<h3 id="forme-ormap">Forme ormap</h3>
+
+<p>Comme la forme andmap mais renvoie le premier vrai</p>
+
+<h2 id="-itérations-générales--formes-foldl-et"><i class="fas fa-code-branch"></i> Itérations générales : formes <code class="language-plaintext highlighter-rouge">foldl</code> et</h2>
+<p><code class="language-plaintext highlighter-rouge">foldr</code></p>
+
+<p>Comme la forme <code class="language-plaintext highlighter-rouge">map</code>, les formes <code class="language-plaintext highlighter-rouge">fold</code> appliquent une fonction aux éléments
+d’une ou plusieurs listes. Alors que <code class="language-plaintext highlighter-rouge">map</code> combine les résultats obtenus dans
+une liste, les formes <code class="language-plaintext highlighter-rouge">fold</code> les combinent d’une façon déterminé par leur
+paramètre fonctionnel <code class="language-plaintext highlighter-rouge">f</code>. Elles appliquent <code class="language-plaintext highlighter-rouge">f</code> aux éléments des listes de
+gauche à droite ou bien de droite à gauche. L’argument <code class="language-plaintext highlighter-rouge">init</code> est utilisé pour
+terminer la combinaison récursive du résultat.</p>
+
+<h2 id="-application--la-forme-apply"><i class="fas fa-code-branch"></i> Application : la forme <code class="language-plaintext highlighter-rouge">apply</code></h2>
+
+<p>Cette fonction réalise l’application d’une fonction à une liste d’arguments. Ce
+mécanisme est utile pour l’écriture de fonctions à nombre d’arguments variable.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(apply &lt;f&gt;&lt;I&gt;)=(&lt;f&gt; &lt;e1&gt; &lt;e2&gt; ... &lt;en&gt;)
+</code></pre></div></div>
+
+<p>avec <code class="language-plaintext highlighter-rouge">&lt;I&gt;=(&lt;e1&gt; &lt;e2&gt; ... &lt;en&gt;)</code></p>
+
+<h2 id="-fonctions-en-retour-de-fonctions-"><i class="fas fa-code-branch"></i> Fonctions en retour de fonctions :</h2>
+<p>curryfication</p>
+
+<p>La fonction curry curryfie son argument. Soit une fonction <script type="math/tex">f : A \times B
+\rightarrow C</script> la curryfication lui associe la fonction suivante <script type="math/tex">f^c : A
+\rightarrow (B \rightarrow C)</script> qui a pour résultat une fonction allant de <script type="math/tex">B</script>
+dans <script type="math/tex">C</script> et telle que <script type="math/tex">\forall x \in A, f(x,y) = (f^c(x))(y)</script></p>
+
+<h2 id="-notion-de-fermeture"><i class="fas fa-code-branch"></i> Notion de fermeture</h2>
+
+<ul>
+  <li>L’environnement lexical d’une fonction est l’environnement dans lequel elle
+est définie</li>
+  <li>Une fermeture est la représentation d’une fonction sous forme d’un couple
+associant l’environnement lexical et le code de la fonction</li>
+  <li>En scheme les fonctions sont représentées par des fermetures pour conserver
+leur environnement de définition contenant des références éventuelles (ce
+n’est pas le cas par exemple du langage emacs-lisp)</li>
+  <li>Les fermetures peuvent être utiliées pour représenter des états, par
+modification de l’environnement</li>
+</ul>
+
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
