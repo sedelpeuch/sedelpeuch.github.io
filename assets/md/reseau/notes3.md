@@ -52,3 +52,22 @@ L'adresse IP est l'adresse logique choisie par l'administrateur du réseau.
 * Plant d'adressage homogène : format : 4 octets => 4.3 milliards d'adresses, notation décimale pointée 
 * Adresse globalement unique et hiérarchique 
 * Format : `<réseau><machine>`
+
+### Classes d'adresses
+
+![Classes](/assets/images/reseau/classe.png){:class="image about center"}
+
+* Classe A = 0.0.0.0 à 127.255.255.255
+* Classe B = 128.0.0.0 à 191.255.255.255
+* Classe C = 192.0.0.0 à 223.255.255.255
+* Classe D = 224.0.0.0 à 239.255.255.255
+* Classe E = 240.0.0.0 à 255.255.255.255
+
+![particulière](/assets/images/reseau/particuliere.png){:class="image about center"}
+
+### Adresses publiques et privées 
+
+* Parmi les adresses IP disponibles, certaines ne peuvent être utilisées que
+  pour un usage local 
+* Ces adresses ne permettent pas un accès à Internet 
+* Utile pour mettre en place les réseaux 
