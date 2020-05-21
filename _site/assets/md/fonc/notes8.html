@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/fonc/notes8.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-code-branch fa-2x&quot;&gt;&lt;/i&gt; Les formes impératives | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-code-branch fa-2x&quot;&gt;&lt;/i&gt; Les formes impératives | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/fonc/notes8.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-6-en-cours-link">
+            <span class="icon fa-link">Semestre 6 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-code-branch fa-2x"></i> Les formes impératives</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Cours inspiré du
+<a href="https://www.labri.fr/perso/myriam/Enseignement/Scheme/scheme.pdf">polycopié</a>
+de <a href="https://www.labri.fr/perso/myriam/">Myriam Desainte-Catherine</a> &amp; <a href="https://www.labri.fr/perso/renault/working/index.php">David Renault</a>.</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h2 id="-références"><i class="fas fa-code-branch"></i> Références</h2>
+
+<p>Une référence est un objet correspondant à une adresse mémoire et donc
+l’indirection est faite automatiquement dans toute situation où une valeur est
+requise. L’adresse associée à une référence n’est pas directement manipulable en
+tant que telle (il n’existe pas d’opérations pour le programmeur sur les
+références)</p>
+
+<ul>
+  <li>Un symbole est lié à une référence, correspondant à un atome ou une paire
+pointée</li>
+  <li>L’évaluation d’un symbole renvoie une référence vers sa valeur</li>
+  <li>La référence est utilisée partout où la valeur n’est pas requise</li>
+</ul>
+
+<h2 id="-passage-darguments"><i class="fas fa-code-branch"></i> Passage d’arguments</h2>
+
+<p>Soit <script type="math/tex">f</script> une fonction, soient <script type="math/tex">p_1,p_2, ... p_n</script> ses paramètres formels. Soit
+l’application</p>
+
+<script type="math/tex; mode=display">\texttt{(f a_1 a_2 ... a_n)}</script>
+
+<p>Soient <script type="math/tex">r_1, r_2 ... r_n</script> les références vers les résultats des évaluations
+respectives des arguments <script type="math/tex">a_1, a_2, ... a_n</script></p>
+
+<p>Lors de l’application, un environnement local est construit. Il est constitué
+des liaisons entre les paramètres formels <script type="math/tex">p_i</script> de la fonction <script type="math/tex">f</script> et les
+références <script type="math/tex">r_i</script> des arguments de l’application</p>
+
+<script type="math/tex; mode=display">\texttt{((p_1.r_1)(p_2.r_2)...(p_n.r_n))}</script>
+
+<p>Les références <script type="math/tex">r_1,r_2,..., r_n</script> sont utilisées comme des valeurs à travers
+les symboles <script type="math/tex">p_1, p_2, ..., p_n</script>, les indirections étant effectuées
+automatiquement. Ainsi, il est impossible de modifier un paramètre <script type="math/tex">p_i</script> car
+la modification reste locale à cet environnement.</p>
+
+<h2 id="-laffectation"><i class="fas fa-code-branch"></i> L’affectation</h2>
+
+<h3 id="la-forme-set">La forme <script type="math/tex">set!</script></h3>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\texttt{(set! <id> <e>)} %]]></script>
+
+<ul>
+  <li>
+    <p>La référence associée à l’identificateur <script type="math/tex">% <![CDATA[
+<id> %]]></script> est remplacée par la référence
+du résultat de l’évaluation de l’expression <script type="math/tex">% <![CDATA[
+<e> %]]></script>.</p>
+  </li>
+  <li>
+    <p>La valeur de retour de l’affectation est la valeur <script type="math/tex">% <![CDATA[
+\#<void> %]]></script> que la fonction
+<script type="math/tex">read</script> n’affiche pas. La procédure <script type="math/tex">void</script> rend ce même résultat en prenant un
+nombre quelconque d’arguments</p>
+  </li>
+</ul>
+
+<h3 id="modification-de-paires-pointées">Modification de paires pointées</h3>
+
+<p>On ne peut pas modifier les paires pointées de base dans la norme scheme. En
+Racket, il faut utiliser le paquetage <script type="math/tex">mpair</script>.</p>
+
+<h2 id="-blocs-dexpression"><i class="fas fa-code-branch"></i> Blocs d’expression</h2>
+
+<p>Certaines expressions pouvant effectuer des effets de bord, il devient possible
+de les mettre en séquence. Contrairement aux formes <script type="math/tex">let</script> et <script type="math/tex">lambda</script>,
+certaines formes, telle le <script type="math/tex">if</script> nécessitent d’utiliser une forme spéciale de
+mise en séquence.</p>
+
+<h3 id="les-forme-begin">Les forme <script type="math/tex">begin</script></h3>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\texttt{(begin <e_1> <e_2> ... <e_n>)} %]]></script>
+
+<ul>
+  <li>Chaque expression <script type="math/tex">e_i</script> est évaluée selon son ordre d’apparition</li>
+  <li>Le résultat de l’évaluation de la séquence est celui de la dernière</li>
+  <li>Les valeurs des évaluations des expressions précédentes sont perdues</li>
+  <li>Il existe une forme <script type="math/tex">begin0</script> qui renvoie le résultat de la première
+expression de la séquence</li>
+</ul>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

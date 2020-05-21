@@ -17,8 +17,6 @@ html {
 }
 </style>
 
-pygments</li>
-
 ## <i class="fas fa-code-branch"></i> La forme lambda : rappel et utilisation
 
 ```lisp
@@ -48,7 +46,9 @@ $$(\lambda x.u) v \rightarrow u[x:=v]$$
 * En scheme : $$((lambda(f) (f 0)) (lambda (x) (* 2 x)))$$, on a la suite de
   réduction suivante 
   
-  $$((lambda(x) (* 2 x)) 0) \rightarrow (* 2 0) \rightarrow 0$$
+  ```
+  ((lambda(x) (* 2 x)) 0) -> (* 2 0) -> 0
+  ```
 
 ### Imbrication 
 
@@ -57,19 +57,19 @@ $$(\lambda x.u) v \rightarrow u[x:=v]$$
 * Soit $$(\lambda x.(\lambda y.xy)f)z$$, on a $$(\lambda y.xy [x:=f])z
   \rightarrow (\lambda y.fy) z \rightarrow fy[y:=z] \rightarrow fz$$
   
-## <i class="fas fa-code-branch"></i> Itération : la forme ̀map`
+## <i class="fas fa-code-branch"></i> Itération : la forme ̀map$$
 
-La forme `map` prend une fonction `f` et `n` listes en arguments $$(n>0)$$ où
-$$n$$ est l'arité de la fonction $$f$$. Soit `I1=(<a1> <a2> ... <an>)` et `I2 =
-(<b1> <b2> ... <bn>)`
-* Cas d'une fonction unaire : `(map <f> <I1>) -> ((<f> <a1>)(<f> <a2>) ... (<f>
-  <an>))`
-* Cas d'une fonction $$n$$-aire : `(map <f> <I1> <I2> ...) \rightarrow ((<f>
-  <a1> <b1> ...)(<f> <a2> ...)...(<f> <an> ...))`
+La forme $$map$$ prend une fonction $$f$$ et $$n$$ listes en arguments $$(n>0)$$ où
+$$n$$ est l'arité de la fonction $$f$$. Soit $$I1=(<a_1> <a_2> ... <a_n>)$$ et $$I2 =
+(<b_1> <b_2> ... <b_n>)$$
+* Cas d'une fonction unaire : $$(map <f> <I_1>) -> ((<f> <a_1>)(<f> <a_2>) ... (<f>
+  <a_n>))$$
+* Cas d'une fonction $$n$$-aire : $$(map <f> <I_1> <I_2> ...) \rightarrow ((<f>
+  <a_1> <b_1> ...)(<f> <a_2> ...)...(<f> <a_n> ...))$$
   
 ###  Forme andmap
 
-Cette forme à la même signature que la forme ̀map`. Elle applique la fonction aux
+Cette forme à la même signature que la forme $$map$$. Elle applique la fonction aux
 éléments de la liste dans l'ordre. LE résultat est celui de la dernière
 application, pas de mise en liste. S'arrête au premier résultat faux. 
 
@@ -77,17 +77,16 @@ application, pas de mise en liste. S'arrête au premier résultat faux.
 
 Comme la forme andmap mais renvoie le premier vrai
 
-## <i class="fas fa-code-branch"></i> Itérations générales : formes `foldl` et
-`foldr`
+## <i class="fas fa-code-branch"></i> Itérations générales : formes $$foldl$$ et $$foldr$$
 
-Comme la forme `map`, les formes `fold` appliquent une fonction aux éléments
-d'une ou plusieurs listes. Alors que `map` combine les résultats obtenus dans
-une liste, les formes `fold` les combinent d'une façon déterminé par leur
-paramètre fonctionnel `f`. Elles appliquent `f` aux éléments des listes de
-gauche à droite ou bien de droite à gauche. L'argument `init` est utilisé pour
+Comme la forme $$map$$, les formes $$fold$$ appliquent une fonction aux éléments
+d'une ou plusieurs listes. Alors que $$map$$ combine les résultats obtenus dans
+une liste, les formes $$fold$$ les combinent d'une façon déterminé par leur
+paramètre fonctionnel $$f$$. Elles appliquent $$f$$ aux éléments des listes de
+gauche à droite ou bien de droite à gauche. L'argument $$init$$ est utilisé pour
 terminer la combinaison récursive du résultat.
 
-## <i class="fas fa-code-branch"></i> Application : la forme `apply`
+## <i class="fas fa-code-branch"></i> Application : la forme $$apply$$
 
 Cette fonction réalise l'application d'une fonction à une liste d'arguments. Ce
 mécanisme est utile pour l'écriture de fonctions à nombre d'arguments variable. 

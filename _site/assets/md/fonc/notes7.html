@@ -76,8 +76,6 @@ html {
 }
 </style>
 
-<p>pygments&lt;/li&gt;</p>
-
 <h2 id="-la-forme-lambda--rappel-et-utilisation"><i class="fas fa-code-branch"></i> La forme lambda : rappel et utilisation</h2>
 
 <div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">&lt;p1&gt;</span> <span class="nv">&lt;p2&gt;</span> <span class="o">...</span> <span class="nv">&lt;pn&gt;</span><span class="p">)</span> <span class="nv">&lt;e&gt;</span><span class="p">)</span>
@@ -110,7 +108,8 @@ suivante : <script type="math/tex">f0[f:=\lambda x.(* 2x)]\rightarrow (\lambda x
     <p>En scheme : <script type="math/tex">((lambda(f) (f 0)) (lambda (x) (* 2 x)))</script>, on a la suite de
 réduction suivante</p>
 
-    <script type="math/tex; mode=display">((lambda(x) (* 2 x)) 0) \rightarrow (* 2 0) \rightarrow 0</script>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>((lambda(x) (* 2 x)) 0) -&gt; (* 2 0) -&gt; 0
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -123,25 +122,27 @@ réduction suivante</p>
 \rightarrow (\lambda y.fy) z \rightarrow fy[y:=z] \rightarrow fz</script></li>
 </ul>
 
-<h2 id="-itération--la-forme-̀map"><i class="fas fa-code-branch"></i> Itération : la forme ̀map`</h2>
+<h2 id="-itération--la-forme-̀map"><i class="fas fa-code-branch"></i> Itération : la forme ̀map$$</h2>
 
-<p>La forme <code class="language-plaintext highlighter-rouge">map</code> prend une fonction <code class="language-plaintext highlighter-rouge">f</code> et <code class="language-plaintext highlighter-rouge">n</code> listes en arguments <script type="math/tex">(n>0)</script> où
-<script type="math/tex">n</script> est l’arité de la fonction <script type="math/tex">f</script>. Soit <code class="language-plaintext highlighter-rouge">I1=(&lt;a1&gt; &lt;a2&gt; ... &lt;an&gt;)</code> et <code class="language-plaintext highlighter-rouge">I2 =
-(&lt;b1&gt; &lt;b2&gt; ... &lt;bn&gt;)</code></p>
+<p>La forme <script type="math/tex">map</script> prend une fonction <script type="math/tex">f</script> et <script type="math/tex">n</script> listes en arguments <script type="math/tex">(n>0)</script> où
+<script type="math/tex">n</script> est l’arité de la fonction <script type="math/tex">f</script>. Soit <script type="math/tex">% <![CDATA[
+I1=(<a_1> <a_2> ... <a_n>) %]]></script> et <script type="math/tex">% <![CDATA[
+I2 =
+(<b_1> <b_2> ... <b_n>) %]]></script></p>
 <ul>
-  <li>Cas d’une fonction unaire : `(map <f> <I1>) -&gt; ((<f> <a1>)(<f> <a2>) ... (<f>
-</f></a2></f></a1></f></I1></f>    <an>))`
-</an>
+  <li>Cas d’une fonction unaire : $$(map <f> <I_1>) -&gt; ((<f> <a_1>)(<f> <a_2>) ... (<f>
+</f></a_2></f></a_1></f></I_1></f>    <a_n>))$$
+</a_n>
   </li>
-  <li>Cas d’une fonction <script type="math/tex">n</script>-aire : `(map <f> <I1> <I2> ...) \rightarrow ((<f>
-</f></I2></I1></f>    <a1> <b1> ...)(<f> <a2> ...)...(<f> <an> ...))`
+  <li>Cas d’une fonction <script type="math/tex">n</script>-aire : $$(map <f> <I_1> <I_2> ...) \rightarrow ((<f>
+</f></I_2></I_1></f>    <a_1> <b_1> ...)(<f> <a_2> ...)...(<f> <a_n> ...))$$
   
-</an></f></a2></f></b1></a1>
+</a_n></f></a_2></f></b_1></a_1>
   </li>
 </ul>
 <h3 id="forme-andmap">Forme andmap</h3>
 
-<p>Cette forme à la même signature que la forme ̀map`. Elle applique la fonction aux
+<p>Cette forme à la même signature que la forme <script type="math/tex">map</script>. Elle applique la fonction aux
 éléments de la liste dans l’ordre. LE résultat est celui de la dernière
 application, pas de mise en liste. S’arrête au premier résultat faux.</p>
 
@@ -149,17 +150,16 @@ application, pas de mise en liste. S’arrête au premier résultat faux.</p>
 
 <p>Comme la forme andmap mais renvoie le premier vrai</p>
 
-<h2 id="-itérations-générales--formes-foldl-et"><i class="fas fa-code-branch"></i> Itérations générales : formes <code class="language-plaintext highlighter-rouge">foldl</code> et</h2>
-<p><code class="language-plaintext highlighter-rouge">foldr</code></p>
+<h2 id="-itérations-générales--formes-foldl-et-foldr"><i class="fas fa-code-branch"></i> Itérations générales : formes <script type="math/tex">foldl</script> et <script type="math/tex">foldr</script></h2>
 
-<p>Comme la forme <code class="language-plaintext highlighter-rouge">map</code>, les formes <code class="language-plaintext highlighter-rouge">fold</code> appliquent une fonction aux éléments
-d’une ou plusieurs listes. Alors que <code class="language-plaintext highlighter-rouge">map</code> combine les résultats obtenus dans
-une liste, les formes <code class="language-plaintext highlighter-rouge">fold</code> les combinent d’une façon déterminé par leur
-paramètre fonctionnel <code class="language-plaintext highlighter-rouge">f</code>. Elles appliquent <code class="language-plaintext highlighter-rouge">f</code> aux éléments des listes de
-gauche à droite ou bien de droite à gauche. L’argument <code class="language-plaintext highlighter-rouge">init</code> est utilisé pour
+<p>Comme la forme <script type="math/tex">map</script>, les formes <script type="math/tex">fold</script> appliquent une fonction aux éléments
+d’une ou plusieurs listes. Alors que <script type="math/tex">map</script> combine les résultats obtenus dans
+une liste, les formes <script type="math/tex">fold</script> les combinent d’une façon déterminé par leur
+paramètre fonctionnel <script type="math/tex">f</script>. Elles appliquent <script type="math/tex">f</script> aux éléments des listes de
+gauche à droite ou bien de droite à gauche. L’argument <script type="math/tex">init</script> est utilisé pour
 terminer la combinaison récursive du résultat.</p>
 
-<h2 id="-application--la-forme-apply"><i class="fas fa-code-branch"></i> Application : la forme <code class="language-plaintext highlighter-rouge">apply</code></h2>
+<h2 id="-application--la-forme-apply"><i class="fas fa-code-branch"></i> Application : la forme <script type="math/tex">apply</script></h2>
 
 <p>Cette fonction réalise l’application d’une fonction à une liste d’arguments. Ce
 mécanisme est utile pour l’écriture de fonctions à nombre d’arguments variable.</p>
