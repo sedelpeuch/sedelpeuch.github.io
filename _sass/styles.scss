@@ -4,7 +4,7 @@
 
 a {
 	&:hover {
-		color: #e5e539
+		color: #1D4851
 	}
 }
 
@@ -55,20 +55,20 @@ input[type="submit"],
 input[type="reset"],
 button,
 .button {
-	color: #e5e539 !important;
+	color: #1D4851 !important;
 	background-color: #41484c;
 
 	&:hover {
 		color: #41484c!important;
-		background-color: #e5e539;
+		background-color: #1D4851;
 	}
 
 	&:active {
 		color: #41484c!important;
-		background-color: #e5e539;
+		background-color: #1D4851;
 	}
 	&.fix {
-		color: #e5e539 !important;
+		color: #1D4851 !important;
 		background-color: #41484c;
 		text-align: center;
 		margin-right: 35%;
@@ -78,15 +78,15 @@ button,
 
 	&.reversed {
 		color: #41484c !important;
-		background-color: #e5e539;
+		background-color: #1D4851;
 
 		&:hover {
-			color: #e5e539!important;
+			color: #1D4851!important;
 			background-color: #41484c;
 		}
 
 		&:active {
-			color: #e5e539!important;
+			color: #1D4851!important;
 			background-color: #41484c;
 		}
 	}
@@ -100,13 +100,14 @@ button,
 			a {
 				&.active {
 					span::before {
-						color: #e5e539;
+						color: #1D4851;
 					}
 				}
 			}
 		}
 	}
 }
+
 
 /* Youtube integration */
 

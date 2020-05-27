@@ -23,7 +23,3 @@ d'algorithmes adaptés à la modélisation de problèmes numériques.
 [sujet 4]:http://mfaverge.vvv.enseirb-matmeca.fr/wordpress/?page_id=302
 [sujet 5]:http://mfaverge.vvv.enseirb-matmeca.fr/wordpress/?page_id=304
 [sujet 6]:http://mfaverge.vvv.enseirb-matmeca.fr/wordpress/?page_id=309
-
-
-
-
