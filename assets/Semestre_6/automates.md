@@ -2,6 +2,7 @@
 title: Automates, Applications finies 
 icon: fa-robot 
 order: 3
+hide: true
 ---
 
 ### Objectif du cours

@@ -2,6 +2,8 @@
 title: Recherche opérationnelle 
 icon: fa-search
 order: 5
+hide: true
+
 ---
 
 ## Ressources Pédagogiques

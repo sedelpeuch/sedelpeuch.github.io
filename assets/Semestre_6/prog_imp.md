@@ -2,6 +2,8 @@
 title: Prog impérative 
 icon: fa-code
 order: 7
+hide: true
+
 ---
 
 ### Objectif du cours

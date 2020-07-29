@@ -3,6 +3,6 @@
 # Edit theme's home layout instead if you wanna make some changes
 # See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
-title: Semestre 6 - En cours
+title: Semestre 7 - En cours
 order: 1
 ---

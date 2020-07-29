@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Cycle Préparatoire De Bordeaux - Regroupements de ressources
+title: CPBx
 subtitle: Vers une transformation du Drive
-hide: true
-order: 3
+order: 4
+icon: fa-check
 ---
 
 <ul id="menu-demo2">

@@ -2,6 +2,7 @@
 title: Algorithmique numérique 
 icon: fa-infinity
 order: 4
+hide : true
 ---
 
 ### Objectif du cours

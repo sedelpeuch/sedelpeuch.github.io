@@ -3,7 +3,7 @@ layout: default
 title: Graphes
 icon: fa-project-diagram
 order: 2 
-
+hide: true
 ---
 
 ### Objectif du cours

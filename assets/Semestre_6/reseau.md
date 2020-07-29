@@ -2,6 +2,7 @@
 title: Introduction aux réseaux 
 icon: fa-server
 order: 9
+hide: true
 ---
 
 ### Objectif du cours

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/Semestre_6/algo_graph.html" /><!-- Title, description, author --><title>Graphes | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Graphes | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/Semestre_6/algo_graph.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><h3 id="objectif-du-cours">Objectif du cours</h3>
+<p>Après une brève introduction des graphes, ce cours présente des problèmes sur
+les graphes admettant une solution algorithmique efficace. L’étude de ces
+solutions sera l’occasion d’exhiber des propriétés classiques en Théorie des
+Graphes.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Ressources Pédagogiques</th>
+      <th style="text-align: left">Notes personnelles</th>
+      <th style="text-align: left">Quelques Exercices</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Le <a href="https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf">cours</a></td>
+      <td style="text-align: left"><a href="/assets/md/graph/def">1. Définitions générales</a></td>
+      <td style="text-align: left"><a href="/assets/md/graph/1">1. Graphes notions générales</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Les <a href="https://moodle.bordeaux-inp.fr/pluginfile.php/51351/mod_resource/content/3/TDgraphe2012.pdf">exercices</a></td>
+      <td style="text-align: left"><a href="/assets/md/graph/chem">2. Chemins et arbres</a></td>
+      <td style="text-align: left"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"><a href="/assets/md/graph/rep">3. Représentation d’un graphe</a></td>
+      <td style="text-align: left"><a href="/assets/md/graph/2">3. Implémentation de graphes</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"><a href="/assets/md/graph/par">4. Parcours d’un graphe</a></td>
+      <td style="text-align: left"><a href="/assets/md/graph/3">4. Parcours en largeur et en profondeur : labyrinthe</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"><a href="/assets/md/graph/ACM">5. Arbre Couvrant Minimal</a></td>
+      <td style="text-align: left"><a href="/assets/md/graph/4">5. Union Find</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"><a href="/assets/md/graph/PCC">6. Plus Court Chemin</a></td>
+      <td style="text-align: left"><a href="/assets/md/graph/5">6. Cycle et voyageur de commerce</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"><a href="/assets/md/graph/flot">7. Le problème du flot maximal</a></td>
+      <td style="text-align: left"><a href="/assets/md/graph/6">7. Flot maximal</a></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left"><a href="/assets/md/graph/coup">8. Couplage</a></td>
+      <td style="text-align: left"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
