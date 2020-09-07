@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/poo/cours1.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-code fa-2x&quot;&gt;&lt;/i&gt; Objet et encapsulation | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-code fa-2x&quot;&gt;&lt;/i&gt; Objet et encapsulation | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/poo/cours1.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-7-en-cours-link">
+            <span class="icon fa-link">Semestre 7 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_6.html" id="semestre-6-link">
+            <span class="icon fa-check">Semestre 6</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li><li><a href="http://localhost:4000/CPBx.html" id="cpbx-link">
+            <span class="icon fa-check">CPBx</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-code fa-2x"></i> Objet et encapsulation</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Notes inspirées du
+<a href="https://georgy.vvv.enseirb-matmeca.fr/PG202-203/poo-info-2021.pdf">polycopié</a>
+de Georges Eyrolles.</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h2 id="-lencapsulation"><i class="fas fa-code"></i> L’encapsulation</h2>
+
+<p>L’<code class="language-plaintext highlighter-rouge">encapsulation</code> dans l’approche objet consiste à regrouper le code (données et
+traitements) qui fournit un même service dans une seule entité. Une
+encapsulation spécifie le fonctionnement d’un service (par un ensemble
+d’actions) en masquant la manière de le réaliser.</p>
+
+<p>Respecter le concept d’encapsulation permet de séparer l’utilisation d’un
+service de sa réalisation et renforcer la manipulation d’abstractions dans la
+fabrication d’un logiciel.</p>
+
+<h3 id="objet">Objet</h3>
+
+<p>L’<code class="language-plaintext highlighter-rouge">objet</code> est l’entité qui met en oeuvre, à l’exécution, une encapsulation.
+Plusieurs objets peuvent mettre en oeuvre la même encapsulation.</p>
+
+<p>Les données encapsulées dans unobjet sont désignées par les termes <strong>attributs</strong>
+ou <strong>variable d’instances</strong>.</p>
+
+<p>Les traitements encapsulés dans un objet sont désignées par le terme
+<strong>méthodes</strong></p>
+
+<p>Dans cette approche, l’exécution d’un programme manipule uniquement des objets :
+création, passage de paramètres et communication entre objets. Un objet <script type="math/tex">A</script>
+communique avec un objet <script type="math/tex">B</script> lorsqu’un des traitements de l’objet <script type="math/tex">A</script>
+déclenche une des méthodes de l’objet <script type="math/tex">B</script>.</p>
+
+<h3 id="classe">Classe</h3>
+
+<p>Un langage orienté objet doit fournir un moyen de décrire une encapsulation
+(utilisation et réalisation). En général, cette description d’une encapsulation
+est faite à l’aide de la construction appelée <strong>classe</strong>.</p>
+
+<p>Dans un langage type, une classe correspond à la déclaration d’un type.</p>
+
+<h3 id="description-des-encapsulations-en-java">Description des encapsulations en Java</h3>
+<p>Le langage Java est un langage orienté objet typé utilisant des classes pour la
+description des encapsulations.</p>
+
+<ul>
+  <li>
+    <p>Définition de la classe Java <code class="language-plaintext highlighter-rouge">PorteCharniere</code> dans un fichier source nommé :
+<code class="language-plaintext highlighter-rouge">PorteCharniere.java</code>.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">PorteCharniere</span> <span class="o">{</span>
+  <span class="c1">// La définition des variables / attributs d'un objet</span>
+  <span class="kt">boolean</span> <span class="n">estFerme</span><span class="o">;</span>
+    
+  <span class="c1">//La définition des méthodes d'un objet</span>
+  <span class="kt">void</span> <span class="nf">fermer</span><span class="o">(){</span>
+      <span class="cm">/* Todo */</span>
+      <span class="n">estFerme</span><span class="o">=</span><span class="kc">true</span><span class="o">;</span>
+  <span class="o">}</span>
+    
+  <span class="kt">void</span> <span class="nf">ouvrir</span><span class="o">(){</span>
+      <span class="cm">/*Todo*/</span>
+      <span class="n">estFerme</span><span class="o">=</span><span class="kc">false</span><span class="o">;</span>
+  <span class="o">}</span>
+    
+  <span class="kt">boolean</span> <span class="nf">estFerme</span><span class="o">(){</span>
+      <span class="k">return</span> <span class="n">estFerme</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="-les-objets"><i class="fas fa-code"></i> Les objets</h2>
+
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
