@@ -83,4 +83,33 @@ class PorteCharniere {
 
 ## <i class="fas fa-code"></i> Les objets
 
+L'`objet` est l'entit de base de l'exécution. À chaque objet est attribu une
+zone mémoire différente. 
 
+Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire
+d'identifier de manière unique un objet. 
+
+L'`identité` d'un objet est assurée par l'adresse de la zone mémoire attribuée à
+cet objet. 
+
+La zone mémoire d'un objet contient la valeur de ses attributs (suivant la
+description de l'encapsulation). 
+
+Un objet encapsule les méthodes. En pratique, tous les objets mettant en oeuvre
+la même encapsulation partagent le code des méthodes. Ce code commun est exécuté
+avec l'identité (la zone mémoire) de l'objet sur lequel est déclenchée une
+action. 
+
+Un langage orienté objet doit fournir des mécanismes pour : 
+- créer un objet : **instanciation**
+- déclencher une action sur un objet : **envoi de messages**
+- assurer la séparation utilisation/ réalisation : **masquage d'information**
+
+### Instanciation
+
+L'`instanciation` désigne l'opération de créer un objet à partir de la
+description de l'encapsulation. Elle attribue une zone mémoire à l'objet et
+initialise ses attributs. 
+
+Dans un langage à classe, un objet est instancié à partir d'une classe. Un objet
+est souvent désigné par le terme `instance`.

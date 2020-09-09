@@ -11,21 +11,16 @@ le projet IF204.
 
 ### Ressources pédagogiques
 
-| Cours                                        | Travaux Dirigés |
-| :--                                         | :--            |
-| [Introduction]                               |                 |
-| [Analyse lexicale]                           |                 |
-| [Analyse syntaxique]                         |                 |
-| [Analyse sémantique]                         |                 |
-| [Génération de représentation intermédiaire] |                 |
-| [Génération de code assembleur]              |                 |
-| [Structure du compilateur LLVM]              |                 |
+| Cours                                        | Notes personnelles |
+| :--                                          | :--                |
+| [Introduction]                               | [cours 1]          |
+| [Analyse lexicale]                           |                    |
+| [Analyse syntaxique]                         |                    |
+| [Analyse sémantique]                         |                    |
+| [Génération de représentation intermédiaire] |                    |
+| [Génération de code assembleur]              |                    |
+| [Structure du compilateur LLVM]              |                    |
 
-### Notes personnelles
-
-| Cours | Travaux Dirigés |
-| :--   | :--             |
-| [cours 1]      |                 |
 
 [cours 1]:assets/md/compilation/cours1
 

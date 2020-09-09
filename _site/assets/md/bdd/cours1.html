@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/bdd/cours1.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-database fa-2x&quot;&gt;&lt;/i&gt; Conception d&#39;une base de donné | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-database fa-2x&quot;&gt;&lt;/i&gt; Conception d&#39;une base de donné | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/bdd/cours1.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-7-en-cours-link">
+            <span class="icon fa-link">Semestre 7 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_6.html" id="semestre-6-link">
+            <span class="icon fa-check">Semestre 6</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li><li><a href="http://localhost:4000/CPBx.html" id="cpbx-link">
+            <span class="icon fa-check">CPBx</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-database fa-2x"></i> Conception d'une base de donné</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Notes inspirées du
+<a href="https://moodle.bordeaux-inp.fr/pluginfile.php/96806/mod_resource/content/4/cours_conception-20.pdf">cours</a>
+de M.Mosbah et S.Lombardy</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h2 id="-introduction"><i class="fas fa-database"></i> Introduction</h2>
+
+<p>L’informatique permet de construire des systèmes pour effectuer des calculs
+(équations différentielles, calcul matriciel, etc). Aujourd’hui on s’appuie de
+plus en plus sur des données ce qui implique une gestion de grandes quantités
+d’informations (ie stocjer des données et manipuler ces données). De plus les
+données peuvent être de natures diverses, les opérations peuvent être plus ou
+moins compliquées.</p>
+
+<h3 id="objectifs">Objectifs</h3>
+
+<p>C’est dans ce contexte qu’intervient les SGBD, leurs objectifs sont les suivants</p>
+<ul>
+  <li>Stocker, centraliser des données (BD) et les mettre à disposition des
+utilisateurs</li>
+  <li>Manipuler (de manière transparente pour l’utilisateur) des données (SGBD)</li>
+</ul>
+
+<h3 id="fonctionnalités">Fonctionnalités</h3>
+
+<p>Pour répondre à ces objectifs les systèmes de SGBD sont munis des
+fonctionnalités suivantes :</p>
+<ul>
+  <li>Gestion du stockage (tailles importantes de données, éviter les redondances)</li>
+  <li>Persistance (les données survivent aux programmes qui les créent)</li>
+  <li>Fiabilité (mécanismes de reprise sur pannes, logiciel ou matériel)</li>
+  <li>Sécurité / confidentialité (Contrôle des utilisateurs et des droits d’accès
+aux données)</li>
+  <li>Interfaces homme-machine (ergonomie, profils utilisateurs)</li>
+  <li>Distribution (données stockées sur différents sites)</li>
+  <li>Optimisation</li>
+  <li>Contrôle de concurrence : propriétés ACID , transactions
+    <ul>
+      <li>Atomicité (soit toutes les opérations de la transaction sont validées, soit
+aucune ne l’est)</li>
+      <li>Cohérence (préservation de la cohérence de la base)</li>
+      <li>Isolation (quelle que soit la manière dont les transactions concurrentes
+sont exécutées, on doit pouvoir les ordonner de sorte à ce que l’état final
+de la base soti le même qu’après une exécution séquentielle des différentes
+transactions)</li>
+      <li>Durabilité (Si une transaction est validée, tous les changements qu’elle a
+effectués sur la base sont persistants)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="architecture-fonctionnelle-dune-sgbd">Architecture fonctionnelle d’une SGBD</h3>
+
+<p><img src="/assets/images/sgbd/archi_sgbd.png" alt="architecture" class="image about center" /></p>
+
+<h3 id="utilisateurs-dun-sgbd">Utilisateurs d’un SGBD</h3>
+
+<ol>
+  <li>Administrateur
+    <ul>
+      <li>Définition du schéma logique</li>
+      <li>définition des structures de stockage et des méthodes d’accès</li>
+      <li>Gestion des autorisations</li>
+      <li>Spécification des contraintes</li>
+      <li>Maintenance de la performance</li>
+    </ul>
+  </li>
+  <li>Concepteur et programmeur
+    <ul>
+      <li>Est informaticien</li>
+      <li>Connaît au moins le LMD</li>
+      <li>Connaît bien le SGBD</li>
+      <li>Connaît un ou plusieurs langages de programmation</li>
+    </ul>
+  </li>
+  <li>Utilisateurs</li>
+</ol>
+
+<h3 id="niveau-dabstraction-des-données">Niveau d’abstraction des données</h3>
+
+<p><img src="/assets/images/sgbd/abstraction.png" alt="abstraction" class="image about center" /></p>
+
+<h3 id="principe-de-base">Principe de base</h3>
+<ul>
+  <li>Indépendance physique (les applications manipulant la base au niveau logique
+ne doivent pas être réécrites si la structure physique est modifiée)</li>
+  <li>Indépendant logique (une modification au niveau logique n’implique aucune
+modification des applications utilisant le niveau externe)</li>
+  <li>Deux types de langages (description des données et manipulation des données)</li>
+</ul>
+
+<h3 id="schéma-et-instance">Schéma et instance</h3>
+<ul>
+  <li>Analogues à la notion de variable et de type dans les langages de
+programmation</li>
+  <li>Schéma : structure logique de la base de données</li>
+  <li>Instance : le contenu effectif de la base de données à un instant donné</li>
+</ul>
+
+<h3 id="modèles-de-données">Modèles de données</h3>
+<ul>
+  <li>Ensemble d’outils permettant de définir les chéma et les instances ainsi que
+les opérations possibles sur les instances</li>
+  <li>Modèle conceptuel de données : entité - association (diagramme de classes UML)</li>
+  <li>Modèle logique des données : modèle relationnel</li>
+  <li>Modèle physique de données : implémentation particulière du modèle logique de
+données par le logiciel</li>
+</ul>
+
+<h3 id="conception-dune-base-de-données">Conception d’une base de données</h3>
+<p>La conception d’une base de données se découpe en 4 étapes</p>
+<ol>
+  <li>Analyse des besoins</li>
+  <li>Descrption conceptuelle</li>
+  <li>Conception logique</li>
+  <li>Conception physique</li>
+</ol>
+
+<p>Les 2 premières phases sont indépendantes du SGBD</p>
+
+<p>Le passage de la 2 à la 3 peut être en partie automatisée</p>
+
+<h2 id="-modèle-conceptuel"><i class="fas fa-database"></i> Modèle conceptuel</h2>
+
+<h3 id="entité">Entité</h3>
+
+<p>Une <code class="language-plaintext highlighter-rouge">entité</code> correspond à un ensemble homogène d’informations qui correspondent
+au même « objet » à informatiser. Cette entité a un nom unique afin de la
+manipuler facilement. 
+Les entités ne sont généralement pas représentes graphiquement.</p>
+
+<p>Un <code class="language-plaintext highlighter-rouge">type d'entité</code> désigne un ensemble d’entités qui possèdent une sémantique et
+des propriétés communes. 
+Une entité est souvent nommée occurrence ou instance de son type entité.</p>
+
+<h3 id="attribut-ou-propriété-valeur">Attribut ou propriété, valeur</h3>
+
+<p>Un <code class="language-plaintext highlighter-rouge">attribut</code> (ou une propriété) est une caractéristique associée à un type
+entité ou à un type association.
+Au niveau du type entité ou du type association, chaque attribut possède un
+domaine qui définit l’ensemble des valeurs possible qui peuvent être choisies
+pour lui (entier, chaine de caractères, booléen …). Au niveau de l’entité,
+chaque attribut possède une valeur compatible avec son domaine. 
+Un attribut ne peut en aucun cas être partagé par plusieurs par plusieurs type
+entité ou type association. 
+Un attribut est une donné élémentaire, ce qui exclut des données calculées ou
+dérivées.
+Un type entité et ses attributs doivent être cohérents entre eux.</p>
+
+<h3 id="identifiant-ou-clé">Identifiant ou clé</h3>
+
+<p>Un <code class="language-plaintext highlighter-rouge">identifiant</code> (ou clé) d’un type entité ou d’un type association est
+constitué par un ou plusieurs de ses attributs qui doivent avoir une valeur
+unique pour chaque entité ou association de ce type.
+Il est donc impossible que les attributs constituant l’identifiant d’un type
+entité (respectivement type association) prennent la même valeur pour deux
+entités (respectivement deux associations) distinctes.
+Chaque type entité possède au moins un identifiant, éventuellement formé de
+plusieurs attributs. 
+Ainsi, chaque type entité possède au moins un attribut qui,  s’il est seul, est donc forcément l’identifiant</p>
+
+<h3 id="association-ou-relation">Association ou relation</h3>
+
+<p><img src="/assets/images/sgbd/fig2_04.png" alt="association" class="image about right" /></p>
+
+<p>Une <code class="language-plaintext highlighter-rouge">association</code> (ou une relation) est un lien entre plusieurs entités, les
+associations ne sont généralement pas représentées graphiquement.</p>
+
+<p>Un <code class="language-plaintext highlighter-rouge">type association</code> (ou un type relation) désigne un ensemble de relations qui
+possèdent les mêmes caractéristiques. Le type association décrit un lien entre
+plusieurs type entité. Les associations de ce type association lient des entités
+de ces type entité. 
+Comme les types entités, les types association sont définis à l’aide d’attributs
+qui prennent leur valeur dans les associations. 
+Un attribut peut être placé dans un type association uniquement lorsqu’il dépend
+de toutes les entités liées par le type association.
+Un attribut peut être placé dans un type association uniquement lorsqu’il
+dépend de toutes les entités liées par le type association. 
+Un type association peut ne pas posséder d’attribut explicite et cela est
+relativement fréquent, mais on verra qu’il possède au moins des attributs
+implicites. 
+Une association est souvent nommée occurence ou instance de son type
+association.</p>
+
+<p>Les types entité intervenant dans un type association sont appelés les
+<code class="language-plaintext highlighter-rouge">participants</code> de ce type association</p>
+
+<p>L’ensemble des participants d’un type association est appelé la <code class="language-plaintext highlighter-rouge">collection</code> de
+ce type association
+Cette collection comporte au moins un type entité mais elle peut en contenir
+plus, on parle alors de type association <script type="math/tex">n-aire</script></p>
+
+<p>La <code class="language-plaintext highlighter-rouge">dimension</code>, ou l’arité d’un type association est le nombre de type
+association est le nombre de type entité contenu dans la collection</p>
+
+<p>Comme un entité, un type association possède forcément un identifiant qu’il soit
+explicite ou non. 
+La concaténation des identifiant des types entités liés à un type association
+constitue un identifiant de ce type association et cet identifiant n’est pas
+mentionné sur le modèle 
+Cette règle implique que deux instances d’un même type association ne peuvent
+lier un même ensemble d’entités. 
+Souvent, un sous-ensemble de la concaténation des identifiants des types entité
+liés suffit à identifier le type association 
+On admet également un identifiant plus naturel et explicite, à condition qu’il
+ne soit qu’un moyen d’exprimer plus simplement cette concaténation.</p>
+
+<h3 id="cardinalité">Cardinalité</h3>
+
+<p><img src="/assets/images/sgbd/fig2_05.png" alt="cardinalite" class="image about right" /></p>
+
+<p>La <code class="language-plaintext highlighter-rouge">cardinalité</code> d’une patte reliant un type association et un type entité
+précise le nombre de fois minimal et maximal d’interventions d’une entité du
+type entité dans une association du type association. La cardinalité minimale
+doit être inférieure ou égale à la cardinalité maximale.</p>
+
+<p>Exemple de cardinalité : une personne peut être l’auteur de 0 à <script type="math/tex">n</script> livre,
+mais un livre ne peut être écrit que par une personne.</p>
+
+<p>L’expression de la cardinalité est obligatoire pour chaque patte d’un type
+association. 
+Une cardinalité minimale est toujours 0 ou 1 et une cardinalité maximale est
+toujours 1 ou n. 
+Ainsi si une cardinalité maximale est connue et vaut 2,3 ou plus, alros nous
+considérons qu’elle est interderminée et vaut <script type="math/tex">n</script>. En effet, si nous
+connaissons <script type="math/tex">n</script> au moment de la conception, il se peut que cette valeur évolue
+au cours du temps. Il vaut donc mieux considérer <script type="math/tex">n</script> comme inconnue dès le
+départ. De la même manière, on e modélise pas de cardinalités minimales qui
+valent plus de 1, car ces valeurs sont également susceptibles d’évoluer. Enfin,
+une cardinalité maximale de 0 n’a pas de sens, car elle rendrait le type
+association inutile.</p>
+
+<h3 id="compléments-sur-les-associations">Compléments sur les associations</h3>
+
+<h4 id="associations-plurielles">Associations plurielles.</h4>
+
+<p><img src="/assets/images/sgbd/fig2_06.png" alt="plurielles" class="image about center" /></p>
+
+<h4 id="association-réflexive">Association réflexive.</h4>
+
+<p><img src="/assets/images/sgbd/fig2_07.png" alt="reflexives" class="image about center" /></p>
+
+<h2 id="-normalisation"><i class="fas fa-database"></i> Normalisation</h2>
+<h2 id="-modèle-relationnel"><i class="fas fa-database"></i> Modèle relationnel</h2>
+<h2 id="-dépendances-fonctionnelles"><i class="fas fa-database"></i> Dépendances fonctionnelles</h2>
+<h2 id="-formes-normales"><i class="fas fa-database"></i> Formes normales</h2>
+<h2 id="-le-langage-sql"><i class="fas fa-database"></i> Le langage SQL</h2>
+
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

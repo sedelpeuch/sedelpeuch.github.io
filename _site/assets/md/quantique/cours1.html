@@ -1,0 +1,255 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/quantique/cours1.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-vial fa-2x&quot;&gt;&lt;/i&gt; Introduction | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="&lt;i class=&quot;fas fa-vial fa-2x&quot;&gt;&lt;/i&gt; Introduction | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/quantique/cours1.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-7-en-cours-link">
+            <span class="icon fa-link">Semestre 7 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_6.html" id="semestre-6-link">
+            <span class="icon fa-check">Semestre 6</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li><li><a href="http://localhost:4000/CPBx.html" id="cpbx-link">
+            <span class="icon fa-check">CPBx</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2><i class="fas fa-vial fa-2x"></i> Introduction</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Notes inspirées du
+<a href="https://dept-info.labri.fr/~ges/ENSEIGNEMENT/CALCULQ/polycop_calculq.pdf">polycopié</a>
+de Y. Leroyer et G. Sénizergues.</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h2 id="-aperçu"><i class="fas fa-vial"></i> Aperçu</h2>
+
+<p><em>Qu’est ce que l’informatique quantique et le calcul quantique ?</em></p>
+
+<p>Le calcul quantique et l’informatique quantique sont l’étude de traitement
+d’information en utilisant des <strong>système quantiques</strong>.</p>
+
+<p>Un ordinateur quantique n’est pas simplement un ordinateur plus rapide, mais
+c’est un ordinateur qui permet une nouvelle manière de concevoir les
+algorithmes, les <strong>algorithmes quantique</strong></p>
+
+<p>L’ordinateur classique fonctionne sur le principe des bits (utilisation
+principale du binaire 0 ou 1), la réalisation physique repose sur le courant
+électrique, si le courant passe l’information vaut 1 sinon elle vaut 0. On se
+base sur les portes logiques (NOT, AND, XOR …) qui nécessitent des
+transistors.</p>
+
+<p>Avant le bit quantique nous avons le <strong>bit probabiliste</strong>
+<script type="math/tex">(p,q); p , q \in [0,1]</script> tel que <script type="math/tex">p+q = 1</script></p>
+
+<p>En revanche un ordinateur quantique manipule des <strong>bits quantiques</strong> (ou qubits)
+qui obéissent aux lois de la mécanique quantique.</p>
+
+<h3 id="principe-de-superposition">Principe de superposition</h3>
+
+<p>Un objet quantique peut se retrouver en un <em>superposition d’états</em>. (l’objet
+quantique respectif n ‘est pas seulement soit dans l’était 0 soit dans l’état 1
+mais il peut être dans une superposition d’états)</p>
+
+<p>Exemple du principe de superposition : Le chat de Schrodinger.</p>
+
+<h3 id="décoherence">Décoherence</h3>
+
+<p>Terme désignant le passage du monde quantique au monde classique. Plus un
+système physique interagit avec son environnement  plus les effets quantiques
+s’estompent.</p>
+
+<h3 id="représentation-dun-qubit">Représentation d’un qubit</h3>
+
+<p>On note <script type="math/tex">\vert \Psi \rangle</script> un étant d’un système quantique à 2 niveaux (tel un
+qubit) décomposition du vecteur (ket)</p>
+
+<p><script type="math/tex">\vert \Psi \rangle = \alpha \vert 0 \rangle + \beta \vert 1 \rangle</script>a<script type="math/tex">avec</script>\alpha^2 + \beta^2 = 1, \alpha, \beta \in \mathbb{C}$$</p>
+
+<p>Un nombre complexe est donné par un module et une phase.</p>
+
+<h3 id="sphère-de-bloch">Sphère de Bloch</h3>
+
+<p><img src="/assets/images/quantique/bloch.png" alt="Sphere de bloch" class="image about center" /></p>
+
+<p>Avec le système de coordonnées sphérique : <script type="math/tex">\begin{cases} x = \sin{\theta}
+\cos{\varphi} \\ y = \sin{\theta} \sin{\varphi} \\ z = \cos{\theta} \end{cases}</script></p>
+
+<p>Les facteurs  de phase n’affectant pas l’état physique d’un système, nous
+pouvons choisir <script type="math/tex">\alpha \in \mathbb{R}_+</script></p>
+
+<script type="math/tex; mode=display">\vert \Psi \rangle = \cos{\dfrac{\theta}{2}} \vert 0 \rangle + \exp{i \varphi}
+\sin{\dfrac{\theta}{2}} \vert 1\rangle</script>
+
+<h3 id="exemples-dobjets-quantiques">Exemples d’objets quantiques</h3>
+
+<h4 id="lélectron">L’électron.</h4>
+
+<p>Il possède une propriété quantique : le <strong>spin</strong>. Pour l’électron, il y a 2
+possibilitéés, spin up et spin down. Le spin fait que l’électron peut faire
+office de qubit. On est dans une superposition de ces 2 étant.</p>
+
+<h4 id="registres">Registres.</h4>
+
+<p>Pour un ordinateur classique on utilise des registres, par exemple un registre à
+4 bits permet de faire 16 états possibles.</p>
+
+<p>Pour un ordinateur quantique, on utilise un registre quantique, par exemple un
+registre à 4 qubits permet une superposition de 16 états.</p>
+
+<script type="math/tex; mode=display">\alpha_1 \vert 0000 \rangle + \alpha_2 \vert 0001 \rangle + ... + \alpha_n \vert 1111 \rangle</script>
+
+<h3 id="portes-quantiques">Portes quantiques</h3>
+
+<p>Permet de manipuler des qubits et de faire des manipulations comme dans un monde
+classique.</p>
+
+<p>Par exemple la porte de <strong>Hadamard</strong> :</p>
+
+<script type="math/tex; mode=display">\begin{cases} \vert 0 \rangle  \stackrel{H}{\rightarrow} \dfrac{1}{\sqrt{2}} (\vert 0
+  \rangle + \vert 1 \rangle) \\ \vert 1 \rangle \stackrel{H}{\rightarrow}
+  \dfrac{1}{\sqrt{2}} (\vert 0 \rangle - \vert 1 \rangle) \end{cases}</script>
+
+<p>Il existe toute une zoologie des portes quantiques qui prend en entrée 1,2 , …
+qubits.</p>
+
+<p>Mathématiquement on représente une porte quantique par une matrice unitaire
+<script type="math/tex">U</script>. <script type="math/tex">U</script> est une matrice carré complexe, elle est unitaire si (<script type="math/tex">U^+</script> est
+la matrice transposée conjuguée)</p>
+
+<script type="math/tex; mode=display">U.U^+ = 1 = U^+.U</script>
+
+<h3 id="exemple-de-problème-à-résoudre-">Exemple de problème à résoudre :</h3>
+
+<p>Soit <script type="math/tex">F : \mathbb{N} \rightarrow \mathbb{N}</script>, trouver <script type="math/tex">x</script> tel que
+<script type="math/tex">f(x)=42</script>, <script type="math/tex">f</script> est donnée sous la forme d’un tableau. Un algorithme
+classique effectuerai une recherche exhaustive (de complexité linéaire), en
+quantique l’algorithme de Groves permet de réaliser l’opération en une complexité <script type="math/tex">\sqrt{n}</script>.</p>
+
+<p>Autre exemple sur la factorisation des nombres entiers :</p>
+
+<p>Simple lorsque le nombre utilise des facteurs premiers petits, appel à des
+algorithmes de cryptographique qui se basent sur la factorisation. En revanche en
+1994, Peter Schor a trouvé un algorithme quantique qui se base sur l’assemblage
+de portes quantiques d’une complexité meilleure (exponentiellement meilleure)
+que la complexité de l’algorithme classique de factorisation.</p>
+
+<h3 id="réalisation-physique-des-qubits">Réalisation physique des qubits</h3>
+
+<p>Un ordinateur classique fonctionne selon le courant électrique, pour réaliser un
+qubit il faut un système physique suffisamment petit pour obéir aux lois de la
+mécanique quantique.</p>
+
+<p>Les objets susceptibles permettant de réaliser physiquement un qubits peuvent
+être, le spin de l’électron ou d’un noyau atomique, la polarisation d’un photon,
+circuit superconducteurs.</p>
+
+<p>Cependant il y a quelques complications techniques :</p>
+<ol>
+  <li>Il faut avoir suffisamment de qubits pour avoir un registre quantique assez
+grand</li>
+  <li>Matériaux isolés du monde extérieur pour qu’ils soient stables et pour qu’ils
+puissent rester dans un état superposé le plus longtemps possible pour
+effectuer des calculs</li>
+</ol>
+
+<h3 id="la-suprématie-quantique">La Suprématie quantique</h3>
+
+<p>Ce terme désigne un problème que l’on ne pourrait résoudre qu’avec un ordinateur
+quantique et qu’un ordinateur classique ne peux pas résoudre.</p>
+
+<h2 id="-3-motivation-pour-létude-de-linformatique-quantique"><i class="fas fa-vial"></i> 3 motivation pour l’étude de l’informatique quantique</h2>
+
+<ol>
+  <li>La miniaturisation actuelle a déjà atteint des niveaux où les effets
+quantiques apparaissent</li>
+  <li>Les effets quantiques permettent d’accélérer certains calculs et permettent
+certains calculs inaccessibles aux ordinateurs classiques</li>
+  <li>Le but de l’informatique théorique est d’étudier les pouvoirs et les limites
+des dispositifs de calculs les plus puissant que l’on peut avoir</li>
+</ol>
+
+<h2 id="-un-peu-dhistoire"><i class="fas fa-vial"></i> Un peu d’histoire</h2>
+
+<ul>
+  <li>Début des années 80 : suggestions au sujet de l’existence future d’un
+ordinateur quantique par Richard Fegman</li>
+  <li>1985 : David Deutsh a défini la machine de Turing quantique universelle</li>
+  <li>développements des premiers algorithmes quantiques par Deutsh et Jozsa</li>
+  <li>1994 : algorithme quantique de factorisation de Peter Schor</li>
+  <li>suprématie quantique</li>
+</ul>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

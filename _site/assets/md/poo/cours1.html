@@ -149,6 +149,38 @@ description des encapsulations.</p>
 
 <h2 id="-les-objets"><i class="fas fa-code"></i> Les objets</h2>
 
+<p>L’<code class="language-plaintext highlighter-rouge">objet</code> est l’entit de base de l’exécution. À chaque objet est attribu une
+zone mémoire différente.</p>
+
+<p>Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire
+d’identifier de manière unique un objet.</p>
+
+<p>L’<code class="language-plaintext highlighter-rouge">identité</code> d’un objet est assurée par l’adresse de la zone mémoire attribuée à
+cet objet.</p>
+
+<p>La zone mémoire d’un objet contient la valeur de ses attributs (suivant la
+description de l’encapsulation).</p>
+
+<p>Un objet encapsule les méthodes. En pratique, tous les objets mettant en oeuvre
+la même encapsulation partagent le code des méthodes. Ce code commun est exécuté
+avec l’identité (la zone mémoire) de l’objet sur lequel est déclenchée une
+action.</p>
+
+<p>Un langage orienté objet doit fournir des mécanismes pour :</p>
+<ul>
+  <li>créer un objet : <strong>instanciation</strong></li>
+  <li>déclencher une action sur un objet : <strong>envoi de messages</strong></li>
+  <li>assurer la séparation utilisation/ réalisation : <strong>masquage d’information</strong></li>
+</ul>
+
+<h3 id="instanciation">Instanciation</h3>
+
+<p>L’<code class="language-plaintext highlighter-rouge">instanciation</code> désigne l’opération de créer un objet à partir de la
+description de l’encapsulation. Elle attribue une zone mémoire à l’objet et
+initialise ses attributs.</p>
+
+<p>Dans un langage à classe, un objet est instancié à partir d’une classe. Un objet
+est souvent désigné par le terme <code class="language-plaintext highlighter-rouge">instance</code>.</p>
 </div>
 	</article>
 </div><!-- Footer -->
