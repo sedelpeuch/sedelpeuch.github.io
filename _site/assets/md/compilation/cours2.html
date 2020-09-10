@@ -6,15 +6,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 -->
 <html><head><!-- Robots -->
-  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/compilation/cours1.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-laptop fa-2x&quot;&gt;&lt;/i&gt; Introduction | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/compilation/cours2.html" /><!-- Title, description, author --><title>Analyse lexicale | Informatique - ENSEIRB-Matmeca</title>
   <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
   <meta name="author" content="Delpeuch Sébastien" />
   
   <!-- Open Graph -->
-  <meta property="og:title" content="&lt;i class=&quot;fas fa-laptop fa-2x&quot;&gt;&lt;/i&gt; Introduction | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:title" content="Analyse lexicale | Informatique - ENSEIRB-Matmeca" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
-  <meta property="og:url" content="http://localhost:4000/assets/md/compilation/cours1.html" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/compilation/cours2.html" />
   <meta property="og:site_name" content="Informatique" />
   <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
   
@@ -67,7 +67,7 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 	<article class="shade-two">
 	  <div class="container">
 			<header>
-				<h2><i class="fas fa-laptop fa-2x"></i> Introduction</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+				<h2>Analyse lexicale</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Notes inspirées du cours de JANIN David</p>
@@ -78,52 +78,69 @@ html {
 }
 </style>
 
-<h2 id="-introduction"><i class="fas fa-laptop"></i> Introduction</h2>
+<p>L’objectif de l’analyse lexicale est de lire le programme d’entrée et de
+reconnaître des lexèmes (tokens). Ce sont des éléments constitutifs du langage,
+mots clés, noms de variable, symboles de ponctuation …</p>
 
-<h3 id="intérêt-de-la-compilation">Intérêt de la compilation</h3>
+<h2 id="langages-réguliers">Langages réguliers</h2>
 
+<p>L’analyse lexicale repose sur le cadre théorique des langages réguliers. Pour
+rappel un langage régulier est défini par :</p>
 <ul>
-  <li>Outil incontournable, quelque soit le langage informatique</li>
-  <li>Meilleure connaissance des compilateurs implique une meilleure programmation</li>
-  <li>Techniques de compilation réutilisables dans nombreux contextes (notamment
-analyse de code)</li>
-  <li>Définition : <em>Un compilateur est un programme qui prend en entrée un programme
-et le transforme en un autre programme. Un interpréteur est un programme qui
-prend en entrée un programme et l’exécute</em></li>
+  <li>un Alphabet : ensemble fini de symboles</li>
+  <li>des mots : suite finie de lettres, opération : concaténation.</li>
+  <li>un langage : ensemble des mots</li>
+  <li>
+    <p>des expressions régulières (décrivent les langages réguliers, formées avec les
+opérateurs <script type="math/tex">\ast, \vert</script>, la concaténation et <script type="math/tex">\varepsilon</script>)</p>
+
+    <p>Des langages réguliers découlent les automates réguliers, ils reconnaissent
+les expressions régulières, les automates déterministes et non déterministes
+possèdent plusieurs distinctions, importantes durant ce cours.</p>
+  </li>
 </ul>
 
-<h3 id="objectifs-possibles-du-compilateur">Objectifs possibles du compilateur</h3>
+<p><img src="/assets/images/compilation/rappel.png" alt="rappel" class="image about center" /></p>
+
+<h2 id="rappel--construction-de-thompson">Rappel : construction de Thompson</h2>
+
+<h3 id="r1r2">R1.R2</h3>
+<p><img src="/assets/images/compilation/r1.r2.png" alt="R1.R2" class="image about center" /></p>
+
+<h3 id="r1-r2">R1 | R2</h3>
+<p><img src="/assets/images/compilation/r1|r2.png" alt="R1|R2" class="image about center" /></p>
+
+<h3 id="r">R*</h3>
+<p><img src="/assets/images/compilation/r.png" alt="R*" class="image about center" /></p>
+
+<h2 id="algorithme-de-déterminisation">Algorithme de déterminisation</h2>
 
 <ul>
-  <li>Préserver la sémantique (obligatoire)</li>
-  <li>Générer un code le plus rapidement possible</li>
-  <li>Trouver toutes les erreurs lexicales, syntaxiques et sémantiques (prouver que
-le code généré est correct, que le code d’entrée respecte une spec)</li>
-  <li>Générer un code (s’exécutant le plus rapidement possible, consommant le moins
-d’énergie possible, le plus petit possible)</li>
+  <li>On part d’un automate <script type="math/tex">(N,\Sigma,\Delta,n_0,N_f)</script></li>
+  <li>On construit un automate <script type="math/tex">(Q,\Sigma,\delta,q_0,Q_F)</script></li>
+  <li>Les états du nouvel automate sont des ensembles d’état de l’ancien</li>
+  <li>Algorithme par calcul de point fixe</li>
+  <li>Complexité exponentielle au pire</li>
 </ul>
 
-<p>Obtenir un code avec la meilleure performance ou le plus petit binaire est
-difficile.</p>
+<h2 id="algorithme-de-minimisation">Algorithme de minimisation</h2>
+
 <ul>
-  <li>Évolution constante de la complexité des compilateurs</li>
-  <li>En général, code compilé meilleur que code généré à la main</li>
-  <li>Possible de guider le compilateur avec des options / paramètres / pragmas</li>
+  <li>On part d’une partition des état (finaux / non finaux )</li>
+  <li>Raffine la partition en séparant les états qui n’ont pas le même comportement</li>
+  <li>Algorithme par calcul de point fixe</li>
 </ul>
 
-<h2 id="-structure-du-compilateur"><i class="fas fa-laptop"></i> Structure du compilateur</h2>
+<h2 id="génération-de-lexèmes">Génération de lexèmes</h2>
 
-<h3 id="décomposition-en-couches">Décomposition en couches</h3>
+<p>L’objectif de l’analyseur lexical est de reconnaitre tous les lexèmes du
+langage. Un lexème est un type (analyse syntaxique) ou une valeur (analyse
+sémantique). A chaque reconnaissance de lexème, l’analyseur lexical transmet
+à l’analyser syntaxique et sémantique.</p>
 
-<p><img src="/assets/images/compilation/compil.png" alt="compilateur" class="image about right" /></p>
-<ol>
-  <li>Analyse lexicale : lit le programme reconnaît chaque mot</li>
-  <li>Analyse syntaxique : vérifie la grammaire</li>
-  <li>Analyse sémantique : vérifie le sens du programme (exemple : types)</li>
-  <li>Représentation intermédiaire (RI) : une interface séparant les front-end,
-middle-end et back-end du compilateur</li>
-</ol>
-
+<p>Il y a cependant certainnes difficultés, lorsqu’un lexème préfixes d’autres, on
+prend les plus longs. De plus lorsqu’il y a une ambiguité entre lexème on
+porcède par résolution contextuelle (ou préférence donnée à un type de lexème)</p>
 </div>
 	</article>
 </div><!-- Footer -->

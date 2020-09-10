@@ -1,7 +1,7 @@
 ---
 layout: page
 hide: true
-title: <i class="fas fa-laptop fa-2x"></i> Compilation cours 1
+title: <i class="fas fa-laptop fa-2x"></i> Introduction
 ---
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">

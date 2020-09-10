@@ -14,15 +14,23 @@ le projet IF204.
 | Cours                                        | Notes personnelles |
 | :--                                          | :--                |
 | [Introduction]                               | [cours 1]          |
-| [Analyse lexicale]                           |                    |
-| [Analyse syntaxique]                         |                    |
-| [Analyse sémantique]                         |                    |
-| [Génération de représentation intermédiaire] |                    |
-| [Génération de code assembleur]              |                    |
-| [Structure du compilateur LLVM]              |                    |
+| [Analyse lexicale]                           | [cours 2]          |
+| [Analyse syntaxique]                         | [cours 3]          |
+| [Analyse sémantique]                         | [cours 4]          |
+| [Génération de représentation intermédiaire] | [cours 5]          |
+| [Génération de code assembleur]              | [cours 6]          |
+| [Structure du compilateur LLVM]              | [cours 7]          |
+
+
 
 
 [cours 1]:assets/md/compilation/cours1
+[cours 2]:assets/md/compilation/cours2
+[cours 3]:assets/md/compilation/cours3
+[cours 4]:assets/md/compilation/cours4
+[cours 5]:assets/md/compilation/cours5
+[cours 6]:assets/md/compilation/cours6
+[cours 7]:assets/md/compilation/cours7
 
 
 [Introduction]:https://moodle.bordeaux-inp.fr/pluginfile.php/20379/mod_resource/content/2/courscompilation-1.pdf
@@ -34,3 +42,4 @@ le projet IF204.
 [Génération de représentation intermédiaire]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=9542
 [Génération de code assembleur]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=9543
 [Structure du compilateur LLVM]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=21304
+
