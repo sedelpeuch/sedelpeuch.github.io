@@ -20,6 +20,14 @@ d'illustrer les concepts vus en cours. Une application pratique est réalisée p
 | [Le modèle relationnel]                | [Cours 2]          |
 | [Algèbre relationnelle et langage SQL] | [Cours 3]          |
 
+
+### Travaux dirigés 
+
+| Sujet     | Notes personnelles |
+| :--       | :--                |
+| [Sujet 1] | [TD 1]             |
+
+
 [Conception d'une base de donnée]: https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=47001
 
 [Le modèle relationnel]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=48120
@@ -29,3 +37,6 @@ d'illustrer les concepts vus en cours. Une application pratique est réalisée p
 [Cours 1]:/assets/md/bdd/cours1
 [Cours 2]:/assets/md/bdd/cours2
 [Cours 3]:/assets/md/bdd/cours3
+
+[Sujet 1]:https://moodle.bordeaux-inp.fr/pluginfile.php/49008/mod_resource/content/3/td1.pdf
+[TD 1]:/assets/md/bdd/td1

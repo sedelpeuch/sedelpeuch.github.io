@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/bdd/td1.html" /><!-- Title, description, author --><title>TD1 - Modèle conceptuel | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="TD1 - Modèle conceptuel | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/bdd/td1.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-7-en-cours-link">
+            <span class="icon fa-link">Semestre 7 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_6.html" id="semestre-6-link">
+            <span class="icon fa-check">Semestre 6</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li><li><a href="http://localhost:4000/CPBx.html" id="cpbx-link">
+            <span class="icon fa-check">CPBx</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2>TD1 - Modèle conceptuel</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Notes personnelles du <a href="https://moodle.bordeaux-inp.fr/pluginfile.php/49008/mod_resource/content/3/td1.pdf">TD1 - Modèle conceptuel</a> du cours de SGBD</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h2 id="cours---élèves">Cours - élèves</h2>
+
+<h3 id="rappel">Rappel</h3>
+
+<p><img src="/assets/images/sgbd/fig2_04.png" alt="entite" class="image about right" /></p>
+
+<p><strong>Entité :</strong> un population d’individus homogène</p>
+
+<p><strong>Association :</strong> liaison significative entre entités</p>
+
+<p><img src="/assets/images/sgbd/fig2_05.png" alt="cardinalite" class="image about right" /></p>
+
+<p><strong>Cardinalités :</strong> la cardinalité d’une patte reliant un type association et un type entité précise le nombre de fois minimal et maximal d’interventions d’une entité du type entité dans une association du type association. La cardinalité minimale doit être inférieure ou égale à la cardinalité maximale.</p>
+
+<p><em>Donner un schéma conceptuel d’une base de données gérant les cours et les
+élèves avec les attributs suivants : numéro du cours, nom du cours, professeur
+responsable du cours, numéro d’élève, nom d’élève. Commencer par mettre
+professeur responsable du cours comme attribut, puis le transformer en entité.</em></p>
+
+<p><img src="/assets/images/sgbd/uml1.png" alt="eleve" class="image about center" /></p>
+
+<h2 id="voitures">Voitures</h2>
+
+<p><em>On désire créer une base de données géérant les voitures en circulation. Elle
+  pourra permettre de donner les informations suivantes. À propos du
+  propriétaire : n° de permis, nom prénom et adresses. À propos du véhicule :
+  numéro, couleur, date d’achat, marque et type. Donner un schéma entité-association pour cette base de données</em></p>
+
+<p><img src="/assets/images/sgbd/uml2.png" alt="voiture" class="image about center" /></p>
+
+<h2 id="facturation">Facturation</h2>
+
+<ol>
+  <li><em>Créez un modèle conceptuel qui permet de modéliser correctement le système d’information nécessaire sachant
+que :
+— Un client peut bien sûr recevoir plusieurs factures, mais il est uniquement considéré comme tel à partir
+du moment ou il reçoit sa première facture.
+— Une facture concerne un et un seul client.</em></li>
+  <li><em>Le responsable de la facturation de la société désire rendre les factures plus informatives. Comme un client
+peut acheter plusieurs articles différents en même temps, la facture devrait indiquer pour chaque article le
+numéro, un libellé, le prix unitaire, la quantité vendue et le prix total pour ce type d’article.
+Proposez un nouveau modèle.</em></li>
+</ol>
+
+<p><img src="/assets/images/sgbd/uml3.png" alt="facture1" class="image about left" /></p>
+
+<p><img src="/assets/images/sgbd/uml4.png" alt="facture2" class="image about center" /></p>
+
+<h2 id="gestion-de-classes">Gestion de classes</h2>
+
+<p><em>On veut créer une base de données gérant les classes d’une école. elle sera
+composée des rubriques nom, prénom, adresse, n° d’étudiant pour chaque étudiant
+et identifiant pour chaque professeur : n° année, date d’inscription, professeur
+responsable, matière etc. Concevoir le modèle entité association correspondant.</em></p>
+
+<p><img src="/assets/images/sgbd/uml5.png" alt="classes" class="image about center" /></p>
+
+<h2 id="gestion-du-personnel">Gestion du personnel</h2>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
