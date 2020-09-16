@@ -77,6 +77,19 @@ pouvons choisir $$\alpha \in \mathbb{R}_+$$
 $$\vert \Psi \rangle = \cos{\dfrac{\theta}{2}} \vert 0 \rangle + \exp{i \varphi}
 \sin{\dfrac{\theta}{2}} \vert 1\rangle$$
 
+#### Exercice.
+
+Où sur la sphère de bloch retrouve t'on les états $$|0 \rangle$$ et
+$$|1\rangle$$
+
+Si $$|\Psi\rangle = \vert 0 \rangle$$. Donc $$\cos{\dfrac{\theta}{2}}  \vert 0
+\rangle + e^{i \phi} \sin{\dfrac{\theta}{2}} \vert 1 \rangle \vert 0 \rangle$$ 
+
+$$\begin{cases} \cos{\dfrac{\theta}{2}} = 1 \\ e^{i \phi}
+\sin{\dfrac{\theta}{2}} = 0 \end{cases}$$ 
+
+or $$\cos{\dfrac{theta}{2}} = 1$$ donc $$\dfrac{\theta}{2}
+
 ### Exemples d'objets quantiques 
 
 #### L'électron. 
@@ -170,3 +183,4 @@ quantique et qu'un ordinateur classique ne peux pas résoudre.
 - développements des premiers algorithmes quantiques par Deutsh et Jozsa
 - 1994 : algorithme quantique de factorisation de Peter Schor
 - suprématie quantique 
+

@@ -11,4 +11,4 @@ Initiation au mécanisme des ordinateurs quantique.
 
 ## Ressources pédagogiques
 
-[cours 1]:/assets/md/quantique/cours1
+[notes personnelles cours](/assets/md/quantique/cours1)

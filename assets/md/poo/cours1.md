@@ -346,3 +346,122 @@ Pour copier ou cloner un objet. Le passage d'un paramètre objet se fait
 exclusiement par référence / adresse. Pour éviter un effet de bord, il est donc
 parfois nécessaire d'effectuer une copie d'un objet. C'est l'objectif de la
 méthode `clone()`.
+
+Le langage Java regroupe ces méthodes particulières dans la classe `Object`. Ces
+méthodes sont définies avec un traitement par défaut qu'il faut adapter à chaque
+classe : par exemple, la méthode `equals()` a pour traitement par défaut
+l'égalité de référence. 
+
+Dans la classe `Object` nous trouvons la méthode `toString()`. Elle retourne une
+chaîne de caractère qui va permettre de tracer, par exemple, la valeur des
+attributs d'un objet. Son code par défaut retourne une chaîne correspondant à
+l'identité de l'objet. 
+
+## <i class="fas fa-code"></i> Les classes
+
+Une `classe` est un moule qui décrit le **quoi** : la spécification des messages
+qui peuvent être envoyés à l'objet. Et le **comment** la manière de réaliser
+cette spécification. Pour instancier une classe, se répartit en trois formes : 
+1. **Classe Concrète** : une classe instanciable
+2. **Classe abstraite** : la réalisation est incomplète, au moins une des
+   méthodes d'instance n'a pas de mise en oeuvre (pas corps défini). 
+3. **Classe abstraite pure ou interface** : aucune réalisation n'est définie,
+   elle contient les déclarations des méthodes d'instance. 
+   
+Ce chapitre est centrée sur la construction des classes concrètes. 
+
+### Classe Java
+
+La syntaxe du langage Java différencie la construction d'une classe contenant
+une réalisation et d'une classe ne contenant pas de réalisation. 
+1. Construction avec réalisation :
+  - classe concrète avec le mot clé seul `class`
+  - classe abstraite en ajoutant le mot-clé `abstract` au mot clé `class`
+2. Construction sans réalisation : classe abstraite pure avec le mot-clé
+   `interface`. Cette construction ne contient ni attributs, ni constructeurs. 
+   
+Une classe/interface Java correspond à un fichier `.class` obtenu après
+compilation d'un fichier source. Ce fichier (en "bytecode" ou code
+intermédiaire) contient le code à exécuter mais aussi les informations sur la
+définition de la classe, par exemple : le type des paramètres d'une méthode. 
+
+Le contenu des fichiers `.class` est utilisé par le compilateur (pour les
+informations de type) et par la machine virtuelle java (JVM) (interprétation du
+code intermédiaire)
+
+#### Paquetage
+
+Les paquetages permettent de regrouper les classes / interfaces par thème. Le
+système de paquetage est hiérarchique avec la notion de sous-paquetage. Le
+caractère . sert de séparateur. Les paquetages commençant par `java, javax` font
+partie de la distribution stard (JRE et JDK). 
+
+Un paquetage correspond à un domain de nom : le nom d'une classe / interface est
+unique dans un paquetage. Le nom complet d'une classe / interface est constitué
+de la hiérarchie de paquetage puis du nom de la classe/interface. Par exemple
+`java.lang.String`. L'inclusion d'une classe/interface dans un paquetage est
+précisée par l'instruction `package nom` sur la première ligne du fichier
+source. Sans ce mot-clé, les classes sont incluses dans un paquetage unique sans
+nom (paquetage anonyme ou paquetage par défaut). Pour désigner une
+classe/interface à l'extérieur d'un paquetage, il est nécessaire d'utiliser son
+nom complet : `matos.on.DentBleu maDent = new matos.onde.DentBleu();`. Dans
+l'écriture d'un fichier source, il est possible de raccourcir le nom complet
+d'une classe à son nom, en utilisant le mot clé `import`. Au début du fichier
+source, l'instruction `import matos.onde.DentBleu`; permet de désigner la classe
+uniquement par `DentBleu`. Le compilateur lui attribue son nom complet.
+
+L'organisation physique des fichiers `.class` correspond à la hiérarchie de
+paquetage. Le fichier `String.class` se trouve dans l'arborescence de répertoire
+`java/lang`. Lorsque le compilateur ou la machine virtuelle ont besoin de la
+définition d'une classe, ils utilisent son nom complet comme chemin de recherche
+du fichier `.class`. Par défaut, la recherche s'effectue à partir du répertoire
+courant (celui du lancement de la commande). L'option `-cp` et la variable
+d'environnement `CLASSPATH` permettant d'indiquer les répertoires à analyser
+pour trouver ce chemin. 
+
+### Classe concrète 
+
+La construction Java `class` contient trois catégories de membre : les
+variables, les méthodes et les constructeurs. 
+
+#### Portée des membres d'une classe 
+
+Les modificateurs de porte précisent la *portée d'utilisation* d'un membre d'une
+classe. Ils se placent devant chaque définition : 
+1. `private` : accessible uniquement par la classe 
+2. `public` : accessible partout
+3. au paquetage : accessible par les classes du même paquetage 
+
+Une classe possède deux portées. Sans mot-clé, sa portée est restreinte à son
+paquetage. Avec le mot-clé `public`, elle est accessible à l'extrieur de son
+paquetage : `public class DentBleu`.
+
+#### Définition d'une classe concrète 
+
+Définition d'une classe concrèete Java et de ses membres
+
+```java
+[public] class NomClasse { 
+  //Variables d'instance/attributs,
+  [final] [public|private] type nom [= expression];
+  
+  //Méthodes d'instance,
+  [public | private] typeRetour méthodeInstance([liste de paramètres]) {
+    //code
+  }
+  
+  //constructeurs
+  [public | private] NomClasse ([liste de paramètres]){
+    //code
+  }
+}
+```
+
+#### Variable d'instance
+
+C'est une variable locale à chaque instance. Sa valeur est stockée dans la zone
+mémoire de l'instance. Son initialisation s'effectue soit à sa déclaration soit
+dans le code d'une constructeur. LA machine virtuelle Java initialise
+systématiquement les variables d'instance avec une valeur par défaut dépendant
+du type (référence/null, int/0, boolean/false). Le mot-clé `final` devant la
+définition d'une variable correspond à une 
