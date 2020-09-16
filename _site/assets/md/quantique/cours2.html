@@ -80,7 +80,83 @@ html {
 }
 </style>
 
-<h2><i class="fas fa-vial"></i></h2>
+<h2 id="-introduction-des-idées-de-base-de-la-mécanique-quantique"><i class="fas fa-vial"></i> Introduction des idées de base de la mécanique quantique</h2>
+
+<p>La mécanique quantique étudie des phénomènes fondamentaux à l’oeuvre dans des
+systèmes physique de petites échelles (ex : échelle atomique). Hors cela
+provoque donc des profondes difficultés conceptuelles.</p>
+<ol>
+  <li>La dualité onde-corpuscule avec la longueur d’onde de Broglie <script type="math/tex">\lambda =
+\dfrac{h}{p}</script> avec <script type="math/tex">h</script> la constante de plank et <script type="math/tex">p</script> l’impulsion du
+corpuscule</li>
+  <li>La superposition</li>
+  <li>L’intrication quantique</li>
+</ol>
+
+<h3 id="produit-scalaire">Produit scalaire</h3>
+
+<p>soit <script type="math/tex">\mathcal{H}</script> un espace vectoriel dans <script type="math/tex">\mathbb{C}</script>. Le <strong>produit
+scalaire</strong> sur <script type="math/tex">\mathcal{H}</script> est une application.</p>
+
+<script type="math/tex; mode=display">\begin{cases} (. \vert .) : \mathcal{H} \times \mathcal{H} \rightarrow
+\mathbb{C} \\ (u,v) \mapsto (u \vert v) \in \mathbb{C} \end{cases}</script>
+
+<p>Le produit scalaire vérifie les propriétés suivantes :</p>
+<ul>
+  <li>Linéarité à droite 
+<script type="math/tex">(u \vert \lambda_1 v_1 + \lambda_2 v_2) = \lambda_1 (u \vert v_1) + \lambda_2
+(u \vert v_2) \forall u, v_1, v_2 \in \mathcal{H}, \lambda_1, \lambda_2 \in
+\mathbb{C}</script></li>
+  <li>Anti-linéarité à gauche 
+<script type="math/tex">(\lambda_1 u_1 + \lambda_2 u_2 \vert v) = \overline{\lambda_1} (u_1 \vert v) +
+\overline{\lambda_2} (u_2 \vert v) \forall u_1, u_2, v \in \mathcal{H}, \lambda_1,
+\lambda_2 \in \mathcal{C}</script></li>
+  <li>Symétrie hermitienne <script type="math/tex">(u \vert v) = \overline{(v \vert u)}, \forall u,v \in
+\mathcal{H}</script></li>
+  <li>Positivité <script type="math/tex">(u \vert u) \in \mathbb{R}_+, \forall u \in \mathcal{H}</script></li>
+  <li>
+    <p>Non-dégéneresence : <script type="math/tex">\forall u \in \mathcal{H}</script> si <script type="math/tex">(u \vert v) = 0,
+\forall v \in \mathcal{H}</script>, alors <script type="math/tex">u = 0 \Rightarrow (u | u) = 0 \Rightarrow
+u = 0</script>.</p>
+
+    <p>On appele un espace pré-herlbertien tout espace vectoriel <script type="math/tex">\mathcal{H}</script> sur
+<script type="math/tex">\mathbb{C}</script> muni d’un produit scalaire <script type="math/tex">(.\vert.)</script> qui vérifie les
+propriétés ci-dessus. Un <strong>espace de Hilbert</strong> est un espace pré-hilbertien
+pour lequel on peut définir une norme qui découle du produit scalaire <script type="math/tex">|| u
+|| : = \sqrt{(u | u)} \forall u \in \mathcal{H}</script></p>
+  </li>
+</ul>
+
+<p><script type="math/tex">\mathcal{H}^\ast</script> est l’espace de formes linéaires sur <script type="math/tex">\mathcal{H}</script></p>
+
+<script type="math/tex; mode=display">\mathcal{H}^\ast := \mathcal{L}(\mathcal{H},\mathbb{C})</script>
+
+<h3 id="base-orthonormée-de-mathcalh">Base orthonormée de <script type="math/tex">\mathcal{H}</script></h3>
+
+<p><script type="math/tex">\mathcal{H}</script> admet une <strong>base orthonormée</strong> c’est à dire une famille de
+vecteurs <script type="math/tex">e_1, e_2, ..., e_n</script> est une base tel que <script type="math/tex">(e_i | e_j) =
+\delta_{ij} \forall i,j = 1, ..., n</script>.</p>
+
+<p>Fixons une base orthonormée sur <script type="math/tex">\mathcal{H}</script>. Si <script type="math/tex">u,v \in \mathcal{H}</script> ont
+pour coordonnées</p>
+
+<script type="math/tex; mode=display">X,Y \in \mathcal{M}_{n,1}(\mathbb{C})</script>
+
+<p>dans cette base alors</p>
+
+<script type="math/tex; mode=display">(u | v) = X^+.Y</script>
+
+<script type="math/tex; mode=display">X = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}, Y=
+\begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \in \mathcal{M}_{m,n} \end{pmatrix}</script>
+
+<p>On peut donc déduire <script type="math/tex">(u \vert v) = \sum \limits_{i=1, j=1}^{n,m} x_i,y_j</script></p>
+
+<h3 id="application-adjointe">Application adjointe</h3>
+
+<p>Soit une application linéaire <script type="math/tex">L: \mathcal{H} \rightarrow \mathcal{H}</script>.
+L’application adjointe <script type="math/tex">L^\ast</script> est défini par <script type="math/tex">(u | L v) = (L^\ast u | v),
+\forall u,v \in \mathcal{H}</script> Si <script type="math/tex">M</script> est la matrice de <script type="math/tex">L</script> dans une base
+orthonormée, alors la matrice de <script type="math/tex">L^\ast</script> est <script type="math/tex">M^+</script></p>
 </div>
 	</article>
 </div><!-- Footer -->
