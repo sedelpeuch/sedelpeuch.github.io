@@ -10,5 +10,6 @@ Le but de cet enseignement est de fournir une base solide concernant les réseau
 
 ### Ressources pédagogiques
 
-[Interaction entre la famille de protocoles TCP/IP et les supports de
-transmission](/assets/md/TCP/cours1)
+[Cours : Interaction entre la famille de protocoles TCP/IP et les supports de transmission](/assets/md/TCP/cours1)
+
+[Exercice](/assets/md/TCP/exercices)

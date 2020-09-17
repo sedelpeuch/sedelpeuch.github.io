@@ -232,6 +232,29 @@ association inutile.
 
 ![reflexives](/assets/images/sgbd/fig2_07.png){:class="image about center"}
 
+Un type association est qualifié de réflexif quand il matérialise une relation
+entre un type entité et lui-même. 
+
+Une occurrence de ce type association (ie une association) associe généralement
+une occurence  du type association (ie une entité) à une autre entité du même
+type. Cette relation peut être symétrique, c'est le cas du type association
+*Être frère* sur la figure ci dessus, ou ne pas l'être comme le type association
+*Être parent* sur cette même figure. Dans le cas où la relation n'est pas
+symétrique, on peut préciser les rôles sur les pattes du type association comme
+pour la relation *Être parent* sur cette même figure. L'ambiguïté posée par la
+non-symétrie d'un type association réflexif sera levée lors du passage au modèle
+relationnel.
+
+#### Association $$n$$-aire
+
+Précédemment nous avons introduit la notion de type association $$n$$-aire. Ce
+type association met en relation $$n$$ type entité. Même s'il n'y a, en
+principe, pas de limite sur l'arité d'un type association, dans la pratique on
+ne va rarement au-delà de trois. Les associations de degré supérieur à deux sont
+plus difficiles à manipuler et à interpréter, notamment au niveau des
+cardinalité. 
+
+## 
 
 ## <i class="fas fa-database"></i> Normalisation
 ## <i class="fas fa-database"></i> Modèle relationnel

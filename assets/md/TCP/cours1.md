@@ -120,5 +120,51 @@ En commutation de paquets, on parle aussi des deux modes :
 4. Classe D de 224.0.0.0 à 239.255.255.255 (multicast)
 5. Classe E de 240.0.0.0 à 255.255.255.255 (expérimentale)
 
-## <i class="fas fa-server"></i> Interconnexion niveau liaison de données 
 ## <i class="fas fa-server"></i> Résolutions d'adresses
+
+Les entités réseau sont désignées par leur adresse de niveau 3 (IP),
+l'utilisation d'un réseau physique pour l'acheminement d'un datatagrame.
+Identification des entités sur le réseau physique par leur adresse de niveau 2. 
+
+Le but est donc de trouver une manière d'obtenir l'adresse de niveau 2
+(physique) d'une entité à partir de son adresse de niveau 3. 
+
+### Méthode de résolution
+1. fonction de traduction simple, sur un réseau physique donnée, quelque fois
+   possible.
+2. table de traduction statique 
+3. mécanisme de découverte à l'aide d'un protocole réseau 
+4. solution hybrides : le protocole ARP 
+
+### Protocole ARP 
+
+Pour Address Resolution Protocol, initialement prévu pour le support Ethernet.
+Les mécanismes sont similaires pour d'autres support. 
+
+La problématique est la suivante : nous avons des adresses internet (32 bits
+affectées par l'InterNic pour l'internet) et une adresse Ethernet (48 bits,
+affectées par l'IEEE et, souvent associés aux cartes d'interfaces). 
+
+- pas de fonction de résolution simple 
+- table de résolution statique extrêmement contraignante
+- utilisation d'un mécanisme de découverte, ARP, associé à une table dynamique
+
+
+Principe de la résolution d'adresses par ARP : 
+1. vérification de l'existence de la correspondance entre addresse IP et adresse
+   Ethernet dans la table dynamique
+2. en cas d'absence dans la table dynamique 
+   + envoie d'une requête ARP (who has) en diffusion générale sur le réseau
+     Ethernet : **ARP Request**
+   + réception et traitement de la requête par toutes les entités du réseau 
+   + en fonctionnement normal, seule l'entité cible est autorisée à répondre à
+     la requête et le fait : **ARP reply**
+
+Gestion de la table dynamique de résolution : 
++ collecter des informations sur le réseau pour éviter les requêtes inutiles 
++ conserver les correspondances acquises suffisamment longtemps pour éviter de
+  surcharger le réseau 
++ ne pas conserver les correspondances acquises trop longtemps pour limiter la
+  taille de la table et éviter les entrées obsolètes 
+  
+  

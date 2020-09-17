@@ -151,12 +151,90 @@ pour coordonnées</p>
 
 <p>On peut donc déduire <script type="math/tex">(u \vert v) = \sum \limits_{i=1, j=1}^{n,m} x_i,y_j</script></p>
 
-<h3 id="application-adjointe">Application adjointe</h3>
+<h3 id="application">Application</h3>
+
+<h4 id="application-adjointe">Application adjointe</h4>
 
 <p>Soit une application linéaire <script type="math/tex">L: \mathcal{H} \rightarrow \mathcal{H}</script>.
 L’application adjointe <script type="math/tex">L^\ast</script> est défini par <script type="math/tex">(u | L v) = (L^\ast u | v),
 \forall u,v \in \mathcal{H}</script> Si <script type="math/tex">M</script> est la matrice de <script type="math/tex">L</script> dans une base
 orthonormée, alors la matrice de <script type="math/tex">L^\ast</script> est <script type="math/tex">M^+</script></p>
+
+<h4 id="application-hermitienne">Application hermitienne</h4>
+
+<p><script type="math/tex">L</script> est <strong>hermilitien</strong> si et seulement si</p>
+
+<script type="math/tex; mode=display">(u | L v) = (L u | v), \forall u,v \in \mathcal{H}</script>
+
+<p>cela revient à dire que <script type="math/tex">L=L^\ast</script>, ou bien, si <script type="math/tex">M</script> est la matrice de <script type="math/tex">L</script>
+dans ne base orthonormée, alors <script type="math/tex">M = M^+</script></p>
+
+<h3 id="notion-de-dirac">Notion de Dirac</h3>
+
+<p>On note <script type="math/tex">\vert u \rangle , \vert v \rangle, \vert w \rangle, \vert 0 \rangle,
+\vert 1 \rangle</script> les vecteurs de <script type="math/tex">\mathcal{H}</script> (les états) : KETS.</p>
+
+<p>Ensuite on note <script type="math/tex">\langle u \vert, \langle v \vert, \langle w \vert, \langle 0
+\vert, \langle 1 \vert</script> les duals (formes linéaires) : BRAS.</p>
+
+<p>Autrement dit, on utilise un alphabet où chaque lettre de type <script type="math/tex">\vert .
+\rangle</script> est un élément de <script type="math/tex">\mathcal{H}</script> et chaque lettre de type <script type="math/tex">\langle .
+\vert</script> est un élément de <script type="math/tex">\mathcal{H}^\ast</script>. Entre les deux alphabets il
+existe une bijection <script type="math/tex">\vert u \rangle \leftrightarrow \langle u \vert</script>. On
+parle de <strong>braket</strong>.</p>
+
+<script type="math/tex; mode=display">(u \vert v) = \langle u | v \rangle \in \mathbb{C}</script>
+
+<h3 id="opérateurs">Opérateurs</h3>
+
+<p>Soit <script type="math/tex">L \in \mathbb{L}(\mathcal{H}, \mathcal{H})</script> la notation <script type="math/tex">\langle u
+\vert (L \vert v \rangle ) \in \mathbb{C}</script> signifie : la forme <script type="math/tex">\langle u
+\vert</script> appliquée à l’argument <script type="math/tex">L (\vert \rangle)</script>. Si nous déplaçons la
+parenthèse, on a <script type="math/tex">( \langle u \vert L ) \vert v \rangle u (L(V))</script>, cela
+signifie la forme <script type="math/tex">\langle u \vert L</script> appliquée à l’argument <script type="math/tex">\vert v
+\rangle</script>. Le résultat étant le même, indépendamment des parenthèses choisit.</p>
+
+<h4 id="applications-linéaires">Applications linéaires.</h4>
+
+<p><script type="math/tex">\vert v \rangle \langle u |</script> est un opérateur : 
+<script type="math/tex">\vert w \rangle \rightarrow \vert v \rangle \langle u | w \rangle = \langle u
+\vert w \rangle \vert v \rangle</script></p>
+
+<h4 id="décomposition-dopérateurs">Décomposition d’opérateurs.</h4>
+
+<p>Si <script type="math/tex">\vert u_1 \rangle, ..., \vert u_n \rangle</script> une base orthonormée de
+vecteurs propres de l’opérateur <script type="math/tex">L</script>. <script type="math/tex">L \vert u_k \rangle = \lambda_k \vert
+u_k \rangle, k=1,...,n</script> alors</p>
+
+<script type="math/tex; mode=display">L = \sum \limits_{k=1}^n \lambda_k \vert u_k \rangle \langle u_k \vert</script>
+
+<h4 id="produit-tensoriel-otimes">Produit tensoriel <script type="math/tex">\otimes</script>.</h4>
+
+<table>
+  <tbody>
+    <tr>
+      <td>La forme associée au vecteur $$</td>
+      <td>u \rangle \otime</td>
+      <td>v \rangle<script type="math/tex">est</script>\langle u</td>
+    </tr>
+    <tr>
+      <td>\vert \hat{\otimes} \langle v</td>
+      <td>$$</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="exercice-">Exercice :</h3>
+
+<p>Soit <script type="math/tex">E</script> un espace vectoriel et soit <script type="math/tex">e_1,e_2</script> une base de <script type="math/tex">E</script> (<script type="math/tex">dim E =
+2</script>) et soit les vecteurs <script type="math/tex">x = 2 e_1 + 4 e_2 , y = 5 e_1 + 3 e_2</script>.</p>
+
+<ol>
+  <li>Quels sont les vecteurs de la base de l’espace produit tensoriel <script type="math/tex">E \otimes
+E</script></li>
+  <li>Trouver le vecteur <script type="math/tex">x \otimes y</script></li>
+</ol>
 </div>
 	</article>
 </div><!-- Footer -->

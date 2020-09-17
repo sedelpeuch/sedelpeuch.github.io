@@ -84,11 +84,73 @@ $$ X = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}, Y=
 
 On peut donc déduire $$(u \vert v) = \sum \limits_{i=1, j=1}^{n,m} x_i,y_j $$
 
-### Application adjointe 
+### Application
+
+#### Application adjointe 
 
 Soit une application linéaire $$L: \mathcal{H} \rightarrow \mathcal{H}$$.
 L'application adjointe $$L^\ast$$ est défini par $$(u | L v) = (L^\ast u | v),
 \forall u,v \in \mathcal{H}$$ Si $$M$$ est la matrice de $$L$$ dans une base
 orthonormée, alors la matrice de $$L^\ast$$ est $$M^+$$
 
-### Application hermitienne
+#### Application hermitienne 
+
+$$L$$ est **hermilitien** si et seulement si 
+
+$$ (u | L v) = (L u | v), \forall u,v \in \mathcal{H}$$
+
+cela revient à dire que $$L=L^\ast$$, ou bien, si $$M$$ est la matrice de $$L$$
+dans ne base orthonormée, alors $$M = M^+$$ 
+
+### Notion de Dirac
+
+On note $$ \vert u \rangle , \vert v \rangle, \vert w \rangle, \vert 0 \rangle,
+\vert 1 \rangle$$ les vecteurs de $$\mathcal{H}$$ (les états) : KETS.
+
+Ensuite on note $$ \langle u \vert, \langle v \vert, \langle w \vert, \langle 0
+\vert, \langle 1 \vert$$ les duals (formes linéaires) : BRAS.
+
+Autrement dit, on utilise un alphabet où chaque lettre de type $$\vert .
+\rangle$$ est un élément de $$\mathcal{H}$$ et chaque lettre de type $$\langle .
+\vert$$ est un élément de $$\mathcal{H}^\ast$$. Entre les deux alphabets il
+existe une bijection $$\vert u \rangle \leftrightarrow \langle u \vert$$. On
+parle de **braket**. 
+
+$$(u \vert v) = \langle u | v \rangle \in \mathbb{C}$$
+
+### Opérateurs 
+
+Soit $$L \in \mathbb{L}(\mathcal{H}, \mathcal{H})$$ la notation $$\langle u
+\vert (L \vert v \rangle ) \in \mathbb{C}$$ signifie : la forme $$\langle u
+\vert$$ appliquée à l'argument $$L (\vert \rangle)$$. Si nous déplaçons la
+parenthèse, on a $$( \langle u \vert L ) \vert v \rangle u (L(V))$$, cela
+signifie la forme $$\langle u \vert L$$ appliquée à l'argument $$\vert v
+\rangle$$. Le résultat étant le même, indépendamment des parenthèses choisit. 
+
+#### Applications linéaires.
+
+$$\vert v \rangle \langle u |$$ est un opérateur : 
+$$ \vert w \rangle \rightarrow \vert v \rangle \langle u | w \rangle = \langle u
+\vert w \rangle \vert v \rangle$$ 
+
+#### Décomposition d'opérateurs.
+
+Si $$\vert u_1 \rangle, ..., \vert u_n \rangle$$ une base orthonormée de
+vecteurs propres de l'opérateur $$L$$. $$L \vert u_k \rangle = \lambda_k \vert
+u_k \rangle, k=1,...,n$$ alors 
+
+$$ L = \sum \limits_{k=1}^n \lambda_k \vert u_k \rangle \langle u_k \vert$$
+
+#### Produit tensoriel $$\otimes$$.
+
+La forme associée au vecteur $$| u \rangle \otime | v \rangle$$ est $$\langle u
+\vert \hat{\otimes} \langle v |$$ 
+
+### Exercice : 
+
+Soit $$E$$ un espace vectoriel et soit $$e_1,e_2$$ une base de $$E$$ ($$dim E =
+2$$) et soit les vecteurs $$x = 2 e_1 + 4 e_2 , y = 5 e_1 + 3 e_2$$.
+
+1. Quels sont les vecteurs de la base de l'espace produit tensoriel $$E \otimes
+   E$$ 
+2. Trouver le vecteur $$x \otimes y$$
