@@ -61,3 +61,20 @@ is-at.
 
 `192.168.1.1` broadcast un who as `192.168.1.254`. Le routeur répond is-at puis
 effectue un who has `192.168.2.1`. Finalement `192.168.2.1` répond un is-at.
+
+## Exercice p14 
+
+### Énoncé 
+
++ Soit un datagramme IP : 
+    - Data = 4000 octets 
+    - Options copiées = 9 octets 
+    - Options non copiées = 26 octets 
+    - MTU = 512 octets 
+    
++ *Étudier la fragmentation du datagramme IP* : 
++ Écrire un algorithme (pseudo - code) permettant de fragmenter un datagramme IP 
++ Étudier le ré-assemblage des fragments 
++ Pourquoi la fragmentation est considérée comme mécanisme inefficace dans IP
++ Trouver une solution permettant d'éviter la fragmentation
+

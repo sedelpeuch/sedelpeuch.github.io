@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/TCP/exercices.html" /><!-- Title, description, author --><title>Architecture des Réseaux TCP/IP | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Architecture des Réseaux TCP/IP | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/TCP/exercices.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-7-en-cours-link">
+            <span class="icon fa-link">Semestre 7 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_6.html" id="semestre-6-link">
+            <span class="icon fa-check">Semestre 6</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li><li><a href="http://localhost:4000/CPBx.html" id="cpbx-link">
+            <span class="icon fa-check">CPBx</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2>Architecture des Réseaux TCP/IP</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h2 id="exercice-p40">Exercice p40</h2>
+
+<p>TODO</p>
+
+<h2 id="exercice-p51">Exercice p51</h2>
+
+<ul>
+  <li><em>En utilisant les formats de trame donnés, décoder les trames MAC Ethernet
+suivantes (ces trames sont données sans l’en tête)</em></li>
+  <li><em>Pour chaque trame déterminer les valeurs detous les champs présents et e
+qu’ils signifient</em></li>
+</ul>
+
+<p>Destination : <code class="language-plaintext highlighter-rouge">FF FF FF FF FF FF</code>
+Source : <code class="language-plaintext highlighter-rouge">08 00 20 02 45 9E = 129.104.254.6</code> 
+Longueur / Type : <code class="language-plaintext highlighter-rouge">08 06</code> (dans le cas présent type qui indique l’ARP en
+suivant)
+Hardware type : <code class="language-plaintext highlighter-rouge">00 01</code>
+Protocole Type : <code class="language-plaintext highlighter-rouge">08 00</code>
+Hardware Address Length / Protocol Address Length : <code class="language-plaintext highlighter-rouge">06 04</code>
+Operation Code : <code class="language-plaintext highlighter-rouge">0001</code>
+Sender Hardware Address : <code class="language-plaintext highlighter-rouge">08 00 20</code>
+Sender Protocol Adress : <code class="language-plaintext highlighter-rouge">20 02</code>
+Target Hardware Address : <code class="language-plaintext highlighter-rouge">45 9E 81</code>
+Target Protocol Address : <code class="language-plaintext highlighter-rouge">68 FE</code></p>
+
+<p>Destination : <code class="language-plaintext highlighter-rouge">08 00 20 02 45 9E</code>
+Source : <code class="language-plaintext highlighter-rouge">08 00 20 07 0B 94 = 129.104.254.5</code> 
+Longueur / Type : <code class="language-plaintext highlighter-rouge">08 06</code> (dans le cas présent type qui indique l’ARP en
+suivant)
+Hardware type : <code class="language-plaintext highlighter-rouge">00 01</code>
+Protocole Type : <code class="language-plaintext highlighter-rouge">08 00</code>
+Hardware Address Length / Protocol Address Length : <code class="language-plaintext highlighter-rouge">06 04</code>
+Operation Code : <code class="language-plaintext highlighter-rouge">0002</code>
+Sender Hardware Address : <code class="language-plaintext highlighter-rouge">08 00 20</code>
+Sender Protocol Adress : <code class="language-plaintext highlighter-rouge">07 0B</code>
+Target Hardware Address : <code class="language-plaintext highlighter-rouge">94 81 68</code>
+Target Protocol Address : <code class="language-plaintext highlighter-rouge">FE 05</code></p>
+
+<h2 id="exercice-p52">Exercice p52</h2>
+
+<h3 id="réseau-1">Réseau 1</h3>
+
+<p><code class="language-plaintext highlighter-rouge">192.168.1.1</code> effectue un who has en cherchant <code class="language-plaintext highlighter-rouge">192.168.1.2</code>, celui là répond
+is-at.</p>
+
+<h3 id="réseau-2">Réseau 2</h3>
+
+<p><code class="language-plaintext highlighter-rouge">192.168.1.1</code> broadcast un who as <code class="language-plaintext highlighter-rouge">192.168.1.254</code>. Le routeur répond is-at puis
+effectue un who has <code class="language-plaintext highlighter-rouge">192.168.2.1</code>. Finalement <code class="language-plaintext highlighter-rouge">192.168.2.1</code> répond un is-at.</p>
+
+<h2 id="exercice-p14">Exercice p14</h2>
+
+<h3 id="énoncé">Énoncé</h3>
+
+<ul>
+  <li>Soit un datagramme IP :
+    <ul>
+      <li>Data = 4000 octets</li>
+      <li>Options copiées = 9 octets</li>
+      <li>Options non copiées = 26 octets</li>
+      <li>MTU = 512 octets</li>
+    </ul>
+  </li>
+  <li><em>Étudier la fragmentation du datagramme IP</em> :</li>
+  <li>Écrire un algorithme (pseudo - code) permettant de fragmenter un datagramme IP</li>
+  <li>Étudier le ré-assemblage des fragments</li>
+  <li>Pourquoi la fragmentation est considérée comme mécanisme inefficace dans IP</li>
+  <li>Trouver une solution permettant d’éviter la fragmentation</li>
+</ul>
+
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

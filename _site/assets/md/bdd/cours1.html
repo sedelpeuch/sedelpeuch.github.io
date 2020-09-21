@@ -307,17 +307,312 @@ valent plus de 1, car ces valeurs sont également susceptibles d’évoluer. Enf
 une cardinalité maximale de 0 n’a pas de sens, car elle rendrait le type
 association inutile.</p>
 
-<h3 id="compléments-sur-les-associations">Compléments sur les associations</h3>
+<h2 id="compléments-sur-les-associations">Compléments sur les associations</h2>
 
-<h4 id="associations-plurielles">Associations plurielles.</h4>
+<h3 id="associations-plurielles">Associations plurielles.</h3>
 
 <p><img src="/assets/images/sgbd/fig2_06.png" alt="plurielles" class="image about center" /></p>
 
-<h4 id="association-réflexive">Association réflexive.</h4>
+<h3 id="association-réflexive">Association réflexive.</h3>
 
 <p><img src="/assets/images/sgbd/fig2_07.png" alt="reflexives" class="image about center" /></p>
 
-<h2 id="-normalisation"><i class="fas fa-database"></i> Normalisation</h2>
+<p>Un type association est qualifié de réflexif quand il matérialise une relation
+entre un type entité et lui-même.</p>
+
+<p>Une occurrence de ce type association (ie une association) associe généralement
+une occurence  du type association (ie une entité) à une autre entité du même
+type. Cette relation peut être symétrique, c’est le cas du type association
+<em>Être frère</em> sur la figure ci dessus, ou ne pas l’être comme le type association
+<em>Être parent</em> sur cette même figure. Dans le cas où la relation n’est pas
+symétrique, on peut préciser les rôles sur les pattes du type association comme
+pour la relation <em>Être parent</em> sur cette même figure. L’ambiguïté posée par la
+non-symétrie d’un type association réflexif sera levée lors du passage au modèle
+relationnel.</p>
+
+<h3 id="association-n-aire">Association <script type="math/tex">n</script>-aire</h3>
+
+<p>Précédemment nous avons introduit la notion de type association <script type="math/tex">n</script>-aire. Ce
+type association met en relation <script type="math/tex">n</script> type entité. Même s’il n’y a, en
+principe, pas de limite sur l’arité d’un type association, dans la pratique on
+ne va rarement au-delà de trois. Les associations de degré supérieur à deux sont
+plus difficiles à manipuler et à interpréter, notamment au niveau des
+cardinalité.</p>
+
+<h2 id="-règles-de-bonne-formation-dun-modèle-entités-associations"><i class="fas fa-database"></i> Règles de bonne formation d’un modèle entités-associations</h2>
+
+<p>La bonne formation d’un modèle entités-associations permet d’éviter une grande
+partie des sources d’incohérences et de redondance. Pour être bien formé, un
+modèle entités-associations doit respecter certaines règles et les types entité
+et type association doivent être normalisés. Un bon principe de conception peut
+être formulé ainsi “une seule place pour chaque fait”.</p>
+
+<p>Bien que l’objectif des principes exposés dans cette section soit d’aider le
+concepteur à obtenir un diagramme entités-associations bien formé, ces principes
+ne doivent pas être interprétés comme des lois. Qu’il s’agisse des règles de
+bonne formation ou des règles de normalisation, il peut exister, très
+occasionnellement, de bonnes raisons pour ne pas les appliquer.</p>
+
+<h3 id="règles-portant-sur-les-noms">Règles portant sur les noms</h3>
+
+<p>Dans un modèle entités-associations, le nom d’un type entité, d’un type
+association ou d’un attribut doit être unique.</p>
+
+<p><img src="/assets/images/sgbd/fig2_15.png" alt="fig2_15" class="image about right" />
+La présence des deux type entité Enseignant et Étudiant est symptomatique d’une
+modélisation inchevée. À terme, ces deux type enttié doivent être fusionnés en
+un unique type entité Personne.</p>
+
+<p><img src="/assets/images/sgbd/fig2_16.png" alt="fig2_16" class="image about left" /></p>
+
+<p>Ici, les attributs Adresse de facturation sont redondants. Cette situation doit
+être évitée à tout prix, car elle entraîne un gaspillage d’espace mémoire, mais
+aussi et surtout un grand risque d’incohérence. En effet, que faire si, dans le
+cadre d’une occurence du type association Correspondre, les valeurs des deux
+attributs Adresse de facturation diffèrent ?</p>
+
+<p><img src="/assets/images/sgbd/fig2_17.png" alt="fig2_17" class="image about right" /></p>
+
+<p>Dans cette situation, les deux attributs Adresse doivent simplement être renomés
+en Adresse client et Adresse fournisseur. Il en va de même pour les deux
+attributs Nom.</p>
+
+<p>Lorsque des attributs portent le même nom, c’est parfois le signe d’une
+modélisation inachevée ou d’une redondance. Sinon, il faut simplement ajouter au
+nom de l’attribut le nom du type entité ou du type association dans lequel il se
+trouve. Il faut toutefois remarque que le dernier cas décrit n’est pas
+rédhibitoire et que les SGBD relationnel s’accommodent très bien de relations
+comportant des attributs de même nom. L’écriture des requêtes sera tout de même
+plus lisible si les attributs ont tous des noms différents.</p>
+
+<h3 id="règle-de-normalisation-des-attributs">Règle de normalisation des attributs</h3>
+
+<p>Il faut remplacer un attribut multiple en un type association et un type entité supplémentaires.</p>
+
+<p><img src="/assets/images/sgbd/fig2_18.png" alt="fig2_18" class="image about center" /></p>
+
+<p>Remplacement des attributs multiples en un type association et un type entité et
+décomposition des attributs composites.</p>
+
+<p>En effet, les attributs multiples posent régulièrement des problèmes d’évoluvité
+du modèle. Par exemple, sur le modèle de gauche de la figure ci dessus, comment
+faire si un employé possède deux adresses secondaires ou plusieurs numéros de
+portable ?</p>
+
+<p>Il est également intéressant de décomposer les attributs composites comme
+l’attribut Adresse par exemple. Il est en effet difficile d’écrire une requête
+portant sur la ville où les habitent les employés si cette information est noyée
+dans un unique attribut Adresse.</p>
+
+<p>Il ne faut jamais ajouter un attribut dérivé d’autres attributs, que ces autres
+attributs se trouvent dans le même entité ou pas.</p>
+
+<p><img src="/assets/images/sgbd/fig2_19.png" alt="fig2_19" class="image about center" /></p>
+
+<p>Il faut supprimer l’attribut Montant total du type entité Commande car on peut
+le calculer à partir des attributs Quantité du type association Contenir et Prix
+unitaire du type entité Article.</p>
+
+<p>En effet, les attributs dérivés induisent un risue d’incohérence entre les
+valeurs des attributs de base et celles des attributs dérivés. La figure ci
+dessus illustre le cas d’un attribut Montant total dans un type entité Commande
+qui peut être calculé à partir des attributs Quantité du type association
+Contenir et Prix unitaire du type entité Article. Il faut donc supprimer
+l’attribut Montant total dans le type entité Commande. D’autres attributs
+dérivés sont également à éviter comme l’âge, que l’on peut déduire de la date de
+naissance et de la date courante. Il faut cependant faire attention aux pièges :
+par exemple , le code postal ne détermine ni le numéro de département ni la
+Ville.</p>
+
+<p>Comme nous l’avons déjà dit, les attributs d’un type association doivent
+dépendre directement des identifiants de tous les types entité de la collection
+du type association.</p>
+
+<p><img src="/assets/images/sgbd/fig2_20.png" alt="fig2_20" class="image about center" /></p>
+
+<p>Comme la cardinalité maximale du type association Livrer est 1 du côté  de type
+entité Livraison, l’attribut Nom livreur de Livrer doit être déplacé dans
+Livraison.</p>
+
+<p>Par exemple, sur la figure 2.19 , l’attribut Quantité du type association
+Contenir dépend bien à la fois de l’identifiant N° de commande et de n° article
+des types entité de la collection de Contenir. Inversement, sur cette même
+figure, l’attribut Prix-unitaire ne dépend que de N°Article du type entité
+Article, il ne pourrait donc pas être un attribut du type association Contenir.
+Une conséquence immédiate de cette règle est qu’un type association dont la
+cardinalité maximalee de l’une des pattes est 1 ne peut pas posséder d’attribut.
+Si elle en possédait, ce serait une erreur de modélisation et il faudrait les
+déplacer dans le type entité connecté à la patte portant la cardinalité maximale
+de 1.</p>
+
+<p>Un attribut correspondant à un type énuméré est généralement avantageusement
+remplacé par un type entité.</p>
+
+<p>Par exemple sur la figure ci dessous, l’attribut Type caractérise le type d’une
+émission et peut prendre des valeurs comme : actualité, culturelle, reportage,
+diversement, etc. Remplacer cet attribut par un type entité, permet d’une part,
+d’augmenter la cohérence (en s’affranchissant, par exemple, des variations du
+genre culturelle, culture, Culture …) et d’autre part, si les cardinalités le
+permettent, de pouvoir affecter plusieurs types à une même entité (ex :
+actualité et culturelle)</p>
+
+<p><img src="/assets/images/sgbd/fig2_21.png" alt="fig2_21" class="image about center" /></p>
+
+<h3 id="règles-de-fusionsuppression-dentitésassociations">Règles de fusion/suppression d’entités/associations</h3>
+
+<p>Il faut factoriser les types entité quand c’est possible.</p>
+
+<p>La spécialisation du type entité obtenu peut se traduire par l’introduction d’un
+attribut supplémentaire dont l’ensemble des valeurs possibles est l’ensemble des
+noms des types entité factorisés</p>
+
+<p><img src="/assets/images/sgbd/fig2_22.png" alt="fig2_22" class="image about center" /></p>
+
+<p>Il faut factoriser les types entité quand c’est possible, éventuellement en
+introduisant un nouvel attribut.</p>
+
+<p>Mais l’introduction d’un attribut supplémentaire n’est pas forcément nécessaire
+ou souhaitable. Ne pas introduire d’attribut permet en outre de permettre à une
+personne d’être à la fois un Abonné et Écrivain</p>
+
+<p><img src="/assets/images/sgbd/fig2_23.png" alt="fig2_23" class="image about center" /></p>
+
+<p>Il faut factoriser les types entité quand c’est possible, mais l’introduction
+d’un attribut supplémentaire n’est pas toujours nécessaire. Remarque : ce
+diagramme est intentionnellement simplifié à outrance.</p>
+
+<p>Il faut factoriser les types association quand c’est possible.</p>
+
+<p>La spécialisation du type association obtenu peut se traduire par l’introduction
+d’un attribut supplémentaire dont l’ensemble des valeurs possibles est
+l’ensemble des noms des types association factorisés.</p>
+
+<p><img src="/assets/images/sgbd/fig2_24.png" alt="fig2_24" class="image about center" /></p>
+
+<p>Un seul type association suffit pour remplacer les quatre type association Jouer
+en tant que …</p>
+
+<p>La figure ci dessus montre un exemple de multiplication inutile de type
+association.</p>
+
+<p><strong>Règle 27</strong> Un type entité remplaçable par un type association doit être
+remplacé.</p>
+
+<p><strong>Règle 28</strong> Lorsque les cardinalités d’un type association sont toute 1,1 c’est
+que le type association n’a pas lieu d’être.</p>
+
+<p>Il faut aussi se poser la question de l’intérêt du type association quand les
+cardinalités maximales sont toutes de 1.</p>
+
+<p><img src="/assets/images/sgbd/fig2_25.png" alt="fig2_25" class="image about center" /></p>
+
+<p>Lorsque les cardinalités d’un type association sont toutes 1,1 c’est qu’il
+s’agit d’un type association fantôme.</p>
+
+<p>Lorsque les cardinalités d’un type association sont toutes 1,1, le type
+association doit généralement être supprimé et les types entité correspodants
+fusionnés comme l’illustre la figure ci dessus. Néanmoins, même si toutes ces
+cardinalités maximales sont de 1, il est parfois préférable de ne pas supprimer
+le type association, comme dans l’exemple de la figure ci dessous</p>
+
+<p><img src="/assets/images/sgbd/fig2_26.png" alt="fig2_26" class="image about center" /></p>
+
+<p>Il faut veiller à éviter les types association redondants. En effet, s’il existe
+deux chemins pour se rendre d’un type entité à un autre, alors ces deux chemins
+doivent avoir deux significations ou deux durées de vie distinctes. Dans le cas
+contraire, il faut supprimer le chemin le plus court puisqu’il est déductible
+des autres chemins.</p>
+
+<p><img src="/assets/images/sgbd/fig2_27.png" alt="fig2_27" class="image about center" /></p>
+
+<p>Si un client ne peut pas régler la facture d’un autre client, alors le type
+association Payer est inutile.</p>
+
+<p><img src="/assets/images/sgbd/fig2_28.png" alt="fig2_28" class="image about center" /></p>
+
+<p>Solution au problème de la redondance du type association</p>
+
+<p><img src="/assets/images/sgbd/fig2_29.png" alt="fig2_29" class="image about center" /></p>
+
+<p>Dans ce cas, si un client peut régler la facture d’un autre client, alors c’est
+la <strong>règle 27</strong> qu’il faut applique : on remplace le type entité Règlement par
+un type association Régler.</p>
+
+<h3 id="normalisation-des-types-entité-et-type-association">Normalisation des types entité et type association</h3>
+
+<h4 id="introduction">Introduction.</h4>
+
+<p>Les formes normales sont différents sont différents stades de qualité qui
+permettent d’éviter la redondance, source d’anomalies. La normalisation peut
+être aussi bien effectuée sur un modèle entités-associations, où elle s’applique
+sur les types entité et type association, que sur un modèle relationnel.</p>
+
+<p>Il existe 5 formes normales principales et deux extensions. Plus le niveau de
+normalisation est élevé, plus le modèle est exempt de redondances. Un type
+entité ou un type association en forme normale de niveau <script type="math/tex">n</script> est
+automatiquement en forme normale de niveau <script type="math/tex">n-1</script>. Une modélisation rigoureuse
+permet généralement d’aboutir directement à des types entité et types
+association en forme normale de Boyce-Codd.</p>
+
+<p>Nous avons décidé de présenter deux fois cette théorie de la normalisation</p>
+
+<ul>
+  <li>
+    <p>Une première fois, dans le cadre du modèle entités-associations, en
+privilégiant une approche plus intuive qui n’introduit pas explicitement la
+notion de dépendance fonctionnelle (et encore moins les notions de dépendance
+multivaluée et de jointure). Nous nous arrêterons, dans cette section, à la
+forme normale de Boyce-Codd.</p>
+  </li>
+  <li>
+    <p>Puis une seconde fois, dans le cadre de modèle relationnel, en privilégiant
+une approche plus formelle s’appuyant sur la définition des dépendances
+fonctionnelle, multivaluée et de jointure. Nous irons alors jusqu’à la
+cinquième forme normale.</p>
+  </li>
+</ul>
+
+<h4 id="première-forme-normale-1fn">Première forme normale (1FN).</h4>
+
+<p><img src="/assets/images/sgbd/fig2_30.png" alt="fig2_30" class="image about center" /></p>
+
+<p>Exemple de normalisation en première forme normale.</p>
+
+<p>Un type entité ou un type association est en première forme normale si tous ses
+attributs sont élémentaires, c’est à dire non décomposables.</p>
+
+<p>Un attribut composite doit être décomposé en attributs élémentaires ou faire
+l’objet d’une entité supplémentaire (comme l’attribut Occupants sur la figure ci
+dessous).</p>
+
+<p>L’élémentarité d’un attribut est toutefois fonction des choix de gestion. Par
+exemple, la propriété Adresse peut être considérée comme élémentaire si la
+gestion de ces adresses est globale. Par contre, s’il faut pouvoir considérer
+les codes postaux, les noms de rues …, il convient d’éclater la propriété
+Adresse en Adresse (au sens numéro d’appartement, numéro et nom de rue), Code
+postal et Ville. En cas de doute, il est préférable (car plus général) d’éclater
+une propriété que d’effectuer un regroupement.</p>
+
+<h4 id="deuxième-forme-normale-2fn">Deuxième forme normale (2FN)</h4>
+
+<p><img src="/assets/images/sgbd/fig2_31.png" alt="fig2_31" class="image about center" /></p>
+
+<p>Un type entité ou un type association est en deuxième forme normale si, et
+seulement si, il est en première forme normale et si tout attribut
+n’appartenant pas à la clé dépend de la totalité de cette clé.</p>
+
+<p>Autrement dit, les attributs doivent dépendre de l’ensemble des attributs
+participant à la clé. Ainsi, si la clé est réduite à un seul attribut, ou si
+elle contient tous les attributs, le type entité ou le type association est, par
+définition, forcément en deuxième forme normale.</p>
+
+<p>La figure ci dessus montre un type entité Article décrivant des produits
+provenant de différents fournisseurs. On suppose qu’un même fournisseur peut
+fournir plusieurs produits et qu’un même produit peut être fourni par différents
+fournisseurs. Dans ce cas, les attributs Produit ou Fournisseur ne peuvent
+constituer un identifiant du type entité Article. Cependant l’attribut Adresse
+fournisseur ne dépend maintenant que</p>
+
 <h2 id="-modèle-relationnel"><i class="fas fa-database"></i> Modèle relationnel</h2>
 <h2 id="-dépendances-fonctionnelles"><i class="fas fa-database"></i> Dépendances fonctionnelles</h2>
 <h2 id="-formes-normales"><i class="fas fa-database"></i> Formes normales</h2>

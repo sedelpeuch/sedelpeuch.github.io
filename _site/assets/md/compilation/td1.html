@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/compilation/td1.html" /><!-- Title, description, author --><title>Travaux Dirigés Compilation - Feuille 1 | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Travaux Dirigés Compilation - Feuille 1 | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/compilation/td1.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-7-en-cours-link">
+            <span class="icon fa-link">Semestre 7 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_6.html" id="semestre-6-link">
+            <span class="icon fa-check">Semestre 6</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li><li><a href="http://localhost:4000/CPBx.html" id="cpbx-link">
+            <span class="icon fa-check">CPBx</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2>Travaux Dirigés Compilation - Feuille 1</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Notes inspirées du cours de JANIN David et du TD de Myriam Desainte-Catherine</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h2 id="préliminaire">Préliminaire</h2>
+
+<p>Le langage cible utilisé ici est du code 3 adresses c’est à dire un
+sous-ensemble d’instructions C qui ne manipulent que trois adresses au plus.
+Intuitivement, une adresse correspond à un accès mémoire, en lecture ou en
+écriture. Dans ce code, on manipule des variables de types simples ()</p>
+
+<p>TODO : finir le recopiage</p>
+
+<h2 id="compilation-des-expressions">Compilation des expressions</h2>
+
+<h3 id="exercice-1">Exercice 1</h3>
+
+<p><em>Donner une majoration du nombre d’adresses nécessaire à l’évaluation des
+instructions C suivantes :</em></p>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">x = (y1 + y2) + y3</code> : 4 opérations nécessaire</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">y = *(px++)</code> : 3 opérations nécessaire (2 lecture et 1 écriture)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">*(px+3)=*(px+y)+z</code> : 6 opérations nécessaire (5 lecture et 1 écriture)</p>
+  </li>
+</ol>
+
+<p><em>Proposer pour chacune des lignes de codes ci-dessus une compilation en trois
+adresses. Indication : on pourra réutiliser verbatim les noms variables
+apparaissant dans ces expressions, dites variables utilisateurs, en ajoutant
+autant de registres compilateurs que souhaités</em></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x = (y1 + y2) + y3
+
+ri1 = y1 
+ri2 = y2 
+ri1 = ri1 + ri2 
+ri2 = y3
+r1 = ri1 + ri2
+x = r1
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>y = *(px++)
+
+ri1 = px
+ri1 = ri1 +1 
+ri2 = * r1 
+y = r2
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*(px+3)=*(px+y)+z
+r1 = px
+r2 = y
+r3 = z
+r2 = r1 + r2 
+r4 = *r2 
+r4 = r4 + r3
+r1 = r1 + 3 
+r4 = r4 + r3
+</code></pre></div></div>
+
+<h3 id="exercice-2">Exercice 2</h3>
+
+<p><em>Compiler les instructions</em></p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge"> x = y1 + ( y2 * ( y3 + (y4 * y5) ) )</code></li>
+  <li><code class="language-plaintext highlighter-rouge"> x = (((y1 + y2) * y3 ) + y4) * y5</code></li>
+  <li><code class="language-plaintext highlighter-rouge">((y1 + y2) * (y3 + y4)) + ((y3 + y1) * (y2 + y5))</code></li>
+</ol>
+
+<p><em>Combien de registres utilisez vous ? Sont-ils nécessaires ? Peut-on facilement
+automatiser leur optimisation ?</em></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>r1 = y4 
+r2 = y5
+r1 = y4 * y5
+r2 = y3
+r2 = y3 + r1 
+r1 = y2
+r2 = r1 * r2
+r1 = y1
+r2 = r1 + r2
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>r1 = y1 
+r2 = y2
+r1 = r1 + r2 
+r2 = r1 * r2 
+r1 = y4 
+r1 = r2 + r1 
+r2 = y5
+r2 = r1 * r2 
+x = r2
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>r1 = y1
+r2 = y2
+r1 = r1 + r2 
+r2 = y3
+r3 = y4
+r2 = r2 + r3
+r1 = r1 * r2 
+r2 = y3 
+r3 = y1
+r2 = r2 + r3 
+r3 = y2 
+r4 = y5
+r3 = r3 + r4
+r2 = r2 x r3
+r3 = r1 + r2
+</code></pre></div></div>
+
+<p>Pour connaître les instructions à faire il faut donc dessiner l’arbre de des
+opérations, il se dégage 2 branches une avec <script type="math/tex">n</script> opération et une avec <script type="math/tex">m</script>.
+ensuite si <script type="math/tex">n=m</script> alors il y a <script type="math/tex">n+1</script> registres nécessaire</p>
+
+<p>Si <script type="math/tex">n \neq m</script> alors il y a <script type="math/tex">max(n,m)</script> registres nécessaire</p>
+
+<h2 id="compilation-des-instructions-de-contrôle">Compilation des instructions de contrôle</h2>
+
+<h3 id="exercice-3">Exercice 3</h3>
+
+<p><em>Proposer un schéma de compilation en code 3 adresses pour les instructions de
+contrôle apparaissant dans les exemples suivants</em></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if x then y = 0;
+if b then x = 1 else x = 2; 
+while (x &lt; 100) do x = x +1; 
+repeat x = x + 1 while x &lt; 100;
+do x = x + 2 until x == 100;
+</code></pre></div></div>
+
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

@@ -211,8 +211,63 @@ au réseau)</li>
   <li>Classe E de 240.0.0.0 à 255.255.255.255 (expérimentale)</li>
 </ol>
 
-<h2 id="-interconnexion-niveau-liaison-de-données"><i class="fas fa-server"></i> Interconnexion niveau liaison de données</h2>
 <h2 id="-résolutions-dadresses"><i class="fas fa-server"></i> Résolutions d’adresses</h2>
+
+<p>Les entités réseau sont désignées par leur adresse de niveau 3 (IP),
+l’utilisation d’un réseau physique pour l’acheminement d’un datatagrame.
+Identification des entités sur le réseau physique par leur adresse de niveau 2.</p>
+
+<p>Le but est donc de trouver une manière d’obtenir l’adresse de niveau 2
+(physique) d’une entité à partir de son adresse de niveau 3.</p>
+
+<h3 id="méthode-de-résolution">Méthode de résolution</h3>
+<ol>
+  <li>fonction de traduction simple, sur un réseau physique donnée, quelque fois
+possible.</li>
+  <li>table de traduction statique</li>
+  <li>mécanisme de découverte à l’aide d’un protocole réseau</li>
+  <li>solution hybrides : le protocole ARP</li>
+</ol>
+
+<h3 id="protocole-arp">Protocole ARP</h3>
+
+<p>Pour Address Resolution Protocol, initialement prévu pour le support Ethernet.
+Les mécanismes sont similaires pour d’autres support.</p>
+
+<p>La problématique est la suivante : nous avons des adresses internet (32 bits
+affectées par l’InterNic pour l’internet) et une adresse Ethernet (48 bits,
+affectées par l’IEEE et, souvent associés aux cartes d’interfaces).</p>
+
+<ul>
+  <li>pas de fonction de résolution simple</li>
+  <li>table de résolution statique extrêmement contraignante</li>
+  <li>utilisation d’un mécanisme de découverte, ARP, associé à une table dynamique</li>
+</ul>
+
+<p>Principe de la résolution d’adresses par ARP :</p>
+<ol>
+  <li>vérification de l’existence de la correspondance entre addresse IP et adresse
+Ethernet dans la table dynamique</li>
+  <li>en cas d’absence dans la table dynamique
+    <ul>
+      <li>envoie d’une requête ARP (who has) en diffusion générale sur le réseau
+Ethernet : <strong>ARP Request</strong></li>
+      <li>réception et traitement de la requête par toutes les entités du réseau</li>
+      <li>en fonctionnement normal, seule l’entité cible est autorisée à répondre à
+la requête et le fait : <strong>ARP reply</strong></li>
+    </ul>
+  </li>
+</ol>
+
+<p>Gestion de la table dynamique de résolution :</p>
+<ul>
+  <li>collecter des informations sur le réseau pour éviter les requêtes inutiles</li>
+  <li>conserver les correspondances acquises suffisamment longtemps pour éviter de
+surcharger le réseau</li>
+  <li>ne pas conserver les correspondances acquises trop longtemps pour limiter la
+taille de la table et éviter les entrées obsolètes</li>
+</ul>
+
 </div>
 	</article>
 </div><!-- Footer -->
