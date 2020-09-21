@@ -1,7 +1,7 @@
 ---
 layout: page
 hide: true
-title: TD1 - Modèle conceptuel
+title: TD2 - Modélisation des données
 ---
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
