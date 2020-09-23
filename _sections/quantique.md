@@ -5,10 +5,6 @@ icon: fa-vial
 order: 7
 ---
 
-## Objectif du cours
-
-Initiation au mécanisme des ordinateurs quantique.
-
 ## Ressources pédagogiques
 
 [Polycopié](http://dept-info.labri.fr/~ges/ENSEIGNEMENT/CALCULQ/polycop_calculq.pdf) d'une ancienne version du cours 

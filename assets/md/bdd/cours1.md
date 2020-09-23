@@ -1,7 +1,7 @@
 ---
 layout: page
 hide: true
-title: <i class="fas fa-database fa-2x"></i> Conception d'une base de donné
+title: Conception d'une base de données
 ---
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -505,7 +505,7 @@ Adresse en Adresse (au sens numéro d'appartement, numéro et nom de rue), Code
 postal et Ville. En cas de doute, il est préférable (car plus général) d'éclater
 une propriété que d'effectuer un regroupement. 
 
-#### Deuxième forme normale (2FN)
+#### Deuxième forme normale (2FN).
 
 ![fig2_31](/assets/images/sgbd/fig2_31.png){:class="image about center"}
 
@@ -523,11 +523,123 @@ provenant de différents fournisseurs. On suppose qu'un même fournisseur peut
 fournir plusieurs produits et qu'un même produit peut être fourni par différents
 fournisseurs. Dans ce cas, les attributs Produit ou Fournisseur ne peuvent
 constituer un identifiant du type entité Article. Cependant l'attribut Adresse
-fournisseur ne dépend maintenant que 
+fournisseur ne dépend maintenant que d'une partie de la clé (Fournisseur). Opter
+pour une nouvelle clé arbitraire à un seul attribut N° article permet d'obtenir
+un type entité Article en deuxième forme normale. On va voir dans ce qui suit
+que cette solution n'a fait que déplacer le problème.
 
+#### Troisième forme normale (3FN).
 
-## <i class="fas fa-database"></i> Modèle relationnel
-## <i class="fas fa-database"></i> Dépendances fonctionnelles
-## <i class="fas fa-database"></i> Formes normales 
-## <i class="fas fa-database"></i> Le langage SQL
+![fig2_32](/assets/images/sgbd/fig2_32.png){:class="image about center"}
+
+Un type entité ou un type association est en troisième forme normale si, et
+seulement si, il est en deuxième forme normale et si tous ses attributs
+dépendent directement de sa clé et pas d'autres attributs. 
+
+Cette normalisation peut amener à désimbriquer des types entités cachés comme le
+montre la figure ci dessus. 
+
+Un type entité ou un type association en deuxième forme normale avec au plus un
+attribut qui n'appartient pas à la clé est, par définition, forcément en
+troisième forme normale. 
+
+#### Forme normale de Boyce-Codd (BCNF).
+
+![fig2_33](/assets/images/sgbd/fig2_33.png){:class="image about center"}
+
+Un type entité ou un type association est en forme normale de Boyce-Codd si, et
+seulement si, il est en troisième forme normale et si aucun attribut faisant
+partie de la clé dépend d'un attribut ne faisant pas partie de la clé. 
+
+Intéressons-nous par exemple à la figure au dessus, à un type entité Diplômé
+modélisant des personnes (Nom et Prénom) possédant un diplôme (Diplôme) d'une
+institution (Institution). On suppose qu'il n'y a pas d'homonyme, qu'une même
+personne ne possède pas deux fois le même diplôme, mais qu'elle peut posséder
+plusieurs diplômes différents. Une institution ne délivre qu'un type de diplôme,
+mais qu'elle peut posséder plusieurs diplôme peut être délivré par plusieurs
+institutions (par exemple, plusieurs écoles d'ingénieurs délivrent des diplômes
+d'ingénieur). Une clé possible pour le type entité Diplômé est donc Nom, Prénom,
+Diplome. Le type entité obtenu est en troisième forme normale, mais une
+redondance subsiste, car l'attribut Institution détermine l'attribut Diplôme. Le
+type entité Diplômé n'est donc pas en forme normale de Boyce-Codd. 
+
+Un modèle en forme normale de Boyce-Codd est considéré comme étant de qualité
+suffisante pour une implantation. 
+
+#### Autre formes normales 
+
+Il existe d'autres formes normales. 
+
+## Élaboration d'un modèle entités associations
+
+### Étapes de conceptions d'un modèle entités-associations
+
+Pour concevoir un modèle entités-associations vous devrez certainement passer
+par une succession d'étapes. Nous les décrivons ci-dessous dans l'ordre
+chronologique. Sachez cependant que la conception d'un modèle
+entités-associations est un travail non linéaire. Vous devrez régulièrement
+revenir à une étape précédente et vous n'avez pas besoin d'en avoir terminé avec
+une étape pour commencer l'étape suivante. 
+
+#### Recueil des besoins. 
+
+C'est une étape primordiale. Inventoriez l'ensemble des données à partir des
+documents de l'entreprise d'un éventuel cahier des charges et plus généralement
+de tous les supports de l'information. N'hésitez pas à poser des questions. 
+
+#### Tri de l'information.
+
+Faites le tri dans les données recueillies. Il faut faire attention, à ce
+niveau, aux problèmes de synonymie / polysémie. En effet, les attributs ne
+doivent pas être redondants. Par exemple, si dans un langage de l'entreprise on
+peut parler indifféremment de référence d'article ou de n° de produit pour
+désigner la même chose, cette caractéristique ne devra se concrétiser que par un
+unique attribut dans le modèle. Inversement, on peut parler d'adresse pour
+désigner l'adresse du fournisseur et l'adresse du client, le contexte permettant
+de lever l'ambiguïté. Par contre, dans le modèle, il faudra veiller à bien
+distinguer ces deux caractéristiques par deux attributs distincts. 
+
+Un autre exemple est celui d'une entreprise de production fabricant des produits
+à destination d'une autre société du même groupe. Il se peut que dans ce cas, le
+prix de production (ie le coût de revient industriel) soit le même que le prix de
+vente (aucune marge n'est réalisée). Même dans ce cas où les deux
+caractéristiques sont identiques pour chaque entité (prix de production égale au
+prix de vente), il faut impérativement les scinder en deux attributs au niveau
+du type entité Produit. Sinon, cette égalité factuelle deviendrait une
+contrainte imposée par le modèle, obligeant alors l'entreprise de production à
+revoir son système le jour où elle décidera de réaliser une marge (prix de
+production inférieure au prix de vente). 
+
+#### Identification des types entité. 
+
+Le repérage d'attributs pouvant servir d'identifiant permet souvent de repérer
+un type entité. Les attributs de ce type entité sont alors les attributs qui
+dépendant des attributs pouvant servir d'identifiant. Lorsqu'on ne parvient pas
+à trouver d'identifiant pour un type entité, il faut se demander s'il ne s'agit
+pas en fait d'un type association. Si ce n'est pas le cas, un identifiant
+arbitraire numérique entier peut faire l'affaire. 
+
+#### Identification des types association. 
+
+Identifiez les types association reliant les types entité du modèle. Le cas
+échéant, leur affecter les attributs correspondants. 
+
+Il est parfois difficile de faire un choi entre un type entité et un type
+association. Par exemple, un mariage peut être considéré comme un type
+association entre deux personnes ou comme un type entité pour lequel on veut
+conserver un numéro, une date, un lieu ... et que l'on souhaite manipuler en
+tant que tel. 
+
+Étudier également les cardinalités des types association retenus. Lorsque toutes
+les pattes d'un type association portent la cardinalité 1,1, il faut se demander
+si ce type association et les types entités liés ne décrivent pas en fait un
+seul type entité. 
+
+#### Vérification du modèle.
+
+Vérifiez que le modèle respecte bien les règles que nous avons énoncées et les
+définitions concernant la normalisation des types entité et des types
+association. Le cas échéant, opérez les modifications nécessaires pour que le
+modèle soit bien formé. 
+
 
