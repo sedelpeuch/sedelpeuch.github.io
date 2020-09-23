@@ -461,7 +461,70 @@ Définition d'une classe concrèete Java et de ses membres
 
 C'est une variable locale à chaque instance. Sa valeur est stockée dans la zone
 mémoire de l'instance. Son initialisation s'effectue soit à sa déclaration soit
-dans le code d'une constructeur. LA machine virtuelle Java initialise
+dans le code d'une constructeur. La machine virtuelle Java initialise
 systématiquement les variables d'instance avec une valeur par défaut dépendant
 du type (référence/null, int/0, boolean/false). Le mot-clé `final` devant la
-définition d'une variable correspond à une 
+définition d'une variable correspond à une variable constante. Son initialisation
+est possible dans un constructeur.
+
+#### Méthode d'instance 
+
+Une méthode d'instance s'applique à une instance. Il existe deux catégories de
+méthode : 
++ méthode d'accès, ou acccesseur. Elle donne des informations sur l'état des
+  attributs. 
++ méthode d'altération ou modificateur. Elle modifie l'état des attributs.
+
+Le mécanisme de surcharge autorise plusieurs méthodes à porter le même nom. La
+distinction se fait, à la compilation, en fonction de la liste des paramètres
+d'appel (nombre, type et ordre). Par exemple, la méthode `println` de la classe
+`java.io.PrintStream`.
+
+Le mot clé `this` désigne / référence l'instance qui vient de recevoir le
+message. Il est utilisé dans le code 
++ Soit pour passer l'objet en paramètre d'une méthode (ou d'un constructeur)
++ Soit pour désigner un attribut en cas d'ambiguïté
+
+#### Constructeur
+
+Un constructeur n'est pas une méthode. Il est uniquement appelé à
+*l'instanciation*. Son code assure la bonne initialisation des variables
+d'instance. Le constructeur prendre le nom de la classe. Il n'a pas de type de
+retour. L'instance existe au moment de l'appel du constructeur. Le code du
+constructeur peut utiliser les méthodes d'instance et la référence `this`. Si
+une classe ne contient pas de constructeur le compilateur Java ajoute un
+constructeur publique sans paramètre avec un corps vide (désigné par le terme
+constructeur par défaut). La surcharge des constructeurs est autorisée. Avec la
+définition de plusieurs constructeurs, il est nécessaire d'avoir un mécanisme de
+factorisation du code d'initialisation. Un constructeur peut déclencher le code
+d'un autre constructeur par l'instruction (qui utilise le mécanisme de
+surcharge) : `this(par1, par2, par3)`. Cette instruction doit être la première
+ligne du constructeur.
+
+### Lien "a-un" entre classes
+
+Le lien "a-un" correspond à la relation d'utilisation la plus basique : la
+réalisation d'une encapsulation nécessite l'appel aux méthodes d'une autre
+encapsulation. 
+
+#### Relation d'utilisation dans la réalisation
+
+La classe `PorteCharniere` possède un lien "a-un" avec la classe `DentBleu`. Une
+instance de `PorteCharniere` contient dans ses attributs la référence à une
+instance de `DentBleu`.
+
+Dans notre cas de réalisation, l'instant de `DentBleu` ne peut pas être partagée
+et doit être utilisée dès l'instanciation de `PorteCharniere`. 
+
+Le lien "a-un" se traduit dans le code de la classe `PorteCharniere` : 
+- définition d'une variable d'instance du type `DentBleu`
+- instanciation de `DentBleu` dans le constructeur et affectation à la variable
+  d'instance
+  
+ 
+#### Factoriser du code 
+
+Pour éviter de dupliquer le code, la construction de la classe
+`PorteVerrouCharniere` peut se faire en utilisant un lien "a-un" avec la classe
+`PorteCharniere`. L'instanciation de la classe `PorteVerrouCharniere` doit
+instancier la classe `PorteCharniere`

@@ -539,10 +539,78 @@ paquetage : <code class="language-plaintext highlighter-rouge">public class Dent
 
 <p>C’est une variable locale à chaque instance. Sa valeur est stockée dans la zone
 mémoire de l’instance. Son initialisation s’effectue soit à sa déclaration soit
-dans le code d’une constructeur. LA machine virtuelle Java initialise
+dans le code d’une constructeur. La machine virtuelle Java initialise
 systématiquement les variables d’instance avec une valeur par défaut dépendant
 du type (référence/null, int/0, boolean/false). Le mot-clé <code class="language-plaintext highlighter-rouge">final</code> devant la
-définition d’une variable correspond à une</p>
+définition d’une variable correspond à une variable constante. Son initialisation
+est possible dans un constructeur.</p>
+
+<h4 id="méthode-dinstance">Méthode d’instance</h4>
+
+<p>Une méthode d’instance s’applique à une instance. Il existe deux catégories de
+méthode :</p>
+<ul>
+  <li>méthode d’accès, ou acccesseur. Elle donne des informations sur l’état des
+attributs.</li>
+  <li>méthode d’altération ou modificateur. Elle modifie l’état des attributs.</li>
+</ul>
+
+<p>Le mécanisme de surcharge autorise plusieurs méthodes à porter le même nom. La
+distinction se fait, à la compilation, en fonction de la liste des paramètres
+d’appel (nombre, type et ordre). Par exemple, la méthode <code class="language-plaintext highlighter-rouge">println</code> de la classe
+<code class="language-plaintext highlighter-rouge">java.io.PrintStream</code>.</p>
+
+<p>Le mot clé <code class="language-plaintext highlighter-rouge">this</code> désigne / référence l’instance qui vient de recevoir le
+message. Il est utilisé dans le code</p>
+<ul>
+  <li>Soit pour passer l’objet en paramètre d’une méthode (ou d’un constructeur)</li>
+  <li>Soit pour désigner un attribut en cas d’ambiguïté</li>
+</ul>
+
+<h4 id="constructeur">Constructeur</h4>
+
+<p>Un constructeur n’est pas une méthode. Il est uniquement appelé à
+<em>l’instanciation</em>. Son code assure la bonne initialisation des variables
+d’instance. Le constructeur prendre le nom de la classe. Il n’a pas de type de
+retour. L’instance existe au moment de l’appel du constructeur. Le code du
+constructeur peut utiliser les méthodes d’instance et la référence <code class="language-plaintext highlighter-rouge">this</code>. Si
+une classe ne contient pas de constructeur le compilateur Java ajoute un
+constructeur publique sans paramètre avec un corps vide (désigné par le terme
+constructeur par défaut). La surcharge des constructeurs est autorisée. Avec la
+définition de plusieurs constructeurs, il est nécessaire d’avoir un mécanisme de
+factorisation du code d’initialisation. Un constructeur peut déclencher le code
+d’un autre constructeur par l’instruction (qui utilise le mécanisme de
+surcharge) : <code class="language-plaintext highlighter-rouge">this(par1, par2, par3)</code>. Cette instruction doit être la première
+ligne du constructeur.</p>
+
+<h3 id="lien-a-un-entre-classes">Lien “a-un” entre classes</h3>
+
+<p>Le lien “a-un” correspond à la relation d’utilisation la plus basique : la
+réalisation d’une encapsulation nécessite l’appel aux méthodes d’une autre
+encapsulation.</p>
+
+<h4 id="relation-dutilisation-dans-la-réalisation">Relation d’utilisation dans la réalisation</h4>
+
+<p>La classe <code class="language-plaintext highlighter-rouge">PorteCharniere</code> possède un lien “a-un” avec la classe <code class="language-plaintext highlighter-rouge">DentBleu</code>. Une
+instance de <code class="language-plaintext highlighter-rouge">PorteCharniere</code> contient dans ses attributs la référence à une
+instance de <code class="language-plaintext highlighter-rouge">DentBleu</code>.</p>
+
+<p>Dans notre cas de réalisation, l’instant de <code class="language-plaintext highlighter-rouge">DentBleu</code> ne peut pas être partagée
+et doit être utilisée dès l’instanciation de <code class="language-plaintext highlighter-rouge">PorteCharniere</code>.</p>
+
+<p>Le lien “a-un” se traduit dans le code de la classe <code class="language-plaintext highlighter-rouge">PorteCharniere</code> :</p>
+<ul>
+  <li>définition d’une variable d’instance du type <code class="language-plaintext highlighter-rouge">DentBleu</code></li>
+  <li>instanciation de <code class="language-plaintext highlighter-rouge">DentBleu</code> dans le constructeur et affectation à la variable
+d’instance</li>
+</ul>
+
+<h4 id="factoriser-du-code">Factoriser du code</h4>
+
+<p>Pour éviter de dupliquer le code, la construction de la classe
+<code class="language-plaintext highlighter-rouge">PorteVerrouCharniere</code> peut se faire en utilisant un lien “a-un” avec la classe
+<code class="language-plaintext highlighter-rouge">PorteCharniere</code>. L’instanciation de la classe <code class="language-plaintext highlighter-rouge">PorteVerrouCharniere</code> doit
+instancier la classe <code class="language-plaintext highlighter-rouge">PorteCharniere</code></p>
 </div>
 	</article>
 </div><!-- Footer -->
