@@ -97,3 +97,15 @@ Une **clé étrangère** dan une relation est formée d'un ou plusieurs attribut
 qui consistent une clé primaire dans une autre relation.
 
 Un **schéma relationnel** est constitué par l'ensemble des schémas de relation 
+
+Une **base de données relationnelle** est constituée par l'ensemble des
+$$n$$-uplets des différents relations du schéma relationnel. 
+
+### Passage du modèle entités-associations au modèle relationnel
+
+#### Règles de passage.
+
+Pour traduire un schéma du modèle entités-associations vers le modèle
+relationnel, on peut appliquer les règles suivantes :
+
+1. La normalisation devrait toujours être effectué avant le passage au modèle 
