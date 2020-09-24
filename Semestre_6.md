@@ -31,7 +31,7 @@ logiciel](/assets/Semestre_6/prog_imp)
 
 ## Projets 2 
 
-[Projet C](https://thor.enseirb-matmeca.fr/ruby/repositories/4673)
+[Projet Actor](https://thor.enseirb-matmeca.fr/ruby/projects/projetss6-actor-1920)
 
 [Projet Hex](https://thor.enseirb-matmeca.fr/ruby/repositories/4673)
 

@@ -1,5 +1,5 @@
 ---
-title: Prog impérative 
+title: Programmation impérative 
 icon: fa-code
 order: 7
 hide: true
@@ -19,15 +19,15 @@ programmation.
 
 #### Cours 
 
-| Support   | Notes     |
-| :----:    | :----:    | 
-| [cours 1] | [notes 1] | 
-| [cours 2] | [notes 2] | 
-| [cours 3] | [notes 3] | 
-| [cours 4] | [notes 4] | 
-| [cours 5] | [notes 5] | 
-| [cours 6] | [notes 6] | 
-| [cours 7] | [notes 7] | 
+| Support   |
+| :--       |
+| [cours 1] |
+| [cours 2] |
+| [cours 3] |
+| [cours 4] |
+| [cours 5] |
+| [cours 6] |
+| [cours 7] |
 
 #### Travaux dirigés
 
