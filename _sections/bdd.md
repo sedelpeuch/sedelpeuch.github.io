@@ -19,6 +19,7 @@ order: 8
 | :--       | :--                |
 | [Sujet 1] | [TD 1]             |
 | [Sujet 2] | [TD 2]             |
+| [Sujet 3] | [TD 3]             |
 
 
 [Conception d'une base de donnée]: https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=47001
@@ -33,5 +34,7 @@ order: 8
 
 [Sujet 1]:https://moodle.bordeaux-inp.fr/pluginfile.php/49008/mod_resource/content/3/td1.pdf
 [Sujet 2]:https://moodle.bordeaux-inp.fr/pluginfile.php/49009/mod_resource/content/1/td2.pdf
+[Sujet 3]:https://moodle.bordeaux-inp.fr/pluginfile.php/49010/mod_resource/content/2/td3.pdf
 [TD 1]:/assets/md/bdd/td1
 [TD 2]:/assets/md/bdd/td2
+[TD 3]:/assets/md/bdd/td3

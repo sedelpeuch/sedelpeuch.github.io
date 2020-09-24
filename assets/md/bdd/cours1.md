@@ -133,11 +133,14 @@ Au niveau du type entité ou du type association, chaque attribut possède un
 domaine qui définit l'ensemble des valeurs possible qui peuvent être choisies
 pour lui (entier, chaine de caractères, booléen ...). Au niveau de l'entité,
 chaque attribut possède une valeur compatible avec son domaine. 
-Un attribut ne peut en aucun cas être partagé par plusieurs par plusieurs type
+
+
+**Règle 5** : Un attribut ne peut en aucun cas être partagé par plusieurs par plusieurs type
 entité ou type association. 
-Un attribut est une donné élémentaire, ce qui exclut des données calculées ou
+
+**Règle 6** : Un attribut est une donné élémentaire, ce qui exclut des données calculées ou
 dérivées.
-Un type entité et ses attributs doivent être cohérents entre eux. 
+**Règle 7** : Un type entité et ses attributs doivent être cohérents entre eux. 
 
 ### Identifiant ou clé
 
@@ -147,7 +150,8 @@ unique pour chaque entité ou association de ce type.
 Il est donc impossible que les attributs constituant l'identifiant d'un type
 entité (respectivement type association) prennent la même valeur pour deux
 entités (respectivement deux associations) distinctes.
-Chaque type entité possède au moins un identifiant, éventuellement formé de
+
+**Règle 9**Chaque type entité possède au moins un identifiant, éventuellement formé de
 plusieurs attributs. 
 Ainsi, chaque type entité possède au moins un attribut qui,  s'il est seul, est donc forcément l'identifiant
 
@@ -164,8 +168,10 @@ plusieurs type entité. Les associations de ce type association lient des entit�
 de ces type entité. 
 Comme les types entités, les types association sont définis à l'aide d'attributs
 qui prennent leur valeur dans les associations. 
-Un attribut peut être placé dans un type association uniquement lorsqu'il dépend
+
+**Règle 10** Un attribut peut être placé dans un type association uniquement lorsqu'il dépend
 de toutes les entités liées par le type association.
+
 Un attribut peut être placé dans un type association uniquement lorsqu'il
 dépend de toutes les entités liées par le type association. 
 Un type association peut ne pas posséder d'attribut explicite et cela est
@@ -187,7 +193,8 @@ association est le nombre de type entité contenu dans la collection
 
 Comme un entité, un type association possède forcément un identifiant qu'il soit
 explicite ou non. 
-La concaténation des identifiant des types entités liés à un type association
+
+**Règle 16** La concaténation des identifiant des types entités liés à un type association
 constitue un identifiant de ce type association et cet identifiant n'est pas
 mentionné sur le modèle 
 Cette règle implique que deux instances d'un même type association ne peuvent
@@ -209,7 +216,7 @@ doit être inférieure ou égale à la cardinalité maximale.
 Exemple de cardinalité : une personne peut être l'auteur de 0 à $$n$$ livre,
 mais un livre ne peut être écrit que par une personne. 
 
-L'expression de la cardinalité est obligatoire pour chaque patte d'un type
+**Règle 18** L'expression de la cardinalité est obligatoire pour chaque patte d'un type
 association. 
 Une cardinalité minimale est toujours 0 ou 1 et une cardinalité maximale est
 toujours 1 ou n. 
@@ -304,7 +311,7 @@ plus lisible si les attributs ont tous des noms différents.
 
 ### Règle de normalisation des attributs 
 
-Il faut remplacer un attribut multiple en un type association et un type entité supplémentaires. 
+**Règle 22** : Il faut remplacer un attribut multiple en un type association et un type entité supplémentaires. 
 
 ![fig2_18](/assets/images/sgbd/fig2_18.png){:class="image about center"}
 
@@ -321,7 +328,7 @@ l'attribut Adresse par exemple. Il est en effet difficile d'écrire une requête
 portant sur la ville où les habitent les employés si cette information est noyée
 dans un unique attribut Adresse. 
 
-Il ne faut jamais ajouter un attribut dérivé d'autres attributs, que ces autres
+**Règle 23** : Il ne faut jamais ajouter un attribut dérivé d'autres attributs, que ces autres
 attributs se trouvent dans le même entité ou pas. 
 
 ![fig2_19](/assets/images/sgbd/fig2_19.png){:class="image about center"}
@@ -377,7 +384,7 @@ actualité et culturelle)
 
 ### Règles de fusion/suppression d'entités/associations
 
-Il faut factoriser les types entité quand c'est possible. 
+**Règle 25 :** Il faut factoriser les types entité quand c'est possible. 
 
 La spécialisation du type entité obtenu peut se traduire par l'introduction d'un
 attribut supplémentaire dont l'ensemble des valeurs possibles est l'ensemble des

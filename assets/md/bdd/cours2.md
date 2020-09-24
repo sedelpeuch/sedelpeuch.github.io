@@ -86,5 +86,14 @@ notion de clé candidate est essentielle dans le modèle relationnel.
 plusieurs. 
 
 Ainsi, il ne peut jamais y avoir deux tuples identiques au sein d'une relation.
-Les clés candidates d'une relation n'ont pas forcément le même nombre 
+Les clés candidates d'une relation n'ont pas forcément le même nombre
+d'attributs. Une clé candidate peut être formée d'un attribut arbitraire,
+utilisé à cette seule fin. 
 
+La **clé primaire** d'une relation est une de ses clés candidate. Pour signaler
+la clé primaire, ses attributs sont généralement soulignés. 
+
+Une **clé étrangère** dan une relation est formée d'un ou plusieurs attributs
+qui consistent une clé primaire dans une autre relation.
+
+Un **schéma relationnel** est constitué par l'ensemble des schémas de relation 
