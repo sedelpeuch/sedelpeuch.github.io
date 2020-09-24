@@ -12,8 +12,8 @@ hide: true
 | :---:  | :---:       | :---:          | :---:       |
 | [PL-1] | [PL-1 TD]   | [notes1]       | [notes-td1] |
 | [PL-2] | [PL-2 TD]   | [notes2]       | [notes-td2] |
-| [PL-3] | [PL-3 TD]   | [notes3]       | [notes-td3] |
-| [PL-4] |             | [notes4]       | [notes-td4] |
+| [PL-3] | [PL-3 TD]   |                |             |
+| [PL-4] |             |                |             |
 
 
 [PL-1]:https://moodle.bordeaux-inp.fr/pluginfile.php/110746/mod_resource/content/0/PL_Cours1.pdf
