@@ -76,11 +76,13 @@ html {
 }
 </style>
 
-<h2 id="exercice-p40">Exercice p40</h2>
+<h2 id="exercices-en-vrac">Exercices en vrac</h2>
+
+<h3 id="exercice-p40">Exercice p40</h3>
 
 <p>TODO</p>
 
-<h2 id="exercice-p51">Exercice p51</h2>
+<h3 id="exercice-p51">Exercice p51</h3>
 
 <ul>
   <li><em>En utilisant les formats de trame donnés, décoder les trames MAC Ethernet
@@ -115,21 +117,21 @@ Sender Protocol Adress : <code class="language-plaintext highlighter-rouge">07 0
 Target Hardware Address : <code class="language-plaintext highlighter-rouge">94 81 68</code>
 Target Protocol Address : <code class="language-plaintext highlighter-rouge">FE 05</code></p>
 
-<h2 id="exercice-p52">Exercice p52</h2>
+<h3 id="exercice-p52">Exercice p52</h3>
 
-<h3 id="réseau-1">Réseau 1</h3>
+<h4 id="réseau-1">Réseau 1</h4>
 
 <p><code class="language-plaintext highlighter-rouge">192.168.1.1</code> effectue un who has en cherchant <code class="language-plaintext highlighter-rouge">192.168.1.2</code>, celui là répond
 is-at.</p>
 
-<h3 id="réseau-2">Réseau 2</h3>
+<h4 id="réseau-2">Réseau 2</h4>
 
 <p><code class="language-plaintext highlighter-rouge">192.168.1.1</code> broadcast un who as <code class="language-plaintext highlighter-rouge">192.168.1.254</code>. Le routeur répond is-at puis
 effectue un who has <code class="language-plaintext highlighter-rouge">192.168.2.1</code>. Finalement <code class="language-plaintext highlighter-rouge">192.168.2.1</code> répond un is-at.</p>
 
-<h2 id="exercice-p14">Exercice p14</h2>
+<h3 id="exercice-p14">Exercice p14</h3>
 
-<h3 id="énoncé">Énoncé</h3>
+<h4 id="énoncé">Énoncé</h4>
 
 <ul>
   <li>Soit un datagramme IP :
@@ -140,12 +142,57 @@ effectue un who has <code class="language-plaintext highlighter-rouge">192.168.2
       <li>MTU = 512 octets</li>
     </ul>
   </li>
-  <li><em>Étudier la fragmentation du datagramme IP</em> :</li>
+  <li>Étudier la fragmentation du datagramme IP</li>
   <li>Écrire un algorithme (pseudo - code) permettant de fragmenter un datagramme IP</li>
   <li>Étudier le ré-assemblage des fragments</li>
   <li>Pourquoi la fragmentation est considérée comme mécanisme inefficace dans IP</li>
   <li>Trouver une solution permettant d’éviter la fragmentation</li>
 </ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MTU &lt;-512
+data &lt;-4000
+offset&lt;-0
+
+//Premier fragment
+header_size &lt;- 20B + "nb d'options copiées" + "nb d'options non copiées"
+ip_data_size &lt;- partie_entiere((MTU - header_size)/8) * 8
+
+data_rest &lt;- data - ip_data_size
+offset &lt;- partie_entiere((MTU - header_size)/8)
+
+header_size &lt;- header_size - "nb d'options non copiées"
+nb_trames &lt;- partie_entiere(data_rest /partie_entiere((MTU - header_size) / 8) *
+8)
+</code></pre></div></div>
+
+<h2 id="td-1---adressage-et-subdivision-de-réseau">TD 1 - Adressage et subdivision de réseau</h2>
+
+<p><em>La subdivision de réseau est un procédé qui permet de découper logiquement des
+réseaux de grande taille en sous-réseaux de plus petites tailles. Pour ce faire,
+on applique, grâce à une formule mathématique, à partir d’une adresse de base,
+un masque de sous-réseau. Le résultat est une plage d’adresses de machines
+continues mais de taille réduite par rapport à la plage d’adresses initiales.</em></p>
+
+<ol>
+  <li><em>L’adresse de la machine A est 193.55.28.152. De quelle classe est cette
+adresse ? Quel est le masque du réseau ? Définir l’adresse de diffusion
+restreinte sur tout le sous réseau.</em></li>
+</ol>
+
+<p>Adresse de classe C, masque : <code class="language-plaintext highlighter-rouge">255.255.255.0</code>, broadcast : <code class="language-plaintext highlighter-rouge">193.55.28.255</code></p>
+
+<ol>
+  <li><em>Une entreprise a obtenu l’adresse réseau suivante par l’AFNIC :
+194.57.242.0</em></li>
+</ol>
+
+<p>Adresse de classe C.</p>
+
+<p>1 bit pour le sous réseau</p>
+
+<p>0000 0000 -&gt; 194.57.242.0/25 -&gt; [1-&gt;126] -&gt; bc = 194.57.242.127</p>
+
+<p>1000 0000 -&gt; 194.57.242.128/25 -&gt; [129-&gt;254] -&gt; bc = 194.57.242.255</p>
 
 </div>
 	</article>

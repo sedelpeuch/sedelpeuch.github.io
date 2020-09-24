@@ -80,6 +80,83 @@ html {
 }
 </style>
 
+<h2 id="introduction-au-modèle-relationnel">Introduction au modèle relationnel</h2>
+
+<h3 id="présentation">Présentation</h3>
+
+<p>Dans ce modèle, les données sont représentées par des tables, sans préjuger de
+la façon dont les informations sont stockées dans la machine. Les tables
+constituent donc la structure logique du modèle relationnel. Au niveau physique,
+le système est libre d’utiliser n’importe quelle technique de stockage (fichiers
+séquentiels, indexage, adressage dispersé, series de pointeurs, compression …)
+dès lors qu’il est possible de relier ces structures à des tables au niveau
+logique. Les tables ne représentent donc pas qu’une abstraction de
+l’enregistrement physique des données en mémoire.</p>
+
+<p>Le succès du modèle relationnel auprès des chercheurs, concepteurs et
+utilisateurs est dû à la puissance et à la simplicité de ses concepts. En outre,
+contrairement à certains autres modèles, il repose sur des bases théoriques
+solides, notamment la théorie des ensembles et la logique des prédicats du
+premier ordre.</p>
+
+<p>Les objectifs du modèle relationnel sont</p>
+<ul>
+  <li>proposer des schémas de données faciles à utiliser</li>
+  <li>améliorer l’indépendance logique et physique</li>
+  <li>mettre à la disposition des utilisateurs des langages de haut niveau</li>
+  <li>optimiser les accès à la base de données</li>
+  <li>améliorer l’intégrité et la confidentialité</li>
+  <li>fournir une approche méthodologique dans la construction des schémas.</li>
+</ul>
+
+<p>De façon informelle, on peut définir la modèle relationnel de la manière
+suivante</p>
+<ul>
+  <li>les données sont organisées sous forme de tables à deux dimensions, encore
+appelées relations, dont les lignes sont appelées <script type="math/tex">n</script>-uplet ou tuple en
+anglais</li>
+  <li>les données sont manipulées par des opérateurs de l’algèbre relationnelle</li>
+  <li>
+    <p>l’état cohérent de la base est défini par un ensemble de contraintes
+d’intégrité</p>
+
+    <p>Au modèle relationnel est associée a la théorie de la normalisation des
+relations qui permet de se débarasser des incohérences au moment de la
+conception d’une base de données relationnelle.</p>
+  </li>
+</ul>
+
+<h3 id="éléments-du-modèle-relationnel">Éléments du modèle relationnel</h3>
+
+<p>Un <strong>attribut</strong> est un identificateur (un nom) décrivant une information stockée
+dans une base.</p>
+
+<p>Le <strong>domaine</strong> d’un attribut est l’ensemble, fini ou infini, de ses valeurs
+possibles.</p>
+
+<p>Une <strong>relation</strong> est un sous-ensemble du produit cartésien de <script type="math/tex">n</script> domaines
+d’attributs (<script type="math/tex">n >0</script>).</p>
+
+<p>Un <strong>schéma de relation</strong> précise le nom de la relation ainsi que la liste des
+attributs avec leurs domaines.</p>
+
+<p>Le <strong>degré</strong> d’une relation est son nombre d’attributs</p>
+
+<p>Une <strong>occurence</strong>, ou <script type="math/tex">n</script>-uplets, ou tuples, est une élément de l’ensemble
+figuré par une relation. Autrement dit, une occurence est une ligne du tableau
+qui représente la relation.</p>
+
+<p>La <strong>Cardinalité</strong> d’une relation est son nombre d’occurences.</p>
+
+<p>Une <strong>clé candidate</strong> est donc distince pour tous les tuples de la relation. La
+notion de clé candidate est essentielle dans le modèle relationnel.</p>
+
+<p><strong>Règle 9</strong> Toute relation a au moins une clé candidate et peut en avoir
+plusieurs.</p>
+
+<p>Ainsi, il ne peut jamais y avoir deux tuples identiques au sein d’une relation.
+Les clés candidates d’une relation n’ont pas forcément le même nombre</p>
+
 </div>
 	</article>
 </div><!-- Footer -->
