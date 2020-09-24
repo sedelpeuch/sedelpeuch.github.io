@@ -15,11 +15,11 @@ TD
 
 ### Notes personnelles 
 
-| Cours                    | Travaux Dirigés |
-| :--                      | :--             |
-| [Objet et encapsulation] |                 |
-| [Substitution d'objets]  |                 |
-| [Autres mécanismes]      |                 |
+| Cours                    | 
+| :--                      | 
+| [Objet et encapsulation] | 
+| [Substitution d'objets]  | 
+| [Autres mécanismes]      | 
 
 [Objet et encapsulation]:/assets/md/poo/cours1
 [Substitution d'objets]:/assets/md/poo/cours2
