@@ -173,18 +173,17 @@ on applique, grâce à une formule mathématique, à partir d’une adresse de b
 un masque de sous-réseau. Le résultat est une plage d’adresses de machines
 continues mais de taille réduite par rapport à la plage d’adresses initiales.</em></p>
 
-<ol>
-  <li><em>L’adresse de la machine A est 193.55.28.152. De quelle classe est cette
-adresse ? Quel est le masque du réseau ? Définir l’adresse de diffusion
-restreinte sur tout le sous réseau.</em></li>
-</ol>
+<h3 id="exercice-1">Exercice 1</h3>
+
+<p><em>L’adresse de la machine A est 193.55.28.152. De quelle classe est cette
+   adresse ? Quel est le masque du réseau ? Définir l’adresse de diffusion
+   restreinte sur tout le sous réseau.</em></p>
 
 <p>Adresse de classe C, masque : <code class="language-plaintext highlighter-rouge">255.255.255.0</code>, broadcast : <code class="language-plaintext highlighter-rouge">193.55.28.255</code></p>
 
-<ol>
-  <li><em>Une entreprise a obtenu l’adresse réseau suivante par l’AFNIC :
-194.57.242.0</em></li>
-</ol>
+<h3 id="exercice-2">Exercice 2</h3>
+<p><em>Une entreprise a obtenu l’adresse réseau suivante par l’AFNIC :
+    194.57.242.0</em></p>
 
 <p>Adresse de classe C.</p>
 
@@ -193,6 +192,160 @@ restreinte sur tout le sous réseau.</em></li>
 <p>0000 0000 -&gt; 194.57.242.0/25 -&gt; [1-&gt;126] -&gt; bc = 194.57.242.127</p>
 
 <p>1000 0000 -&gt; 194.57.242.128/25 -&gt; [129-&gt;254] -&gt; bc = 194.57.242.255</p>
+
+<h3 id="exercice-3">Exercice 3</h3>
+
+<p>On a un réseau de classe B : <code class="language-plaintext highlighter-rouge">129.178.0.0</code>.</p>
+
+<p>On peut faire ce que l’on veut sur les deux derniers octets soit 16 bits.</p>
+
+<p><code class="language-plaintext highlighter-rouge">**** **-- . ---- ----</code> les bits * sont réservés pour les réseaux (<script type="math/tex">2^6=64</script>
+réseaux possible).</p>
+
+<p>Il reste <script type="math/tex">16-6 = 10</script> bits pour les hôtes. soit <script type="math/tex">2^10</script> possibilité c’est à
+dire 1024 .</p>
+
+<p>Sauf que dans les 1024 il y a deux adresses réservées, l’adresse du réseau et
+l’adresse de broadcast . Au final il y a 1022 hôtes possibles.</p>
+
+<h3 id="exercice-4">Exercice 4</h3>
+
+<p>On connait le masque de sous-réseau : <code class="language-plaintext highlighter-rouge">255.255.248.0</code>. Si on écrit le masque en
+binaire : <code class="language-plaintext highlighter-rouge">(1111 1111)(1111 1111)(1111 1000)(0000 0000)</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>129.148.208.x =&gt; 129.148.(1101 0000)2.x =&gt; réseau A
+129.148.216.y =&gt; 129.148.(1101 1000)2.y =&gt; réseau B
+129.148.210.z =&gt; 129.148.(1101 0010)2.z =&gt; réseau A
+</code></pre></div></div>
+
+<p>L’adresse du réseau <script type="math/tex">A</script> est donc <code class="language-plaintext highlighter-rouge">129.148.(1101 0000)2.0 =&gt; 129.148.208.0</code></p>
+
+<p>Calcul de la plage d’adresse <code class="language-plaintext highlighter-rouge">{129.148.1101 0}[000.0000 0001 - 111.1111 1110]
+&lt;=&gt; 129.148.208.0</code> à <code class="language-plaintext highlighter-rouge">129.148.215.254</code></p>
+
+<p>Adresse de broadcast =&gt; <code class="language-plaintext highlighter-rouge">129.148.215.255</code></p>
+
+<h3 id="exercice-5">Exercice 5</h3>
+
+<p>Une entrée dans la table de routage est de la forme :</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Réseau destinataire</td>
+      <td>Passerelle = ip d’un routeur</td>
+    </tr>
+    <tr>
+      <td>10.0.0.0</td>
+      <td>20.0.0.10(B)</td>
+    </tr>
+    <tr>
+      <td>20.0.0.0</td>
+      <td>* (C)</td>
+    </tr>
+    <tr>
+      <td>30.0.0.0</td>
+      <td>* (C)</td>
+    </tr>
+    <tr>
+      <td>40.0.0.0</td>
+      <td>30.0.0.10 (D)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="exercice-6">Exercice 6</h3>
+
+<ul>
+  <li>Combien de données IP au total ?</li>
+</ul>
+
+<p><script type="math/tex">data_{ip} = 1500 - 26 - 20 = 1454</script> hors ce n’est pas un multiple de 8 donc
+c’est 1448 qui est le multiple de 8 le plus proche de 1454 mais en dessous.</p>
+
+<ul>
+  <li>Combien de données IP au total peuvent être transmises dans une trame ethernet
+sur le réseau 20 ?</li>
+</ul>
+
+<p><script type="math/tex">MTU_{IP} = 492</script>, Le DataIP vaut <script type="math/tex">492 - 20 = 472</script> octets.</p>
+
+<ul>
+  <li>Combien y aura t’il de fragment ?</li>
+</ul>
+
+<p><script type="math/tex">1448 / 472 = 3.06</script> il y aura 4 fragments</p>
+
+<ul>
+  <li>Combien de données IP par fragment ?</li>
+</ul>
+
+<p>Les 3 premiers auront 446 octets et le dernier 128 octets</p>
+
+<h3 id="exercice-7">Exercice 7</h3>
+
+<ol>
+  <li>
+    <p>Nous avons 8 bits pour notre découpage et nous avons 5 établissement (3 bits
+nécessaire), il nous reste donc 5 bits pour les hôtes c’est à dire 30 hôtes
+(<script type="math/tex">2^5 -2</script>). Nous pouvons donc le réaliser.</p>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>réseaux</td>
+          <td>@réseau</td>
+          <td> masque réseau</td>
+          <td>@diffusion</td>
+          <td> adresses des machines</td>
+        </tr>
+        <tr>
+          <td>Centro</td>
+          <td>220.156.10.0</td>
+          <td>255.255.255.0</td>
+          <td>220.156.10.255</td>
+          <td>*</td>
+        </tr>
+        <tr>
+          <td>A1</td>
+          <td>220.156.10.32</td>
+          <td>255.255.255.224</td>
+          <td>220.156.10.63</td>
+          <td>33-&gt;62</td>
+        </tr>
+        <tr>
+          <td>B1</td>
+          <td>220.156.10.64</td>
+          <td>255.255.255.224</td>
+          <td>220.156.10.95</td>
+          <td>65-&gt;94</td>
+        </tr>
+        <tr>
+          <td>C1</td>
+          <td>220.156.10.96</td>
+          <td>255.255.255.224</td>
+          <td>220.156.10.127</td>
+          <td>97-&gt;126</td>
+        </tr>
+        <tr>
+          <td>D1</td>
+          <td>220.156.10.128</td>
+          <td>255.255.255.224</td>
+          <td>220.156.10.159</td>
+          <td>129-&gt;158</td>
+        </tr>
+        <tr>
+          <td>E1</td>
+          <td>220.156.10.160</td>
+          <td>255.255.255.224</td>
+          <td>220.156.10.191</td>
+          <td>161-&gt;190</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
 
 </div>
 	</article>

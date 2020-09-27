@@ -78,15 +78,6 @@ html {
 }
 </style>
 
-<h2 id="préliminaire">Préliminaire</h2>
-
-<p>Le langage cible utilisé ici est du code 3 adresses c’est à dire un
-sous-ensemble d’instructions C qui ne manipulent que trois adresses au plus.
-Intuitivement, une adresse correspond à un accès mémoire, en lecture ou en
-écriture. Dans ce code, on manipule des variables de types simples ()</p>
-
-<p>TODO : finir le recopiage</p>
-
 <h2 id="compilation-des-expressions">Compilation des expressions</h2>
 
 <h3 id="exercice-1">Exercice 1</h3>
@@ -212,6 +203,102 @@ repeat x = x + 1 while x &lt; 100;
 do x = x + 2 until x == 100;
 </code></pre></div></div>
 
+<h2 id="compilation-paresseuse-des-booléens">Compilation “paresseuse des booléens”</h2>
+
+<h3 id="exercice-4">Exercice 4</h3>
+
+<p><em>En supposant l’expression booléenne <script type="math/tex">b</script> compilée comme ci-dessus, proposer
+une schéma de traduction des flots de contrôles</em></p>
+
+<p>On pose <script type="math/tex">b = \langle p , lt , lf \rangle</script>, avec <script type="math/tex">p</script> un code à 3 adresses qui
+se branche sur <script type="math/tex">lt</script> si <script type="math/tex">b</script> est vrai et <script type="math/tex">lf</script> sinon.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if b then p1; 
+
+    p
+lt : p1
+lf : nop
+
+if b then p1 else p2;
+
+    p
+    lt : p1
+        goto f1
+    lf : p2
+    f1 : nop
+    
+while b do p1; 
+    p
+    lt : p1
+        goto while 
+    lf : nop
+    
+do p1 until b;
+    lf : p1
+    p
+    lt : nop
+</code></pre></div></div>
+
+<h3 id="exercice-5">Exercice 5</h3>
+
+<ul>
+  <li><em>Donner une représentation “paresseuse” des booléens constant true et false</em></li>
+</ul>
+
+<p><strong>true</strong> : <code class="language-plaintext highlighter-rouge">(goto lt, lt, lf)</code></p>
+
+<p><strong>false</strong> : <code class="language-plaintext highlighter-rouge">(goto lf, lt, lf)</code></p>
+
+<ul>
+  <li><em>Donner une représentation “paresseuse” d’une variable de type booléen</em></li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>r = x
+if r goto lt
+goto lf 
+</code></pre></div></div>
+
+<ul>
+  <li><em>Comment combiner des représentation paresseuses <script type="math/tex">(p1,lt1,lf1)</script> et
+ <script type="math/tex">(p2,lt2,lf2)</script> de deux expressions booléennes pour obtenir une
+ représentation paresseuse de :</em>
+    <ul>
+      <li><em>la négation de la première</em> <code class="language-plaintext highlighter-rouge">(p1,lf1,lt1)</code></li>
+      <li><em>leur conjonction</em> <code class="language-plaintext highlighter-rouge">(p1, lt1 : (p2, lt2, lf2), lf1 : goto lf2)</code></li>
+      <li><em>leur disjonction</em> <code class="language-plaintext highlighter-rouge">(p1, lt1 : (goto lt2, lt2, lf2), lf1:p2)</code></li>
+    </ul>
+  </li>
+  <li><em>En déduire un schéma récursif de traduction des expressions booléennes en
+ représentation paresseuse qui s’appuit sur la syntaxe des arbres de ces
+ expressions booléennes.</em></li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eval(e) -&gt; triplet
+
+constructeur : t(p,lt,lf)
+label():génére étiquette
+reg() : génère un resgique
+accesseurs : op1(e), op2(e)
+accesseurs : p(+), lt(p),  lf(p), (p, lt, lf) = eval(op1(e))
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eval(e)
+    switch(e)
+        case true 
+            lt = label()
+            return t("goto"+lt,lt,label())
+        case false
+            lf = label()
+            return t("goto"+lf,label(),lf)
+        case var 
+            r=reg()
+            lt = label()
+            lf = label()
+            return(r+"="+e+";" "if" + r + "goto" + lt + ";" "goto" + lf + ";", lt,lf)
+        case negation
+            t(p,lt,lf)=eval(op1(e))
+            return t(p,lf,lt)
+</code></pre></div></div>
 </div>
 	</article>
 </div><!-- Footer -->

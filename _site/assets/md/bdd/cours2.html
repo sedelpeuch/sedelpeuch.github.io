@@ -178,8 +178,174 @@ qui consistent une clé primaire dans une autre relation.</p>
 relationnel, on peut appliquer les règles suivantes :</p>
 
 <ol>
-  <li>La normalisation devrait toujours être effectué avant le passage au modèle</li>
+  <li>La normalisation devrait toujours être effectué avant le passage au modèle
+relationnel. Dans les faits, elle est parfois faite a posteriori ce qui impose
+toujours une surcharge de travail importante.</li>
+  <li>Chaque type entité donne naissance à une relation. Chaque attribut de ce
+type entité devient un attribut de la relation. L’identifiant est conservé en
+tant que clé de la relation.</li>
+  <li>Chaque type association dont aucune patte n’a pour cardinalité maximale 1
+donne naissance à une relation. Chaque attribut de ce type association devient
+un attribut de la relation. L’identifiant, s’il est précisé, est conservé en
+tant que clé de la relation, sinon cette clé est formée par la concaténation des
+identifiant des types entité qui interviennent dans le type association.</li>
+  <li>Un type association dont au moins une patte a une cardinalité maximale à 1
+(ce type association devrait être binaire et n’a généralement pas d’attribut)
+ne devient pas une relation. Il décrit en effet une dépendance fonctionnelle.
+La relation correspondant au type entité dont la patte vers le type
+association a une cardinalité maximale valant 1, se voit simplement ajouter
+comme attribut (et donc comme clé étrangère l’identifant de l’autre type
+entité).</li>
 </ol>
+
+<h4 id="cas-particulier-dun-type-association-du-type-1-vers-1">Cas particulier d’un type association du type 1 vers 1.</h4>
+
+<p><img src="/assets/images/sgbd/fig3_1.png" alt="3_1" class="image about center" /></p>
+
+<p>Dans l’exemple ci dessus toutes les cardinalités maximales du type association
+<em>Etre</em> sont de 1. L’application des règles de passage du modèle
+entités-associations au modèle relationnel énoncées ci dessus nous donnerait :</p>
+<ul>
+  <li>Citoyen(<em>Num-citoyen</em>, Num-candidat, Nom, Prénom, Adresse)</li>
+  <li>Candidat(<em>Num-candidat</em>, Num-citoyen, Parti)</li>
+</ul>
+
+<p>L’attribut <em>Num-candidat</em> dans la relation Citoyen est une clé étrangère de la
+relation <em>Candidat</em>. L’attribut <em>Num-citoyen</em> dans la relation <em>Candidat</em> est
+une clé étrangère de la relation Citoyen.</p>
+
+<p>Le type association <em>Etre</em> étant du type 1 vers 1, il est entièrement
+matérialisé dans la relation <em>Candidat</em>. L’attribut <em>Num-candidat</em> dans la
+relation <em>Citoyen</em> doit donc être supprimé. D’autre part, dans la relation
+<em>Candidat</em>, l’attribut <em>Num-Citoyen</em>, en plus d’être une clé étrangère,
+constitue une clé candidate. On peut donc se passer de la clé <em>Num-candidat</em>.</p>
+
+<p>Le schéma relationnel adéquat correspondant au mmodèle ci dessus devient donc</p>
+<ul>
+  <li>Citoyen(<em>Num-citoyen</em>,Nom,Prénom,Adresse)</li>
+  <li>Candidat(<em>Num-citoyen</em>,Parti)</li>
+</ul>
+
+<p>où <em>Num-Citoyen</em>, en plus d’être la clé de la relation Candidat, est une clé
+étrangère de la relation Citoyen.</p>
+
+<h4 id="cas-partiulier-dun-type-entité-sans-attribut-autre-que-sa-clé">Cas partiulier d’un type entité sans attribut autre que sa clé.</h4>
+
+<p>Lorsqu’un type entité ne possède pas d’attribut en dehors de sa clé, il ne faut
+pas nécessairement en faire une relation.</p>
+
+<p><img src="/assets/images/sgbd/fig3_2.png" alt="3_2" class="image about center" /></p>
+
+<p>Par exemple, le type entité Date de la figure ci dessus ne doit pas se traduire
+par une relation. Le schéma relationnel adéquat correspondant au modèle
+entités-associations de la figure est donc</p>
+<ul>
+  <li>Exemplaire(Num-Exemplaire, date-achat) ;</li>
+  <li>Personne(Num-Personne, nom, prénom, adresse) ;</li>
+  <li>Emprunter(Num-Exemplaire, Num-Personne, Date, date-retour).</li>
+</ul>
+
+<h4 id="exemple-complet">Exemple complet.</h4>
+
+<p><img src="/assets/images/sgbd/fig3_3.png" alt="3_3" class="image about center" /></p>
+
+<p>Comme exemple d’application, voici les relations déduites du schéma
+entités-associations de la figure ci dessus</p>
+
+<ul>
+  <li>Patient(Num-Patient, Nom-Patient, Num-Mutuelle) ;</li>
+  <li>Mutuelle(Num-Mutuelle, Nom-Mutuelle) ;</li>
+  <li>Médecin(Num-Médecin, Nom-Médecin, Prénom-Médecin) ;</li>
+  <li>Affection(Num-Affection, Nom-Affection) ;</li>
+  <li>Hospitaliser(Num-Patient, Num-Affection, Num-Médecin, Date-Entrée, Chambre, Durée-Hospitalisation).</li>
+</ul>
+
+<h2 id="normalisation">Normalisation</h2>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>Les formes normales sont différents stades de qualité qui permettent d’éviter la
+redondances dans les bases de données relationnelles afin d’éviter ou de
+limiter : les pertes de données, les incohérences au sein des données,
+l’effondrement des performances des traitements.</p>
+
+<p>Le processus de normailisation consiste à remplacer une relation donnée par
+certaines porjets afin que la jointure de ces projections permette de retrouver
+la relation initiale. En d’autres termes, le processus est réversible (ie snas
+perte d’information). Les notions de projection seront définies plus tard.</p>
+
+<p>Il existe une hiérarchie dans les règles de normalisation : une relation en
+5ième forme normale est forcément en 4ième forme normale est forcément en forme
+normale de Boyce-Codd, etc. Il existe des méthodes systématiques pour normaliser
+une relation dans chacune des formes normales. Ces algorithmes de décomposition,
+associés à chacune des formes normales, sortent du cadre du cours.</p>
+
+<p>La normalisation peut être effectuée, et c’est préférable, pendant la phase de
+conception sur le modèle entités-associations. Dans le cas où la normalisation
+est faite en amont, lors de la conception, il n’est pas nécessaire de la
+recommencer sur le modèle relationnel. On peut tout de même vérifier que les
+relations obtenues par le passage du modèle entités-associations au modèle
+relationnel sont toujours obtenues par le passage du modèle entité-associations
+au modèle relationnel sont toujours en forme normale, mais, sauf erreur, il ne
+devrait pas y avoir de problème. Il en va tout autrement lorque l’on ne connaît
+pas bien, ou maîtrise pas bien, l’origine d’un modèle relationnel. Dans ce cas,
+vérifier la normalisation des relations, et, le cas échéant, les normaliser, est
+une phase primordiale. C’est également le cas lorsque le modèle relationnel est
+le modèle de conception (ie on ne passe pas par un modèle entités-associations).</p>
+
+<p>Nous abordons ici la normalisation en nous appuyant sur les notions de dépendance
+fonctionnelle, dépendant multivaluée et dépendance de jointure. Il est important
+de prendre conscience que la dépendance multivaluée et dépendance de jointure.
+Il est important de prendre conscience que la dépendance fonctionnelle, la
+dépendance multivaluée et la dépendance de jointure sont des notions
+sémantiques. Elles tirent leurs origines dans les contraintes du monde réel.
+Comme ces contraintes participent à la sémantique de la situation, elles doivent
+avoir une manifestation dans la base de données. Les dépendances doivent donc
+être spécifiées dnas la définition de la base de données afin que le SGBD puisse
+les appliquer. Les concepts de normalisation fournissent en fait un moyen
+indirect de déclarer ces dépendances. Autrement dit, la normalisation d’une base
+de données est une manifestation observables des dépendances observées dans le
+monde réel. La dépendance fonctionnelle permet de définir les premières formes
+normales jusqu’à la forme normale de Boyce-Codd (1FN, 2FN, 3FN et BCNF). La
+dépendance multivaluée permet de définir la quatrième forme normale (4FN) et la
+dépendance de jointure la cinquième forme normale (5FN)</p>
+
+<h3 id="dépendance-fonctionnelle-df">Dépendance fonctionnelle (DF)</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Dépendance fonctionnelle :</code> Soit <script type="math/tex">R(A_1,A_2,...,A_n)</script> un schéma de relation, et <script type="math/tex">X</script> et <script type="math/tex">Y</script> des sous
+ensembles de <script type="math/tex">A_1, A_2, ... ,A_n</script>. On dit que <script type="math/tex">X</script>$ détermine <script type="math/tex">Y</script> ou que
+<script type="math/tex">Y</script> dépend fonctionnellement de <script type="math/tex">X</script> si et seulement si des valeurs
+identiques de <script type="math/tex">X</script> impliquent des valeurs identiques de <script type="math/tex">Y</script>. On le note <script type="math/tex">X
+\rightarrow Y</script>.</p>
+
+<p>Autrement dit, il existe une dépendance fonctionnelle entre un ensemble
+d’attributs <script type="math/tex">X</script> et un ensemble d’attributs <script type="math/tex">Y</script>, que l’on note <script type="math/tex">X
+\rightarrow Y</script>, si connaissant une occurence de <script type="math/tex">X</script> on ne peut lui associer
+qu’une seule occurence de <script type="math/tex">Y</script>.</p>
+
+<p>Il est essentiel de noter qu’une dépendance fonctionnelle est une assertion sur
+toutes les valeurs possibles et non sur les valeurs actuelles : elle caractérise
+une intention et non une extension de la relation.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Dépendance fonctionnelle élémentaire :</code> Une dépendance fonctionnelle
+élémentaire est une dépendance fonctionnelle de la forme <script type="math/tex">X \rightarrow A</script>, où
+<script type="math/tex">A</script> est un attribut unique n’appartenant pas à <script type="math/tex">X</script> et où il n’existe pas
+<script type="math/tex">X'</script> inclus au sens strict dans <script type="math/tex">X</script> (ie <script type="math/tex">X' \subset X</script>) tel que <script type="math/tex">X'
+\rightarrow A</script> .</p>
+
+<p>Autrement dit, une dépendance fonctionnelle est élémentaire si la cible est un
+attribut unique et si la source ne comporte pas d’attributs superflux. La
+question sur l’élémentarité d’une dépendance fonctionnelle ne doit donc se poser
+que lorsque la partie gauche de la dépendance fonctionnelle comporte plusieurs
+attributs.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Dépendance fonctionnelle directe :</code> Une dépendance fonctionnelle <script type="math/tex">X
+\rightarrow A</script> est une dépendance fonctionnelle directe s’il existe aucun
+attribut <script type="math/tex">B</script> tel que l’on puisse avoir <script type="math/tex">X \rightarrow B</script> et <script type="math/tex">B \rightarrow
+A</script>.</p>
+
+<p>En d’autres termes, cela signifie que la dépendance entre <script type="math/tex">X</script> et <script type="math/tex">A</script> ne
+peut pas être obtenue par transitivité.</p>
 </div>
 	</article>
 </div><!-- Footer -->

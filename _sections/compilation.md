@@ -4,8 +4,6 @@ icon: fa-laptop
 order: 1
 ---
 
-### Ressources pédagogiques
-
 | Cours                                        | Notes personnelles |
 | :--                                          | :--                |
 | [Introduction]                               | [cours 1]          |
@@ -17,14 +15,19 @@ order: 1
 | [Structure du compilateur LLVM]              | [cours 7]          |
 
 
-### Travaux dirigés 
+| Sujet de TD     | Notes personnelles |
+| :--       | :--                |
+| [Sujet 1] | [TD1]              |
+| [Sujet 2] | [TD2]              |
 
-| Sujet | Notes personnelles |
-| :--   | :--                |
-|       | [TD1]                   |
+
+[Sujet 1]:https://moodle.bordeaux-inp.fr/pluginfile.php/149561/mod_resource/content/1/td1.pdf
+
+[Sujet 2]:https://moodle.bordeaux-inp.fr/pluginfile.php/151721/mod_resource/content/1/td2.pdf
 
 
 [TD1]:assets/md/compilation/td1
+[TD2]:assets/md/compilation/td2
 
 [cours 1]:assets/md/compilation/cours1
 [cours 2]:assets/md/compilation/cours2

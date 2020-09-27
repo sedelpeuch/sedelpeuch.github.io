@@ -15,15 +15,6 @@ html {
 }
 </style>
 
-## Préliminaire 
-
-Le langage cible utilisé ici est du code 3 adresses c'est à dire un
-sous-ensemble d'instructions C qui ne manipulent que trois adresses au plus.
-Intuitivement, une adresse correspond à un accès mémoire, en lecture ou en
-écriture. Dans ce code, on manipule des variables de types simples ()
-
-TODO : finir le recopiage
-
 ## Compilation des expressions 
 
 ### Exercice 1
@@ -153,3 +144,94 @@ do x = x + 2 until x == 100;
 
 
 
+## Compilation "paresseuse des booléens"
+
+### Exercice 4 
+
+*En supposant l'expression booléenne $$b$$ compilée comme ci-dessus, proposer
+une schéma de traduction des flots de contrôles* 
+
+On pose $$b = \langle p , lt , lf \rangle$$, avec $$p$$ un code à 3 adresses qui
+se branche sur $$lt$$ si $$b$$ est vrai et $$lf$$ sinon.
+
+```
+if b then p1; 
+
+    p
+lt : p1
+lf : nop
+
+if b then p1 else p2;
+
+    p
+    lt : p1
+        goto f1
+    lf : p2
+    f1 : nop
+    
+while b do p1; 
+    p
+    lt : p1
+        goto while 
+    lf : nop
+    
+do p1 until b;
+    lf : p1
+    p
+    lt : nop
+```
+
+### Exercice 5 
+
+- *Donner une représentation "paresseuse" des booléens constant true et false*
+
+**true** : `(goto lt, lt, lf)`
+
+**false** : `(goto lf, lt, lf)`
+
+- *Donner une représentation "paresseuse" d'une variable de type booléen*
+
+```
+r = x
+if r goto lt
+goto lf 
+```
+
+- *Comment combiner des représentation paresseuses $$(p1,lt1,lf1)$$ et
+   $$(p2,lt2,lf2)$$ de deux expressions booléennes pour obtenir une
+   représentation paresseuse de :*
+   + *la négation de la première* `(p1,lf1,lt1)`
+    + *leur conjonction* `(p1, lt1 : (p2, lt2, lf2), lf1 : goto lf2)`
+   + *leur disjonction* `(p1, lt1 : (goto lt2, lt2, lf2), lf1:p2)`
+- *En déduire un schéma récursif de traduction des expressions booléennes en
+   représentation paresseuse qui s'appuit sur la syntaxe des arbres de ces
+   expressions booléennes.*
+
+```
+eval(e) -> triplet
+
+constructeur : t(p,lt,lf)
+label():génére étiquette
+reg() : génère un resgique
+accesseurs : op1(e), op2(e)
+accesseurs : p(+), lt(p),  lf(p), (p, lt, lf) = eval(op1(e))
+```
+
+```
+eval(e)
+    switch(e)
+        case true 
+            lt = label()
+            return t("goto"+lt,lt,label())
+        case false
+            lf = label()
+            return t("goto"+lf,label(),lf)
+        case var 
+            r=reg()
+            lt = label()
+            lf = label()
+            return(r+"="+e+";" "if" + r + "goto" + lt + ";" "goto" + lf + ";", lt,lf)
+        case negation
+            t(p,lt,lf)=eval(op1(e))
+            return t(p,lf,lt)
+```

@@ -4,18 +4,13 @@ icon: fa-database
 order: 8
 ---
 
-### Ressources pédagogiques 
-
 | Cours                                  | Notes personnelles |
 | :--                                    | :--                |
 | [Conception d'une base de donnée]      | [Cours 1]          |
 | [Le modèle relationnel]                | [Cours 2]          |
 | [Algèbre relationnelle et langage SQL] | [Cours 3]          |
 
-
-### Travaux dirigés 
-
-| Sujet     | Notes personnelles |
+| Sujet de TD     | Notes personnelles |
 | :--       | :--                |
 | [Sujet 1] | [TD 1]             |
 | [Sujet 2] | [TD 2]             |

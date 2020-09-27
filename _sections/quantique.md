@@ -5,8 +5,6 @@ icon: fa-vial
 order: 7
 ---
 
-## Ressources pédagogiques
-
 [Polycopié](http://dept-info.labri.fr/~ges/ENSEIGNEMENT/CALCULQ/polycop_calculq.pdf) d'une ancienne version du cours 
 
 | Notes personnelles de cours | Travaux Dirigés |

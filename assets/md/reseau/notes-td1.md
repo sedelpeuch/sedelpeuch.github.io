@@ -54,3 +54,4 @@ récepteur à l'émetteur
 \dfrac{C}{V}=500 bits$$ 
 2. $$L=2C\dfrac{D}{V}$$ Soit on divise la distance par 10, soit on multiplie la
    longueur de la trame par 10 
+   

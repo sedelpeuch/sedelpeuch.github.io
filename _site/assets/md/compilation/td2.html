@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/compilation/td2.html" /><!-- Title, description, author --><title>Travaux Dirigés Compilation - Feuille 1 | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Travaux Dirigés Compilation - Feuille 1 | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/compilation/td2.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-7-en-cours-link">
+            <span class="icon fa-link">Semestre 7 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_6.html" id="semestre-6-link">
+            <span class="icon fa-check">Semestre 6</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li><li><a href="http://localhost:4000/CPBx.html" id="cpbx-link">
+            <span class="icon fa-check">CPBx</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2>Travaux Dirigés Compilation - Feuille 1</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Notes inspirées du cours de JANIN David et du <a href="https://moodle.bordeaux-inp.fr/pluginfile.php/151721/mod_resource/content/1/td2.pdf">TD2</a> de Myriam Desainte-Catherine</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h2 id="grammaires">Grammaires</h2>
+
+<p><em>Étant donné une grammaire <script type="math/tex">G</script> de non terminal initial <script type="math/tex">S</script> (start symbol) et
+d’alphabet terminal <script type="math/tex">T</script>, on appelle langage défini par <script type="math/tex">S</script> le langage</em></p>
+
+<script type="math/tex; mode=display">L(G)=\{w \in T^\ast \vert S \rightarrow^\ast w\}</script>
+
+<p><em>c’est à dire l’ensemble des mots de terminaux qui décrivent du non terminal
+initial</em>.</p>
+
+<h3 id="exerice-1">Exerice 1</h3>
+
+<p><em>Proposer une grammaire qui permet, sur l’alphabet de terminaux <script type="math/tex">\{a,b\}</script> de
+définir le langage des mots de la forme <script type="math/tex">a^n b^n</script> avec <script type="math/tex">n \in \mathbb{N}</script>.
+Votre grammaire est-elle ambigüe ?</em></p>
+
+<h3 id="exercice-2">Exercice 2</h3>
+
+<p><em>Soit la grammaire</em></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(0) S -&gt; e //mot vide
+(1) S -&gt; aB          (2) S -&gt; bA
+(3) A -&gt; aS          (4) A -&gt; bAA
+(5) B -&gt; bS          (6) B -&gt; aBB
+</code></pre></div></div>
+
+<p><em>définie avec les terminaux <script type="math/tex">\{a,b\}</script>, les non-terminaux <script type="math/tex">\{S,A,B\}</script> et le
+start symbol <script type="math/tex">S</script></em></p>
+
+<ol>
+  <li><em>Construire les arbres de dérivation de abba et aabb</em></li>
+  <li><em>Cette grammaire est elle ambigüe ?</em></li>
+</ol>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
