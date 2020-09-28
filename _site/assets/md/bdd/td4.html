@@ -78,9 +78,75 @@ html {
 }
 </style>
 
+<h2 id="entrainement-sur-les-df">Entrainement sur les DF</h2>
+
+<p>Soit les attributs suivants : n° client, nom client, adresse client, n° article,
+nom article , prix, n° commande, date commande, quantité commandée.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: center">DF</th>
+      <th style="text-align: center">Elementaire</th>
+      <th style="text-align: center">Directe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">nom client -&gt; adresse client</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">n° client -&gt; adresse client</td>
+      <td style="text-align: center">o</td>
+      <td style="text-align: center">o</td>
+      <td style="text-align: center">o</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">n° commande, n° client -&gt; quantité commandée</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">n° commande, n° article -&gt; prix article</td>
+      <td style="text-align: center">o</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">o</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">n° commande, n° article -&gt; quantité commandée</td>
+      <td style="text-align: center">o</td>
+      <td style="text-align: center">o</td>
+      <td style="text-align: center">o</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">n° commande -&gt; date commande</td>
+      <td style="text-align: center">o</td>
+      <td style="text-align: center">o</td>
+      <td style="text-align: center">o</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">n° commande -&gt; nom client</td>
+      <td style="text-align: center">o</td>
+      <td style="text-align: center">o</td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">n° commande -&gt; nom article</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="fermeture-transitive">Fermeture transitive</h2>
 
-<p><em>On considère la relation <script type="math/tex">R</script>  construire sur les attributs suivants :
+<p><em>On considère la relation <script type="math/tex">R</script>  construite sur les attributs suivants :
 (propriétaire, occupant, adresse, num apartement, nbr pièces, nbr personnes).
 ainsi que le nuplet <script type="math/tex">(p,o,a,n,nb1,nb2)</script> ayant la signification suivante : La
 persone <script type="math/tex">o</script> habite avec <script type="math/tex">nb2</script> personnes dans l’appartement de numéro <script type="math/tex">n</script>
@@ -95,11 +161,87 @@ occupant -&gt; nbr_personnes
 [adresse, num_appartement] -&gt; nbr_pièces
 </code></pre></div></div>
 
-<ol>
+<ul>
   <li><em>Donner l’ensemble des dépendances fonctionnelles engendrées par <script type="math/tex">E</script> (par
-transitivité)</em></li>
+ transitivité)</em></li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>occupant -&gt; propriétaire
+occupant -&gt; nb_piècs
+(adresse, n° appartement) -&gt; nbr_personnes
+</code></pre></div></div>
+
+<ul>
   <li><em>Quelles sont les clés potentielles de <script type="math/tex">R</script> ?</em></li>
-</ol>
+</ul>
+
+<p>Les clés potentielles vont être <code class="language-plaintext highlighter-rouge">(adresse, n° appartement)</code> et <code class="language-plaintext highlighter-rouge">occupant</code></p>
+
+<h2 id="factures">Factures</h2>
+
+<p><em>Soit une société de publicité dont les clients règlent des factures pour des
+services rendus. La société a plusieurs agences. Le schéma de la base est réduit
+à une seule relation de schéma : <code class="language-plaintext highlighter-rouge">Factures (Numéro_Client, Nom, Prénom, Numéro_facture, Service, Montant,
+Agence)</code> où <code class="language-plaintext highlighter-rouge">Numéro_Client, Numéro_Facture, Nom, Prénom, Montant</code>, désignent
+respectivement les numéros de client de facture, les noms et prénoms des clients
+et le coût de chaque service. L’ensemble de dépendances fonctionnelles est le
+suivant :</em></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Numéro_Client -&gt; Nom
+Numéro_Client -&gt; Prénom
+Numéro_Facture -&gt; Service
+Numéro_Facture -&gt; Numéro_client
+Service -&gt; MontanT
+</code></pre></div></div>
+
+<ul>
+  <li><em>Donner la clé</em></li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">(Numéro_Facture, Agence)</code></p>
+
+<ul>
+  <li><em>Donner une décomposition de Factures sans perte d’information et qui préserve
+les dépendances, le résultat étant un ensemble de relaitons en 3eme forme
+normale.</em></li>
+</ul>
+
+<p><img src="/assets/images/sgbd/uml17.png" alt="17" class="image about center" /></p>
+
+<ul>
+  <li><em>Donner une nouvelle décomposition dans le cas où on rajoute la dépendance
+suivante <code class="language-plaintext highlighter-rouge">Numéro_Client-&gt;agence</code></em></li>
+</ul>
+
+<p><img src="/assets/images/sgbd/uml18.png" alt="18" class="image about center" /></p>
+
+<h2 id="système-de-gestion-de-fichiers">Système de gestion de fichiers</h2>
+
+<p><em>On considère un système d’exploitation dans lequel chaque fichier a un index
+(inode) I, une taille T, un type Ty, un propriétaire P et un repertoire D dans
+lequel on peut le trouver. On considère une relation R dont les attributs sont
+I,T,Ty,P et D</em></p>
+
+<ul>
+  <li>
+    <p><em>Cette relation est elle en troisième forme normale ? Quelle est sa (ou ses)
+clé(s) ?</em></p>
+
+    <p><code class="language-plaintext highlighter-rouge">R(I,T,Ty,P,D)</code>, la relation est en 3FN et sa clé est <code class="language-plaintext highlighter-rouge">I</code></p>
+  </li>
+  <li>
+    <p><em>On suppose maintenant que le système d’exploitation autorise au même fichier
+à figure dans plusieurs répertoires et à avoir plusieurs propriétaires. La
+relation R est elle alors en 3 ième forme normale ? Sinon, proposer une
+décomposition minimale en relation en 3ième forme normale.</em></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>F(I,T,Ty)
+P(P)
+D(D)
+FP(#I,#P)
+FD(#I,#D)
+</code></pre></div>    </div>
+  </li>
+</ul>
 
 </div>
 	</article>
