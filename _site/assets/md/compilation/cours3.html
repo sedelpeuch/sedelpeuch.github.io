@@ -6,15 +6,15 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 -->
 <html><head><!-- Robots -->
-  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/compilation/cours1.html" /><!-- Title, description, author --><title>Introduction | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/compilation/cours3.html" /><!-- Title, description, author --><title>Analyse syntaxique | Informatique - ENSEIRB-Matmeca</title>
   <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
   <meta name="author" content="Delpeuch Sébastien" />
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Introduction | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:title" content="Analyse syntaxique | Informatique - ENSEIRB-Matmeca" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
-  <meta property="og:url" content="http://localhost:4000/assets/md/compilation/cours1.html" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/compilation/cours3.html" />
   <meta property="og:site_name" content="Informatique" />
   <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
   
@@ -67,7 +67,7 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 	<article class="shade-two">
 	  <div class="container">
 			<header>
-				<h2>Introduction</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+				<h2>Analyse syntaxique</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Notes inspirées du cours de JANIN David</p>
@@ -78,52 +78,24 @@ html {
 }
 </style>
 
-<h2 id="-introduction"><i class="fas fa-laptop"></i> Introduction</h2>
+<h2 id="grammaires-formelles">Grammaires formelles</h2>
 
-<h3 id="intérêt-de-la-compilation">Intérêt de la compilation</h3>
-
+<p>Une grammaire <script type="math/tex">G</script> est définie par :</p>
 <ul>
-  <li>Outil incontournable, quelque soit le langage informatique</li>
-  <li>Meilleure connaissance des compilateurs implique une meilleure programmation</li>
-  <li>Techniques de compilation réutilisables dans nombreux contextes (notamment
-analyse de code)</li>
-  <li>Définition : <em>Un compilateur est un programme qui prend en entrée un programme
-et le transforme en un autre programme. Un interpréteur est un programme qui
-prend en entrée un programme et l’exécute</em></li>
+  <li>une ensemble de variables <script type="math/tex">V</script> (non terminaux, lettres majuscules)</li>
+  <li>un ensemble de symboles terminaux <script type="math/tex">T</script> (lexèmes, lettres minuscules)</li>
+  <li>un symbole initial <script type="math/tex">S \in V</script></li>
+  <li>Règles de réécriture du type <script type="math/tex">\alpha \rightarrow \beta</script> avec <script type="math/tex">\alpha,
+\beta</script> des mots de variables /terminaux.</li>
 </ul>
 
-<h3 id="objectifs-possibles-du-compilateur">Objectifs possibles du compilateur</h3>
+<p>Le langage <script type="math/tex">\mathcal{L}(G)</script> engendré par <script type="math/tex">G</script> est l’ensemble des mots
+produits de <script type="math/tex">T^\ast</script> par toutes les réécritures possibles à partir de <script type="math/tex">S</script>.</p>
 
-<ul>
-  <li>Préserver la sémantique (obligatoire)</li>
-  <li>Générer un code le plus rapidement possible</li>
-  <li>Trouver toutes les erreurs lexicales, syntaxiques et sémantiques (prouver que
-le code généré est correct, que le code d’entrée respecte une spec)</li>
-  <li>Générer un code (s’exécutant le plus rapidement possible, consommant le moins
-d’énergie possible, le plus petit possible)</li>
-</ul>
-
-<p>Obtenir un code avec la meilleure performance ou le plus petit binaire est
-difficile.</p>
-<ul>
-  <li>Évolution constante de la complexité des compilateurs</li>
-  <li>En général, code compilé meilleur que code généré à la main</li>
-  <li>Possible de guider le compilateur avec des options / paramètres / pragmas</li>
-</ul>
-
-<h2 id="-structure-du-compilateur"><i class="fas fa-laptop"></i> Structure du compilateur</h2>
-
-<h3 id="décomposition-en-couches">Décomposition en couches</h3>
-
-<p><img src="/assets/images/compilation/compil.png" alt="compilateur" class="image about right" /></p>
-<ol>
-  <li>Analyse lexicale : lit le programme reconnaît chaque mot</li>
-  <li>Analyse syntaxique : vérifie la grammaire</li>
-  <li>Analyse sémantique : vérifie le sens du programme (exemple : types)</li>
-  <li>Représentation intermédiaire (RI) : une interface séparant les front-end,
-middle-end et back-end du compilateur</li>
-</ol>
-
+<p>Une grammaire permet de définir formellement un langage (informatique ou
+naturel). Cela permet de reconnaître les phrases correctes (structurer les
+phrases, identifier le rôle des lexèmes dans la phrase). Mais aussi de pouvoir
+générer des phrases correctes.</p>
 </div>
 	</article>
 </div><!-- Footer -->

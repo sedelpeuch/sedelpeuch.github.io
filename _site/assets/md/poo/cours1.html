@@ -6,12 +6,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 -->
 <html><head><!-- Robots -->
-  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/poo/cours1.html" /><!-- Title, description, author --><title>&lt;i class=&quot;fas fa-code fa-2x&quot;&gt;&lt;/i&gt; Objet et encapsulation | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/poo/cours1.html" /><!-- Title, description, author --><title>Objet et encapsulation | Informatique - ENSEIRB-Matmeca</title>
   <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
   <meta name="author" content="Delpeuch Sébastien" />
   
   <!-- Open Graph -->
-  <meta property="og:title" content="&lt;i class=&quot;fas fa-code fa-2x&quot;&gt;&lt;/i&gt; Objet et encapsulation | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:title" content="Objet et encapsulation | Informatique - ENSEIRB-Matmeca" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
   <meta property="og:url" content="http://localhost:4000/assets/md/poo/cours1.html" />
@@ -67,7 +67,7 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 	<article class="shade-two">
 	  <div class="container">
 			<header>
-				<h2><i class="fas fa-code fa-2x"></i> Objet et encapsulation</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+				<h2>Objet et encapsulation</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Notes inspirées du
@@ -80,7 +80,7 @@ html {
 }
 </style>
 
-<h2 id="-lencapsulation"><i class="fas fa-code"></i> L’encapsulation</h2>
+<h2 id="lencapsulation">L’encapsulation</h2>
 
 <p>L’<code class="language-plaintext highlighter-rouge">encapsulation</code> dans l’approche objet consiste à regrouper le code (données et
 traitements) qui fournit un même service dans une seule entité. Une
@@ -142,7 +142,7 @@ description des encapsulations.</p>
   </li>
 </ul>
 
-<h2 id="-les-objets"><i class="fas fa-code"></i> Les objets</h2>
+<h2 id="les-objets">Les objets</h2>
 
 <p>L’<code class="language-plaintext highlighter-rouge">objet</code> est l’entit de base de l’exécution. À chaque objet est attribu une
 zone mémoire différente. 
@@ -427,7 +427,7 @@ chaîne de caractère qui va permettre de tracer, par exemple, la valeur des
 attributs d’un objet. Son code par défaut retourne une chaîne correspondant à
 l’identité de l’objet.</p>
 
-<h2 id="-les-classes"><i class="fas fa-code"></i> Les classes</h2>
+<h2 id="les-classes">Les classes</h2>
 
 <p>Une <code class="language-plaintext highlighter-rouge">classe</code> est un moule qui décrit le <strong>quoi</strong> : la spécification des messages
 qui peuvent être envoyés à l’objet. Et le <strong>comment</strong> la manière de réaliser
@@ -611,6 +611,117 @@ d’instance</li>
 <code class="language-plaintext highlighter-rouge">PorteVerrouCharniere</code> peut se faire en utilisant un lien “a-un” avec la classe
 <code class="language-plaintext highlighter-rouge">PorteCharniere</code>. L’instanciation de la classe <code class="language-plaintext highlighter-rouge">PorteVerrouCharniere</code> doit
 instancier la classe <code class="language-plaintext highlighter-rouge">PorteCharniere</code></p>
+
+<h2 id="variables-et-méthodes-de-classe">Variables et méthodes de classe</h2>
+
+<p>Dans le modèle objet, toutes les variables et méthodes sont liées à un objet.
+C’est à dire que pour accéder à une donnée ou déclencher un traitement, il faut
+d’abord instancier une classe.</p>
+
+<p>Cette nécessité de créer d’abord un objet est difficile à respecter dans
+certains cas particuliers :</p>
+<ul>
+  <li>Déclenchement du point d’entrée du programme : la méthode <code class="language-plaintext highlighter-rouge">main</code>. Comment
+envoyer un message sans avoir à créer d’objets ?</li>
+  <li>Les flots d’entrée / sortie standards référencés par les variables constante
+<code class="language-plaintext highlighter-rouge">out, in, err</code> doivent être définis d’une manière unique avant le début de
+l’exécution. Où définir ces variables et comment les positionner avant l’appel
+au point d’entrée du programme ?</li>
+  <li>Les opérations mathématiques <script type="math/tex">(abs(),\sin()...)</script> s’applique, en Java, à des
+types de base. Comment rentre disponible ces opérations que ne s’appliquent
+pas à un objet ?</li>
+</ul>
+
+<p>La construction classe va servir à contenir les données et traitements qui ne
+  sont pas liés à des objets. Une classe n’est plus seulement la description
+  d’une encapsulation mais devient utilisable à l’execution.</p>
+
+<p>Par défaut, une méthode ou une variable est attaché à un objet. Le mot-clé
+  <code class="language-plaintext highlighter-rouge">static</code> permet d’attacher une méthode ou une variable à une classe. Comme
+  pour un objet, c’est la notation pointée qui est utilisée pour accéder à ces
+  nouveaux membres. C’est un message envoyé à la classe et non à une instance de
+  cette classe par exemple : <code class="language-plaintext highlighter-rouge">java.lang.System.out, java.lang.Math.abs()</code>.</p>
+
+<h3 id="variable-de-classe">Variable de classe</h3>
+
+<p>Une variable de classe est partagée par toutes les instances de la classe. Sa
+modification affecte toutes les instances. Une variable de classe existe avant
+toutes instanciation de la classe</p>
+
+<p><code class="language-plaintext highlighter-rouge">static [final] [public | private] type nom;</code></p>
+
+<ul>
+  <li>Même si une variable de classe n’est pas stockée dans la zone mémoire de
+l’objet, elle fait partie de l’ensemble des attributs de chaque instance de
+cette classe.</li>
+  <li>L’initialisation d’une variable de classe s’effectue au chargement de la
+classe. Elle peut se faire dans un “bloc statique” déclaré à l’intérieur de la
+classe. La machine virtuelle exécute le bloc statique au chargement de la
+classe. Par exemple pour initialisation d’une variable de classe qui contient
+un table.</li>
+</ul>
+
+<h3 id="méthode-de-classe">Méthode de classe</h3>
+
+<ul>
+  <li>Le code d’une méthode de classe a accès aux variables de classe et aux
+méthodes de classe définies dans la classe</li>
+  <li>Par contre, la référence <code class="language-plaintext highlighter-rouge">this</code> n’est pas définie (aucune instance n’est
+crééée). Il n’est donc pas possible d’utiliser directement les variables
+d’instance et les méthodes d’instance. Lu’ilisation doit se fiare à travers
+une instance de la classe soit passée par paramètre, soit instanciée par le
+code de la méthode.</li>
+  <li>Une méthode de classe peut être surchargée</li>
+</ul>
+
+<p>Les méthodes de classe s’emploient couramment pour fabriquer des instances ou
+contenir les traitements ne correspondant à aucune encapsulation.</p>
+
+<p>Pour simplifier l’écriture de l’appel à une variable de classe ou une méthode de
+classe d’un autre paquetage, il est possible d’utiliser la déclaration <code class="language-plaintext highlighter-rouge">import
+static</code> au début du fichier. Par exemple <code class="language-plaintext highlighter-rouge">import static.java.lang.Math.*</code> permet
+d’écrire directement <code class="language-plaintext highlighter-rouge">PI</code> dans le code.</p>
+
+<h3 id="statut-de-la-classe-en-java">Statut de la classe en Java</h3>
+
+<p>Avec l’introduction des variables de classe et des méthodes de classe, la classe
+n’est plus seulement une construction syntaxique. Elle peut être assimilée à la
+notion de module mais aussi à la notion d’objet.</p>
+
+<p>Dans le modèle objet, les objets sont les seules entités d’exécution. Si les
+classes sont utilisables à l’exécution (envoi de messages), ce sont forcément
+des objets. La classe est donc la mise en oeuvre d’une encapsulation
+particulière décrivant le service commun aux classes. Ce service fournit les
+informations sur ces déclarations / définitions contenues dans une classe :
+variables, portée, méthodes, constructeurs, liste de paramètres …</p>
+
+<p>C’est le choix du langage Java :</p>
+<ul>
+  <li>la description de l’encapsulation particulière <code class="language-plaintext highlighter-rouge">class</code> est définie dans la
+classe <code class="language-plaintext highlighter-rouge">java.lang.Class</code>. Chaque classe Java est instance de <code class="language-plaintext highlighter-rouge">java.lang.Class</code></li>
+  <li>à l’exécution, une classe est représentée d’une manière unique par son
+fichier <code class="language-plaintext highlighter-rouge">.class</code> : <code class="language-plaintext highlighter-rouge">System.out.println(tec.EtatPassager.class)</code></li>
+  <li>Il est possible de définir des variables du type <code class="language-plaintext highlighter-rouge">Class</code></li>
+  <li>Quelques opérations définies dans <code class="language-plaintext highlighter-rouge">java.lang.Class</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">forName(String)</code> permet de récupérer l’instance de <code class="language-plaintext highlighter-rouge">Class</code> correspondant au
+nom complet en paramètre</li>
+      <li><code class="language-plaintext highlighter-rouge">newInstance()</code> permet d’instancier la classe qui reçoit ce message (en
+utilisant le constructeur sans paramètre)</li>
+      <li><code class="language-plaintext highlighter-rouge">getFields(), getMethods(), getSuperClass(), getConstructors()</code> fournissent
+des informations sur la définition d’une classe.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Ces opérations autorisent l’introspection des classes Java (voir les classes du
+paquetage <code class="language-plaintext highlighter-rouge">java.lang.reflect</code>). L’introspection est une technique de réflexion
+qui permet à un programme d’examiner son propre état pendant l’exécution (mais
+pas de le modifier).</p>
+
+<p>Dans les classes de test, pour éviter d’oublier de compléter la méthode
+<code class="language-plaintext highlighter-rouge">lancer()</code>, il suffit par introspection de récupérer à l’exécution toutes les
+méthodes dont le nom commence par la sous chaîne test et de les exécuter.</p>
 </div>
 	</article>
 </div><!-- Footer -->

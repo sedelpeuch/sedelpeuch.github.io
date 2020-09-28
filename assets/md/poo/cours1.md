@@ -1,7 +1,7 @@
 ---
 layout: page
 hide: true
-title: <i class="fas fa-code fa-2x"></i> Objet et encapsulation
+title: Objet et encapsulation
 ---
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -17,7 +17,7 @@ html {
 }
 </style>
 
-## <i class="fas fa-code"></i> L'encapsulation
+## L'encapsulation
 
 L'`encapsulation` dans l'approche objet consiste à regrouper le code (données et
 traitements) qui fournit un même service dans une seule entité. Une
@@ -76,7 +76,7 @@ class PorteCharniere {
     }
   ```
 
-## <i class="fas fa-code"></i> Les objets
+## Les objets
 
 L'`objet` est l'entit de base de l'exécution. À chaque objet est attribu une
 zone mémoire différente. 
@@ -357,7 +357,7 @@ chaîne de caractère qui va permettre de tracer, par exemple, la valeur des
 attributs d'un objet. Son code par défaut retourne une chaîne correspondant à
 l'identité de l'objet. 
 
-## <i class="fas fa-code"></i> Les classes
+## Les classes
 
 Une `classe` est un moule qui décrit le **quoi** : la spécification des messages
 qui peuvent être envoyés à l'objet. Et le **comment** la manière de réaliser
@@ -528,3 +528,103 @@ Pour éviter de dupliquer le code, la construction de la classe
 `PorteVerrouCharniere` peut se faire en utilisant un lien "a-un" avec la classe
 `PorteCharniere`. L'instanciation de la classe `PorteVerrouCharniere` doit
 instancier la classe `PorteCharniere`
+
+## Variables et méthodes de classe 
+
+Dans le modèle objet, toutes les variables et méthodes sont liées à un objet.
+C'est à dire que pour accéder à une donnée ou déclencher un traitement, il faut
+d'abord instancier une classe. 
+
+Cette nécessité de créer d'abord un objet est difficile à respecter dans
+certains cas particuliers : 
++ Déclenchement du point d'entrée du programme : la méthode `main`. Comment
+  envoyer un message sans avoir à créer d'objets ? 
++ Les flots d'entrée / sortie standards référencés par les variables constante
+  `out, in, err` doivent être définis d'une manière unique avant le début de
+  l'exécution. Où définir ces variables et comment les positionner avant l'appel
+  au point d'entrée du programme ? 
++ Les opérations mathématiques $$(abs(),\sin()...)$$ s'applique, en Java, à des
+  types de base. Comment rentre disponible ces opérations que ne s'appliquent
+  pas à un objet ?
+  
+La construction classe va servir à contenir les données et traitements qui ne
+  sont pas liés à des objets. Une classe n'est plus seulement la description
+  d'une encapsulation mais devient utilisable à l'execution. 
+  
+  Par défaut, une méthode ou une variable est attaché à un objet. Le mot-clé
+  `static` permet d'attacher une méthode ou une variable à une classe. Comme
+  pour un objet, c'est la notation pointée qui est utilisée pour accéder à ces
+  nouveaux membres. C'est un message envoyé à la classe et non à une instance de
+  cette classe par exemple : `java.lang.System.out, java.lang.Math.abs()`. 
+  
+### Variable de classe 
+
+Une variable de classe est partagée par toutes les instances de la classe. Sa
+modification affecte toutes les instances. Une variable de classe existe avant
+toutes instanciation de la classe 
+
+`static [final] [public | private] type nom;`
+
++ Même si une variable de classe n'est pas stockée dans la zone mémoire de
+  l'objet, elle fait partie de l'ensemble des attributs de chaque instance de
+  cette classe. 
++ L'initialisation d'une variable de classe s'effectue au chargement de la
+  classe. Elle peut se faire dans un "bloc statique" déclaré à l'intérieur de la
+  classe. La machine virtuelle exécute le bloc statique au chargement de la
+  classe. Par exemple pour initialisation d'une variable de classe qui contient
+  un table. 
+  
+### Méthode de classe 
+
++ Le code d'une méthode de classe a accès aux variables de classe et aux
+  méthodes de classe définies dans la classe 
++ Par contre, la référence `this` n'est pas définie (aucune instance n'est
+  crééée). Il n'est donc pas possible d'utiliser directement les variables
+  d'instance et les méthodes d'instance. Lu'ilisation doit se fiare à travers
+  une instance de la classe soit passée par paramètre, soit instanciée par le
+  code de la méthode.
++ Une méthode de classe peut être surchargée 
+
+Les méthodes de classe s'emploient couramment pour fabriquer des instances ou
+contenir les traitements ne correspondant à aucune encapsulation. 
+
+Pour simplifier l'écriture de l'appel à une variable de classe ou une méthode de
+classe d'un autre paquetage, il est possible d'utiliser la déclaration `import
+static` au début du fichier. Par exemple `import static.java.lang.Math.*` permet
+d'écrire directement `PI` dans le code.
+
+### Statut de la classe en Java 
+
+Avec l'introduction des variables de classe et des méthodes de classe, la classe
+n'est plus seulement une construction syntaxique. Elle peut être assimilée à la
+notion de module mais aussi à la notion d'objet. 
+
+Dans le modèle objet, les objets sont les seules entités d'exécution. Si les
+classes sont utilisables à l'exécution (envoi de messages), ce sont forcément
+des objets. La classe est donc la mise en oeuvre d'une encapsulation
+particulière décrivant le service commun aux classes. Ce service fournit les
+informations sur ces déclarations / définitions contenues dans une classe :
+variables, portée, méthodes, constructeurs, liste de paramètres ... 
+
+C'est le choix du langage Java : 
++ la description de l'encapsulation particulière `class` est définie dans la
+  classe `java.lang.Class`. Chaque classe Java est instance de `java.lang.Class`
++ à l'exécution, une classe est représentée d'une manière unique par son
+  fichier `.class` : `System.out.println(tec.EtatPassager.class)`
++ Il est possible de définir des variables du type `Class`
++ Quelques opérations définies dans `java.lang.Class`
+  + `forName(String)` permet de récupérer l'instance de `Class` correspondant au
+    nom complet en paramètre
+  + `newInstance()` permet d'instancier la classe qui reçoit ce message (en
+    utilisant le constructeur sans paramètre)
+  + `getFields(), getMethods(), getSuperClass(), getConstructors()` fournissent
+    des informations sur la définition d'une classe. 
+    
+Ces opérations autorisent l'introspection des classes Java (voir les classes du
+paquetage `java.lang.reflect`). L'introspection est une technique de réflexion
+qui permet à un programme d'examiner son propre état pendant l'exécution (mais
+pas de le modifier). 
+
+Dans les classes de test, pour éviter d'oublier de compléter la méthode
+`lancer()`, il suffit par introspection de récupérer à l'exécution toutes les
+méthodes dont le nom commence par la sous chaîne test et de les exécuter. 
