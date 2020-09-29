@@ -268,3 +268,53 @@ A$$.
 
 En d'autres termes, cela signifie que la dépendance entre $$X$$ et $$A$$ ne
 peut pas être obtenue par transitivité.
+
+### Première et deuxième forme normale 
+
+#### Première forme normale. 
+
+`Première forme normale (1FN) :` Une relation est en première forme normale si,
+et seulement si, tout attribut contient une valeur atomique (non multiples, non
+composées). Par exemple, le pseudo schéma de relation `Personne(num-personne,
+nom, prénom, rue et ville, prénoms-enfants)` n'est pas en première forme
+normale. Il faut le décomposer en 
+
++ Personne(num-personne, nom, prénom, rue, ville)
++ Prénoms-enfants(num-personne, num-prénom)
++ Prénoms(num-prénom, prénom)
+
+#### Remarque sur la première forme normale.
+
+La première forme normale impose que chaque ligne d'une relation ait une seule
+valeur pour chaque colonne (ie attribut), ce qui est justement la définition
+d'une table. Donc, une table est nécessairement en première forme normale au
+sens du modèle relationnel. Cependant, il faut noter que le modèle relationnel
+peut être étendu de manière à permettre des colonnes à valeur complexe. On parle
+alors de modèle relationnel étendu (NF2 pour Non First Normal Form en anglais).
+
+#### Deuxième forme normale.
+
+`Deuxième forme normale (2FN) :` Une relation est en deuxième forme normale si,
+et seulement si, elle est en première forme normale et si toutes les
+dépendances fonctionnelles entre la clé et les autres attributs sont
+élémentaires. Une relation peut être en deuxième forme normale par rapport à une
+de ses clés candidates et ne pas l'être par rapport à une autre. Une relation
+avec une clé primaire réduite à un seul attribut est, par définition, forcément
+en deuxième forme normale. 
+
+### Troisième forme normale
+
+`Troisième forme normale (3FN) :` Une relation est en troisième forme normale si
+et seulement si elle est en deuxième forme normale et tout attribut
+n'appartenant pas à la clé n'est pas en dépendance fonctionnelle directe avec un
+ensemble d'attributs non clé. 
+
+Une relation peut être en troisième forme normale par rapport à une de ses clé
+candidates et ne pas l'être par rapport à une autre. Une relation en deuxième
+forme normale avec au plus un attribut qui n'appartient pas à la clé primaire
+est, par définition, forcément en troisième forme normale. 
+
+### Forme normale de Boyce-codd
+
+`Forme normale de Boyce Codd (BCNF) :` Une relation est en forme normale de
+Boyce-Codd (BCNF) 
