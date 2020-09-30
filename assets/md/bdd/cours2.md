@@ -317,4 +317,27 @@ est, par définition, forcément en troisième forme normale.
 ### Forme normale de Boyce-codd
 
 `Forme normale de Boyce Codd (BCNF) :` Une relation est en forme normale de
-Boyce-Codd (BCNF) 
+Boyce-Codd (BCNF) si et seulement si les seules dépendances fonctionnelles
+élémentaires sont celles dans lesquelles une clé détermine un attribut non-clé.
+
+Cette forme normale permet de renforcer certaines lacunes de la troisième forme
+normale. Dans la pratique, la plupart des problèmes de conception peuvent être
+résolus en appliquant les concepts de troisième forme normale et de forme
+normale de Boyce Codd. Les quatrième et cinquième formes normales traitent
+envore d'autres cas de redondance, mais qui ne sont pas expliqués par des
+dépendances fonctionnelles. 
+
+### Quatrième et cinquième forme normale.
+
+#### Dépendance multivaluée (DM).
+
+`Dépendance multivaluée (DM) :` Soit $$R(A_1,A_2,..,A_n)$$ un schéma de relation
+contenant $$n$$ propriétés, soit $$X,Y$$ et $$Z$$ des sous-ensembles de
+$$A_1,A_2,...A_n$$ et soit $$X_i, Y_i$$ et $$Z_i$$ des instances de ces
+sous-ensembles (ie une affectation de valeur à chacune des propriétés de ces
+sous ensembles). Il existe une dépendance multivaluée (DM) entre les ensembles
+de propriétés $$X,Y$$ lorsque 
+
+$$(X_1,Y_1,Z_1) \in R$$ \text{et} (X_1,Y_2,Z_2) \in R \Rightarrow (X_1, Y_1,
+Z_2) \in R \text{et} (X_1, Y_2, Z_1) \in R$$ 
+

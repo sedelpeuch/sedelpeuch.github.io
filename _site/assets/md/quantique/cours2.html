@@ -80,7 +80,7 @@ html {
 }
 </style>
 
-<h2 id="-introduction-des-idées-de-base-de-la-mécanique-quantique"><i class="fas fa-vial"></i> Introduction des idées de base de la mécanique quantique</h2>
+<h2 id="introduction-des-idées-de-base-de-la-mécanique-quantique">Introduction des idées de base de la mécanique quantique</h2>
 
 <p>La mécanique quantique étudie des phénomènes fondamentaux à l’oeuvre dans des
 systèmes physique de petites échelles (ex : échelle atomique). Hors cela
@@ -235,6 +235,176 @@ u_k \rangle, k=1,...,n</script> alors</p>
 E</script></li>
   <li>Trouver le vecteur <script type="math/tex">x \otimes y</script></li>
 </ol>
+
+<h2 id="postulats-de-la-mécanique-quantique">Postulats de la mécanique quantique</h2>
+
+<h3 id="principe-de-superposition">Principe de superposition</h3>
+
+<p>L’état d’un système quantique est défini par un vecteur (un ket) qui est une
+combinaison linéaire, avec des coefficients complexes, d’états de base.</p>
+
+<h3 id="principe-de-correspondance">Principe de correspondance</h3>
+
+<p>Les observables physiques (c’est à dire les “choses qu’on mesure”) sont
+représentées par des opérateurs mathématiques, appelés <strong>observables</strong></p>
+
+<h3 id="principe-de-quantification">Principe de quantification</h3>
+
+<p>Les mesures ne peuvent pas donner d’autres résultats que ceux qui correspondent
+) des valeurs propres de ces opérateurs mathématiques. Les vecteurs propres qui
+correspondent à ces valeurs propres forment une base de l’espace des états du
+système.</p>
+
+<script type="math/tex; mode=display">\hat{\mathcal{O}} \vert \alpha_n \rangle = \alpha_n \vert \alpha_n \rangle</script>
+
+<p>Avec <script type="math/tex">\hat{\mathcal{O}}</script> l’observable, <script type="math/tex">\vert \alpha_n \rangle</script> le vecteur
+propre et <script type="math/tex">\alpha_n</script> la valeur propre</p>
+
+<h3 id="règle-de-born---principe-de-décomposition-spectrale">Règle de Born - principe de décomposition spectrale</h3>
+
+<p>Les calculs mathématiques fournissent la probabilité d’observer tel ou tel
+résultat de mesure. La mesure d’une grandeur physique représentée par
+l’observable <script type="math/tex">\hat{\mathcal{O}}</script>, effectué sur l’état quantique <script type="math/tex">\vert
+\psi(t) \rangle</script>, donne le résultat <script type="math/tex">a_n</script> avec la probabilité <script type="math/tex">P_n = | c_n |^2</script></p>
+
+<h3 id="principe-de-réduction-du-paquet-donde">Principe de réduction du paquet d’onde</h3>
+
+<p>La mesure modifie l’état du système quantique mesuré de manière à faire
+disparaître les probabilités qui ne sont pas réalisées.</p>
+
+<h3 id="postulat-vi---equation-de-schrödinger">Postulat VI - equation de Schrödinger</h3>
+
+<script type="math/tex; mode=display">i \hbar \dfrac{d \Psi(x,t)}{dt} = H \Psi(x,t)</script>
+
+<p>L’évolution dans le temps du système quantique est donnée par l’équation de
+Schrödinger : l’état <script type="math/tex">\vert \psi(t) \rangle</script> de tout système quantique est une
+solution de l’équation de Schrödinger dépendante du temps</p>
+
+<p><script type="math/tex">i \hbar \dfrac{\diff}{\diff t}\vert \psi(t) \rangle = \hat{\mathcal{H}}\vert
+psi(t) \rangle</script> où <script type="math/tex">\mathcal{H}</script> est l’Hamiltonien du système.</p>
+
+<h2 id="retour-sur-le-qubit">Retour sur le qubit</h2>
+
+<p>La différence essentielle avec l’état classique 0/1 est que le qubit peut se
+trouver dans d’autres états (une infinité) que les états <script type="math/tex">\vert 0 \rangle</script> ou
+<script type="math/tex">\vert 1 \rangle</script>. tout état de la forme</p>
+
+<script type="math/tex; mode=display">\vert \psi \rangle = \alpha \vert 0 \rangle + \beta \vert \rangle</script>
+
+<p>où <script type="math/tex">\alpha</script> et <script type="math/tex">\beta</script> sont deux nombres complexes <script type="math/tex">(\vert \alpha \vert^2 +
+\vert \beta \vert^2 = 1</script>, est accessible au qubit). L’état du qubit est un
+vecteur d’un espace vectoriel complexe de dimension 2 dans lequel les éléments
+<script type="math/tex">\vert 0 \rangle</script> et <script type="math/tex">\vert 1 \rangle</script> forment une base.</p>
+
+<p>De plus, une fois qu’il a été mesuré, l’état du qubit est projeté dans l’état
+correspondant au résultat de la mesure. Par exemple si le qubit, originellement
+dans l’état <script type="math/tex">\vert \psi \rangle</script>, est mesuré et que le résultat est 1, le
+qubit se trouvera alors projeté dans l’état <script type="math/tex">\vert 1 \rangle</script> et toute
+nouvelle mesure donnera immanquablement le résultat 1.</p>
+
+<p>Ce qui constitue la base du calcul quantique c’est de modifier l’état du qubit,
+en lui appliquant des portes logiques ou en l’associant à un ou plusieurs autres
+qubits, sans le mesure, c’est à dire sans le projeter sur les états <script type="math/tex">\vert 0
+\rangle</script> ou <script type="math/tex">\vert 1 \rangle</script>. C’est seulement à la fin du calcul que le
+qubit est lu et si l’algorithme est bien choisi le processus de projection que
+réalise la mesure finale du qubit permet d’extraire l’information recherchée.</p>
+
+<h3 id="réalisation-dun-qubit---états-internes-dun-atome">Réalisation d’un qubit - états internes d’un atome</h3>
+
+<p>On considère deux niveaux de l’atome :</p>
+<ul>
+  <li>le niveau fondamental : c’est celui de plus basse énergie, l’état quantique de
+l’atome est <script type="math/tex">\vert g \rangle</script> (ground state) et son énergie <script type="math/tex">E_g</script>.</li>
+  <li>le premier niveau excité : l’état atomique est noté <script type="math/tex">\vert e \rangle</script> et son
+énergie <script type="math/tex">E_e</script>.</li>
+</ul>
+
+<p>Si on envoit sur l’atome dans son état fondamental un photon d’énergie
+exactement <script type="math/tex">E_e - E_g</script> le photon est absorbé par l’atome qui passe dans le
+niveau excité</p>
+
+<script type="math/tex; mode=display">\vert g \rangle \rightarrow \vert e \rangle</script>
+
+<p>Les énergies mises en jeu à l’échelle atomique sont de l’ordre de l’électron
+volt (<script type="math/tex">1.6 \times 10^{-19} J</script>), le rayonnement lumineux associé au photon a
+une longueur d’onde <script type="math/tex">\lambda = \dfrac{c}{\nu} = \dfrac{hc}{E_e - E_g}</script> où
+<script type="math/tex">c</script> est la vitesse de la lumière (<script type="math/tex">3 \times 10^8 ms^{-1})</script> et <script type="math/tex">h</script> la
+constante de Planck (<script type="math/tex">6.6 \times 10^{-34} Js)</script>, l’ordre de grandeur des
+longueurs d’onde correspondant aux énergies atomiques de l’ordre d’un eV est
+entre <script type="math/tex">0.4</script> et <script type="math/tex">1 \mu m</script>; c’est le domaine de la lumière visible.</p>
+
+<p>L’atome revient dans son état fondamental au bout d’un temps moyen appelé durée
+de vie du niveau excité, en émettant un photo de même énergie <script type="math/tex">E_e - E_g</script>
+(émission spontanée). La durée de vie d’un niveau atomique varie de quelques
+nanosecondes à la seconde.</p>
+
+<p>Si on envoie un photon d’énergie <script type="math/tex">E_e - E_g</script> sur l’atome quand il est encore
+dans l’état excité l’atome va se désexciter en émettant un photon à la même
+énergie - émission induite.</p>
+
+<p>Supposons qu’on éclaire continuellement l’atome avec cette radiation lumineuse
+composée de photons d’énergie <script type="math/tex">E_e - E_g</script> (radiation résonante), l’atome va
+osciller entre l’état <script type="math/tex">\vert g \rangle</script> à l’état <script type="math/tex">\vert e \rangle</script>. A
+l’instant <script type="math/tex">t</script> il sera dans un état de superposition</p>
+
+<script type="math/tex; mode=display">\vert \psi \rangle = \cos(\omega t / 2) \vert g \rangle + \sin(\omega t / 2)
+e^{i \phi} \vert e \rangle</script>
+
+<p>l’atome est un qubit : on associe à l’état <script type="math/tex">\vert g \rangle</script> l’état <script type="math/tex">\vert 0
+\rangle</script> et à l’état <script type="math/tex">\vert e \rangle</script> l’état <script type="math/tex">\vert 1 \rangle</script>.</p>
+
+<p>Pour mesurer l’état de l’atome à un moment donné on envoie sur celui-ci une
+impulsion laser “accordée” sur une transition <script type="math/tex">\vert g \rangle \rightarrow
+\vert a \rangle</script> qui n’a pas d’équivalent à partir de l’état <script type="math/tex">\vert e
+\rangle</script>. Si le photon est absorbé c’est que le système est dans l’état <script type="math/tex">\vert
+g \rangle</script> sinon il est dans l’état <script type="math/tex">\vert e \rangle</script>.</p>
+
+<h3 id="réalisation-dun-qubit---polarisation-dun-photon">Réalisation d’un qubit - polarisation d’un photon</h3>
+
+<p>Une onde électromagnétique, la lumière par exemple, peut être représentée
+mathématiquement par un champ vectoriel transverse, ie orthogonal à la direction
+de propagation. Dans un référentiel <script type="math/tex">(O,\hat{e}_x,\hat{e}_y,\hat{e}_z)</script>, de
+coordonnées <script type="math/tex">(x,y,z)</script>, choisi tel que l’onde se propage selon l’axe des <script type="math/tex">z</script>,
+le champ électrique est décrit par</p>
+
+<script type="math/tex; mode=display">\overline{E}(t,z) = \overline{E}_O e^{i(\omega t - kz)}</script>
+
+<p>où <script type="math/tex">\overline{E}_0 = E_{Ox}\hat{e}_x + E_{O y}\hat{e}_y</script>. Le vecteur
+<script type="math/tex">\overline{E}_0</script>, vu comme un nombre complexe, définit la polarisation de
+l’onde. L’intensité de l’onde est proportionnelle au module au carré de
+$$\overline{E}_0 : || \overline{E}_O ||^2.</p>
+
+<p>La polarisation peut être mise en évidence à l’aide de cristaux ayant une
+propriété optique particulière : la biréfringence. Si nous envoyons sur une lame
+biréfringente un faisceau d’intensité <script type="math/tex">I</script>, polarisé linéairement suivant une
+direction qui fait un angle <script type="math/tex">\theta</script> avec l’axe ordinaire du cristal qu’on
+prend comme axe <script type="math/tex">Ox</script> : le faisceau est séparé en un faisceau polarisé suivant
+<script type="math/tex">Ox</script> d’intensité <script type="math/tex">I \cos^2 \theta</script> et un autre faisceau polarisé suivant
+<script type="math/tex">Oy</script> d’intensité <script type="math/tex">I \sin^2 \theta</script>.</p>
+
+<p>Planck et Einstein ont suggéré au début du XXème siècle que la lumière puisse
+aussi être décrite en termes de flot de photons (les quantas de
+l’électromagnétisme). Les sources de lumière “classiques” émettent des grandes
+quantités de photons même pour des faibles intensités (plusieurs milliard d
+milliards de photon  à la seconde pour une lampe de 1W) ce qui fait que l’aspect
+“corpusculaire” de la lumière est difficile à mettre en évidence.</p>
+
+<p>L’avènement récent de l’optique quantique et des nanotechnologies a permis de
+développer des sources qui émettent des photons “un par un”, c’est à dire
+séparés par des intervalles de temps mesurables avec la technologie actuelle.</p>
+
+<p>Le photon est un “objet quantique”, on associe un état quantique à chaque
+vecteur de base de polarisation de l’onde : <script type="math/tex">\vert x \rangle</script> pour l’état de
+polarisation suivant l’axe <script type="math/tex">Ox</script> et <script type="math/tex">\vert y \rangle</script> pour l’état de
+polarisation suivant l’axe <script type="math/tex">Oy</script>. À l’orientation <script type="math/tex">\theta</script> de la polarisation
+on associe l’état</p>
+
+<script type="math/tex; mode=display">\vert \theta \rangle = \cos \theta \vert x \rangle + \sin \theta \vert y
+\rangle</script>
+
+<p>Quelle trajectoire va suivre le photon qui se trouve dans cet état ? La réponse
+de la mécanique quantique est qu’on ne peut pas le savoir. Mais ce qu’on peut
+connaître (postulat de la mesure) c’est la probabilité que le photo</p>
 </div>
 	</article>
 </div><!-- Footer -->

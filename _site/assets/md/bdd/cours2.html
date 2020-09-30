@@ -397,7 +397,30 @@ est, par définition, forcément en troisième forme normale.</p>
 <h3 id="forme-normale-de-boyce-codd">Forme normale de Boyce-codd</h3>
 
 <p><code class="language-plaintext highlighter-rouge">Forme normale de Boyce Codd (BCNF) :</code> Une relation est en forme normale de
-Boyce-Codd (BCNF)</p>
+Boyce-Codd (BCNF) si et seulement si les seules dépendances fonctionnelles
+élémentaires sont celles dans lesquelles une clé détermine un attribut non-clé.</p>
+
+<p>Cette forme normale permet de renforcer certaines lacunes de la troisième forme
+normale. Dans la pratique, la plupart des problèmes de conception peuvent être
+résolus en appliquant les concepts de troisième forme normale et de forme
+normale de Boyce Codd. Les quatrième et cinquième formes normales traitent
+envore d’autres cas de redondance, mais qui ne sont pas expliqués par des
+dépendances fonctionnelles.</p>
+
+<h3 id="quatrième-et-cinquième-forme-normale">Quatrième et cinquième forme normale.</h3>
+
+<h4 id="dépendance-multivaluée-dm">Dépendance multivaluée (DM).</h4>
+
+<p><code class="language-plaintext highlighter-rouge">Dépendance multivaluée (DM) :</code> Soit <script type="math/tex">R(A_1,A_2,..,A_n)</script> un schéma de relation
+contenant <script type="math/tex">n</script> propriétés, soit <script type="math/tex">X,Y</script> et <script type="math/tex">Z</script> des sous-ensembles de
+<script type="math/tex">A_1,A_2,...A_n</script> et soit <script type="math/tex">X_i, Y_i</script> et <script type="math/tex">Z_i</script> des instances de ces
+sous-ensembles (ie une affectation de valeur à chacune des propriétés de ces
+sous ensembles). Il existe une dépendance multivaluée (DM) entre les ensembles
+de propriétés <script type="math/tex">X,Y</script> lorsque</p>
+
+<p><script type="math/tex">(X_1,Y_1,Z_1) \in R</script> \text{et} (X_1,Y_2,Z_2) \in R \Rightarrow (X_1, Y_1,
+Z_2) \in R \text{et} (X_1, Y_2, Z_1) \in R$$</p>
+
 </div>
 	</article>
 </div><!-- Footer -->
