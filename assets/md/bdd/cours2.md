@@ -341,3 +341,28 @@ de propriétés $$X,Y$$ lorsque
 $$(X_1,Y_1,Z_1) \in R$$ \text{et} (X_1,Y_2,Z_2) \in R \Rightarrow (X_1, Y_1,
 Z_2) \in R \text{et} (X_1, Y_2, Z_1) \in R$$ 
 
+Comme illustration, supposons une situation où un employé d'un garage est
+qualifié pour effectuer un certain type d'intervention sur certaines marques de
+voiture. Cette situation est modélisée par le schéma relationnel suivant : 
++ Employé(Nom-Employé)
++ Intervention(Type-intervention)
++ Constructeur(Marque)
++ Intervenir(Nom-Employé, Type-Intervention,Marque)
+
+Supposons maintenant qu'un employé qui effectue un ensemble de types
+d'interventions pour un ensemble de marques de voiture est capable d'effectuer
+chacun de ces types d'interventions sur chacune de ces marques de voitures. Dans
+ce cas, il existe des dépendances multivaluées dans la relation Intervenir :
+Nom-Employée $$↠$$ Type-intervention et Nom-Employé $$↠$$
+Marque.
+
+#### Quatrième forme normale 
+
+`quatrième forme normale :` Une relation est en quatrièeme forme normale (4FN)
+si, et seulement si, elle est en forme normale de BOYCE-CODD et si elle ne
+possède pas de dépendance multivaluée ou si, $$X ↠ Y$$ étant la dépendance
+multivaluée, il existe une propriété $$A$$ telle que $$X \rightarrow A$$. 
+
+Dans la section précédente, nous avons présenté un schéma relationnel qui
+n'était pas en quatrième forme normale en raison du schéma de relation
+ 

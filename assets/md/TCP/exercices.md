@@ -205,3 +205,10 @@ nécessaire), il nous reste donc 5 bits pour les hôtes c'est à dire 30 hôtes
 | D1      | 220.156.10.128 | 255.255.255.224 | 220.156.10.159 | 129->158               |
 | E1      | 220.156.10.160 | 255.255.255.224 | 220.156.10.191 | 161->190               |
     
+## TD 3 - Sous adressage VLSM
+
+### Exercice 1
+
+![3.1](/assets/images/TCP/3_1.png){:class="image about center"}
+
+![3.2](/assets/images/TCP/3_2.png){:class="image about center"}
