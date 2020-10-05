@@ -6,12 +6,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 -->
 <html><head><!-- Robots -->
-  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/compilation/cours3.html" /><!-- Title, description, author --><title>Analyse syntaxique | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/compilation/cours3.html" /><!-- Title, description, author --><title>Cours de compilation - séance 4 | Informatique - ENSEIRB-Matmeca</title>
   <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
   <meta name="author" content="Delpeuch Sébastien" />
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Analyse syntaxique | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:title" content="Cours de compilation - séance 4 | Informatique - ENSEIRB-Matmeca" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
   <meta property="og:url" content="http://localhost:4000/assets/md/compilation/cours3.html" />
@@ -67,7 +67,7 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 	<article class="shade-two">
 	  <div class="container">
 			<header>
-				<h2>Analyse syntaxique</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+				<h2>Cours de compilation - séance 4</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Notes inspirées du cours de JANIN David</p>
@@ -78,24 +78,188 @@ html {
 }
 </style>
 
-<h2 id="grammaires-formelles">Grammaires formelles</h2>
+<h2 id="exemple-des-expressions-arithmétiques">Exemple des expressions arithmétiques.</h2>
 
-<p>Une grammaire <script type="math/tex">G</script> est définie par :</p>
+<p>Une grammaire reconnaissant les expressions arithmétiques se reconnaît avec les
+expressions suivantes</p>
+<ol>
+  <li>exp -&gt; ID</li>
+  <li>exp -&gt; Cste</li>
+  <li>exp -&gt; exp + exp</li>
+  <li>exp -&gt; exp * exp</li>
+  <li>exp -&gt; (exp)</li>
+</ol>
+
+<p>Ces 5 règles sont appelées les règle de grammaire ou règle de production. Dans
+ces règles on distingue :</p>
 <ul>
-  <li>une ensemble de variables <script type="math/tex">V</script> (non terminaux, lettres majuscules)</li>
-  <li>un ensemble de symboles terminaux <script type="math/tex">T</script> (lexèmes, lettres minuscules)</li>
-  <li>un symbole initial <script type="math/tex">S \in V</script></li>
-  <li>Règles de réécriture du type <script type="math/tex">\alpha \rightarrow \beta</script> avec <script type="math/tex">\alpha,
-\beta</script> des mots de variables /terminaux.</li>
+  <li>les <strong>terminaux</strong> <script type="math/tex">T=\{ID,CSTE,+,*,(,)*\}</script> ce sont les unités lexicales (aussi
+appelées tokens) qui sont données en entrée de l’analyseur. C’est un dire,
+c’est une suite / un mot de terminaux, donc dans <script type="math/tex">T*</script></li>
+  <li>les <strong>non-terminaux</strong> <script type="math/tex">N=\{exp\}</script>, ce sont les ensembles de mots de
+terminaux qu’on souhaite construire ou définir</li>
+  <li>les règles de production sont : qui peuvent être lue comme des inclusion
+ensemblistes (partie de <script type="math/tex">T^\ast</script>)</li>
 </ul>
 
-<p>Le langage <script type="math/tex">\mathcal{L}(G)</script> engendré par <script type="math/tex">G</script> est l’ensemble des mots
-produits de <script type="math/tex">T^\ast</script> par toutes les réécritures possibles à partir de <script type="math/tex">S</script>.</p>
+<p><code class="language-plaintext highlighter-rouge">Théorème :</code> Ce type d’inéquation admet une plus petite solution.</p>
 
-<p>Une grammaire permet de définir formellement un langage (informatique ou
-naturel). Cela permet de reconnaître les phrases correctes (structurer les
-phrases, identifier le rôle des lexèmes dans la phrase). Mais aussi de pouvoir
-générer des phrases correctes.</p>
+<p><strong>Idée de preuve :</strong> Soit <script type="math/tex">F(exp) = \bigcup \text{parties droite de règle}</script></p>
+
+<p><script type="math/tex">\{F: \mathcal{P}^n(T^\ast) \rightarrow \mathcal{P}(T^\ast)\}_{i \in [1,n]}</script> avec <script type="math/tex">n</script> le
+nombre de terminaux. Le constat est que si <script type="math/tex">F</script> est croissant c’est à dire si
+<script type="math/tex">x</script> et <script type="math/tex">y \subset T^\ast</script> et si <script type="math/tex">X \subseteq Y</script> alors <script type="math/tex">F(x) \subseteq
+F(Y)</script>. Il est alors facile de vérifier que</p>
+
+<p><script type="math/tex">\emptyset \subseteq F(\emptyset) \subseteq F(F(\emptyset)) \subset ... \subset
+F^n(\emptyset)</script> et que <script type="math/tex">exp = \bigcup \limits_{n \in \mathbb{N}}
+F^n(\emptyset)</script> on a <script type="math/tex">exp=F(exp)</script>, on dit que exp est un point fixe de <script type="math/tex">F</script> et
+exp est le plus petit de ces point fixes. Si <script type="math/tex">Y \subseteq T^\ast</script> est un point
+fixe de <script type="math/tex">F</script>, on a</p>
+
+<script type="math/tex; mode=display">Y = F (Y)</script>
+
+<p>mais comme <script type="math/tex">\emptyet \subseteq Y</script> on a, par récurrence, <script type="math/tex">F^n(\emptyset)
+\subseteq Y</script> et donc <script type="math/tex">\bigcup \limits_{n \in \mathbb{N}} F^n(\emptyset) = exp
+\subseteq Y</script></p>
+
+<h2 id="exemple-dutilisation-de-cette-grammaire">Exemple d’utilisation de cette grammaire</h2>
+
+<p>Analyse syntaxique de <script type="math/tex">2 \times x + y</script>, l’analyseur va reconnaître 2 comme une
+constance, <script type="math/tex">\times</script> comme <em>, <script type="math/tex">x</script> comme un ID, <script type="math/tex">+</script> comme + et <script type="math/tex">y</script> comme
+un ID. Comment pouvons nous vérifier que cette expression appartient bien au
+langage. Vérifions que cste</em>ID+ID est bien une entrée syntaxique correcte selon
+la grammaire.</p>
+<h3 id="suite-de-dérivations-gauche-de-exp-rightarrow-cste-times-id--id">Suite de dérivations (gauche) de <script type="math/tex">exp \rightarrow cste \times ID + ID</script></h3>
+
+<p><img src="/assets/images/compilation/traduction.png" alt="traduction" class="image about center" /></p>
+
+<h4 id="remarques">Remarques.</h4>
+<ul>
+  <li>Dés qu’un terminal est généré ou engendré par une règle, on ne peut plus
+l’effacer</li>
+  <li>il coupe implicitement l’entrée en ce qui se trouve à gauche et ce qui se
+trouve à droite.</li>
+</ul>
+
+<hr />
+
+<p>En pendant compilation, on peut avoir l’impression que cette suite de dérivation
+induit syntaxiquement une “priorité” sur les opérateurs binaires + et *</p>
+
+<script type="math/tex; mode=display">\underbrace{CSTE \times ID}{exp} \underbrace{+}{exp} \underbrace{ID}{exp}</script>
+
+<p>Est ce satisfaisant ? Presque … Expliciter la syntaxe, c’est bien. Mais, cette
+grammaire est ambigüe. Il y a au moins deux syntaxes possibles pour CST * ID +
+ID.</p>
+
+<p><img src="/assets/images/compilation/traduction2.png" alt="traduction2" class="image about center" /></p>
+
+<p>Cela est toujours une suite de dérivation gauche, mais la structure syntaxique
+induite est plutôt <script type="math/tex">\underbrace{CSTE}{exp} \times \overbrace{\underbrace{ID +
+ID}{exp}}{\text{parenthèses implicites}}</script></p>
+
+<p><code class="language-plaintext highlighter-rouge">Définition :</code> Une grammaire est dites ambigüe lorsqu’il existe deux suites de
+dérivations gauches, distinctes, à partir du start symbol, qui produisent la
+même entrée.</p>
+
+<p>En compilation, on ne veut pas ça ! En effet on va faire de la traduction
+dirigée par la syntaxe. Deux syntaxes possibles donneront deux codes différents.
+Exemple <script type="math/tex">(2 \times x) + y \neq 2 \times (x + y)</script>. En compilation, on n’utilise
+que des grammaires non ambigüe.</p>
+
+<h3 id="arbre-de-dérivations">Arbre de dérivations</h3>
+
+<p>Sur le même exemple <script type="math/tex">2 \times x + y</script></p>
+
+<p><img src="/assets/images/compilation/arbre.png" alt="arbre" class="image about center" /></p>
+
+<p>Ceci est un arbre de dérivation, aussi appelé arbre de syntaxe concret.
+Autrement, un arbre de dérivations c’est un arbre dont :</p>
+<ul>
+  <li>les sommets sont étiquetés sur TON</li>
+  <li>les embranchements définis par des règles de productions</li>
+  <li>les feuilles étiquetées sur T</li>
+  <li>la racine étiquetée par le start symbol</li>
+</ul>
+
+<h4 id="remarque">Remarque.</h4>
+
+<p>Il y a bijection entre arbre de dérivation et suites de dérivations gauches. Les
+suites de dérivations gauches sont exactement les parcours en profondeur, à
+gauche d’abord préfixe, des arbres de dérivations.</p>
+
+<p>Essayer de construire un arbre de dérivation pour <script type="math/tex">(ID ID +) \notin exp</script> est impossible</p>
+
+<hr />
+
+<p><code class="language-plaintext highlighter-rouge">Définition :</code> Une grammaire est ambigüe  lorsque il existe deux arbres de
+dérivations pour une même entrée (un même mot de terminaux).</p>
+
+<p>La grammaire ci-dessus quoique ambigüe, a tout de même le mérite de définir
+correctement les expressions arithmétiques. Cependant, ces expressions
+peuvent-elle être définies par une grammaire non ambigüe ?</p>
+
+<h2 id="une-première-grammaire-non-ambigüe">Une première grammaire non ambigüe</h2>
+
+<p>Idée : distinguer dans les expressions arithmétiques les termes qui composent
+les sommes de facteurs qui composent les produits. Autrement dit nous allons
+utiliser 3 noms terminaux.</p>
+
+<p><script type="math/tex">exp \rightarrow \text{expressions arithmétiques}</script>
+<script type="math/tex">term \rightarrow \text{termes dans une somme}</script>
+<script type="math/tex">fact \rightarrow \text{facteurs dans un produit}</script></p>
+
+<p><script type="math/tex">N = \{exp,term,fact\}</script>exp</p>
+
+<p>Avec <script type="math/tex">exp</script> comme start symbol. Les règles de cette grammaire :</p>
+<ol>
+  <li>exp -&gt; term</li>
+  <li>exp -&gt; exp + term</li>
+  <li>term -&gt; fact</li>
+  <li>term -&gt; term * fact</li>
+  <li>fact -&gt; ID</li>
+  <li>fact -&gt; CSTE</li>
+  <li>fact -&gt; (exp)</li>
+</ol>
+
+<p>Pas d’ambiguité ? Nous voulons toujours dériver <script type="math/tex">2 \times x + y</script> ie CSTE *
+ID + ID.</p>
+
+<p><img src="/assets/images/compilation/arbre2.png" alt="arbre2" class="image about center" /></p>
+
+<p>Cet arbre est le seul arbre de dérivation possible ! Le parenthésage induit par
+cet arbre est bien <script type="math/tex">(2 \times x) + y</script>. Nous avons donc notre grammaire pour la
+compilation. La grammaire utilisée s’appelle la grammaire ETF. Autre grammaire ?</p>
+
+<ol>
+  <li>
+    <script type="math/tex; mode=display">E \rightarrow TE'</script>
+  </li>
+  <li><script type="math/tex">E' \rightarrow \epsilon</script> //mot vide</li>
+  <li>
+    <script type="math/tex; mode=display">E' \rightarrow +TE'</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">T \rightarrow FT'</script>
+  </li>
+  <li><script type="math/tex">T' \rightarrow \epsilon</script> //mot vide</li>
+  <li>
+    <script type="math/tex; mode=display">T' \rightarrow +FT'</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">F \rightarrow ID</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">F \rightarrow CSTE</script>
+  </li>
+  <li>
+    <script type="math/tex; mode=display">F \rightarrow (E)</script>
+  </li>
+</ol>
+
+<p>On peut vérifier que cette grammaire engendre aussi les mêmes expressions
+arithmétiques et qu’elle n’est pas ambigüe.</p>
 </div>
 	</article>
 </div><!-- Footer -->

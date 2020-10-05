@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/bdd/td5.html" /><!-- Title, description, author --><title>TD5 - Algèbre relationnelle | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="TD5 - Algèbre relationnelle | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/bdd/td5.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-7-en-cours-link">
+            <span class="icon fa-link">Semestre 7 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_6.html" id="semestre-6-link">
+            <span class="icon fa-check">Semestre 6</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li><li><a href="http://localhost:4000/CPBx.html" id="cpbx-link">
+            <span class="icon fa-check">CPBx</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2>TD5 - Algèbre relationnelle</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Notes personnelles du <a href="https://moodle.bordeaux-inp.fr/pluginfile.php/49010/mod_resource/content/2/td3.pdf">TD3 - Modèle relationnel</a> du cours de SGBD</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h2 id="produit-fornisseur">Produit fornisseur</h2>
+
+<p><em>On considère la base de données suivante :</em></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Produit : numprod, nomprod, quantité
+Fournisseur : numfour, nomfour, adresse, ville
+</code></pre></div></div>
+<ol>
+  <li><em>Donner un schéma conceptuel et un schéma relationnel</em></li>
+  <li><em>Donner une expression algébrique et un arbre algébrique pour chacune des
+requêtes suivantes :</em>
+    <ul>
+      <li><em>Les produits disponibles sur Bordeaux</em></li>
+      <li><em>Les fournisseurs qui vendent tous les produits (cf. division)</em></li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="/assets/images/sgbd/uml19.png" alt="1" class="image about center" /></p>
+
+<script type="math/tex; mode=display">\rhd \lhd (\text{Fournir},\text{Fournisseur})</script>
+
+<p>Nous cherchons les fournisseurs qui vendent tous les produits</p>
+
+<script type="math/tex; mode=display">\Pi_{\text{Nom Fournisseur}} [(\text{Fournisseurs} \rhd \lhd \text{Fournir}
+\div \text{Produit})]</script>
+
+<p>Nous cherchons les produits disponibles sur Bordeaux</p>
+
+<script type="math/tex; mode=display">\Pi_{\text{Nom Produit}}
+(\sigma_{\text{ville='Bordeaux'}})(\text{Produit} \rhd \lhd \text{Fournir } \rhd
+\lhd_{\text{Fournisseur}})</script>
+
+<h2 id="élèves-matières">Élèves-matières</h2>
+
+<p><em>Soit le schéma relationnel suivant (les clés primaires sont en gras, les clé
+étrangères sont précédées du symbole #) qui représente des élèves, des maturées
+et le fait que des élèves suivent des matières.</em></p>
+<ul>
+  <li>Élève(<strong>Numéro Élève</strong>,Nom élève, Prénom élève)</li>
+  <li>Matière(<strong>Numéro Matière</strong>,Nom Matière)</li>
+  <li>Suivre(#Numéro Élève, #Numéro Matière)</li>
+</ul>
+
+<p><em>Écrire en algèbre relationnelle les requêtes suivantes :</em></p>
+<ul>
+  <li><em>Donner la liste des matières suivies par un étudiant qui s’appelle Jean
+Dupont</em></li>
+</ul>
+
+<script type="math/tex; mode=display">\Pi_{\text{Nom Matière}}(\sigma_{\text{Jean Dupon}} (\text{Eleve} \rhd
+\lhd \text{Suivre} \rhd \lhd \text{Matiere}))</script>
+
+<ul>
+  <li><em>Donner le nom et prénom des élèves qui suivent le cours de Base de Données</em></li>
+</ul>
+
+<script type="math/tex; mode=display">\Pi_{\text{Nom de l'élève}}(\sigma_{\text{SGBD}}(\text{Eleves} \rhd \lhd
+\text{Suivre} \rhd \lhd \text{Matiere}))</script>
+
+<ul>
+  <li><em>Donner la liste des élèves qui ont le même nom, mais pas le même prénom</em></li>
+</ul>
+
+<script type="math/tex; mode=display">\Pi_{E_1 \text{Nom}, E_1 \text{Prénom}}\text{Eleves} E_1 \rhd \lhd_{E_1.\text{NomEleve}=E_2.\text{NomEleve ET}
+E_1.\text{PrenomEleve} \neq E_2.\text{PrenomEleve}}</script>
+
+<ul>
+  <li><em>Donner la liste des élèves qui suivent tous les cours</em></li>
+</ul>
+
+<script type="math/tex; mode=display">\Pi_{\text{Prénom Nom}}(\text{Eleve}\rhd \lhd \text{Suivre} \rhd \lhd
+\text{Matiere}) \div \text{Matiere}</script>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

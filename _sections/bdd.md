@@ -4,11 +4,12 @@ icon: fa-database
 order: 8
 ---
 
-| Cours                                  | Notes personnelles |
-| :--                                    | :--                |
-| [Conception d'une base de donnée]      | [Cours 1]          |
-| [Le modèle relationnel]                | [Cours 2]          |
-| [Algèbre relationnelle et langage SQL] | [Cours 3]          |
+| Cours                                  | Notes personnelles                |
+| :--                                    | :--                               |
+| [Conception d'une base de donnée]      | [Cours 1]                         |
+| [Le modèle relationnel]                | [Cours 2]                         |
+| [Algèbre relationnelle et langage SQL] | [Cours 3 : Algèbre relationnelle] |
+|                                        | [Cours 3 : Langage SQl]           |
 
 | Sujet de TD | Notes personnelles | Correction des TD |
 | :--         | :--                | :--               |
@@ -26,7 +27,8 @@ order: 8
 
 [Cours 1]:/assets/md/bdd/cours1
 [Cours 2]:/assets/md/bdd/cours2
-[Cours 3]:/assets/md/bdd/cours3
+[Cours 3 : Algèbre relationnelle]:/assets/md/bdd/cours3
+[Cours 3 : Langage SQL]:/assets/md/bdd/cours4
 
 [Sujet 1]:https://moodle.bordeaux-inp.fr/pluginfile.php/49008/mod_resource/content/3/td1.pdf
 [Sujet 2]:https://moodle.bordeaux-inp.fr/pluginfile.php/49009/mod_resource/content/1/td2.pdf

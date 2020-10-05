@@ -440,14 +440,61 @@ Marque.</p>
 
 <h4 id="quatrième-forme-normale">Quatrième forme normale</h4>
 
-<p><code class="language-plaintext highlighter-rouge">quatrième forme normale :</code> Une relation est en quatrièeme forme normale (4FN)
+<p><code class="language-plaintext highlighter-rouge">Quatrième forme normale :</code> Une relation est en quatrièeme forme normale (4FN)
 si, et seulement si, elle est en forme normale de BOYCE-CODD et si elle ne
 possède pas de dépendance multivaluée ou si, <script type="math/tex">X ↠ Y</script> étant la dépendance
 multivaluée, il existe une propriété <script type="math/tex">A</script> telle que <script type="math/tex">X \rightarrow A</script>.</p>
 
 <p>Dans la section précédente, nous avons présenté un schéma relationnel qui
-n’était pas en quatrième forme normale en raison du schéma de relation</p>
+n’était pas en quatrième forme normale en raison du schéma de relation
+Intervenir.</p>
 
+<h4 id="dépendance-de-jointure-dj">Dépendance de jointure (DJ)</h4>
+
+<p>Jusqu’ici, nous avons pu résoudre une redondance dans une relation en la
+remplaçant par deux de ses projets. Il existe cependant des relations que ne
+peuvent pas être décomposées sans perte d’information en deux projections, mais
+qui peuvent l’être en trois ou plus (ces cas sont assez rares en pratique).
+C’est ce que permet la normalisation en cinquième forme normale.</p>
+
+<p>Les dépendances de jointures font appel à des notions (projection et jointure)
+qui seront définies plus loin.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Dépendance de jointure (DJ) :</code> Soit <script type="math/tex">X_1, X_2,...,X_n</script> des sous-ensembles
+d’un schéma de relation <script type="math/tex">R</script>. Il y a une dépendance de jointure, notée <script type="math/tex">\ast
+\{X_1,X_2,...,X_n\}</script> dans la relation <script type="math/tex">R</script>, si</p>
+
+<script type="math/tex; mode=display">R = \Pi (X_1) R \rhd \lhd \Pi (X_2) R \rhd \lhd ... \rhd \lhd \Pi (X_n) R</script>
+
+<p><code class="language-plaintext highlighter-rouge">Dépendance de jointure triviale :</code> Une dépendance de jointure est triviale si
+une des parties, <script type="math/tex">X_i</script>, est l’ensemble de tous les attributs de <script type="math/tex">R</script>.</p>
+
+<h4 id="cinquième-forme-normale-5fn">Cinquième forme normale (5FN)</h4>
+
+<p><code class="language-plaintext highlighter-rouge">Cinquième forme normale (5FN) :</code> Une relation <script type="math/tex">R</script> est un cinquième forme
+normale (5FN) si, pour toute dépendance de jointure non triviale
+<script type="math/tex">\ast\{X_1,X_2,...,X_n\}</script> dans <script type="math/tex">R</script> chacun des <script type="math/tex">X_i</script> contient une clé
+candidate de <script type="math/tex">R</script>. En d’autres termes, les seules décompositions qui préservent
+le contenu sont celles où chacune des tables de la décomposition contient une
+clé candidate de la table. Il est donc superflu de décomposer ce point de vue.
+Cette forme normale est finale vis à vis de la projection et de la jointure :
+elle garantit qu’une relation en cinquième forme normale ne contient aucune
+anomalie pouvant être supprimée en effectuant des projections (ie des
+décompositions).</p>
+
+<h3 id="remarques-au-sujet-de-la-normalisation">Remarques au sujet de la normalisation</h3>
+
+<p>Il existe d’autres formes normales comme la forme normale domaine-clé (FNDC), la
+forme normale de restriction-union ou la sixième forme normale (6NF).</p>
+
+<p>Bien que l’objectif de la normalisation soit d’amener le concepteur a obtenir
+des relations en forme normale finale (ie en cinquième forme normale), cet
+objectif ne doit pas être interprété comme une loi. Il peut exister, très
+occasionnellement, de bonnes raisons de passer outre les principes de la
+normalisation. De plus, un schéma en cinquième forme normale n’est pas
+nécessairement un schéma pleinement satisfaisant. D’autres facteurs sont à
+considérer dans le processus de conception d’une base de données et l’expérience
+et l’intuition jouent un rôle important.</p>
 </div>
 	</article>
 </div><!-- Footer -->

@@ -1,246 +1,740 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/poo/cours1.html" /><!-- Title, description, author --><title>Objet et encapsulation | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Objet et encapsulation | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/poo/cours1.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
 
-<head>
-<title>cours1.html</title>
-<meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8"/>
-<link rel="stylesheet" type="text/css" media="all" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css"  />
-<link rel="stylesheet" type="text/css" media="all" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/github.min.css"  /><meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'><style> body { box-sizing: border-box; max-width: 740px; width: 100%; margin: 40px auto; padding: 0 10px; } </style><script src='https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js'></script><script>document.addEventListener('DOMContentLoaded', () => { document.body.classList.add('markdown-body'); document.querySelectorAll('pre[lang] > code').forEach((code) => { code.classList.add(code.parentElement.lang); }); document.querySelectorAll('pre > code').forEach((code) => { hljs.highlightBlock(code); }); });</script>
-</head>
-
-<body>
-
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-7-en-cours-link">
+            <span class="icon fa-link">Semestre 7 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_6.html" id="semestre-6-link">
+            <span class="icon fa-check">Semestre 6</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li><li><a href="http://localhost:4000/CPBx.html" id="cpbx-link">
+            <span class="icon fa-check">CPBx</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2>Objet et encapsulation</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
-<p>Notes inspirées du <a href="https://georgy.vvv.enseirb-matmeca.fr/PG202-203/poo-info-2021.pdf">polycopié</a> de Georges Eyrolles.</p>
+
+<p>Notes inspirées du
+<a href="https://georgy.vvv.enseirb-matmeca.fr/PG202-203/poo-info-2021.pdf">polycopié</a>
+de Georges Eyrolles.</p>
+
 <style>
 html {
  zoom: 0.80;
 }
 </style>
-<h2 id="lencapsulation"><i class="fas fa-code"></i> L’encapsulation</h2>
-<p>L’<code>encapsulation</code> dans l’approche objet consiste à regrouper le code (données et traitements) qui fournit un même service dans une seule entité. Une encapsulation spécifie le fonctionnement d’un service (par un ensemble d’actions) en masquant la manière de le réaliser. Respecter le concept d’encapsulation permet de séparer l’utilisation d’un service de sa réalisation et renforcer la manipulation d’abstractions dans la fabrication d’un logiciel.</p>
-<h3 id="objet">Objet</h3>
-<p>L’<code>objet</code> est l’entité qui met en oeuvre, à l’exécution, une encapsulation. Plusieurs objets peuvent mettre en oeuvre la même encapsulation. Les données encapsulées dans unobjet sont désignées par les termes <strong>attributs</strong> ou <strong>variable d’instances</strong>. Les traitements encapsulés dans un objet sont désignées par le terme <strong>méthodes</strong> Dans cette approche, l’exécution d’un programme manipule uniquement des objets : création, passage de paramètres et communication entre objets. Un objet <span class="math display">\[A\]</span> communique avec un objet <span class="math display">\[B\]</span> lorsqu’un des traitements de l’objet <span class="math display">\[A\]</span> déclenche une des méthodes de l’objet <span class="math display">\[B\]</span>.</p>
-<h3 id="classe">Classe</h3>
-<p>Un langage orienté objet doit fournir un moyen de décrire une encapsulation (utilisation et réalisation). En général, cette description d’une encapsulation est faite à l’aide de la construction appelée <strong>classe</strong>. Dans un langage type, une classe correspond à la déclaration d’un type.</p>
-<h3 id="description-des-encapsulations-en-java">Description des encapsulations en Java</h3>
-<p>Le langage Java est un langage orienté objet typé utilisant des classes pour la description des encapsulations.</p>
-<ul>
-<li><p>Définition de la classe Java <code>PorteCharniere</code> dans un fichier source nommé : <code>PorteCharniere.java</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">class</span> PorteCharniere {</a>
-<a class="sourceLine" id="cb1-2" title="2">  <span class="co">// La définition des variables / attributs d&#39;un objet</span></a>
-<a class="sourceLine" id="cb1-3" title="3">  <span class="dt">boolean</span> estFerme;</a>
-<a class="sourceLine" id="cb1-4" title="4"></a>
-<a class="sourceLine" id="cb1-5" title="5">  <span class="co">//La définition des méthodes d&#39;un objet</span></a>
-<a class="sourceLine" id="cb1-6" title="6">  <span class="dt">void</span> <span class="fu">fermer</span>(){</a>
-<a class="sourceLine" id="cb1-7" title="7">      <span class="co">/* Todo */</span></a>
-<a class="sourceLine" id="cb1-8" title="8">      estFerme=<span class="kw">true</span>;</a>
-<a class="sourceLine" id="cb1-9" title="9">  }</a>
-<a class="sourceLine" id="cb1-10" title="10"></a>
-<a class="sourceLine" id="cb1-11" title="11">  <span class="dt">void</span> <span class="fu">ouvrir</span>(){</a>
-<a class="sourceLine" id="cb1-12" title="12">      <span class="co">/*Todo*/</span></a>
-<a class="sourceLine" id="cb1-13" title="13">      estFerme=<span class="kw">false</span>;</a>
-<a class="sourceLine" id="cb1-14" title="14">  }</a>
-<a class="sourceLine" id="cb1-15" title="15"></a>
-<a class="sourceLine" id="cb1-16" title="16">  <span class="dt">boolean</span> <span class="fu">estFerme</span>(){</a>
-<a class="sourceLine" id="cb1-17" title="17">      <span class="kw">return</span> estFerme;</a>
-<a class="sourceLine" id="cb1-18" title="18">  }</a>
-<a class="sourceLine" id="cb1-19" title="19">  }</a></code></pre></div></li>
-</ul>
-<h2 id="les-objets"><i class="fas fa-code"></i> Les objets</h2>
-<p>L’<code>objet</code> est l’entit de base de l’exécution. À chaque objet est attribu une zone mémoire différente. Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire d’identifier de manière unique un objet. L’<code>identité</code> d’un objet est assurée par l’adresse de la zone mémoire attribuée à cet objet. La zone mémoire d’un objet contient la valeur de ses attributs (suivant la description de l’encapsulation). Un objet encapsule les méthodes. En pratique, tous les objets mettant en oeuvre la même encapsulation partagent le code des méthodes. Ce code commun est exécuté avec l’identité (la zone mémoire) de l’objet sur lequel est déclenchée une action.</p>
-<p>Un langage orienté objet doit fournir des mécanismes pour : - créer un objet : <strong>instanciation</strong> - déclencher une action sur un objet : <strong>envoi de messages</strong> - assurer la séparation utilisation/ réalisation : <strong>masquage d’information</strong></p>
-<h3 id="instanciation">Instanciation</h3>
-<p>L’<code>instanciation</code> désigne l’opération de créer un objet à partir de la description de l’encapsulation. Elle attribue une zone mémoire à l’objet et initialise ses attributs. Dans un langage à classe, un objet est instancié à partir d’une classe. Un objet est souvent désigné par le terme <code>instance</code>. Pour respecter l’encapsulation, la classe fournit le code d’initialisation par l’intermédiaire d’un traitement appelé <em>constructeur</em>. Comme une méthode, un constructeur admet une liste de paramètres. En Java, l’instanciation est une expression atomique construire à partir de l’opérateur <code>new</code> et d’un constructeur de la classe.</p>
-<h4 id="affectation-dans-une-variable">Affectation dans une variable</h4>
-<p>Comme habituellement dans le code, les variables / paramètres (de méthode) vont permettre de manipuler les objets / instances. Dans un langage typé, le compilateur vérifie la compatibilité des types entre le type de la variable / paramètre et l’instance affectée à cette variable. Une variable de type <code>PorteCharniere</code> contient une instance de la classe <code>PorteCharniere</code></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb2-1" title="1">PorteCharniere sesame; </a>
-<a class="sourceLine" id="cb2-2" title="2">sesame = <span class="kw">new</span> <span class="fu">PorteCharniere</span>();</a>
-<a class="sourceLine" id="cb2-3" title="3">Portecharniere paradis = <span class="kw">new</span> <span class="fu">Portecharniere</span>();</a>
-<a class="sourceLine" id="cb2-4" title="4">sesame = <span class="kw">new</span> <span class="fu">Portecharniere</span>();</a>
-<a class="sourceLine" id="cb2-5" title="5">paradis = sesame;</a>
-<a class="sourceLine" id="cb2-6" title="6">Telecommande maTelecommande = <span class="kw">new</span> <span class="fu">Telecommande</span>(<span class="dv">3</span>);</a>
-<a class="sourceLine" id="cb2-7" title="7">maTelecommande = sesame; <span class="co">// erreur type non compatible</span></a></code></pre></div>
-<p>En Java, les variables / paramètres correspondant à des objets sont des références. La variable <code>paradis</code> contient l’adresse d’un objet. La libération de la zone mémoire d’un objet est prise en charge par le ramasse miettes de la machine virtuelle de Java (“jvm”)</p>
-<p>Les variables des type de base (comme <code>int, float, boolean, byte, char</code>) contiennent des valeurs. Les comportements entre type de base et type référence sont différents dans l’affectation et le passage de paramètres. Les chaînes de caractères constantes sont des instances de la classe <code>string</code>. Les tableaux Java sont des objets avec des méthodes d’accès et possède l’attribut de longueur.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">class</span> Telecommande {</a>
-<a class="sourceLine" id="cb3-2" title="2">    <span class="dt">int</span> nbPortes;</a>
-<a class="sourceLine" id="cb3-3" title="3">    Portecharniere[] mesPortes;</a>
-<a class="sourceLine" id="cb3-4" title="4">    </a>
-<a class="sourceLine" id="cb3-5" title="5">    <span class="fu">Telecommande</span>(<span class="dt">int</span> capacite) {</a>
-<a class="sourceLine" id="cb3-6" title="6">        nbPortes = <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb3-7" title="7">        mesPortes = <span class="kw">new</span> PorteCharnière [capacite];</a>
-<a class="sourceLine" id="cb3-8" title="8">    }</a>
-<a class="sourceLine" id="cb3-9" title="9">    voir <span class="fu">positionner</span>(Portecharniere p){</a>
-<a class="sourceLine" id="cb3-10" title="10">        mesPortes[nbPortes]=p;</a>
-<a class="sourceLine" id="cb3-11" title="11">        nbPortes++;</a>
-<a class="sourceLine" id="cb3-12" title="12">        <span class="co">/* Todo depassement */</span></a>
-<a class="sourceLine" id="cb3-13" title="13">    }</a>
-<a class="sourceLine" id="cb3-14" title="14">    <span class="dt">void</span> <span class="fu">activer</span>(<span class="dt">int</span> numero){</a>
-<a class="sourceLine" id="cb3-15" title="15">        <span class="co">/*Todo*/</span></a>
-<a class="sourceLine" id="cb3-16" title="16">    }</a>
-<a class="sourceLine" id="cb3-17" title="17">    <span class="dt">void</span> <span class="fu">desactiver</span>(<span class="dt">int</span> numero){</a>
-<a class="sourceLine" id="cb3-18" title="18">        <span class="co">/*Todo*/</span></a>
-<a class="sourceLine" id="cb3-19" title="19">    }</a>
-<a class="sourceLine" id="cb3-20" title="20">    <span class="dt">void</span> <span class="fu">desactiverTout</span>(){</a>
-<a class="sourceLine" id="cb3-21" title="21">        <span class="co">/*Todo*/</span></a>
-<a class="sourceLine" id="cb3-22" title="22">    }</a>
-<a class="sourceLine" id="cb3-23" title="23">} </a></code></pre></div>
-<p>Pour respecter l’encapsulation, le code du constructeur doit s’assurer d’initiliser les attributs avec des valeurs cohérentes par rapport à l’encapsulation. Sinon les futures actions déclenchées sur l’objet ne respecteront pas le service proposé par l’encapsulation. Le cas le plus fréquent est une valeur invalide par les paramètres du constructeur. Les actions d’une instance de télécommande sont elles cohérentes avec le service de l’encapsulation si la valeur du paramètre d’initialisation est égale à zéro ?</p>
-<h3 id="envoie-de-messages">Envoie de messages</h3>
-<p>Un <code>message</code> est formé d’un nom et d’une liste de valeur de paramètres (cette liste peut être vide). À la réception d’un message, l’objet fait la correspondant entre le message et l’action à déclencher.</p>
-<p>La notion d’envoi de messages cherche à abstraire la manière dont est choisie l’action. Un même message peut déclencher des actions différentes sur des encapsulations différentes : Quel est le code déclenché par l’appel à une méthode ? Est-ce un accès à un attribut ou l’appel à une méthode ? en général la notation pointée est utilisée pour indiquer l’envoie du’n message à un objet. L’envoi du message s’écrit en utilisant la variable qui référence l’objet. Envoie de messages avec les variables de l’exemple précédent :</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb4-1" title="1"><span class="co">// appel d&#39;un traitement </span></a>
-<a class="sourceLine" id="cb4-2" title="2">paradis.<span class="fu">fermer</span>();</a>
-<a class="sourceLine" id="cb4-3" title="3">sesame.<span class="fu">ouvrir</span>();</a>
-<a class="sourceLine" id="cb4-4" title="4">sesame.<span class="fu">estFerme</span>();</a>
-<a class="sourceLine" id="cb4-5" title="5">maTelecommande.<span class="fu">positionner</span>(sesame);</a>
-<a class="sourceLine" id="cb4-6" title="6">maTelecommande.<span class="fu">activer</span>(<span class="dv">1</span>);</a>
-<a class="sourceLine" id="cb4-7" title="7">maTelecommande.<span class="fu">desactiver</span>(<span class="dv">2</span>);</a>
-<a class="sourceLine" id="cb4-8" title="8">maTelecommande.<span class="fu">desactivertout</span>();</a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">// accès à un attribut</span></a>
-<a class="sourceLine" id="cb4-10" title="10">sesame.<span class="fu">estFerme</span> = <span class="kw">true</span>;</a>
-<a class="sourceLine" id="cb4-11" title="11">maTelecommande.<span class="fu">mesPortes</span>[<span class="dv">1</span>].<span class="fu">estFerme</span> = <span class="kw">false</span>; </a>
-<a class="sourceLine" id="cb4-12" title="12">maTelecommande.<span class="fu">mesPortes</span>[<span class="dv">1</span>].<span class="fu">ouvrir</span>();</a></code></pre></div>
-<p>En java, l’abstraction n’est pas complète car la syntaxe est différente entre un attribut et un méthode. C’est au moment de l’exécution que l’envoi de messages est réalisé. Le message est transmis à l’objet référencé par la variable. Du coup, la compilation ne peut pas vérifier l’existence d’un message sur un objet. La seule vérification possible est par rapport au type de la variable.</p>
-<h3 id="construire-une-encapsulation">Construire une encapsulation</h3>
-<h4 id="encapsulation-et-masquage-dinformation">Encapsulation et masquage d’information</h4>
-<p>Un objet met en oeuvre une encapsulation, il y a donc abstraction sur la réalisation de l’objet. Pour permettre de changer cette réalisation sans modifier le code utilisant cet objet (code client), nous cherchons à masquer l’information sur la réalisation au coude client. Les détails de la réalisation d’un objet doivent être visible le moins possible. Dans un langage à classe, ce masque d’information est défini au niveau de la classe avec le mécanisme de portée des identificateurs. De base, deux portées sont nécessaires pour séparer utilisation et réalisation : - portée publique, l’identificateur est accessible par un code écrit en dehors de la classe - portée privée, l’identificateur est accessible uniquemeent par le code contenu dans la classe</p>
-<p>Dans le code de la classe <code>Telecommande</code>, l’instruction <code>mesPortes[i].estFerme</code> ne respecte pas l’encapsulation. La définition de l’attribut risque de changer : - le choix de stocker la valeur plutôt que la calculer - le choix de son type ou de la signification de sa valeur</p>
-<p>Le choix de définir un attribut est une décision de réalisation.</p>
-<blockquote>
-<p>Afin de respecter l’encapsulation, tous les attributs d’un objet doivent être déclarés privés et seules les méthodes peuvent être déclarées publiques</p>
-</blockquote>
-<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">class</span> Telecommande {</a>
-<a class="sourceLine" id="cb5-2" title="2">    <span class="kw">private</span> <span class="dt">int</span> nbPortes;</a>
-<a class="sourceLine" id="cb5-3" title="3">    <span class="kw">private</span> PorteCharniere[] mesPortes;</a>
-<a class="sourceLine" id="cb5-4" title="4">    </a>
-<a class="sourceLine" id="cb5-5" title="5">    <span class="kw">public</span> <span class="fu">Telecommande</span>(<span class="dt">int</span> capacite){</a>
-<a class="sourceLine" id="cb5-6" title="6">        nbPortes = <span class="dv">0</span>; </a>
-<a class="sourceLine" id="cb5-7" title="7">        mesPortes = <span class="kw">new</span> Portecharniere[capacite];</a>
-<a class="sourceLine" id="cb5-8" title="8">    }</a>
-<a class="sourceLine" id="cb5-9" title="9">    </a>
-<a class="sourceLine" id="cb5-10" title="10">    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">estRempli</span> ( ) {</a>
-<a class="sourceLine" id="cb5-11" title="11">    <span class="kw">return</span> mesPortes . length &lt;= nbPortes ;</a>
-<a class="sourceLine" id="cb5-12" title="12">    }</a>
-<a class="sourceLine" id="cb5-13" title="13">    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">positionner</span> ( PorteCharniere p ) {</a>
-<a class="sourceLine" id="cb5-14" title="14">    i <span class="fu">f</span> ( mesPortes . length &lt;= nbPortes )</a>
-<a class="sourceLine" id="cb5-15" title="15">    <span class="kw">return</span> ; <span class="co">/* Todo erreur de depassement */</span></a>
-<a class="sourceLine" id="cb5-16" title="16">    mesPortes [ nbPortes ] = p ;</a>
-<a class="sourceLine" id="cb5-17" title="17">    nbPortes ++;</a>
-<a class="sourceLine" id="cb5-18" title="18">    }</a>
-<a class="sourceLine" id="cb5-19" title="19">    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">activer</span> ( <span class="dt">int</span> numero ) {</a>
-<a class="sourceLine" id="cb5-20" title="20">    mesPortes [numero ] . ouvr <span class="fu">ir</span> ( ) ;</a>
-<a class="sourceLine" id="cb5-21" title="21">    }</a>
-<a class="sourceLine" id="cb5-22" title="22">    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">desactiver</span> ( <span class="dt">int</span> numero ) {</a>
-<a class="sourceLine" id="cb5-23" title="23">    mesPortes [numero ] . <span class="fu">fermer</span> ( ) ;</a>
-<a class="sourceLine" id="cb5-24" title="24">    }</a>
-<a class="sourceLine" id="cb5-25" title="25">    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">desactiverTout</span> ( ) {</a>
-<a class="sourceLine" id="cb5-26" title="26">    <span class="kw">for</span> ( <span class="dt">int</span> i = <span class="dv">0</span> ; i &lt; nbPortes ; i ++ )</a>
-<a class="sourceLine" id="cb5-27" title="27">    <span class="kw">if</span> ( ! mesPortes [ i ] . <span class="fu">estFerme</span> ( ) )</a>
-<a class="sourceLine" id="cb5-28" title="28">    mesPortes[i].<span class="fu">fermer</span>();</a>
-<a class="sourceLine" id="cb5-29" title="29">    }</a>
-<a class="sourceLine" id="cb5-30" title="30">}</a></code></pre></div>
-<h4 id="objet-constant">Objet constant</h4>
-<p>Un objet possède un état défini à partir des valeurs contenues dans l’ensemble de ses attributs. Un objet est constant si son état ne peut-être modifié. En Java, un objet est constant que si aucune de ses méthodes ne modifie son état : exemple dans l’A.P.I standard Java, la différence entre les instances de la classe <code>String</code> et les instances de la classe StringBuffer. Cette encapsulation des chaînes constantes montre l’utilisation habituelle des objets constants en Java : le partage d’objets.</p>
-<h4 id="communication-entre-objets">Communication entre objets</h4>
-<p>Un objet est passif. Il déclenche des actions uniquement en réponse à des sollicitations d’autres objets. Prenons le cas où un objet <code>t</code> (instance de la classe <code>Petit</code>) doit envoyer le message <code>voler</code> à un objet <code>r</code> (instance de la classe <code>Coeur</code>).</p>
-<p>Pour communiquer, l’objet <code>t</code> doit posséder une référence sur l’objet <code>r</code> au moins au moment de l’exécution de l’envoi du message. La solution directe est de stocker cette référence dans les attributs de l’objet <code>t</code>; l’objet <code>t</code> “a un” objet <code>r</code>. La classe <code>Petit</code> doit déclarer un attribut / une variable d’instance de type <code>Coeur</code>.</p>
-<p>Le lien <code>"a-un"</code> entre deux classes. Une classe <code>P</code> possède un lien “a un” avec une classe <code>R</code> si elle définit un attribut de type <code>R</code>. Une instance de <code>P</code> possède dans ses attributs une instance de <code>R</code>.</p>
-<p>Le lien “a-un” ne fixe pas la manière d’obtenir la référence stockée dans l’attribut : instanciation de la classe Coeur dans le constructeur de la classe <code>Petit</code> ou passage de la référence comme paramètre d’un constructeur ou d’une méthode de la classe <code>Petit</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">class</span> Telecommande{</a>
-<a class="sourceLine" id="cb6-2" title="2">  <span class="dt">int</span> nbPortes ;</a>
-<a class="sourceLine" id="cb6-3" title="3">  PorteCharniere [ ] mesPortes ;</a>
-<a class="sourceLine" id="cb6-4" title="4">  <span class="fu">Telecommande</span> ( <span class="dt">int</span> capac ite ) {</a>
-<a class="sourceLine" id="cb6-5" title="5">    nbPortes = <span class="dv">0</span> ;</a>
-<a class="sourceLine" id="cb6-6" title="6">    mesPortes = <span class="kw">new</span> PorteCharniere [ capac ite ] ;</a>
-<a class="sourceLine" id="cb6-7" title="7">  }</a>
-<a class="sourceLine" id="cb6-8" title="8"></a>
-<a class="sourceLine" id="cb6-9" title="9">  <span class="dt">void</span> pos it <span class="fu">ionner</span> ( PorteCharniere p ) {</a>
-<a class="sourceLine" id="cb6-10" title="10">    i <span class="fu">f</span> ( nbPortes &gt;= mesPortes . length )</a>
-<a class="sourceLine" id="cb6-11" title="11">      <span class="kw">return</span> ; <span class="co">/* Todo erreur de depassement */</span></a>
-<a class="sourceLine" id="cb6-12" title="12">    mesPortes [ nbPortes ] = p ;</a>
-<a class="sourceLine" id="cb6-13" title="13">    nbPortes ++;</a>
-<a class="sourceLine" id="cb6-14" title="14">  }</a>
-<a class="sourceLine" id="cb6-15" title="15">  <span class="dt">void</span> a c t i v e <span class="fu">r</span> ( <span class="dt">int</span> numero ) {</a>
-<a class="sourceLine" id="cb6-16" title="16">    mesPortes [numero ] . ouvr <span class="fu">ir</span> ( ) ;</a>
-<a class="sourceLine" id="cb6-17" title="17">  }</a>
-<a class="sourceLine" id="cb6-18" title="18">  <span class="dt">void</span> desac t <span class="fu">iver</span> ( <span class="dt">int</span> numero ) {</a>
-<a class="sourceLine" id="cb6-19" title="19">    mesPortes [numero ] . <span class="fu">fermer</span> ( ) ;</a>
-<a class="sourceLine" id="cb6-20" title="20">  }</a>
-<a class="sourceLine" id="cb6-21" title="21">  <span class="dt">void</span> desact <span class="fu">iverTout</span> ( ) {</a>
-<a class="sourceLine" id="cb6-22" title="22">    <span class="kw">for</span> ( <span class="dt">int</span> i = <span class="dv">0</span> ; i &lt; nbPortes ; i ++ )</a>
-<a class="sourceLine" id="cb6-23" title="23">      i <span class="fu">f</span> ( ! mesPortes [ i ] . estFerme )</a>
-<a class="sourceLine" id="cb6-24" title="24">        mesPortes [ i ] . <span class="fu">fermer</span> ( ) ;</a>
-<a class="sourceLine" id="cb6-25" title="25">  }</a>
-<a class="sourceLine" id="cb6-26" title="26">}</a></code></pre></div>
-<h4 id="des-traitements-applicables-à-toutes-les-encapsulations">Des traitements applicables à toutes les encapsulations</h4>
-<p>Dans la pratique, il existe un petit nombre de traitements particuliers qui peuvent s’appliquer à tous les objets. Voici les plus fréquents :</p>
-<p>Pour vérifier l’égalité entre deux instances de la même classe. L’opérateur Java <code>==</code> indique l’égalité de références (c’est la même instance). Mais deux instances différentes peuvent être considérées comme égales par rapport à la valeur de leurs attributs. C’est l’objectif de la méthode <code>equals()</code>.</p>
-<p>Pour copier ou cloner un objet. Le passage d’un paramètre objet se fait exclusiement par référence / adresse. Pour éviter un effet de bord, il est donc parfois nécessaire d’effectuer une copie d’un objet. C’est l’objectif de la méthode <code>clone()</code>.</p>
-<p>Le langage Java regroupe ces méthodes particulières dans la classe <code>Object</code>. Ces méthodes sont définies avec un traitement par défaut qu’il faut adapter à chaque classe : par exemple, la méthode <code>equals()</code> a pour traitement par défaut l’égalité de référence.</p>
-<p>Dans la classe <code>Object</code> nous trouvons la méthode <code>toString()</code>. Elle retourne une chaîne de caractère qui va permettre de tracer, par exemple, la valeur des attributs d’un objet. Son code par défaut retourne une chaîne correspondant à l’identité de l’objet.</p>
-<h2 id="les-classes"><i class="fas fa-code"></i> Les classes</h2>
-<p>Une <code>classe</code> est un moule qui décrit le <strong>quoi</strong> : la spécification des messages qui peuvent être envoyés à l’objet. Et le <strong>comment</strong> la manière de réaliser cette spécification. Pour instancier une classe, se répartit en trois formes : 1. <strong>Classe Concrète</strong> : une classe instanciable 2. <strong>Classe abstraite</strong> : la réalisation est incomplète, au moins une des méthodes d’instance n’a pas de mise en oeuvre (pas corps défini). 3. <strong>Classe abstraite pure ou interface</strong> : aucune réalisation n’est définie, elle contient les déclarations des méthodes d’instance.</p>
-<p>Ce chapitre est centrée sur la construction des classes concrètes.</p>
-<h3 id="classe-java">Classe Java</h3>
-<p>La syntaxe du langage Java différencie la construction d’une classe contenant une réalisation et d’une classe ne contenant pas de réalisation. 1. Construction avec réalisation : - classe concrète avec le mot clé seul <code>class</code> - classe abstraite en ajoutant le mot-clé <code>abstract</code> au mot clé <code>class</code> 2. Construction sans réalisation : classe abstraite pure avec le mot-clé <code>interface</code>. Cette construction ne contient ni attributs, ni constructeurs.</p>
-<p>Une classe/interface Java correspond à un fichier <code>.class</code> obtenu après compilation d’un fichier source. Ce fichier (en “bytecode” ou code intermédiaire) contient le code à exécuter mais aussi les informations sur la définition de la classe, par exemple : le type des paramètres d’une méthode.</p>
-<p>Le contenu des fichiers <code>.class</code> est utilisé par le compilateur (pour les informations de type) et par la machine virtuelle java (JVM) (interprétation du code intermédiaire)</p>
-<h4 id="paquetage">Paquetage</h4>
-<p>Les paquetages permettent de regrouper les classes / interfaces par thème. Le système de paquetage est hiérarchique avec la notion de sous-paquetage. Le caractère . sert de séparateur. Les paquetages commençant par <code>java, javax</code> font partie de la distribution stard (JRE et JDK).</p>
-<p>Un paquetage correspond à un domain de nom : le nom d’une classe / interface est unique dans un paquetage. Le nom complet d’une classe / interface est constitué de la hiérarchie de paquetage puis du nom de la classe/interface. Par exemple <code>java.lang.String</code>. L’inclusion d’une classe/interface dans un paquetage est précisée par l’instruction <code>package nom</code> sur la première ligne du fichier source. Sans ce mot-clé, les classes sont incluses dans un paquetage unique sans nom (paquetage anonyme ou paquetage par défaut). Pour désigner une classe/interface à l’extérieur d’un paquetage, il est nécessaire d’utiliser son nom complet : <code>matos.on.DentBleu maDent = new matos.onde.DentBleu();</code>. Dans l’écriture d’un fichier source, il est possible de raccourcir le nom complet d’une classe à son nom, en utilisant le mot clé <code>import</code>. Au début du fichier source, l’instruction <code>import matos.onde.DentBleu</code>; permet de désigner la classe uniquement par <code>DentBleu</code>. Le compilateur lui attribue son nom complet.</p>
-<p>L’organisation physique des fichiers <code>.class</code> correspond à la hiérarchie de paquetage. Le fichier <code>String.class</code> se trouve dans l’arborescence de répertoire <code>java/lang</code>. Lorsque le compilateur ou la machine virtuelle ont besoin de la définition d’une classe, ils utilisent son nom complet comme chemin de recherche du fichier <code>.class</code>. Par défaut, la recherche s’effectue à partir du répertoire courant (celui du lancement de la commande). L’option <code>-cp</code> et la variable d’environnement <code>CLASSPATH</code> permettant d’indiquer les répertoires à analyser pour trouver ce chemin.</p>
-<h3 id="classe-concrète">Classe concrète</h3>
-<p>La construction Java <code>class</code> contient trois catégories de membre : les variables, les méthodes et les constructeurs.</p>
-<h4 id="portée-des-membres-dune-classe">Portée des membres d’une classe</h4>
-<p>Les modificateurs de porte précisent la <em>portée d’utilisation</em> d’un membre d’une classe. Ils se placent devant chaque définition : 1. <code>private</code> : accessible uniquement par la classe 2. <code>public</code> : accessible partout 3. au paquetage : accessible par les classes du même paquetage</p>
-<p>Une classe possède deux portées. Sans mot-clé, sa portée est restreinte à son paquetage. Avec le mot-clé <code>public</code>, elle est accessible à l’extrieur de son paquetage : <code>public class DentBleu</code>.</p>
-<h4 id="définition-dune-classe-concrète">Définition d’une classe concrète</h4>
-<p>Définition d’une classe concrèete Java et de ses membres</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb7-1" title="1">[<span class="kw">public</span>] <span class="kw">class</span> NomClasse { </a>
-<a class="sourceLine" id="cb7-2" title="2">  <span class="co">//Variables d&#39;instance/attributs,</span></a>
-<a class="sourceLine" id="cb7-3" title="3">  [<span class="dt">final</span>] [<span class="kw">public</span>|<span class="kw">private</span>] type nom [= expression];</a>
-<a class="sourceLine" id="cb7-4" title="4">  </a>
-<a class="sourceLine" id="cb7-5" title="5">  <span class="co">//Méthodes d&#39;instance,</span></a>
-<a class="sourceLine" id="cb7-6" title="6">  [<span class="kw">public</span> | <span class="kw">private</span>] typeRetour méthodeInstance([liste de paramètres]) {</a>
-<a class="sourceLine" id="cb7-7" title="7">    <span class="co">//code</span></a>
-<a class="sourceLine" id="cb7-8" title="8">  }</a>
-<a class="sourceLine" id="cb7-9" title="9">  </a>
-<a class="sourceLine" id="cb7-10" title="10">  <span class="co">//constructeurs</span></a>
-<a class="sourceLine" id="cb7-11" title="11">  [<span class="kw">public</span> | <span class="kw">private</span>] <span class="fu">NomClasse</span> ([liste de paramètres]){</a>
-<a class="sourceLine" id="cb7-12" title="12">    <span class="co">//code</span></a>
-<a class="sourceLine" id="cb7-13" title="13">  }</a>
-<a class="sourceLine" id="cb7-14" title="14">}</a></code></pre></div>
-<h4 id="variable-dinstance">Variable d’instance</h4>
-<p>C’est une variable locale à chaque instance. Sa valeur est stockée dans la zone mémoire de l’instance. Son initialisation s’effectue soit à sa déclaration soit dans le code d’une constructeur. La machine virtuelle Java initialise systématiquement les variables d’instance avec une valeur par défaut dépendant du type (référence/null, int/0, boolean/false). Le mot-clé <code>final</code> devant la définition d’une variable correspond à une variable constante. Son initialisation est possible dans un constructeur.</p>
-<h4 id="méthode-dinstance">Méthode d’instance</h4>
-<p>Une méthode d’instance s’applique à une instance. Il existe deux catégories de méthode : + méthode d’accès, ou acccesseur. Elle donne des informations sur l’état des attributs. + méthode d’altération ou modificateur. Elle modifie l’état des attributs.</p>
-<p>Le mécanisme de surcharge autorise plusieurs méthodes à porter le même nom. La distinction se fait, à la compilation, en fonction de la liste des paramètres d’appel (nombre, type et ordre). Par exemple, la méthode <code>println</code> de la classe <code>java.io.PrintStream</code>.</p>
-<p>Le mot clé <code>this</code> désigne / référence l’instance qui vient de recevoir le message. Il est utilisé dans le code + Soit pour passer l’objet en paramètre d’une méthode (ou d’un constructeur) + Soit pour désigner un attribut en cas d’ambiguïté</p>
-<h4 id="constructeur">Constructeur</h4>
-<p>Un constructeur n’est pas une méthode. Il est uniquement appelé à <em>l’instanciation</em>. Son code assure la bonne initialisation des variables d’instance. Le constructeur prendre le nom de la classe. Il n’a pas de type de retour. L’instance existe au moment de l’appel du constructeur. Le code du constructeur peut utiliser les méthodes d’instance et la référence <code>this</code>. Si une classe ne contient pas de constructeur le compilateur Java ajoute un constructeur publique sans paramètre avec un corps vide (désigné par le terme constructeur par défaut). La surcharge des constructeurs est autorisée. Avec la définition de plusieurs constructeurs, il est nécessaire d’avoir un mécanisme de factorisation du code d’initialisation. Un constructeur peut déclencher le code d’un autre constructeur par l’instruction (qui utilise le mécanisme de surcharge) : <code>this(par1, par2, par3)</code>. Cette instruction doit être la première ligne du constructeur.</p>
-<h3 id="lien-a-un-entre-classes">Lien “a-un” entre classes</h3>
-<p>Le lien “a-un” correspond à la relation d’utilisation la plus basique : la réalisation d’une encapsulation nécessite l’appel aux méthodes d’une autre encapsulation.</p>
-<h4 id="relation-dutilisation-dans-la-réalisation">Relation d’utilisation dans la réalisation</h4>
-<p>La classe <code>PorteCharniere</code> possède un lien “a-un” avec la classe <code>DentBleu</code>. Une instance de <code>PorteCharniere</code> contient dans ses attributs la référence à une instance de <code>DentBleu</code>.</p>
-<p>Dans notre cas de réalisation, l’instant de <code>DentBleu</code> ne peut pas être partagée et doit être utilisée dès l’instanciation de <code>PorteCharniere</code>.</p>
-<p>Le lien “a-un” se traduit dans le code de la classe <code>PorteCharniere</code> : - définition d’une variable d’instance du type <code>DentBleu</code> - instanciation de <code>DentBleu</code> dans le constructeur et affectation à la variable d’instance</p>
-<pre><code>import matos . onde . DentBleu ;
-public class PorteCharniere {
-private boolean estFerme ;
-private f ina l DentBleu maDent ;
-public PorteCharniere ( ) {
-maDent = new DentBleu ( ) ;
-ouvrir ( ) ;
-}</code></pre>
-<h4 id="factoriser-du-code">Factoriser du code</h4>
-<p>Pour éviter de dupliquer le code, la construction de la classe <code>PorteVerrouCharniere</code> peut se faire en utilisant un lien “a-un” avec la classe <code>PorteCharniere</code>. L’instanciation de la classe <code>PorteVerrouCharniere</code> doit instancier la classe <code>PorteCharniere</code></p>
 
-</body>
+<h2 id="lencapsulation">L’encapsulation</h2>
+
+<p>L’<code class="language-plaintext highlighter-rouge">encapsulation</code> dans l’approche objet consiste à regrouper le code (données et
+traitements) qui fournit un même service dans une seule entité. Une
+encapsulation spécifie le fonctionnement d’un service (par un ensemble
+d’actions) en masquant la manière de le réaliser. 
+Respecter le concept d’encapsulation permet de séparer l’utilisation d’un
+service de sa réalisation et renforcer la manipulation d’abstractions dans la
+fabrication d’un logiciel.</p>
+
+<h3 id="objet">Objet</h3>
+
+<p>L’<code class="language-plaintext highlighter-rouge">objet</code> est l’entité qui met en oeuvre, à l’exécution, une encapsulation.
+Plusieurs objets peuvent mettre en oeuvre la même encapsulation.
+Les données encapsulées dans unobjet sont désignées par les termes <strong>attributs</strong>
+ou <strong>variable d’instances</strong>. 
+Les traitements encapsulés dans un objet sont désignées par le terme
+<strong>méthodes</strong>
+Dans cette approche, l’exécution d’un programme manipule uniquement des objets :
+création, passage de paramètres et communication entre objets. Un objet <script type="math/tex">A</script>
+communique avec un objet <script type="math/tex">B</script> lorsqu’un des traitements de l’objet <script type="math/tex">A</script>
+déclenche une des méthodes de l’objet <script type="math/tex">B</script>.</p>
+
+<h3 id="classe">Classe</h3>
+
+<p>Un langage orienté objet doit fournir un moyen de décrire une encapsulation
+(utilisation et réalisation). En général, cette description d’une encapsulation
+est faite à l’aide de la construction appelée <strong>classe</strong>. 
+Dans un langage type, une classe correspond à la déclaration d’un type.</p>
+
+<h3 id="description-des-encapsulations-en-java">Description des encapsulations en Java</h3>
+<p>Le langage Java est un langage orienté objet typé utilisant des classes pour la
+description des encapsulations.</p>
+
+<ul>
+  <li>
+    <p>Définition de la classe Java <code class="language-plaintext highlighter-rouge">PorteCharniere</code> dans un fichier source nommé :
+<code class="language-plaintext highlighter-rouge">PorteCharniere.java</code>.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">PorteCharniere</span> <span class="o">{</span>
+  <span class="c1">// La définition des variables / attributs d'un objet</span>
+  <span class="kt">boolean</span> <span class="n">estFerme</span><span class="o">;</span>
+    
+  <span class="c1">//La définition des méthodes d'un objet</span>
+  <span class="kt">void</span> <span class="nf">fermer</span><span class="o">(){</span>
+      <span class="cm">/* Todo */</span>
+      <span class="n">estFerme</span><span class="o">=</span><span class="kc">true</span><span class="o">;</span>
+  <span class="o">}</span>
+    
+  <span class="kt">void</span> <span class="nf">ouvrir</span><span class="o">(){</span>
+      <span class="cm">/*Todo*/</span>
+      <span class="n">estFerme</span><span class="o">=</span><span class="kc">false</span><span class="o">;</span>
+  <span class="o">}</span>
+    
+  <span class="kt">boolean</span> <span class="nf">estFerme</span><span class="o">(){</span>
+      <span class="k">return</span> <span class="n">estFerme</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="les-objets">Les objets</h2>
+
+<p>L’<code class="language-plaintext highlighter-rouge">objet</code> est l’entit de base de l’exécution. À chaque objet est attribu une
+zone mémoire différente. 
+Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire
+d’identifier de manière unique un objet. 
+L’<code class="language-plaintext highlighter-rouge">identité</code> d’un objet est assurée par l’adresse de la zone mémoire attribuée à
+cet objet. 
+La zone mémoire d’un objet contient la valeur de ses attributs (suivant la
+description de l’encapsulation). 
+Un objet encapsule les méthodes. En pratique, tous les objets mettant en oeuvre
+la même encapsulation partagent le code des méthodes. Ce code commun est exécuté
+avec l’identité (la zone mémoire) de l’objet sur lequel est déclenchée une
+action.</p>
+
+<p>Un langage orienté objet doit fournir des mécanismes pour :</p>
+<ul>
+  <li>créer un objet : <strong>instanciation</strong></li>
+  <li>déclencher une action sur un objet : <strong>envoi de messages</strong></li>
+  <li>assurer la séparation utilisation/ réalisation : <strong>masquage d’information</strong></li>
+</ul>
+
+<h3 id="instanciation">Instanciation</h3>
+
+<p>L’<code class="language-plaintext highlighter-rouge">instanciation</code> désigne l’opération de créer un objet à partir de la
+description de l’encapsulation. Elle attribue une zone mémoire à l’objet et
+initialise ses attributs. 
+Dans un langage à classe, un objet est instancié à partir d’une classe. Un objet
+est souvent désigné par le terme <code class="language-plaintext highlighter-rouge">instance</code>.
+Pour respecter l’encapsulation, la classe fournit le code d’initialisation par
+l’intermédiaire d’un traitement appelé <em>constructeur</em>. Comme une méthode, un
+constructeur admet une liste de paramètres.
+En Java, l’instanciation est une expression atomique construire à partir de
+l’opérateur <code class="language-plaintext highlighter-rouge">new</code> et d’un constructeur de la classe.</p>
+
+<h4 id="affectation-dans-une-variable">Affectation dans une variable</h4>
+
+<p>Comme habituellement dans le code, les variables / paramètres (de méthode) vont
+permettre de manipuler les objets / instances. 
+Dans un langage typé, le compilateur vérifie la compatibilité des types entre le
+type de la variable / paramètre et l’instance affectée à cette variable. 
+Une variable de type <code class="language-plaintext highlighter-rouge">PorteCharniere</code> contient une instance de la classe
+<code class="language-plaintext highlighter-rouge">PorteCharniere</code></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">PorteCharniere</span> <span class="n">sesame</span><span class="o">;</span> 
+<span class="n">sesame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PorteCharniere</span><span class="o">();</span>
+<span class="nc">Portecharniere</span> <span class="n">paradis</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Portecharniere</span><span class="o">();</span>
+<span class="n">sesame</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Portecharniere</span><span class="o">();</span>
+<span class="n">paradis</span> <span class="o">=</span> <span class="n">sesame</span><span class="o">;</span>
+<span class="nc">Telecommande</span> <span class="n">maTelecommande</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Telecommande</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+<span class="n">maTelecommande</span> <span class="o">=</span> <span class="n">sesame</span><span class="o">;</span> <span class="c1">// erreur type non compatible</span>
+</code></pre></div></div>
+
+<p>En Java, les variables / paramètres correspondant à des objets sont des
+références. La variable <code class="language-plaintext highlighter-rouge">paradis</code> contient l’adresse d’un objet. La libération
+de la zone mémoire d’un objet est prise en charge par le ramasse miettes de la
+machine virtuelle de Java (“jvm”)</p>
+
+<p>Les variables des type de base (comme <code class="language-plaintext highlighter-rouge">int, float, boolean, byte, char</code>)
+contiennent des valeurs. Les comportements entre type de base et type référence
+sont différents dans l’affectation et le passage de paramètres. Les chaînes de
+caractères constantes sont des instances de la classe <code class="language-plaintext highlighter-rouge">string</code>. Les tableaux
+Java sont des objets avec des méthodes d’accès et possède l’attribut de
+longueur.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Telecommande</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">nbPortes</span><span class="o">;</span>
+    <span class="nc">Portecharniere</span><span class="o">[]</span> <span class="n">mesPortes</span><span class="o">;</span>
+    
+    <span class="nc">Telecommande</span><span class="o">(</span><span class="kt">int</span> <span class="n">capacite</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">nbPortes</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">mesPortes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PorteCharnière</span> <span class="o">[</span><span class="n">capacite</span><span class="o">];</span>
+    <span class="o">}</span>
+    <span class="n">voir</span> <span class="nf">positionner</span><span class="o">(</span><span class="nc">Portecharniere</span> <span class="n">p</span><span class="o">){</span>
+        <span class="n">mesPortes</span><span class="o">[</span><span class="n">nbPortes</span><span class="o">]=</span><span class="n">p</span><span class="o">;</span>
+        <span class="n">nbPortes</span><span class="o">++;</span>
+        <span class="cm">/* Todo depassement */</span>
+    <span class="o">}</span>
+    <span class="kt">void</span> <span class="nf">activer</span><span class="o">(</span><span class="kt">int</span> <span class="n">numero</span><span class="o">){</span>
+        <span class="cm">/*Todo*/</span>
+    <span class="o">}</span>
+    <span class="kt">void</span> <span class="nf">desactiver</span><span class="o">(</span><span class="kt">int</span> <span class="n">numero</span><span class="o">){</span>
+        <span class="cm">/*Todo*/</span>
+    <span class="o">}</span>
+    <span class="kt">void</span> <span class="nf">desactiverTout</span><span class="o">(){</span>
+        <span class="cm">/*Todo*/</span>
+    <span class="o">}</span>
+<span class="o">}</span> 
+</code></pre></div></div>
+
+<p>Pour respecter l’encapsulation, le code du constructeur doit s’assurer
+d’initiliser les attributs avec des valeurs cohérentes par rapport à
+l’encapsulation. Sinon les futures actions déclenchées sur l’objet ne
+respecteront pas le service proposé par l’encapsulation. Le cas le plus fréquent
+est une valeur invalide par les paramètres du constructeur. Les actions d’une
+instance de télécommande sont elles cohérentes avec le service de
+l’encapsulation si la valeur du paramètre d’initialisation est égale à zéro ?</p>
+
+<h3 id="envoie-de-messages">Envoie de messages</h3>
+
+<p>Un <code class="language-plaintext highlighter-rouge">message</code> est formé d’un nom et d’une liste de valeur de paramètres (cette
+liste peut être vide). À la réception d’un message, l’objet fait la
+correspondant entre le message et l’action à déclencher.</p>
+
+<p>La notion d’envoi de messages cherche à abstraire la manière dont est choisie
+l’action. Un même message peut déclencher des actions différentes sur des
+encapsulations différentes : Quel est le code déclenché par l’appel à une
+méthode ? Est-ce un accès à un attribut ou l’appel à une méthode ? en général la
+notation pointée est utilisée pour indiquer l’envoie du’n message à un objet.
+L’envoi du message s’écrit en utilisant la variable qui référence l’objet.
+Envoie de messages avec les variables de l’exemple précédent :</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// appel d'un traitement </span>
+<span class="n">paradis</span><span class="o">.</span><span class="na">fermer</span><span class="o">();</span>
+<span class="n">sesame</span><span class="o">.</span><span class="na">ouvrir</span><span class="o">();</span>
+<span class="n">sesame</span><span class="o">.</span><span class="na">estFerme</span><span class="o">();</span>
+<span class="n">maTelecommande</span><span class="o">.</span><span class="na">positionner</span><span class="o">(</span><span class="n">sesame</span><span class="o">);</span>
+<span class="n">maTelecommande</span><span class="o">.</span><span class="na">activer</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+<span class="n">maTelecommande</span><span class="o">.</span><span class="na">desactiver</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+<span class="n">maTelecommande</span><span class="o">.</span><span class="na">desactivertout</span><span class="o">();</span>
+<span class="c1">// accès à un attribut</span>
+<span class="n">sesame</span><span class="o">.</span><span class="na">estFerme</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+<span class="n">maTelecommande</span><span class="o">.</span><span class="na">mesPortes</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="na">estFerme</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> 
+<span class="n">maTelecommande</span><span class="o">.</span><span class="na">mesPortes</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="na">ouvrir</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>En java, l’abstraction n’est pas complète car la syntaxe est différente entre un
+attribut et un méthode. C’est au moment de l’exécution que l’envoi de messages
+est réalisé. Le message est transmis à l’objet référencé par la variable. Du
+coup, la compilation ne peut pas vérifier l’existence d’un message sur un objet.
+La seule vérification possible est par rapport au type de la variable.</p>
+
+<h3 id="construire-une-encapsulation">Construire une encapsulation</h3>
+
+<h4 id="encapsulation-et-masquage-dinformation">Encapsulation et masquage d’information</h4>
+
+<p>Un objet met en oeuvre une encapsulation, il y a donc abstraction sur la
+réalisation de l’objet. Pour permettre de changer cette réalisation sans
+modifier le code utilisant cet objet (code client), nous cherchons à masquer
+l’information sur la réalisation au coude client. Les détails de la réalisation
+d’un objet doivent être visible le moins possible. Dans un langage à classe, ce
+masque d’information est défini au niveau de la classe avec le mécanisme de
+portée des identificateurs. De base, deux portées sont nécessaires pour séparer
+utilisation et réalisation :</p>
+<ul>
+  <li>portée publique, l’identificateur est accessible par un code écrit en dehors
+de la classe</li>
+  <li>
+    <p>portée privée, l’identificateur est accessible uniquemeent par le code contenu
+dans la classe</p>
+
+    <p>Dans  le code de la classe <code class="language-plaintext highlighter-rouge">Telecommande</code>, l’instruction
+<code class="language-plaintext highlighter-rouge">mesPortes[i].estFerme</code> ne respecte pas l’encapsulation. La définition de
+l’attribut risque de changer :</p>
+    <ul>
+      <li>le choix de stocker la valeur plutôt que la calculer</li>
+      <li>le choix de son type ou de la signification de sa valeur</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Le choix de définir un attribut est une décision de réalisation.</p>
+
+<blockquote>
+  <p>Afin de respecter l’encapsulation, tous les attributs d’un objet doivent être
+déclarés privés et seules les méthodes peuvent être déclarées publiques</p>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Telecommande</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">nbPortes</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">PorteCharniere</span><span class="o">[]</span> <span class="n">mesPortes</span><span class="o">;</span>
+    
+    <span class="kd">public</span> <span class="nf">Telecommande</span><span class="o">(</span><span class="kt">int</span> <span class="n">capacite</span><span class="o">){</span>
+        <span class="n">nbPortes</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> 
+        <span class="n">mesPortes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Portecharniere</span><span class="o">[</span><span class="n">capacite</span><span class="o">];</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">estRempli</span> <span class="o">(</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">mesPortes</span> <span class="o">.</span> <span class="n">length</span> <span class="o">&lt;=</span> <span class="n">nbPortes</span> <span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">positionner</span> <span class="o">(</span> <span class="nc">PorteCharniere</span> <span class="n">p</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="n">i</span> <span class="nf">f</span> <span class="o">(</span> <span class="n">mesPortes</span> <span class="o">.</span> <span class="n">length</span> <span class="o">&lt;=</span> <span class="n">nbPortes</span> <span class="o">)</span>
+    <span class="k">return</span> <span class="o">;</span> <span class="cm">/* Todo erreur de depassement */</span>
+    <span class="n">mesPortes</span> <span class="o">[</span> <span class="n">nbPortes</span> <span class="o">]</span> <span class="o">=</span> <span class="n">p</span> <span class="o">;</span>
+    <span class="n">nbPortes</span> <span class="o">++;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">activer</span> <span class="o">(</span> <span class="kt">int</span> <span class="n">numero</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="n">mesPortes</span> <span class="o">[</span><span class="n">numero</span> <span class="o">]</span> <span class="o">.</span> <span class="n">ouvr</span> <span class="nf">ir</span> <span class="o">(</span> <span class="o">)</span> <span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">desactiver</span> <span class="o">(</span> <span class="kt">int</span> <span class="n">numero</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="n">mesPortes</span> <span class="o">[</span><span class="n">numero</span> <span class="o">]</span> <span class="o">.</span> <span class="n">fermer</span> <span class="o">(</span> <span class="o">)</span> <span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">desactiverTout</span> <span class="o">(</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nbPortes</span> <span class="o">;</span> <span class="n">i</span> <span class="o">++</span> <span class="o">)</span>
+    <span class="k">if</span> <span class="o">(</span> <span class="o">!</span> <span class="n">mesPortes</span> <span class="o">[</span> <span class="n">i</span> <span class="o">]</span> <span class="o">.</span> <span class="n">estFerme</span> <span class="o">(</span> <span class="o">)</span> <span class="o">)</span>
+    <span class="n">mesPortes</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">fermer</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="objet-constant">Objet constant</h4>
+
+<p>Un objet possède un état défini à partir des valeurs contenues dans l’ensemble
+de ses attributs. Un objet est constant si son état ne peut-être modifié.
+En Java, un objet est constant que si aucune de ses méthodes ne modifie son
+état : exemple dans l’A.P.I standard Java, la différence entre les instances de la
+classe <code class="language-plaintext highlighter-rouge">String</code>  et les instances de la classe StringBuffer. Cette encapsulation des
+chaînes constantes montre l’utilisation habituelle des objets constants en Java : le
+partage d’objets.</p>
+
+<h4 id="communication-entre-objets">Communication entre objets</h4>
+
+<p>Un objet est passif. Il déclenche des actions uniquement en réponse à des
+sollicitations d’autres objets. Prenons le cas où un objet <code class="language-plaintext highlighter-rouge">t</code> (instance de la
+classe <code class="language-plaintext highlighter-rouge">Petit</code>) doit envoyer le message <code class="language-plaintext highlighter-rouge">voler</code> à un objet <code class="language-plaintext highlighter-rouge">r</code> (instance de la
+classe <code class="language-plaintext highlighter-rouge">Coeur</code>).</p>
+
+<p>Pour communiquer, l’objet <code class="language-plaintext highlighter-rouge">t</code> doit posséder une référence sur l’objet <code class="language-plaintext highlighter-rouge">r</code> au
+moins au moment de l’exécution de l’envoi du message. La solution directe est de
+stocker cette référence dans les attributs de l’objet <code class="language-plaintext highlighter-rouge">t</code>; l’objet <code class="language-plaintext highlighter-rouge">t</code> “a un”
+objet <code class="language-plaintext highlighter-rouge">r</code>. La classe <code class="language-plaintext highlighter-rouge">Petit</code> doit déclarer un attribut / une variable d’instance
+de type <code class="language-plaintext highlighter-rouge">Coeur</code>.</p>
+
+<p>Le lien <code class="language-plaintext highlighter-rouge">"a-un"</code> entre deux classes. Une classe <code class="language-plaintext highlighter-rouge">P</code> possède un lien “a un” avec
+une classe <code class="language-plaintext highlighter-rouge">R</code> si elle définit un attribut de type <code class="language-plaintext highlighter-rouge">R</code>. Une instance de <code class="language-plaintext highlighter-rouge">P</code>
+possède dans ses attributs une instance de <code class="language-plaintext highlighter-rouge">R</code>.</p>
+
+<p>Le lien “a-un” ne fixe pas la manière d’obtenir la référence stockée dans
+l’attribut : instanciation de la classe Coeur dans le constructeur de la classe
+<code class="language-plaintext highlighter-rouge">Petit</code> ou passage de la référence comme paramètre d’un constructeur ou d’une
+méthode de la classe <code class="language-plaintext highlighter-rouge">Petit</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Telecommande</span><span class="o">{</span>
+  <span class="kt">int</span> <span class="n">nbPortes</span> <span class="o">;</span>
+  <span class="nc">PorteCharniere</span> <span class="o">[</span> <span class="o">]</span> <span class="n">mesPortes</span> <span class="o">;</span>
+  <span class="nc">Telecommande</span> <span class="o">(</span> <span class="kt">int</span> <span class="n">capac</span> <span class="n">ite</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="n">nbPortes</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">;</span>
+    <span class="n">mesPortes</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PorteCharniere</span> <span class="o">[</span> <span class="n">capac</span> <span class="n">ite</span> <span class="o">]</span> <span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">void</span> <span class="n">pos</span> <span class="n">it</span> <span class="nf">ionner</span> <span class="o">(</span> <span class="nc">PorteCharniere</span> <span class="n">p</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="n">i</span> <span class="nf">f</span> <span class="o">(</span> <span class="n">nbPortes</span> <span class="o">&gt;=</span> <span class="n">mesPortes</span> <span class="o">.</span> <span class="n">length</span> <span class="o">)</span>
+      <span class="k">return</span> <span class="o">;</span> <span class="cm">/* Todo erreur de depassement */</span>
+    <span class="n">mesPortes</span> <span class="o">[</span> <span class="n">nbPortes</span> <span class="o">]</span> <span class="o">=</span> <span class="n">p</span> <span class="o">;</span>
+    <span class="n">nbPortes</span> <span class="o">++;</span>
+  <span class="o">}</span>
+  <span class="kt">void</span> <span class="n">a</span> <span class="n">c</span> <span class="n">t</span> <span class="n">i</span> <span class="n">v</span> <span class="n">e</span> <span class="nf">r</span> <span class="o">(</span> <span class="kt">int</span> <span class="n">numero</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="n">mesPortes</span> <span class="o">[</span><span class="n">numero</span> <span class="o">]</span> <span class="o">.</span> <span class="n">ouvr</span> <span class="nf">ir</span> <span class="o">(</span> <span class="o">)</span> <span class="o">;</span>
+  <span class="o">}</span>
+  <span class="kt">void</span> <span class="n">desac</span> <span class="n">t</span> <span class="nf">iver</span> <span class="o">(</span> <span class="kt">int</span> <span class="n">numero</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="n">mesPortes</span> <span class="o">[</span><span class="n">numero</span> <span class="o">]</span> <span class="o">.</span> <span class="n">fermer</span> <span class="o">(</span> <span class="o">)</span> <span class="o">;</span>
+  <span class="o">}</span>
+  <span class="kt">void</span> <span class="n">desact</span> <span class="nf">iverTout</span> <span class="o">(</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nbPortes</span> <span class="o">;</span> <span class="n">i</span> <span class="o">++</span> <span class="o">)</span>
+      <span class="n">i</span> <span class="nf">f</span> <span class="o">(</span> <span class="o">!</span> <span class="n">mesPortes</span> <span class="o">[</span> <span class="n">i</span> <span class="o">]</span> <span class="o">.</span> <span class="n">estFerme</span> <span class="o">)</span>
+        <span class="n">mesPortes</span> <span class="o">[</span> <span class="n">i</span> <span class="o">]</span> <span class="o">.</span> <span class="n">fermer</span> <span class="o">(</span> <span class="o">)</span> <span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="des-traitements-applicables-à-toutes-les-encapsulations">Des traitements applicables à toutes les encapsulations</h4>
+
+<p>Dans la pratique, il existe un petit nombre de traitements particuliers qui
+peuvent s’appliquer à tous les objets. Voici les plus fréquents  :</p>
+
+<p>Pour vérifier l’égalité entre deux instances de la même classe. L’opérateur Java
+<code class="language-plaintext highlighter-rouge">==</code> indique l’égalité de références (c’est la même instance). Mais deux
+instances différentes peuvent être considérées comme égales par rapport à la
+valeur de leurs attributs. C’est l’objectif de la méthode <code class="language-plaintext highlighter-rouge">equals()</code>.</p>
+
+<p>Pour copier ou cloner un objet. Le passage d’un paramètre objet se fait
+exclusiement par référence / adresse. Pour éviter un effet de bord, il est donc
+parfois nécessaire d’effectuer une copie d’un objet. C’est l’objectif de la
+méthode <code class="language-plaintext highlighter-rouge">clone()</code>.</p>
+
+<p>Le langage Java regroupe ces méthodes particulières dans la classe <code class="language-plaintext highlighter-rouge">Object</code>. Ces
+méthodes sont définies avec un traitement par défaut qu’il faut adapter à chaque
+classe : par exemple, la méthode <code class="language-plaintext highlighter-rouge">equals()</code> a pour traitement par défaut
+l’égalité de référence.</p>
+
+<p>Dans la classe <code class="language-plaintext highlighter-rouge">Object</code> nous trouvons la méthode <code class="language-plaintext highlighter-rouge">toString()</code>. Elle retourne une
+chaîne de caractère qui va permettre de tracer, par exemple, la valeur des
+attributs d’un objet. Son code par défaut retourne une chaîne correspondant à
+l’identité de l’objet.</p>
+
+<h2 id="les-classes">Les classes</h2>
+
+<p>Une <code class="language-plaintext highlighter-rouge">classe</code> est un moule qui décrit le <strong>quoi</strong> : la spécification des messages
+qui peuvent être envoyés à l’objet. Et le <strong>comment</strong> la manière de réaliser
+cette spécification. Pour instancier une classe, se répartit en trois formes :</p>
+<ol>
+  <li><strong>Classe Concrète</strong> : une classe instanciable</li>
+  <li><strong>Classe abstraite</strong> : la réalisation est incomplète, au moins une des
+méthodes d’instance n’a pas de mise en oeuvre (pas corps défini).</li>
+  <li><strong>Classe abstraite pure ou interface</strong> : aucune réalisation n’est définie,
+elle contient les déclarations des méthodes d’instance.</li>
+</ol>
+
+<p>Ce chapitre est centrée sur la construction des classes concrètes.</p>
+
+<h3 id="classe-java">Classe Java</h3>
+
+<p>La syntaxe du langage Java différencie la construction d’une classe contenant
+une réalisation et d’une classe ne contenant pas de réalisation.</p>
+<ol>
+  <li>Construction avec réalisation :
+    <ul>
+      <li>classe concrète avec le mot clé seul <code class="language-plaintext highlighter-rouge">class</code></li>
+      <li>classe abstraite en ajoutant le mot-clé <code class="language-plaintext highlighter-rouge">abstract</code> au mot clé <code class="language-plaintext highlighter-rouge">class</code></li>
+    </ul>
+  </li>
+  <li>Construction sans réalisation : classe abstraite pure avec le mot-clé
+<code class="language-plaintext highlighter-rouge">interface</code>. Cette construction ne contient ni attributs, ni constructeurs.</li>
+</ol>
+
+<p>Une classe/interface Java correspond à un fichier <code class="language-plaintext highlighter-rouge">.class</code> obtenu après
+compilation d’un fichier source. Ce fichier (en “bytecode” ou code
+intermédiaire) contient le code à exécuter mais aussi les informations sur la
+définition de la classe, par exemple : le type des paramètres d’une méthode.</p>
+
+<p>Le contenu des fichiers <code class="language-plaintext highlighter-rouge">.class</code> est utilisé par le compilateur (pour les
+informations de type) et par la machine virtuelle java (JVM) (interprétation du
+code intermédiaire)</p>
+
+<h4 id="paquetage">Paquetage</h4>
+
+<p>Les paquetages permettent de regrouper les classes / interfaces par thème. Le
+système de paquetage est hiérarchique avec la notion de sous-paquetage. Le
+caractère . sert de séparateur. Les paquetages commençant par <code class="language-plaintext highlighter-rouge">java, javax</code> font
+partie de la distribution stard (JRE et JDK).</p>
+
+<p>Un paquetage correspond à un domain de nom : le nom d’une classe / interface est
+unique dans un paquetage. Le nom complet d’une classe / interface est constitué
+de la hiérarchie de paquetage puis du nom de la classe/interface. Par exemple
+<code class="language-plaintext highlighter-rouge">java.lang.String</code>. L’inclusion d’une classe/interface dans un paquetage est
+précisée par l’instruction <code class="language-plaintext highlighter-rouge">package nom</code> sur la première ligne du fichier
+source. Sans ce mot-clé, les classes sont incluses dans un paquetage unique sans
+nom (paquetage anonyme ou paquetage par défaut). Pour désigner une
+classe/interface à l’extérieur d’un paquetage, il est nécessaire d’utiliser son
+nom complet : <code class="language-plaintext highlighter-rouge">matos.on.DentBleu maDent = new matos.onde.DentBleu();</code>. Dans
+l’écriture d’un fichier source, il est possible de raccourcir le nom complet
+d’une classe à son nom, en utilisant le mot clé <code class="language-plaintext highlighter-rouge">import</code>. Au début du fichier
+source, l’instruction <code class="language-plaintext highlighter-rouge">import matos.onde.DentBleu</code>; permet de désigner la classe
+uniquement par <code class="language-plaintext highlighter-rouge">DentBleu</code>. Le compilateur lui attribue son nom complet.</p>
+
+<p>L’organisation physique des fichiers <code class="language-plaintext highlighter-rouge">.class</code> correspond à la hiérarchie de
+paquetage. Le fichier <code class="language-plaintext highlighter-rouge">String.class</code> se trouve dans l’arborescence de répertoire
+<code class="language-plaintext highlighter-rouge">java/lang</code>. Lorsque le compilateur ou la machine virtuelle ont besoin de la
+définition d’une classe, ils utilisent son nom complet comme chemin de recherche
+du fichier <code class="language-plaintext highlighter-rouge">.class</code>. Par défaut, la recherche s’effectue à partir du répertoire
+courant (celui du lancement de la commande). L’option <code class="language-plaintext highlighter-rouge">-cp</code> et la variable
+d’environnement <code class="language-plaintext highlighter-rouge">CLASSPATH</code> permettant d’indiquer les répertoires à analyser
+pour trouver ce chemin.</p>
+
+<h3 id="classe-concrète">Classe concrète</h3>
+
+<p>La construction Java <code class="language-plaintext highlighter-rouge">class</code> contient trois catégories de membre : les
+variables, les méthodes et les constructeurs.</p>
+
+<h4 id="portée-des-membres-dune-classe">Portée des membres d’une classe</h4>
+
+<p>Les modificateurs de porte précisent la <em>portée d’utilisation</em> d’un membre d’une
+classe. Ils se placent devant chaque définition :</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">private</code> : accessible uniquement par la classe</li>
+  <li><code class="language-plaintext highlighter-rouge">public</code> : accessible partout</li>
+  <li>au paquetage : accessible par les classes du même paquetage</li>
+</ol>
+
+<p>Une classe possède deux portées. Sans mot-clé, sa portée est restreinte à son
+paquetage. Avec le mot-clé <code class="language-plaintext highlighter-rouge">public</code>, elle est accessible à l’extrieur de son
+paquetage : <code class="language-plaintext highlighter-rouge">public class DentBleu</code>.</p>
+
+<h4 id="définition-dune-classe-concrète">Définition d’une classe concrète</h4>
+
+<p>Définition d’une classe concrèete Java et de ses membres</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span><span class="kd">public</span><span class="o">]</span> <span class="kd">class</span> <span class="nc">NomClasse</span> <span class="o">{</span> 
+  <span class="c1">//Variables d'instance/attributs,</span>
+  <span class="o">[</span><span class="kd">final</span><span class="o">]</span> <span class="o">[</span><span class="kd">public</span><span class="o">|</span><span class="kd">private</span><span class="o">]</span> <span class="n">type</span> <span class="n">nom</span> <span class="o">[=</span> <span class="n">expression</span><span class="o">];</span>
+  
+  <span class="c1">//Méthodes d'instance,</span>
+  <span class="o">[</span><span class="kd">public</span> <span class="o">|</span> <span class="kd">private</span><span class="o">]</span> <span class="n">typeRetour</span> <span class="n">méthodeInstance</span><span class="o">([</span><span class="n">liste</span> <span class="n">de</span> <span class="n">paramètres</span><span class="o">])</span> <span class="o">{</span>
+    <span class="c1">//code</span>
+  <span class="o">}</span>
+  
+  <span class="c1">//constructeurs</span>
+  <span class="o">[</span><span class="kd">public</span> <span class="o">|</span> <span class="kd">private</span><span class="o">]</span> <span class="nf">NomClasse</span> <span class="o">([</span><span class="n">liste</span> <span class="n">de</span> <span class="n">paramètres</span><span class="o">]){</span>
+    <span class="c1">//code</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="variable-dinstance">Variable d’instance</h4>
+
+<p>C’est une variable locale à chaque instance. Sa valeur est stockée dans la zone
+mémoire de l’instance. Son initialisation s’effectue soit à sa déclaration soit
+dans le code d’une constructeur. La machine virtuelle Java initialise
+systématiquement les variables d’instance avec une valeur par défaut dépendant
+du type (référence/null, int/0, boolean/false). Le mot-clé <code class="language-plaintext highlighter-rouge">final</code> devant la
+définition d’une variable correspond à une variable constante. Son initialisation
+est possible dans un constructeur.</p>
+
+<h4 id="méthode-dinstance">Méthode d’instance</h4>
+
+<p>Une méthode d’instance s’applique à une instance. Il existe deux catégories de
+méthode :</p>
+<ul>
+  <li>méthode d’accès, ou acccesseur. Elle donne des informations sur l’état des
+attributs.</li>
+  <li>méthode d’altération ou modificateur. Elle modifie l’état des attributs.</li>
+</ul>
+
+<p>Le mécanisme de surcharge autorise plusieurs méthodes à porter le même nom. La
+distinction se fait, à la compilation, en fonction de la liste des paramètres
+d’appel (nombre, type et ordre). Par exemple, la méthode <code class="language-plaintext highlighter-rouge">println</code> de la classe
+<code class="language-plaintext highlighter-rouge">java.io.PrintStream</code>.</p>
+
+<p>Le mot clé <code class="language-plaintext highlighter-rouge">this</code> désigne / référence l’instance qui vient de recevoir le
+message. Il est utilisé dans le code</p>
+<ul>
+  <li>Soit pour passer l’objet en paramètre d’une méthode (ou d’un constructeur)</li>
+  <li>Soit pour désigner un attribut en cas d’ambiguïté</li>
+</ul>
+
+<h4 id="constructeur">Constructeur</h4>
+
+<p>Un constructeur n’est pas une méthode. Il est uniquement appelé à
+<em>l’instanciation</em>. Son code assure la bonne initialisation des variables
+d’instance. Le constructeur prendre le nom de la classe. Il n’a pas de type de
+retour. L’instance existe au moment de l’appel du constructeur. Le code du
+constructeur peut utiliser les méthodes d’instance et la référence <code class="language-plaintext highlighter-rouge">this</code>. Si
+une classe ne contient pas de constructeur le compilateur Java ajoute un
+constructeur publique sans paramètre avec un corps vide (désigné par le terme
+constructeur par défaut). La surcharge des constructeurs est autorisée. Avec la
+définition de plusieurs constructeurs, il est nécessaire d’avoir un mécanisme de
+factorisation du code d’initialisation. Un constructeur peut déclencher le code
+d’un autre constructeur par l’instruction (qui utilise le mécanisme de
+surcharge) : <code class="language-plaintext highlighter-rouge">this(par1, par2, par3)</code>. Cette instruction doit être la première
+ligne du constructeur.</p>
+
+<h3 id="lien-a-un-entre-classes">Lien “a-un” entre classes</h3>
+
+<p>Le lien “a-un” correspond à la relation d’utilisation la plus basique : la
+réalisation d’une encapsulation nécessite l’appel aux méthodes d’une autre
+encapsulation.</p>
+
+<h4 id="relation-dutilisation-dans-la-réalisation">Relation d’utilisation dans la réalisation</h4>
+
+<p>La classe <code class="language-plaintext highlighter-rouge">PorteCharniere</code> possède un lien “a-un” avec la classe <code class="language-plaintext highlighter-rouge">DentBleu</code>. Une
+instance de <code class="language-plaintext highlighter-rouge">PorteCharniere</code> contient dans ses attributs la référence à une
+instance de <code class="language-plaintext highlighter-rouge">DentBleu</code>.</p>
+
+<p>Dans notre cas de réalisation, l’instant de <code class="language-plaintext highlighter-rouge">DentBleu</code> ne peut pas être partagée
+et doit être utilisée dès l’instanciation de <code class="language-plaintext highlighter-rouge">PorteCharniere</code>.</p>
+
+<p>Le lien “a-un” se traduit dans le code de la classe <code class="language-plaintext highlighter-rouge">PorteCharniere</code> :</p>
+<ul>
+  <li>définition d’une variable d’instance du type <code class="language-plaintext highlighter-rouge">DentBleu</code></li>
+  <li>instanciation de <code class="language-plaintext highlighter-rouge">DentBleu</code> dans le constructeur et affectation à la variable
+d’instance</li>
+</ul>
+
+<h4 id="factoriser-du-code">Factoriser du code</h4>
+
+<p>Pour éviter de dupliquer le code, la construction de la classe
+<code class="language-plaintext highlighter-rouge">PorteVerrouCharniere</code> peut se faire en utilisant un lien “a-un” avec la classe
+<code class="language-plaintext highlighter-rouge">PorteCharniere</code>. L’instanciation de la classe <code class="language-plaintext highlighter-rouge">PorteVerrouCharniere</code> doit
+instancier la classe <code class="language-plaintext highlighter-rouge">PorteCharniere</code></p>
+
+<h2 id="variables-et-méthodes-de-classe">Variables et méthodes de classe</h2>
+
+<p>Dans le modèle objet, toutes les variables et méthodes sont liées à un objet.
+C’est à dire que pour accéder à une donnée ou déclencher un traitement, il faut
+d’abord instancier une classe.</p>
+
+<p>Cette nécessité de créer d’abord un objet est difficile à respecter dans
+certains cas particuliers :</p>
+<ul>
+  <li>Déclenchement du point d’entrée du programme : la méthode <code class="language-plaintext highlighter-rouge">main</code>. Comment
+envoyer un message sans avoir à créer d’objets ?</li>
+  <li>Les flots d’entrée / sortie standards référencés par les variables constante
+<code class="language-plaintext highlighter-rouge">out, in, err</code> doivent être définis d’une manière unique avant le début de
+l’exécution. Où définir ces variables et comment les positionner avant l’appel
+au point d’entrée du programme ?</li>
+  <li>Les opérations mathématiques <script type="math/tex">(abs(),\sin()...)</script> s’applique, en Java, à des
+types de base. Comment rentre disponible ces opérations que ne s’appliquent
+pas à un objet ?</li>
+</ul>
+
+<p>La construction classe va servir à contenir les données et traitements qui ne
+  sont pas liés à des objets. Une classe n’est plus seulement la description
+  d’une encapsulation mais devient utilisable à l’execution.</p>
+
+<p>Par défaut, une méthode ou une variable est attaché à un objet. Le mot-clé
+  <code class="language-plaintext highlighter-rouge">static</code> permet d’attacher une méthode ou une variable à une classe. Comme
+  pour un objet, c’est la notation pointée qui est utilisée pour accéder à ces
+  nouveaux membres. C’est un message envoyé à la classe et non à une instance de
+  cette classe par exemple : <code class="language-plaintext highlighter-rouge">java.lang.System.out, java.lang.Math.abs()</code>.</p>
+
+<h3 id="variable-de-classe">Variable de classe</h3>
+
+<p>Une variable de classe est partagée par toutes les instances de la classe. Sa
+modification affecte toutes les instances. Une variable de classe existe avant
+toutes instanciation de la classe</p>
+
+<p><code class="language-plaintext highlighter-rouge">static [final] [public | private] type nom;</code></p>
+
+<ul>
+  <li>Même si une variable de classe n’est pas stockée dans la zone mémoire de
+l’objet, elle fait partie de l’ensemble des attributs de chaque instance de
+cette classe.</li>
+  <li>L’initialisation d’une variable de classe s’effectue au chargement de la
+classe. Elle peut se faire dans un “bloc statique” déclaré à l’intérieur de la
+classe. La machine virtuelle exécute le bloc statique au chargement de la
+classe. Par exemple pour initialisation d’une variable de classe qui contient
+un table.</li>
+</ul>
+
+<h3 id="méthode-de-classe">Méthode de classe</h3>
+
+<ul>
+  <li>Le code d’une méthode de classe a accès aux variables de classe et aux
+méthodes de classe définies dans la classe</li>
+  <li>Par contre, la référence <code class="language-plaintext highlighter-rouge">this</code> n’est pas définie (aucune instance n’est
+crééée). Il n’est donc pas possible d’utiliser directement les variables
+d’instance et les méthodes d’instance. Lu’ilisation doit se fiare à travers
+une instance de la classe soit passée par paramètre, soit instanciée par le
+code de la méthode.</li>
+  <li>Une méthode de classe peut être surchargée</li>
+</ul>
+
+<p>Les méthodes de classe s’emploient couramment pour fabriquer des instances ou
+contenir les traitements ne correspondant à aucune encapsulation.</p>
+
+<p>Pour simplifier l’écriture de l’appel à une variable de classe ou une méthode de
+classe d’un autre paquetage, il est possible d’utiliser la déclaration <code class="language-plaintext highlighter-rouge">import
+static</code> au début du fichier. Par exemple <code class="language-plaintext highlighter-rouge">import static.java.lang.Math.*</code> permet
+d’écrire directement <code class="language-plaintext highlighter-rouge">PI</code> dans le code.</p>
+
+<h3 id="statut-de-la-classe-en-java">Statut de la classe en Java</h3>
+
+<p>Avec l’introduction des variables de classe et des méthodes de classe, la classe
+n’est plus seulement une construction syntaxique. Elle peut être assimilée à la
+notion de module mais aussi à la notion d’objet.</p>
+
+<p>Dans le modèle objet, les objets sont les seules entités d’exécution. Si les
+classes sont utilisables à l’exécution (envoi de messages), ce sont forcément
+des objets. La classe est donc la mise en oeuvre d’une encapsulation
+particulière décrivant le service commun aux classes. Ce service fournit les
+informations sur ces déclarations / définitions contenues dans une classe :
+variables, portée, méthodes, constructeurs, liste de paramètres …</p>
+
+<p>C’est le choix du langage Java :</p>
+<ul>
+  <li>la description de l’encapsulation particulière <code class="language-plaintext highlighter-rouge">class</code> est définie dans la
+classe <code class="language-plaintext highlighter-rouge">java.lang.Class</code>. Chaque classe Java est instance de <code class="language-plaintext highlighter-rouge">java.lang.Class</code></li>
+  <li>à l’exécution, une classe est représentée d’une manière unique par son
+fichier <code class="language-plaintext highlighter-rouge">.class</code> : <code class="language-plaintext highlighter-rouge">System.out.println(tec.EtatPassager.class)</code></li>
+  <li>Il est possible de définir des variables du type <code class="language-plaintext highlighter-rouge">Class</code></li>
+  <li>Quelques opérations définies dans <code class="language-plaintext highlighter-rouge">java.lang.Class</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">forName(String)</code> permet de récupérer l’instance de <code class="language-plaintext highlighter-rouge">Class</code> correspondant au
+nom complet en paramètre</li>
+      <li><code class="language-plaintext highlighter-rouge">newInstance()</code> permet d’instancier la classe qui reçoit ce message (en
+utilisant le constructeur sans paramètre)</li>
+      <li><code class="language-plaintext highlighter-rouge">getFields(), getMethods(), getSuperClass(), getConstructors()</code> fournissent
+des informations sur la définition d’une classe.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Ces opérations autorisent l’introspection des classes Java (voir les classes du
+paquetage <code class="language-plaintext highlighter-rouge">java.lang.reflect</code>). L’introspection est une technique de réflexion
+qui permet à un programme d’examiner son propre état pendant l’exécution (mais
+pas de le modifier).</p>
+
+<p>Dans les classes de test, pour éviter d’oublier de compléter la méthode
+<code class="language-plaintext highlighter-rouge">lancer()</code>, il suffit par introspection de récupérer à l’exécution toutes les
+méthodes dont le nom commence par la sous chaîne test et de les exécuter.</p>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
 </html>

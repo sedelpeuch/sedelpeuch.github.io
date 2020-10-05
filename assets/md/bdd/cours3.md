@@ -1,7 +1,7 @@
 ---
 layout: page
 hide: true
-title: Algèbre relationnel et langage SQL
+title: Algèbre relationnel
 ---
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -43,9 +43,7 @@ On peut distinguer 3 familles d'opérateurs relationnels
   Les notations ne sont pas standardisées en algèbre relationnelle. Ce cours
   utilise donc des notations courantes, mais donc pas forcément universelles. 
   
-## Algèbre relationnel  
-  
-### Sélection 
+## Sélection 
 
 `Sélection :` La sélection (parfois appelée restriction) génère une relation
 regroupant exclusivement toutes les occurrences de la relation $$R$$ qui
@@ -72,7 +70,7 @@ aucune occurrence), la relation qui résulte de la sélection est vide.
 | 5      | Durand | Caroline |
 | 12     | Dupont | Lisa     |
 
-### Projection
+## Projection
 
 `Projection :` La projection consiste à supprimer les attributs autres que
 $$A_1, ... , A_n$$ d'une relation et à éliminer kes $$n$$-uplets en double
@@ -92,7 +90,7 @@ mais pas forcément équivalente (elle contient généralement moins d'attributs
 | Germain |
 | Dupont  |
 
-### Union 
+## Union 
 
 `Union :` L'union est une opération portant sur deux relations $$R_1$$ et
 $$R_2$$ ayant le même schéma et construisant une troisième relation constituée
@@ -113,7 +111,7 @@ relation qui résulte de l'union est vide. Si $$R_1$$ (respectivement $$R_2$$)
 est vide, la relation qui résulte de l'union est identique à $$R_2$$
 (respectivement $$R_1$$). 
 
-### Intersection
+## Intersection
 
 `Intersection :` L'intersection est une opération portant sur deux relations
 $$R_1$$ et $$R_2$$ ayant le même schéma et construisant une troisième relation
@@ -128,7 +126,7 @@ attributs. Le résultat de l'intersection est une nouvelle relation qui a les
 mêmes attributs que $$R_1$$ et $$R_2$$. Si $$R_1$$ ou $$R_2$$ ou les deux sont
 vides, la relation qui résulte de l'intersection est vide. 
 
-### Différence 
+## Différence 
 
 `Différence :` La différence est une opération portant sur deux relations
 $$R_1$$ et $$R_2$$ ayant le même schéma et construisant une troisième relation
@@ -144,7 +142,7 @@ mêmes attributs que $$R_1$$ et $$R_2$$. Si $$R_1$$ est vide, la relation qui
 résulte de la différence est vide. Si $$R_2$$ est vide, la relation qui résulte
 de la différence est identique à $$R_1$$. 
 
-### Produit catésien 
+## Produit catésien 
 
 `Produit cartésien :` Le produit cartésien est une opération portant sur deux
 relations $$R_1$$ et $$R_2$$ et qui construit une troisième relation regroupant
@@ -161,9 +159,9 @@ sont vides, la relation qui résulte du produit cartésien est vide. Le nombre
 d'occurrences de la relation qui résulte du produit cartésien est le nombre
 d'occurrences de $$R_1$$ multiplié par le nombre d'occurrences de $$R_2$$. 
 
-### Jointure, théta-jointure, équijointure, jointure naturelle
+## Jointure, théta-jointure, équijointure, jointure naturelle
 
-#### Jointure. 
+### Jointure. 
 
 `Jointure :` La jointure est une opération portant sur deux relations $$R_1$$ et
 $$R_2$$ qui construit une troisième relation regroupant-exclusivement toutes les
@@ -180,23 +178,23 @@ cartésien suivi d'une sélection
 
 $$R_1 \rhd \lhd E R_2 = \sigma E (R_1 \times R_2)$$
 
-#### Théta-jointure.
+### Théta-jointure.
 
 `Théta-jointure :` Une thêta-jointure est une jointure dans laquelle l'expression
 logique $$E$$ est une simple comparaison entre un attribut $$A_1$$ de la
 relation $$R_1$$ et un attribut $$A_2$$ de la relation $$R_2$$. La
 thêta-jointure est notée $$R_1 \rhd \lhd E R_2$$. 
 
-#### Équijointure.
+### Équijointure.
 
 `Équijointure :` Une équijointure est une thêta-jointure dans laquelle
 l'expression logique $$E$$ est un test d'égalité entre un attribut $$A_1$$ de la
 relation $$R_1$$ et un attribut $$A_2$$ de la relation $$R_2$$. L'équijointure
 est notée $$R_1 \rhd \lhd A_1 A_2 R_2$$. 
 
-#### Jointure naturelle.
+### Jointure naturelle.
 
-`Kointure naturelle :` Une jointure naturelle est une jointure dans laquelle
+`Jointure naturelle :` Une jointure naturelle est une jointure dans laquelle
 l'expression logique E est un test d'égalité entre les attributs qui portent le
 même nom dans les relations $$R_1$$ et $$R_2$$. Dans la relation construite, ces
 attributs ne sont pas dupliqués, mais fusionnés en une seule colonne par couple
@@ -208,4 +206,29 @@ Généralement, $$R_1$$ et $$R_2$$ n'ont qu'un attribut en commun. Dans ce cas, 
 
 Lorsque l'on désire effectuer une jointure naturelle entre $$R_1$$ et $$R_2$$
 sur un attribut $$A_1$$ commun à $$R_1$$ et $$R_2$$, il vaut mieux écrire $$R_1
-\rhd \lhd A_1 R_2$$ que $$R_1 \rhd \lhd R_2$$. En effet, si $$R_1$$ et $$R_2$$ possèdent deux attributs portant un nom commun, A1 et A2, R1 ▷◁A1 R2 est bien une jointure naturelle sur l'attribut A1, mais R1 ▷◁ R2 est une jointure naturelle sur le couple d'attributs A1, A2, ce qui produit un résultat très différent !
+\rhd \lhd A_1 R_2$$ que $$R_1 \rhd \lhd R_2$$. En effet, si $$R_1$$ et $$R_2$$
+possèdent deux attributs portant un nom commun, A1 et A2, R1 ▷◁A1 R2 est bien
+une jointure naturelle sur l'attribut A1, mais R1 ▷◁ R2 est une jointure
+naturelle sur le couple d'attributs A1, A2, ce qui produit un résultat très
+différent !
+
+### Division. 
+
+`Division :` La division est une opération portant sur deux relations $$R_1$$ et
+$$R_2$$ telles que le schéma de $$R_2$$ est strictement inclus dans celui de
+$$R_1$$, qui génère une troisième relation regroupant toutes les parties
+d'occurences de la relation $$R_1$$ qui sont associées à toutes les occurences
+de la relation $$R_2$$; on la notre $$R_1 / R_2$$. Il s'agit d'une opération
+binaire non commutative dont la signature est 
+
+$$\text{relation} \times \text{relation} \rightarrow relation$$ 
+
+Autrement dit, la division de $$R_1$$ par $$R_2$$ génère une relation que
+regroupe tous les $$n$$-uplets qui, concaténés à chacun des $$n$$-uplets de
+$$R_2$$, donnent toujours un $$n$$-uplet de $$R_1$$. La relation $$R_2$$ ne peut
+pas être vide. Tous les attributs de $$R_2$$ doivent être présents dans $$R_1$$
+et $$R_1$$ doit posséder au moins un attribut de plus que $$R_2$$ (inclusion
+stricte). Le résultat de la division est une nouvelle relation qui a tous les
+attributs de $$R_1$$ sans aucun de ceux de $$R_2$$. Si $$R_1$$ est vide, la
+relation qui résulte de la division est vide. 
+

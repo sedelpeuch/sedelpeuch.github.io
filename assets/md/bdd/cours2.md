@@ -358,11 +358,58 @@ Marque.
 
 #### Quatrième forme normale 
 
-`quatrième forme normale :` Une relation est en quatrièeme forme normale (4FN)
+`Quatrième forme normale :` Une relation est en quatrièeme forme normale (4FN)
 si, et seulement si, elle est en forme normale de BOYCE-CODD et si elle ne
 possède pas de dépendance multivaluée ou si, $$X ↠ Y$$ étant la dépendance
 multivaluée, il existe une propriété $$A$$ telle que $$X \rightarrow A$$. 
 
 Dans la section précédente, nous avons présenté un schéma relationnel qui
 n'était pas en quatrième forme normale en raison du schéma de relation
- 
+Intervenir. 
+
+#### Dépendance de jointure (DJ)
+
+Jusqu'ici, nous avons pu résoudre une redondance dans une relation en la
+remplaçant par deux de ses projets. Il existe cependant des relations que ne
+peuvent pas être décomposées sans perte d'information en deux projections, mais
+qui peuvent l'être en trois ou plus (ces cas sont assez rares en pratique).
+C'est ce que permet la normalisation en cinquième forme normale. 
+
+Les dépendances de jointures font appel à des notions (projection et jointure)
+qui seront définies plus loin.
+
+`Dépendance de jointure (DJ) :` Soit $$X_1, X_2,...,X_n$$ des sous-ensembles
+d'un schéma de relation $$R$$. Il y a une dépendance de jointure, notée $$\ast
+\{X_1,X_2,...,X_n\}$$ dans la relation $$R$$, si 
+
+$$R = \Pi (X_1) R \rhd \lhd \Pi (X_2) R \rhd \lhd ... \rhd \lhd \Pi (X_n) R$$
+
+`Dépendance de jointure triviale :` Une dépendance de jointure est triviale si
+une des parties, $$X_i$$, est l'ensemble de tous les attributs de $$R$$. 
+
+#### Cinquième forme normale (5FN)
+
+`Cinquième forme normale (5FN) :` Une relation $$R$$ est un cinquième forme
+normale (5FN) si, pour toute dépendance de jointure non triviale
+$$\ast\{X_1,X_2,...,X_n\}$$ dans $$R$$ chacun des $$X_i$$ contient une clé
+candidate de $$R$$. En d'autres termes, les seules décompositions qui préservent
+le contenu sont celles où chacune des tables de la décomposition contient une
+clé candidate de la table. Il est donc superflu de décomposer ce point de vue.
+Cette forme normale est finale vis à vis de la projection et de la jointure :
+elle garantit qu'une relation en cinquième forme normale ne contient aucune
+anomalie pouvant être supprimée en effectuant des projections (ie des
+décompositions). 
+
+### Remarques au sujet de la normalisation 
+
+Il existe d'autres formes normales comme la forme normale domaine-clé (FNDC), la
+forme normale de restriction-union ou la sixième forme normale (6NF). 
+
+Bien que l'objectif de la normalisation soit d'amener le concepteur a obtenir
+des relations en forme normale finale (ie en cinquième forme normale), cet
+objectif ne doit pas être interprété comme une loi. Il peut exister, très
+occasionnellement, de bonnes raisons de passer outre les principes de la
+normalisation. De plus, un schéma en cinquième forme normale n'est pas
+nécessairement un schéma pleinement satisfaisant. D'autres facteurs sont à
+considérer dans le processus de conception d'une base de données et l'expérience
+et l'intuition jouent un rôle important.

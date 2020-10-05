@@ -1,7 +1,7 @@
 ---
 layout: page
 hide: true
-title: TD3 - Modèle relationnel
+title: TD4 - Normalisation
 ---
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">

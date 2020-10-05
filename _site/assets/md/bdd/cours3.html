@@ -6,12 +6,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 -->
 <html><head><!-- Robots -->
-  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/bdd/cours3.html" /><!-- Title, description, author --><title>Algèbre relationnel et langage SQL | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/bdd/cours3.html" /><!-- Title, description, author --><title>Algèbre relationnel | Informatique - ENSEIRB-Matmeca</title>
   <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
   <meta name="author" content="Delpeuch Sébastien" />
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Algèbre relationnel et langage SQL | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:title" content="Algèbre relationnel | Informatique - ENSEIRB-Matmeca" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
   <meta property="og:url" content="http://localhost:4000/assets/md/bdd/cours3.html" />
@@ -67,7 +67,7 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 	<article class="shade-two">
 	  <div class="container">
 			<header>
-				<h2>Algèbre relationnel et langage SQL</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+				<h2>Algèbre relationnel</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Notes inspirées du
@@ -110,9 +110,7 @@ utilise donc des notations courantes, mais donc pas forcément universelles.</p>
   </li>
 </ul>
 
-<h2 id="algèbre-relationnel">Algèbre relationnel</h2>
-
-<h3 id="sélection">Sélection</h3>
+<h2 id="sélection">Sélection</h2>
 
 <p><code class="language-plaintext highlighter-rouge">Sélection :</code> La sélection (parfois appelée restriction) génère une relation
 regroupant exclusivement toutes les occurrences de la relation <script type="math/tex">R</script> qui
@@ -180,7 +178,7 @@ aucune occurrence), la relation qui résulte de la sélection est vide.</p>
   </tbody>
 </table>
 
-<h3 id="projection">Projection</h3>
+<h2 id="projection">Projection</h2>
 
 <p><code class="language-plaintext highlighter-rouge">Projection :</code> La projection consiste à supprimer les attributs autres que
 <script type="math/tex">A_1, ... , A_n</script> d’une relation et à éliminer kes <script type="math/tex">n</script>-uplets en double
@@ -213,7 +211,7 @@ mais pas forcément équivalente (elle contient généralement moins d’attribu
   </tbody>
 </table>
 
-<h3 id="union">Union</h3>
+<h2 id="union">Union</h2>
 
 <p><code class="language-plaintext highlighter-rouge">Union :</code> L’union est une opération portant sur deux relations <script type="math/tex">R_1</script> et
 <script type="math/tex">R_2</script> ayant le même schéma et construisant une troisième relation constituée
@@ -234,7 +232,7 @@ relation qui résulte de l’union est vide. Si <script type="math/tex">R_1</scr
 est vide, la relation qui résulte de l’union est identique à <script type="math/tex">R_2</script>
 (respectivement <script type="math/tex">R_1</script>).</p>
 
-<h3 id="intersection">Intersection</h3>
+<h2 id="intersection">Intersection</h2>
 
 <p><code class="language-plaintext highlighter-rouge">Intersection :</code> L’intersection est une opération portant sur deux relations
 <script type="math/tex">R_1</script> et <script type="math/tex">R_2</script> ayant le même schéma et construisant une troisième relation
@@ -249,7 +247,7 @@ attributs. Le résultat de l’intersection est une nouvelle relation qui a les
 mêmes attributs que <script type="math/tex">R_1</script> et <script type="math/tex">R_2</script>. Si <script type="math/tex">R_1</script> ou <script type="math/tex">R_2</script> ou les deux sont
 vides, la relation qui résulte de l’intersection est vide.</p>
 
-<h3 id="différence">Différence</h3>
+<h2 id="différence">Différence</h2>
 
 <p><code class="language-plaintext highlighter-rouge">Différence :</code> La différence est une opération portant sur deux relations
 <script type="math/tex">R_1</script> et <script type="math/tex">R_2</script> ayant le même schéma et construisant une troisième relation
@@ -265,7 +263,7 @@ mêmes attributs que <script type="math/tex">R_1</script> et <script type="math/
 résulte de la différence est vide. Si <script type="math/tex">R_2</script> est vide, la relation qui résulte
 de la différence est identique à <script type="math/tex">R_1</script>.</p>
 
-<h3 id="produit-catésien">Produit catésien</h3>
+<h2 id="produit-catésien">Produit catésien</h2>
 
 <p><code class="language-plaintext highlighter-rouge">Produit cartésien :</code> Le produit cartésien est une opération portant sur deux
 relations <script type="math/tex">R_1</script> et <script type="math/tex">R_2</script> et qui construit une troisième relation regroupant
@@ -282,9 +280,9 @@ sont vides, la relation qui résulte du produit cartésien est vide. Le nombre
 d’occurrences de la relation qui résulte du produit cartésien est le nombre
 d’occurrences de <script type="math/tex">R_1</script> multiplié par le nombre d’occurrences de <script type="math/tex">R_2</script>.</p>
 
-<h3 id="jointure-théta-jointure-équijointure-jointure-naturelle">Jointure, théta-jointure, équijointure, jointure naturelle</h3>
+<h2 id="jointure-théta-jointure-équijointure-jointure-naturelle">Jointure, théta-jointure, équijointure, jointure naturelle</h2>
 
-<h4 id="jointure">Jointure.</h4>
+<h3 id="jointure">Jointure.</h3>
 
 <p><code class="language-plaintext highlighter-rouge">Jointure :</code> La jointure est une opération portant sur deux relations <script type="math/tex">R_1</script> et
 <script type="math/tex">R_2</script> qui construit une troisième relation regroupant-exclusivement toutes les
@@ -301,23 +299,23 @@ cartésien suivi d’une sélection</p>
 
 <script type="math/tex; mode=display">R_1 \rhd \lhd E R_2 = \sigma E (R_1 \times R_2)</script>
 
-<h4 id="théta-jointure">Théta-jointure.</h4>
+<h3 id="théta-jointure">Théta-jointure.</h3>
 
 <p><code class="language-plaintext highlighter-rouge">Théta-jointure :</code> Une thêta-jointure est une jointure dans laquelle l’expression
 logique <script type="math/tex">E</script> est une simple comparaison entre un attribut <script type="math/tex">A_1</script> de la
 relation <script type="math/tex">R_1</script> et un attribut <script type="math/tex">A_2</script> de la relation <script type="math/tex">R_2</script>. La
 thêta-jointure est notée <script type="math/tex">R_1 \rhd \lhd E R_2</script>.</p>
 
-<h4 id="équijointure">Équijointure.</h4>
+<h3 id="équijointure">Équijointure.</h3>
 
 <p><code class="language-plaintext highlighter-rouge">Équijointure :</code> Une équijointure est une thêta-jointure dans laquelle
 l’expression logique <script type="math/tex">E</script> est un test d’égalité entre un attribut <script type="math/tex">A_1</script> de la
 relation <script type="math/tex">R_1</script> et un attribut <script type="math/tex">A_2</script> de la relation <script type="math/tex">R_2</script>. L’équijointure
 est notée <script type="math/tex">R_1 \rhd \lhd A_1 A_2 R_2</script>.</p>
 
-<h4 id="jointure-naturelle">Jointure naturelle.</h4>
+<h3 id="jointure-naturelle">Jointure naturelle.</h3>
 
-<p><code class="language-plaintext highlighter-rouge">Kointure naturelle :</code> Une jointure naturelle est une jointure dans laquelle
+<p><code class="language-plaintext highlighter-rouge">Jointure naturelle :</code> Une jointure naturelle est une jointure dans laquelle
 l’expression logique E est un test d’égalité entre les attributs qui portent le
 même nom dans les relations <script type="math/tex">R_1</script> et <script type="math/tex">R_2</script>. Dans la relation construite, ces
 attributs ne sont pas dupliqués, mais fusionnés en une seule colonne par couple
@@ -329,7 +327,32 @@ porte la jointure : <script type="math/tex">R_1 \rhd \lhd A_1,… A_n R_2</scrip
 
 <p>Lorsque l’on désire effectuer une jointure naturelle entre <script type="math/tex">R_1</script> et <script type="math/tex">R_2</script>
 sur un attribut <script type="math/tex">A_1</script> commun à <script type="math/tex">R_1</script> et <script type="math/tex">R_2</script>, il vaut mieux écrire <script type="math/tex">R_1
-\rhd \lhd A_1 R_2</script> que <script type="math/tex">R_1 \rhd \lhd R_2</script>. En effet, si <script type="math/tex">R_1</script> et <script type="math/tex">R_2</script> possèdent deux attributs portant un nom commun, A1 et A2, R1 ▷◁A1 R2 est bien une jointure naturelle sur l’attribut A1, mais R1 ▷◁ R2 est une jointure naturelle sur le couple d’attributs A1, A2, ce qui produit un résultat très différent !</p>
+\rhd \lhd A_1 R_2</script> que <script type="math/tex">R_1 \rhd \lhd R_2</script>. En effet, si <script type="math/tex">R_1</script> et <script type="math/tex">R_2</script>
+possèdent deux attributs portant un nom commun, A1 et A2, R1 ▷◁A1 R2 est bien
+une jointure naturelle sur l’attribut A1, mais R1 ▷◁ R2 est une jointure
+naturelle sur le couple d’attributs A1, A2, ce qui produit un résultat très
+différent !</p>
+
+<h3 id="division">Division.</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Division :</code> La division est une opération portant sur deux relations <script type="math/tex">R_1</script> et
+<script type="math/tex">R_2</script> telles que le schéma de <script type="math/tex">R_2</script> est strictement inclus dans celui de
+<script type="math/tex">R_1</script>, qui génère une troisième relation regroupant toutes les parties
+d’occurences de la relation <script type="math/tex">R_1</script> qui sont associées à toutes les occurences
+de la relation <script type="math/tex">R_2</script>; on la notre <script type="math/tex">R_1 / R_2</script>. Il s’agit d’une opération
+binaire non commutative dont la signature est</p>
+
+<script type="math/tex; mode=display">\text{relation} \times \text{relation} \rightarrow relation</script>
+
+<p>Autrement dit, la division de <script type="math/tex">R_1</script> par <script type="math/tex">R_2</script> génère une relation que
+regroupe tous les <script type="math/tex">n</script>-uplets qui, concaténés à chacun des <script type="math/tex">n</script>-uplets de
+<script type="math/tex">R_2</script>, donnent toujours un <script type="math/tex">n</script>-uplet de <script type="math/tex">R_1</script>. La relation <script type="math/tex">R_2</script> ne peut
+pas être vide. Tous les attributs de <script type="math/tex">R_2</script> doivent être présents dans <script type="math/tex">R_1</script>
+et <script type="math/tex">R_1</script> doit posséder au moins un attribut de plus que <script type="math/tex">R_2</script> (inclusion
+stricte). Le résultat de la division est une nouvelle relation qui a tous les
+attributs de <script type="math/tex">R_1</script> sans aucun de ceux de <script type="math/tex">R_2</script>. Si <script type="math/tex">R_1</script> est vide, la
+relation qui résulte de la division est vide.</p>
+
 </div>
 	</article>
 </div><!-- Footer -->

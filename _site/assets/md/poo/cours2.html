@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/poo/cours2.html" /><!-- Title, description, author --><title>Substitution d&#39;objets | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Substitution d&#39;objets | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/poo/cours2.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-7-en-cours-link">
+            <span class="icon fa-link">Semestre 7 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_6.html" id="semestre-6-link">
+            <span class="icon fa-check">Semestre 6</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li><li><a href="http://localhost:4000/CPBx.html" id="cpbx-link">
+            <span class="icon fa-check">CPBx</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2>Substitution d'objets</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Notes inspirées du
+<a href="https://georgy.vvv.enseirb-matmeca.fr/PG202-203/poo-info-2021.pdf">polycopié</a>
+de Georges Eyrolles.</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h2 id="la-substitution-dobjets-ou-polymorphisme">La substitution d’objets ou polymorphisme</h2>
+
+<p>Nous voulons pouvoir adapter le code d’une application en substituant une
+instance d’une classe par une instance d’une autre classe. Dans notre exemple :
+une instance de <code class="language-plaintext highlighter-rouge">Telecommande</code> doit manipuler plusieurs réalisations différentes
+de l’abstraction <code class="language-plaintext highlighter-rouge">Porte</code>. Le code de la classe <code class="language-plaintext highlighter-rouge">Telecommande</code> doit permettre de
+substituer une instance de la classe <code class="language-plaintext highlighter-rouge">PorteCharniere</code> par une instance de la
+classe <code class="language-plaintext highlighter-rouge">PorteCoulissante</code>. Ajouter une nouvelle réalisation, correspond à
+ajouter une nouvelle classe et à l’instancier.</p>
+
+<p>Concrètement, dans le code de la classe <code class="language-plaintext highlighter-rouge">Telecommande</code> :</p>
+<ul>
+  <li>Un emplacement dans le tableau <code class="language-plaintext highlighter-rouge">mesPortes[numero]</code> va référencer à la fois une
+instance de la classe <code class="language-plaintext highlighter-rouge">PorteCharniere</code> et une instance de la classe
+<code class="language-plaintext highlighter-rouge">PorteCoulissante</code>.</li>
+  <li>L’envoi du message <code class="language-plaintext highlighter-rouge">mesPortes[numero].ouvrir()</code> doit s’appliquer à la fois à
+une instance de la classe <code class="language-plaintext highlighter-rouge">PorteCharniere</code> et à une instance de la classe
+<code class="language-plaintext highlighter-rouge">PorteCoulissante</code>.</li>
+</ul>
+
+<p>Pour rendre possible la substitution d’objet, il faut :</p>
+<ul>
+  <li>assurer la validité de l’envoi de message sur les instances de classes
+différentes référencée par la même variable</li>
+  <li>assurer l’aiguillage vers le code correspondant à la bonne instance référencée
+par cette variable.</li>
+</ul>
+
+<h3 id="relation-de-type--sous-types">Relation de type / sous types</h3>
+
+<p>Dans un langage typé, chaque classe définit un type indépendant. La relation de
+type/sous-type va introduire un lien entre deux types.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Définition :</code> Soit un type <code class="language-plaintext highlighter-rouge">L</code> déclarant une opération <code class="language-plaintext highlighter-rouge">action()</code>. Si un type
+<code class="language-plaintext highlighter-rouge">H</code> est déclaré sous-type du type <code class="language-plaintext highlighter-rouge">L</code> alors le type <code class="language-plaintext highlighter-rouge">H</code> contient toutes les
+déclarations contenues dans <code class="language-plaintext highlighter-rouge">L</code>. L’opération <code class="language-plaintext highlighter-rouge">action()</code> se retrouve, aussi,
+déclarée dans le type <code class="language-plaintext highlighter-rouge">H</code>. Dans un langage objet, cette relation de type /
+sous-type permet à une variable de type <code class="language-plaintext highlighter-rouge">L</code> d’accepter des instances de la
+classe <code class="language-plaintext highlighter-rouge">L</code> mais aussi des instances de toutes les classes sous-types (par
+exemple de la classe <code class="language-plaintext highlighter-rouge">H</code>). La classe <code class="language-plaintext highlighter-rouge">H</code> possède un lien “est-un” avec la classe
+<code class="language-plaintext highlighter-rouge">L</code> (“H est-un L”).</p>
+
+<p>Le transtypage du sous-type vers le type est implicite puisque le lien “est-un”
+assure que toutes les opérations du type se trouvent dans le sous-type. Le
+compilateur vérifie la validité des messages par rapport au type de la variable.
+Dans un langage orienté objet, cette relation de type / sous type (ce lien
+“est-un”) se construit à travers le mécanisme de l’héritage.</p>
+
+<h3 id="lien-est-un-et-abstraction">Lien “est-un” et abstraction</h3>
+
+<p>Dans notre exemple le code de la classe <code class="language-plaintext highlighter-rouge">Telecommande</code> doit rester indépendant
+des réalisations de porte. La classe <code class="language-plaintext highlighter-rouge">Porte</code> est une abstraction et les classes
+<code class="language-plaintext highlighter-rouge">PorteCharniere</code> et <code class="language-plaintext highlighter-rouge">PorteCoulissante</code> sont des réalisations de cette
+abstraction. Dans ce cas, il est préférable de définir <code class="language-plaintext highlighter-rouge">Porte</code> comme une
+<strong>classe abstraite pure</strong> (sans aucune réalisation). En Java, nous utilisons la
+construction <code class="language-plaintext highlighter-rouge">interface</code>.</p>
+
+<h4 id="la-construction-interface">La construction interface.</h4>
+
+<p>Le langage Java propose une construction particulière pour définir une classe
+abstraite pure. Cette construction a comme mot-clé <code class="language-plaintext highlighter-rouge">interface</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[public] interface NomInterface{
+    [static final public type nom = valeur;]
+    [[public] type methode([liste paramètre]);]
+}
+</code></pre></div></div>
+
+<ul>
+  <li>Une interface définit un type mais n’est pas instanciable. Il est seulement
+possible de déclarer des variables du type d’une interface.</li>
+  <li>Une interface ne définit aucune variable d’instance.</li>
+  <li>Aucun constructeur n’est autorisé</li>
+  <li>Une interface contient les prototypes de méthodes d’instance abstraites
+publiques. Ces méthodes sont dites abstraites car sans code (sans
+réalisation)</li>
+  <li>Comme une classe, une interface doit être déclarée publique pour être
+accessible en dehors de son paquetage</li>
+  <li>Il est possible de définir des variables de classe constantes publiques. La
+valeur d’une telle constante est fixée à la définition de la variable de
+classe</li>
+  <li>Jusqu’à Java 7, aucune méthode de classe n’était autorisée.</li>
+</ul>
+
+<p>Une classe interface permet de définir une abstraction qui est mise en oeuvre
+par des classes concrètes. Voici la représentation de l’abstraction “porte” par
+une interface</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">Porte</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Porte</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">estFerme</span><span class="o">();</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fermer</span><span class="o">();</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ouvrir</span><span class="o">();</span>
+<span class="o">}</span> 
+</code></pre></div></div>
+
+<h4 id="héritage-entre-une-classe-et-des-interfaces">Héritage entre une classe et des interfaces</h4>
+
+<p>Pour substituer les instances des classes <code class="language-plaintext highlighter-rouge">PortesCharniere</code> et
+<code class="language-plaintext highlighter-rouge">PorteCoulissante</code> dans le tableau de type <code class="language-plaintext highlighter-rouge">Porte</code>, nous devons établir un lien
+“est-un” entre ces réalisations et l’abstraction porte.</p>
+
+<p>Le mot-clé <code class="language-plaintext highlighter-rouge">implements</code> établit une relation de type / sous-type entre une
+classe et une ou plusieurs interfaces.</p>
+
+<p>L’héritage d’interfaces concerne globalement des déclarations de méthodes
+d’instances publique. Cet héritage peut être assimilé à un héritage d’un type
+abstrait.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span><span class="kd">public</span><span class="o">][</span><span class="kd">abstract</span><span class="o">]</span> <span class="kd">class</span> <span class="nc">NomClasse</span> <span class="kd">implements</span> <span class="nc">UneInterface</span><span class="o">,</span> <span class="nc">UneAutreInterface</span><span class="o">{</span>
+    <span class="c1">//atributs </span>
+    <span class="c1">//constructeurs</span>
+    <span class="c1">//méthodes</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>En plus de ses définitions (attributs, constructeurs, méthode) propres, la
+classe va inclure la déclaration des prototypes des méthodes de toutes les
+interfaces déclarées après la cause <code class="language-plaintext highlighter-rouge">implements</code>. Les méthodes “héritées” sont
+abstraites. Pour obtenir une classe concrète à partir d’un héritage
+d’interfaces, il est nécessaire de fournir le code pour chaque méthode définie
+dans les interfaces en respectant le prototype de ces méthodes. Sinon, une
+classe construite par héritage d’interfaces est une classe abstraite.</p>
+
+<h3 id="le-polymorphisme">Le polymorphisme</h3>
+
+<p>Avec la relation de type / sous-type, l’envoi de message
+<code class="language-plaintext highlighter-rouge">mesPortes[numero].ouvrir()</code> est valide pour toutes les instances d’une classe
+sous-type de <code class="language-plaintext highlighter-rouge">Porte</code>. La méthode se retrouvant dans plusieurs classes, il reste
+à déterminer comment se fait le choix (l’aiguillage vers l’adresse) du code à
+déclencher.</p>
+
+<p><strong>Liaison statique :</strong> La liaison entre l’envoi du message (nom + paramètre) et
+l’adresse de la méthode s’effectue à la compilation. Le compilateur utilise
+forcément le type de la variable pour obtenir cette adresse.</p>
+
+<p><strong>Liaison dynamique ou retardée :</strong> La liaison entre l’envoi du message et
+l’adresse de la méthode se fait à l’exécution, en fonction de l’instance
+manipulée. La liaison dynamique nécessite un mécanisme qui permet d’obtenir
+l’adresse de la méthode à l’éxecution.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Définition :</code> Le polymorphisme est la capacité d’un élément de texte logiciel a
+désigner à l’exécution des formes différentes.</p>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
