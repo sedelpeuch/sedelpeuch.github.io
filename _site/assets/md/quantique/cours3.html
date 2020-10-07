@@ -6,12 +6,12 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 -->
 <html><head><!-- Robots -->
-  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/quantique/cours3.html" /><!-- Title, description, author --><title>Informatique quantique - | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/quantique/cours3.html" /><!-- Title, description, author --><title>Informatique quantique - Qubits et mécanique quantique | Informatique - ENSEIRB-Matmeca</title>
   <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
   <meta name="author" content="Delpeuch Sébastien" />
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Informatique quantique - | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:title" content="Informatique quantique - Qubits et mécanique quantique | Informatique - ENSEIRB-Matmeca" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
   <meta property="og:url" content="http://localhost:4000/assets/md/quantique/cours3.html" />
@@ -67,7 +67,7 @@ Jekyll integration by Chris Bobbe | chrisbobbe.github.io
 	<article class="shade-two">
 	  <div class="container">
 			<header>
-				<h2>Informatique quantique -</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+				<h2>Informatique quantique - Qubits et mécanique quantique</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 <p>Notes inspirées du
@@ -80,40 +80,154 @@ html {
 }
 </style>
 
-<h2 id="exemple-de-portes-à-2-qubits">Exemple de portes à 2 qubits</h2>
+<h2 id="qubits-et-observables">Qubits et observables</h2>
 
-<p>La porte cNOT</p>
+<p>Les états du système quantique associé à un qubit sont les éléments d’un espce à
+deux dimensions, engendrés par les états de la base <script type="math/tex">\vert 0 \rangle</script> et
+<script type="math/tex">\vert 1 \rangle</script>. Tout état sera donc de la forme</p>
+
+<script type="math/tex; mode=display">\vert \psi \rangle = \alpha \vert 0 \rangle + \beta \vert 1 \rangle</script>
+
+<p>On retrouve donc là spécificité des qubits de pouvoir se trouver dans un état de
+<strong>superposition</strong>. Les coefficients <script type="math/tex">\alpha</script> et <script type="math/tex">\beta</script> sont en fait des
+amplitudes de probabilités et doivent satisfaire</p>
+
+<script type="math/tex; mode=display">|\alpha|^2 + |\beta|^2 = 1</script>
+
+<ol>
+  <li>Par une fonction <script type="math/tex">\psi(r,t)</script> (formalisme des fonctions d’ondes et de la
+mécanique ondulatoire)</li>
+  <li>Par une matrice (notamment dans le cas d’espaces de dimensions finies)</li>
+</ol>
+
+<p>Les états <script type="math/tex">\vert 0 \rangle</script> et <script type="math/tex">\vert 1 \rangle</script> sont les états propres
+d’une grandeur observable. Si le système physique est un atome l’observable est
+l’énergie de l’atome et les états <script type="math/tex">\vert 0 \rangle</script> et <script type="math/tex">\vert 1 \rangle</script>
+correspondent aux états <script type="math/tex">\vert g \rangle</script> et <script type="math/tex">\vert e \rangle</script> (état
+fondamental et premier état excité) de l’atome. Dans le cas où le système
+quantique est le photon l’observable est la polarisation qui peut prendre les
+deux états <script type="math/tex">\vert x \rangle</script>$ et <script type="math/tex">\vert y \rangle</script>. Comme ces états forment
+une base dans l’espace des états du qubit , on a <script type="math/tex">\forall \vert \psi \rangle
+\in \mathcal{E} \; \vert \psi \rangle = \alpha \vert 0 \rangle + \beta \vert 1
+\rangle</script>. Si le système est dans l’état <script type="math/tex">\vert \psi \rangle = \alpha \vert 0
+\rangle + \beta \vert 1 \rangle</script> le résultat de la mesure sera obtenue avec une
+probabilité dont l’amplitude est définie par</p>
+<ul>
+  <li><script type="math/tex">\alpha = \langle 0 \vert \psi \rangle</script> amplitude de probabilité d’obtenir
+l’état <script type="math/tex">\vert 0 \rangle</script></li>
+  <li><script type="math/tex">\beta = \langle 1 \vert \psi \rangle</script> amplitude de probabilité d’obtenir
+l’était <script type="math/tex">\vert 1 \rangle</script> amplitude de probabilité d’obtenir l’état <script type="math/tex">\vert
+1 \rangle</script></li>
+</ul>
+
+<h2 id="maniuplations-de-qubits">Maniuplations de qubits</h2>
+
+<p>La mesure altère en général l’état d’un qubit puisqu’il en sort nécessairement
+dans un été propre de l’observable mesuré. Par contre l’environnement peut agir
+sur le qubit pour faire évoluer son état tant qu’aucune mesure (aucune “prise
+d’information”) n’est réalisée.</p>
+
+<h2 id="opérations-logiques-sur-un-qubit">Opérations logiques sur un qubit</h2>
+
+<p>Nous allons associer à l’évolution de l’état du qubit les opérations logiques
+nécessaires à la mise en oeuvre des d’algorithmes.</p>
+
+<h3 id="portes-logiques-classiques">Portes logiques classiques</h3>
+
+<p>Par exemple les portes logiques classiques agissant sur un bit sont résumées
+dans le tableau ci-dessous</p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">entrée</th>
-      <th style="text-align: left">sortie</th>
+      <th style="text-align: left">Porte logique</th>
+      <th style="text-align: left">0</th>
+      <th style="text-align: left">1</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left"><script type="math/tex">\vert 00 \rangle</script></td>
-      <td style="text-align: left"><script type="math/tex">\vert 00 \rangle</script></td>
+      <td style="text-align: left">EFFACE</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">0</td>
     </tr>
     <tr>
-      <td style="text-align: left"><script type="math/tex">\vert 01 \rangle</script></td>
-      <td style="text-align: left"><script type="math/tex">\vert 01 \rangle</script></td>
+      <td style="text-align: left">IDENTITE</td>
+      <td style="text-align: left">0</td>
+      <td style="text-align: left">1</td>
     </tr>
     <tr>
-      <td style="text-align: left"><script type="math/tex">\vert 10 \rangle</script></td>
-      <td style="text-align: left"><script type="math/tex">\vert 11 \rangle</script></td>
+      <td style="text-align: left">NON</td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">0</td>
     </tr>
     <tr>
-      <td style="text-align: left"><script type="math/tex">\vert 11 \rangle</script></td>
-      <td style="text-align: left"><script type="math/tex">\vert 10 \rangle</script></td>
+      <td style="text-align: left">SET</td>
+      <td style="text-align: left">1</td>
+      <td style="text-align: left">1</td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="intrication-quantique">Intrication quantique</h3>
+<p>toute matrice unitaire est susceptible de représenter une porte logique à un
+qubit. Différence avec les bits classiques, pour les qubits il existe donc une
+famille continue de transformations qui sont représentées par le matrices
+unitaires.</p>
 
-<p>Caractère paradoxal de</p>
+<h3 id="exemples---lopérateur-not">Exemples - l’opérateur NOT</h3>
+
+<p>L’opérateur NON est représenté par la matrice carrée</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} %]]></script>
+
+<h3 id="exemples---la-porte-y">Exemples - la porte Y</h3>
+
+<p>La porte <script type="math/tex">Y</script> définie par la matrice</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} %]]></script>
+
+<h3 id="exemples---la-porte-z-opérateur-de-flip">Exemples - la porte Z (opérateur de flip)</h3>
+
+<p>La porte <script type="math/tex">Z</script> définie par la matrice</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} %]]></script>
+
+<h3 id="exemples---la-porte-phi">Exemples - la porte <script type="math/tex">\phi</script></h3>
+
+<p>La porte <script type="math/tex">\phi</script> définie par la matrice</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+R_\phi = \begin{pmatrix} 1 & 0 \\ 0 & e^{i \phi} \end{pmatrix} %]]></script>
+
+<p>Effet : rotation de la phase du vecteur <script type="math/tex">\vert 1 \rangle</script> par un angle
+<script type="math/tex">\phi</script> : <script type="math/tex">R_\phi \vert 0 \rangle = \vert 0 \rangle</script>, <script type="math/tex">R_\phi \vert 1
+\rangle = e^{i \phi} \vert 1 \rangle</script>.</p>
+
+<h3 id="exemples---la-porte-de-hadamard">Exemples - la porte de Hadamard</h3>
+
+<p>Porte particulièrement important en info quantique. La porte de Hadamard définie
+par la matrice</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+H = \dfrac{1}{\sqrt{2}}(X+Z) = \dfrac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1
+& -1 \end{pmatrix} %]]></script>
+
+<p>On a : <script type="math/tex">\vert 0 \rangle \rightarrow \dfrac{1}{\sqrt{2}}(\vert 0 \rangle ° \vert
+1 \rangle)</script>, <script type="math/tex">\vert 1 \rangle \rightarrow \dfrac{1}{\sqrt{2}}(\vert 0
+\rangle - \vert 1 \rangle)</script></p>
+
+<p>Si on applique <script type="math/tex">H</script> à l’état initial <script type="math/tex">\vert 0 \rangle</script> ou à l’état initial
+<script type="math/tex">\vert 1 \rangle</script> et puis on mesure, on a des probabilités égales pour trouver
+<script type="math/tex">\vert 0 \rangle</script> ou <script type="math/tex">\vert 1 \rangle</script>.</p>
+
+<p>Interférence et porte de Hadamard effet analogue à l’interférence des ondes</p>
+
+<script type="math/tex; mode=display">H ( \dfrac{1}{\sqrt{2}}(\vert 0 \rangle + \vert 1 \rangle) =
+\dfrac{1}{\sqrt{2}} H \vert 0 \rangle + \dfrac{1}{\sqrt{2}} H \vert 1 \rangle =
+\vert 0 \rangle )</script>
 </div>
 	</article>
 </div><!-- Footer -->

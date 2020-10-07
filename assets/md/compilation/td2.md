@@ -31,6 +31,11 @@ initial*.
 définir le langage des mots de la forme $$a^n b^n$$ avec $$n \in \mathbb{N}$$.
 Votre grammaire est-elle ambigüe ?*
 
+```
+S -> aSb
+S -> eps
+```
+
 ### Exercice 2
 
 *Soit la grammaire*
@@ -45,5 +50,43 @@ Votre grammaire est-elle ambigüe ?*
 *définie avec les terminaux $$\{a,b\}$$, les non-terminaux $$\{S,A,B\}$$ et le
 start symbol $$S$$* 
 
-1. *Construire les arbres de dérivation de abba et aabb*
-2. *Cette grammaire est elle ambigüe ?*
++ *Construire les arbres de dérivation de abba et aabb*
+
+
+
++ *Cette grammaire est elle ambigüe ?*
+
+Elle n'est pas ambigüe
+
++ *Quel langage définit-elle ?*
+
+$$(S) = \{ab,ba,\varpepsilon,...}$$ 
+$$(A) = \{a, aab, aba, ...\}$$
+$$(B) = \{b,bab,bba,...\}$$
+
+## Conditionnelles 
+
+On considère la grammaire COND définie par : 
+
+```
+I -> nop | C
+C -> if B then I | if B then I else I
+B -> id | true | false
+```
+avec les non-terminaux $$I$$ (instructions), $$C$$ (instructions
+conditionnelles), $$B$$ (booléens) et les terminaux `id, true, false, nop, if,
+then` et `else`. 
+
+### Exercice 3. 
+
+*Quel est le langage défini par cette grammaire ? Construire un arbre de
+dérivation pour `if id then if id then nop else nop`. En existe-t-il un autre ?
+Qu'en déduire ?*
+
+![3](/assets/images/compilation/3.png){:class="image about center"}
+
+### Exercice 4. 
+
+*Proposer une grammaire non ambigüe permettant de définir le même langage. Votre grammaire
+devra, comme dans le langage C, “forcer” l’association du “else” avec le “if-then” qui précède le plus proche qui
+n’est pas déjà “fermé” par un “else”.*

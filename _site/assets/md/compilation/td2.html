@@ -94,6 +94,10 @@ initial</em>.</p>
 définir le langage des mots de la forme <script type="math/tex">a^n b^n</script> avec <script type="math/tex">n \in \mathbb{N}</script>.
 Votre grammaire est-elle ambigüe ?</em></p>
 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>S -&gt; aSb
+S -&gt; eps
+</code></pre></div></div>
+
 <h3 id="exercice-2">Exercice 2</h3>
 
 <p><em>Soit la grammaire</em></p>
@@ -107,10 +111,50 @@ Votre grammaire est-elle ambigüe ?</em></p>
 <p><em>définie avec les terminaux <script type="math/tex">\{a,b\}</script>, les non-terminaux <script type="math/tex">\{S,A,B\}</script> et le
 start symbol <script type="math/tex">S</script></em></p>
 
-<ol>
-  <li><em>Construire les arbres de dérivation de abba et aabb</em></li>
-  <li><em>Cette grammaire est elle ambigüe ?</em></li>
-</ol>
+<ul>
+  <li>
+    <p><em>Construire les arbres de dérivation de abba et aabb</em></p>
+  </li>
+  <li>
+    <p><em>Cette grammaire est elle ambigüe ?</em></p>
+  </li>
+</ul>
+
+<p>Elle n’est pas ambigüe</p>
+
+<ul>
+  <li><em>Quel langage définit-elle ?</em></li>
+</ul>
+
+<p><script type="math/tex">(S) = \{ab,ba,\varpepsilon,...}</script> 
+<script type="math/tex">(A) = \{a, aab, aba, ...\}</script>
+<script type="math/tex">(B) = \{b,bab,bba,...\}</script></p>
+
+<h2 id="conditionnelles">Conditionnelles</h2>
+
+<p>On considère la grammaire COND définie par :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I -&gt; nop | C
+C -&gt; if B then I | if B then I else I
+B -&gt; id | true | false
+</code></pre></div></div>
+<p>avec les non-terminaux <script type="math/tex">I</script> (instructions), <script type="math/tex">C</script> (instructions
+conditionnelles), <script type="math/tex">B</script> (booléens) et les terminaux <code class="language-plaintext highlighter-rouge">id, true, false, nop, if,
+then</code> et <code class="language-plaintext highlighter-rouge">else</code>.</p>
+
+<h3 id="exercice-3">Exercice 3.</h3>
+
+<p><em>Quel est le langage défini par cette grammaire ? Construire un arbre de
+dérivation pour <code class="language-plaintext highlighter-rouge">if id then if id then nop else nop</code>. En existe-t-il un autre ?
+Qu’en déduire ?</em></p>
+
+<p><img src="/assets/images/compilation/3.png" alt="3" class="image about center" /></p>
+
+<h3 id="exercice-4">Exercice 4.</h3>
+
+<p><em>Proposer une grammaire non ambigüe permettant de définir le même langage. Votre grammaire
+devra, comme dans le langage C, “forcer” l’association du “else” avec le “if-then” qui précède le plus proche qui
+n’est pas déjà “fermé” par un “else”.</em></p>
 </div>
 	</article>
 </div><!-- Footer -->

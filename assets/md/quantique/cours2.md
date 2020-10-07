@@ -323,4 +323,22 @@ $$ \vert \theta \rangle = \cos \theta \vert x \rangle + \sin \theta \vert y
 
 Quelle trajectoire va suivre le photon qui se trouve dans cet état ? La réponse
 de la mécanique quantique est qu'on ne peut pas le savoir. Mais ce qu'on peut
-connaître (postulat de la mesure) c'est la probabilité que le photo
+connaître (postulat de la mesure) c'est la probabilité que le photo sorte
+polarisé suivant $$x$$ et qui est donnée par $$\cos^2 \theta$$ et la probabilité
+complémentaire qu'il sorte polarisé suivant $$y$$, donnée par $$\sin^2 \theta$$.
+Donc, en moyenne, si $$N$$ est le nombre total de photos qui traversent la lame,
+on en trouvera $$N \cos^2 \theta$$ sortant avec la polarisation $$Ox$$ et $$N
+\sin^2 \theta$$ sortant avec la polarisation $$Oy$$. Les coefficients $$\cos
+\theta$$ et $$\sin \theta$$ sont en fait des amplitudes de probabilité de
+trouver le photon dans l'état $$\vert x \rangle$$ ou $$\vert y \rangle$$
+respectivement. 
+
+On peut associer un qubit à chacun des deux états de polarisation du photon, par
+exemple 
+
+$$\vert x \rangle \rightarrow \vert 0 \rangle$$
+$$\vert y \rangle \rightarrow \vert 1 \rangle$$
+
+En jouant sur l'orientation du polariseur et sur le type de polarisation
+(linéaire, circulaire, elliptique) on peut construire là aussi un état
+quelconque de superposition $$\alpha \vert 0 \rangle + \beta \vert 1 \rangle$$ 

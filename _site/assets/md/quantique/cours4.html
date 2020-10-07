@@ -1,0 +1,334 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/quantique/cours4.html" /><!-- Title, description, author --><title>Informatique quantique - Intrication Quantique | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Informatique quantique - Intrication Quantique | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/quantique/cours4.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-7-en-cours-link">
+            <span class="icon fa-link">Semestre 7 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_6.html" id="semestre-6-link">
+            <span class="icon fa-check">Semestre 6</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li><li><a href="http://localhost:4000/CPBx.html" id="cpbx-link">
+            <span class="icon fa-check">CPBx</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2>Informatique quantique - Intrication Quantique</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Notes inspirées du
+<a href="https://dept-info.labri.fr/~ges/ENSEIGNEMENT/CALCULQ/polycop_calculq.pdf">polycopié</a>
+de Y. Leroyer et G. Sénizergues.</p>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h2 id="rappels--produit-tensoriel-de-qubits">Rappels : produit tensoriel de qubits</h2>
+
+<h3 id="produit-tensoriel-et-qubits">Produit tensoriel et qubits</h3>
+
+<h4 id="représentation-matricielle-des-qubits">Représentation matricielle des qubits</h4>
+
+<script type="math/tex; mode=display">\vert \psi \rangle = \alpha \vert 0 \rangle + \beta \vert 1 \rangle, | \alpha
+|^2 + | \beta |^2 = 1</script>
+
+<script type="math/tex; mode=display">\vert \psi \rangle \rightarrow \begin{pmatrix} \alpha \\ \beta \end{pmatrix}</script>
+
+<h4 id="cas-particuliers">Cas particuliers</h4>
+
+<p><script type="math/tex">\vert 0 \rangle \rightarrow \begin{pmatrix} 1 \\ 0 \end{pmatrix}</script> et <script type="math/tex">\vert
+1 \rangle \rightarrow \begin{pmatrix} 0 \\ 1 \end{pmatrix}</script></p>
+
+<h4 id="produit-tensoriel-de-matrices">Produit tensoriel de matrices</h4>
+
+<script type="math/tex; mode=display">% <![CDATA[
+A \otimes B := \begin{pmatrix}a_{11} B & a_{12} B & \cdots & a_{1n} B \\ a_{21}
+B & a_{22} B & \cdots & a_{2n} B \\ \vdots & \vdots & \vdots & \vdots \\ a_{n1}
+B & a_{n2} B & \cdots & a_{nn} B \end{pmatrix} %]]></script>
+
+<h4 id="produit-tensoriel-de-qubits---exercice">Produit tensoriel de qubits - Exercice</h4>
+
+<p>Calculer les produits tensoriels des états <script type="math/tex">\vert 0 \rangle</script> et <script type="math/tex">\vert 1
+\rangle</script>.</p>
+
+<script type="math/tex; mode=display">\vert 00 \rangle \equiv \vert 0 \rangle \otimes \vert 0 \rangle =
+\begin{pmatrix} 1 \\ 0 \end{pmatrix} \otimes \begin{pmatrix} 1 \\ 0
+\end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix}</script>
+
+<script type="math/tex; mode=display">\vert 01 \rangle \equiv \vert 0 \rangle \otimes \vert 1 \rangle =
+\begin{pmatrix} 1 \\ 0 \end{pmatrix} \otimes \begin{pmatrix} 0 \\ 1
+\end{pmatrix} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix}</script>
+
+<script type="math/tex; mode=display">\vert 10 \rangle \equiv \vert 1 \rangle \otimes \vert 0 \rangle =
+\begin{pmatrix} 0 \\ 1 \end{pmatrix} \otimes \begin{pmatrix} 1 \\ 0
+\end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}</script>
+
+<script type="math/tex; mode=display">\vert 11 \rangle \equiv \vert 1 \rangle \otimes \vert 1 \rangle =
+\begin{pmatrix} 0 \\ 1 \end{pmatrix} \otimes \begin{pmatrix} 0 \\ 1
+\end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}</script>
+
+<h2 id="lintrication-quantique">L’intrication quantique</h2>
+
+<p>L’intrication quantique est un caractère subtile et paradoxal de la mécanique
+quantique (paradoxe EPR)</p>
+
+<h3 id="états-à-2-qubits">États à 2 qubits</h3>
+
+<p>Soit le qubit <script type="math/tex">A : \vert 0_A \rangle</script> et <script type="math/tex">\vert 1_A \rangle</script> et soit le
+qubit <script type="math/tex">B : \vert 0_B \rangle</script> et <script type="math/tex">\vert 1_B \rangle</script> états du système <script type="math/tex">AB :
+\underbrace{\vert 0_A \rangle \vert 0_B \rangle, \vert 0_A \rangle \vert 1_B
+\rangle, \vert 1_A 0_B \rangle, \vert 1_A 1_B \rangle}_{\text{base}}</script> chaque
+qubit se trouve dans un état de superposition :</p>
+<ul>
+  <li>qubit <script type="math/tex">A : \vert \Psi_A \rangle = \alpha \vert 0_A \rangle + \beta \vert 1_A
+\rangle</script></li>
+  <li>qubit <script type="math/tex">B : \vert \Psi_B \rangle = \gamma \vert 0_B \rangle + \delta \vert 1_B
+\rangle</script></li>
+</ul>
+
+<p>Système <script type="math/tex">AB : \vert \Psi_A \rangle \vert \Psi_B \rangle = \alpha \gamma \vert
+0_A \rangle \vert 0_B \rangle + \alpha \delta \vert 0_A \rangle \vert 1_B
+\rangle + \beta \gamma \vert 1_A \rangle \vert 0_B \rangle + \beta \delta \vert
+1_A \rangle \vert 1_B \rangle</script>. Notation les états <script type="math/tex">\vert 0_A 0_B \rangle
+\equiv \vert 00 \rangle, \vert 0_A 1_B \rangle \equiv \vert 0 1 \rangle, \vert
+1_A 0_B \rangle \equiv \vert 10 \rangle, \vert 1_A 1_B \rangle \equiv 11
+\rangle</script></p>
+
+<p>La mécanique quantique nous dit (1 er postulat) que tout état à 2 qubits se
+décompose</p>
+
+<script type="math/tex; mode=display">\vert \psi \rangle = \alpha_{00} \vert 00 \rangle + \alpha_{01}\vert 01
+\rangle + \alpha_{10} \vert 10 \rangle + \alpha_{11} \vert 11 \rangle (2)</script>
+
+<table>
+  <tbody>
+    <tr>
+      <td>avec $$</td>
+      <td>\alpha_{00}</td>
+      <td>^2 +</td>
+      <td>\alpha_{10}</td>
+      <td>^2 +</td>
+      <td>\alpha_{11}</td>
+      <td>^2 +</td>
+      <td>\alpha_{01}</td>
+      <td>^2</td>
+    </tr>
+    <tr>
+      <td>= 1 = \sum \limits_{i,j=0}^1</td>
+      <td>\alpha_{ij}^2$$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>L’état <script type="math/tex">\vert \Psi_A \rangle \vert \Psi_B \rangle</script> est un état factorisé</p>
+
+<p><script type="math/tex">(\vert \Psi_A \rangle \vert \Psi_B \rangle = \vert \Psi_A \rangle \otimes
+\vert \Psi_B \rangle)</script>  Il existe des états qui ne se factorisent pas a un
+produit d’états à 1 qubit <strong>états intriqués</strong>. Ce sont des états spécifiques de
+la description quantique, ils engendrent entre les particules des corrélations
+fortes qui sont à la base des différents protocoles et algorithmes de
+l’informatique quantique.</p>
+
+<p><strong>Important :</strong> dans ces états, l’état individuel d’un qubit n’est pas défini,
+c’est le système qui est dans un état défini.</p>
+
+<h3 id="les-états-intriqué---1er-état-de-bell-">Les états intriqué - 1er état de Bell :</h3>
+
+<script type="math/tex; mode=display">\vert \beta_{00} = \dfrac{1}{\sqrt{2}}(\vert 00 \rangle + \vert 1 1 \rangle)</script>
+
+<p>Tant qu’aucune mesure n’est eeffectuée sur le système, l’état de chaque qubit
+n’est pas défini. Si nous mesurions le 1er qubit etn ous trouvons l’état <script type="math/tex">\vert
+0 \rangle</script>, alors l’état <script type="math/tex">\vert \beta 00 \rangle</script> est projeté sur l’état
+<script type="math/tex">\vert 00 \rangle</script> ce qui entraîne que le 2ième qubit est forcément lui aussi
+dans l’état <script type="math/tex">\vert 0 \rangle</script>.</p>
+
+<script type="math/tex; mode=display">\vert \beta_{00} \rangle = \dfrac{1}{\sqrt{2}} \vert 00 \rangle +
+\dfrac{1}{\sqrt{2}} \vert 1 1 \rangle</script>
+
+<p>On suppose qu’il existe <script type="math/tex">\alpha_i, \beta_i, i = 0,1</script> tel que</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align} \vert \beta_{00} \rangle &= (\alpha_0 \vert 0 \rangle + \alpha_1 \vert 1
+\rangle )(\beta_0 \vert 0 \rangle + \beta_1 \vert 1 \rangle) \\ &\Leftrightarrow
+\dfrac{1}{\sqrt{2}} \vert 00 \rangle + \dfrac{1}{\sqrt{2}} \vert 1 1 \rangle =
+\alpha_0 \beta_0 \vert 00 \rangle + \alpha_0 \beta_1 \vert 01 \rangle + \alpha_1
+\beta_0 \vert 10 \rangle + \alpha_1 \beta_1 \vert 11 \rangle \\
+&\Rightarrow \alpha_0 \beta_0 = \dfrac{1}{\sqrt{2}} = \alpha_1 \beta_1
+\Rightarrow \alpha_0, \beta_0, \alpha_1, \beta_1 \neq 0 \\ &\Rightarrow \alpha_0
+\beta_1 = 0 = \alpha_1 \beta_0 \end{align} %]]></script>
+
+<p>Cela conduit à une contradiction donc en somme l’état de Belle ne se factorise
+pas, l’état de Belle est un état intriqué.</p>
+
+<h3 id="mesure-dun-état-à-2-qubits">Mesure d’un état à 2 qubits</h3>
+
+<p>D’après la mécanique quantique (d’après le postulat de la mesure), si on mesure
+l’état de 2 qubits, le système est projeté dans l’un des états de base <script type="math/tex">\vert
+00 \rangle, \vert 01 \rangle, \vert 10 \rangle</script> ou <script type="math/tex">\vert 11 \rangle</script> avec
+une probabilité <script type="math/tex">| \alpha_{ij} |^2</script>.</p>
+
+<h4 id="mesure-partielle">Mesure partielle.</h4>
+
+<p>On mesure uniquement un des 2 qubits, la mesure va fixer l’état du qubit mesure.
+L’état du système sera une superposition des états de base compatibles, et dans
+laquelle le qubit mesuré aura une valeur fixée.</p>
+
+<p>Par exemple, si on mesure le 1er qubit du système de l’état (2) et on trouve
+<script type="math/tex">\vert 0 \rangle</script>, le système est projeté dans l’état</p>
+
+<script type="math/tex; mode=display">\vert \tilde{\Psi} \rangle = \dfrac{\alpha_{00}}{\sqrt{|\alpha_{00} |^2 +
+|\alpha_{01}|^2}} \vert 00 \rangle + \dfrac{\alpha_{01}}{\sqrt{|\alpha_{00}|^2+|\alpha_{01}|^2}} \vert 01 \rangle</script>
+
+<h2 id="téléportation-quantique">Téléportation quantique</h2>
+
+<p>On parle ici de la téléportation d’état quantique et pas de la téléportation de
+système physique porteur de l’état. Pour réaliser la téléportation quantique il
+faut une paire de particules intriqués. En revanche l’état initial, qui est
+téléporté, est détruit ! Cela est une différence avec le clonage quantique.</p>
+
+<h3 id="illustration">Illustration</h3>
+
+<p>Comment transmettre d’un point <script type="math/tex">A</script> à un point <script type="math/tex">B</script> le contenu inconnu d’un
+qubit (ie d’un état quantique) ? (le système physique porteur du qubit n’est pas
+transporté !).</p>
+<ul>
+  <li>A et B se sont offert antérieurement un des 2 qubits d’un état intriqué de
+Bell <script type="math/tex">\vert \beta_{00} \rangle</script></li>
+  <li>A veut transmettre à B le contenu d’un qubit dans un état <script type="math/tex">\vert \Psi \rangle
+= \alpha \vert 0 \rangle + \beta \vert 1 \rangle</script> que A ne connait pas.</li>
+  <li>système à 3 qubits : <script type="math/tex">\vert \Psi_0 \rangle = \vert \Psi \rangle \vert
+\beta_{00} \rangle = \dfrac{1}{\sqrt{2}}(\alpha \vert 0 \rangle + \beta \vert
+1 \rangle) (\vert 00 \rangle + \vert 11 \rangle) =
+\dfrac{1}{\sqrt{2}}(\alpha(\vert 000 \rangle) + \vert 011 \rangle) + \beta
+(\vert 100 \rangle + \vert 111 \rangle)</script></li>
+</ul>
+
+<p>Ordre de qubits :</p>
+<ol>
+  <li>A le qubit inconnu</li>
+  <li>B le le 1er qubit de la paire intriqué (détenu par Anne)</li>
+  <li>C le 2nd qubit de la paire intriqué (détenu par Benoît)</li>
+</ol>
+
+<p>A réalise les opérations suivantes</p>
+<ol>
+  <li>A réalise un CNOT sur la paire (A,B), A obtient <script type="math/tex">\vert \Psi_1 \rangle =
+\dfrac{1}{\sqrt{2}} [\alpha \vert 1000 \rangle + \vert 011 \rangle) +
+\beta(\vert 110 \rangle + \vert 101 \rangle)]</script></li>
+  <li>A envoie le 1er qubit sur une porte de Hadamard, l’état du système devient</li>
+</ol>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align} \vert \Psi_2 \rangle &= \dfrac{1}{2} [\alpha (\vert 1000 \rangle +
+\vert 011 \rangle + \vert 111 \rangle) + \beta (\vert 010 \rangle - \vert 110
+\rangle + \vert 1001 \rangle - \vert 101 \rangle)] \\ 
+&= \dfrac{1}{2}(\vert 00 \rangle (\alpha \vert 0 \rangle + \beta \vert 1
+\rangle) \\ &+ \vert 01 \rangle (\alpha \vert 1 \rangle + \beta \vert 0 \rangle)
+\\ &+ \vert 10 \rangle (\alpha \vert 0 \rangle ( \beta \vert 1 \rangle )
+\\ &+ \vert 11 \rangle (\alpha \vert 1 \rangle - \beta \vert 0 \rangle))) \end{align} %]]></script>
+
+<p>L’état du qubit <script type="math/tex">C</script> est complètement déterminé par celui de la paire
+<script type="math/tex">(A,B)</script>, détenu pour A, c’est un effet de la corrélation quantique due à
+l’intrication de la paire <script type="math/tex">BC</script>.</p>
+
+<ol>
+  <li>A lit (mesure) la paire (A,B) et transmet le résultat à B par téléphone
+(informatique classique), la téléportation ne viole par la relativité
+restreinte d’Einstein (aucune info ne peut être transmise plus vite que la
+lumière !)</li>
+  <li>Benoît reçoit le résultat de A, B réalise sur un qubit C l’opération
+<script type="math/tex">Z^{b_1} X^{b_2}</script> On peut vérifier que l’état résultant du qubit C est
+l’état <script type="math/tex">\vert \Psi \rangle</script> ! 
+<img src="/assets/images/quantique/quantique2.png" alt="quantique2" class="image about center" /></li>
+</ol>
+
+<h2 id="théorème-de-non-clonage-quantique">Théorème de non-clonage quantique</h2>
+
+<p>(Wooters, Zurek, Nature)</p>
+
+<p>Il est impossible de dupliquer un état quantique</p>
+
+<p>On suppose par l’absurde, qu’une telle “machine” existe. Soit <script type="math/tex">\vert \Psi
+\rangle</script> l’état à photocopier et <script type="math/tex">\vert b \rangle</script> l’état initial du qubit de
+copie. Le clonage consiste à réaliser l’opération suivante <script type="math/tex">\vert \Psi \rangle
+\vert b \rangle \stackrel{\rightarrow}{\mathcal{U}} \vert \Psi \rangle \vert \Psi \rangle</script></p>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>

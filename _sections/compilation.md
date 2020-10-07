@@ -7,18 +7,18 @@ order: 1
 | Cours                                        | Notes personnelles |
 | :--                                          | :--                |
 | [Introduction]                               | [cours 1]          |
-| [Analyse lexicale]                           | [cours 2]          |
-| [Analyse syntaxique]                         | [cours 3]          |
-| [Analyse sémantique]                         | [cours 4]          |
+| [Analyse lexicale]                           | [cours 2&3]          |
+| [Analyse syntaxique]                         | [cours 4]          |
+| [Analyse sémantique]                         | [cours 5]          |
 | [Génération de représentation intermédiaire] | [cours 5]          |
 | [Génération de code assembleur]              | [cours 6]          |
 | [Structure du compilateur LLVM]              | [cours 7]          |
 
 
-| Sujet de TD     | Notes personnelles |
-| :--       | :--                |
-| [Sujet 1] | [TD1]              |
-| [Sujet 2] | [TD2]              |
+| Sujet de TD | Notes personnelles |
+| :--         | :--                |
+| [Sujet 1]   | [TD1]              |
+| [Sujet 2]   | [TD2]              |
 
 
 [Sujet 1]:https://moodle.bordeaux-inp.fr/pluginfile.php/149561/mod_resource/content/1/td1.pdf
