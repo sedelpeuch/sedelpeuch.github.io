@@ -56,3 +56,125 @@ permettent :
    droits)
 4. la gestion des transactions 
 5. et enfin le SQL intégré
+
+#### Langage de définition de données 
+
+Le **langage de définition de données** (LDD, oou Data Definition Language, soit
+DDL en anglais) est un langage orienté au niveau de la structure de la base de
+données. Le LDD permet de créer, modifier, supprimer des objets. Il permet
+également de définir le domaine des données (nombre, chaîne de caractères, date,
+booléen ...) et d'ajouter des contraintes de valeur sur les données. Il permet
+enfin d'autoriser ou d'interdire l'accès aux données et d'activer ou de
+désactiver l'audit pour un utilisateur donné. Les instruction du LDD sont :
+CREATE ALTER DROP AUDIT NOAUDIT ANALYSE RENAME TRUNCATE
+
+#### Langage de manipulation de données 
+
+Le **langage de manipulation de données** (LMD, ou Data Manipulation Language,
+soit DML en anglais) est l'ensemble des commandes concernant la manipulation des
+données dans une base de données. Le LMD permet l'ajout, la suppression et l
+modification de ligne, la visualistion du contenu des tables et leur
+verouillage. Les instruction du LMD sont : INSERT UPDATE DELETE SELECT EXPLAIN
+PLAN LOCK TABLE. Ces éléments doivent être validés par une transaction pour
+qu'ils soient pris en compte. 
+
+#### Langage de protections d'accès
+Le **langage de protections d'accès** (ou Data Control Language, soit DCL en
+anglais) s'occupe de gérer les droits d'accès aux tables. Les instruction du DCL
+sont : GRANT, REVOKE. 
+
+#### Langage de contrôle de transaction 
+
+Le langage de contrôle de transaction gère les modifications faites par le LMD,
+c'est à dire les caractéristiques des transactions et la validation et
+l'annulation des modifications. LEs instruction du TCL sont : COMMIT SAVEPOINT
+ROLLBACK SET TRANSACTION
+
+#### SQL intégré 
+
+Le SQL intégré permet d'utiliser SQL dans un langage de troisième génération
+(C,java,cobol, etc ):
++ déclaration d'objets ou d'instructions 
++ exécution d'instructions
++ gestion des variables et des curseurs 
++ traitement des erreurs 
+
+Les instructions du SQL intégré sont : DECLARE TYPE DESCRIBE VAR CONNECT PREPARE
+EXECUTE OPEN FETCH CLOSE WHENEVER
+
+#### PostgreSQL 
+
+Les systèmes traditionnels de gestion de bases de données relationnelles (SGBDR)
+offrent un modèle de données composé d'une collection de relations contenant des
+attributs relevant chacun d'un type spécifique. Le systèmes commerciaux gèrent
+par exemple les nombres décimaux, les entiers, les chaines de caractères, les
+monnaies et les dates. Il est communément admis que ce modèle est inadéquat pour
+les applications de traitement de données de l'avenir, car, si le modèle
+relationnel a remplacé avec succès les modèles précédents en partie grâce à sa
+"simplicité spartiate", cette dernière complique cependant l'implémentation de
+certaines applications. PostgreSQL apporte une puissance additionnelle
+substantielle en incorporant les quatre concepts de base suivants afin que les
+utilisateurs puissent facilement étendre le système : classe, héritage, types
+,fonctions. D'autres fonctionnalités accroissent la puissance et la souplesse :
+contraintes, déclencheurs, règles, intégrité des transactions. 
+
+Ces fonctionnalités placent PostgreSQL dans la catégorie des bases de données
+relationnel-objet. Ne confondez pas cette catégorie avec celle des serveur
+d'objets qui ne tolère pas aussi bien les langages traditionnels d'accès aux
+SGBDR. Ainsi, bien que PostgreSQL possède certaines fonctionnalités orientées
+objet, il appartient avant tout au monde des SGBDR. C'est essentiellement
+l'aspect SGBDR de PostgreSQL que nous aborderons dans ce cours. 
+
+L'une des principales qualités de PostgreSQL est d'être un logiciel libre, c'est
+à dire gratuit dont les sources sont disponibles. Il est possible de l'installer
+sur les systèmes Unix/Linux et Win32. 
+
+PostgreSQL fonctionne selon une architecture client/serveur, il est ainsi
+constitué : 
++ d'une partie serveur, c'est à dire une application fonctionnant sur la machine
+  hébergeant la base de données (le serveur de bases de données) capable de
+  traiter les requêtes des clients, il s'agit dans le cas de PostgreSQL d'une
+  programme en mémoire appelé postmaster
++ d'une partie client (psql) devant être installée sur toutes les machines
+  nécessitant d'accéder au serveur de base de données (un client peut
+  éventuellement fonctionner sur le serveur lui-même). 
+  
+  Les clients (les machines sur lesquelles le client PostgreSQL est installé)
+  peuvent interroger le serveur de bases de données à l'aide de requêtes SQL. 
+  
+## Définir une base ? Langage de définition de données (LDD)
+
+### Soit le schéma relationnel minimaliste suivant : 
++ Acteur(Num-Act, Nom, Prénom)
++ Jouer(Num-Act,Num-Film)
++ Film(Num-Film, Titre, Année)
+
+#### Contrainte d'intégrité de domaine 
+
+Toute comparaison d'attributs n'est acceptée que si ces attributs sont définis
+sur le même domaine. Le SGBD doit donc constamment s'assurer de la validité des
+valeurs d'un attribut. C'est pourquoi la commande de création de tables doit
+préciser, en plus du nom, le type de chaque colonne. Par exemple, pour la table
+Film, on précisera que le Titre est une chaîne de caractères et l'Année une
+date. Lors de l'insertion de $$n$$-uplets dans cette table, le système
+s'assurera que les différents champs du $$n$$-uplet satisferont les contraintes
+d'intégrité de domaine des attributs précisés lors de la création de labse. Si
+les contraintes ne sont pas satisfaites, le $$n$$-uplet n'est tout simplement
+pas inséré dans la table.
+
+#### Contrainte d'intégrité de référence
+
+Dans tout schéma relationnel, il existe deux types de relation : 
++ les relations qui représentent des entités de l'univers modélisé, elles sont
+  qualifiées de statiques, ou d'indépendantes, les relations Acteur et Film en
+  sont des exemples 
++ les relations dont l'existence des $$n$$-uplets dépend des valeurs d'attributs
+  situées dans d'autres relations, il s'agit de relations dynamiques ou
+  dépendantes, la relation Jouer en est un exemple. 
+  
+Lors de l'insertion d'un $$n$$-uplet dans la relation Jouer, le SGBD doit
+vérifier que les valeurs Num-Act et Num-Film correspondent bien, respectivement,
+à une valeur de Num-Act existant dans la relation Acteur et une valeur Num-Film
+existant dans la relation Film. 
+
+Lors de la suppression d'un $$n$$-uplet 

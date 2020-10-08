@@ -1,7 +1,7 @@
 ---
 layout: page
 hide: true
-title: Travaux Dirigés Compilation - Feuille 1
+title: Travaux Dirigés Compilation - Feuille 2
 ---
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -52,7 +52,7 @@ start symbol $$S$$*
 
 + *Construire les arbres de dérivation de abba et aabb*
 
-
+![3](/assets/images/compilation/3.png){:class="image about center"}
 
 + *Cette grammaire est elle ambigüe ?*
 
@@ -60,7 +60,7 @@ Elle n'est pas ambigüe
 
 + *Quel langage définit-elle ?*
 
-$$(S) = \{ab,ba,\varpepsilon,...}$$ 
+$$(S) = \{ab,ba,\varepsilon,...\}$$ 
 $$(A) = \{a, aab, aba, ...\}$$
 $$(B) = \{b,bab,bba,...\}$$
 
@@ -83,7 +83,6 @@ then` et `else`.
 dérivation pour `if id then if id then nop else nop`. En existe-t-il un autre ?
 Qu'en déduire ?*
 
-![3](/assets/images/compilation/3.png){:class="image about center"}
 
 ### Exercice 4. 
 
