@@ -83,9 +83,54 @@ then` et `else`.
 dérivation pour `if id then if id then nop else nop`. En existe-t-il un autre ?
 Qu'en déduire ?*
 
+Nous pouvons soupçonner que la grammaire est ambigüe, en effet nous avons deux
+arbres de dérivations possibles 
+
+![arbre4](/assets/images/compilation/arbre4.jpg){:class="image about center"}
+![arbre5](/assets/images/compilation/arbre5.jpg){:class="image about center"}
+
 
 ### Exercice 4. 
 
 *Proposer une grammaire non ambigüe permettant de définir le même langage. Votre grammaire
 devra, comme dans le langage C, “forcer” l’association du “else” avec le “if-then” qui précède le plus proche qui
 n’est pas déjà “fermé” par un “else”.*
+
+Pour éliminer l'ambiguïté il faut réecrire la grammaire : 
+```
+C1 -> if B then C1 else C1
+C1 -> nop
+```
+
+## Expressions arithmétiques 
+
+### Exercice 5
+
+```
+A -> id = E
+E -> T
+E -> E + T
+T -> F 
+T -> T * F
+F -> id
+F -> cst
+F -> (E)
+```
++ *Dessiner les arbres de dérivaitions ainsi que numéroter les noeuds de l'arbre
+de dérivation dans l'ordre du parcours de l'analyseseur (postfixe)* 
+![arbre6](/assets/images/compilation/arbre6.jpg){:class="image about center"}
+![arbre7](/assets/images/compilation/arbre7.jpg){:class="image about center"}
+
++ *Écrire les actions sémantiques associées à chaque règle qui permettent de
+  traduire une expression arithmétique en code 3 adresses*
+  
+```
+1.{$$=newreg();printf("r%d=%s\n";$$,$0);}
+2. $$=$1
+3. {$$=newreg();print("r%d= r%d + r%d \n", $$, $1, $3);}
+4. $$=$1
+5. {$$=newreg(); printf("r%d = r%d * r%d",$$,$1,$2);}
+6. {$$=newreg();printf("r%d=%s\n";$$,$1);}
+7. {$$=newreg();printf("r%d=cte\n";$,$1);}
+8. $$=$2
+```

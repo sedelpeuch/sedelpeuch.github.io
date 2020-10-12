@@ -149,11 +149,58 @@ then</code> et <code class="language-plaintext highlighter-rouge">else</code>.</
 dérivation pour <code class="language-plaintext highlighter-rouge">if id then if id then nop else nop</code>. En existe-t-il un autre ?
 Qu’en déduire ?</em></p>
 
+<p>Nous pouvons soupçonner que la grammaire est ambigüe, en effet nous avons deux
+arbres de dérivations possibles</p>
+
+<p><img src="/assets/images/compilation/arbre4.jpg" alt="arbre4" class="image about center" />
+<img src="/assets/images/compilation/arbre5.jpg" alt="arbre5" class="image about center" /></p>
+
 <h3 id="exercice-4">Exercice 4.</h3>
 
 <p><em>Proposer une grammaire non ambigüe permettant de définir le même langage. Votre grammaire
 devra, comme dans le langage C, “forcer” l’association du “else” avec le “if-then” qui précède le plus proche qui
 n’est pas déjà “fermé” par un “else”.</em></p>
+
+<p>Pour éliminer l’ambiguïté il faut réecrire la grammaire :</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C1 -&gt; if B then C1 else C1
+C1 -&gt; nop
+</code></pre></div></div>
+
+<h2 id="expressions-arithmétiques">Expressions arithmétiques</h2>
+
+<h3 id="exercice-5">Exercice 5</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A -&gt; id = E
+E -&gt; T
+E -&gt; E + T
+T -&gt; F 
+T -&gt; T * F
+F -&gt; id
+F -&gt; cst
+F -&gt; (E)
+</code></pre></div></div>
+<ul>
+  <li>
+    <p><em>Dessiner les arbres de dérivaitions ainsi que numéroter les noeuds de l’arbre
+de dérivation dans l’ordre du parcours de l’analyseseur (postfixe)</em> 
+<img src="/assets/images/compilation/arbre6.jpg" alt="arbre6" class="image about center" />
+<img src="/assets/images/compilation/arbre7.jpg" alt="arbre7" class="image about center" /></p>
+  </li>
+  <li>
+    <p><em>Écrire les actions sémantiques associées à chaque règle qui permettent de
+traduire une expression arithmétique en code 3 adresses</em></p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.{$$=newreg();printf("r%d=%s\n";$$,$0);}
+2. $$=$1
+3. {$$=newreg();print("r%d= r%d + r%d \n", $$, $1, $3);}
+4. $$=$1
+5. {$$=newreg(); printf("r%d = r%d * r%d",$$,$1,$2);}
+6. {$$=newreg();printf("r%d=%s\n";$$,$1);}
+7. {$$=newreg();printf("r%d=cte\n";$,$1);}
+8. $$=$2
+</code></pre></div></div>
 </div>
 	</article>
 </div><!-- Footer -->

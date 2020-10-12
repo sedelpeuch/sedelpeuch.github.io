@@ -23,5 +23,4 @@ order: 7
 [Cours 1]:https://www.labri.fr/perso/atanasa/info_quantique/CI_1_intro.pdf
 [Cours 2]:https://www.labri.fr/perso/atanasa/info_quantique/CI_2-3-meca_q.pdf
 [Cours 3]:https://www.labri.fr/perso/atanasa/info_quantique/CI_2-3-meca_q.pdf
-[Cours 
-4]:https://www.labri.fr/perso/atanasa/info_quantique/CI_4-etats_intriques-scan.pdf
+[Cours 4]:https://www.labri.fr/perso/atanasa/info_quantique/CI_4-etats_intriques-scan.pdf

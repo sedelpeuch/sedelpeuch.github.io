@@ -41,7 +41,7 @@ Nous cherchons les produits disponibles sur Bordeaux
 
 $$\Pi_{\text{Nom Produit}}
 (\sigma_{\text{ville='Bordeaux'}})(\text{Produit} \rhd \lhd \text{Fournir } \rhd
-\lhd_{\text{Fournisseur}})$$
+\lhd {\text{Fournisseur}})$$
 
 ## Élèves-matières
 
@@ -66,7 +66,7 @@ $$\Pi_{\text{Nom de l'élève}}(\sigma_{\text{SGBD}}(\text{Eleves} \rhd \lhd
 
 + *Donner la liste des élèves qui ont le même nom, mais pas le même prénom*
 
-$$\Pi_{E_1 \text{Nom}, E_1 \text{Prénom}}\text{Eleves} E_1 \rhd \lhd_{E_1.\text{NomEleve}=E_2.\text{NomEleve ET}
+$$\Pi_{E_1 \text{Nom}, E_1 \text{Prénom}}\text{Eleves} E_1 \rhd \lhd {E_1.\text{NomEleve}=E_2.\text{NomEleve ET}
 E_1.\text{PrenomEleve} \neq E_2.\text{PrenomEleve}}$$
 
 + *Donner la liste des élèves qui suivent tous les cours*
