@@ -297,7 +297,7 @@ l’intrication de la paire <script type="math/tex">BC</script>.</p>
 
 <ol>
   <li>A lit (mesure) la paire (A,B) et transmet le résultat à B par téléphone
-(informatique classique), la téléportation ne viole par la relativité
+ (informatique classique), la téléportation ne viole par la relativité
 restreinte d’Einstein (aucune info ne peut être transmise plus vite que la
 lumière !)</li>
   <li>Benoît reçoit le résultat de A, B réalise sur un qubit C l’opération
@@ -316,6 +316,118 @@ l’état <script type="math/tex">\vert \Psi \rangle</script> !
 \rangle</script> l’état à photocopier et <script type="math/tex">\vert b \rangle</script> l’état initial du qubit de
 copie. Le clonage consiste à réaliser l’opération suivante <script type="math/tex">\vert \Psi \rangle
 \vert b \rangle \stackrel{\rightarrow}{\mathcal{U}} \vert \Psi \rangle \vert \Psi \rangle</script></p>
+
+<p>Soit <script type="math/tex">\vert \phi \rangle</script> un autre état à cloner, <script type="math/tex">\vert \phi \rangle \neq
+\vert \psi \rangle</script></p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+&\Rightarrow \vert \phi \rangle \vert \phi \rangle = \cup \vert \phi \rangle
+\vert b \rangle \equiv \langle \phi \vert \langle \phi \rangle = \langle b \vert
+\langle \phi \vert \cup^+ \\
+&\Rightarrow \langle \phi \vert \langle \phi \vert \vert \psi \rangle \vert \psi
+\rangle = \langle b \vert \langle \phi \vert \cup^+ \cup \vert \psi
+\rangle \vert b \rangle \\
+(\langle \phi \vert \psi \rangle)^2 &= \langle b \vert b \rangle \langle \phi
+\vert \psi \rangle \\
+&\Rightarrow (\langle \phi \vert \psi \rangle)^2 = \langle \phi \vert \psi
+\rangle, \forall \vert \phi \rangle, \vert \psi \rangle \\
+&\Rightarrow \langle \phi \vert \psi \rangle = 1, \forall \vert \psi \rangle,
+\vert \psi \rangle \text{contradiction}\\
+&\Rightarrow \langle \phi \vert \psi \rangle = 0, \forall \vert \psi \rangle,
+\vert \psi \rangle \text{états orthogonaux -> contradiction}
+\end{align} %]]></script>
+
+<p>Il est donc impossible de cloner des états quantiques</p>
+
+<h2 id="manipulation-détat-à-2-qubits---calcul-quantique">Manipulation d’état à 2 qubits - Calcul quantique</h2>
+
+<p>Les opérateurs sur 1 ou plusieurs qubits correspondent à l’action d’opérateurs
+unitaires – évolutions réversibles (différence fondamentale avec les
+ordinateurs classiques – évolutions irréversibles). Dans le monde classique,
+nous avons le théorème de la logique classique : toute porte logique peut être
+construire à partir de NAND et COPY. NAND et COPY ne peuvent pas être transposé
+dans le quantique à cause de l’irréversibilité et du théorème de non clonage
+quantique). Cependant, il est possible de transformer les algorithmes classiques
+irreversibles en algorithme réversibles.</p>
+
+<p>Cependant cela a un cout</p>
+<ul>
+  <li>Augmentation du volume d’information traitée</li>
+  <li>Introduction d’un nouvelle porte à 3 bits, TOF (porte de Toffoli)</li>
+</ul>
+
+<script type="math/tex; mode=display">(x,y,z) \longrigtharrow (x,y, z \oplus x y)</script>
+
+<p>On dit qu’une fonction <script type="math/tex">f : \mathbb{B}^n \rightarrow \mathb{B}^n</script> est
+calculable, “avec variables auxiliaire” sur l’ensemble de portes (réversibles)
+<script type="math/tex">\mathcal{G}</script> si et seulement si il existe un circuit <script type="math/tex">\mathcal{C}</script> à
+<script type="math/tex">(n+m)</script> entrée tel que</p>
+
+<script type="math/tex; mode=display">\mathcal{C}(\vec{x},0^m) = (f(\vec{x}),0^m)</script>
+
+<p>c’est à dire le circuit <script type="math/tex">\mathcl{C}</script> se sert des dernière places pour
+calculer, mais ne prend aucune donnée, ni ne retourne aucun résultat, dans ces
+places.</p>
+
+<script type="math/tex; mode=display">f_{\oplus}(\vec{x},y) := (\vec{x},y \oplus f(\vec{x}))</script>
+
+<p>On peut montrer que tout circuit irréversible calculant une fonction <script type="math/tex">f</script> peut
+être transformé en circuit réversible, avec variable auxiliaires calculant
+<script type="math/tex">f_{\oplus}</script>. À travers cette équivalence, on pourra associer un algorithme
+quantique réversible à tout algorithme classique irréversible.</p>
+
+<h2 id="théorème-de-bennet-landoueur---toffoli">Théorème de Bennet-Landoueur - Toffoli</h2>
+
+<p>Soit <script type="math/tex">N \geq 2</script>. Toute application booléenne inversible</p>
+
+<script type="math/tex; mode=display">f : \mathbb{B}^n \rightarrow \mathbb{B}^n</script>
+
+<p>est calculable par un circuit (avec variables auxiliaire sur l’ensemble des
+portes NOT,SWAP,TOFF). La porte NOT peut être remplacée par la porte cNOT</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>entrée</td>
+      <td>sortie</td>
+    </tr>
+    <tr>
+      <td>00</td>
+      <td>00</td>
+    </tr>
+    <tr>
+      <td>01</td>
+      <td>01</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>1er bite de controle la valeur est inchangée. Le deuxième bit est le bit cible,
+sa valeur est inchangée si le bit de contrôle vaut 0 et il est inversé si le bit
+de controle vaut 1.</p>
+
+<p>Le cNOT quantique est représentée par une matrice dans la base <script type="math/tex">\vert 00
+\rangle, \vert 01 \rangle, \vert 11 \rangle</script>.</p>
+
+<h2 id="théorème-de-kitaev-shen-vialyi">Théorème de Kitaev-Shen-Vialyi</h2>
+<p>Soit <script type="math/tex">n \geq 2, N = 2^n</script>. Toute matrice unitaire <script type="math/tex">U_N \in \mathbb{M}_{N
+\times N}(\mathbb{C})</script>, vue comme une porte à <script type="math/tex">n</script>-qubits, est calculée par un
+circuit sur l’ensemble de portes</p>
+
+<script type="math/tex; mode=display">\{NOT, SWAP, TOF\} \cup \{\Lambda (u) \vert \cup \text{de taille} z\}</script>
+
+<p>Les portes reversibles de bases (traduits en transformations unitaires) ainsi
+que toutes les portes à 1 qubit, contrôlés par un autre qubit, suffisant pour
+calculer n’importe qu’elle transformation unitaire sur <script type="math/tex">N</script> qubits</p>
 </div>
 	</article>
 </div><!-- Footer -->

@@ -199,7 +199,7 @@ $$(A,B)$$, détenu pour A, c'est un effet de la corrélation quantique due à
 l'intrication de la paire $$BC$$. 
 
 3. A lit (mesure) la paire (A,B) et transmet le résultat à B par téléphone
-   (informatique classique), la téléportation ne viole par la relativité
+    (informatique classique), la téléportation ne viole par la relativité
    restreinte d'Einstein (aucune info ne peut être transmise plus vite que la
    lumière !)
 4. Benoît reçoit le résultat de A, B réalise sur un qubit C l'opération
@@ -217,3 +217,93 @@ On suppose par l'absurde, qu'une telle "machine" existe. Soit $$\vert \Psi
 \rangle$$ l'état à photocopier et $$\vert b \rangle$$ l'état initial du qubit de
 copie. Le clonage consiste à réaliser l'opération suivante $$\vert \Psi \rangle
 \vert b \rangle \stackrel{\rightarrow}{\mathcal{U}} \vert \Psi \rangle \vert \Psi \rangle$$ 
+
+Soit $$\vert \phi \rangle$$ un autre état à cloner, $$\vert \phi \rangle \neq
+\vert \psi \rangle$$
+
+$$\begin{align}
+&\Rightarrow \vert \phi \rangle \vert \phi \rangle = \cup \vert \phi \rangle
+\vert b \rangle \equiv \langle \phi \vert \langle \phi \rangle = \langle b \vert
+\langle \phi \vert \cup^+ \\
+&\Rightarrow \langle \phi \vert \langle \phi \vert \vert \psi \rangle \vert \psi
+\rangle = \langle b \vert \langle \phi \vert \cup^+ \cup \vert \psi
+\rangle \vert b \rangle \\
+(\langle \phi \vert \psi \rangle)^2 &= \langle b \vert b \rangle \langle \phi
+\vert \psi \rangle \\
+&\Rightarrow (\langle \phi \vert \psi \rangle)^2 = \langle \phi \vert \psi
+\rangle, \forall \vert \phi \rangle, \vert \psi \rangle \\
+&\Rightarrow \langle \phi \vert \psi \rangle = 1, \forall \vert \psi \rangle,
+\vert \psi \rangle \text{contradiction}\\
+&\Rightarrow \langle \phi \vert \psi \rangle = 0, \forall \vert \psi \rangle,
+\vert \psi \rangle \text{états orthogonaux -> contradiction}
+\end{align}$$
+
+Il est donc impossible de cloner des états quantiques
+
+## Manipulation d'état à 2 qubits - Calcul quantique 
+
+Les opérateurs sur 1 ou plusieurs qubits correspondent à l'action d'opérateurs
+unitaires -- évolutions réversibles (différence fondamentale avec les
+ordinateurs classiques -- évolutions irréversibles). Dans le monde classique,
+nous avons le théorème de la logique classique : toute porte logique peut être
+construire à partir de NAND et COPY. NAND et COPY ne peuvent pas être transposé
+dans le quantique à cause de l'irréversibilité et du théorème de non clonage
+quantique). Cependant, il est possible de transformer les algorithmes classiques
+irreversibles en algorithme réversibles.
+
+Cependant cela a un cout
+- Augmentation du volume d'information traitée
+- Introduction d'un nouvelle porte à 3 bits, TOF (porte de Toffoli)
+
+$$(x,y,z) \longrigtharrow (x,y, z \oplus x y)$$
+
+On dit qu'une fonction $$f : \mathbb{B}^n \rightarrow \mathb{B}^n$$ est
+calculable, "avec variables auxiliaire" sur l'ensemble de portes (réversibles)
+$$\mathcal{G}$$ si et seulement si il existe un circuit $$\mathcal{C}$$ à
+$$(n+m)$$ entrée tel que 
+
+$$ \mathcal{C}(\vec{x},0^m) = (f(\vec{x}),0^m)$$
+
+c'est à dire le circuit $$\mathcl{C}$$ se sert des dernière places pour
+calculer, mais ne prend aucune donnée, ni ne retourne aucun résultat, dans ces
+places.
+
+$$f_{\oplus}(\vec{x},y) := (\vec{x},y \oplus f(\vec{x}))$$
+
+On peut montrer que tout circuit irréversible calculant une fonction $$f$$ peut
+être transformé en circuit réversible, avec variable auxiliaires calculant
+$$f_{\oplus}$$. À travers cette équivalence, on pourra associer un algorithme
+quantique réversible à tout algorithme classique irréversible.
+
+## Théorème de Bennet-Landoueur - Toffoli
+
+Soit $$N \geq 2$$. Toute application booléenne inversible 
+
+$$ f : \mathbb{B}^n \rightarrow \mathbb{B}^n$$ 
+
+est calculable par un circuit (avec variables auxiliaire sur l'ensemble des
+portes NOT,SWAP,TOFF). La porte NOT peut être remplacée par la porte cNOT 
+
+| entrée | sortie |
+| 00     | 00     |
+| 01     | 01     |
+| 10     | 11     |
+| 11    | 10       |
+
+1er bite de controle la valeur est inchangée. Le deuxième bit est le bit cible,
+sa valeur est inchangée si le bit de contrôle vaut 0 et il est inversé si le bit
+de controle vaut 1. 
+
+Le cNOT quantique est représentée par une matrice dans la base $$\vert 00
+\rangle, \vert 01 \rangle, \vert 11 \rangle$$. 
+
+## Théorème de Kitaev-Shen-Vialyi
+Soit $$n \geq 2, N = 2^n$$. Toute matrice unitaire $$U_N \in \mathbb{M}_{N
+\times N}(\mathbb{C})$$, vue comme une porte à $$n$$-qubits, est calculée par un
+circuit sur l'ensemble de portes 
+
+$$ \{NOT, SWAP, TOF\} \cup \{\Lambda (u) \vert \cup \text{de taille} z\}$$
+
+Les portes reversibles de bases (traduits en transformations unitaires) ainsi
+que toutes les portes à 1 qubit, contrôlés par un autre qubit, suffisant pour
+calculer n'importe qu'elle transformation unitaire sur $$N$$ qubits
