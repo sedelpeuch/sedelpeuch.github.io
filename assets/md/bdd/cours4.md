@@ -177,4 +177,83 @@ vérifier que les valeurs Num-Act et Num-Film correspondent bien, respectivement
 à une valeur de Num-Act existant dans la relation Acteur et une valeur Num-Film
 existant dans la relation Film. 
 
-Lors de la suppression d'un $$n$$-uplet 
+Lors de la suppression d'un $$n$$-uplet dans la relation Jouer, le SGBD doit
+vérifier que les valeurs Num-Act et Nuum-Film correspondent bien,
+respectivement, à une valeur de Num-act existant dans la relation Acteur et une
+valeur Num-Film existant dans la relation Film. 
+
+Lors de la suppression d'un $$n$$-uplet dans la relation Acteur, le SGBD doit
+vérifier qu'aucun $$n$$-uplet de la relation Jouer ne faire référence, par
+l'intermédiaire de l'attribut $$Num-act$$, au $$n$$-uplet de la relation Jouer
+ne fait référence, par l'intermédiaire de l'attribut Num-Act, au $$n$$-uplet que
+l'on cherche à supprimer. Le cas échéant, c'est à dire si une, ou plusieurs,
+valeur correspondante de Num-Act existe dans Jouet, quatre possibilités sont
+envisageables : 
++ interdire la suppression 
++ supprimer également les $$n$$-uplet concernés dans Jouer
++ avertir l'utilisateur d'une incohérence
++ mettre les valeurs des attributs concernés à une valeur nulle dans la table
+  Jouer, si l'opération est possible (ce qui n'est pas le cas si ces valeurs
+  interviennent dans une clé primaire);
+  
+
+### Créer une table : CREATE TABLE
+
+#### Introduction. 
+
+Une table est un ensemble de lignes et de colonnes. La création conssite à
+définir (en fonction de l'analyse) le nom de ces colonnes, leur format (type),
+la valeur par défaut à la création de la ligne (DEFAULT) et les règles de
+gestion s'appliquant à la colonne (CONSTRAINT). 
+
+#### Création simple.
+
+La commande de création de tables la plus simple ne comportera que le nom et le
+type de chaque colonne de la table. A la création, la table sera vide, mais un
+certain espace lui sera alloué. La syntaxe est la suivante : 
+```
+CREATE TABLE nom_table(nom_col1 TYPE1, nom_col2 TYPE2,...)
+```
+
+Quand on crée une table, il faut définir les contraintes d'intégrité que devront
+respecter les données que l'on mettra dans la table. 
+
+#### Les types de données.
+
+Les types de données peuvent être 
+
++ INTEGER : Ce type permet de stocker des entiers signés codés sur 4 octets 
++ BIGINT : Ce type permet de stocker des entiers signés codés sur 8 octets
++ REAL : Ce type permet de stocker des réels comportant 6 chiffres significatifs
+  codés sur 4 octets 
++ DOUBLE PRECISION : Ce type permet de stocker des réels comportant 15 chiffres
+  significatifs codés sur 8 octets 
++ NUMERO[(précision,[longueur])] : Ce type de données permet de stocker des
+  données numériques à la fois entières et réelles avec une précision de 1 000
+  chiffres significatifs. longueur précise le nombre maximum de chiffres
+  significatifs stockés et précision donne le nombre maximum de chiffres après
+  la virgule. 
++ CHAR(longueur) : Ce type de données permet de stocker des chaines de
+  caractères de longueur fixe. longueur doit être inférieur à 255, sa valeur par
+  défaut est 1. 
++ VARCHAR(longueur) : Ce type de données permet de stocker des chaînes de
+  caractères de longueur variable, longueur doit être inférieur à 2000, il n'y a
+  pas de valeur par défaut. 
++ DATE : Ce type de données permet de stocker des données constituées d'une date 
++ TIMESTAMP : Ce type de données permet de stocker des données constituées d'une
+  date et d'une heure
++ BOOLEAN : Ce type de données permet de stocker des valeurs Booléenne 
++ MONEY : Ce type de données permet de stocker des valeurs monétaires
++ TEXT : Ce type de données permet de stocker des chaînes de caractères de
+  longueur variable 
+  
+#### Crééation avec Insertion de données 
+
+On peut insérer des données dans une table lors de sa création par la commande
+suivante 
+
+```
+CREATE TABLE nom_table [(nom_col1, nom_col2, ...)] AS SELECT ...
+
+On peut ainsi, en un seul ordre SQL créer une table et la remplir avec des données provenant du résultat d'un SELECt. Si les types des colonnes ne sont pas spécifiés, ils correspondront à ceux du SELECT. Il en va de même pour les noms des colonnes. Le SELECT peut contenir des fonctions de groupes, mais pas d'ORDER BY, car 
+```
