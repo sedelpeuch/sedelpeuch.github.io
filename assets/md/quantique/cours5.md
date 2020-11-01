@@ -85,3 +85,9 @@ qu'on ne peut pas toujours représenter par un opérateur unitaire. Pour associe
 un opérateur unitaire à l'évaluation d'une fonction, on introduit une fonction
 et on définit 
 - un registre de données
+
+## Exercice
+
+Calculer $$\vert \psi_1$$ et représenter le sous la forme d'une somme des
+vecteurs de la base 
+

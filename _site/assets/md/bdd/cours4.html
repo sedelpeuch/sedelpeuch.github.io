@@ -252,7 +252,87 @@ vérifier que les valeurs Num-Act et Num-Film correspondent bien, respectivement
 à une valeur de Num-Act existant dans la relation Acteur et une valeur Num-Film
 existant dans la relation Film.</p>
 
-<p>Lors de la suppression d’un <script type="math/tex">n</script>-uplet</p>
+<p>Lors de la suppression d’un <script type="math/tex">n</script>-uplet dans la relation Jouer, le SGBD doit
+vérifier que les valeurs Num-Act et Nuum-Film correspondent bien,
+respectivement, à une valeur de Num-act existant dans la relation Acteur et une
+valeur Num-Film existant dans la relation Film.</p>
+
+<p>Lors de la suppression d’un <script type="math/tex">n</script>-uplet dans la relation Acteur, le SGBD doit
+vérifier qu’aucun <script type="math/tex">n</script>-uplet de la relation Jouer ne faire référence, par
+l’intermédiaire de l’attribut <script type="math/tex">Num-act</script>, au <script type="math/tex">n</script>-uplet de la relation Jouer
+ne fait référence, par l’intermédiaire de l’attribut Num-Act, au <script type="math/tex">n</script>-uplet que
+l’on cherche à supprimer. Le cas échéant, c’est à dire si une, ou plusieurs,
+valeur correspondante de Num-Act existe dans Jouet, quatre possibilités sont
+envisageables :</p>
+<ul>
+  <li>interdire la suppression</li>
+  <li>supprimer également les <script type="math/tex">n</script>-uplet concernés dans Jouer</li>
+  <li>avertir l’utilisateur d’une incohérence</li>
+  <li>mettre les valeurs des attributs concernés à une valeur nulle dans la table
+Jouer, si l’opération est possible (ce qui n’est pas le cas si ces valeurs
+interviennent dans une clé primaire);</li>
+</ul>
+
+<h3 id="créer-une-table--create-table">Créer une table : CREATE TABLE</h3>
+
+<h4 id="introduction-1">Introduction.</h4>
+
+<p>Une table est un ensemble de lignes et de colonnes. La création conssite à
+définir (en fonction de l’analyse) le nom de ces colonnes, leur format (type),
+la valeur par défaut à la création de la ligne (DEFAULT) et les règles de
+gestion s’appliquant à la colonne (CONSTRAINT).</p>
+
+<h4 id="création-simple">Création simple.</h4>
+
+<p>La commande de création de tables la plus simple ne comportera que le nom et le
+type de chaque colonne de la table. A la création, la table sera vide, mais un
+certain espace lui sera alloué. La syntaxe est la suivante :</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE TABLE nom_table(nom_col1 TYPE1, nom_col2 TYPE2,...)
+</code></pre></div></div>
+
+<p>Quand on crée une table, il faut définir les contraintes d’intégrité que devront
+respecter les données que l’on mettra dans la table.</p>
+
+<h4 id="les-types-de-données">Les types de données.</h4>
+
+<p>Les types de données peuvent être</p>
+
+<ul>
+  <li>INTEGER : Ce type permet de stocker des entiers signés codés sur 4 octets</li>
+  <li>BIGINT : Ce type permet de stocker des entiers signés codés sur 8 octets</li>
+  <li>REAL : Ce type permet de stocker des réels comportant 6 chiffres significatifs
+codés sur 4 octets</li>
+  <li>DOUBLE PRECISION : Ce type permet de stocker des réels comportant 15 chiffres
+significatifs codés sur 8 octets</li>
+  <li>NUMERO[(précision,[longueur])] : Ce type de données permet de stocker des
+données numériques à la fois entières et réelles avec une précision de 1 000
+chiffres significatifs. longueur précise le nombre maximum de chiffres
+significatifs stockés et précision donne le nombre maximum de chiffres après
+la virgule.</li>
+  <li>CHAR(longueur) : Ce type de données permet de stocker des chaines de
+caractères de longueur fixe. longueur doit être inférieur à 255, sa valeur par
+défaut est 1.</li>
+  <li>VARCHAR(longueur) : Ce type de données permet de stocker des chaînes de
+caractères de longueur variable, longueur doit être inférieur à 2000, il n’y a
+pas de valeur par défaut.</li>
+  <li>DATE : Ce type de données permet de stocker des données constituées d’une date</li>
+  <li>TIMESTAMP : Ce type de données permet de stocker des données constituées d’une
+date et d’une heure</li>
+  <li>BOOLEAN : Ce type de données permet de stocker des valeurs Booléenne</li>
+  <li>MONEY : Ce type de données permet de stocker des valeurs monétaires</li>
+  <li>TEXT : Ce type de données permet de stocker des chaînes de caractères de
+longueur variable</li>
+</ul>
+
+<h4 id="crééation-avec-insertion-de-données">Crééation avec Insertion de données</h4>
+
+<p>On peut insérer des données dans une table lors de sa création par la commande
+suivante</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE TABLE nom_table [(nom_col1, nom_col2, ...)] AS SELECT ...
+
+On peut ainsi, en un seul ordre SQL créer une table et la remplir avec des données provenant du résultat d'un SELECt. Si les types des colonnes ne sont pas spécifiés, ils correspondront à ceux du SELECT. Il en va de même pour les noms des colonnes. Le SELECT peut contenir des fonctions de groupes, mais pas d'ORDER BY, car 
+</code></pre></div></div>
 </div>
 	</article>
 </div><!-- Footer -->

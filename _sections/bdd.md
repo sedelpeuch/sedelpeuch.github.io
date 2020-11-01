@@ -10,6 +10,8 @@ order: 8
 | [Le modèle relationnel]                | [Cours 2]                         |
 | [Algèbre relationnelle et langage SQL] | [Cours 3 : Algèbre relationnelle] |
 |                                        | [Cours 3 : Langage SQl]           |
+| [Transactions et concurrence]          |                                   |
+| [Algorithme de SGBD]                                       |                                   |
 
 | Sujet de TD | Notes personnelles | Correction des TD |
 | :--         | :--                | :--               |
@@ -22,7 +24,7 @@ order: 8
 | Sujet de TP | Correction des TP |
 | :--         | :--               |
 | [TP 1]      | [Correction 1]    |
-| [TP 2]      |                   |
+| [TP 2]      | [Correction 2]    |
 | [TP 3]      |                   |
 
 [Conception d'une base de donnée]: https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=47001
@@ -30,6 +32,10 @@ order: 8
 [Le modèle relationnel]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=48120
 
 [Algèbre relationnelle et langage SQL]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=40788
+
+[Transactions et concurrence]:https://moodle.bordeaux-inp.fr/pluginfile.php/155560/mod_resource/content/1/concurrence.pdf
+
+[Algorithme de SGBD]:https://moodle.bordeaux-inp.fr/pluginfile.php/156109/mod_resource/content/1/cours-optimisation.pdf
 
 [Cours 1]:/assets/md/bdd/cours1
 [Cours 2]:/assets/md/bdd/cours2
@@ -52,10 +58,11 @@ order: 8
 [Correction 2]:/assets/pdf/bdd/td2.pdf
 [Correction 3]:/assets/pdf/bdd/td3.pdf
 [Correction 4]:/assets/pdf/bdd/td4.pdf
-<!-- [Correction 5]: -->
+[Correction 5]:/assets/pdf/bdd/td5.pdf
 
 [TP 1]:https://moodle.bordeaux-inp.fr/mod/page/view.php?id=9985
 [TP 2]:http://slombardy.vvv.enseirb-matmeca.fr/ens/sgbd/jdbc.php
 [TP 3]:http://slombardy.vvv.enseirb-matmeca.fr/ens/sgbd/tdsqlav.php#sec1
 
 [Correction 1]:http://slombardy.vvv.enseirb-matmeca.fr/ens/sgbd/tdsql.php?corr=yes
+[Correction 2]:http://slombardy.vvv.enseirb-matmeca.fr/ens/sgbd/tdsqlav.php?corrav=yes

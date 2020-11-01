@@ -19,6 +19,7 @@ order: 1
 | :--         | :--                |
 | [Sujet 1]   | [TD1]              |
 | [Sujet 2]   | [TD2]              |
+|             | [TP]               |
 
 
 [Sujet 1]:https://moodle.bordeaux-inp.fr/pluginfile.php/149561/mod_resource/content/1/td1.pdf
@@ -28,6 +29,7 @@ order: 1
 
 [TD1]:assets/md/compilation/td1
 [TD2]:assets/md/compilation/td2
+[TP]:assets/md/compilation/Calc.zip
 
 [cours 1]:assets/md/compilation/cours1
 [cours 2]:assets/md/compilation/cours2
