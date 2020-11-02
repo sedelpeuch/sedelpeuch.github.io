@@ -1,0 +1,388 @@
+<!DOCTYPE HTML>
+<!--
+Prologue by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Jekyll integration by Chris Bobbe | chrisbobbe.github.io
+-->
+<html><head><!-- Robots -->
+  <meta name="robots" content="index, follow" /><link rel="canonical" href="http://localhost:4000/assets/md/cpp/2.html" /><!-- Title, description, author --><title>Classes | Informatique - ENSEIRB-Matmeca</title>
+  <meta name="description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  <meta name="author" content="Delpeuch Sébastien" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Classes | Informatique - ENSEIRB-Matmeca" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/t%C3%A9l%C3%A9chargement.svg" />
+  <meta property="og:url" content="http://localhost:4000/assets/md/cpp/2.html" />
+  <meta property="og:site_name" content="Informatique" />
+  <meta property="og:description" content="Cours d&#39;informatique du Semestre 6 de l&#39;ENSEIRB-MATEMCA, année 2019/2020" />
+  
+  <!-- Styles -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js" defer></script><![endif]-->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+
+  <!-- Scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" defer></script>
+  <script src="/assets/js/jquery.scrolly.min.js" defer></script>
+  <script src="/assets/js/jquery.scrollzer.min.js" defer></script>
+  <script src="/assets/js/skel.min.js" defer></script>
+  <script src="/assets/js/util.js" defer></script>
+  <!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js" defer></script><![endif]-->
+  <script src="/assets/js/main.js" defer></script>
+
+</head><body><!-- Header -->
+<div id="header">
+  <div class="top"><!-- Logo -->
+<div id="logo">
+  <a href="http://localhost:4000/" id="home-link">
+    <span class="image avatar48"><img src="/assets/images/t%C3%A9l%C3%A9chargement.svg" alt="Avatar of Delpeuch Sébastien" /></span>
+    <h1 id="title">Informatique</h1>
+    <p>ENSEIRB-Matmeca</p>
+  </a>
+</div><!-- Nav -->
+<nav id="nav">
+  <ul><li><a href="http://localhost:4000/" id="semestre-7-en-cours-link">
+            <span class="icon fa-link">Semestre 7 - En cours</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_6.html" id="semestre-6-link">
+            <span class="icon fa-check">Semestre 6</span>
+          </a></li><li><a href="http://localhost:4000/Semestre_5.html" id="semestre-5-link">
+            <span class="icon fa-check">Semestre 5</span>
+          </a></li><li><a href="http://localhost:4000/CPBx.html" id="cpbx-link">
+            <span class="icon fa-check">CPBx</span>
+          </a></li></ul>
+</nav></div>
+  <div class="bottom"><!-- Social Icons -->
+<ul class="icons"><li><a href="https://github.com/Sdelpeuch" class="icon-b fa-github"><span class="label">GitHub</span></a></li><li><a href="mailto:sebastien.delpeuch@enseirb-matmeca.fr" class="icon fa-envelope"><span class="label">Email</span></a></li></ul>
+</div>
+</div>
+<!-- Main -->
+<div id="main">
+	<!-- Page -->
+	<article class="shade-two">
+	  <div class="container">
+			<header>
+				<h2>Classes</h2></header><script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<style>
+html {
+ zoom: 0.80;
+}
+</style>
+
+<h2 id="définition-et-déclaration">Définition et déclaration</h2>
+
+<p>Une classe consiste en un regroupement de méthodes et d’attributs</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class NomClasse{
+attributes
+...
+methodes
+...
+};
+</code></pre></div></div>
+
+<p>L’ordre des déclarations ne compte pas. La classe est une description des
+données internes et comportements qu’aura une instance générée par cette classe.</p>
+
+<p>L’<strong>instanciation</strong> (ou réification), c’est à dire la création d’un objet
+instance (ressource) à partir de l’objet classe (description / générateur) peut
+se faire de façon dynamique</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A *a=new A();
+</code></pre></div></div>
+
+<p>ou automatique</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A a;
+</code></pre></div></div>
+
+<p>Dans les deux cas, une ressource (adresse mémoire) est associée à l’instance.
+Dans l’allocation dynamique, cette ressource est située dans le tas, dans le cas
+automatique elle est située dans la pile.</p>
+
+<h2 id="visibilité-friend-struct">Visibilité, friend, struct</h2>
+<p>On contrôle l’accès au méthodes et attributs pour une sous-classe ou un objet
+extérieur avec <code class="language-plaintext highlighter-rouge">public, protected, private</code></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td>la classe</td>
+      <td>sous-classe</td>
+      <td>extérieur</td>
+    </tr>
+    <tr>
+      <td>public</td>
+      <td>oui</td>
+      <td>oui</td>
+      <td>oui</td>
+    </tr>
+    <tr>
+      <td>protected</td>
+      <td>oui</td>
+      <td>oui</td>
+      <td>non</td>
+    </tr>
+    <tr>
+      <td>private</td>
+      <td>oui</td>
+      <td>non</td>
+      <td>non</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>La visibilité par défaut dans une classe est private. On modifie la visibilité
+de la façon suivante</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">NomClasse</span><span class="p">{</span>
+<span class="c1">//attributs et méthodes privés</span>
+<span class="nl">public:</span>
+<span class="c1">//attributs et méthodes publiques</span>
+<span class="nl">protected:</span>
+<span class="c1">//attributs et méthodes protégés</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>On peut à tout moment changer la visibilité, celle-ci sera appliquée à toutes
+les déclarations suivantes jusqu’au prochaine changement de visibilité.</p>
+
+<h3 id="les-structures">Les structures</h3>
+
+<p>Les structures se déclarent comme en C. En C++, les structures sont des classes
+dont la visibilité par défaut est <code class="language-plaintext highlighter-rouge">public</code>. Par conséquent, elles peuvent
+contenir des attributs et des méthodes. Deux noms de type sont associés à la
+structure : struct Nom et Nom.</p>
+
+<p>L’instanciation des structures se fait comme pour les classes</p>
+
+<p>allocation dynamique</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="nc">A</span><span class="p">{...};</span>
+<span class="n">A</span> <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">A</span><span class="p">();</span>
+<span class="n">A</span> <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="k">struct</span> <span class="nf">A</span><span class="p">();</span>
+<span class="k">struct</span> <span class="nc">A</span> <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="k">struct</span> <span class="nf">A</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>allocation automatique</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="nc">A</span><span class="p">{...};</span>
+<span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+<span class="k">struct</span> <span class="nc">A</span> <span class="n">a</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="friend">Friend</h3>
+
+<p>Dans une classe <code class="language-plaintext highlighter-rouge">A</code>, le mot clé <code class="language-plaintext highlighter-rouge">friend</code> permet de donner à une fonction ou une
+autre classe les mêmes droits qu’une méthode de <code class="language-plaintext highlighter-rouge">A</code>. Une fonction <code class="language-plaintext highlighter-rouge">f</code> amie d’une
+classe <code class="language-plaintext highlighter-rouge">A</code> pourra accéder aux attributs privés de <code class="language-plaintext highlighter-rouge">A</code> ainsi qu’aux attributs
+privés de <code class="language-plaintext highlighter-rouge">A</code> ainsi qu’aux attributs protected d’une des classes parents de <code class="language-plaintext highlighter-rouge">A</code>.</p>
+
+<p>La déclaration se fait dans la classe en indiquant soit le prototype de la
+fonction amié soit le nom de la classe amie</p>
+
+<p>Classe amie</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">NomClasse</span><span class="p">{</span>
+<span class="p">...;</span> <span class="k">friend</span> <span class="k">class</span> <span class="nc">NomClasseAmie</span><span class="p">;</span> <span class="p">...</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Fonction amie</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">NomClasse</span><span class="p">{</span>
+<span class="p">...;</span> <span class="k">friend</span> <span class="kt">void</span> <span class="n">fonctionAmie</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="kt">char</span><span class="p">,</span> <span class="n">NomClasse</span><span class="p">);</span> <span class="p">...</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>la visibilité courante n’importe pas pour déclarer une classe ou fonction amie.</p>
+
+<h2 id="attributs-et-méthodes">Attributs et méthodes</h2>
+<p>Une classe est un regroupement d’attributs, propriétés interne qu’aura une
+instance de la classe, et de méthodes, comportements qu’aura une instance. Ces
+attributs sont déclarés à l’intérieur de la classe. L’implémentation des
+méthodes peut se faire au moment de la déclaration ou à l’extérieur de la
+classe. On l’écrira dans la classe pour</p>
+<ul>
+  <li>les classes template</li>
+  <li>les classes à usage locale au fichier</li>
+  <li>l’inlining</li>
+</ul>
+
+<p>Sinon on écrit un fichier entête <code class="language-plaintext highlighter-rouge">NomClasse.hpp</code> et un fichier source
+<code class="language-plaintext highlighter-rouge">NomClasse.cpp</code></p>
+
+<h3 id="accès-aux-attributs">Accès aux attributs</h3>
+
+<p>L’accès aux champs d’une classe se fait à l’aide de <code class="language-plaintext highlighter-rouge">.</code> ou <code class="language-plaintext highlighter-rouge">-&gt;</code> selon que l’on
+dispose d’une instance de classe ou d’un pointeur sur une instance de classe.
+Tout membre de classe a pour nom <code class="language-plaintext highlighter-rouge">NomClasse::membre</code>. Lorsqu’il n’y a pas
+d’ambiguïté, <code class="language-plaintext highlighter-rouge">NomClasse::</code> peut être omis.</p>
+
+<p>Cas automatique</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ClasseA</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">a</span><span class="p">.</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">//i est un attribut public de ClasseA</span>
+<span class="n">a</span><span class="p">.</span><span class="n">ClasseA</span><span class="o">::</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="c1">//idem</span>
+<span class="n">a</span><span class="p">.</span><span class="n">methode</span><span class="p">();</span> <span class="c1">//appel de méthode </span>
+<span class="n">a</span><span class="p">.</span><span class="n">ClasseA</span><span class="o">::</span><span class="n">methode</span><span class="p">();</span> <span class="c1">//idem</span>
+</code></pre></div></div>
+
+<p>Dans ce cas l’instance se trouve dans la <strong>pile</strong>.</p>
+
+<p>Cas dynamique</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ClasseA</span> <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ClasseA</span><span class="p">();</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">ClasseA</span><span class="o">::</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">methode</span><span class="p">();</span>
+<span class="n">a</span><span class="o">-&gt;</span><span class="n">ClasseA</span><span class="o">::</span><span class="n">methode</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Dans ce cas l’instance est allouée dynamique dans le tas.</p>
+
+<h2 id="this">This</h2>
+
+<p>Le mot clé <code class="language-plaintext highlighter-rouge">this</code> permet, lors d’un appel de méthode, de faire référence à
+l’instance source (site d’appel). Le type de la variable <code class="language-plaintext highlighter-rouge">this</code> est <code class="language-plaintext highlighter-rouge">NomDeClasse
+const * </code> : c’est un pointeur.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">attributPrive</span><span class="p">;</span>
+    <span class="nl">public:</span>
+    <span class="n">voir</span> <span class="n">setAttribut</span><span class="p">(</span><span class="kt">int</span> <span class="n">valeur</span><span class="p">){</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">attributPrive</span><span class="o">=</span><span class="n">valeur</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Lorsqu’il n’y a pas de variable locale de même nom que l’attribut, on peut
+omettre this.</p>
+
+<h3 id="opérateur-de-portée">Opérateur de portée</h3>
+
+<p>L’opérateur de portée <code class="language-plaintext highlighter-rouge">::</code> peut être utilisé pour indiquer précisément la
+variable que l’on souhaite manipuler.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">lunatique</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+    <span class="kt">char</span> <span class="n">lunatique</span><span class="p">;</span>
+    <span class="k">public</span> <span class="o">:</span>
+        <span class="kt">void</span> <span class="n">printAllVariable</span><span class="p">(</span><span class="kt">double</span> <span class="n">lunatique</span><span class="p">){</span>
+            <span class="n">lunatique</span><span class="p">;</span>
+            <span class="n">A</span><span class="o">::</span><span class="n">lunatique</span><span class="p">;</span> <span class="c1">// fait référence à la variable locale</span>
+            <span class="k">this</span><span class="o">-&gt;</span><span class="n">A</span><span class="o">::</span><span class="n">lunatique</span><span class="p">;</span> <span class="c1">// fait référence à l'attribut d'instance </span>
+            <span class="k">this</span><span class="o">-&gt;</span><span class="n">lunatique</span><span class="p">;</span> <span class="c1">// fait référence à l'attribut d'instance</span>
+            <span class="o">::</span><span class="n">lunatique</span><span class="p">;</span> <span class="c1">// fait référence à la variable globale</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="espace-de-nom">Espace de nom</h2>
+
+<p>Les espaces de nom permettent de regrouper un ensemble d’éléments (classes,
+variables, globales, fonctions,…). Les espaces de nom sont utilisés pour
+structurer le code et pour éviter les problèmes de collisions. Pour déclarer un
+espace de nom on utilise le mot clé <code class="language-plaintext highlighter-rouge">namespace</code></p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">namespace</span> <span class="n">Nom</span><span class="p">{</span>
+    <span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+        <span class="p">...</span>
+    <span class="p">};</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">fonction</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// fin de l'espace de nom</span>
+</code></pre></div></div>
+
+<p>Lors de l’écriture du code des fonctions ou des méthodes des classes dans le
+fichier .cpp on peut soit ré-ouvrir l’espace de nom, soit indiquer explicitement
+le nom de l’objet avec l’opérateur de portée.</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">namespace</span> <span class="n">tec</span><span class="p">{</span>
+    <span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+        <span class="nl">public:</span>
+            <span class="kt">void</span> <span class="n">m</span><span class="p">();</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Lors de l’écriture du code des fonctions ou des méthodes des classes dans le
+fichier .cpp on peut soit ré-ouvrir l’espace de nom, soit indiquer explicitement
+le nom de l’objet avec l’opérateur de portée.</p>
+
+<h3 id="espace-de-noms--using">Espace de noms : using</h3>
+
+<p>Le mot clé <code class="language-plaintext highlighter-rouge">using</code> permet de rendre accessible tout ou partie d’un espace de nom
+dans une fonction, un espace nom ou tout le code</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">namespace</span> <span class="n">spatial</span><span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Navette</span><span class="p">{};</span>
+<span class="p">}</span>
+
+<span class="k">namespace</span> <span class="n">missions</span><span class="p">{</span>
+    <span class="n">spatial</span><span class="o">::</span><span class="n">Navette</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">spatial</span><span class="o">::</span><span class="n">Navette</span> <span class="n">n</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">starWars</span><span class="p">(){</span>
+    <span class="n">spatial</span><span class="o">::</span><span class="n">Navette</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Le <code class="language-plaintext highlighter-rouge">using</code> crée des synonymes locaux entre les espaces de nom :</p>
+
+<p>example.hpp</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">namespace</span> <span class="n">math</span><span class="p">{</span>
+    <span class="k">const</span> <span class="kt">double</span> <span class="n">pi</span><span class="o">=</span><span class="mf">3.14</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">namespace</span> <span class="n">cercle</span><span class="p">{</span>
+    <span class="k">using</span> <span class="n">math</span><span class="o">::</span><span class="n">pi</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">surf</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>exemple.cpp</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "exemple.hpp"
+</span><span class="kt">double</span> <span class="n">cercle</span><span class="o">::</span><span class="n">surf</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Permet de remplacer facilement une référence externe par une autre. Permet aussi
+l’introduction de modularité sans modification profonde du code.</p>
+
+<h2 id="constructeur">Constructeur</h2>
+
+<p>Un constructeur est une méthode de classe qui est appelée après la reservation
+des ressources nécessaires à la création d’une instance de la classe et qui a
+pour objectif d’initialiser les attributs de cette instance.</p>
+
+<h3 id="définition">Définition</h3>
+
+<p>Une constructeur est une méthode de classe qui est appelée après la réservation
+des ressources nécessaires à la créations d’une instance de la classe et qui a
+pour objectif d’initialiser les attributs de cette instance. En C++, le
+constructeur est une méthode sans valeur de retour de même nom que la classe. On
+appelle constructeur par défaut le constructeur ne prenant aucun argument. Dans
+le cas où la classe ne comporte aucun constructeur, le compilateur ajoute un
+constructeur par défaut. Celui-ci n’est plus présent à partir du moment où l’on
+a écrit au moins un constructeur.</p>
+
+<h2 id="destructeur">Destructeur</h2>
+
+<h2 id="static">Static</h2>
+
+<h2 id="exemple">Exemple</h2>
+</div>
+	</article>
+</div><!-- Footer -->
+<div id="footer">
+  
+  <!-- Copyright -->
+  <ul class="copyright">
+    
+      <li>&copy;Informatique. All rights reserved.</li>
+    
+    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    <li>Jekyll integration: <a href="https://chrisbobbe.github.io/">Chris Bobbe</a></li>
+  </ul>
+  
+</div></body>
+</html>
