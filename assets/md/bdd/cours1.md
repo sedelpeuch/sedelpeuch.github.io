@@ -140,6 +140,7 @@ entité ou type association.
 
 **Règle 6** : Un attribut est une donné élémentaire, ce qui exclut des données calculées ou
 dérivées.
+
 **Règle 7** : Un type entité et ses attributs doivent être cohérents entre eux. 
 
 ### Identifiant ou clé

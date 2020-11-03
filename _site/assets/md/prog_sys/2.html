@@ -140,6 +140,57 @@ access(), link(), ...</code></li>
 lseek(), fcntl(), ...</code></li>
   <li>Fonctions de bibliothèque C <code class="language-plaintext highlighter-rouge">fopen(), fclose(), fread(),...</code></li>
 </ul>
+
+<h2 id="informations-sur-les-fichiers">Informations sur les fichiers</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int stat(const char* path, struct stat* buf)
+</code></pre></div></div>
+
+<p>Cette fonction retourne 0 si il n’y a pas d’erreur, -1 sinon.</p>
+
+<p><img src="/assets/images/prog_sys/5.png" alt="stat" class="image about center" /></p>
+
+<h2 id="les-droits-daccès">Les droits d’accès</h2>
+
+<p>Comment tester les droits d’accès à un fichier avec le champ <code class="language-plaintext highlighter-rouge">st_mode</code> ?</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">S_ISREG(m)</code> vrai si c’est un fichier normal</li>
+  <li><code class="language-plaintext highlighter-rouge">S_ISDIR(m)</code> vrai si c’est un répertoire</li>
+  <li><code class="language-plaintext highlighter-rouge">S_ISCHR(m)</code> vrai si c’est un device de type caractère</li>
+  <li><code class="language-plaintext highlighter-rouge">S_ISBLK(m)</code> vrai si c’est un device de type bloc</li>
+  <li><code class="language-plaintext highlighter-rouge">S_ISFIFO(m)</code> vrai si c’est une fifo</li>
+  <li><code class="language-plaintext highlighter-rouge">S_ISLNK(m)</code> vrai si c’est un lien symbolique</li>
+  <li><code class="language-plaintext highlighter-rouge">S_ISSOCK(m)</code> vrai si c’est une socket</li>
+</ul>
+
+<p>Pour tester les autorisations d’accès on peut utiliser <code class="language-plaintext highlighter-rouge">int access(const char*
+pathname, int mode);</code>, les modes disponibles sont <code class="language-plaintext highlighter-rouge">R_OK,W_OK,X_OK,F_OK</code>. Cela
+retourne <code class="language-plaintext highlighter-rouge">-1</code> en cas d’erreur ou si la demande est interdite, <code class="language-plaintext highlighter-rouge">0</code> sinon.</p>
+
+<h2 id="créer-un-fichier">Créer un fichier</h2>
+
+<p>Pour créer un fichier <code class="language-plaintext highlighter-rouge">int mknod(const char *pathname, mode_t mode, dev_t
+dev);</code>. <code class="language-plaintext highlighter-rouge">Mode</code> est l’un des modes possibles de fichier, avec un ou logique les
+permissions. Par exemple <code class="language-plaintext highlighter-rouge">S_IFREG|S_IRUSR|S_IXUSR</code> pour un fichier normal</p>
+
+<h2 id="créer--détruire-des-liens">Créer / Détruire des liens</h2>
+
+<p>Pour créer un nouveau lien vers un fichier <code class="language-plaintext highlighter-rouge">int link(const char *oldpath, const
+char *newpath);</code>. Il nest pas possible de faire de nouveaux liens vers des
+répertoires. Pour détruire un lien en dur (et le fichier si c’est le seul lien),
+<code class="language-plaintext highlighter-rouge">int unlink(const char *pathname);</code>.</p>
+
+<h2 id="ouvrircréer-un-fichier">Ouvrir/Créer un fichier</h2>
+
+<p>Pour ouvrir et créer un nouveau fichier <code class="language-plaintext highlighter-rouge">int open(const char* pathname, int
+flags ...); int creat(const char* pastname, mode_t mode);</code></p>
+
+<h2 id="fermer-un-fichier">Fermer un fichier</h2>
+
+<p>Pour fermer un fichier <code class="language-plaintext highlighter-rouge">int close(int fd);</code></p>
+
+<p>Ferme un descripteur de fichier, lorsqu’il s’agit du dernier descripteur de
+fichier pointant sur un fichier donné</p>
 </div>
 	</article>
 </div><!-- Footer -->
