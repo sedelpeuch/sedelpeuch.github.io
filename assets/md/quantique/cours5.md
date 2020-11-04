@@ -84,10 +84,76 @@ $$ f : \mathbb{Z}^M_2 \rightarrow \mathbb{Z}^M_2 $$
 qu'on ne peut pas toujours représenter par un opérateur unitaire. Pour associer
 un opérateur unitaire à l'évaluation d'une fonction, on introduit une fonction
 et on définit 
-- un registre de données
+- un registre de données $$\vert x \rangle à $$n$$ qubits, $$x \in
+  \mathbb{Z}_{2^n}$$ contiendra la valeur de la varible 
+- un registre de résultats $$\vert y \rangle$$ à $$n$$ qubits, $$y\in
+  \mathbb{Z}_{2^m}$$ contiendra le résultat 
+- un opérateur unitaire 
+$$ U_f \vert x \rangle \vert y \rangle = \vert x \rangle \vert y \oplus f(x)
+\rangle$$
 
-## Exercice
+Le parallélisme est un trait de beaucoup d'algorithme quantique une fonction
+$$f(x)$$ peut être évaluée simultanément en plusieurs valeurs de $$x$$
+(conséquence de la superposition des états de qubits)
 
-Calculer $$\vert \psi_1$$ et représenter le sous la forme d'une somme des
-vecteurs de la base 
+### Exemple 
 
+Soit un registre donné et un registre de résultats chacun à 1 qubit. La valeur
+initiale de chaque registre est $$\vert 0 \rangle$$
+
+![exemple](/assets/images/quantique/2.png){:class="image about center"}
+
+Exercice : calculer les états $$\vert \Psi_1 \rangle$$ et $$\vert \Psi_2
+\rangle$$ 
+
+$$\Rightarrow$$ on effectue l'application de la porte de Hadamard sur 2 qubits 
+
+$$H_2 (\dfrac{1}{\sqrt{2}} \vert 00 \rangle + \vert 1 0 \rangle) =
+\dfrac{1}{\sqrt{2^2}}(\vert 0 0 \rangle + \vert 0 1 \rangle + \vert 1 0
+\rangle + \vert 1 1 \rangle)$$
+
+$$\vert \Psi_1 \rangle = \dfrac{1}{\sqrt{2}}(\vert 00 \rangle + \vert 1 0
+\rangle)$$ 
+
+L'état de sortie est 
+
+$$ \vert \Psi_2 = \dfrac{1}{\sqrt{2}}(\vert 0, f(0)\rangle + \vert 1,
+f(1)\rangle)$$
+
+Il contient ) la fois $$f(0)$$ et $$f(1)$$ obtenues par une seule application de
+la porte $$U_f$$ 
+
+### Généralisation 
+
+Soit un registre à $$n$$ qubits (registre de données). La transformation / porte
+de Hadamard sur chaque qubit donne pour le registre de données 
+
+$$\dfrac{1}{\sqrt{2^n}} \sum \limits_{x=0}^{2^n-1} \vert x \rangle, x \in
+\mathbb{Z}_{2^n} = \dfrac{1}{\sqrt{2^n}}(\vert 00...0 \rangle + \vert
+00...01\rangle + ... + \vert 11 .. 11 \rangle)$$
+
+![generalisation](/assets/images/quantique/3.png){:class="image about center"}
+
+Les états de sortie sont 
+
+$$ \dfrac{1}{\sqrt{2^n}} \sum \limits_{x=0}^{2^n-1} \vert x \rangle \vert 0 +
+f(x) \rangle = \dfrac{1}{\sqrt{2^n}} \sum \limits_{x=0}^{2^n-1}\vert x \rangle
+\vert f(x) \rangle$$
+
+Cela fait apparaître de nouveau toutes les valeurs de $$f$$ en une seule
+opération, c'est le parallélisme quantique.
+
+## Algorithme de Deutsh (1985)
+
+L'algorithme de Deutsh-Jozsa est un algorithme quantique, proposé par David
+Deutsh et Richard Jozsa en 1992. Dans le cas du problème de Deutsh-Jozsa, nous
+disposons d'une boite noire quantique, connu sous le nom d'oracle qui implémente
+une fonction mathématique $$f : \{0,1\}^n \rightarrow \{0,1\}$$. Nous savons que
+cette fonction est soit constante (la sortie est 0 ou 1 pour toutes les entrées)
+soit équilibrée (la sortie est 0 dans la moitié des cas, 1 dans les autres). Le
+but du problème est de savoir si la fonction est constante ou équilibrée à
+l'aide de l'oracle. 
+
+### La solution déterministe 
+
+Si un algorithme 
