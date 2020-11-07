@@ -9,7 +9,7 @@ title: Fiches magiques
 | Matière          | Fiches                      |
 | :--              | :--                         |
 | Droit du travail | [Fiches](/fiches/droit.pdf) |
-| SGBD             |                             |
+| SGBD             | [Fiches](/fiches/sgbd.pdf)  |
 | POO              |                             |
 | Compilation      |                             |
 | C++              |                             |
