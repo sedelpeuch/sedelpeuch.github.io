@@ -11,8 +11,9 @@ order: 1
  | [cours 3]          | [Analyse syntaxique] |
  | [cours 4]          | [Vidéo 4]            |
  | [cours 5]          | [Vidéo 5]            |
- | [cours 6.1]        | [Vidéo 6.1]          |
  | [cours 6.2]        | [Vidéo 6.2]          |
+ | [cours 7.1]        | [Vidéo 7.1]          |
+ | [cours 7.2]        | [Vidéo 7.2]          |
 
 
 | Sujet de TD | Notes personnelles |
@@ -34,10 +35,11 @@ order: 1
 [cours 1]:assets/md/compilation/cours1
 [cours 2]:assets/md/compilation/cours2
 [cours 3]:assets/md/compilation/cours3
-[cours 4]:assets/md/compilation/cours4
-[cours 5]:assets/md/compilation/cours5
-[cours 6.1]:assets/md/compilation/cours6
-[cours 6.2]:assets/md/compilation/cours7
+[cours 4]:assets/md/compilation/cours3
+[cours 5]:assets/md/compilation/cours4
+[cours 6.2]:assets/md/compilation/cours5
+[cours 7.1]:assets/md/compilation/cours6
+[cours 7.2]:assets/md/compilation/cours7
 
 
 [Introduction]:https://moodle.bordeaux-inp.fr/pluginfile.php/20379/mod_resource/content/2/courscompilation-1.pdf
@@ -51,3 +53,4 @@ order: 1
 [Vidéo 5]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=67449
 [Vidéo 6.1]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=68042
 [Vidéo 6.2]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=68045
+[Vidéo 7.1]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=69639
