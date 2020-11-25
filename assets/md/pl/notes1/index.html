@@ -8,26 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
   <meta name="author" content="Eirbot">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.74.3" />
 
   <!-- plugins -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
   
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
-  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
 
 </head><body>
 <!-- preloader start -->
@@ -50,7 +50,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+              <img src="https://Sdelpeuch.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
             </a>
           </div>
           
@@ -111,7 +111,7 @@
   </div>
 </header>
 
-<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/');">
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/');">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -182,13 +182,13 @@ de yaourts A et B rapporte respectivement 4€ et 5€.</p>
 </ul>
 <h2 id="i-classfas-fa-searchi-programme-linéaire"><i class="fas fa-search"></i> Programme linéaire</h2>
 <h3 id="règles-de-réecriture">Règles de réecriture</h3>
-<p>Toute contrainte d'égalité peut s'écirre comme deux inégalités</p>
+<p>Toute contrainte d&rsquo;égalité peut s&rsquo;écirre comme deux inégalités</p>
 <p>$\sum \limits_{i=1}^n a_i x_i = b \equiv \begin{cases} \sum \limits_{i=1}^n a_i
 x_i \leq b \ \sum \limits_{i=1}^n a_i x_i \geq b \end{cases}$</p>
-<p>Toute contrainte $\geq$ peut s'écrire comme une contraite $\leq$</p>
+<p>Toute contrainte $\geq$ peut s&rsquo;écrire comme une contraite $\leq$</p>
 <p>$\sum \limits_{i=1}^n a_i x_i \geq b \equiv \sum \limits_{i=1}^n -a_i x_i \leq
 -b$</p>
-<p>Tout problème de minimisation peut s'écrire comme un problème de maximisation</p>
+<p>Tout problème de minimisation peut s&rsquo;écrire comme un problème de maximisation</p>
 <p>$ \max \sum \limits_{i=1}^n c_i x_i \equiv \min \sum \limits_{i=1}^n - c_i x_i$</p>
 <h3 id="ecriture-générale-dun-programme-linéaire">Ecriture générale d&rsquo;un programme linéaire</h3>
 <p>On peut écire ainsi un programme linéaire avec $n$ variables $x_1,&hellip;,x_n$
@@ -216,18 +216,18 @@ polyèdre convexe. On s&rsquo;intéressera dans un premier temps aux polyèdres 
 n&rsquo;existe pas deux points $x_1,x_2 \in S$ tel que $\exists \lambda \in [0,1],
 x_0 = \lambda x_1 + (1-\lambda x_2)$</p>
 <p>Soit $S$ un ensemble convexe borné de $\mathbb{R}^n$ et $S^e$ l&rsquo;ensemble
-des points extrêmes. Si $x \in S$ alors $x$ peut s'écrire comme une
+des points extrêmes. Si $x \in S$ alors $x$ peut s&rsquo;écrire comme une
 combinaison convexe de $n+1$ élémnets de $S^e$.</p>
 <p>Si le polyèdre formé par l&rsquo;ensemble des solutions d&rsquo;un PL est borné, alors il
 existe au moins une solution optimale et l&rsquo;une d&rsquo;elles est obtenue sur un point
 extrême.</p>
 <h2 id="i-classfas-fa-searchi-forme-standard--bases"><i class="fas fa-search"></i> Forme standard &amp; bases</h2>
-<p>Jusqu'à présent on a utilisé la <strong>forme normale</strong> pour représenter un programme
+<p>Jusqu&rsquo;à présent on a utilisé la <strong>forme normale</strong> pour représenter un programme
 linéaire. On introduit la <strong>forme standard</strong> qi va être utilisée dans
 l&rsquo;algorithme du simplex.</p>
 <p>A partir de tout PL sous forme normale, on peut construire un PL sous form
 standard. On introduit alors des variables supplémentaires $s_i$, qui sont des
-variables d'écart. Chaque variable d'écart est associée à une contrainte.</p>
+variables d&rsquo;écart. Chaque variable d&rsquo;écart est associée à une contrainte.</p>
 <p>On dispose d&rsquo;un PL à $n+m$ variables de $m$ contraintes. Si on annule $n$
 variables, on obtient un système de $m$ équations à $m$ inconnues. si la
 matrice associé est de rang $m$, le système admet une solution unique. Pour
@@ -293,13 +293,13 @@ MathJax.Hub.Config({
 				<div class="footer-manu">
 					<ul>
             
-            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
             
-            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
             
-            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
             
-            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
             
 					</ul>
 				</div>
@@ -316,22 +316,22 @@ MathJax.Hub.Config({
 
 
 
-<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
-
-
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
 
 
-<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
 
 
 

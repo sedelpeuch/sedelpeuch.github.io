@@ -8,26 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
   <meta name="author" content="Eirbot">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.74.3" />
 
   <!-- plugins -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
   
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
-  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
 
 </head><body>
 <!-- preloader start -->
@@ -50,7 +50,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+              <img src="https://Sdelpeuch.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
             </a>
           </div>
           
@@ -111,7 +111,7 @@
   </div>
 </header>
 
-<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/');">
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/');">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -154,8 +154,8 @@ linéaire. On a appris à résoudre le problème à la main en deux dimensions.
 Intuition pour résoudre en dimension supérieure : se déplacer de sommet en
 sommet du polyèdre convexe formé par les contraintes linéaires.</p>
 <h2 id="i-classfas-fa-searchi-résumé--forme-standard-points-extrèmes-et-bases"><i class="fas fa-search"></i> Résumé : Forme standard, points extrèmes et bases</h2>
-<p>Les variables supplémentaies $s_i$ sont appelées <strong>variables d'écart</strong>. Chaque
-variable d'écart est associée à une contrainte.</p>
+<p>Les variables supplémentaies $s_i$ sont appelées <strong>variables d&rsquo;écart</strong>. Chaque
+variable d&rsquo;écart est associée à une contrainte.</p>
 <p>$\begin{align*} &amp;&amp; \text{forme standard} \<br>
 \max z = \sum \limits_{i=1}^n c_i x_i &amp;&amp; \max z = \sum
 \limits_{i=1}^n c_i x_i  \<br>
@@ -177,7 +177,7 @@ comment passer d&rsquo;une base réalisable à une autre.</p>
 <p><img src="/assets/images/pl/plexemple.png" alt="plexemple"> $\begin{align*} \max z &amp;= 5x+y \ x+y+s_1 &amp;=10 \ x-y+s_2 &amp;=1 \ x+s_3 &amp;=3 \end{align*}$</p>
 <p>{:class=&quot;image about right&rdquo;}</p>
 <p>Choix de la base initiale : annuler les variables de décisions, ne garder que
-les variables d'écart</p>
+les variables d&rsquo;écart</p>
 <p>$\begin{align*} \text{Système obtenu} &amp;&amp; \text{Solution} \ +s_1 = 10 &amp;&amp; s_1 =
 10 , s_2 = 1, s_3 = 3 \ +s_2 =1 &amp;&amp; x=0 , y=0 \ +s_3 =3 &amp;&amp; z=0 + 0 = 0 \end{align*} $</p>
 <h3 id="exemple-pas-à-pas">Exemple pas à pas</h3>
@@ -218,11 +218,11 @@ Jusqu&rsquo;où augmenter $s_2$ ? On sait que $s_1,x,t \geq 0$. En posant $s_2 =
 l&rsquo;objectif. La solution obtenue est donc $x=3 , y=7 , (s_2=5) , s_1=0, s_3=0$
 et donc $z=22$.</p>
 <h3 id="description-formelle-de-la-méthode">Description formelle de la méthode</h3>
-<p>Problème linéaire avec les variables d'écart et la variable objectif</p>
+<p>Problème linéaire avec les variables d&rsquo;écart et la variable objectif</p>
 <p>$\begin{align*} z&amp;=\sum \limits_{j=1}^n c_j x_j \ x_{n+i}&amp;=b_i-\sum
 \limits_{j=1}^n a_{ij} x_j \end{align*}$</p>
 <h3 id="dictionnaires">Dictionnaires</h3>
-<p>A chaque itération, la solution courant est associée à un système d'équations
+<p>A chaque itération, la solution courant est associée à un système d&rsquo;équations
 qui la définit</p>
 <p>$\begin{align*} z &amp;= \overline{z} + \sum \limits_{j \in \mathcal{N}}
 \overline{c}_j x_j \ x_i &amp;= \overline{b}_i - \sum \limits_{j \in \mathcal{N}}
@@ -243,7 +243,7 @@ $x_\mathcal{B} \geq 0$</li>
 </ul>
 <h3 id="dictionnaire-initial">Dictionnaire initial</h3>
 <ul>
-<li>La base initiale est formée des variables d'écart $x_{n+1},&hellip;,x_{n+m}$,
+<li>La base initiale est formée des variables d&rsquo;écart $x_{n+1},&hellip;,x_{n+m}$,
 c&rsquo;est à dire $\mathcal{B}={n+1,&hellip;,n+m}$</li>
 <li>Les variables hors-base sont les variables initiales du problème,
 $\mathcal{N}={1,&hellip;,n}$</li>
@@ -301,7 +301,7 @@ problème est non borné.</p>
 <li>On élimine $x_k$ de l&rsquo;expression des $x_i$ $(i \in \mathcal{B}, i \neq
 k)$</li>
 </ul>
-<p>Il reste à reconstruire le système d'équation ci-dessus pour la nouvelle base.
+<p>Il reste à reconstruire le système d&rsquo;équation ci-dessus pour la nouvelle base.
 C&rsquo;est le pivotage</p>
 <p>$\begin{align*} z&amp;=\overline{z}+\sum \limits_{j \in \mathcal{N}\backslash{k}}
 \overline{c}_k x_k + \overline{c}_k x_k\<br>
@@ -315,22 +315,22 @@ coefficient de $x_k$ à 1. On élimine $x_k$ de l&rsquo;expression de $z$. On
 <h3 id="remarques">Remarques</h3>
 <ul>
 <li>On remarque le type de la variable n&rsquo;est pas pris en compte lors du pivotage</li>
-<li>Tenter de faire sortir les variables d'écart pour faire entrer les variables
+<li>Tenter de faire sortir les variables d&rsquo;écart pour faire entrer les variables
 initiales n&rsquo;est pas une bonne stratégie</li>
 <li>Seuls les coûts réduits doivent être pris en compte</li>
 <li>On s&rsquo;arrête lorsque tous les coûts réduits sont négatifs ou nuls</li>
 </ul>
 <h2 id="i-classfas-fa-searchi-phase-1"><i class="fas fa-search"></i> Phase 1</h2>
 <p>Cette phase permet de trouver une solution de base réalisable initiale lorsque
-la base donnée par les variables d'écart n&rsquo;est pas réalisable.</p>
+la base donnée par les variables d&rsquo;écart n&rsquo;est pas réalisable.</p>
 <h3 id="doù-vient-le-problème-">D&rsquo;où vient le problème ?</h3>
 <p>$\sum \limits_j a_{ij} x_j \leq b_i ; \text{avec} ; b_i &lt; 0$</p>
-<p>Après l&rsquo;ajout de la variable d'écart et écriture sous forme de dictionnaire, on obtient $x_{n+i} = b_i - \sum_j a_{ij} x_j$. Comme $b_i&lt;0$ la solution de base n&rsquo;est pas réalisable.</p>
+<p>Après l&rsquo;ajout de la variable d&rsquo;écart et écriture sous forme de dictionnaire, on obtient $x_{n+i} = b_i - \sum_j a_{ij} x_j$. Comme $b_i&lt;0$ la solution de base n&rsquo;est pas réalisable.</p>
 <h3 id="calculer-une-solution-initiale">Calculer une solution initiale</h3>
 <ol>
-<li>Pour chaque contrainte $i$ tel que $b_i&lt;0$ on ajoute une variable artificielle $x&rsquo;<em>{n+i}$ avec une coefficient de -1 en plus de la variable d'écart $\sum_j a</em>{ij} x_j + x_{n+i} - x&rsquo;_{n+i} = b_i$</li>
+<li>Pour chaque contrainte $i$ tel que $b_i&lt;0$ on ajoute une variable artificielle $x&rsquo;<em>{n+i}$ avec une coefficient de -1 en plus de la variable d&rsquo;écart $\sum_j a</em>{ij} x_j + x_{n+i} - x&rsquo;_{n+i} = b_i$</li>
 <li>On crée un objectif artificiel $\max \sum \limits_{i:b_i&lt;0} - x&rsquo;_{n+i}$</li>
-<li>Une base initiale pour le problème artificiel est obtenue avec les variables artificielles des contraintes avec $b_i&lt;0$ et les variables d'écarts des contraintes avec $b_i\geq 0$</li>
+<li>Une base initiale pour le problème artificiel est obtenue avec les variables artificielles des contraintes avec $b_i&lt;0$ et les variables d&rsquo;écarts des contraintes avec $b_i\geq 0$</li>
 <li>On résout le problème avec l&rsquo;algorithme du simplex à partir de cette solution</li>
 </ol>
 <h3 id="résultat-de-la-phase-1">Résultat de la phase 1</h3>
@@ -416,13 +416,13 @@ MathJax.Hub.Config({
 				<div class="footer-manu">
 					<ul>
             
-            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
             
-            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
             
-            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
             
-            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
             
 					</ul>
 				</div>
@@ -439,22 +439,22 @@ MathJax.Hub.Config({
 
 
 
-<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
-
-
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
 
 
-<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
 
 
 

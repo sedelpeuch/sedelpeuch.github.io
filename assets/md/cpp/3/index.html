@@ -8,26 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
   <meta name="author" content="Eirbot">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.74.3" />
 
   <!-- plugins -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
   
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
-  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
 
 </head><body>
 <!-- preloader start -->
@@ -50,7 +50,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+              <img src="https://Sdelpeuch.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
             </a>
           </div>
           
@@ -111,7 +111,7 @@
   </div>
 </header>
 
-<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/images/banner/compilation.jpg');">
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/compilation.jpg');">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -167,7 +167,7 @@ C&rsquo;est à dire que si l&rsquo;on a écrit un opérateur permettant de faire
 d&rsquo;un A avec un B, <code>B() + A();</code> ne sera pas résolu par cet opérateur.</p>
 <p>La précédente des opérateurs ne peut être modifiée.</p>
 <h2 id="syntaxe">Syntaxe</h2>
-<p>Un opérateur $\alpha$ s'écrira sous le nom d&rsquo;une fonction ou méthode <strong>non
+<p>Un opérateur $\alpha$ s&rsquo;écrira sous le nom d&rsquo;une fonction ou méthode <strong>non
 statique</strong> de nom <code>operator</code> $\alpha$. Le type de retour de cette fonction est
 libre.</p>
 <p>C&rsquo;est le premier paramètre qui est prioritaire pour la résolution. Dans le cas
@@ -198,7 +198,7 @@ sorties, elle se décompose en :</p>
 </ul>
 <p>L&rsquo;ensemble des classes font parties de l&rsquo;espace de nom <code>std</code>. Outre un ensemble
 de fonctionnalités permettant la gestion des flux, il a été ajouté un support
-pour la lecture et l'écriture basé sur les opérateurs.</p>
+pour la lecture et l&rsquo;écriture basé sur les opérateurs.</p>
 <p>Comment adapter votre classe pour pouvoir utiliser l&rsquo;affichage de la
 bibliothèque standard :</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Entier</span>{ <span style="color:#66d9ef">int</span> v;};
@@ -253,7 +253,7 @@ Greater greater;
 surcharge. Un autre exemple plus utile (et complexe) est l&rsquo;implémentation d&rsquo;une
 fonction de hachage paramétrable (attributs).</p>
 <h2 id="opérateur--de-conversion">Opérateur : de conversion</h2>
-<p>Il est possible d'écrire des opérateurs prenant en charge la conversion d&rsquo;une
+<p>Il est possible d&rsquo;écrire des opérateurs prenant en charge la conversion d&rsquo;une
 instance vers un autre type</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Entier</span>{
     <span style="color:#66d9ef">int</span> _value;
@@ -264,7 +264,7 @@ instance vers un autre type</p>
 };
 </code></pre></div><p>Le prototype de l&rsquo;opérateur de conversion est <code>operator type() const</code>, ne
 possède pas de type de retour (puisque c&rsquo;est <code>type</code>) et ne prend pas d&rsquo;argument.
-L&rsquo;opérateur de conversion s'écrit obligatoirement sous la forme d&rsquo;une fonction
+L&rsquo;opérateur de conversion s&rsquo;écrit obligatoirement sous la forme d&rsquo;une fonction
 membre. L&rsquo;opérateur de conversion peut être appelé explicitement avec un cast ou
 bien implicitement</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">int</span>);
@@ -295,7 +295,7 @@ possibilités</p>
 <h2 id="opérateurs--autres">Opérateurs : autres</h2>
 <p>L&rsquo;opérateur $[]$ est souvent utilisé. Il prend un seul argument et doit
 obligatoirement être écrit comme fonction membre. L&rsquo;opérateur <code>new</code> est utilisé
-pour faire du placement d&rsquo;objet en mémoire. Il permet d'écrire ces propres
+pour faire du placement d&rsquo;objet en mémoire. Il permet d&rsquo;écrire ces propres
 allocateurs ou encore de faire du &ldquo;debug-age&rdquo;. Le nombre d&rsquo;argument est variable
 mais le premier est obligatoirement de type <code>size_t</code>, le type de retour est
 obligatoirement <code>void*</code>.</p>
@@ -395,13 +395,13 @@ MathJax.Hub.Config({
 				<div class="footer-manu">
 					<ul>
             
-            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
             
-            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
             
-            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
             
-            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
             
 					</ul>
 				</div>
@@ -418,22 +418,22 @@ MathJax.Hub.Config({
 
 
 
-<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
-
-
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
 
 
-<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
 
 
 

@@ -8,26 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
   <meta name="author" content="Eirbot">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.74.3" />
 
   <!-- plugins -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
   
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
-  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
 
 </head><body>
 <!-- preloader start -->
@@ -50,7 +50,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+              <img src="https://Sdelpeuch.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
             </a>
           </div>
           
@@ -111,7 +111,7 @@
   </div>
 </header>
 
-<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/');">
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/');">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -162,8 +162,8 @@
 (à droite</strong> modulo $L$, noté $w \sim_L w'$, si pour tout mot $x \in
 \Sigma^\ast, w.x \in L$ si et seulement si $w&rsquo;.x \in L$. $w$ et $w'$ sont
 dit <strong>indistinguables</strong> pour $L$. La congruence $\sim_L$ induit une relation
-d'équivalence. Nous notons $[w]_{\sim_L} = {w&rsquo; | w \sim_L w&rsquo;}$ la classe
-d'équivalence de $w$ pour $\sim_L$.</p>
+d&rsquo;équivalence. Nous notons $[w]_{\sim_L} = {w&rsquo; | w \sim_L w&rsquo;}$ la classe
+d&rsquo;équivalence de $w$ pour $\sim_L$.</p>
 <p>Intuitivement, si deux mots $u$ et $v$ ne sont pas congrus modulo $L$,
 alors il existe un mot $x$ tel que $u.x \in L$ et $v.x \notin L$ (ou
 inversement). Ainsi, un automate fini qui accepte $L$, doit, lorsqu&rsquo;il lit
@@ -176,14 +176,14 @@ cas où $u$ et $v$ ne sont pas congrus modulo $L$, afin de distinguer $u$
 et $v$, la lecture de ces mots doit conduire l&rsquo;automate dans deux états
 distincts. Et inversement, lorsque $u$ et $v$ sont congrus modulo $L$,
 leur lecteur peut conduire dans le même état puisqu&rsquo;il n&rsquo;est pas nécessaire de
-les distinguer. Sachant qu&rsquo;un automate fini possède un nombre fini d'états, et
+les distinguer. Sachant qu&rsquo;un automate fini possède un nombre fini d&rsquo;états, et
 que tout langage régulier est accepté par un automate fini, nous pouvons en
 déduire une nouvelle caractérisation des langages réguliers.</p>
-<p>Soit $A=(Q,\Sigma,\delta,I,F)$ un automate fini. Le <strong>langage de l'état</strong> $q
+<p>Soit $A=(Q,\Sigma,\delta,I,F)$ un automate fini. Le <strong>langage de l&rsquo;état</strong> $q
 \in Q$ est défini par</p>
 <p>$ \mathcal{L}(A,q)={w \in \Sigma^\ast | q \stackrel{w}{\rightarrow} q&rsquo; ;
 \text{avec} ; q&rsquo; \in F}$</p>
-<p>Le <strong>co-langage de l'état</strong> $q \in Q$ est défini par</p>
+<p>Le <strong>co-langage de l&rsquo;état</strong> $q \in Q$ est défini par</p>
 <p>$ co\mathcal{L}(A,q)={w \in \Sigma^\ast | \exists q_0 \in I, q_0
 \stackrel{w}{\rightarrow} q}$</p>
 <h4 id="théorème-congruence-droite-et-régularité">Théorème (Congruence droite et régularité).</h4>
@@ -192,9 +192,9 @@ d&rsquo;index fini.</p>
 <h3 id="automate-minimal">Automate minimal</h3>
 <p>Nous nous intéressons maintenant à une notion d&rsquo;automate minimal reconnaissant
 un langage régulier donné. Nous montrons que chaque état de cet automate
-correspond à une des classes d'équivalence de $\sim_L$. Ses transitions
-correspondent au passage d&rsquo;un classe à l&rsquo;autre : depuis la classe d'équivalence
-de $w$, la lecture d&rsquo;un symbole $s$ conduit à la classe d'équivalence de
+correspond à une des classes d&rsquo;équivalence de $\sim_L$. Ses transitions
+correspondent au passage d&rsquo;un classe à l&rsquo;autre : depuis la classe d&rsquo;équivalence
+de $w$, la lecture d&rsquo;un symbole $s$ conduit à la classe d&rsquo;équivalence de
 $w.s$.</p>
 <p>Soit $L$ un langage régulier sur un alphabet $\Sigma$. L&rsquo;<strong>automate fini
 minimal</strong> $afmin(L)=(Q,\Sigma,\delta,q_0,F)$ qui accepte $L$ est défini par</p>
@@ -220,14 +220,14 @@ automate $A$ connu qui accepte $L$.</p>
 maintenant caractériser la non mminimalité en considérant les langages acceptés
 depuis chacun des états de $A$. Deux états $q,q&rsquo; \in Q$ sont dits
 <strong>équivalents</strong> si $\mathcal{L}(A,q)=\mathcal{L}(A,q&rsquo;)$. On note $\equiv_Q$
-la relation d'équivalence ainsi définie.</p>
-<p>L'équivalence entre états doit être rapprochée de la congruence de
+la relation d&rsquo;équivalence ainsi définie.</p>
+<p>L&rsquo;équivalence entre états doit être rapprochée de la congruence de
 $\mathcal{L}(A)$. En effet, supposons que $q_0 \stackrel{w}{\rightarrow} q$
 et $q_0 \stackrel{w&rsquo;}{\rightarrow} q'$ pour deux mots $w,w&rsquo; \in
 \Sigma^\ast$. Alors, puisque $\mathcal{L}(A,q) = \mathcal{L}(A,q&rsquo;)$, pour
 tout mot $x \in \Sigma^\ast, w.x$ est accepté par $A$ si et seulement
 $w&rsquo;.x$ est accepté par $A$. Il vient alors $w \sim_{\mathcal{L}(A)}w'$.
-L'équivalence entre $\equiv_Q$ et $\sim_K$ est prouvée plus tard. Un
+L&rsquo;équivalence entre $\equiv_Q$ et $\sim_K$ est prouvée plus tard. Un
 automate fini $A$ n&rsquo;est donc pas minimal si et seulement si</p>
 <ul>
 <li>il possède (au moins) un état inaccessible : il existe $q\in Q$ tel que pour
@@ -247,7 +247,7 @@ $A=(Q,\Sigma,\delta,I,F)$ est défini par</p>
 \stackrel{w}{\rightarrow} q}$</p>
 <p>Intuitivement, les états accessibles d&rsquo;un automate fini
 $A=(Q,\Sigma,\delta,I,F)$ sont les états $q$ pour lesquels il existe une
-séquence de transitions partant d&rsquo;un état initial et menant jusqu'à $q$.</p>
+séquence de transitions partant d&rsquo;un état initial et menant jusqu&rsquo;à $q$.</p>
 <p>La restriction d&rsquo;un automate fini $A=(Q,\Sigma,\delta,I,F)$ à sa <strong>partie
 accessible</strong> est l&rsquo;automate fini $eqacc(A)=(Q&rsquo;,\Sigma,\delta&rsquo;,I,F&rsquo;)$ défini
 par</p>
@@ -271,7 +271,7 @@ calculer par itérations successives</p>
 <p>$\begin{align*} Acc(0) &amp;= I \ Acc(n+1) &amp;= Acc(n) \cup {q&rsquo; \in Q | \exists q
 \in Acc(n). \exists s \in \Sigma. (q,s,q&rsquo;) \in \delta} \end{align*}$</p>
 <p>Intuitivement, $Acc(n)$ est l&rsquo;ensemble des états pour lesquels il existe une
-séquence d&rsquo;au plus $n$ transitions menant d&rsquo;un état initial jusqu'à eux. Nous
+séquence d&rsquo;au plus $n$ transitions menant d&rsquo;un état initial jusqu&rsquo;à eux. Nous
 calculons donc successivement $Acc(0)$, puis $Acc(1)$ en utilisant
 $Acc(0)$, puis $Acc(2)$ à partir de $Acc(1)$, et ainsi de suite jusqu&rsquo;au
 point fixe obtenu lorsque $Acc(n)=Acc(n-1)$ pour une valeur donnée de $n$.
@@ -328,7 +328,7 @@ soit sur une expression régulière de langage $L$, soit sur un automate fini
 qui accepte $L$. Nous présentons donc l&rsquo;algorithme <code>Partition</code> de calcul de
 $\equiv_Q$ pour un automate fini déterministe complet et sans états
 inaccessibles $A=(Q,\Sigma,\delta,q_0,F)$. L&rsquo;algorithme <code>Partition</code> maintient
-un ensemble $P$ de couples d'états $(q,q&rsquo;)$ tels que</p>
+un ensemble $P$ de couples d&rsquo;états $(q,q&rsquo;)$ tels que</p>
 <ul>
 <li>si $(q,q&rsquo;) \notin P$, alors $q \notequiv_Q q'$</li>
 <li>et si $(q,q&rsquo;) \in P$, on fait l&rsquo;hypothèse que $p \equiv_Q q'$</li>
@@ -363,7 +363,7 @@ pour $\equiv_Q$</li>
 <li>nous savons que pour tous états $q,q&rsquo; \in Q$ tels que $q \in F$ et $q&rsquo;
 \notin F, q \notequiv_Q q'$ puisque $\epsilon \in \mathcal{L}(A,q)$ alors
 que $\epsilon \notin \mathcal{L}(A,q&rsquo;)$. La première boucle retire donc de
-$P$ toutes les paires d'états distinguables selon ce critère</li>
+$P$ toutes les paires d&rsquo;états distinguables selon ce critère</li>
 <li>enfin, supposons que $(q,q&rsquo;) \in P$ et qu&rsquo;il existe un symbole $s \in
 \Sigma$ et deux états $p,p&rsquo; \in Q$ tels que $q \stackrel{s}{\rightarrow}
 p$ et $q&rsquo; \stackrel{s}{\rightarrow} p'$ avec $(p,p&rsquo;) \notin P$. Alors
@@ -441,13 +441,13 @@ MathJax.Hub.Config({
 				<div class="footer-manu">
 					<ul>
             
-            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
             
-            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
             
-            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
             
-            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
             
 					</ul>
 				</div>
@@ -464,22 +464,22 @@ MathJax.Hub.Config({
 
 
 
-<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
-
-
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
 
 
-<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
 
 
 

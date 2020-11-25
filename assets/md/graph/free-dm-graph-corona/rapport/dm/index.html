@@ -8,26 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
   <meta name="author" content="Eirbot">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.74.3" />
 
   <!-- plugins -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
   
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
-  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
 
 </head><body>
 <!-- preloader start -->
@@ -50,7 +50,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+              <img src="https://Sdelpeuch.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
             </a>
           </div>
           
@@ -111,7 +111,7 @@
   </div>
 </header>
 
-<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/');">
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/');">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -191,7 +191,7 @@ tenté de rajouter des facteurs plus réalistes et nous nous sommes un peu écar
 <h2 id="i-classfas-fa-project-diagrami-partie-i---implémentation-dune-base-nathan--aurélien"><i class="fas fa-project-diagram"></i> Partie I - Implémentation d&rsquo;une base (Nathan &amp; Aurélien)</h2>
 <p>La première partie permet de définir les bases de la modélisation c&rsquo;est à dire
 les différents états, les différents paramètres, les règles de changement
-d'état, les topologies de graphes étudiés et les différents modèles de ces
+d&rsquo;état, les topologies de graphes étudiés et les différents modèles de ces
 derniers. Nous reprennons précisément les définitions du sujet. <!--  La population est pour l'instant considérée comme uniforme (chaque --></p>
 <!-- individu est sujet à la maladie de la même manière), ils peuvent être dans -->
 <!-- quatre états, Sain ($$S$$), Infecté ($$M$$), Guéri et donc imunisés ($$G$$) ou -->
@@ -225,15 +225,15 @@ derniers. Nous reprennons précisément les définitions du sujet. <!--  La popu
 <!--   différentes d'un jour à l'autre -->
 <h3 id="graphe-circulaire">Graphe circulaire</h3>
 <p>Dans un premier temps nous allons définir la séquence de graphe $$G_i$$
-permettant de réprésenter l'état du graphe $$G$$ au jour $$i$$. Peu importe le
+permettant de réprésenter l&rsquo;état du graphe $$G$$ au jour $$i$$. Peu importe le
 jour, les sommets du graphe ne changent pas. Ainsi dans une première partie
 d&rsquo;initialisation nous construisons le graphe en fonction de la topologie choisie,
 dans tous les cas le graphe possède $$n$$ sommets. Ensuite vient la
 construction des arêtes du graphe. Pour le graphe circulaire, cela est effectué
-dans l&rsquo;initialisation, en effet les individus ne sont reliés qu'à leurs voisins
+dans l&rsquo;initialisation, en effet les individus ne sont reliés qu&rsquo;à leurs voisins
 de droite et de gauche, cela est indépendant du jour. Par construction ce graphe
 est connexe.</p>
-<p>De plus chaque jour, nous devons appliquer les règles de changement d'état à
+<p>De plus chaque jour, nous devons appliquer les règles de changement d&rsquo;état à
 tous les individus, ainsi peut importe la topologie du graphe nous parcourons le
 graphe, si nous tombons sur une personne malade nous appliquons à tous ses
 voisins une probabilité $$q$$ de tomber malade, si l&rsquo;un tombe malade nous
@@ -266,7 +266,7 @@ devons parcourir tous les individus. Si nous sommes dans un modèle dynamique no
 devons actualiser les voisins. Ensuite si l&rsquo;individu est malade depuis $$r$$
 jours, lui appliquer une chance de mourir, si l&rsquo;individu est en contact avec des
 malades lui appliquer une chance de devenir malade. Finalement nous ajoutons un jour
-de maladie à tous les malades. Ainsi pour calculer l'état du graphe au jour
+de maladie à tous les malades. Ainsi pour calculer l&rsquo;état du graphe au jour
 $$i+1$$ nous avons une fonction de complexité è <code>O(n+m)</code> où $$m$$ est le nombre
 moyen de voisin d&rsquo;un individu.</p>
 <p>Nous pouvons à partir de cela établir notre code final pour le graphe circulaire en modèle
@@ -286,7 +286,7 @@ différents graphes au fur et à mesure des jours.</p>
 <p><img src="/img/circ_50_2_2_14_0.01_0.02.gif" alt="1">{:class=&quot;image about right&rdquo;}
 <img src="img/circ_10000_2_2_14_0.01_0.02.png" alt="2">{:class=&quot;image about right&rdquo;}</p>
 <p>Nous pouvons tout d&rsquo;abord observer la propagation de la maladie sur le graphe circulaire, cela est conforme à nos attentes, la maladie se propage de voisin en voisin et au bout de 14 jours chaque malade devient soit guéri soit mort. Etant donné que nous avons une chance de $$2%$$ de mourir nous avons aucun mort car nous avons une population restreinte uniquement de 50 individus.</p>
-<p>Nous avons en parallèle tracé l'évolution des quatre groupes (malades, guéris, jamais infectés, décédés) sur une population de 10 000 individus, nous voyons qu'à cause de la faible propagation du virus la maladie ne s&rsquo;est pas diffusé dans la population. Cependant il apparaît clairement que les résultats sont peu satisfaisants,
+<p>Nous avons en parallèle tracé l&rsquo;évolution des quatre groupes (malades, guéris, jamais infectés, décédés) sur une population de 10 000 individus, nous voyons qu&rsquo;à cause de la faible propagation du virus la maladie ne s&rsquo;est pas diffusé dans la population. Cependant il apparaît clairement que les résultats sont peu satisfaisants,
 en effet le graphe circulaire est relativement simpliste et ne représente que
 très peu les connexions humaines. Nous devons alors parfaire notre modèle.</p>
 <h3 id="graphe-aléatoire">Graphe Aléatoire</h3>
@@ -314,7 +314,7 @@ $$k'$$ de $$1$$ à $$k=50$$. Nous utilisons à chaque fois le modèle statique e
 <p>Ce graphe est déjà plus réaliste et nous montre qu&rsquo;une maladie non contrôlée peut se propager rapidement, dans notre cas la mortalité est peu élevée, si nous avions une maladie plus létale elle aurait décimé rapidement toute la population. Sur une population de 10 000 individus et pour $$k'=25$$ nous obtenons le graphe suivant qui nous montre un pic épidémique très élevé (toute la population) et très tôt (15 ième jour)</p>
 <p><img src="/img/random_10000_50_25_14_0.01_0.02.png" alt="7">{:class=&quot;image about center graph&rdquo;}</p>
 <p>Les résultats sont plus satisfaisants en effet nous pouvons voir une rapide
-propagation de l'épidémie dans la population, rappelons que l&rsquo;idée de cette
+propagation de l&rsquo;épidémie dans la population, rappelons que l&rsquo;idée de cette
 partie est de réussir à mettre en place un graphe représentant une population
 ainsi que des connexions entre les individus de manière se rapprochant le plus
 de la réalité possible. Faisons un point sur les deux graphes présentés. Nous
@@ -336,7 +336,7 @@ initialisation en un temps $$O(n+m)$$ où $$m$$ est le nombre moyen de voisins.<
 <p>Ensuite si nous regardons la propagation jour par jour, cette dernière ne change
 pas des autres implémentations, si le modèle est statique les arêtes sont
 définies dans l&rsquo;initialisation et nous appliquons les règles de changements
-d'états jour par jour. Si le modèle est dynamique, chaque jour nous modifions
+d&rsquo;états jour par jour. Si le modèle est dynamique, chaque jour nous modifions
 les arêtes tel que chaque individu soit connecté à ses deux voisins et qu&rsquo;il
 soit connecté à au plus $$k&rsquo;-2$$ voisins choisis parmi ses $$k$$ voisins
 possibles. La boucle de simulation est donc en complexité $$O(nbr jour * n *
@@ -349,19 +349,19 @@ m)$$.</p>
 permettant de simuler la propagation d&rsquo;une maladie dans un population ayant des
 interractions ressemblant à des relations humaines. Nous avons actuellement une modélisation d&rsquo;une propagation naturelle d&rsquo;une maladie, cette maladie se propage rapidement et toute la population est rapidement touchée. Nous avons dans nos modèles peu de morts mais si nous avions 67 000 000 d&rsquo;individus cela représente tout de même 670 000 personnes (70 millions de morts sur l&rsquo;ensemble de la planète sans aucune mesure pour contenir et ralentir la maladie).</p>
 <h2 id="i-classfas-fa-project-diagrami-partie-ii---rajout-de-tests-simples-sébastien--antoine"><i class="fas fa-project-diagram"></i> Partie II - Rajout de tests simples (Sébastien &amp; Antoine)</h2>
-<p>Nous allons maintenant implémenter des stratégies de réponse à l'épidémie que
+<p>Nous allons maintenant implémenter des stratégies de réponse à l&rsquo;épidémie que
 vont adopter les individus. Cela se traduit par exemple par la mise en
 confinement de la population ou le test massif de la population. Le but ici est
-d'étudier l&rsquo;efficacité des mesures de lutte contre l'épidémie. Nous serons donc
+d&rsquo;étudier l&rsquo;efficacité des mesures de lutte contre l&rsquo;épidémie. Nous serons donc
 particulièrement attentifs à la taille du pic épidémique et le nombre de morts
 total.</p>
 <p>Remarquons que la première partie fera office d&rsquo;exemple du déroulement &ldquo;normal&rdquo;
-de l'épidémie sans tests ni confinement obligatoire.</p>
+de l&rsquo;épidémie sans tests ni confinement obligatoire.</p>
 <p>Cette partie va parler de tests sur la population. Cependant les tests pendant
 une épidémie ne sont pas magiques, en effet les tests ne détectent pas avec 100%
 de chance un individu malade et dans le même temps ils peuvent détecter un
-individu positif alors qu&rsquo;il n&rsquo;est pas malade (faux positif). L'évocation de
-tests dans ce rapport ne peut aller sans l'évocation du paradoxe de Simpson. Ce
+individu positif alors qu&rsquo;il n&rsquo;est pas malade (faux positif). L&rsquo;évocation de
+tests dans ce rapport ne peut aller sans l&rsquo;évocation du paradoxe de Simpson. Ce
 dernier stipule que lors d&rsquo;un test statistique dans certaines conditions les
 résultats du tests s&rsquo;inversent et nous induisent donc en erreur.</p>
 <p><img src="arbre.png" alt="arbre"> Lorsque nous effectuons un test lors d&rsquo;une épidémie le paradoxe de
@@ -386,7 +386,7 @@ partie de la population qui est vraiment malade (dans notre cas $$0.03%$$).</p>
 <h3 id="réaction-sur-les-proches-des-défunts">Réaction sur les proches des défunts</h3>
 <p>Nous allons tout d&rsquo;abord étudier des réactions de confinement et de tests suite
 au décès d&rsquo;une personne de son entourage. Tout d&rsquo;abord nous allons mettre en
-place la stratégie suivante : si une personne meurt de l'épidémie, alors toutes
+place la stratégie suivante : si une personne meurt de l&rsquo;épidémie, alors toutes
 les personnes l&rsquo;ayant contactée dans les $$r&rsquo;\leq r$$ jours est placé en
 confinement (faible ou fort). Pour coller à la réalité nous prenons toujours
 $$r'=r$$ car lors d&rsquo;une maladie nous sommes contagieux plusieurs jours avant
@@ -411,8 +411,8 @@ voisin.</p>
 <p>Nous allons maintenant modifier la façon de confiner l&rsquo;entourage d&rsquo;une personne
 décédée. Lorsque quelqu&rsquo;un décédé les personnes qu&rsquo;il a contacté depuis $$r$$
 jours sont testés. Le test fonctionne comme suit, si la personne est malade il a
-$$70%$$ de chance d'être confiné, si la personne n&rsquo;est pas malade il a $$10 %$$ de
-chance d'être confiné. Cela ne change rien à la complexité de la fonction
+$$70%$$ de chance d&rsquo;être confiné, si la personne n&rsquo;est pas malade il a $$10 %$$ de
+chance d&rsquo;être confiné. Cela ne change rien à la complexité de la fonction
 puisque cette opération est faite en temps constant.</p>
 <p>Premièrement nous prenons une population de 10 000 individus et une maladie de paramètre $$r=14, p=0.01, q=0.02, k=10$$ et nous prenons $$k'=5$$, nous utilisons le graphe mixte en modèle statique et un confinement fort.</p>
 <p><img src="/img/stat-conffaible-test_defunt.png" alt="21">{:class=&quot;image about center&rdquo;}</p>
@@ -440,10 +440,10 @@ voisins.</p>
 <h3 id="mise-en-place-de-tests-globaux">Mise en place de tests globaux</h3>
 <p>Nous avons vu l&rsquo;efficacité des tests sur les proches des défunts qui sont une
 réponse instantanée à l&rsquo;apparition de la maladie. De plus nous avons vu
-l&rsquo;efficacité des tests aléatoires sur la population qui permettent d'être
+l&rsquo;efficacité des tests aléatoires sur la population qui permettent d&rsquo;être
 préventifs. Nous allons maintenant immaginer une stratégie de tests où nous
 réalisons à la fois des tests sur les proches des défunts et des tests
-aléatoires sur la population. Nous avons aussi vu que le confinement fort permet d&rsquo;avoir une partie de la population saine tout au long de l'épidémie. Cette stratégie devrait être la plus bénéfique et
+aléatoires sur la population. Nous avons aussi vu que le confinement fort permet d&rsquo;avoir une partie de la population saine tout au long de l&rsquo;épidémie. Cette stratégie devrait être la plus bénéfique et
 la plus réaliste (même si cela dépend des pays).</p>
 <p>Combinons les deux stratégies et donnons nous une intuition en effectuant une animation sur 100 individus en utilisant le confinement fort sur le graphe mixte.</p>
 <p><img src="/img/propagation_defunt_tests_alea_iso-100-10-5-14-0.15-0.05.gif" alt="20">{:class=&quot;image about center&rdquo;}</p>
@@ -457,7 +457,7 @@ center&rdquo;}</p>
 <p>Nous voyons tout d&rsquo;abord une différence flagrante entre le confinement faible et
 le confinement fort. Le confinement faible n&rsquo;a presque pas d&rsquo;incidence. Cela est
 normal puisque par essence le confinement faible n&rsquo;empêche pas la propagation
-entre les individus, cela pourrait être utile si notre graphe n'était pas
+entre les individus, cela pourrait être utile si notre graphe n&rsquo;était pas
 connexe, cela contiendrai la maladie à un groupe, cependant la définition du
 graphe mixte nous force à avoir un graphe connexe, dans notre cas ce confinement
 n&rsquo;est pas utile.</p>
@@ -482,7 +482,7 @@ notre modélisation, nous allons maintenant passer à une partie d&rsquo;ouvertu
 <p>Nous allons maintenant discuter d&rsquo;outils que nous avons rajoutés dans ce projet
 pour compléter notre travail ou rajouter de la manipulation d&rsquo;algorithmique des
 graphes.</p>
-<h3 id="visualisation-à-partir-déquations-différentielles">Visualisation à partir d'équations différentielles</h3>
+<h3 id="visualisation-à-partir-déquations-différentielles">Visualisation à partir d&rsquo;équations différentielles</h3>
 <h4 id="sébastien-théorie--rapport-antoine-implémentation-dans-géogébra">Sébastien (Théorie &amp; Rapport), Antoine (Implémentation dans Géogébra)</h4>
 <p>Cette partie présente un autre mode de réprésentation de la propagation de la
 maladie. La représentation se fera par équation différentielles en s&rsquo;inspirant
@@ -501,32 +501,32 @@ infectés et le $$R$$ ceux qui sont guéris. Les différents effectifs sont
 exprimés en pourcentage de la population ce qui nous permet de nous détacher du
 nombre d&rsquo;individus. L&rsquo;effectif de chacune de ces populations est évidemment
 variable dans le temps, donc modélisable par une fonction variable en fonction de $$t$$, le temps : $$S(t),I(t)$$ et $$R(t)$$. Si au cours de la
-propagation de l'épidémie, l&rsquo;effectif $$P$$ de la population peut être considéré
+propagation de l&rsquo;épidémie, l&rsquo;effectif $$P$$ de la population peut être considéré
 constant, on écrit</p>
 <p>$$S(t)+I(t)+R(t)=P$$</p>
-<p>L'épidémie se propage par les contacts entre les individus infectés et les
+<p>L&rsquo;épidémie se propage par les contacts entre les individus infectés et les
 individus sains. Le nombre de ces contacts est proportionnel à $$S$$ et à $$I$$.
 Les malades guérissent en moyenne au bout d&rsquo;un temps $$r$$, ils sont alors
 immunisés et ne peuvent plus, ni infecter d&rsquo;autres personnes, ni être
-réinfectés. Il s&rsquo;agit maintenant d'écrire un système d'équations différentielles
+réinfectés. Il s&rsquo;agit maintenant d&rsquo;écrire un système d&rsquo;équations différentielles
 qui relié la dérivée des fonctions $$\dfrac{dS(t)}{dt}$$,$$\dfrac{dI(t)}{dt}$$
 et $$\dfrac{dR(t)}{dt}$$, aux fonctions elles-mêmes $$S(t),I(t)$$ et $$R(t)$$.
 Les valeurs de $$S$$, $$I$$ et $$R$$ sont toujours positives sans dimension.</p>
 <p>La première équation est la variation des personnes infectées dans le temps, cette
 variation est proportionnelle à l&rsquo;effectif de la population infectée et à
 l&rsquo;effectif de la population saine multiplié par un coeffcient de propagation
-$$q$$. Cela nous donne l'équation $$dI(t)/dt=qIS$$, nous rajoutons aussi le fait que
-le malade reste en moyenne malade pendant $$r$$ jours, nous modifions l'équation
+$$q$$. Cela nous donne l&rsquo;équation $$dI(t)/dt=qIS$$, nous rajoutons aussi le fait que
+le malade reste en moyenne malade pendant $$r$$ jours, nous modifions l&rsquo;équation
 pour l&rsquo;intégrer ainsi $$dI(t)/dt=qIS-I/r$$. Finalement nous devons ajouter terme
-représentant la mortalité de la maladie, nous réecrivons alors l'équation en
+représentant la mortalité de la maladie, nous réecrivons alors l&rsquo;équation en
 intégrant l&rsquo;indice $$p$$ de mortalité : $$dI(t)/dt=qIS-I/r-pI$$. Avec
 l&rsquo;adjonction de ce terme, la population totale ne peut plus rester constante.
 Elle diminue sous l&rsquo;effet de cette mortalité, la simulation permet de le montrer facilement.</p>
 <p>La deuxième équation est la variation des personnes saines dans le temps, cette
 variation est symétrique par rapport à la variation des personnes infectées dans
-le temps. L'équation est donc $$dS(t)/dt=-qIS$$.</p>
-<p>Finalement nous plaçons l'équation du nombre de guéris en fonction du temps,
-$$dR(t)/dt=I/r$$. En somme le modèle s'écrit</p>
+le temps. L&rsquo;équation est donc $$dS(t)/dt=-qIS$$.</p>
+<p>Finalement nous plaçons l&rsquo;équation du nombre de guéris en fonction du temps,
+$$dR(t)/dt=I/r$$. En somme le modèle s&rsquo;écrit</p>
 <p>$$\begin{align*} \dfrac{dS(t)}{dt} &amp;= - q I S \ \dfrac{dI(t)}{dt} &amp;= q I S -
 \dfrac{I}{r} \ \dfrac{dR(t)}{dt} &amp;= \dfrac{1}{r}\end{align*}$$</p>
 <p>Nous avons simulé le comportement des variables $$I(t), S(t)$$ et $$R(t)$$,
@@ -692,13 +692,13 @@ function myFunction() {
 				<div class="footer-manu">
 					<ul>
             
-            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
             
-            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
             
-            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
             
-            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
             
 					</ul>
 				</div>
@@ -715,22 +715,22 @@ function myFunction() {
 
 
 
-<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
-
-
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
 
 
-<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
 
 
 

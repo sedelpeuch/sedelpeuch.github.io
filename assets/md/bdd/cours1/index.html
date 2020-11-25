@@ -8,26 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
   <meta name="author" content="Eirbot">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.74.3" />
 
   <!-- plugins -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
   
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
-  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
 
 </head><body>
 <!-- preloader start -->
@@ -50,7 +50,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+              <img src="https://Sdelpeuch.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
             </a>
           </div>
           
@@ -111,7 +111,7 @@
   </div>
 </header>
 
-<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/images/banner/compilation.jpg');">
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/compilation.jpg');">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -183,7 +183,7 @@ aux données)</li>
 aucune ne l&rsquo;est)</li>
 <li>Cohérence (préservation de la cohérence de la base)</li>
 <li>Isolation (quelle que soit la manière dont les transactions concurrentes
-sont exécutées, on doit pouvoir les ordonner de sorte à ce que l'état final
+sont exécutées, on doit pouvoir les ordonner de sorte à ce que l&rsquo;état final
 de la base soti le même qu&rsquo;après une exécution séquentielle des différentes
 transactions)</li>
 <li>Durabilité (Si une transaction est validée, tous les changements qu&rsquo;elle a
@@ -344,7 +344,7 @@ considérons qu&rsquo;elle est interderminée et vaut $n$. En effet, si nous
 connaissons $n$ au moment de la conception, il se peut que cette valeur évolue
 au cours du temps. Il vaut donc mieux considérer $n$ comme inconnue dès le
 départ. De la même manière, on e modélise pas de cardinalités minimales qui
-valent plus de 1, car ces valeurs sont également susceptibles d'évoluer. Enfin,
+valent plus de 1, car ces valeurs sont également susceptibles d&rsquo;évoluer. Enfin,
 une cardinalité maximale de 0 n&rsquo;a pas de sens, car elle rendrait le type
 association inutile.</p>
 <h2 id="compléments-sur-les-associations">Compléments sur les associations</h2>
@@ -361,7 +361,7 @@ entre un type entité et lui-même.</p>
 <p>Une occurrence de ce type association (ie une association) associe généralement
 une occurence  du type association (ie une entité) à une autre entité du même
 type. Cette relation peut être symétrique, c&rsquo;est le cas du type association
-<em>Être frère</em> sur la figure ci dessus, ou ne pas l'être comme le type association
+<em>Être frère</em> sur la figure ci dessus, ou ne pas l&rsquo;être comme le type association
 <em>Être parent</em> sur cette même figure. Dans le cas où la relation n&rsquo;est pas
 symétrique, on peut préciser les rôles sur les pattes du type association comme
 pour la relation <em>Être parent</em> sur cette même figure. L&rsquo;ambiguïté posée par la
@@ -375,7 +375,7 @@ ne va rarement au-delà de trois. Les associations de degré supérieur à deux 
 plus difficiles à manipuler et à interpréter, notamment au niveau des
 cardinalité.</p>
 <h2 id="i-classfas-fa-databasei-règles-de-bonne-formation-dun-modèle-entités-associations"><i class="fas fa-database"></i> Règles de bonne formation d&rsquo;un modèle entités-associations</h2>
-<p>La bonne formation d&rsquo;un modèle entités-associations permet d'éviter une grande
+<p>La bonne formation d&rsquo;un modèle entités-associations permet d&rsquo;éviter une grande
 partie des sources d&rsquo;incohérences et de redondance. Pour être bien formé, un
 modèle entités-associations doit respecter certaines règles et les types entité
 et type association doivent être normalisés. Un bon principe de conception peut
@@ -413,7 +413,7 @@ modélisation inachevée ou d&rsquo;une redondance. Sinon, il faut simplement aj
 nom de l&rsquo;attribut le nom du type entité ou du type association dans lequel il se
 trouve. Il faut toutefois remarque que le dernier cas décrit n&rsquo;est pas
 rédhibitoire et que les SGBD relationnel s&rsquo;accommodent très bien de relations
-comportant des attributs de même nom. L'écriture des requêtes sera tout de même
+comportant des attributs de même nom. L&rsquo;écriture des requêtes sera tout de même
 plus lisible si les attributs ont tous des noms différents.</p>
 <h3 id="règle-de-normalisation-des-attributs">Règle de normalisation des attributs</h3>
 <p><strong>Règle 22</strong> : Il faut remplacer un attribut multiple en un type association et un type entité supplémentaires.</p>
@@ -422,12 +422,12 @@ plus lisible si les attributs ont tous des noms différents.</p>
 </center>
 <p>Remplacement des attributs multiples en un type association et un type entité et
 décomposition des attributs composites.</p>
-<p>En effet, les attributs multiples posent régulièrement des problèmes d'évoluvité
+<p>En effet, les attributs multiples posent régulièrement des problèmes d&rsquo;évoluvité
 du modèle. Par exemple, sur le modèle de gauche de la figure ci dessus, comment
 faire si un employé possède deux adresses secondaires ou plusieurs numéros de
 portable ?</p>
 <p>Il est également intéressant de décomposer les attributs composites comme
-l&rsquo;attribut Adresse par exemple. Il est en effet difficile d'écrire une requête
+l&rsquo;attribut Adresse par exemple. Il est en effet difficile d&rsquo;écrire une requête
 portant sur la ville où les habitent les employés si cette information est noyée
 dans un unique attribut Adresse.</p>
 <p><strong>Règle 23</strong> : Il ne faut jamais ajouter un attribut dérivé d&rsquo;autres attributs, que ces autres
@@ -444,7 +444,7 @@ dessus illustre le cas d&rsquo;un attribut Montant total dans un type entité Co
 qui peut être calculé à partir des attributs Quantité du type association
 Contenir et Prix unitaire du type entité Article. Il faut donc supprimer
 l&rsquo;attribut Montant total dans le type entité Commande. D&rsquo;autres attributs
-dérivés sont également à éviter comme l'âge, que l&rsquo;on peut déduire de la date de
+dérivés sont également à éviter comme l&rsquo;âge, que l&rsquo;on peut déduire de la date de
 naissance et de la date courante. Il faut cependant faire attention aux pièges :
 par exemple , le code postal ne détermine ni le numéro de département ni la
 Ville.</p>
@@ -491,7 +491,7 @@ noms des types entité factorisés</p>
 introduisant un nouvel attribut.</p>
 <p>Mais l&rsquo;introduction d&rsquo;un attribut supplémentaire n&rsquo;est pas forcément nécessaire
 ou souhaitable. Ne pas introduire d&rsquo;attribut permet en outre de permettre à une
-personne d'être à la fois un Abonné et Écrivain</p>
+personne d&rsquo;être à la fois un Abonné et Écrivain</p>
 <center>
 <img src="/assets/images/sgbd/fig2_23.png", width="50%"></img>
 </center>
@@ -512,7 +512,7 @@ association.</p>
 <p><strong>Règle 27</strong> Un type entité remplaçable par un type association doit être
 remplacé.</p>
 <p><strong>Règle 28</strong> Lorsque les cardinalités d&rsquo;un type association sont toute 1,1 c&rsquo;est
-que le type association n&rsquo;a pas lieu d'être.</p>
+que le type association n&rsquo;a pas lieu d&rsquo;être.</p>
 <p>Il faut aussi se poser la question de l&rsquo;intérêt du type association quand les
 cardinalités maximales sont toutes de 1.</p>
 <center>
@@ -551,7 +551,7 @@ un type association Régler.</p>
 <h3 id="normalisation-des-types-entité-et-type-association">Normalisation des types entité et type association</h3>
 <h4 id="introduction-1">Introduction.</h4>
 <p>Les formes normales sont différents sont différents stades de qualité qui
-permettent d'éviter la redondance, source d&rsquo;anomalies. La normalisation peut
+permettent d&rsquo;éviter la redondance, source d&rsquo;anomalies. La normalisation peut
 être aussi bien effectuée sur un modèle entités-associations, où elle s&rsquo;applique
 sur les types entité et type association, que sur un modèle relationnel.</p>
 <p>Il existe 5 formes normales principales et deux extensions. Plus le niveau de
@@ -572,7 +572,7 @@ forme normale de Boyce-Codd.</p>
 <li>
 <p>Puis une seconde fois, dans le cadre de modèle relationnel, en privilégiant
 une approche plus formelle s&rsquo;appuyant sur la définition des dépendances
-fonctionnelle, multivaluée et de jointure. Nous irons alors jusqu'à la
+fonctionnelle, multivaluée et de jointure. Nous irons alors jusqu&rsquo;à la
 cinquième forme normale.</p>
 </li>
 </ul>
@@ -586,12 +586,12 @@ attributs sont élémentaires, c&rsquo;est à dire non décomposables.</p>
 <p>Un attribut composite doit être décomposé en attributs élémentaires ou faire
 l&rsquo;objet d&rsquo;une entité supplémentaire (comme l&rsquo;attribut Occupants sur la figure ci
 dessous).</p>
-<p>L'élémentarité d&rsquo;un attribut est toutefois fonction des choix de gestion. Par
+<p>L&rsquo;élémentarité d&rsquo;un attribut est toutefois fonction des choix de gestion. Par
 exemple, la propriété Adresse peut être considérée comme élémentaire si la
 gestion de ces adresses est globale. Par contre, s&rsquo;il faut pouvoir considérer
-les codes postaux, les noms de rues &hellip;, il convient d'éclater la propriété
+les codes postaux, les noms de rues &hellip;, il convient d&rsquo;éclater la propriété
 Adresse en Adresse (au sens numéro d&rsquo;appartement, numéro et nom de rue), Code
-postal et Ville. En cas de doute, il est préférable (car plus général) d'éclater
+postal et Ville. En cas de doute, il est préférable (car plus général) d&rsquo;éclater
 une propriété que d&rsquo;effectuer un regroupement.</p>
 <h4 id="deuxième-forme-normale-2fn">Deuxième forme normale (2FN).</h4>
 <center>
@@ -650,11 +650,11 @@ suffisante pour une implantation.</p>
 <h2 id="élaboration-dun-modèle-entités-associations">Élaboration d&rsquo;un modèle entités associations</h2>
 <h3 id="étapes-de-conceptions-dun-modèle-entités-associations">Étapes de conceptions d&rsquo;un modèle entités-associations</h3>
 <p>Pour concevoir un modèle entités-associations vous devrez certainement passer
-par une succession d'étapes. Nous les décrivons ci-dessous dans l&rsquo;ordre
+par une succession d&rsquo;étapes. Nous les décrivons ci-dessous dans l&rsquo;ordre
 chronologique. Sachez cependant que la conception d&rsquo;un modèle
 entités-associations est un travail non linéaire. Vous devrez régulièrement
 revenir à une étape précédente et vous n&rsquo;avez pas besoin d&rsquo;en avoir terminé avec
-une étape pour commencer l'étape suivante.</p>
+une étape pour commencer l&rsquo;étape suivante.</p>
 <h4 id="recueil-des-besoins">Recueil des besoins.</h4>
 <p>C&rsquo;est une étape primordiale. Inventoriez l&rsquo;ensemble des données à partir des
 documents de l&rsquo;entreprise d&rsquo;un éventuel cahier des charges et plus généralement
@@ -764,13 +764,13 @@ MathJax.Hub.Config({
 				<div class="footer-manu">
 					<ul>
             
-            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
             
-            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
             
-            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
             
-            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
             
 					</ul>
 				</div>
@@ -787,22 +787,22 @@ MathJax.Hub.Config({
 
 
 
-<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
-
-
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
 
 
-<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
 
 
 

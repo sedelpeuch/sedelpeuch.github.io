@@ -8,26 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
   <meta name="author" content="Eirbot">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.74.3" />
 
   <!-- plugins -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
   
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
-  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
 
 </head><body>
 <!-- preloader start -->
@@ -50,7 +50,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+              <img src="https://Sdelpeuch.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
             </a>
           </div>
           
@@ -111,7 +111,7 @@
   </div>
 </header>
 
-<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/');">
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/');">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -160,7 +160,7 @@
 <li>Fonctions : <code>(define (&lt;f&gt; &lt;p1&gt; &lt;p2&gt; ... &lt;pn&gt;) &lt;e1&gt; &lt;e2&gt; ... &lt;en&gt;)</code></li>
 <li>Résultat non spécifié par la norme</li>
 </ul>
-<p>Une définition établit une liaison entre une variable et un objet résultant de l'évaluation de l&rsquo;expression, cet objet pouvant être une fonction</p>
+<p>Une définition établit une liaison entre une variable et un objet résultant de l&rsquo;évaluation de l&rsquo;expression, cet objet pouvant être une fonction</p>
 <h3 id="environnements-locaux---la-forme-let">Environnements locaux - La forme <code>let</code></h3>
 <p>Ils sont fabirqués avec les formes <code>let</code>, <code>let*</code>, <code>letrec</code> et par des définitions au moyen de la forme <code>define</code> dans le corps des fonctions.</p>
 <pre><code>(let (&lt;l1&gt;
@@ -169,11 +169,11 @@
       &lt;ln&gt;)
  &lt;e&gt;)
 </code></pre><p>Avec <code>&lt;li&gt;</code> une liaison : <code>(&lt;si&gt; &lt;oi&gt;)</code>, <code>&lt;si&gt;</code> est une symbole, <code>&lt;oi&gt;</code> une valeur d&rsquo;initialisation, <code>&lt;e&gt;</code> une expression.</p>
-<p>L'évaluation des vlauers d&rsquo;initialisation est effectuée en premier puis les variables locales sont créées. Ce qui implqiue que les valeurs des variables locales définies dans un let ne sont pas utilisées dans l'évaluation des expressions d&rsquo;initialisation.</p>
+<p>L&rsquo;évaluation des vlauers d&rsquo;initialisation est effectuée en premier puis les variables locales sont créées. Ce qui implqiue que les valeurs des variables locales définies dans un let ne sont pas utilisées dans l&rsquo;évaluation des expressions d&rsquo;initialisation.</p>
 <h2 id="i-classfas-fa-code-branchi-stratégies-de-recherche-dune-liaison"><i class="fas fa-code-branch"></i> Stratégies de recherche d&rsquo;une liaison</h2>
 <p>Pour chercher la liaison correspondant à l&rsquo;occurence d&rsquo;un symbole dans une expression, la recherche commence par l&rsquo;environnement dans lequel apparaît l&rsquo;expression. Si l&rsquo;occurence apparaît dans le corps d&rsquo;une fonction et qu&rsquo;aucune liaison ne correspond en local (cas d&rsquo;une variable libre), deux stratégies existent</p>
 <h3 id="stratégie-lexicale---lexical-scope">Stratégie lexicale - Lexical scope</h3>
-<p>La stratégie lexical consiste à remonter les environnements locaux englobants du plus proche jusqu'à l&rsquo;environnement global. La première liaison dont le nom de symbole correspond est retenue. Cette stratégie s&rsquo;applique aussi à l'évaluation du corps d&rsquo;une fonction lors d&rsquo;une application. En effet celui-ci est évalué dans l&rsquo;environnement englobant de la fonction, dit environnement lexical.</p>
+<p>La stratégie lexical consiste à remonter les environnements locaux englobants du plus proche jusqu&rsquo;à l&rsquo;environnement global. La première liaison dont le nom de symbole correspond est retenue. Cette stratégie s&rsquo;applique aussi à l&rsquo;évaluation du corps d&rsquo;une fonction lors d&rsquo;une application. En effet celui-ci est évalué dans l&rsquo;environnement englobant de la fonction, dit environnement lexical.</p>
 <p>Cette stratégie correspond au langage C et aux langages impératifs en général et au langage Scheme.</p>
 <h3 id="stratégie-dynamique---dynamic-scope">Stratégie dynamique - Dynamic scope</h3>
 <p>Pour chercher la liaison correspondant à l&rsquo;occurence d&rsquo;un symbole dans une expression située dans le corps d&rsquo;une fonction, la stratégie dynamique consiste à rechercher sa liaison dans l&rsquo;environnement dynamique, c&rsquo;est à dire l&rsquo;environnement d&rsquo;application de la fonction</p>
@@ -228,13 +228,13 @@
 				<div class="footer-manu">
 					<ul>
             
-            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
             
-            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
             
-            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
             
-            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
             
 					</ul>
 				</div>
@@ -251,22 +251,22 @@
 
 
 
-<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
-
-
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
 
 
-<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
 
 
 

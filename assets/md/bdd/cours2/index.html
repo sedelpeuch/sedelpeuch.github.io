@@ -8,26 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
   <meta name="author" content="Eirbot">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.74.3" />
 
   <!-- plugins -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
   
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
-  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
 
 </head><body>
 <!-- preloader start -->
@@ -50,7 +50,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+              <img src="https://Sdelpeuch.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
             </a>
           </div>
           
@@ -111,7 +111,7 @@
   </div>
 </header>
 
-<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/images/banner/compilation.jpg');">
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/compilation.jpg');">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -187,7 +187,7 @@ anglais</p>
 <p>les données sont manipulées par des opérateurs de l&rsquo;algèbre relationnelle</p>
 </li>
 <li>
-<p>l'état cohérent de la base est défini par un ensemble de contraintes
+<p>l&rsquo;état cohérent de la base est défini par un ensemble de contraintes
 d&rsquo;intégrité</p>
 <p>Au modèle relationnel est associée a la théorie de la normalisation des
 relations qui permet de se débarasser des incohérences au moment de la
@@ -264,14 +264,14 @@ une clé étrangère de la relation Citoyen.</p>
 <p>Le type association <em>Etre</em> étant du type 1 vers 1, il est entièrement
 matérialisé dans la relation <em>Candidat</em>. L&rsquo;attribut <em>Num-candidat</em> dans la
 relation <em>Citoyen</em> doit donc être supprimé. D&rsquo;autre part, dans la relation
-<em>Candidat</em>, l&rsquo;attribut <em>Num-Citoyen</em>, en plus d'être une clé étrangère,
+<em>Candidat</em>, l&rsquo;attribut <em>Num-Citoyen</em>, en plus d&rsquo;être une clé étrangère,
 constitue une clé candidate. On peut donc se passer de la clé <em>Num-candidat</em>.</p>
 <p>Le schéma relationnel adéquat correspondant au mmodèle ci dessus devient donc</p>
 <ul>
 <li>Citoyen(<em>Num-citoyen</em>,Nom,Prénom,Adresse)</li>
 <li>Candidat(<em>Num-citoyen</em>,Parti)</li>
 </ul>
-<p>où <em>Num-Citoyen</em>, en plus d'être la clé de la relation Candidat, est une clé
+<p>où <em>Num-Citoyen</em>, en plus d&rsquo;être la clé de la relation Candidat, est une clé
 étrangère de la relation Citoyen.</p>
 <h4 id="cas-partiulier-dun-type-entité-sans-attribut-autre-que-sa-clé">Cas partiulier d&rsquo;un type entité sans attribut autre que sa clé.</h4>
 <p>Lorsqu&rsquo;un type entité ne possède pas d&rsquo;attribut en dehors de sa clé, il ne faut
@@ -302,8 +302,8 @@ entités-associations de la figure ci dessus</p>
 </ul>
 <h2 id="normalisation">Normalisation</h2>
 <h3 id="introduction">Introduction</h3>
-<p>Les formes normales sont différents stades de qualité qui permettent d'éviter la
-redondances dans les bases de données relationnelles afin d'éviter ou de
+<p>Les formes normales sont différents stades de qualité qui permettent d&rsquo;éviter la
+redondances dans les bases de données relationnelles afin d&rsquo;éviter ou de
 limiter : les pertes de données, les incohérences au sein des données,
 l&rsquo;effondrement des performances des traitements.</p>
 <p>Le processus de normailisation consiste à remplacer une relation donnée par
@@ -340,7 +340,7 @@ les appliquer. Les concepts de normalisation fournissent en fait un moyen
 indirect de déclarer ces dépendances. Autrement dit, la normalisation d&rsquo;une base
 de données est une manifestation observables des dépendances observées dans le
 monde réel. La dépendance fonctionnelle permet de définir les premières formes
-normales jusqu'à la forme normale de Boyce-Codd (1FN, 2FN, 3FN et BCNF). La
+normales jusqu&rsquo;à la forme normale de Boyce-Codd (1FN, 2FN, 3FN et BCNF). La
 dépendance multivaluée permet de définir la quatrième forme normale (4FN) et la
 dépendance de jointure la cinquième forme normale (5FN)</p>
 <h3 id="dépendance-fonctionnelle-df">Dépendance fonctionnelle (DF)</h3>
@@ -363,7 +363,7 @@ $X'$ inclus au sens strict dans $X$ (ie $X&rsquo; \subset X$) tel que $X&rsquo;
 \rightarrow A$ .</p>
 <p>Autrement dit, une dépendance fonctionnelle est élémentaire si la cible est un
 attribut unique et si la source ne comporte pas d&rsquo;attributs superflux. La
-question sur l'élémentarité d&rsquo;une dépendance fonctionnelle ne doit donc se poser
+question sur l&rsquo;élémentarité d&rsquo;une dépendance fonctionnelle ne doit donc se poser
 que lorsque la partie gauche de la dépendance fonctionnelle comporte plusieurs
 attributs.</p>
 <p><code>Dépendance fonctionnelle directe :</code> Une dépendance fonctionnelle $X
@@ -395,7 +395,7 @@ alors de modèle relationnel étendu (NF2 pour Non First Normal Form en anglais)
 et seulement si, elle est en première forme normale et si toutes les
 dépendances fonctionnelles entre la clé et les autres attributs sont
 élémentaires. Une relation peut être en deuxième forme normale par rapport à une
-de ses clés candidates et ne pas l'être par rapport à une autre. Une relation
+de ses clés candidates et ne pas l&rsquo;être par rapport à une autre. Une relation
 avec une clé primaire réduite à un seul attribut est, par définition, forcément
 en deuxième forme normale.</p>
 <h3 id="troisième-forme-normale">Troisième forme normale</h3>
@@ -404,7 +404,7 @@ et seulement si elle est en deuxième forme normale et tout attribut
 n&rsquo;appartenant pas à la clé n&rsquo;est pas en dépendance fonctionnelle directe avec un
 ensemble d&rsquo;attributs non clé.</p>
 <p>Une relation peut être en troisième forme normale par rapport à une de ses clé
-candidates et ne pas l'être par rapport à une autre. Une relation en deuxième
+candidates et ne pas l&rsquo;être par rapport à une autre. Une relation en deuxième
 forme normale avec au plus un attribut qui n&rsquo;appartient pas à la clé primaire
 est, par définition, forcément en troisième forme normale.</p>
 <h3 id="forme-normale-de-boyce-codd">Forme normale de Boyce-codd</h3>
@@ -448,13 +448,13 @@ si, et seulement si, elle est en forme normale de BOYCE-CODD et si elle ne
 possède pas de dépendance multivaluée ou si, $X ↠ Y$ étant la dépendance
 multivaluée, il existe une propriété $A$ telle que $X \rightarrow A$.</p>
 <p>Dans la section précédente, nous avons présenté un schéma relationnel qui
-n'était pas en quatrième forme normale en raison du schéma de relation
+n&rsquo;était pas en quatrième forme normale en raison du schéma de relation
 Intervenir.</p>
 <h4 id="dépendance-de-jointure-dj">Dépendance de jointure (DJ)</h4>
 <p>Jusqu&rsquo;ici, nous avons pu résoudre une redondance dans une relation en la
 remplaçant par deux de ses projets. Il existe cependant des relations que ne
 peuvent pas être décomposées sans perte d&rsquo;information en deux projections, mais
-qui peuvent l'être en trois ou plus (ces cas sont assez rares en pratique).
+qui peuvent l&rsquo;être en trois ou plus (ces cas sont assez rares en pratique).
 C&rsquo;est ce que permet la normalisation en cinquième forme normale.</p>
 <p>Les dépendances de jointures font appel à des notions (projection et jointure)
 qui seront définies plus loin.</p>
@@ -547,13 +547,13 @@ MathJax.Hub.Config({
 				<div class="footer-manu">
 					<ul>
             
-            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
             
-            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
             
-            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
             
-            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
             
 					</ul>
 				</div>
@@ -570,22 +570,22 @@ MathJax.Hub.Config({
 
 
 
-<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
-
-
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
 
 
-<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
 
 
 

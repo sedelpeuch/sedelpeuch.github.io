@@ -8,26 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
   <meta name="author" content="Eirbot">
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.74.3" />
 
   <!-- plugins -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
   
-  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
   
 
   <!-- Main Stylesheet -->
   
-  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
 
   <!--Favicon-->
-  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
-  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
 
 </head><body>
 <!-- preloader start -->
@@ -50,7 +50,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+              <img src="https://Sdelpeuch.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
             </a>
           </div>
           
@@ -111,7 +111,7 @@
   </div>
 </header>
 
-<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/');">
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/');">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -151,7 +151,7 @@
 					<div class="post-content post-excerpt">
 						<p>Nous avons introduit au chapitre 1 une distinction entre automates finis
 déterministes et automates finis non-déterministes. La notion de non
-déterministe provient de l&rsquo;impossiblité de déterminer l'état courant de
+déterministe provient de l&rsquo;impossiblité de déterminer l&rsquo;état courant de
 l&rsquo;automate, à partir de son état initial et les symboles lus.</p>
 <p>Nous avons vu au chapitre 2 l&rsquo;intérêt des transition instantanées (étiquetées
 $\varepsilon$) pour la construction de Kleene qui construit, pour toute
@@ -173,7 +173,7 @@ suivante</p>
 <p>Nous remarquons que cette exécution contient deux transitions instantanées qui
 sont toutes les deux indispensables à $A_N$ pour accepter $aabb$ (sur cette
 exécution) puisque d&rsquo;une part depuis $q_0$ il n&rsquo;y a aucune transition
-d'étiquette $a$, et d&rsquo;autre part sans la transition $q_4
+d&rsquo;étiquette $a$, et d&rsquo;autre part sans la transition $q_4
 \stackrel{\epsilon}{\rightarrow} q_3$, l&rsquo;exécution se terminerait en $q_3$
 qui n&rsquo;est pas accepteur. En toute généralité, il peut être nécessaire qu&rsquo;un
 automate fini non-déterministe franchisse une ou plusieurs transition
@@ -186,7 +186,7 @@ acceptantes de $A_N$ sur $aabb$, il est nécessaire de commencer par une
 transition instantanée : soit $q_0 \stackrel{\epsilon}{\rightarrow} q_1$ soit
 $q_0 \stackrel{\epsilon}{\rightarrow} q_3$. Rappelons également que
 $\epsilon$ permet de boucler sur tout état. Nous construisons la séquence de
-transitions d&rsquo;ensemble d'états en ensemble d'états de $A_N$ en regroupant les
+transitions d&rsquo;ensemble d&rsquo;états en ensemble d&rsquo;états de $A_N$ en regroupant les
 états suivant leur distance à la racine $q_0$ dans l&rsquo;arbre</p>
 <p>$ { q_0} \stackrel{\epsilon}{\rightarrow} {q_1, q_2, q_3}
 \stackrel{\epsilon}{\rightarrow} { q_1,q_2,q_3} \stackrel{a}{\rightarrow} {
@@ -197,7 +197,7 @@ q_1, q_2, q_3} \stackrel{\epsilon}{\rightarrow}$ $ {q_1,q_2,q_3}
 <p><img src="/assets/images/automates/arbre.png" alt="Arbre">{:class=&quot;image about center&rdquo;}</p>
 <p>Dans cette séquence, transition ${q_0} \stackrel{\epsilon}{\rightarrow}
 {q_0,q_1,q_3}$ signifie que sans avoir lu aucune lettre du mot $aabb$,
-$A_N$ peut se déplacer de l'état $q_0$ à l&rsquo;un des états $q_0,q_1$ ou
+$A_N$ peut se déplacer de l&rsquo;état $q_0$ à l&rsquo;un des états $q_0,q_1$ ou
 $q_3$. Puis les deux transitions ${q_0,q_1,q_3} \stackrel{a}{\rightarrow}
 {q_1,q_2,q_3} \stackrel{\epsilon}{\rightarrow} {q_1,q_2,q_3}$ indiquent que
 depuis un état parmi ${q_0,q_1,q_3}$, en lisant le symbole $a$, $A_N$
@@ -219,21 +219,21 @@ initial à $q$</li>
 <li>Puis $A$ lit le premier symbole $\omega_1$ et atteint l&rsquo;ensemble $X_1 =
 {q&rsquo; \in Q | \exists q \in X_0 , q \stackrel{\omega_1, \epsilon}{\rightarrow}
 q&rsquo;}$ des états $q'$ pour lesquels il existe une séquence de transition issue d&rsquo;un état $q \in X_0$, débutant par $w_1$ et suivie d&rsquo;une séquence (éventullement vide) de transistions $\epsilon$
-3. Puis $A$ lit le second symbole $w_2$ et atteint l&rsquo;ensemble d'états $X_2 = { q&rsquo; \in Q | \exists q \in X_1, q \stackrel{w_2, \epsilon} q&rsquo;}$
+3. Puis $A$ lit le second symbole $w_2$ et atteint l&rsquo;ensemble d&rsquo;états $X_2 = { q&rsquo; \in Q | \exists q \in X_1, q \stackrel{w_2, \epsilon} q&rsquo;}$
 4. et ainsi de suite</li>
 </ol>
 <p>Nous pouvons in fine éliminer les $\epsilon$ pour obtenir la séquence de transitions qui suit</p>
 <p>$ {q_0,q_1,q_3} \stackrel{a}{\rightarrow} {q_1,q_2,q_3} \stackrel{a}{\rightarrow}{q_1,q_2,q_3} \stackrel{b}{\rightarrow}{q_1,q_3,q_4} \stackrel{b}{\rightarrow} {q_3,q_4}$</p>
 <p>Nous présentons maintenant, une construction de déterminisation des automates finis non déterministe qui généralise le principe exposé ci-dessus. Celle-ci requiert donc deux phases</p>
 <ol>
-<li>L'élimination des transitions instantanées</li>
-<li>Et l'élimination des choix non déterministes</li>
+<li>L&rsquo;élimination des transitions instantanées</li>
+<li>Et l&rsquo;élimination des choix non déterministes</li>
 </ol>
 <h3 id="clôture-instantanée">Clôture instantanée</h3>
-<p>Reprenons la séquence des transitions de l'équation. La première transition ${q_0} \stackrel{\epsilon}{\rightarrow} {q_0,q_1,q_3}$ définit l&rsquo;ensemble des états accessibles depuis ${q_0}$.</p>
+<p>Reprenons la séquence des transitions de l&rsquo;équation. La première transition ${q_0} \stackrel{\epsilon}{\rightarrow} {q_0,q_1,q_3}$ définit l&rsquo;ensemble des états accessibles depuis ${q_0}$.</p>
 <p>Soit un automate fini $A=(Q,\Sigma,\delta,I,F)$ et $q$ un état de $A$. La <code>cloture instantanée</code> de $q$ notée $cl_{\epsilon}(q)$ est l&rsquo;ensemble des états de $A$ accessibles depuis $q$ par une séquence (éventuellement vide) de transitions instantanées</p>
 <p>$cl_\epsilon(q)={q&rsquo; \in Q | q \stackrel{\epsilon}{\rightarrow} q&rsquo;}$</p>
-<p>La cloture instantanée se généralise à un ensemble d'états $X \subseteq Q$</p>
+<p>La cloture instantanée se généralise à un ensemble d&rsquo;états $X \subseteq Q$</p>
 <p>$cl_\epsilon(X)= \bigcup \limits_{q \in X} cl_\epsilon(q)$
 </script></p>
 <script type="text/javascript"
@@ -297,13 +297,13 @@ MathJax.Hub.Config({
 				<div class="footer-manu">
 					<ul>
             
-            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
             
-            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
             
-            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
             
-            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
             
 					</ul>
 				</div>
@@ -320,22 +320,22 @@ MathJax.Hub.Config({
 
 
 
-<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
 
-<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
-
-
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
 
 
-<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
 
 
 

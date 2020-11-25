@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Assets on Semestre 7</title>
-    <link>https://eirbot.github.io/assets/</link>
+    <link>https://Sdelpeuch.github.io/assets/</link>
     <description>Recent content in Assets on Semestre 7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
     <lastBuildDate>Wed, 25 Nov 2020 11:07:10 +0600</lastBuildDate>
     
-	<atom:link href="https://eirbot.github.io/assets/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://Sdelpeuch.github.io/assets/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Héritage, polymorphisme</title>
-      <link>https://eirbot.github.io/assets/md/cpp/4/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/cpp/4/</link>
       <pubDate>Wed, 25 Nov 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/cpp/4/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/cpp/4/</guid>
       <description>L&amp;rsquo;héritage est un mécanisme permettant de construire un type T à partir d&amp;rsquo;un autre type Base. Le type T se retrouve doté des comportements (méthodes) et propriétés (attributs) du type de Base.</description>
     </item>
     
     <item>
       <title>Opérateurs</title>
-      <link>https://eirbot.github.io/assets/md/cpp/3/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/cpp/3/</link>
       <pubDate>Wed, 18 Nov 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/cpp/3/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/cpp/3/</guid>
       <description>Définition Un opérateur est une notation raccourcie permettant de représenter une opération fréquemment utilisée, par exemple : a+b*c;. On ajoute à a le résultat de la multiplication de b par c.</description>
     </item>
     
     <item>
       <title>Processus et gestion mémoire</title>
-      <link>https://eirbot.github.io/assets/md/prog_sys/3/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/3/</link>
       <pubDate>Thu, 05 Nov 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/prog_sys/3/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/3/</guid>
       <description>Abstraction pour le processus et la mémoire Le Processus est un programme qui s&amp;rsquo;execute ainsi que son contexte (mémoire, état des descripteurs de fichiers)
 Dans les systèmes d&amp;rsquo;exploitation :
  Support pour de multiples processus Chaque processus a un espace d&amp;rsquo;adressage privé ce qui garenti le cloisonnement entre processus (sécurité et protection), cela permet d&amp;rsquo;avoir une abstraction de la mémoire et surtout cela cache le noyau et les autres processus.</description>
@@ -43,143 +43,143 @@ Dans les systèmes d&amp;rsquo;exploitation :
     
     <item>
       <title>Classes</title>
-      <link>https://eirbot.github.io/assets/md/cpp/2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/cpp/2/</link>
       <pubDate>Wed, 04 Nov 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/cpp/2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/cpp/2/</guid>
       <description>Définition et déclaration Une classe consiste en un regroupement de méthodes et d&amp;rsquo;attributs
 class NomClasse{ attributes ... methodes ... }; L&amp;rsquo;ordre des déclarations ne compte pas. La classe est une description des données internes et comportements qu&amp;rsquo;aura une instance générée par cette classe.</description>
     </item>
     
     <item>
       <title>Fichiers</title>
-      <link>https://eirbot.github.io/assets/md/prog_sys/2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/2/</link>
       <pubDate>Tue, 03 Nov 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/prog_sys/2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/2/</guid>
       <description>Comment accéder aux fichiers ? Il existe plsuieurs niveaux de gestion des fichiers
  stockage mémoire (structure du système de fichier, structure des fichiers, inodes) stockage du système (table des descripteurs (processus), table des fichiers ouverts, tables des inodes)  Stockage : structure du système de fichiers  Boot bloc : block de données qui permet de booter la machine.</description>
     </item>
     
     <item>
       <title>Allocation</title>
-      <link>https://eirbot.github.io/assets/md/cpp/1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/cpp/1/</link>
       <pubDate>Mon, 02 Nov 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/cpp/1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/cpp/1/</guid>
       <description>L&amp;rsquo;allocation automatique L&amp;rsquo;allocation automatique se fait dans la pile (int i;). La variable i est allouée dans le pile automatiquement. Ainsi, &amp;amp;i correspond à une adresse dans la pile à laquelle sizeof(int) octets sont réservés.</description>
     </item>
     
     <item>
       <title>Calcul quantique, algorithme de Deutsch</title>
-      <link>https://eirbot.github.io/assets/md/quantique/cours5/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/quantique/cours5/</link>
       <pubDate>Wed, 21 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/quantique/cours5/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/quantique/cours5/</guid>
       <description>Ordinateur classique vs ordinateur quantique On peut schématise un ordinateur classique (machine de Turing) à l&amp;rsquo;aide de 3 composants,
  des registres (qui contiennent les données à traiter) une unité de calcul (qui transforme les données suivant un algorithme défini en actionnant des portes logiques) une unité d&amp;rsquo;entrées/sorties (qui initialise les registres au début du traitement et lit les résultats à la fin)  Les registres  les registres classiques sont un ensemble de $n$ bits permettant de stocker $m=2^n$ entiers entre 0 et $2^n-1$.</description>
     </item>
     
     <item>
       <title>Appel systèmes</title>
-      <link>https://eirbot.github.io/assets/md/prog_sys/1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/1/</link>
       <pubDate>Tue, 20 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/prog_sys/1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/1/</guid>
       <description>Principes des systèmes d&amp;rsquo;exploitation Notion de processus Modes d&amp;rsquo;exécution Appels système Certaines instructions machines autorisées (gestion de la mémoire et interruptions) sont interdites en mode utilisateur. Le noyau est un gestionnaire de processus mais ce n&amp;rsquo;est pas un processus.</description>
     </item>
     
     <item>
       <title>Algèbre relationnelle</title>
-      <link>https://eirbot.github.io/assets/md/bdd/cours3/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/bdd/cours3/</link>
       <pubDate>Wed, 14 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/bdd/cours3/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/bdd/cours3/</guid>
       <description>Introduction L&amp;rsquo;algèbre relationnelle est un support mathématique cohérent sur lequel repose le modèle relationnel. L&amp;rsquo;objet de cette section est d&amp;rsquo;aborder l&amp;rsquo;algèbre relationnelle dans le but de décrire les opérations qu&amp;rsquo;il est possible d&amp;rsquo;appliquer sur des relations pour produire de nouvelles relations.</description>
     </item>
     
     <item>
       <title>Intrication quantique</title>
-      <link>https://eirbot.github.io/assets/md/quantique/cours4/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/quantique/cours4/</link>
       <pubDate>Wed, 14 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/quantique/cours4/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/quantique/cours4/</guid>
       <description>Rappels : produit tensoriel de qubits Produit tensoriel et qubits Représentation matricielle des qubits $\vert \psi \rangle = \alpha \vert 0 \rangle + \beta \vert 1 \rangle, | \alpha |^2 + | \beta |^2 = 1$</description>
     </item>
     
     <item>
       <title>Vidéo 7.2</title>
-      <link>https://eirbot.github.io/assets/md/compilation/cours7/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/compilation/cours7/</link>
       <pubDate>Tue, 13 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/compilation/cours7/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/compilation/cours7/</guid>
       <description>Production pour les appels de fonction. Production pour les sous-bloc (variables locales) Question : où et comment stocker / adresser les variables locales à un sous bloc ?
 Première solution, renommer les variables locales pour les traiter &amp;ldquo;comme&amp;rdquo; des variables globales.</description>
     </item>
     
     <item>
       <title>TD - Feuille 2</title>
-      <link>https://eirbot.github.io/assets/md/compilation/td2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/compilation/td2/</link>
       <pubDate>Sat, 10 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/compilation/td2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/compilation/td2/</guid>
       <description>Notes inspirées du cours de JANIN David et du TD2 de Myriam Desainte-Catherine
 Grammaires Étant donné une grammaire $G$ de non terminal initial $S$ (start symbol) et d&amp;rsquo;alphabet terminal $T$, on appelle langage défini par $S$ le langage</description>
     </item>
     
     <item>
       <title>Qubits et mécanique quantique</title>
-      <link>https://eirbot.github.io/assets/md/quantique/cours3/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/quantique/cours3/</link>
       <pubDate>Wed, 07 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/quantique/cours3/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/quantique/cours3/</guid>
       <description>Qubits et observables Les états du système quantique associé à un qubit sont les éléments d&amp;rsquo;un espce à deux dimensions, engendrés par les états de la base $\vert 0 \rangle$ et $\vert 1 \rangle$.</description>
     </item>
     
     <item>
       <title>Vidéo 7.1</title>
-      <link>https://eirbot.github.io/assets/md/compilation/cours6/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/compilation/cours6/</link>
       <pubDate>Tue, 06 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/compilation/cours6/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/compilation/cours6/</guid>
       <description>Notes inspirées du cours de JANIN David
 Outils et astuces pour l&amp;rsquo;analyse sémantique et la production de code Comme vu en TD, avec un analyseur de décalage / réduction on construit / parcours les Arbres de Dérivation des feuilles vers la racine, de gauche à droite.</description>
     </item>
     
     <item>
       <title>Substitution d&#39;objets</title>
-      <link>https://eirbot.github.io/assets/md/poo/cours2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/cours2/</link>
       <pubDate>Thu, 01 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/poo/cours2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/cours2/</guid>
       <description>La substitution d&amp;rsquo;objets ou polymorphisme Nous voulons pouvoir adapter le code d&amp;rsquo;une application en substituant une instance d&amp;rsquo;une classe par une instance d&amp;rsquo;une autre classe. Dans notre exemple : une instance de Telecommande doit manipuler plusieurs réalisations différentes de l&amp;rsquo;abstraction Porte.</description>
     </item>
     
     <item>
       <title>TD5 - Algèbre relationnelle</title>
-      <link>https://eirbot.github.io/assets/md/bdd/td5/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/bdd/td5/</link>
       <pubDate>Thu, 01 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/bdd/td5/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/bdd/td5/</guid>
       <description>Produit fornisseur On considère la base de données suivante :
 Produit : numprod, nomprod, quantité Fournisseur : numfour, nomfour, adresse, ville  Donner un schéma conceptuel et un schéma relationnel Donner une expression algébrique et un arbre algébrique pour chacune des requêtes suivantes :  Les produits disponibles sur Bordeaux Les fournisseurs qui vendent tous les produits (cf.</description>
     </item>
     
     <item>
       <title>Base de données relationnelles</title>
-      <link>https://eirbot.github.io/assets/md/bdd/cours2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/bdd/cours2/</link>
       <pubDate>Wed, 30 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/bdd/cours2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/bdd/cours2/</guid>
       <description>Introduction au modèle relationnel Présentation Dans ce modèle, les données sont représentées par des tables, sans préjuger de la façon dont les informations sont stockées dans la machine. Les tables constituent donc la structure logique du modèle relationnel.</description>
     </item>
     
     <item>
       <title>Vidéo 6.2</title>
-      <link>https://eirbot.github.io/assets/md/compilation/cours5/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/compilation/cours5/</link>
       <pubDate>Tue, 29 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/compilation/cours5/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/compilation/cours5/</guid>
       <description>Notes inspirées du cours de JANIN David
 Par exemple la grammaire
 1. exp -&amp;gt; exp + exp 2. exp -&amp;gt; exp * exp 3. exp -&amp;gt; id 4. exp -&amp;gt; cte 5.</description>
@@ -187,30 +187,30 @@ Par exemple la grammaire
     
     <item>
       <title>TD4 - Normalisation</title>
-      <link>https://eirbot.github.io/assets/md/bdd/td4/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/bdd/td4/</link>
       <pubDate>Mon, 28 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/bdd/td4/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/bdd/td4/</guid>
       <description>Entrainement sur les DF Soit les attributs suivants : n° client, nom client, adresse client, n° article, nom article , prix, n° commande, date commande, quantité commandée.
     DF Elementaire Directe     nom client -&amp;gt; adresse client x     n° client -&amp;gt; adresse client o o o   n° commande, n° client -&amp;gt; quantité commandée x     n° commande, n° article -&amp;gt; prix article o x o   n° commande, n° article -&amp;gt; quantité commandée o o o   n° commande -&amp;gt; date commande o o o   n° commande -&amp;gt; nom client o o x   n° commande -&amp;gt; nom article x      Fermeture transitive On considère la relation $R$ construite sur les attributs suivants : (propriétaire, occupant, adresse, num apartement, nbr pièces, nbr personnes).</description>
     </item>
     
     <item>
       <title>TD3 - Modèle relationnel</title>
-      <link>https://eirbot.github.io/assets/md/bdd/td3/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/bdd/td3/</link>
       <pubDate>Thu, 24 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/bdd/td3/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/bdd/td3/</guid>
       <description>Le cinéma du troisième art Un cinéma comporte plusieurs salles définies par un identifiant et une capacité; où différents films, définis par le titre et le genre, sont projetés.
  On suppose que les horaires ne sont pas fixes, proposez un schéma conceptuel     Il y a t&amp;rsquo;il des modifications à apporter au schéma précédent si l&amp;rsquo;on suppose maintenant que les films sont projetés à des horaires précises ?</description>
     </item>
     
     <item>
       <title>Vidéo 5</title>
-      <link>https://eirbot.github.io/assets/md/compilation/cours4/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/compilation/cours4/</link>
       <pubDate>Tue, 22 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/compilation/cours4/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/compilation/cours4/</guid>
       <description>Question du jour : Que faire avec les arbres de dérivation ?
 Sur un exemple : les expressions arithmétiques
    Comment évaluer cette expression ? Il suffit d&amp;rsquo;effectuer une évaluation des feuilles vers la racine</description>
@@ -218,47 +218,47 @@ Sur un exemple : les expressions arithmétiques
     
     <item>
       <title>SGBD Page d&#39;accueil</title>
-      <link>https://eirbot.github.io/assets/md/bdd/bdd/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/bdd/bdd/</link>
       <pubDate>Mon, 21 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/bdd/bdd/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/bdd/bdd/</guid>
       <description>Les cours    Cours Notes personnelles     Conception d&amp;rsquo;une base de donnée Cours 1   Le modèle relationnel Cours 2   Algèbre relationnelle et langage SQL Cours 3 : Algèbre relationnelle    Cours 3 : Langage SQl   Transactions et concurrence    Algorithme de SGBD     Les travaux dirigés    Sujet de TD Notes personnelles Correction des TD     Sujet 1 TD 1    Sujet 2 TD 2 Correction 2   Sujet 3 TD 3 Correction 3   Sujet 4 TD 4 Correction 4   Sujet 5 TD 5 Correction 5    Les travaux pratique    Sujet de TP Correction des TP     TP 1 Correction 1   TP 2 Correction 2   TP 3     </description>
     </item>
     
     <item>
       <title>TD2 - Modèlisation des données</title>
-      <link>https://eirbot.github.io/assets/md/bdd/td2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/bdd/td2/</link>
       <pubDate>Mon, 21 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/bdd/td2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/bdd/td2/</guid>
       <description>Exercice 1    Exercice 2    Exercice 3    </description>
     </item>
     
     <item>
       <title>TD - Feuille 1</title>
-      <link>https://eirbot.github.io/assets/md/compilation/td1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/compilation/td1/</link>
       <pubDate>Sun, 20 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/compilation/td1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/compilation/td1/</guid>
       <description>Notes inspirées du cours de JANIN David et du TD de Myriam Desainte-Catherine
-Compilation des expressions Exercice 1 Donner une majoration du nombre d&amp;rsquo;adresses nécessaire à l&#39;évaluation des instructions C suivantes :</description>
+Compilation des expressions Exercice 1 Donner une majoration du nombre d&amp;rsquo;adresses nécessaire à l&amp;rsquo;évaluation des instructions C suivantes :</description>
     </item>
     
     <item>
       <title>Le monde quantique</title>
-      <link>https://eirbot.github.io/assets/md/quantique/cours2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/quantique/cours2/</link>
       <pubDate>Wed, 16 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/quantique/cours2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/quantique/cours2/</guid>
       <description>Introduction des idées de base de la mécanique quantique La mécanique quantique étudie des phénomènes fondamentaux à l&amp;rsquo;oeuvre dans des systèmes physique de petites échelles (ex : échelle atomique). Hors cela provoque donc des profondes difficultés conceptuelles.</description>
     </item>
     
     <item>
       <title>Vidéo 4</title>
-      <link>https://eirbot.github.io/assets/md/compilation/cours3/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/compilation/cours3/</link>
       <pubDate>Tue, 15 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/compilation/cours3/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/compilation/cours3/</guid>
       <description>Notes inspirées du cours de JANIN David
 Exemple des expressions arithmétiques. Une grammaire reconnaissant les expressions arithmétiques se reconnaît avec les expressions suivantes
  exp -&amp;gt; ID exp -&amp;gt; Cste exp -&amp;gt; exp + exp exp -&amp;gt; exp * exp exp -&amp;gt; (exp)  Ces 5 règles sont appelées les règle de grammaire ou règle de production.</description>
@@ -266,167 +266,167 @@ Exemple des expressions arithmétiques. Une grammaire reconnaissant les expressi
     
     <item>
       <title>TD1 - Modèle Conceptuel</title>
-      <link>https://eirbot.github.io/assets/md/bdd/td1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/bdd/td1/</link>
       <pubDate>Mon, 14 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/bdd/td1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/bdd/td1/</guid>
       <description>Cours - élèves Rappel    **Entité :** un population d&#39;individus homogène Association : liaison significative entre entités
    Cardinalités : la cardinalité d&amp;rsquo;une patte reliant un type association et un type entité précise le nombre de fois minimal et maximal d’interventions d’une entité du type entité dans une association du type association.</description>
     </item>
     
     <item>
       <title>Conception d&#39;une base de données</title>
-      <link>https://eirbot.github.io/assets/md/bdd/cours1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/bdd/cours1/</link>
       <pubDate>Thu, 10 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/bdd/cours1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/bdd/cours1/</guid>
       <description>Introduction L&amp;rsquo;informatique permet de construire des systèmes pour effectuer des calculs (équations différentielles, calcul matriciel, etc). Aujourd&amp;rsquo;hui on s&amp;rsquo;appuie de plus en plus sur des données ce qui implique une gestion de grandes quantités d&amp;rsquo;informations (ie stocjer des données et manipuler ces données).</description>
     </item>
     
     <item>
       <title>Cours - Analyse lexicale</title>
-      <link>https://eirbot.github.io/assets/md/compilation/cours2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/compilation/cours2/</link>
       <pubDate>Thu, 10 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/compilation/cours2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/compilation/cours2/</guid>
       <description>Notes inspirées du cours de JANIN David
 L&amp;rsquo;objectif de l&amp;rsquo;analyse lexicale est de lire le programme d&amp;rsquo;entrée et de reconnaître des lexèmes (tokens). Ce sont des éléments constitutifs du langage, mots clés, noms de variable, symboles de ponctuation &amp;hellip;</description>
     </item>
     
     <item>
       <title>Introduction</title>
-      <link>https://eirbot.github.io/assets/md/compilation/cours1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/compilation/cours1/</link>
       <pubDate>Wed, 09 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/compilation/cours1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/compilation/cours1/</guid>
       <description>Notes inspirées du cours de JANIN David
  Introduction Intérêt de la compilation  Outil incontournable, quelque soit le langage informatique Meilleure connaissance des compilateurs implique une meilleure programmation Techniques de compilation réutilisables dans nombreux contextes (notamment analyse de code) Définition : Un compilateur est un programme qui prend en entrée un programme et le transforme en un autre programme.</description>
     </item>
     
     <item>
       <title>Introduction</title>
-      <link>https://eirbot.github.io/assets/md/quantique/cours1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/quantique/cours1/</link>
       <pubDate>Wed, 09 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/quantique/cours1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/quantique/cours1/</guid>
       <description>Qu&amp;rsquo;est ce que l&amp;rsquo;informatique quantique et le calcul quantique ?
-Le calcul quantique et l&amp;rsquo;informatique quantique sont l&#39;étude de traitement d&amp;rsquo;information en utilisant des système quantiques.
+Le calcul quantique et l&amp;rsquo;informatique quantique sont l&amp;rsquo;étude de traitement d&amp;rsquo;information en utilisant des système quantiques.
 Un ordinateur quantique n&amp;rsquo;est pas simplement un ordinateur plus rapide, mais c&amp;rsquo;est un ordinateur qui permet une nouvelle manière de concevoir les algorithmes, les algorithmes quantique</description>
     </item>
     
     <item>
       <title>Objet et encapsulation</title>
-      <link>https://eirbot.github.io/assets/md/poo/cours1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/cours1/</link>
       <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/poo/cours1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/cours1/</guid>
       <description>L&amp;rsquo;encapsulation L&#39;encapsulation dans l&amp;rsquo;approche objet consiste à regrouper le code (données et traitements) qui fournit un même service dans une seule entité. Une encapsulation spécifie le fonctionnement d&amp;rsquo;un service (par un ensemble d&amp;rsquo;actions) en masquant la manière de le réaliser.</description>
     </item>
     
     <item>
       <title>&lt;i class=&#34;fas fa-project-diagram fa-2x&#34;&gt;&lt;/i&gt; Graphe - Devoir Maison propagation du Covid-19</title>
-      <link>https://eirbot.github.io/assets/md/graph/free-dm-graph-corona/rapport/dm/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/free-dm-graph-corona/rapport/dm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/free-dm-graph-corona/rapport/dm/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/free-dm-graph-corona/rapport/dm/</guid>
       <description>html { zoom: 0.80; }  9? hh:&#34;0&#34; + hh); heure += &#34;:&#34; + (mm  9? mm:&#34;0&#34; + mm); document.write(&#34;Dernière date de mise à jour : &#34;); document.</description>
     </item>
     
     <item>
       <title>&lt;i class=&#34;fas fa-server fa-2x&#34;&gt;&lt;/i&gt; Introduction aux réseaux - TD1</title>
-      <link>https://eirbot.github.io/assets/md/reseau/notes-td1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/reseau/notes-td1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/reseau/notes-td1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/reseau/notes-td1/</guid>
       <description>Exercice 1 On considère le transfert d&amp;rsquo;un fichier de 1 Mo entre deux stations
- Temps de propagation : calculé avec la vitesse de propagation dans le câble (le signal se propage et prend un certain temps pour arriver) Temps d&#39;émission d&amp;rsquo;une trame : en lien avec le débit de transmission et proportionnel à la taille de la trame Acquittement = accusé de réception, générallement un signal positif Débit utile : combien de données réelles ont été transmises pendant un intervalle de temps  Attention aux unités bits/octes.</description>
+ Temps de propagation : calculé avec la vitesse de propagation dans le câble (le signal se propage et prend un certain temps pour arriver) Temps d&amp;rsquo;émission d&amp;rsquo;une trame : en lien avec le débit de transmission et proportionnel à la taille de la trame Acquittement = accusé de réception, générallement un signal positif Débit utile : combien de données réelles ont été transmises pendant un intervalle de temps  Attention aux unités bits/octes.</description>
     </item>
     
     <item>
       <title>Algorithmique numérique</title>
-      <link>https://eirbot.github.io/assets/semestre_6/algo_num/</link>
+      <link>https://Sdelpeuch.github.io/assets/semestre_6/algo_num/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/semestre_6/algo_num/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/semestre_6/algo_num/</guid>
       <description>Objectif du cours Le module d&amp;rsquo;Algorithmique Numérique décrit un ensemble de méthodes et d&amp;rsquo;algorithmes adaptés à la modélisation de problèmes numériques.
-   Thème Sujet Réalisation     Méthode de calcul numérique / Limite de la machine sujet 1 rapport 1   Résolution de système linéaire / Equation chaleur sujet 2 rapport 2   Compression image par algorithme de décomposition SVD sujet 3 rapport 3   Non-linear systems of equations / Newton-Rasphon Method sujet 4 rapport 4   Interpolation and integration methods / Cubic splines and surface interpolation sujet 5 rapport 5   Résolution approchée d&#39;équations différentielles / Modélisation des systèmes dynamiques sujet 6 rapport 6    </description>
+   Thème Sujet Réalisation     Méthode de calcul numérique / Limite de la machine sujet 1 rapport 1   Résolution de système linéaire / Equation chaleur sujet 2 rapport 2   Compression image par algorithme de décomposition SVD sujet 3 rapport 3   Non-linear systems of equations / Newton-Rasphon Method sujet 4 rapport 4   Interpolation and integration methods / Cubic splines and surface interpolation sujet 5 rapport 5   Résolution approchée d&amp;rsquo;équations différentielles / Modélisation des systèmes dynamiques sujet 6 rapport 6    </description>
     </item>
     
     <item>
       <title>Architecture des Réseaux TCP/IP</title>
-      <link>https://eirbot.github.io/assets/md/tcp/exercices/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/tcp/exercices/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/tcp/exercices/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/tcp/exercices/</guid>
       <description>html { zoom: 0.80; }  Exercices en vrac Exercice p40 TODO
 Exercice p51  En utilisant les formats de trame donnés, décoder les trames MAC Ethernet suivantes (ces trames sont données sans l&amp;rsquo;en tête) Pour chaque trame déterminer les valeurs detous les champs présents et e qu&amp;rsquo;ils signifient  Destination : FF FF FF FF FF FF Source : 08 00 20 02 45 9E = 129.</description>
     </item>
     
     <item>
       <title>Automate minimal et minimisation</title>
-      <link>https://eirbot.github.io/assets/md/automates/cours6/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/automates/cours6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/automates/cours6/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/automates/cours6/</guid>
       <description>Nous avons vu au chapitre précédent que tout langage régulier est accepté par un automate fini déterministe. Cependant, il n&amp;rsquo;y a pas un unique automate fini (déterministe) qui accepte un langage régulier</description>
     </item>
     
     <item>
       <title>Automates finis et application - TD1</title>
-      <link>https://eirbot.github.io/assets/md/automates/td1-notes/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/automates/td1-notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/automates/td1-notes/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/automates/td1-notes/</guid>
       <description>Langages et automates finis Exercie 1  Pour chaque langage ci dessous sur l&amp;rsquo;alphabet ${a,b}$ donnez un automate fini déterministe qui l&amp;rsquo;accepte.
  Le nombre de $a$ est un multiple de 4.</description>
     </item>
     
     <item>
       <title>Automates finis et application - TD2</title>
-      <link>https://eirbot.github.io/assets/md/automates/td2-notes/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/automates/td2-notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/automates/td2-notes/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/automates/td2-notes/</guid>
       <description>Expression régulières Exercice 1 (Syntaxe des expressions régulières) Définition: L&amp;rsquo;ensemble des expression régulières sur un alphabet $\Sigma$ est défini par
  $\varnothing, \epsilon, s$ quel que soit $s \in \Sigma$ sont des expressions régulières Si $\alpha$ et $\beta$ sont deux expressions régulières, alors $(\alpha+\beta)$, $\alpha\beta$ et $(\alpha)^\ast$ sont des expressions régulières  Identification des expressions régulières</description>
     </item>
     
     <item>
       <title>Automates finis et application - TD3</title>
-      <link>https://eirbot.github.io/assets/md/automates/td3-notes/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/automates/td3-notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/automates/td3-notes/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/automates/td3-notes/</guid>
       <description>Exercice 1 Exercice 2 Il suffit de montrer qu&amp;rsquo;il existe un automate fini qui accepte le langage $L$.
 Exercice 3 Voir la contraposée sur les notes du cours 3, il faut ensuite saisir que la contraposé du Lemme implique une non régularité</description>
     </item>
     
     <item>
       <title>Automates finis et application - TD4</title>
-      <link>https://eirbot.github.io/assets/md/automates/td4-notes/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/automates/td4-notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/automates/td4-notes/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/automates/td4-notes/</guid>
       <description>Exercice 1 Lemme d&amp;rsquo;Arden : $A^\ast.B$ est une solution de $X = A.X U B$ (et si A ne contient pas eps, cette solution est unique)
  En pratique, il faut choisir la variable qui sera éliminée en premier.</description>
     </item>
     
     <item>
       <title>Automates finis et application - TD5</title>
-      <link>https://eirbot.github.io/assets/md/automates/td5-notes/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/automates/td5-notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/automates/td5-notes/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/automates/td5-notes/</guid>
       <description>Merci à Aurélien et Fabien pour la prise de note durant les séances de questions réponses.
 1. Automates finis non-déterministes Exercice 1 : Mots acceptés Indiquez si les mots suivants sont acceptés par les automates $A_1$ et $A_2$ en figure $1$ (cf.</description>
     </item>
     
     <item>
       <title>Automates finis et application - TD6</title>
-      <link>https://eirbot.github.io/assets/md/automates/td6-notes/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/automates/td6-notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/automates/td6-notes/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/automates/td6-notes/</guid>
       <description>Merci à Aurélien et Fabien pour la prise de note durant les séances de questions réponses.
 Pour transformer un automate fini déterministe et complet en automate minimal équivalent :
  éliminer les états inaccessibles fusionner les états qui acceptent le même langage   On obtient finalement le plus petit automate déterministe et complet qui accepte le même langage que l&amp;rsquo;automate de départ.</description>
@@ -434,296 +434,296 @@ Pour transformer un automate fini déterministe et complet en automate minimal �
     
     <item>
       <title>Automates finis et langages</title>
-      <link>https://eirbot.github.io/assets/md/automates/cours1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/automates/cours1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/automates/cours1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/automates/cours1/</guid>
       <description>Un algorithme est réalisé dans le but de résoudre un problème. Nous commençons donc logiquement par introduire une formalisation des problèmes en terme de langages, puis nous formalisons la notion d&amp;rsquo;algorithme par les automates finis.</description>
     </item>
     
     <item>
       <title>Automates finis et langages - Expression régulières et théorème de Kleene</title>
-      <link>https://eirbot.github.io/assets/md/automates/cours2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/automates/cours2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/automates/cours2/</guid>
-      <description>Grâce au chapitre précédent nus pouvons représenter $x$ par un mot, l&amp;rsquo;algorithme par un automate fini, mais comment représenter $\mathcal{L}$ ? S&amp;rsquo;il est fini, il suffit d&#39;énumérer tous les mots qui le composent, mais que faire quand il est infini ?</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/automates/cours2/</guid>
+      <description>Grâce au chapitre précédent nus pouvons représenter $x$ par un mot, l&amp;rsquo;algorithme par un automate fini, mais comment représenter $\mathcal{L}$ ? S&amp;rsquo;il est fini, il suffit d&amp;rsquo;énumérer tous les mots qui le composent, mais que faire quand il est infini ?</description>
     </item>
     
     <item>
       <title>Automates, Applications finies</title>
-      <link>https://eirbot.github.io/assets/semestre_6/automates/</link>
+      <link>https://Sdelpeuch.github.io/assets/semestre_6/automates/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/semestre_6/automates/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/semestre_6/automates/</guid>
       <description>Objectif du cours Les automates finis permettent de modéliser des programmes informatiques à mémoire finie. Ils permettent de résoudre des problèmes à un niveau d&amp;rsquo;abstraction élevé, sans s&amp;rsquo;encombrer des spécificités d&amp;rsquo;un langage donné, et en se concentrant sur les invariants à maintenir pour parvenir à une solution.</description>
     </item>
     
     <item>
       <title>Grammaires</title>
-      <link>https://eirbot.github.io/assets/md/automates/cours4/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/automates/cours4/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/automates/cours4/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/automates/cours4/</guid>
       <description>Un automate fini est une description analytique d&amp;rsquo;un langage régulier : c&amp;rsquo;est un algorithme pour reconnaître les mots du langage. Les grammaires donnent une description générative d&amp;rsquo;un langage : elles explicitent des règles de construction des mots du langage.</description>
     </item>
     
     <item>
       <title>Graphe - Abres</title>
-      <link>https://eirbot.github.io/assets/md/graph/4/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/4/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/4/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/4/</guid>
       <description>Union Find    On dispose d&amp;rsquo;ensembles disjoints sur $n$ éléments, on veut
  Tester si 2 éléments $x,y$ appartiennent au même ensemble ? Find(x)=Find(y) Fusionner 2 ensembles disjoints contenant $x$ et $y$ Union(x,y)  Une première structure naïve Question 1.</description>
     </item>
     
     <item>
       <title>Graphe - Algorithmes de Parcours</title>
-      <link>https://eirbot.github.io/assets/md/graph/par/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/par/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/par/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/par/</guid>
       <description>Pour la plupart des problèmes sur des graphes, toute solution algorithmique doit visiter chacun des sommets et/ou chacun des arcs du graphe considéré, c&amp;rsquo;est à dire prendre en compte ses propriétés locales : quels sot ses sommets adjacents, quelles sont ses arêtes ou arcs incident, quels sont les étiquettes ou éventuels poids etc.</description>
     </item>
     
     <item>
       <title>Graphe - Arbre Couvrant Minimal</title>
-      <link>https://eirbot.github.io/assets/md/graph/acm/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/acm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/acm/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/acm/</guid>
       <description>Un arbre couvrant d&amp;rsquo;un graphe $G:=(V,E)$ est un ensemble d&amp;rsquo;arêtes $D \subseteq E$ pour lequel $(V,D)$ est un arbre. Si l&amp;rsquo;on suppose que le graphe est pondéré, c&amp;rsquo;est à dire est muni d&amp;rsquo;une fonction $p$ qui associe à toute arête un réel positif appelé son poids, un arbre couvrant $D$ est dit $minimal$ si son poids, $p(D)=\sum \limits_{d \in D} p(d)$, est au plus égal au poids de tout arbre couvrant.</description>
     </item>
     
     <item>
       <title>Graphe - Chemins et arbres</title>
-      <link>https://eirbot.github.io/assets/md/graph/chem/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/chem/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/chem/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/chem/</guid>
       <description>Chemins Une chemin dans un graphe $(V,E)$ est une séquence $w$ de la forme $(s_1,e_1,&amp;hellip;,e_l,s_{l+1})$ où pour pour tout $i \in [1,l]$, $e_i$ est un arc allant du sommet $s_i$ au sommet $s_i+1$.</description>
     </item>
     
     <item>
       <title>Graphe - Couplage</title>
-      <link>https://eirbot.github.io/assets/md/graph/coup/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/coup/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/coup/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/coup/</guid>
       <description>Cours inspiré des cours intégrés dispensés par Nicolas Hanusse et du polycopié de Denis Lapoire
 Le problème posé à l&amp;rsquo;aviation anglaise durant la bataille d&amp;rsquo;angleterre état de pouvoir former un nombre maximum de couples de pilotes parmi un ensemble de pilotes venant des quatre coins du monde.</description>
     </item>
     
     <item>
       <title>Graphe - Cycle et voyageur de commerce</title>
-      <link>https://eirbot.github.io/assets/md/graph/5/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/5/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/5/</guid>
       <description>Exercice 1  Une première version naïve serait d&amp;rsquo;utiliser un algortihme de type brute force. On part des $n$ sommets et à chaque itération on appelle l&amp;rsquo;algorithme sur les $n-1$ arêtes possibles etc.</description>
     </item>
     
     <item>
       <title>Graphe - Définition Générale</title>
-      <link>https://eirbot.github.io/assets/md/graph/def/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/def/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/def/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/def/</guid>
       <description>Graphes Graphes orientés à arcs multiples Un graphe orienté est un double $(V,E)$ d&amp;rsquo;où:
  $V$, est un ensemble de sommets $E$, est un ensemble d&amp;rsquo;arcs  Graphes non orientés Un graphe non orienté est un double $(V,E)$ similaire à celui défni plus haut mais dans lequel tout élément $e \in E$ est associé une paire de sommets ${u,v}$ de $V$ ou à un signleton ${u}$ de $V$.</description>
     </item>
     
     <item>
       <title>Graphe - Exercice Flot Maximal</title>
-      <link>https://eirbot.github.io/assets/md/graph/6/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/6/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/6/</guid>
       <description>Exercice 36: Ecrire un algorithme décidant si un flot d&amp;rsquo;un réseau est maximal dans ce réseau
  fonction is_maximal(G=(V,E,c,s,t):réseau, M:flot):booléen f=FordFulkeson(G=(V,E,c,s,t)) si f=M retourne Vrai sinon retourne Faux  Exercice 37: Démontrer que tout réseau à capacités entières admet un flot maximal qui associe à tout arc une valeur entière.</description>
     </item>
     
     <item>
       <title>Graphe - Implémentation de graphes</title>
-      <link>https://eirbot.github.io/assets/md/graph/2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/2/</guid>
       <description>Exercice 10 : Nous considérons ici les graphes ayant pour ensemble de sommets des intervalles d&amp;rsquo;entiers de la forme $[1,n]$ avec $n \geq 0$. Décrire une implémentation de ces graphes comprenant notamment les primitives usuelles en utilisant</description>
     </item>
     
     <item>
       <title>Graphe - Le problème du flot maximal</title>
-      <link>https://eirbot.github.io/assets/md/graph/flot/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/flot/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/flot/</guid>
-      <description>Un système dans lequel un matériau s&#39;écoule, tel l&amp;rsquo;eau ou l&#39;électricité, peut être modélisé à l&amp;rsquo;aide d&amp;rsquo;un graphe. Une question anturelle se pose : quelle est la capacité maximale de ce système ?</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/flot/</guid>
+      <description>Un système dans lequel un matériau s&amp;rsquo;écoule, tel l&amp;rsquo;eau ou l&amp;rsquo;électricité, peut être modélisé à l&amp;rsquo;aide d&amp;rsquo;un graphe. Une question anturelle se pose : quelle est la capacité maximale de ce système ?</description>
     </item>
     
     <item>
       <title>Graphe - Notions générales</title>
-      <link>https://eirbot.github.io/assets/md/graph/1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/1/</guid>
       <description>Exerice 1 : Dessiner si c&amp;rsquo;est possible un graphe qui a 3 sommets de degré 3 et 4 sommets de degré 2. Le cas échéant, expliquer pourquoi ce n&amp;rsquo;est pas possible</description>
     </item>
     
     <item>
       <title>Graphe - Parcours en largeur et en profondeur</title>
-      <link>https://eirbot.github.io/assets/md/graph/3/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/3/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/3/</guid>
       <description>Quelques exercices  Une k-coloration d&amp;rsquo;un graphe $G$ est une fonction $V(G) \rightarrow [1,k]$ telle que toute paire de sommets adjacents (et distincts) sont coloriés différemment (c&amp;rsquo;est à dire associé par $f$ deux entiers distincts).</description>
     </item>
     
     <item>
       <title>Graphe - Plus Court Chemin</title>
-      <link>https://eirbot.github.io/assets/md/graph/pcc/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/pcc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/pcc/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/pcc/</guid>
       <description>/* Style the header: fixed position (always stay at the top) */ .header { position: fixed; top: 0; z-index: 1; width: 100%; background-color: #f1f1f1; } /* The progress container (grey background) */ .</description>
     </item>
     
     <item>
       <title>Graphe - Représentation des graphes</title>
-      <link>https://eirbot.github.io/assets/md/graph/rep/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/graph/rep/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/graph/rep/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/graph/rep/</guid>
       <description>Les graphes considéres ici auront pour ensemble de sommets des intervalles de la forme $[1,n]$ avec $n \geq 0$, et dans e cas de graphes à arcs ou arêtes multiples auront pour ensembles d&amp;rsquo;arcs ou arêtes des intervalles de la forme $[1,m]$ avec $m \geq 0$</description>
     </item>
     
     <item>
       <title>Graphes</title>
-      <link>https://eirbot.github.io/assets/semestre_6/algo_graph/</link>
+      <link>https://Sdelpeuch.github.io/assets/semestre_6/algo_graph/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/semestre_6/algo_graph/</guid>
-      <description>Objectif du cours Après une brève introduction des graphes, ce cours présente des problèmes sur les graphes admettant une solution algorithmique efficace. L&#39;étude de ces solutions sera l&amp;rsquo;occasion d&amp;rsquo;exhiber des propriétés classiques en Théorie des Graphes.</description>
+      <guid>https://Sdelpeuch.github.io/assets/semestre_6/algo_graph/</guid>
+      <description>Objectif du cours Après une brève introduction des graphes, ce cours présente des problèmes sur les graphes admettant une solution algorithmique efficace. L&amp;rsquo;étude de ces solutions sera l&amp;rsquo;occasion d&amp;rsquo;exhiber des propriétés classiques en Théorie des Graphes.</description>
     </item>
     
     <item>
       <title>Impératif - code-legacy-sujet</title>
-      <link>https://eirbot.github.io/assets/md/imp/code-legacy/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/imp/code-legacy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/imp/code-legacy/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/imp/code-legacy/</guid>
       <description>Code Legacy Transformation du Makefile en Cmake # Utilisation de la dernière version de CMake cmake_minimum_required(VERSION 3.0) #Etiquette du projet project(project) file( GLOB_RECURSE source_files src/auxiliaire.c src/auxilaire.h src/global.c src/global.h src/good.c src/good.h src/queue.</description>
     </item>
     
     <item>
       <title>Impératif - diff-patch-svn-git</title>
-      <link>https://eirbot.github.io/assets/md/imp/diff/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/imp/diff/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/imp/diff/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/imp/diff/</guid>
       <description>Une nouvelle bibliothèque Exercice 1 La bibiliothèque permet de faire de la manipulation d&amp;rsquo;automates. L&amp;rsquo;auteur est Julien Allali. Licence MIT.
 Exercice 2 git clone https://github.com/allali/statelib.git  Le système de compilation utilisé est Cmake.</description>
     </item>
     
     <item>
       <title>Impératif - svn-tests</title>
-      <link>https://eirbot.github.io/assets/md/imp/svn/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/imp/svn/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/imp/svn/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/imp/svn/</guid>
       <description>SVN Exercice 1 : création d&amp;rsquo;un dépot local La commande permettant de créer un dépot local est svnadmin --compatible-version 1.5 create pg106. Cependant on ne travaille jamais directement dans le dépot mais dans un autre répertoire synchronisé avec le dépôt.</description>
     </item>
     
     <item>
       <title>Interaction entre la famille de protocoles TCP/IP et les supports de transmission</title>
-      <link>https://eirbot.github.io/assets/md/tcp/cours1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/tcp/cours1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/tcp/cours1/</guid>
-      <description>Historique et définition de l&amp;rsquo;internet 3 définitions pour Internet  Une famille de protocoles de communication, appelée :  TCP/IP : Transmission Control Protocol / Internetworking Protocol ou Internet Protocol Suite   Un réseaum mondial constituéé de milliers de réseaux hétérogènes interconnectés au moyen des protocoles TCP/IP  Réseaux locaux d&amp;rsquo;agences gouvernementales, institutions d&#39;éducation, hôpitaux, des commerciaux &amp;hellip; Réseaux fédérateur de Campus Réseaux Régionaux, Nationaux, Intercontinentaux   Une communauté de personnes utilisant différents services  Courrier électronique, Web, Transfert de fichiers FTP &amp;hellip;    Gouvernance d&amp;rsquo;Internet La gouvernance d&amp;rsquo;internet se base sur trois axes, la gestion des adresses IP (IANA attribue les blocs d&amp;rsquo;adresses, RIR distribue les adresses aux fournisseurs).</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/tcp/cours1/</guid>
+      <description>Historique et définition de l&amp;rsquo;internet 3 définitions pour Internet  Une famille de protocoles de communication, appelée :  TCP/IP : Transmission Control Protocol / Internetworking Protocol ou Internet Protocol Suite   Un réseaum mondial constituéé de milliers de réseaux hétérogènes interconnectés au moyen des protocoles TCP/IP  Réseaux locaux d&amp;rsquo;agences gouvernementales, institutions d&amp;rsquo;éducation, hôpitaux, des commerciaux &amp;hellip; Réseaux fédérateur de Campus Réseaux Régionaux, Nationaux, Intercontinentaux   Une communauté de personnes utilisant différents services  Courrier électronique, Web, Transfert de fichiers FTP &amp;hellip;    Gouvernance d&amp;rsquo;Internet La gouvernance d&amp;rsquo;internet se base sur trois axes, la gestion des adresses IP (IANA attribue les blocs d&amp;rsquo;adresses, RIR distribue les adresses aux fournisseurs).</description>
     </item>
     
     <item>
       <title>Introduction aux réseaux</title>
-      <link>https://eirbot.github.io/assets/semestre_6/reseau/</link>
+      <link>https://Sdelpeuch.github.io/assets/semestre_6/reseau/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/semestre_6/reseau/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/semestre_6/reseau/</guid>
       <description>Objectif du cours Cours d’introduction aux réseaux avec présentation des modèles OSI et TCP/IP. Historique des réseaux, les réseaux locaux informatiques (LAN), classification des réseaux, les couches ISO et TCP/IP, technologies pour les LAN, notion de base sur l’Ethernet : adressage, commutation, type ethernet, équipements d’interconnexions réseaux, autres protocoles pour les LAN, travaux pratiques</description>
     </item>
     
     <item>
       <title>Introduction aux réseaux - Historique et notion de bases</title>
-      <link>https://eirbot.github.io/assets/md/reseau/notes1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/reseau/notes1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/reseau/notes1/</guid>
-      <description>Qu&amp;rsquo;est ce qu&amp;rsquo;un réseau de communication ?  Un réseau de communication peut être défini comme l&amp;rsquo;ensemble des ressources matérielles et logicielles liées à la transmission et l&#39;échange d&amp;rsquo;information ntre différentes entités.</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/reseau/notes1/</guid>
+      <description>Qu&amp;rsquo;est ce qu&amp;rsquo;un réseau de communication ?  Un réseau de communication peut être défini comme l&amp;rsquo;ensemble des ressources matérielles et logicielles liées à la transmission et l&amp;rsquo;échange d&amp;rsquo;information ntre différentes entités.</description>
     </item>
     
     <item>
       <title>Introduction aux réseaux - Le modèle de référence OSI</title>
-      <link>https://eirbot.github.io/assets/md/reseau/notes2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/reseau/notes2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/reseau/notes2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/reseau/notes2/</guid>
       <description>Le principe de base est la représentation des réseaux sous la forme de couche de fonctions superposées les unes aux autres. Leur nombre, leur nom et leur fonction varient selon les réseaux.</description>
     </item>
     
     <item>
       <title>Introduction aux réseaux - Le modèle TCP/IP</title>
-      <link>https://eirbot.github.io/assets/md/reseau/notes3/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/reseau/notes3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/reseau/notes3/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/reseau/notes3/</guid>
       <description>TCP/IP est considérée comme une simplification de OSI. Il y a deux visions différentes
  Le modèle OSI plus générique, des spécifications globales et des fonctionnalités définies au niveau de chaque couche TCP/IP utilise des protocoles bien définis, avec un modèle simplifié   L&amp;rsquo;architecture TCP/IP {:class=&amp;quot;image about center&amp;rdquo;}</description>
     </item>
     
     <item>
       <title>Langage SQL</title>
-      <link>https://eirbot.github.io/assets/md/bdd/cours4/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/bdd/cours4/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/bdd/cours4/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/bdd/cours4/</guid>
       <description>Notes inspirées du cours de M.Mosbah et S.Lombardy
  html { zoom: 0.80; }  Intrduction Présentation générale Introduction. Le langage SQL (Structured Query Language) peut être considér comme le langage d&amp;rsquo;accès normalisé aux bases de données.</description>
     </item>
     
     <item>
       <title>Langages non réguliers</title>
-      <link>https://eirbot.github.io/assets/md/automates/cours3/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/automates/cours3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/automates/cours3/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/automates/cours3/</guid>
       <description>Au chapitre précédent, nous avons étudié les langages réguliers. Nous avons particulièrement montré que les langages réguliers. Ainsi donc, le problème de décision $\omega \in L$ peut être résolu par un automate fini uniquement si $L$ est un langage régulier.</description>
     </item>
     
     <item>
       <title>Les fonctionnelles</title>
-      <link>https://eirbot.github.io/assets/md/fonc/notes7/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/fonc/notes7/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/fonc/notes7/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/fonc/notes7/</guid>
       <description>La forme lambda : rappel et utilisation (lambda (&amp;lt;p1&amp;gt; &amp;lt;p2&amp;gt; ... &amp;lt;pn&amp;gt;) &amp;lt;e&amp;gt;)  Nommage de $\lambda$-expressions : (define f (lambda (x y) (+ (* 10 x) y))) Application de $\lambda$-expressions : mise en position fonctionnelle, stratégie applicative (par valeur) Passage de $\lambda$-expressions en paramètres : juxtaposition $\lambda$-expressions en retour de fonction : imbrication  Juxtaposition On appelle rédex un terme de la forme $(\lambda x.</description>
     </item>
     
     <item>
       <title>Les formes impératives</title>
-      <link>https://eirbot.github.io/assets/md/fonc/notes8/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/fonc/notes8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/fonc/notes8/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/fonc/notes8/</guid>
       <description>Références Une référence est un objet correspondant à une adresse mémoire et donc l&amp;rsquo;indirection est faite automatiquement dans toute situation où une valeur est requise. L&amp;rsquo;adresse associée à une référence n&amp;rsquo;est pas directement manipulable en tant que telle (il n&amp;rsquo;existe pas d&amp;rsquo;opérations pour le programmeur sur les références)</description>
     </item>
     
     <item>
       <title>Les listes</title>
-      <link>https://eirbot.github.io/assets/md/fonc/notes5/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/fonc/notes5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/fonc/notes5/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/fonc/notes5/</guid>
       <description>Résumé des différents objets en Scheme
 {:class=&amp;quot;image about center&amp;rdquo;}
  Les listes Définition récursive des listes  Liste vide : &#39;() ou null Une paire pointée dont le car est un élément de la liste, et le cdr est une liste Liste impropre : une liste qui ne se termine pas par la liste vide Liste circulaire : une chaîne de cons sans fin  Fonctions de base sur les listes  Prédicat : list?</description>
@@ -731,46 +731,46 @@ Exercice 2 git clone https://github.com/allali/statelib.git  Le système de comp
     
     <item>
       <title>Les macroexpensions</title>
-      <link>https://eirbot.github.io/assets/md/fonc/notes9/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/fonc/notes9/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/fonc/notes9/</guid>
-      <description>Rappels sur l&#39;évaluation et l&amp;rsquo;application Evaluation application $\texttt{(eval o env)}$ Cette forme d&#39;évaluation est utilisée pour toutes les fonctions construites avec des $lambda$, $define$, $let$ et $letrec$. C&amp;rsquo;est celle qui est mise en oeuvre dans la plupart des langages de programmation, en particulier impératifs $(C,Java)$.</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/fonc/notes9/</guid>
+      <description>Rappels sur l&amp;rsquo;évaluation et l&amp;rsquo;application Evaluation application $\texttt{(eval o env)}$ Cette forme d&amp;rsquo;évaluation est utilisée pour toutes les fonctions construites avec des $lambda$, $define$, $let$ et $letrec$. C&amp;rsquo;est celle qui est mise en oeuvre dans la plupart des langages de programmation, en particulier impératifs $(C,Java)$.</description>
     </item>
     
     <item>
       <title>Non-déterminisme et déterminisation</title>
-      <link>https://eirbot.github.io/assets/md/automates/cours5/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/automates/cours5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/automates/cours5/</guid>
-      <description>Nous avons introduit au chapitre 1 une distinction entre automates finis déterministes et automates finis non-déterministes. La notion de non déterministe provient de l&amp;rsquo;impossiblité de déterminer l&#39;état courant de l&amp;rsquo;automate, à partir de son état initial et les symboles lus.</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/automates/cours5/</guid>
+      <description>Nous avons introduit au chapitre 1 une distinction entre automates finis déterministes et automates finis non-déterministes. La notion de non déterministe provient de l&amp;rsquo;impossiblité de déterminer l&amp;rsquo;état courant de l&amp;rsquo;automate, à partir de son état initial et les symboles lus.</description>
     </item>
     
     <item>
       <title>PL - Cours 1</title>
-      <link>https://eirbot.github.io/assets/md/pl/notes1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/pl/notes1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/pl/notes1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/pl/notes1/</guid>
       <description>Introduction par l&amp;rsquo;exemple Un fabricant produit 2 types de yaourts à la fraise A et B à partir de Fraise, de Lait, et de Sucre. Chaque yaourt doit respecter les proportions suivantes de matières premières A : 2 fraises, 1 lait et 0 sucre.</description>
     </item>
     
     <item>
       <title>PL - Cours 2</title>
-      <link>https://eirbot.github.io/assets/md/pl/notes2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/pl/notes2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/pl/notes2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/pl/notes2/</guid>
       <description>On dispose d&amp;rsquo;un formalisme pour modéliser des problèmes réels : la programmation linéaire. On a appris à résoudre le problème à la main en deux dimensions. Intuition pour résoudre en dimension supérieure : se déplacer de sommet en sommet du polyèdre convexe formé par les contraintes linéaires.</description>
     </item>
     
     <item>
       <title>PL - Notes TD 2</title>
-      <link>https://eirbot.github.io/assets/md/pl/notes-td2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/pl/notes-td2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/pl/notes-td2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/pl/notes-td2/</guid>
       <description>Exercice 1 Rappel du problème initial en forme standard
 $\begin{align*} \max z \ sc ; ; z&amp;amp;= 7I+9II \ s_1 &amp;amp;= 8-I-II\ s_2&amp;amp;=19-2I-3II \ s_3 &amp;amp;= 4-II \end{align*}$
 On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&amp;rsquo;il reste hors base.</description>
@@ -778,10 +778,10 @@ On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&amp;rs
     
     <item>
       <title>Prog fonctionnelle</title>
-      <link>https://eirbot.github.io/assets/semestre_6/prog_fonc/</link>
+      <link>https://Sdelpeuch.github.io/assets/semestre_6/prog_fonc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/semestre_6/prog_fonc/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/semestre_6/prog_fonc/</guid>
       <description>Objectif du cours Initiation à la programmation fonctionnelle (evaluation, environnements, récursivité, listes, fonctionnelles, macroexpansion).
 Ressources pédagogiques Le support de cours
    Thème Notes     Introduction notes1   Types et constructions de base du langage notes2   Environnements notes3   Récursivité notes4   Les listes notes5   Système de type notes6   Les fonctionnelles notes7   Les formes impératives notes8   Les macroexpansions notes9       Thème Sujet Correction     Expressions, fonctions TD 1 corrigé 1   Fonctions, récursivité TD 2 corrigé 2   Récursivité terminale TD 3 corrigé 3   Listes, paires pointées TD 4 corrigé 4   Listes et récursivité TD 5 corrigé 5   Fonctionnelles TD 6 corrigé 6   Map et reduce TD 7 corrigé 7   Modules, fermetures et macros TD 8 corrigé 8    </description>
@@ -789,57 +789,57 @@ Ressources pédagogiques Le support de cours
     
     <item>
       <title>Programmation fonctionnelle - Introduction</title>
-      <link>https://eirbot.github.io/assets/md/fonc/notes1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/fonc/notes1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/fonc/notes1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/fonc/notes1/</guid>
       <description>Concepts et terminologie  Ecriture fonctionnelle : programmation par applications de fonctions plutôt que par l&amp;rsquo;exécution de séquences d&amp;rsquo;instructions Transparence référentielle : chaque expression peut être remplacée par son résultat sans changer le comportement du programme - sans effets de bord Programmation fonctionnelle pure : sans effets de bords, avec transparence référentielle Fonctions de première classe : type fonction, constantes fonction, opérateurs sur les fonctions Type dynamique : les variables sont typées au moment de l&amp;rsquo;exécution et non au moment de la compilation Références : ce sont les adresse sur des objets, elles sont utilisées chaque fois que les contenus ne sont pas utiles (passages de paramètres, retours de fonctions) Garbage collector : gestion dynamique et automatique de la mémoire.</description>
     </item>
     
     <item>
       <title>Programmation impérative</title>
-      <link>https://eirbot.github.io/assets/semestre_6/prog_imp/</link>
+      <link>https://Sdelpeuch.github.io/assets/semestre_6/prog_imp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/semestre_6/prog_imp/</guid>
-      <description>Objectif du cours L&amp;rsquo;objectif de ce cours est d&amp;rsquo;approfondir l&#39;étude de la programmation en langage C et l&amp;rsquo;usage des outils associés. On y aborde l&amp;rsquo;utilisation de constructions avancées du langage (typage, pointeurs de fonctions) permettant de mettre en application certains principes de génie logiciel, et on y présente plusieurs outils (débogueurs, outils de gestion de sources, de documentation automatique et de mesure de performance) permettant d&amp;rsquo;augmenter l&amp;rsquo;efficacité de la programmation.</description>
+      <guid>https://Sdelpeuch.github.io/assets/semestre_6/prog_imp/</guid>
+      <description>Objectif du cours L&amp;rsquo;objectif de ce cours est d&amp;rsquo;approfondir l&amp;rsquo;étude de la programmation en langage C et l&amp;rsquo;usage des outils associés. On y aborde l&amp;rsquo;utilisation de constructions avancées du langage (typage, pointeurs de fonctions) permettant de mettre en application certains principes de génie logiciel, et on y présente plusieurs outils (débogueurs, outils de gestion de sources, de documentation automatique et de mesure de performance) permettant d&amp;rsquo;augmenter l&amp;rsquo;efficacité de la programmation.</description>
     </item>
     
     <item>
       <title>Recherche opérationnelle</title>
-      <link>https://eirbot.github.io/assets/semestre_6/recherche/</link>
+      <link>https://Sdelpeuch.github.io/assets/semestre_6/recherche/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/semestre_6/recherche/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/semestre_6/recherche/</guid>
       <description>Ressources Pédagogiques    Cours Sujet du TD Notes de cours Notes de TD     PL-1 PL-1 TD notes1 notes-td1   PL-2 PL-2 TD notes2 notes-td2   PL-3 PL-3 TD     PL-4       </description>
     </item>
     
     <item>
       <title>Récursivité</title>
-      <link>https://eirbot.github.io/assets/md/fonc/notes4/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/fonc/notes4/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/fonc/notes4/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/fonc/notes4/</guid>
       <description>Exemple d&amp;rsquo;introduction fact(0)=1 fact(n)=n * fact(n-1) (define (fact n) (if (zero? n) 1 (* n (fact (sub1 n)))))  Récursivité terminale Pour rendre une fonction récursive terminale, on déplace le calcul effectuée après l&amp;rsquo;appel récursif pour le faire avant.</description>
     </item>
     
     <item>
       <title>Système de type</title>
-      <link>https://eirbot.github.io/assets/md/fonc/notes6/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/fonc/notes6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/fonc/notes6/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/fonc/notes6/</guid>
       <description>Classification des valeurs en ensembles appelés types de manière à garantir la correction de certains programmes
 {:class=&amp;quot;image about center&amp;rdquo;}
- Styles de typage  Le typage dynamique : déterminé pendant l&amp;rsquo;exécution par le runtime, il ne nécessite aucune intervention du programmeur Le typage statique : fixé avant l&amp;rsquo;exécution par le compilateur, il est soit inféré automatiquement, soit indiqué par des annotations dans le code  Afin d&amp;rsquo;annoter une valeur &amp;lt;val&amp;gt; par un type &amp;lt;typ&amp;gt;, il suffit d&#39;écrire avant la définition de &amp;lt;val&amp;gt;</description>
+ Styles de typage  Le typage dynamique : déterminé pendant l&amp;rsquo;exécution par le runtime, il ne nécessite aucune intervention du programmeur Le typage statique : fixé avant l&amp;rsquo;exécution par le compilateur, il est soit inféré automatiquement, soit indiqué par des annotations dans le code  Afin d&amp;rsquo;annoter une valeur &amp;lt;val&amp;gt; par un type &amp;lt;typ&amp;gt;, il suffit d&amp;rsquo;écrire avant la définition de &amp;lt;val&amp;gt;</description>
     </item>
     
     <item>
       <title>Types et constructions de base du langage</title>
-      <link>https://eirbot.github.io/assets/md/fonc/notes2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/fonc/notes2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/fonc/notes2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/fonc/notes2/</guid>
       <description>Résumé des constructions syntaxiques du langage
 {:class=&amp;quot;image about center&amp;rdquo;}
 Résumé des opérations numériques
@@ -849,10 +849,10 @@ Résumé des opérations numériques
     
     <item>
       <title>Types et constructions de base du langage</title>
-      <link>https://eirbot.github.io/assets/md/fonc/notes3/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/fonc/notes3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://eirbot.github.io/assets/md/fonc/notes3/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/fonc/notes3/</guid>
       <description>Définitions : Symboles et liaisons Un symbole est un identificateur, c&amp;rsquo;est à dire un nom symbolique.
 Une liaison est une entité, c&amp;rsquo;est à dire un objet nommé résidant dans la mémoire, donc l&amp;rsquo;association d&amp;rsquo;un symbole avec un emplacement mémoire contenant une valeur.</description>
     </item>
