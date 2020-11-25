@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Graphe - Chemins et arbres</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
+  <meta name="author" content="Eirbot">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Graphe - Chemins et arbres</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Graphe - Chemins et arbres</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<h2 id="i-classfas-fa-project-diagrami-chemins"><i class="fas fa-project-diagram"></i> Chemins</h2>
+<p>Une <strong>chemin</strong> dans un graphe $(V,E)$ est une séquence $w$ de la forme
+$(s_1,e_1,&hellip;,e_l,s_{l+1})$ où pour pour tout $i \in [1,l]$, $e_i$ est un
+arc allant du sommet $s_i$ au sommet $s_i+1$. L&rsquo;entier $l$ éventuellement
+nul est noté $|w|$ et est appelé la **longueur** de $w$.</p>
+<p>Un chemin est <strong>simple</strong> si il ne passe pas deux fois par le même arc. Il est
+<strong>élémentaire</strong> si il passe deux fois par le même sommet.</p>
+<h3 id="concaténation">Concaténation</h3>
+<p>Une opération naturelle sur les chemins est la concaténation : la concaténation
+de deux chemins $u$ et $v$ allant respectivement d&rsquo;un sommet $x$ à un
+sommet $y$ et d&rsquo;un somme $y$ à un sommet $z$ est le chemin noté $u \cdot
+v$ obtenu en concaténant à la séquence $u$ la séquence $v$ débarassée de
+son premier élément $y$. Clairement, le chemin $u \cdot v$ va de $x$ à
+$z$ et à pour longueur $|u \cdot v| = |u| + |v|$</p>
+<h3 id="distance-dans-un-graphe">Distance dans un graphe</h3>
+<p>La <strong>distance</strong> dans un graphe $G$ est notée $d_G(s,t)$ et est la longueur
+du plus court chemin allant de $s$ à $t$ si il existe $+\infty$ sinon.</p>
+<h2 id="i-classfas-fa-project-diagrami-cycle"><i class="fas fa-project-diagram"></i> Cycle</h2>
+<p>Un <strong>cycle</strong> dans un graphe est un chemin dont les deux extrémités sont égales.
+Les adjectifs <strong>élémentaires</strong> et <strong>simples</strong> sont étendus aux cycle. Si un
+graphe contient un cycle, il contient un cycle élémentaire.</p>
+<p><code>Fait 2 :</code> Si un graphe orienté possède un cycle, il possède un cycle simple et élémentaire</p>
+<p>Dans le cas non orienté, tout graphe possédant au moins une arête, possède un
+cycle : l&rsquo;arête $e$ d&rsquo;extrémités $s$ et $t$ permet de construire le cycle
+$(s,e,t,e,s)$. Ainsi la notion intéressante n&rsquo;est pas &ldquo;cycle&rdquo; mais &ldquo;cycle
+simple&rdquo;.</p>
+<p>Définition 4 : Un graphe est acyclique si il ne possède aucun cycle simple de
+longueur non nulle.</p>
+<h2 id="i-classfas-fa-project-diagrami-arborescence-et-arbre"><i class="fas fa-project-diagram"></i> Arborescence et arbre</h2>
+<p>Une <strong>arboresence</strong> est un graphe orienté admettant un sommet, appelé
+<strong>racine</strong>, tel que pour tout sommet il existe un unique chemin de la racine
+vers ce sommet.</p>
+<p>Un <strong>arbre</strong> est un graphe non orienté connexe et acyclique.</p>
+<h2 id="i-classfas-fa-project-diagrami-lexique-sur-les-graphes"><i class="fas fa-project-diagram"></i> Lexique sur les graphes</h2>
+<table>
+<thead>
+<tr>
+<th align="center">Nom du graphe</th>
+<th align="center">Représentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Graphes discrets</td>
+<td align="center"><img src="/assets/images/graphe/graphe1.png" alt="alt txt"></td>
+</tr>
+<tr>
+<td align="center">Etoiles</td>
+<td align="center"><img src="/assets/images/graphe/graphe2.png" alt="alt txt"></td>
+</tr>
+<tr>
+<td align="center">Peignes</td>
+<td align="center"><img src="/assets/images/graphe/graphe3.png" alt="alt txt"></td>
+</tr>
+<tr>
+<td align="center">Chenilles</td>
+<td align="center"><img src="/assets/images/graphe/graphe4.png" alt="alt txt"></td>
+</tr>
+<tr>
+<td align="center">Grille</td>
+<td align="center"><img src="/assets/images/graphe/graphe5.png" alt="alt txt"></td>
+</tr>
+<tr>
+<td align="center">Hypercube</td>
+<td align="center"><img src="/assets/images/graphe/graphe6.png" alt="alt txt"></td>
+</tr>
+</tbody>
+</table>
+<div class="header">
+  <div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
+  </div>
+</div>
+<style>
+/* Style the header: fixed position (always stay at the top) */
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+/* The progress container (grey background) */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+}
+
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  height: 8px;
+  background: #707070;
+  width: 0%;
+}
+</style>
+<script>
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+</script>
+<p></script></p>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+  </div></aside>
+<iframe src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=2&amp;bgcolor=%23A79B8E&amp;ctz=Europe%2FParis&amp;src=Z3J1azRqOXI3czdwNGV2cjVidjc4NG1xMHVwYWJwNTVAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="380" height="1000" frameborder="0" scrolling="no"></iframe>
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

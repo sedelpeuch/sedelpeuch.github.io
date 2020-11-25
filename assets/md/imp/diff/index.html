@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Impératif - diff-patch-svn-git</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
+  <meta name="author" content="Eirbot">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Impératif - diff-patch-svn-git</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Impératif - diff-patch-svn-git</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<h2 id="i-classfas-fa-codei-une-nouvelle-bibliothèque"><i class="fas fa-code"></i> Une nouvelle bibliothèque</h2>
+<h4 id="exercice-1">Exercice 1</h4>
+<p>La bibiliothèque permet de faire de la manipulation d&rsquo;automates. L&rsquo;auteur est
+<em>Julien Allali</em>. Licence MIT.</p>
+<h4 id="exercice-2">Exercice 2</h4>
+<pre><code>git clone https://github.com/allali/statelib.git
+</code></pre>
+<p>Le système de compilation utilisé est <strong>Cmake</strong>. Compilable avec</p>
+<pre><code>make install
+</code></pre>
+<p>Le système de documentation utilisé est <strong>doxygen</strong></p>
+<h4 id="exercie-3">Exercie 3</h4>
+<p>Ce sont les trois lignes suivantes</p>
+<pre><code>install(TARGETS state DESTINATION lib)
+install(TARGETS state_static DESTINATION lib)
+install(FILES src/state.h DESTINATION include)
+</code></pre>
+<p>Il faut donc réaliser les commandes suivant pour compiler</p>
+<pre><code>cmake -S &lt;path_to_source&gt; -B &lt;path_to_build&gt;
+sudo make install
+</code></pre>
+<h2 id="i-classfas-fa-codei-diff-et-patch"><i class="fas fa-code"></i> Diff et patch</h2>
+<h4 id="exercice-4">Exercice 4</h4>
+<p>Précision du cas de renvoie -1.
+Pour recompiler la doc</p>
+<pre><code>make doc
+</code></pre>
+<h4 id="exercice-5">Exercice 5</h4>
+<p>La commande nous affiche les différences entre deux fichiers.</p>
+<pre><code>diff -r original new
+</code></pre>
+<h4 id="exercice-6">Exercice 6</h4>
+<p>La commande suivante permet d’analyser tous les fichiers et donne un compte
+rendu des différences qui sera pas la suite applicable.</p>
+<pre><code>diff -rupN statelib statelib_new &gt; patch
+</code></pre>
+<h4 id="exercice-7">Exercice 7</h4>
+<p>La commande <strong>patch</strong> permet de fusionner les différences avec un patch</p>
+<h2 id="i-classfas-fa-codei-git"><i class="fas fa-code"></i> Git</h2>
+<p>Cette partie présente des évidences sur git, je la passe</p>
+<h2 id="i-classfas-fa-codei-svn"><i class="fas fa-code"></i> SVN</h2>
+<p>SVN repose sur un système de versionning centralisé. Cela signifie qu’un seul
+répertoire général existe et tous les utilisateurs y ont accès. Etant donné que
+les modifications ne peuvent être fusionnées, le système empêche que deux
+utilisateurs modifient un même fichier simultanément. Ce dernier est attribué au
+premier internaute qui l’ouvre et il reste protégé des autres utilisateurs tant
+qu’il n’a pas été fermé. Apache Subversion permet également de charger et de
+modifier les sous-chemins indépendamment du reste de l’arborescence. C’est ainsi
+que les droits de lecture et d’écriture sont affectés pour la totalité des
+chemins aux différents utilisateurs. En outre, Suversion se caractérise par le
+fait que des répertoires vides, renommés voire déplacés peuvent être enregistrés
+sans causer de perte dans l’historique.</p>
+<p>SVN fonctionne comme git en ce qui concerne les <strong>commits</strong> et les <strong>add</strong>.
+Cependant pour initialiser le dossier il faut réalilser les commandes suivantes.</p>
+<pre><code>svnadmin --compatible-version 1.5 create pg106
+</code></pre>
+<p><strong>Attention : on ne travaille jamais directement dans le dépôt mais dans un</strong>
+<strong>autre répertoire synchronisé avec le dépôt !</strong>
+Puis dans le répertoire de travail</p>
+<pre><code>svn checkout file://$HOME/.depots/pg106
+</code></pre>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+  </div></aside>
+<iframe src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=2&amp;bgcolor=%23A79B8E&amp;ctz=Europe%2FParis&amp;src=Z3J1azRqOXI3czdwNGV2cjVidjc4NG1xMHVwYWJwNTVAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="380" height="1000" frameborder="0" scrolling="no"></iframe>
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Automates finis et langages - Expression régulières et théorème de Kleene</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
+  <meta name="author" content="Eirbot">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Automates finis et langages - Expression régulières et théorème de Kleene</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Automates finis et langages - Expression régulières et théorème de Kleene</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<p>Grâce au chapitre précédent nus pouvons représenter $x$ par un mot,
+l&rsquo;algorithme par un automate fini, mais comment représenter $\mathcal{L}$ ?
+S&rsquo;il est fini, il suffit d'énumérer tous les mots qui le composent, mais que
+faire quand il est infini ?</p>
+<h2 id="i-classfas-fa-roboti-langages-réguliers"><i class="fas fa-robot"></i> Langages réguliers</h2>
+<p>Nous introdusions tout d&rsquo;abord les opérateurs ensemblistes nécessaires à la
+définition des langages réguliers. L&rsquo;union, l&rsquo;intersection et la complémentation
+son bien évidemment définies comme pour tout autre ensemble : por tous langages
+$L_1$ et $L_2$</p>
+<ul>
+<li>$L_1 \cup L_2 = {\omega | \omega \in L_1 ; \text{ou} ; \omega \in L_2}$
+est l&rsquo;<strong>union</strong> de $L_1$ et $L_2$</li>
+<li>$L_1 \cap L_2 = {\omega | \omega \in L_1 ; \text{et} ; \omega \in L_2}$
+est l&rsquo;<strong>intersection</strong> de $L_1$ et $L_2$</li>
+<li>$\overline{L_1}={\omega | \omega \in \Sigma^\ast ; \text{et} ; \omega
+\notin L_1}$ est le <strong>complément</strong> de $L_1$</li>
+</ul>
+<p>La <code>concaténation</code> d&rsquo;un langage $L_2$ à un langage $L_1$ est le langage
+$L_1 \cdot L_2 = {\omega_1 \cdot \omega_2 | \omega_1 \in L_1 ; \text{et} ;
+\omega_2 \in L_2 }$.</p>
+<p>La <code>fermeture de Kleene</code> d&rsquo;un langage $L$ est la langage : $L_1^\ast=\bigcup
+\limits_{i \geq 0} L_1^i$ avec $\begin{cases} L_1^0 = {\varepsilon} \ L_1^n
+= L_1 \cdots L_1^{n-1} \end{cases}$, il définit le langage des mots qui sont des
+concaténations arbitraiirement longues (ie non bornées) de mots de $L$.</p>
+<p>L&rsquo;ensemble des <code>langages réguliers</code> sur un alphabet $\Sigma$ est défini par</p>
+<ol>
+<li>$\emptyset$ et ${\varepsilon}$ sont des langages réguliers</li>
+<li>${s}$ est un langage régulier, pour tout $s \in \Sigma$</li>
+<li>si $L_1$ et $L_2$ sont des langages réguliers, alors $L_1 \cup
+L_2$,$L_1 \cdot L_2$ et $L_1^\ast$ sont des langes réguliers.</li>
+</ol>
+<p>Si $L_1$ et $L_2$ sont deux langages réguliers, alors</p>
+<ul>
+<li>$\overline{L_1} = \Sigma^\ast \backslash L_1$, le complémentaire de $L_1$
+est un langage régulier</li>
+<li>$L_1 \cap L_2$ est un langage régulier</li>
+</ul>
+<h2 id="i-classfas-fa-roboti-expressions-régulières"><i class="fas fa-robot"></i> Expressions régulières</h2>
+<p>Nous introduisons maintenant une notation algébrique des langages.</p>
+<p>L&rsquo;ensemble des <code>expressions régulières</code> sur un alphabet $\Sigma$ est défini
+par</p>
+<ol>
+<li>$\varnothing$, $\epsilon$ et $s$, quel que soit $s \in \Sigma$ sont
+des expressions régulières</li>
+<li>Si $\alpha$ et $\beta$ sont deux expressions régulières, alors
+$(\alpha + \beta)$, $\alpha \beta$ et $(\alpha)^\star$ sont des
+expressions régulières</li>
+</ol>
+<p>Il est à noter que $\varnothing$ diffère de $\emptyset$, que $\epsilon$
+diffère de $\varepsilon$ et que $()^\star$ diffère de $()^\ast$. Nous
+veron par la suite ce que ces notations décrivent les mêmes objets, mais dans
+deux algèbres différentes : respectivement les expressions régulières et les
+langages réguliers.</p>
+<p>Le <code>langage d'une epxression régulière</code> est défini par</p>
+<ol>
+<li>$\mathcal{L}(\varnothing) = \emptyset$ et
+$\mathcal{L}(\epsilon)={\varepsilon}$</li>
+<li>$\mathcal{L}(s)={s}$ quel que soit $s \in \Sigma$</li>
+<li>$\mathcal{L}((\alpha+\beta))=\mathcal{L}(\alpha) \cup
+\mathcal{L}(\beta)$.</li>
+<li>$\mathcal{L}(\alpha \beta)=\mathcal{L}(\alpha) \cdot \mathcal{L}(\beta)$.</li>
+<li>$\mathcal{L}(a^\star)=(\mathcal{L}(\alpha))^\ast$.</li>
+</ol>
+<p>Quelques propriétés des expressions régulières</p>
+<ul>
+<li>La somme est <strong>commutative</strong> et <strong>associative</strong></li>
+<li>La concaténation est <strong>associative</strong> mais <strong>non commutative</strong></li>
+<li>La concaténation est <strong>distributive</strong> à gauche et à droite.</li>
+<li>L&rsquo;expression $\varnothing$ est l'élément neutre pour la somme
+$\varnothing + \alpha = \alpha = \alpha + \varnothing$ et l'élement
+absorbant pour la concaténation $\varnothing \alpha = \varnothing = \alpha
+\varnothing$</li>
+<li>L&rsquo;expression $\epsilon$ est l'élément neutre pour la concaténation
+$\epsilon \alpha = \alpha = \alpha \epsilon$</li>
+<li>Enfin l'étoile de kleen est prioritaire sur la concaténation qui est elle même
+prioritaire sur la somme</li>
+</ul>
+<h2 id="i-classfas-fa-roboti-théorème-de-kleene"><i class="fas fa-robot"></i> Théorème de Kleene</h2>
+<p>Nous montrons maintenant un lien fondamental entre els automates finis, les
+langages réguliers et les expressions régulières.</p>
+<p><code>Théoreme</code> Les trois proposition suivantes sont équivalentes pour tout langage
+$L$</p>
+<ol>
+<li>$L$ est accepté par un automate fini</li>
+<li>$L$ est un langage régulier</li>
+<li>$L$ est représentable par une expression régulière</li>
+</ol>
+<p>Le théorème de Kleene est fondamental car il fait le lien entre l&rsquo;algèbre (ie
+les expressions régulières) et le calcul (les automates finis) unifiant ainsi
+ces deux approches de la théorie des langages</p>
+<p><code>Théorème de Kleene</code> Un langage est régulier si et seulement s&rsquo;il est reconnu
+par un automate fini</p>
+<h3 id="des-langages-réguliers-aux-expressions-régulières">Des langages réguliers aux expressions régulières</h3>
+<p>Nous montrons tout d&rsquo;abord que les langages réguliers peuvent être représentés
+par des expressions régulières.</p>
+<p><code>Lemme</code> Tout langage régulier est représenté par une expression régulière</p>
+<p><code>Lemme</code> Tout langage représenté par une expressions régulière, est un langage
+régulier</p>
+<p>Les preuves sont disponibles dans polycopié de cours page 22.</p>
+<h3 id="des-expressions-régulières-aux-automates-finis">Des expressions régulières aux automates finis</h3>
+<p><code>Lemme</code> Pour toute expression régulière $\alpha$ nous pouvons calculer un
+automate fini $A$ tel que $\mathcal{L}(\alpha)=\mathcal{L}(A)$. La preuve
+est disponible dans le polycopié de cours page 22 à 25.</p>
+<p>Notons qu&rsquo;en corollaire de cette preuve nous avons une procédure effective pour
+calculer les opérations d&rsquo;union, de concaténation et de fermeture de Kleene sur
+des langages réguliers, directement sur les automates qui les acceptent. Nous
+remarquons en outre que les automates construits par cette procédure sont
+non-déterministes puisqu&rsquo;ils contiennent des transitions étiquetées
+$\varepsilon$.</p>
+<h3 id="des-automates-finis-aux-expressions-régulières">Des automates finis aux expressions régulières</h3>
+<p>Le lemme suivant montre que pour tout automate fini, il est possible de
+construire une expression régulière qui représente le langage accepté par cet
+automate.</p>
+<p><code>Lemme</code> Pour tout langage accepté par un automate fini $A$ nous pouvons
+calculer une expression régulière $\alpha$ telle que $\mathcal{L}(A) =
+\mathcal{L}(\alpha)$</p>
+<p>La preuve est disponible dans le polycopié page 26</p>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+  </div></aside>
+<iframe src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=2&amp;bgcolor=%23A79B8E&amp;ctz=Europe%2FParis&amp;src=Z3J1azRqOXI3czdwNGV2cjVidjc4NG1xMHVwYWJwNTVAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="380" height="1000" frameborder="0" scrolling="no"></iframe>
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programmation Système on Semestre 7</title>
+    <link>https://eirbot.github.io/tags/programmation-syst%C3%A8me/</link>
+    <description>Recent content in Programmation Système on Semestre 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 05 Nov 2020 11:07:10 +0600</lastBuildDate>
+    
+	<atom:link href="https://eirbot.github.io/tags/programmation-syst%C3%A8me/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Processus et gestion mémoire</title>
+      <link>https://eirbot.github.io/assets/md/prog_sys/3/</link>
+      <pubDate>Thu, 05 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/assets/md/prog_sys/3/</guid>
+      <description>Abstraction pour le processus et la mémoire Le Processus est un programme qui s&amp;rsquo;execute ainsi que son contexte (mémoire, état des descripteurs de fichiers)
+Dans les systèmes d&amp;rsquo;exploitation :
+ Support pour de multiples processus Chaque processus a un espace d&amp;rsquo;adressage privé ce qui garenti le cloisonnement entre processus (sécurité et protection), cela permet d&amp;rsquo;avoir une abstraction de la mémoire et surtout cela cache le noyau et les autres processus.</description>
+    </item>
+    
+    <item>
+      <title>Fichiers</title>
+      <link>https://eirbot.github.io/assets/md/prog_sys/2/</link>
+      <pubDate>Tue, 03 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/assets/md/prog_sys/2/</guid>
+      <description>Comment accéder aux fichiers ? Il existe plsuieurs niveaux de gestion des fichiers
+ stockage mémoire (structure du système de fichier, structure des fichiers, inodes) stockage du système (table des descripteurs (processus), table des fichiers ouverts, tables des inodes)  Stockage : structure du système de fichiers  Boot bloc : block de données qui permet de booter la machine.</description>
+    </item>
+    
+    <item>
+      <title>Appel systèmes</title>
+      <link>https://eirbot.github.io/assets/md/prog_sys/1/</link>
+      <pubDate>Tue, 20 Oct 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/assets/md/prog_sys/1/</guid>
+      <description>Principes des systèmes d&amp;rsquo;exploitation Notion de processus Modes d&amp;rsquo;exécution Appels système Certaines instructions machines autorisées (gestion de la mémoire et interruptions) sont interdites en mode utilisateur. Le noyau est un gestionnaire de processus mais ce n&amp;rsquo;est pas un processus.</description>
+    </item>
+    
+    <item>
+      <title>Programmation Système Page d&#39;accueil</title>
+      <link>https://eirbot.github.io/semestre7/prog_sys/</link>
+      <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/semestre7/prog_sys/</guid>
+      <description>Le Support de cours et le Support de TD
+La Correction des TD
+   Notes personnelles - cours     Appels systèmes   Fichiers   Processus et gestion mémoire   Signaux   Mémoire partagée et syncronisation   Threads   Concurrence   Réseau - sockets    </description>
+    </item>
+    
+  </channel>
+</rss>

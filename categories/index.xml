@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Semestre 7</title>
+    <link>https://eirbot.github.io/categories/</link>
+    <description>Recent content in Categories on Semestre 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Tue, 22 Sep 2020 11:07:10 +0600</lastBuildDate>
+    
+	<atom:link href="https://eirbot.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CM</title>
+      <link>https://eirbot.github.io/categories/cm/</link>
+      <pubDate>Tue, 22 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/categories/cm/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

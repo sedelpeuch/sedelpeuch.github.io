@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Graphe - Algorithmes de Parcours</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
+  <meta name="author" content="Eirbot">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Graphe - Algorithmes de Parcours</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Graphe - Algorithmes de Parcours</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<p>Pour la plupart des problèmes sur des graphes, toute solution algorithmique doit
+visiter chacun des sommets et/ou chacun des arcs du graphe considéré, c&rsquo;est à
+dire prendre en compte ses propriétés locales : quels sot ses sommets adjacents,
+quelles sont ses arêtes ou arcs incident, quels sont les étiquettes ou éventuels
+poids etc.</p>
+<p>Pour définir algorithmiquement un parcours, on utilise comme pour les arbres,
+une file (notée ici GRIS). A tout instant de l&rsquo;algorithme, l&rsquo;ensemble des
+sommets est partitionnée en trois ensemble disjoints BLANC, GRIS, NOIR dont
+l&rsquo;union forme l&rsquo;ensemble des sommes de G et dont la sémantique est la suivante</p>
+<ul>
+<li>BLANC est l&rsquo;ensemble des sommets non visités</li>
+<li>NOIR est l&rsquo;ensemble des sommets visités et dont on sait que tous les arcs
+sortants ont été visités; ainsi donc que leurs sommets extrémités</li>
+<li>GRIS les autres sommets</li>
+</ul>
+<h2 id="i-classfas-fa-project-diagrami-parcours-en-largeur"><i class="fas fa-project-diagram"></i> Parcours en Largeur</h2>
+<p><img src="/assets/images/graphe/BFS.gif" alt="BFS">
+Le premier choix pour implémenter l&rsquo;ensemble GRIS est d&rsquo;utiliser une file.
+L&rsquo;algorithme qui en découle est appelé un parcours en Largeur. La raison de ce
+nom est liée à l&rsquo;ordre dans lequel les sommets sont visités à partir du premier
+sommet $s$ : les premiers sommets visitées sont les sommets à distance 1 du
+sommet $s_1$, puis ceux à distance 2 et ainsi de suite. En conséquence,
+l&rsquo;arborescence de liaison retournée fournit un ensemble de plus court-chemins du
+sommet $s$ aux sommets accessibles à partir de $s$. Voici l&rsquo;algorithme de
+parcours vu dans le chapitre précédennt moidifié uniquement par le triatmenet de
+l&rsquo;ensemble GRIS comme une file.</p>
+<p>{:class=&quot;image about right&rdquo;}</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">procédure parcoursLargeur(G: graphe, s: sommet)
+    n <span style="color:#f92672">=</span> nbrSommets(G)
+    couleur <span style="color:#f92672">=</span> constructTableau(n,<span style="color:#960050;background-color:#1e0010">&#39;</span>blanc<span style="color:#960050;background-color:#1e0010">&#39;</span>)
+    pere <span style="color:#f92672">=</span> constructTableau(n,<span style="color:#ae81ff">0</span>)
+    GRIS <span style="color:#f92672">=</span> fileVide()
+    couleur[s] <span style="color:#f92672">=</span> gris
+    enfiler(s,GRIS)
+    
+    tant que non(estVide(GRIS)) faire
+        u <span style="color:#f92672">=</span> défiler(GRIS)
+        pour tout arc e sortant de u faire
+            v <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>ndeExtrémité(e)
+            si couleur[v]<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>blanc<span style="color:#960050;background-color:#1e0010">&#39;</span> alors
+                couleur[v] <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>gris<span style="color:#960050;background-color:#1e0010">&#39;</span>
+                enfiler(v,GRIS)
+                pere[v]<span style="color:#f92672">=</span>u
+        couleur[u] <span style="color:#f92672">=</span> noir
+</code></pre></div><h2 id="i-classfas-fa-project-diagrami-parcours-en-profondeur"><i class="fas fa-project-diagram"></i> Parcours en Profondeur</h2>
+<p><img src="/assets/images/graphe/DFS.gif" alt="DFS">
+A la différence du parcours en largeur où l&rsquo;on découvrait tous les successeurs
+blancs du sommet colorié le plus tardivement en gris, lors du parcours en
+profondeur le sommet gris dont on découvre les successeurs blancs est le sommet
+le plus récemment colorié en gris : en d&rsquo;autres termes, on implémente l&rsquo;ensemble
+GRIS à l&rsquo;aide d&rsquo;une pile. A l&rsquo;image du parcours en profondeur dans les arbres
+binaires, la définition la plus simple d&rsquo;un parcours en profondeur est
+assurément récursive. La pile GRIS mentionnée est alors cachée par la pile
+d&rsquo;appel utilisée lors de ces appels récursifs.</p>
+<p>{:class=&quot;image about right&rdquo;}</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">procédure parcoursProfondeur(G:graphe)
+    temps <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+    n <span style="color:#f92672">=</span>  nbrSommets(G)
+    coleur <span style="color:#f92672">=</span> constructTableau(n,<span style="color:#960050;background-color:#1e0010">&#39;</span>blanc<span style="color:#960050;background-color:#1e0010">&#39;</span>)
+    pere <span style="color:#f92672">=</span> constructTableau(n,<span style="color:#ae81ff">0</span>)
+    d <span style="color:#f92672">=</span> constructTableau(n,<span style="color:#ae81ff">0</span>)
+    f <span style="color:#f92672">=</span> constructTableau(n,<span style="color:#ae81ff">0</span>)
+    
+    pour chaque sommet u faire
+        si couleur(u) <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>blanc<span style="color:#960050;background-color:#1e0010">&#39;</span> alors
+            explorer(G,u)
+
+procédure explorer(G: graphe,u: sommet)
+    couleur[u] <span style="color:#f92672">=</span> gris
+    d[u] <span style="color:#f92672">=</span> <span style="color:#f92672">++</span> temps
+    
+    pour chaque arc e sortant de u faire
+        v <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>ndeExtrémité(e)
+        si couleur[v]<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span>blanc<span style="color:#960050;background-color:#1e0010">&#39;</span> alors
+            pere[v] <span style="color:#f92672">=</span> u
+            explorer(G,v)
+    couleur[u] <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>noir<span style="color:#960050;background-color:#1e0010">&#39;</span>
+    f[u] <span style="color:#f92672">=</span> <span style="color:#f92672">++</span>temps
+</code></pre></div><h3 id="première-application--reconnaissance-de-graphes-acycliques">Première application : reconnaissance de graphes acycliques</h3>
+<p>On s&rsquo;intéresse ici à déceler la présence de cycles c&rsquo;est à dire plus précisément
+de cycles simples ayant au moins un arc. L&rsquo;algorithme décidant si un graphe est
+sans cycle est une variante imméduate du parcours en profondeur. Sa correction
+est basée sur les deux assertions suivantes qui sont équivalentes</p>
+<ul>
+<li>$G$ contient un cycle simple</li>
+<li>tout parcours en profondeur de $G$ induit un arc de retour</li>
+</ul>
+<h3 id="deuxième-application--tri-topologique">Deuxième application : tri topologique</h3>
+<p>Comment numéroter des sommets de façon à ce que tout arc $(s,t)$, $s$ ait un
+plus petit numéro de que $t$</p>
+<p><code>Définition :</code> Un <strong>tri topologique</strong> d&rsquo;un graphe orienté $G$ est une
+numérotation $\phi$ des sommets de $G$ tels que pour tous sommets $s$ et
+$t$ on ait : $(s,t) \in E_G \Rightarrow \phi(s) &lt; \phi(t)$</p>
+<p>Clairement tout graphe n&rsquo;admet pas un tri topologique. Propriété remarquabe, la
+possession d&rsquo;un tel tri est une caractérisation de l&rsquo;acyclité.</p>
+<div class="header">
+  <div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
+  </div>
+</div>
+<style>
+/* Style the header: fixed position (always stay at the top) */
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+/* The progress container (grey background) */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+}
+
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  height: 8px;
+  background: #707070;
+  width: 0%;
+}
+</style>
+<script>
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+</script>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+  </div></aside>
+<iframe src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=2&amp;bgcolor=%23A79B8E&amp;ctz=Europe%2FParis&amp;src=Z3J1azRqOXI3czdwNGV2cjVidjc4NG1xMHVwYWJwNTVAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="380" height="1000" frameborder="0" scrolling="no"></iframe>
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

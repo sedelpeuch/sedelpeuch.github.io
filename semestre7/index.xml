@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Semestre7s on Semestre 7</title>
+    <link>https://eirbot.github.io/semestre7/</link>
+    <description>Recent content in Semestre7s on Semestre 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Tue, 01 Sep 2020 11:07:10 +0600</lastBuildDate>
+    
+	<atom:link href="https://eirbot.github.io/semestre7/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Architecture des réseaux TCP/IP Page d&#39;accueil</title>
+      <link>https://eirbot.github.io/semestre7/tcp/</link>
+      <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/semestre7/tcp/</guid>
+      <description>Cours : Interaction entre la famille de protocoles TCP/IP et les supports de transmission
+Exercice</description>
+    </item>
+    
+    <item>
+      <title>Compilation Page d&#39;accueil</title>
+      <link>https://eirbot.github.io/semestre7/compilation/</link>
+      <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/semestre7/compilation/</guid>
+      <description>Cours    Notes personnelles Basé sur     cours 1 Introduction   cours 2 Analyse lexicale   cours 3 Analyse syntaxique   cours 4 Vidéo 4   cours 5 Vidéo 5   cours 6.</description>
+    </item>
+    
+    <item>
+      <title>Introduction à l&#39;informatique quantique Page d&#39;accueil</title>
+      <link>https://eirbot.github.io/semestre7/quantique/</link>
+      <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/semestre7/quantique/</guid>
+      <description>Polycopié d&amp;rsquo;une ancienne version du cours
+   Diaporama de cours Notes personnelles de cours     Cours 1 Introduction   Cours 2 Le monde quantique   Cours 3 Qubits et mécanique quantique   Cours 4 Intrication quantique   Cours 5 Algorithme de Deutsh   Cours 6 Algorithme de Simon    </description>
+    </item>
+    
+    <item>
+      <title>Programmation C&#43;&#43; Page d&#39;accueil</title>
+      <link>https://eirbot.github.io/semestre7/cpp/</link>
+      <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/semestre7/cpp/</guid>
+      <description>Support de cours
+   Notes personnelles     Allocation   Classes   Opérateur    </description>
+    </item>
+    
+    <item>
+      <title>Programmation Orientée Objets Page d&#39;accueil</title>
+      <link>https://eirbot.github.io/semestre7/poo/</link>
+      <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/semestre7/poo/</guid>
+      <description>Ressources pédagogiques Le polycopié de cours.
+Le site contenant tous les TD
+Notes personnelles    Cours     Objet et encapsulation   Substitution d&amp;rsquo;objets   Autres mécanismes    Travaux dirigés    Sujet Réalisation     Presentation-existant TD 0   Approche Objet Jauge Position TD 1   Autobus Passager Standard TD 2   Integration rassemblement TD 3   Masquage d&amp;rsquo;information TD 4   Nouveaux caractères TD 5   Est UN a UN TD 6   Exceptions TD 7    </description>
+    </item>
+    
+    <item>
+      <title>Programmation Système Page d&#39;accueil</title>
+      <link>https://eirbot.github.io/semestre7/prog_sys/</link>
+      <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/semestre7/prog_sys/</guid>
+      <description>Le Support de cours et le Support de TD
+La Correction des TD
+   Notes personnelles - cours     Appels systèmes   Fichiers   Processus et gestion mémoire   Signaux   Mémoire partagée et syncronisation   Threads   Concurrence   Réseau - sockets    </description>
+    </item>
+    
+    <item>
+      <title>SGBD Page d&#39;accueil</title>
+      <link>https://eirbot.github.io/semestre7/bdd/</link>
+      <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/semestre7/bdd/</guid>
+      <description>Les cours    Cours Notes personnelles     Conception d&amp;rsquo;une base de donnée Cours 1   Le modèle relationnel Cours 2   Algèbre relationnelle et langage SQL Cours 3 : Algèbre relationnelle    Cours 3 : Langage SQl   Transactions et concurrence    Algorithme de SGBD     Les travaux dirigés    Sujet de TD Notes personnelles Correction des TD     Sujet 1 TD 1    Sujet 2 TD 2 Correction 2   Sujet 3 TD 3 Correction 3   Sujet 4 TD 4 Correction 4   Sujet 5 TD 5 Correction 5    Les travaux pratique    Sujet de TP Correction des TP     TP 1 Correction 1   TP 2 Correction 2   TP 3     </description>
+    </item>
+    
+  </channel>
+</rss>

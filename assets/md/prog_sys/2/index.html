@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Fichiers</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
+  <meta name="author" content="Eirbot">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/images/banner/compilation.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Fichiers</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Fichiers</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> November 3, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/programmation%20syst%c3%a8me">Programmation système</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<h2 id="comment-accéder-aux-fichiers-">Comment accéder aux fichiers ?</h2>
+<p>Il existe plsuieurs niveaux de gestion des fichiers</p>
+<ul>
+<li>stockage mémoire (structure du système de fichier, structure des fichiers,
+inodes)</li>
+<li>stockage du système (table des descripteurs (processus), table des fichiers
+ouverts, tables des inodes)</li>
+</ul>
+<h2 id="stockage--structure-du-système-de-fichiers">Stockage : structure du système de fichiers</h2>
+<ul>
+<li>Boot bloc : block de données qui permet de booter la machine. Flag <em>bootable</em></li>
+<li>Superbloc : point de montage du système de fichiers, nombre de noeuds alloués
+/ libres, liste des noeuds alloués / libres</li>
+<li>Table des inodes</li>
+<li>Blocs de données : contient les données des fichiers, pour un répertoire,
+liste des noms des fichiers</li>
+</ul>
+ <center>
+<img src="/assets/images/prog_sys/2.png" width="50%"></img>
+</center>
+<h2 id="fichiers--inodes">Fichiers / inodes</h2>
+<p>Il y a deux structure en Unix :</p>
+<ul>
+<li>le contenu du fichier</li>
+<li>les informations sur le fichier (metadata) : inode</li>
+</ul>
+<p>Et les informations d&rsquo;un inode :</p>
+<ul>
+<li>Type de fichier</li>
+<li>Nombre de liens dur (hard link) partageant l&rsquo;inode</li>
+<li>Longueur du fichier en octets</li>
+<li>Identifiant de device</li>
+<li>Identifiant de l&rsquo;utilisateur (UID) propriétaire, et son groupe</li>
+<li>Date de création, modification</li>
+<li>Droits d&rsquo;accès</li>
+</ul>
+<center>
+<img src="/assets/images/prog_sys/3.png" width="50%"></img>
+</center>
+<h2 id="gestion-des-fichiers-par-le-système">Gestion des fichiers par le système</h2>
+<ul>
+<li>Une table des descripteurs de fichiers ouverts/accédés <strong>par processus</strong></li>
+<li>Une table des fichiers ouverts pour chaque <code>open</code> appelé. Il peut y avoir le
+même fichier plusieurs fois dans cette table. Il en existe une seule pour le
+système.</li>
+<li>Une seule table des inodes. Elle gère le nombre d&rsquo;ouvertures de chaque
+fichier, et stocke les informations des fichiers en mémoire.</li>
+</ul>
+<center>
+<img src="/assets/images/prog_sys/4.png" width="50%"></img>
+</center>
+<h2 id="quelques-fonctions-de-base">Quelques fonctions de base</h2>
+<ul>
+<li>Manipulation des inodes <code>stat(), unlink(), chown(), chmod(), mknod(), access(), link(), ...</code></li>
+<li>Manipulation des descripteurs de fichier <code>read(), write(), creat(), open(), lseek(), fcntl(), ...</code></li>
+<li>Fonctions de bibliothèque C <code>fopen(), fclose(), fread(),...</code></li>
+</ul>
+<h2 id="informations-sur-les-fichiers">Informations sur les fichiers</h2>
+<pre><code>int stat(const char* path, struct stat* buf)
+</code></pre><p>Cette fonction retourne 0 si il n&rsquo;y a pas d&rsquo;erreur, -1 sinon.</p>
+<center>
+<img src="/assets/images/prog_sys/5.png" width="50%"></img>
+</center>
+<h2 id="les-droits-daccès">Les droits d&rsquo;accès</h2>
+<p>Comment tester les droits d&rsquo;accès à un fichier avec le champ <code>st_mode</code> ?</p>
+<ul>
+<li><code>S_ISREG(m)</code> vrai si c&rsquo;est un fichier normal</li>
+<li><code>S_ISDIR(m)</code> vrai si c&rsquo;est un répertoire</li>
+<li><code>S_ISCHR(m)</code> vrai si c&rsquo;est un device de type caractère</li>
+<li><code>S_ISBLK(m)</code> vrai si c&rsquo;est un device de type bloc</li>
+<li><code>S_ISFIFO(m)</code> vrai si c&rsquo;est une fifo</li>
+<li><code>S_ISLNK(m)</code> vrai si c&rsquo;est un lien symbolique</li>
+<li><code>S_ISSOCK(m)</code> vrai si c&rsquo;est une socket</li>
+</ul>
+<p>Pour tester les autorisations d&rsquo;accès on peut utiliser <code>int access(const char* pathname, int mode);</code>, les modes disponibles sont <code>R_OK,W_OK,X_OK,F_OK</code>. Cela
+retourne <code>-1</code> en cas d&rsquo;erreur ou si la demande est interdite, <code>0</code> sinon.</p>
+<h2 id="créer-un-fichier">Créer un fichier</h2>
+<p>Pour créer un fichier <code>int mknod(const char *pathname, mode_t mode, dev_t dev);</code>. <code>Mode</code> est l&rsquo;un des modes possibles de fichier, avec un ou logique les
+permissions. Par exemple <code>S_IFREG|S_IRUSR|S_IXUSR</code> pour un fichier normal</p>
+<h2 id="créer--détruire-des-liens">Créer / Détruire des liens</h2>
+<p>Pour créer un nouveau lien vers un fichier <code>int link(const char *oldpath, const char *newpath);</code>. Il nest pas possible de faire de nouveaux liens vers des
+répertoires. Pour détruire un lien en dur (et le fichier si c&rsquo;est le seul lien),
+<code>int unlink(const char *pathname);</code>.</p>
+<h2 id="ouvrircréer-un-fichier">Ouvrir/Créer un fichier</h2>
+<p>Pour ouvrir et créer un nouveau fichier <code>int open(const char* pathname, int flags ...); int creat(const char* pastname, mode_t mode);</code></p>
+<h2 id="fermer-un-fichier">Fermer un fichier</h2>
+<p>Pour fermer un fichier <code>int close(int fd);</code></p>
+<p>Ferme un descripteur de fichier, lorsqu&rsquo;il s&rsquo;agit du dernier descripteur de
+fichier pointant sur un fichier donné</p>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+  </div></aside>
+<iframe src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=2&amp;bgcolor=%23A79B8E&amp;ctz=Europe%2FParis&amp;src=Z3J1azRqOXI3czdwNGV2cjVidjc4NG1xMHVwYWJwNTVAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="380" height="1000" frameborder="0" scrolling="no"></iframe>
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

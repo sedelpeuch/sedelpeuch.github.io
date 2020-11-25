@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Qubits et mécanique quantique</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
+  <meta name="author" content="Eirbot">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/images/banner/compilation.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Qubits et mécanique quantique</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Qubits et mécanique quantique</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> October 7, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/quantique">Quantique</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<h2 id="qubits-et-observables">Qubits et observables</h2>
+<p>Les états du système quantique associé à un qubit sont les éléments d&rsquo;un espce à
+deux dimensions, engendrés par les états de la base $\vert 0 \rangle$ et
+$\vert 1 \rangle$. Tout état sera donc de la forme</p>
+<p>$ \vert \psi \rangle = \alpha \vert 0 \rangle + \beta \vert 1 \rangle$</p>
+<p>On retrouve donc là spécificité des qubits de pouvoir se trouver dans un état de
+<strong>superposition</strong>. Les coefficients $\alpha$ et $\beta$ sont en fait des
+amplitudes de probabilités et doivent satisfaire</p>
+<p>$|\alpha|^2 + |\beta|^2 = 1$</p>
+<ol>
+<li>Par une fonction $\psi(r,t)$ (formalisme des fonctions d&rsquo;ondes et de la
+mécanique ondulatoire)</li>
+<li>Par une matrice (notamment dans le cas d&rsquo;espaces de dimensions finies)</li>
+</ol>
+<p>Les états $\vert 0 \rangle$ et $\vert 1 \rangle$ sont les états propres
+d&rsquo;une grandeur observable. Si le système physique est un atome l&rsquo;observable est
+l'énergie de l&rsquo;atome et les états $\vert 0 \rangle$ et $\vert 1 \rangle$
+correspondent aux états $\vert g \rangle$ et $\vert e \rangle$ (état
+fondamental et premier état excité) de l&rsquo;atome. Dans le cas où le système
+quantique est le photon l&rsquo;observable est la polarisation qui peut prendre les
+deux états $\vert x \rangle$ et $\vert y \rangle$. Comme ces états forment
+une base dans l&rsquo;espace des états du qubit , on a $\forall \vert \psi \rangle
+\in \mathcal{E} ; \vert \psi \rangle = \alpha \vert 0 \rangle + \beta \vert 1
+\rangle$. Si le système est dans l'état $\vert \psi \rangle = \alpha \vert 0
+\rangle + \beta \vert 1 \rangle$ le résultat de la mesure sera obtenue avec une
+probabilité dont l&rsquo;amplitude est définie par</p>
+<ul>
+<li>$\alpha = \langle 0 \vert \psi \rangle$ amplitude de probabilité d&rsquo;obtenir
+l'état $\vert 0 \rangle$</li>
+<li>$\beta = \langle 1 \vert \psi \rangle$ amplitude de probabilité d&rsquo;obtenir
+l'était $\vert 1 \rangle$ amplitude de probabilité d&rsquo;obtenir l'état $\vert
+1 \rangle$</li>
+</ul>
+<h2 id="maniuplations-de-qubits">Maniuplations de qubits</h2>
+<p>La mesure altère en général l'état d&rsquo;un qubit puisqu&rsquo;il en sort nécessairement
+dans un été propre de l&rsquo;observable mesuré. Par contre l&rsquo;environnement peut agir
+sur le qubit pour faire évoluer son état tant qu&rsquo;aucune mesure (aucune &ldquo;prise
+d&rsquo;information&rdquo;) n&rsquo;est réalisée.</p>
+<h2 id="opérations-logiques-sur-un-qubit">Opérations logiques sur un qubit</h2>
+<p>Nous allons associer à l'évolution de l'état du qubit les opérations logiques
+nécessaires à la mise en oeuvre des d&rsquo;algorithmes.</p>
+<h3 id="portes-logiques-classiques">Portes logiques classiques</h3>
+<p>Par exemple les portes logiques classiques agissant sur un bit sont résumées
+dans le tableau ci-dessous</p>
+<table>
+<thead>
+<tr>
+<th align="left">Porte logique</th>
+<th align="left">0</th>
+<th align="left">1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">EFFACE</td>
+<td align="left">0</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">IDENTITE</td>
+<td align="left">0</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">NON</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">SET</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+<p>toute matrice unitaire est susceptible de représenter une porte logique à un
+qubit. Différence avec les bits classiques, pour les qubits il existe donc une
+famille continue de transformations qui sont représentées par le matrices
+unitaires.</p>
+<h3 id="exemples---lopérateur-not">Exemples - l&rsquo;opérateur NOT</h3>
+<p>L&rsquo;opérateur NON est représenté par la matrice carrée</p>
+<p>$ X = \begin{pmatrix} 0 &amp; 1 \ 1 &amp; 0 \end{pmatrix}$</p>
+<h3 id="exemples---la-porte-y">Exemples - la porte Y</h3>
+<p>La porte $Y$ définie par la matrice</p>
+<p>$ Y = \begin{pmatrix} 0 &amp; -i \ i &amp; 0 \end{pmatrix}$</p>
+<h3 id="exemples---la-porte-z-opérateur-de-flip">Exemples - la porte Z (opérateur de flip)</h3>
+<p>La porte $Z$ définie par la matrice</p>
+<p>$ Z = \begin{pmatrix} 1 &amp; 0 \ 0 &amp; -1 \end{pmatrix}$</p>
+<h3 id="exemples---la-porte-phi">Exemples - la porte $\phi$</h3>
+<p>La porte $\phi$ définie par la matrice</p>
+<p>$R_\phi = \begin{pmatrix} 1 &amp; 0 \ 0 &amp; e^{i \phi} \end{pmatrix}$</p>
+<p>Effet : rotation de la phase du vecteur $\vert 1 \rangle$ par un angle
+$\phi$ : $R_\phi \vert 0 \rangle = \vert 0 \rangle$, $R_\phi \vert 1
+\rangle = e^{i \phi} \vert 1 \rangle$.</p>
+<h3 id="exemples---la-porte-de-hadamard">Exemples - la porte de Hadamard</h3>
+<p>Porte particulièrement important en info quantique. La porte de Hadamard définie
+par la matrice</p>
+<p>$H = \dfrac{1}{\sqrt{2}}(X+Z) = \dfrac{1}{\sqrt{2}} \begin{pmatrix} 1 &amp; 1 \ 1
+&amp; -1 \end{pmatrix}$</p>
+<p>On a : $\vert 0 \rangle \rightarrow \dfrac{1}{\sqrt{2}}(\vert 0 \rangle ° \vert
+1 \rangle)$, $\vert 1 \rangle \rightarrow \dfrac{1}{\sqrt{2}}(\vert 0
+\rangle - \vert 1 \rangle)$</p>
+<p>Si on applique $H$ à l'état initial $\vert 0 \rangle$ ou à l'état initial
+$\vert 1 \rangle$ et puis on mesure, on a des probabilités égales pour trouver
+$\vert 0 \rangle$ ou $\vert 1 \rangle$.</p>
+<p>Interférence et porte de Hadamard effet analogue à l&rsquo;interférence des ondes</p>
+<p>$H ( \dfrac{1}{\sqrt{2}}(\vert 0 \rangle + \vert 1 \rangle) =
+\dfrac{1}{\sqrt{2}} H \vert 0 \rangle + \dfrac{1}{\sqrt{2}} H \vert 1 \rangle =
+\vert 0 \rangle )$</p>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+  </div></aside>
+<iframe src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=2&amp;bgcolor=%23A79B8E&amp;ctz=Europe%2FParis&amp;src=Z3J1azRqOXI3czdwNGV2cjVidjc4NG1xMHVwYWJwNTVAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="380" height="1000" frameborder="0" scrolling="no"></iframe>
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

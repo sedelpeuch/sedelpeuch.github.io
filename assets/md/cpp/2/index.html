@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Classes</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
+  <meta name="author" content="Eirbot">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/images/banner/compilation.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Classes</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Classes</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> November 4, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/c&#43;&#43;">C&#43;&#43;</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<h2 id="définition-et-déclaration">Définition et déclaration</h2>
+<p>Une classe consiste en un regroupement de méthodes et d&rsquo;attributs</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NomClasse</span>{
+attributes
+...
+methodes
+...
+};
+</code></pre></div><p>L&rsquo;ordre des déclarations ne compte pas. La classe est une description des
+données internes et comportements qu&rsquo;aura une instance générée par cette classe.</p>
+<p>L&rsquo;<strong>instanciation</strong> (ou réification), c&rsquo;est à dire la création d&rsquo;un objet
+instance (ressource) à partir de l&rsquo;objet classe (description / générateur) peut
+se faire de façon dynamique</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">A <span style="color:#f92672">*</span>a<span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> A();
+</code></pre></div><p>ou automatique</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">A a;
+</code></pre></div><p>Dans les deux cas, une ressource (adresse mémoire) est associée à l&rsquo;instance.
+Dans l&rsquo;allocation dynamique, cette ressource est située dans le tas, dans le cas
+automatique elle est située dans la pile.</p>
+<h2 id="visibilité-friend-struct">Visibilité, friend, struct</h2>
+<p>On contrôle l&rsquo;accès au méthodes et attributs pour une sous-classe ou un objet
+extérieur avec <code>public, protected, private</code></p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">la classe</th>
+<th align="left">sous-classe</th>
+<th align="left">extérieur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">public</td>
+<td align="left">oui</td>
+<td align="left">oui</td>
+<td align="left">oui</td>
+</tr>
+<tr>
+<td align="left">protected</td>
+<td align="left">oui</td>
+<td align="left">oui</td>
+<td align="left">non</td>
+</tr>
+<tr>
+<td align="left">private</td>
+<td align="left">oui</td>
+<td align="left">non</td>
+<td align="left">non</td>
+</tr>
+</tbody>
+</table>
+<p>La visibilité par défaut dans une classe est private. On modifie la visibilité
+de la façon suivante</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NomClasse</span>{
+<span style="color:#75715e">//attributs et méthodes privés
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+<span style="color:#75715e">//attributs et méthodes publiques
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+<span style="color:#75715e">//attributs et méthodes protégés
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>On peut à tout moment changer la visibilité, celle-ci sera appliquée à toutes
+les déclarations suivantes jusqu&rsquo;au prochaine changement de visibilité.</p>
+<h3 id="les-structures">Les structures</h3>
+<p>Les structures se déclarent comme en C. En C++, les structures sont des classes
+dont la visibilité par défaut est <code>public</code>. Par conséquent, elles peuvent
+contenir des attributs et des méthodes. Deux noms de type sont associés à la
+structure : struct Nom et Nom.</p>
+<p>L&rsquo;instanciation des structures se fait comme pour les classes</p>
+<p>allocation dynamique</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span>{...};
+A <span style="color:#f92672">*</span>a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> A();
+A <span style="color:#f92672">*</span>a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span>();
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">*</span>a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span>();
+</code></pre></div><p>allocation automatique</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span>{...};
+A a;
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span> a;
+</code></pre></div><h3 id="friend">Friend</h3>
+<p>Dans une classe <code>A</code>, le mot clé <code>friend</code> permet de donner à une fonction ou une
+autre classe les mêmes droits qu&rsquo;une méthode de <code>A</code>. Une fonction <code>f</code> amie d&rsquo;une
+classe <code>A</code> pourra accéder aux attributs privés de <code>A</code> ainsi qu&rsquo;aux attributs
+privés de <code>A</code> ainsi qu&rsquo;aux attributs protected d&rsquo;une des classes parents de <code>A</code>.</p>
+<p>La déclaration se fait dans la classe en indiquant soit le prototype de la
+fonction amié soit le nom de la classe amie</p>
+<p>Classe amie</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NomClasse</span>{
+...; <span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NomClasseAmie</span>; ...
+};
+</code></pre></div><p>Fonction amie</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NomClasse</span>{
+...; <span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fonctionAmie</span>(<span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">char</span>, NomClasse); ...
+};
+</code></pre></div><p>la visibilité courante n&rsquo;importe pas pour déclarer une classe ou fonction amie.</p>
+<h2 id="attributs-et-méthodes">Attributs et méthodes</h2>
+<p>Une classe est un regroupement d&rsquo;attributs, propriétés interne qu&rsquo;aura une
+instance de la classe, et de méthodes, comportements qu&rsquo;aura une instance. Ces
+attributs sont déclarés à l&rsquo;intérieur de la classe. L&rsquo;implémentation des
+méthodes peut se faire au moment de la déclaration ou à l&rsquo;extérieur de la
+classe. On l'écrira dans la classe pour</p>
+<ul>
+<li>les classes template</li>
+<li>les classes à usage locale au fichier</li>
+<li>l&rsquo;inlining</li>
+</ul>
+<p>Sinon on écrit un fichier entête <code>NomClasse.hpp</code> et un fichier source
+<code>NomClasse.cpp</code></p>
+<h3 id="accès-aux-attributs">Accès aux attributs</h3>
+<p>L&rsquo;accès aux champs d&rsquo;une classe se fait à l&rsquo;aide de <code>.</code> ou <code>-&gt;</code> selon que l&rsquo;on
+dispose d&rsquo;une instance de classe ou d&rsquo;un pointeur sur une instance de classe.
+Tout membre de classe a pour nom <code>NomClasse::membre</code>. Lorsqu&rsquo;il n&rsquo;y a pas
+d&rsquo;ambiguïté, <code>NomClasse::</code> peut être omis.</p>
+<p>Cas automatique</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">ClasseA a;
+a.i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">//i est un attribut public de ClasseA
+</span><span style="color:#75715e"></span>a.ClasseA<span style="color:#f92672">::</span>i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; <span style="color:#75715e">//idem
+</span><span style="color:#75715e"></span>a.methode(); <span style="color:#75715e">//appel de méthode 
+</span><span style="color:#75715e"></span>a.ClasseA<span style="color:#f92672">::</span>methode(); <span style="color:#75715e">//idem
+</span></code></pre></div><p>Dans ce cas l&rsquo;instance se trouve dans la <strong>pile</strong>.</p>
+<p>Cas dynamique</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">ClasseA <span style="color:#f92672">*</span>a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClasseA();
+a<span style="color:#f92672">-&gt;</span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; 
+a<span style="color:#f92672">-&gt;</span>ClasseA<span style="color:#f92672">::</span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+a<span style="color:#f92672">-&gt;</span>methode();
+a<span style="color:#f92672">-&gt;</span>ClasseA<span style="color:#f92672">::</span>methode();
+</code></pre></div><p>Dans ce cas l&rsquo;instance est allouée dynamique dans le tas.</p>
+<h2 id="this">This</h2>
+<p>Le mot clé <code>this</code> permet, lors d&rsquo;un appel de méthode, de faire référence à
+l&rsquo;instance source (site d&rsquo;appel). Le type de la variable <code>this</code> est <code>NomDeClasse const * </code> : c&rsquo;est un pointeur.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
+    <span style="color:#66d9ef">int</span> attributPrive;
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    voir setAttribut(<span style="color:#66d9ef">int</span> valeur){
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>attributPrive<span style="color:#f92672">=</span>valeur;
+    }
+}
+</code></pre></div><p>Lorsqu&rsquo;il n&rsquo;y a pas de variable locale de même nom que l&rsquo;attribut, on peut
+omettre this.</p>
+<h3 id="opérateur-de-portée">Opérateur de portée</h3>
+<p>L&rsquo;opérateur de portée <code>::</code> peut être utilisé pour indiquer précisément la
+variable que l&rsquo;on souhaite manipuler.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> lunatique;
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
+    <span style="color:#66d9ef">char</span> lunatique;
+    <span style="color:#66d9ef">public</span> <span style="color:#f92672">:</span>
+        <span style="color:#66d9ef">void</span> printAllVariable(<span style="color:#66d9ef">double</span> lunatique){
+            lunatique;
+            A<span style="color:#f92672">::</span>lunatique; <span style="color:#75715e">// fait référence à la variable locale
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>A<span style="color:#f92672">::</span>lunatique; <span style="color:#75715e">// fait référence à l&#39;attribut d&#39;instance 
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>lunatique; <span style="color:#75715e">// fait référence à l&#39;attribut d&#39;instance
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">::</span>lunatique; <span style="color:#75715e">// fait référence à la variable globale
+</span><span style="color:#75715e"></span>        }
+}
+</code></pre></div><h2 id="espace-de-nom">Espace de nom</h2>
+<p>Les espaces de nom permettent de regrouper un ensemble d'éléments (classes,
+variables, globales, fonctions,&hellip;). Les espaces de nom sont utilisés pour
+structurer le code et pour éviter les problèmes de collisions. Pour déclarer un
+espace de nom on utilise le mot clé <code>namespace</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> Nom{
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
+        ...
+    };
+    <span style="color:#66d9ef">int</span> i;
+    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fonction</span>();
+} <span style="color:#75715e">// fin de l&#39;espace de nom
+</span></code></pre></div><p>Lors de l'écriture du code des fonctions ou des méthodes des classes dans le
+fichier .cpp on peut soit ré-ouvrir l&rsquo;espace de nom, soit indiquer explicitement
+le nom de l&rsquo;objet avec l&rsquo;opérateur de portée.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> tec{
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
+        <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+            <span style="color:#66d9ef">void</span> m();
+    };
+};
+</code></pre></div><p>Lors de l'écriture du code des fonctions ou des méthodes des classes dans le
+fichier .cpp on peut soit ré-ouvrir l&rsquo;espace de nom, soit indiquer explicitement
+le nom de l&rsquo;objet avec l&rsquo;opérateur de portée.</p>
+<h3 id="espace-de-noms--using">Espace de noms : using</h3>
+<p>Le mot clé <code>using</code> permet de rendre accessible tout ou partie d&rsquo;un espace de nom
+dans une fonction, un espace nom ou tout le code</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> spatial{
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Navette</span>{};
+}
+
+<span style="color:#66d9ef">namespace</span> missions{
+    spatial<span style="color:#f92672">::</span>Navette n;
+}
+
+spatial<span style="color:#f92672">::</span>Navette n;
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">starWars</span>(){
+    spatial<span style="color:#f92672">::</span>Navette n;
+}
+</code></pre></div><p>Le <code>using</code> crée des synonymes locaux entre les espaces de nom :</p>
+<p>example.hpp</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> math{
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> pi<span style="color:#f92672">=</span><span style="color:#ae81ff">3.14</span>;
+}
+<span style="color:#66d9ef">namespace</span> cercle{
+    <span style="color:#66d9ef">using</span> math<span style="color:#f92672">::</span>pi;
+    <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">surf</span>(<span style="color:#66d9ef">double</span>);
+}
+</code></pre></div><p>exemple.cpp</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;exemple.hpp&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">double</span> cercle<span style="color:#f92672">::</span>surf(<span style="color:#66d9ef">double</span> r){
+    <span style="color:#66d9ef">return</span> pi<span style="color:#f92672">*</span>r<span style="color:#f92672">*</span>r;
+}
+</code></pre></div><p>Permet de remplacer facilement une référence externe par une autre. Permet aussi
+l&rsquo;introduction de modularité sans modification profonde du code.</p>
+<h2 id="constructeur">Constructeur</h2>
+<p>Un constructeur est une méthode de classe qui est appelée après la reservation
+des ressources nécessaires à la création d&rsquo;une instance de la classe et qui a
+pour objectif d&rsquo;initialiser les attributs de cette instance.</p>
+<h3 id="définition">Définition</h3>
+<p>Une constructeur est une méthode de classe qui est appelée après la réservation
+des ressources nécessaires à la créations d&rsquo;une instance de la classe et qui a
+pour objectif d&rsquo;initialiser les attributs de cette instance. En C++, le
+constructeur est une méthode sans valeur de retour de même nom que la classe. On
+appelle constructeur par défaut le constructeur ne prenant aucun argument. Dans
+le cas où la classe ne comporte aucun constructeur, le compilateur ajoute un
+constructeur par défaut. Celui-ci n&rsquo;est plus présent à partir du moment où l&rsquo;on
+a écrit au moins un constructeur.</p>
+<h3 id="par-recopie">Par recopie</h3>
+<p>Le constructeur par recopie est le constructeur qui permet d&rsquo;instancier une
+classe à partir d&rsquo;une autre instance de cette classe. Ce constructeur est
+utilisé entre autre lors de la transmission de paramètres à une fonction et lors
+d&rsquo;une valeur de retour de fonction</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">A <span style="color:#a6e22e">f</span>(A p){<span style="color:#66d9ef">return</span> p;}
+...
+A a;
+f(a)
+</code></pre></div><ul>
+<li>La variable <code>p</code>, locale à la fonction <code>f</code>, est allouée automatiquement et
+instanciée avec le constructeur par recopie à partir de l&rsquo;instance <code>a</code>.</li>
+<li>La valeur de retour de <code>f</code> est instanciée par recopie de la valeur locale.</li>
+</ul>
+<p>L&rsquo;idée est donc d&rsquo;avoir un constructeur dans la classe <code>A</code> qui prend une
+instance de type <code>A</code> en argument</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+        A(A a);
+};
+</code></pre></div><p>Le problème est que pour instancier la variable locale au constructeur il nous
+faut le constructeur par recopie. La solution repose sur l&rsquo;utilisation des
+références</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+        A(<span style="color:#66d9ef">const</span> A<span style="color:#f92672">&amp;</span>);
+        A(A <span style="color:#f92672">&amp;</span>);
+};
+</code></pre></div><h4 id="références">Références.</h4>
+<p>Une référence peut être vue comme un &ldquo;alias&rdquo; sur une instance, une référence
+doit obligatoirement être initialisée au moment de sa création et ne peut
+référencer une autre instance par la suite.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> i:
+<span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>r<span style="color:#f92672">=</span>i;
+</code></pre></div><p>Après l&rsquo;initialisation :</p>
+<ul>
+<li>les variables <code>i</code> et <code>r</code> représentent la même donnée</li>
+<li>l&rsquo;adresse de <code>r</code> est égale à l&rsquo;adresse de <code>i</code></li>
+</ul>
+<p>Contrairement à un pointeur, une référence &ldquo;pointe&rdquo; toujours sur une instance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swap</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>i, <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>j){
+    <span style="color:#66d9ef">int</span> k<span style="color:#f92672">=</span>i;
+    i<span style="color:#f92672">=</span>j;
+    j<span style="color:#f92672">=</span>k;
+}
+
+<span style="color:#66d9ef">int</span> a<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, b<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>;
+swap(a,b);
+<span style="color:#66d9ef">int</span> t[<span style="color:#ae81ff">5</span>];
+swap(t[<span style="color:#ae81ff">1</span>],t[<span style="color:#ae81ff">2</span>]);
+</code></pre></div><h4 id="const">Const.</h4>
+<p>Le mot clé <code>const</code> sert à indiquer qu&rsquo;une donnée ne peut être modifiée. Une
+variable déclaré <code>const</code> doit être initialisée lors de sa déclaration. Lorsque
+l&rsquo;on dispose d&rsquo;une référence constante sur une instance de classe, comment
+garantir que l&rsquo;appel à une méthode de cette instance ne va pas modifier
+l&rsquo;instance ?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
+    <span style="color:#66d9ef">int</span> i;
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span> 
+        <span style="color:#66d9ef">int</span> get(){<span style="color:#66d9ef">return</span> i;}
+        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">set</span>(<span style="color:#66d9ef">int</span> i){
+            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>i<span style="color:#f92672">=</span>i;
+        }
+};
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">const</span> A <span style="color:#f92672">&amp;</span>a){
+    a.get();
+    a.set(<span style="color:#ae81ff">0</span>);
+}
+
+A b;
+f(b);
+</code></pre></div><p>La référence est constante (l&rsquo;instance ne doit pas être modifiée) mais l&rsquo;appel
+de méthode modifie l&rsquo;objet ! On distingue deux types de méthodes : celles qui
+sont susceptibles de modifier l&rsquo;objet et celles qui ne modifient pas l&rsquo;objet.</p>
+<p>Une méthode de classe peut être typée <code>const</code>. Cela indique que dans cette
+méthode le type de <code>this</code> est <code>const NomClasse const *</code>. L&rsquo;ensemble des
+attributs de la classe deviennent alors constants eux aussi. Lorsque l&rsquo;on
+dispose d&rsquo;une variable constante sur une instance, seules les méthodes indiquées
+comme constantes peuvent être appelées sur cette instance. Une méthode <code>const</code>
+peut appeler sur tout type de variable tandis qu&rsquo;une méthode non const ne peut
+être appelée que sur une variable non constante.</p>
+<p>Lors de l'écriture d&rsquo;une méthode, on ne doit pas se demander si la méthode doit
+être const mais plutôt si on a besoin qu&rsquo;elle ne soit pas const.</p>
+<p>Les arguments de fonctions (non primitifs) seront des références constantes sauf
+si l&rsquo;on veut modifier l&rsquo;argument.</p>
+<p>Il est possible de surcharger une méthode en utilisant le <code>const</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+        <span style="color:#66d9ef">void</span> m(){
+            printf(<span style="color:#e6db74">&#34;Le site d&#39;appel n&#39;est pas constant&#34;</span>);
+        }
+        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m</span>() <span style="color:#66d9ef">const</span>{
+            printf(<span style="color:#e6db74">&#34;Le site d&#39;appel est constant&#34;</span>)
+        }
+};
+
+A a;
+<span style="color:#66d9ef">const</span> A <span style="color:#f92672">&amp;</span>b;
+A <span style="color:#66d9ef">const</span> <span style="color:#f92672">*</span>p;
+a.m();
+b.m();
+p<span style="color:#f92672">-&gt;</span>m();
+</code></pre></div><p>Le <code>const</code> fait partie de la signature de la méthode, il doit être présent dans
+le <code>.cpp</code> et le <code>.hpp</code>.</p>
+<h2 id="destructeur">Destructeur</h2>
+<p>Le destructeur est une méthode d&rsquo;instance n&rsquo;ayant pas de type de retour et ayant
+pour nom : <code>~NomClasse</code>. Toute classe ayant allouée dynamiquement ces attributs
+devra écrire un destructeur. Si l&rsquo;instance a été allouée dynamiquement alors
+l&rsquo;appel au destructeur est déclenché par l&rsquo;opérateur delete. Si l&rsquo;instance a été
+allouée automatiquement alors l&rsquo;appel au destructeur se fait à la sortie du bloc
+d&rsquo;instructions qui contient cette instance. Les ressources mémoires associées à
+l&rsquo;instance sont libérées après l&rsquo;appel au destructeur.</p>
+<h2 id="static">Static</h2>
+<p>Une variable statique est une variable dont la durée de vie est égale à celle du
+programme et dont la portée peut être réduite à un fichier, une classe, une
+fonction ou méthode selon l&rsquo;endroit où elle est déclarée.</p>
+<p>Dans le contexte des classes, une méthode publique statique est équivalente à
+une fonction amie (sauf pour la portée). On pourra utiliser les méthodes
+statiques en fonction avec un constructeur privé On peut utiliser le mot clé
+<code>static</code> en jonction avec <code>const</code> afin de définir des propriétés constantes de
+classes. Les variables <code>static</code> et <code>const</code> sont les seules à pouvoir être
+initialisées lors que la déclaration dans le fichier .hpp.</p>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+  </div></aside>
+<iframe src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=2&amp;bgcolor=%23A79B8E&amp;ctz=Europe%2FParis&amp;src=Z3J1azRqOXI3czdwNGV2cjVidjc4NG1xMHVwYWJwNTVAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="380" height="1000" frameborder="0" scrolling="no"></iframe>
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

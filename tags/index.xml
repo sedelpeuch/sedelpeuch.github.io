@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Semestre 7</title>
+    <link>https://eirbot.github.io/tags/</link>
+    <description>Recent content in Tags on Semestre 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Wed, 25 Nov 2020 11:07:10 +0600</lastBuildDate>
+    
+	<atom:link href="https://eirbot.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://eirbot.github.io/tags/c&#43;&#43;/</link>
+      <pubDate>Wed, 25 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Programmation Système</title>
+      <link>https://eirbot.github.io/tags/programmation-syst%C3%A8me/</link>
+      <pubDate>Thu, 05 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/tags/programmation-syst%C3%A8me/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Quantique</title>
+      <link>https://eirbot.github.io/tags/quantique/</link>
+      <pubDate>Wed, 21 Oct 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/tags/quantique/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Système de Gestion de Base de Données</title>
+      <link>https://eirbot.github.io/tags/syst%C3%A8me-de-gestion-de-base-de-donn%C3%A9es/</link>
+      <pubDate>Wed, 14 Oct 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/tags/syst%C3%A8me-de-gestion-de-base-de-donn%C3%A9es/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Compilation</title>
+      <link>https://eirbot.github.io/tags/compilation/</link>
+      <pubDate>Tue, 13 Oct 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/tags/compilation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>POO</title>
+      <link>https://eirbot.github.io/tags/poo/</link>
+      <pubDate>Thu, 01 Oct 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/tags/poo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TCP-IP</title>
+      <link>https://eirbot.github.io/tags/tcp-ip/</link>
+      <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/tags/tcp-ip/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

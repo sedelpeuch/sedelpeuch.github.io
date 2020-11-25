@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Graphe - Couplage</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
+  <meta name="author" content="Eirbot">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Graphe - Couplage</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Graphe - Couplage</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<p>Cours inspiré des cours intégrés dispensés par <a href="https://www.labri.fr/index.php?n=Annuaires.Profile&amp;id=Hanusse_ID1084917714">Nicolas
+Hanusse</a>
+et du
+<a href="https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf">polycopié</a>
+de <a href="https://www.labri.fr/index.php?n=Annuaires.Profile&amp;id=Lapoire_ID1084917727">Denis Lapoire</a></p>
+<p>Le problème posé à l&rsquo;aviation anglaise durant la bataille d&rsquo;angleterre état de pouvoir former un nombre maximum de couples de pilotes parmi un ensemble de pilotes venant des quatre coins du monde. On confiait à deux pilotes les commandes d&rsquo;un avion à l&rsquo;unique condition qu&rsquo;ils partageaint une même langue. Un grand nombre de pilotes parlaient plusieurs langues.</p>
+<p>Ce problème se formalise aisément en un problème de graphes, qui a pour nom le problème du couplage maximum.</p>
+<h2 id="i-classfas-fa-project-diagrami-définition"><i class="fas fa-project-diagram"></i> Définition</h2>
+<p>Les graphes que nous considérerons dans ce chaptire sont non orientés. Afin de simplifier l'étuder, nous pourrons supposer qu&rsquo;ils sont dépourvus de boucle</p>
+<p>Un <code>couplage</code> d&rsquo;un graphe non orienté est un ensemble d&rsquo;arêtes 2 à 2 non adjacentes et qui ne soient pas des boucles. Un sommet est saturé dans un couplage $D$ si il est incident à l&rsquo;une des arêtes de $D$. Un couplage est</p>
+<ul>
+<li>maximum si il est de cardinalité maximale parmi tous les couplages</li>
+<li>parfait si tout sommet est saturé</li>
+</ul>
+<p>Le problème du couplage maximum peut ainsi être formalisé.</p>
+<h2 id="i-classfas-fa-project-diagrami-première-caractérisation-dun-couplage-maximum"><i class="fas fa-project-diagram"></i> Première caractérisation d&rsquo;un couplage maximum</h2>
+<p>Une condition suffisante pour qu&rsquo;un couplage ne soit pas maximum est l&rsquo;existence de deux sommets insaturés adjacents, voir l&rsquo;existence de deux sommets insaturés reliés par un chemin alternant des arcs du couplage et des arcs n&rsquo;appartenant pas à ce couplage. Une propriété remarquable des couplages est que cette condition est non seulement suffisante mais aussi nécessaire. Cette section est consacrée à cette caractérisation.</p>
+<p>Un <code>chemin alterné</code> $w$ relativement à un couplage $K$ d&rsquo;un graphe $G$ est un chemin élémentaire à extrémités distinctes telle que pour toute arête $e$ de $w$ et pour toute arête $f$ succédant immédiatement $e$ sur $w$ on ait $e \in K \Leftrightarrow f \notin K$. Un chemin alterné est augmentant relativement à $K$ si ses deux extrémités sont insaturés par $K$.</p>
+<p>La différence symétrique $(A-B) \cup (B-A)$ de deux ensembles $A$ est $B$ est notée $A \Delta B$</p>
+<p>Soit $w$ un chemin alterné relativement à un couplage $K$ d&rsquo;un graphe $G$. Si chaque extrémité de $w$ est soit insaturé soit incidente à une arête de $K$ appartenant à $w$, alors $K \Delta E(w)$ est un couplage de $G$</p>
+<p>Si $K$ et $K'$ sont deux couplages d&rsquo;un graphe $G$, alors chaque composante connexe $K \Delta K'$ est de l&rsquo;un des trois types suivant</p>
+<ol>
+<li>un sommet isolé</li>
+<li>un cycle élémentaire paire à arêtes alternativement dans $K$ et $K'$</li>
+<li>un chemin élémentaire à arêtes alternativement dans $K$ et $K'$</li>
+</ol>
+<p>Pour tout couplage $K$ d&rsquo;un graphe $G$, les deux assertions suivantes sont équivalentes</p>
+<ol>
+<li>$K$ est maximum</li>
+<li>il n&rsquo;existe aucun chemin alterné augmentant</li>
+</ol>
+<h2 id="i-classfas-fa-project-diagrami-caractérisation-algorithmique"><i class="fas fa-project-diagram"></i> Caractérisation algorithmique</h2>
+<p>La solution algorithmique requiert la définition de ce qu&rsquo;est un arbre alterné, extension aux arbres de la notion d&rsquo;alternance définie sur les chemmins.</p>
+<p>Un <code>arbre alterné</code> selon un graphe $G=(V,E)$ et un couplage $K$ de $G$ est un triplet $(U,D,r)$ tel que</p>
+<ul>
+<li>$(U,D)$ est un arbre qui est sous-graphe de $G$</li>
+<li>$r$ est un sommet de $U$ appelé sa racine et est insaturé selon $K$</li>
+<li>toute feuille de $T$ est paire c&rsquo;est à dire est à distance paire de $r$</li>
+<li>tout sommet pair de $T$ autre que la racine est adjacent à son père (impair) selon une arête de $D \cap K$</li>
+</ul>
+<p>Afin de simplifier les énoncés, un graphe $(G,K)$ muni d&rsquo;un de ses couplages sera appelé un graphe couplé, un graphe $(G,K,T)$ muni d&rsquo;un de ses couplages et d&rsquo;un arbre alterné sera appelé un arbre couplé arboré</p>
+<p>Pour résoudre le problème Couplage maximum, on utilise deux fonctions auxiliaires CMC et CMCA résolvant les deux problèmes suivants</p>
+<pre><code>Couplage Maximum d'un graphe couplé 
+Entrée : un graphe couplé (G,J)
+Sortie : un couplage maximum K de G tel que K != J =&gt; |K| &gt; |J|
+
+Couplage Maximum d'un graphe couplé arboré 
+Entrée : un graphe couplé arboré (G,J,T)
+Sortie : un couplage maximum K de G tel que K != J =&gt; |K| &gt; |J|
+</code></pre><p>Le lien entre ces problèmes est immédiat :</p>
+<ul>
+<li>une définition de CM résolvant Couplage Maximum est simplement</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">fonction CM(G:graphe)<span style="color:#f92672">:</span>couplage
+  retourner CMC(G,<span style="color:#ae81ff">0</span>)
+</code></pre></div><ul>
+<li>une définition de CMC résolvant Couplage Maximum2 est simplement</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">fonction CMC((G,K)<span style="color:#f92672">:</span>graphe couplé)<span style="color:#f92672">:</span>couplage
+  si il existe au plus un sommet instaturé selon K
+    retourner K
+  sinon
+    r<span style="color:#f92672">=</span>instaturé(G,K)
+    T<span style="color:#f92672">=</span>arbreAlterné1Sommet(r)
+    retourner CMCA(G,K,T)
+</code></pre></div><p>L'écrirture de CMCA nécessite quelques notations et définitions préalables</p>
+<p>Le graphe obtenu à partir d&rsquo;un graphe $G$ en fusionnant une partie de sommets $Y \subseteq V_G$ est noté dans cette section $G \dot Y$. On suppose en outre que les boucles sont supprimées.</p>
+<p>LE sous graphe d&rsquo;un graphe $G$ induit par un ensemble de sommets $U \subseteq V_G$ est noté $G|U$. L&rsquo;expression $G-U$ dénote le sous-graphe $G|(V-U)$</p>
+<p>Une <code> orbite</code> d&rsquo;un graphe couplé arboré $(G,K,T)$ est une arête $e$ incidente à deux sommets pairs de $T$. Nous noterons</p>
+<ul>
+<li>$G^e$ le graphe obtenu à partir de $G$ en fusionnant tous les sommets de $C$ (c&rsquo;est à dire $G \dot C$)</li>
+<li>$K^e$ le couplage obtneu à partir de $K$ en supprimant toutes les arêtes dont les deux extrémités appartiennent à $C$. Clairement $K^e$ est un couplage de $G^e$</li>
+<li>$T^e$ l&rsquo;arbre obtenu à partir de $T$ en fusionnant tous les sommets de $C$ (c&rsquo;est à dire $T \dot C$). Clairement $T^e$ est un arbre alterné de $(G^e,K^e)$ où $C$ désigne l&rsquo;ensemble des sommets de l&rsquo;unique circuit élementaire du graphe $T$ augmenté de l&rsquo;arête $e$.</li>
+</ul>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+  </div></aside>
+<iframe src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=2&amp;bgcolor=%23A79B8E&amp;ctz=Europe%2FParis&amp;src=Z3J1azRqOXI3czdwNGV2cjVidjc4NG1xMHVwYWJwNTVAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="380" height="1000" frameborder="0" scrolling="no"></iframe>
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

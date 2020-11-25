@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Semestre5s on Semestre 7</title>
+    <link>https://eirbot.github.io/semestre5/</link>
+    <description>Recent content in Semestre5s on Semestre 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    
+	<atom:link href="https://eirbot.github.io/semestre5/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Semestre 5</title>
+      <link>https://eirbot.github.io/semestre5/semestre_5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://eirbot.github.io/semestre5/semestre_5/</guid>
+      <description>Algorithmique et mathématiques 1 Initiation à l&amp;rsquo;algorithmique Ce cours présente une initiation à la résolution de problèmes simples au moyen de l&amp;rsquo;algorithmique, en particulier les problèmes de tris. Les seuls objets manipulés sont de types simples (entiers, réels,etc) ou tableaux et matrice de ceux-ci.</description>
+    </item>
+    
+  </channel>
+</rss>

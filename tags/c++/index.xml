@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on Semestre 7</title>
+    <link>https://eirbot.github.io/tags/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on Semestre 7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Wed, 25 Nov 2020 11:07:10 +0600</lastBuildDate>
+    
+	<atom:link href="https://eirbot.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Héritage, polymorphisme</title>
+      <link>https://eirbot.github.io/assets/md/cpp/4/</link>
+      <pubDate>Wed, 25 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/assets/md/cpp/4/</guid>
+      <description>L&amp;rsquo;héritage est un mécanisme permettant de construire un type T à partir d&amp;rsquo;un autre type Base. Le type T se retrouve doté des comportements (méthodes) et propriétés (attributs) du type de Base.</description>
+    </item>
+    
+    <item>
+      <title>Opérateurs</title>
+      <link>https://eirbot.github.io/assets/md/cpp/3/</link>
+      <pubDate>Wed, 18 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/assets/md/cpp/3/</guid>
+      <description>Définition Un opérateur est une notation raccourcie permettant de représenter une opération fréquemment utilisée, par exemple : a+b*c;. On ajoute à a le résultat de la multiplication de b par c.</description>
+    </item>
+    
+    <item>
+      <title>Classes</title>
+      <link>https://eirbot.github.io/assets/md/cpp/2/</link>
+      <pubDate>Wed, 04 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/assets/md/cpp/2/</guid>
+      <description>Définition et déclaration Une classe consiste en un regroupement de méthodes et d&amp;rsquo;attributs
+class NomClasse{ attributes ... methodes ... }; L&amp;rsquo;ordre des déclarations ne compte pas. La classe est une description des données internes et comportements qu&amp;rsquo;aura une instance générée par cette classe.</description>
+    </item>
+    
+    <item>
+      <title>Allocation</title>
+      <link>https://eirbot.github.io/assets/md/cpp/1/</link>
+      <pubDate>Mon, 02 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/assets/md/cpp/1/</guid>
+      <description>L&amp;rsquo;allocation automatique L&amp;rsquo;allocation automatique se fait dans la pile (int i;). La variable i est allouée dans le pile automatiquement. Ainsi, &amp;amp;i correspond à une adresse dans la pile à laquelle sizeof(int) octets sont réservés.</description>
+    </item>
+    
+    <item>
+      <title>Programmation C&#43;&#43; Page d&#39;accueil</title>
+      <link>https://eirbot.github.io/semestre7/cpp/</link>
+      <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://eirbot.github.io/semestre7/cpp/</guid>
+      <description>Support de cours
+   Notes personnelles     Allocation   Classes   Opérateur    </description>
+    </item>
+    
+  </channel>
+</rss>

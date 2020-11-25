@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Types et constructions de base du langage</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
+  <meta name="author" content="Eirbot">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Types et constructions de base du langage</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Types et constructions de base du langage</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<h3 id="définitions--symboles-et-liaisons">Définitions : Symboles et liaisons</h3>
+<p>Un <strong>symbole</strong> est un identificateur, c&rsquo;est à dire un nom symbolique.</p>
+<p>Une <strong>liaison</strong> est une entité, c&rsquo;est à dire un objet nommé résidant dans la mémoire, donc l&rsquo;association d&rsquo;un symbole avec un emplacement mémoire contenant une valeur.</p>
+<p>Dans un programme un même symbole eut apparaître dans plusieurs liaisons. De même, en $$C$$, un identificateur peut aussi servir à nommer plusieurs entités. Plusieurs stratégies de recherche ont été implémentées dans les langages de programmation.</p>
+<h2 id="i-classfas-fa-code-branchi-environnements-global-et-locaux"><i class="fas fa-code-branch"></i> Environnements global et locaux</h2>
+<p>L&rsquo;environnement est formé de liaisons <code>symbole -&gt; valeur</code>. Les symboles ne sont pas typés mais leurs valeurs le sont. Il s&rsquo;agit d&rsquo;un typage dynamique.</p>
+<ul>
+<li>Variables : <code>(define &lt;v&gt; &lt;e&gt;)</code></li>
+<li>Fonctions : <code>(define (&lt;f&gt; &lt;p1&gt; &lt;p2&gt; ... &lt;pn&gt;) &lt;e1&gt; &lt;e2&gt; ... &lt;en&gt;)</code></li>
+<li>Résultat non spécifié par la norme</li>
+</ul>
+<p>Une définition établit une liaison entre une variable et un objet résultant de l'évaluation de l&rsquo;expression, cet objet pouvant être une fonction</p>
+<h3 id="environnements-locaux---la-forme-let">Environnements locaux - La forme <code>let</code></h3>
+<p>Ils sont fabirqués avec les formes <code>let</code>, <code>let*</code>, <code>letrec</code> et par des définitions au moyen de la forme <code>define</code> dans le corps des fonctions.</p>
+<pre><code>(let (&lt;l1&gt;
+      &lt;l2&gt;
+      ...
+      &lt;ln&gt;)
+ &lt;e&gt;)
+</code></pre><p>Avec <code>&lt;li&gt;</code> une liaison : <code>(&lt;si&gt; &lt;oi&gt;)</code>, <code>&lt;si&gt;</code> est une symbole, <code>&lt;oi&gt;</code> une valeur d&rsquo;initialisation, <code>&lt;e&gt;</code> une expression.</p>
+<p>L'évaluation des vlauers d&rsquo;initialisation est effectuée en premier puis les variables locales sont créées. Ce qui implqiue que les valeurs des variables locales définies dans un let ne sont pas utilisées dans l'évaluation des expressions d&rsquo;initialisation.</p>
+<h2 id="i-classfas-fa-code-branchi-stratégies-de-recherche-dune-liaison"><i class="fas fa-code-branch"></i> Stratégies de recherche d&rsquo;une liaison</h2>
+<p>Pour chercher la liaison correspondant à l&rsquo;occurence d&rsquo;un symbole dans une expression, la recherche commence par l&rsquo;environnement dans lequel apparaît l&rsquo;expression. Si l&rsquo;occurence apparaît dans le corps d&rsquo;une fonction et qu&rsquo;aucune liaison ne correspond en local (cas d&rsquo;une variable libre), deux stratégies existent</p>
+<h3 id="stratégie-lexicale---lexical-scope">Stratégie lexicale - Lexical scope</h3>
+<p>La stratégie lexical consiste à remonter les environnements locaux englobants du plus proche jusqu'à l&rsquo;environnement global. La première liaison dont le nom de symbole correspond est retenue. Cette stratégie s&rsquo;applique aussi à l'évaluation du corps d&rsquo;une fonction lors d&rsquo;une application. En effet celui-ci est évalué dans l&rsquo;environnement englobant de la fonction, dit environnement lexical.</p>
+<p>Cette stratégie correspond au langage C et aux langages impératifs en général et au langage Scheme.</p>
+<h3 id="stratégie-dynamique---dynamic-scope">Stratégie dynamique - Dynamic scope</h3>
+<p>Pour chercher la liaison correspondant à l&rsquo;occurence d&rsquo;un symbole dans une expression située dans le corps d&rsquo;une fonction, la stratégie dynamique consiste à rechercher sa liaison dans l&rsquo;environnement dynamique, c&rsquo;est à dire l&rsquo;environnement d&rsquo;application de la fonction</p>
+<p>Cette stratégie correspond par exemple à LaTeX, et beaucoup de lisp dont emacs-lisp. Common-Lisp implémente les deux stratégies.</p>
+<h2 id="i-classfas-fa-code-branchi-portée-et-durée-de-vie-en-scheme"><i class="fas fa-code-branch"></i> Portée et durée de vie en Scheme</h2>
+<p>La portée d&rsquo;une liaison est la partie du code source dans laquelle il est possible de l&rsquo;utiliser.</p>
+<ul>
+<li>Les liaisons globales ont une portée égale à tout le programme</li>
+<li>Les liaisons locales ont une portée limitée à la forme de définition <code>let</code></li>
+</ul>
+<p>La durée de vie d&rsquo;un objet correspond à la période de l&rsquo;exécution d&rsquo;un programme comprise entre la création de cet objet et sa destruction</p>
+<ul>
+<li>Les objets définis globalement ont une durée de vie égale à celle du programme</li>
+<li>Les objets définis localement ont une durée de vie potentiellement égale à celle du programme</li>
+</ul>
+<h2 id="i-classfas-fa-code-branchi-paradigme-fonctionnel-et-environnements"><i class="fas fa-code-branch"></i> Paradigme fonctionnel et environnements</h2>
+<p>La forme <code>let</code> équivaut à l&rsquo;application d&rsquo;une fonction construite avec la forme <code>lambda</code>. Les symboles définis correspondent aux paramètres formels de la fonction, et les expressions associés aux symboles définis correspondent aux arguments de l&rsquo;application</p>
+<pre><code>(let ((j 0))          ((lambda(j) (* x j)) 0)
+    (* x j)
+)
+</code></pre>
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+  </div></aside>
+<iframe src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=2&amp;bgcolor=%23A79B8E&amp;ctz=Europe%2FParis&amp;src=Z3J1azRqOXI3czdwNGV2cjVidjc4NG1xMHVwYWJwNTVAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="380" height="1000" frameborder="0" scrolling="no"></iframe>
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Objet et encapsulation</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Eirbot est l&#39;association de robotique de l&#39;ENSEIRB-MATMECA.">
+  <meta name="author" content="Eirbot">
+  <meta name="generator" content="Hugo 0.68.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://eirbot.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://eirbot.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://eirbot.github.io/images/t%C3%A9l%C3%A9chargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://eirbot.github.io/images/banner/compilation.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Objet et encapsulation</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Objet et encapsulation</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> September 1, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/poo">P o o</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<h2 id="lencapsulation">L&rsquo;encapsulation</h2>
+<p>L'<code>encapsulation</code> dans l&rsquo;approche objet consiste à regrouper le code (données et
+traitements) qui fournit un même service dans une seule entité. Une
+encapsulation spécifie le fonctionnement d&rsquo;un service (par un ensemble
+d&rsquo;actions) en masquant la manière de le réaliser.
+Respecter le concept d&rsquo;encapsulation permet de séparer l&rsquo;utilisation d&rsquo;un
+service de sa réalisation et renforcer la manipulation d&rsquo;abstractions dans la
+fabrication d&rsquo;un logiciel.</p>
+<h3 id="objet">Objet</h3>
+<p>L'<code>objet</code> est l&rsquo;entité qui met en oeuvre, à l&rsquo;exécution, une encapsulation.
+Plusieurs objets peuvent mettre en oeuvre la même encapsulation.
+Les données encapsulées dans unobjet sont désignées par les termes <strong>attributs</strong>
+ou <strong>variable d&rsquo;instances</strong>.
+Les traitements encapsulés dans un objet sont désignées par le terme
+<strong>méthodes</strong>
+Dans cette approche, l&rsquo;exécution d&rsquo;un programme manipule uniquement des objets :
+création, passage de paramètres et communication entre objets. Un objet $A$
+communique avec un objet $B$ lorsqu&rsquo;un des traitements de l&rsquo;objet $A$
+déclenche une des méthodes de l&rsquo;objet $B$.</p>
+<h3 id="classe">Classe</h3>
+<p>Un langage orienté objet doit fournir un moyen de décrire une encapsulation
+(utilisation et réalisation). En général, cette description d&rsquo;une encapsulation
+est faite à l&rsquo;aide de la construction appelée <strong>classe</strong>.
+Dans un langage type, une classe correspond à la déclaration d&rsquo;un type.</p>
+<h3 id="description-des-encapsulations-en-java">Description des encapsulations en Java</h3>
+<p>Le langage Java est un langage orienté objet typé utilisant des classes pour la
+description des encapsulations.</p>
+<ul>
+<li>Définition de la classe Java <code>PorteCharniere</code> dans un fichier source nommé :
+<code>PorteCharniere.java</code>.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PorteCharniere</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// La définition des variables / attributs d&#39;un objet
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">boolean</span> estFerme<span style="color:#f92672">;</span>
+    
+    <span style="color:#75715e">//La définition des méthodes d&#39;un objet
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fermer</span><span style="color:#f92672">(){</span>
+        <span style="color:#75715e">/* Todo */</span>
+        estFerme<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">(){</span>
+        <span style="color:#75715e">/*Todo*/</span>
+        estFerme<span style="color:#f92672">=</span><span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">estFerme</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">return</span> estFerme<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><h2 id="les-objets">Les objets</h2>
+<p>L'<code>objet</code> est l&rsquo;entit de base de l&rsquo;exécution. À chaque objet est attribu une
+zone mémoire différente.
+Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire
+d&rsquo;identifier de manière unique un objet.
+L'<code>identité</code> d&rsquo;un objet est assurée par l&rsquo;adresse de la zone mémoire attribuée à
+cet objet.
+La zone mémoire d&rsquo;un objet contient la valeur de ses attributs (suivant la
+description de l&rsquo;encapsulation).
+Un objet encapsule les méthodes. En pratique, tous les objets mettant en oeuvre
+la même encapsulation partagent le code des méthodes. Ce code commun est exécuté
+avec l&rsquo;identité (la zone mémoire) de l&rsquo;objet sur lequel est déclenchée une
+action.</p>
+<p>Un langage orienté objet doit fournir des mécanismes pour :</p>
+<ul>
+<li>créer un objet : <strong>instanciation</strong></li>
+<li>déclencher une action sur un objet : <strong>envoi de messages</strong></li>
+<li>assurer la séparation utilisation/ réalisation : <strong>masquage d&rsquo;information</strong></li>
+</ul>
+<h3 id="instanciation">Instanciation</h3>
+<p>L'<code>instanciation</code> désigne l&rsquo;opération de créer un objet à partir de la
+description de l&rsquo;encapsulation. Elle attribue une zone mémoire à l&rsquo;objet et
+initialise ses attributs.
+Dans un langage à classe, un objet est instancié à partir d&rsquo;une classe. Un objet
+est souvent désigné par le terme <code>instance</code>.
+Pour respecter l&rsquo;encapsulation, la classe fournit le code d&rsquo;initialisation par
+l&rsquo;intermédiaire d&rsquo;un traitement appelé <em>constructeur</em>. Comme une méthode, un
+constructeur admet une liste de paramètres.
+En Java, l&rsquo;instanciation est une expression atomique construire à partir de
+l&rsquo;opérateur <code>new</code> et d&rsquo;un constructeur de la classe.</p>
+<h4 id="affectation-dans-une-variable">Affectation dans une variable</h4>
+<p>Comme habituellement dans le code, les variables / paramètres (de méthode) vont
+permettre de manipuler les objets / instances.
+Dans un langage typé, le compilateur vérifie la compatibilité des types entre le
+type de la variable / paramètre et l&rsquo;instance affectée à cette variable.
+Une variable de type <code>PorteCharniere</code> contient une instance de la classe
+<code>PorteCharniere</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">PorteCharniere sesame<span style="color:#f92672">;</span> 
+sesame <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCharniere<span style="color:#f92672">();</span>
+Portecharniere paradis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Portecharniere<span style="color:#f92672">();</span>
+sesame <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Portecharniere<span style="color:#f92672">();</span>
+paradis <span style="color:#f92672">=</span> sesame<span style="color:#f92672">;</span>
+Telecommande maTelecommande <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Telecommande<span style="color:#f92672">(</span>3<span style="color:#f92672">);</span>
+maTelecommande <span style="color:#f92672">=</span> sesame<span style="color:#f92672">;</span> <span style="color:#75715e">// erreur type non compatible
+</span></code></pre></div><p>En Java, les variables / paramètres correspondant à des objets sont des
+références. La variable <code>paradis</code> contient l&rsquo;adresse d&rsquo;un objet. La libération
+de la zone mémoire d&rsquo;un objet est prise en charge par le ramasse miettes de la
+machine virtuelle de Java (&ldquo;jvm&rdquo;)</p>
+<p>Les variables des type de base (comme <code>int, float, boolean, byte, char</code>)
+contiennent des valeurs. Les comportements entre type de base et type référence
+sont différents dans l&rsquo;affectation et le passage de paramètres. Les chaînes de
+caractères constantes sont des instances de la classe <code>string</code>. Les tableaux
+Java sont des objets avec des méthodes d&rsquo;accès et possède l&rsquo;attribut de
+longueur.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Telecommande</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">int</span> nbPortes<span style="color:#f92672">;</span>
+    Portecharniere<span style="color:#f92672">[]</span> mesPortes<span style="color:#f92672">;</span>
+    
+    Telecommande<span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> capacite<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        nbPortes <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+        mesPortes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCharnière <span style="color:#f92672">[</span>capacite<span style="color:#f92672">];</span>
+    <span style="color:#f92672">}</span>
+    voir <span style="color:#a6e22e">positionner</span><span style="color:#f92672">(</span>Portecharniere p<span style="color:#f92672">){</span>
+        mesPortes<span style="color:#f92672">[</span>nbPortes<span style="color:#f92672">]=</span>p<span style="color:#f92672">;</span>
+        nbPortes<span style="color:#f92672">++;</span>
+        <span style="color:#75715e">/* Todo depassement */</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">activer</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> numero<span style="color:#f92672">){</span>
+        <span style="color:#75715e">/*Todo*/</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">desactiver</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> numero<span style="color:#f92672">){</span>
+        <span style="color:#75715e">/*Todo*/</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">desactiverTout</span><span style="color:#f92672">(){</span>
+        <span style="color:#75715e">/*Todo*/</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span> 
+</code></pre></div><p>Pour respecter l&rsquo;encapsulation, le code du constructeur doit s&rsquo;assurer
+d&rsquo;initiliser les attributs avec des valeurs cohérentes par rapport à
+l&rsquo;encapsulation. Sinon les futures actions déclenchées sur l&rsquo;objet ne
+respecteront pas le service proposé par l&rsquo;encapsulation. Le cas le plus fréquent
+est une valeur invalide par les paramètres du constructeur. Les actions d&rsquo;une
+instance de télécommande sont elles cohérentes avec le service de
+l&rsquo;encapsulation si la valeur du paramètre d&rsquo;initialisation est égale à zéro ?</p>
+<h3 id="envoie-de-messages">Envoie de messages</h3>
+<p>Un <code>message</code> est formé d&rsquo;un nom et d&rsquo;une liste de valeur de paramètres (cette
+liste peut être vide). À la réception d&rsquo;un message, l&rsquo;objet fait la
+correspondant entre le message et l&rsquo;action à déclencher.</p>
+<p>La notion d&rsquo;envoi de messages cherche à abstraire la manière dont est choisie
+l&rsquo;action. Un même message peut déclencher des actions différentes sur des
+encapsulations différentes : Quel est le code déclenché par l&rsquo;appel à une
+méthode ? Est-ce un accès à un attribut ou l&rsquo;appel à une méthode ? en général la
+notation pointée est utilisée pour indiquer l&rsquo;envoie du&rsquo;n message à un objet.
+L&rsquo;envoi du message s'écrit en utilisant la variable qui référence l&rsquo;objet.
+Envoie de messages avec les variables de l&rsquo;exemple précédent :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// appel d&#39;un traitement 
+</span><span style="color:#75715e"></span>paradis<span style="color:#f92672">.</span><span style="color:#a6e22e">fermer</span><span style="color:#f92672">();</span>
+sesame<span style="color:#f92672">.</span><span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">();</span>
+sesame<span style="color:#f92672">.</span><span style="color:#a6e22e">estFerme</span><span style="color:#f92672">();</span>
+maTelecommande<span style="color:#f92672">.</span><span style="color:#a6e22e">positionner</span><span style="color:#f92672">(</span>sesame<span style="color:#f92672">);</span>
+maTelecommande<span style="color:#f92672">.</span><span style="color:#a6e22e">activer</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+maTelecommande<span style="color:#f92672">.</span><span style="color:#a6e22e">desactiver</span><span style="color:#f92672">(</span>2<span style="color:#f92672">);</span>
+maTelecommande<span style="color:#f92672">.</span><span style="color:#a6e22e">desactivertout</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">// accès à un attribut
+</span><span style="color:#75715e"></span>sesame<span style="color:#f92672">.</span><span style="color:#a6e22e">estFerme</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+maTelecommande<span style="color:#f92672">.</span><span style="color:#a6e22e">mesPortes</span><span style="color:#f92672">[</span>1<span style="color:#f92672">].</span><span style="color:#a6e22e">estFerme</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span> 
+maTelecommande<span style="color:#f92672">.</span><span style="color:#a6e22e">mesPortes</span><span style="color:#f92672">[</span>1<span style="color:#f92672">].</span><span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">();</span>
+</code></pre></div><p>En java, l&rsquo;abstraction n&rsquo;est pas complète car la syntaxe est différente entre un
+attribut et un méthode. C&rsquo;est au moment de l&rsquo;exécution que l&rsquo;envoi de messages
+est réalisé. Le message est transmis à l&rsquo;objet référencé par la variable. Du
+coup, la compilation ne peut pas vérifier l&rsquo;existence d&rsquo;un message sur un objet.
+La seule vérification possible est par rapport au type de la variable.</p>
+<h3 id="construire-une-encapsulation">Construire une encapsulation</h3>
+<h4 id="encapsulation-et-masquage-dinformation">Encapsulation et masquage d&rsquo;information</h4>
+<p>Un objet met en oeuvre une encapsulation, il y a donc abstraction sur la
+réalisation de l&rsquo;objet. Pour permettre de changer cette réalisation sans
+modifier le code utilisant cet objet (code client), nous cherchons à masquer
+l&rsquo;information sur la réalisation au coude client. Les détails de la réalisation
+d&rsquo;un objet doivent être visible le moins possible. Dans un langage à classe, ce
+masque d&rsquo;information est défini au niveau de la classe avec le mécanisme de
+portée des identificateurs. De base, deux portées sont nécessaires pour séparer
+utilisation et réalisation :</p>
+<ul>
+<li>
+<p>portée publique, l&rsquo;identificateur est accessible par un code écrit en dehors
+de la classe</p>
+</li>
+<li>
+<p>portée privée, l&rsquo;identificateur est accessible uniquemeent par le code contenu
+dans la classe</p>
+<p>Dans  le code de la classe <code>Telecommande</code>, l&rsquo;instruction
+<code>mesPortes[i].estFerme</code> ne respecte pas l&rsquo;encapsulation. La définition de
+l&rsquo;attribut risque de changer :</p>
+<ul>
+<li>le choix de stocker la valeur plutôt que la calculer</li>
+<li>le choix de son type ou de la signification de sa valeur</li>
+</ul>
+</li>
+</ul>
+<p>Le choix de définir un attribut est une décision de réalisation.</p>
+<blockquote>
+<p>Afin de respecter l&rsquo;encapsulation, tous les attributs d&rsquo;un objet doivent être
+déclarés privés et seules les méthodes peuvent être déclarées publiques</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Telecommande</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> nbPortes<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> PorteCharniere<span style="color:#f92672">[]</span> mesPortes<span style="color:#f92672">;</span>
+    
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Telecommande</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> capacite<span style="color:#f92672">){</span>
+        nbPortes <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> 
+        mesPortes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Portecharniere<span style="color:#f92672">[</span>capacite<span style="color:#f92672">];</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">estRempli</span> <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">return</span> mesPortes <span style="color:#f92672">.</span> length <span style="color:#f92672">&lt;=</span> nbPortes <span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">positionner</span> <span style="color:#f92672">(</span> PorteCharniere p <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    i <span style="color:#a6e22e">f</span> <span style="color:#f92672">(</span> mesPortes <span style="color:#f92672">.</span> length <span style="color:#f92672">&lt;=</span> nbPortes <span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">;</span> <span style="color:#75715e">/* Todo erreur de depassement */</span>
+    mesPortes <span style="color:#f92672">[</span> nbPortes <span style="color:#f92672">]</span> <span style="color:#f92672">=</span> p <span style="color:#f92672">;</span>
+    nbPortes <span style="color:#f92672">++;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">activer</span> <span style="color:#f92672">(</span> <span style="color:#66d9ef">int</span> numero <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    mesPortes <span style="color:#f92672">[</span>numero <span style="color:#f92672">]</span> <span style="color:#f92672">.</span> ouvr <span style="color:#a6e22e">ir</span> <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">desactiver</span> <span style="color:#f92672">(</span> <span style="color:#66d9ef">int</span> numero <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    mesPortes <span style="color:#f92672">[</span>numero <span style="color:#f92672">]</span> <span style="color:#f92672">.</span> fermer <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">desactiverTout</span> <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span> <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0 <span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> nbPortes <span style="color:#f92672">;</span> i <span style="color:#f92672">++</span> <span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span> <span style="color:#f92672">!</span> mesPortes <span style="color:#f92672">[</span> i <span style="color:#f92672">]</span> <span style="color:#f92672">.</span> estFerme <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">)</span>
+    mesPortes<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">fermer</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="objet-constant">Objet constant</h4>
+<p>Un objet possède un état défini à partir des valeurs contenues dans l’ensemble
+de ses attributs. Un objet est constant si son état ne peut-être modifié.
+En Java, un objet est constant que si aucune de ses méthodes ne modifie son
+état : exemple dans l’A.P.I standard Java, la différence entre les instances de la
+classe <code>String</code>  et les instances de la classe StringBuffer. Cette encapsulation des
+chaînes constantes montre l’utilisation habituelle des objets constants en Java : le
+partage d’objets.</p>
+<h4 id="communication-entre-objets">Communication entre objets</h4>
+<p>Un objet est passif. Il déclenche des actions uniquement en réponse à des
+sollicitations d&rsquo;autres objets. Prenons le cas où un objet <code>t</code> (instance de la
+classe <code>Petit</code>) doit envoyer le message <code>voler</code> à un objet <code>r</code> (instance de la
+classe <code>Coeur</code>).</p>
+<p>Pour communiquer, l&rsquo;objet <code>t</code> doit posséder une référence sur l&rsquo;objet <code>r</code> au
+moins au moment de l&rsquo;exécution de l&rsquo;envoi du message. La solution directe est de
+stocker cette référence dans les attributs de l&rsquo;objet <code>t</code>; l&rsquo;objet <code>t</code> &ldquo;a un&rdquo;
+objet <code>r</code>. La classe <code>Petit</code> doit déclarer un attribut / une variable d&rsquo;instance
+de type <code>Coeur</code>.</p>
+<p>Le lien <code>&quot;a-un&quot;</code> entre deux classes. Une classe <code>P</code> possède un lien &ldquo;a un&rdquo; avec
+une classe <code>R</code> si elle définit un attribut de type <code>R</code>. Une instance de <code>P</code>
+possède dans ses attributs une instance de <code>R</code>.</p>
+<p>Le lien &ldquo;a-un&rdquo; ne fixe pas la manière d&rsquo;obtenir la référence stockée dans
+l&rsquo;attribut : instanciation de la classe Coeur dans le constructeur de la classe
+<code>Petit</code> ou passage de la référence comme paramètre d&rsquo;un constructeur ou d&rsquo;une
+méthode de la classe <code>Petit</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Telecommande</span><span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">int</span> nbPortes <span style="color:#f92672">;</span>
+  PorteCharniere <span style="color:#f92672">[</span> <span style="color:#f92672">]</span> mesPortes <span style="color:#f92672">;</span>
+  Telecommande <span style="color:#f92672">(</span> <span style="color:#66d9ef">int</span> capac ite <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    nbPortes <span style="color:#f92672">=</span> 0 <span style="color:#f92672">;</span>
+    mesPortes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCharniere <span style="color:#f92672">[</span> capac ite <span style="color:#f92672">]</span> <span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+
+  <span style="color:#66d9ef">void</span> pos it <span style="color:#a6e22e">ionner</span> <span style="color:#f92672">(</span> PorteCharniere p <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    i <span style="color:#a6e22e">f</span> <span style="color:#f92672">(</span> nbPortes <span style="color:#f92672">&gt;=</span> mesPortes <span style="color:#f92672">.</span> length <span style="color:#f92672">)</span>
+      <span style="color:#66d9ef">return</span> <span style="color:#f92672">;</span> <span style="color:#75715e">/* Todo erreur de depassement */</span>
+    mesPortes <span style="color:#f92672">[</span> nbPortes <span style="color:#f92672">]</span> <span style="color:#f92672">=</span> p <span style="color:#f92672">;</span>
+    nbPortes <span style="color:#f92672">++;</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">void</span> a c t i v e <span style="color:#a6e22e">r</span> <span style="color:#f92672">(</span> <span style="color:#66d9ef">int</span> numero <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    mesPortes <span style="color:#f92672">[</span>numero <span style="color:#f92672">]</span> <span style="color:#f92672">.</span> ouvr <span style="color:#a6e22e">ir</span> <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">void</span> desac t <span style="color:#a6e22e">iver</span> <span style="color:#f92672">(</span> <span style="color:#66d9ef">int</span> numero <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    mesPortes <span style="color:#f92672">[</span>numero <span style="color:#f92672">]</span> <span style="color:#f92672">.</span> fermer <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">void</span> desact <span style="color:#a6e22e">iverTout</span> <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span> <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0 <span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> nbPortes <span style="color:#f92672">;</span> i <span style="color:#f92672">++</span> <span style="color:#f92672">)</span>
+      i <span style="color:#a6e22e">f</span> <span style="color:#f92672">(</span> <span style="color:#f92672">!</span> mesPortes <span style="color:#f92672">[</span> i <span style="color:#f92672">]</span> <span style="color:#f92672">.</span> estFerme <span style="color:#f92672">)</span>
+        mesPortes <span style="color:#f92672">[</span> i <span style="color:#f92672">]</span> <span style="color:#f92672">.</span> fermer <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="des-traitements-applicables-à-toutes-les-encapsulations">Des traitements applicables à toutes les encapsulations</h4>
+<p>Dans la pratique, il existe un petit nombre de traitements particuliers qui
+peuvent s&rsquo;appliquer à tous les objets. Voici les plus fréquents  :</p>
+<p>Pour vérifier l'égalité entre deux instances de la même classe. L&rsquo;opérateur Java
+<code>==</code> indique l'égalité de références (c&rsquo;est la même instance). Mais deux
+instances différentes peuvent être considérées comme égales par rapport à la
+valeur de leurs attributs. C&rsquo;est l&rsquo;objectif de la méthode <code>equals()</code>.</p>
+<p>Pour copier ou cloner un objet. Le passage d&rsquo;un paramètre objet se fait
+exclusiement par référence / adresse. Pour éviter un effet de bord, il est donc
+parfois nécessaire d&rsquo;effectuer une copie d&rsquo;un objet. C&rsquo;est l&rsquo;objectif de la
+méthode <code>clone()</code>.</p>
+<p>Le langage Java regroupe ces méthodes particulières dans la classe <code>Object</code>. Ces
+méthodes sont définies avec un traitement par défaut qu&rsquo;il faut adapter à chaque
+classe : par exemple, la méthode <code>equals()</code> a pour traitement par défaut
+l'égalité de référence.</p>
+<p>Dans la classe <code>Object</code> nous trouvons la méthode <code>toString()</code>. Elle retourne une
+chaîne de caractère qui va permettre de tracer, par exemple, la valeur des
+attributs d&rsquo;un objet. Son code par défaut retourne une chaîne correspondant à
+l&rsquo;identité de l&rsquo;objet.</p>
+<h2 id="les-classes">Les classes</h2>
+<p>Une <code>classe</code> est un moule qui décrit le <strong>quoi</strong> : la spécification des messages
+qui peuvent être envoyés à l&rsquo;objet. Et le <strong>comment</strong> la manière de réaliser
+cette spécification. Pour instancier une classe, se répartit en trois formes :</p>
+<ol>
+<li><strong>Classe Concrète</strong> : une classe instanciable</li>
+<li><strong>Classe abstraite</strong> : la réalisation est incomplète, au moins une des
+méthodes d&rsquo;instance n&rsquo;a pas de mise en oeuvre (pas corps défini).</li>
+<li><strong>Classe abstraite pure ou interface</strong> : aucune réalisation n&rsquo;est définie,
+elle contient les déclarations des méthodes d&rsquo;instance.</li>
+</ol>
+<p>Ce chapitre est centrée sur la construction des classes concrètes.</p>
+<h3 id="classe-java">Classe Java</h3>
+<p>La syntaxe du langage Java différencie la construction d&rsquo;une classe contenant
+une réalisation et d&rsquo;une classe ne contenant pas de réalisation.</p>
+<ol>
+<li>Construction avec réalisation :</li>
+</ol>
+<ul>
+<li>classe concrète avec le mot clé seul <code>class</code></li>
+<li>classe abstraite en ajoutant le mot-clé <code>abstract</code> au mot clé <code>class</code></li>
+</ul>
+<ol start="2">
+<li>Construction sans réalisation : classe abstraite pure avec le mot-clé
+<code>interface</code>. Cette construction ne contient ni attributs, ni constructeurs.</li>
+</ol>
+<p>Une classe/interface Java correspond à un fichier <code>.class</code> obtenu après
+compilation d&rsquo;un fichier source. Ce fichier (en &ldquo;bytecode&rdquo; ou code
+intermédiaire) contient le code à exécuter mais aussi les informations sur la
+définition de la classe, par exemple : le type des paramètres d&rsquo;une méthode.</p>
+<p>Le contenu des fichiers <code>.class</code> est utilisé par le compilateur (pour les
+informations de type) et par la machine virtuelle java (JVM) (interprétation du
+code intermédiaire)</p>
+<h4 id="paquetage">Paquetage</h4>
+<p>Les paquetages permettent de regrouper les classes / interfaces par thème. Le
+système de paquetage est hiérarchique avec la notion de sous-paquetage. Le
+caractère . sert de séparateur. Les paquetages commençant par <code>java, javax</code> font
+partie de la distribution stard (JRE et JDK).</p>
+<p>Un paquetage correspond à un domain de nom : le nom d&rsquo;une classe / interface est
+unique dans un paquetage. Le nom complet d&rsquo;une classe / interface est constitué
+de la hiérarchie de paquetage puis du nom de la classe/interface. Par exemple
+<code>java.lang.String</code>. L&rsquo;inclusion d&rsquo;une classe/interface dans un paquetage est
+précisée par l&rsquo;instruction <code>package nom</code> sur la première ligne du fichier
+source. Sans ce mot-clé, les classes sont incluses dans un paquetage unique sans
+nom (paquetage anonyme ou paquetage par défaut). Pour désigner une
+classe/interface à l&rsquo;extérieur d&rsquo;un paquetage, il est nécessaire d&rsquo;utiliser son
+nom complet : <code>matos.on.DentBleu maDent = new matos.onde.DentBleu();</code>. Dans
+l'écriture d&rsquo;un fichier source, il est possible de raccourcir le nom complet
+d&rsquo;une classe à son nom, en utilisant le mot clé <code>import</code>. Au début du fichier
+source, l&rsquo;instruction <code>import matos.onde.DentBleu</code>; permet de désigner la classe
+uniquement par <code>DentBleu</code>. Le compilateur lui attribue son nom complet.</p>
+<p>L&rsquo;organisation physique des fichiers <code>.class</code> correspond à la hiérarchie de
+paquetage. Le fichier <code>String.class</code> se trouve dans l&rsquo;arborescence de répertoire
+<code>java/lang</code>. Lorsque le compilateur ou la machine virtuelle ont besoin de la
+définition d&rsquo;une classe, ils utilisent son nom complet comme chemin de recherche
+du fichier <code>.class</code>. Par défaut, la recherche s&rsquo;effectue à partir du répertoire
+courant (celui du lancement de la commande). L&rsquo;option <code>-cp</code> et la variable
+d&rsquo;environnement <code>CLASSPATH</code> permettant d&rsquo;indiquer les répertoires à analyser
+pour trouver ce chemin.</p>
+<h3 id="classe-concrète">Classe concrète</h3>
+<p>La construction Java <code>class</code> contient trois catégories de membre : les
+variables, les méthodes et les constructeurs.</p>
+<h4 id="portée-des-membres-dune-classe">Portée des membres d&rsquo;une classe</h4>
+<p>Les modificateurs de porte précisent la <em>portée d&rsquo;utilisation</em> d&rsquo;un membre d&rsquo;une
+classe. Ils se placent devant chaque définition :</p>
+<ol>
+<li><code>private</code> : accessible uniquement par la classe</li>
+<li><code>public</code> : accessible partout</li>
+<li>au paquetage : accessible par les classes du même paquetage</li>
+</ol>
+<p>Une classe possède deux portées. Sans mot-clé, sa portée est restreinte à son
+paquetage. Avec le mot-clé <code>public</code>, elle est accessible à l&rsquo;extrieur de son
+paquetage : <code>public class DentBleu</code>.</p>
+<h4 id="définition-dune-classe-concrète">Définition d&rsquo;une classe concrète</h4>
+<p>Définition d&rsquo;une classe concrèete Java et de ses membres</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">[</span><span style="color:#66d9ef">public</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NomClasse</span> <span style="color:#f92672">{</span> 
+  <span style="color:#75715e">//Variables d&#39;instance/attributs,
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">[</span><span style="color:#66d9ef">final</span><span style="color:#f92672">]</span> <span style="color:#f92672">[</span><span style="color:#66d9ef">public</span><span style="color:#f92672">|</span><span style="color:#66d9ef">private</span><span style="color:#f92672">]</span> type nom <span style="color:#f92672">[=</span> expression<span style="color:#f92672">];</span>
+  
+  <span style="color:#75715e">//Méthodes d&#39;instance,
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">[</span><span style="color:#66d9ef">public</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">private</span><span style="color:#f92672">]</span> typeRetour <span style="color:#a6e22e">méthodeInstance</span><span style="color:#f92672">([</span>liste de paramètres<span style="color:#f92672">])</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//code
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">}</span>
+  
+  <span style="color:#75715e">//constructeurs
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">[</span><span style="color:#66d9ef">public</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">private</span><span style="color:#f92672">]</span> <span style="color:#a6e22e">NomClasse</span> <span style="color:#f92672">([</span>liste de paramètres<span style="color:#f92672">]){</span>
+    <span style="color:#75715e">//code
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="variable-dinstance">Variable d&rsquo;instance</h4>
+<p>C&rsquo;est une variable locale à chaque instance. Sa valeur est stockée dans la zone
+mémoire de l&rsquo;instance. Son initialisation s&rsquo;effectue soit à sa déclaration soit
+dans le code d&rsquo;une constructeur. La machine virtuelle Java initialise
+systématiquement les variables d&rsquo;instance avec une valeur par défaut dépendant
+du type (référence/null, int/0, boolean/false). Le mot-clé <code>final</code> devant la
+définition d&rsquo;une variable correspond à une variable constante. Son initialisation
+est possible dans un constructeur.</p>
+<h4 id="méthode-dinstance">Méthode d&rsquo;instance</h4>
+<p>Une méthode d&rsquo;instance s&rsquo;applique à une instance. Il existe deux catégories de
+méthode :</p>
+<ul>
+<li>méthode d&rsquo;accès, ou acccesseur. Elle donne des informations sur l'état des
+attributs.</li>
+<li>méthode d&rsquo;altération ou modificateur. Elle modifie l'état des attributs.</li>
+</ul>
+<p>Le mécanisme de surcharge autorise plusieurs méthodes à porter le même nom. La
+distinction se fait, à la compilation, en fonction de la liste des paramètres
+d&rsquo;appel (nombre, type et ordre). Par exemple, la méthode <code>println</code> de la classe
+<code>java.io.PrintStream</code>.</p>
+<p>Le mot clé <code>this</code> désigne / référence l&rsquo;instance qui vient de recevoir le
+message. Il est utilisé dans le code</p>
+<ul>
+<li>Soit pour passer l&rsquo;objet en paramètre d&rsquo;une méthode (ou d&rsquo;un constructeur)</li>
+<li>Soit pour désigner un attribut en cas d&rsquo;ambiguïté</li>
+</ul>
+<h4 id="constructeur">Constructeur</h4>
+<p>Un constructeur n&rsquo;est pas une méthode. Il est uniquement appelé à
+<em>l&rsquo;instanciation</em>. Son code assure la bonne initialisation des variables
+d&rsquo;instance. Le constructeur prendre le nom de la classe. Il n&rsquo;a pas de type de
+retour. L&rsquo;instance existe au moment de l&rsquo;appel du constructeur. Le code du
+constructeur peut utiliser les méthodes d&rsquo;instance et la référence <code>this</code>. Si
+une classe ne contient pas de constructeur le compilateur Java ajoute un
+constructeur publique sans paramètre avec un corps vide (désigné par le terme
+constructeur par défaut). La surcharge des constructeurs est autorisée. Avec la
+définition de plusieurs constructeurs, il est nécessaire d&rsquo;avoir un mécanisme de
+factorisation du code d&rsquo;initialisation. Un constructeur peut déclencher le code
+d&rsquo;un autre constructeur par l&rsquo;instruction (qui utilise le mécanisme de
+surcharge) : <code>this(par1, par2, par3)</code>. Cette instruction doit être la première
+ligne du constructeur.</p>
+<h3 id="lien-a-un-entre-classes">Lien &ldquo;a-un&rdquo; entre classes</h3>
+<p>Le lien &ldquo;a-un&rdquo; correspond à la relation d&rsquo;utilisation la plus basique : la
+réalisation d&rsquo;une encapsulation nécessite l&rsquo;appel aux méthodes d&rsquo;une autre
+encapsulation.</p>
+<h4 id="relation-dutilisation-dans-la-réalisation">Relation d&rsquo;utilisation dans la réalisation</h4>
+<p>La classe <code>PorteCharniere</code> possède un lien &ldquo;a-un&rdquo; avec la classe <code>DentBleu</code>. Une
+instance de <code>PorteCharniere</code> contient dans ses attributs la référence à une
+instance de <code>DentBleu</code>.</p>
+<p>Dans notre cas de réalisation, l&rsquo;instant de <code>DentBleu</code> ne peut pas être partagée
+et doit être utilisée dès l&rsquo;instanciation de <code>PorteCharniere</code>.</p>
+<p>Le lien &ldquo;a-un&rdquo; se traduit dans le code de la classe <code>PorteCharniere</code> :</p>
+<ul>
+<li>définition d&rsquo;une variable d&rsquo;instance du type <code>DentBleu</code></li>
+<li>instanciation de <code>DentBleu</code> dans le constructeur et affectation à la variable
+d&rsquo;instance</li>
+</ul>
+<h4 id="factoriser-du-code">Factoriser du code</h4>
+<p>Pour éviter de dupliquer le code, la construction de la classe
+<code>PorteVerrouCharniere</code> peut se faire en utilisant un lien &ldquo;a-un&rdquo; avec la classe
+<code>PorteCharniere</code>. L&rsquo;instanciation de la classe <code>PorteVerrouCharniere</code> doit
+instancier la classe <code>PorteCharniere</code></p>
+<h2 id="variables-et-méthodes-de-classe">Variables et méthodes de classe</h2>
+<p>Dans le modèle objet, toutes les variables et méthodes sont liées à un objet.
+C&rsquo;est à dire que pour accéder à une donnée ou déclencher un traitement, il faut
+d&rsquo;abord instancier une classe.</p>
+<p>Cette nécessité de créer d&rsquo;abord un objet est difficile à respecter dans
+certains cas particuliers :</p>
+<ul>
+<li>Déclenchement du point d&rsquo;entrée du programme : la méthode <code>main</code>. Comment
+envoyer un message sans avoir à créer d&rsquo;objets ?</li>
+<li>Les flots d&rsquo;entrée / sortie standards référencés par les variables constante
+<code>out, in, err</code> doivent être définis d&rsquo;une manière unique avant le début de
+l&rsquo;exécution. Où définir ces variables et comment les positionner avant l&rsquo;appel
+au point d&rsquo;entrée du programme ?</li>
+<li>Les opérations mathématiques $(abs(),\sin()&hellip;)$ s&rsquo;applique, en Java, à des
+types de base. Comment rentre disponible ces opérations que ne s&rsquo;appliquent
+pas à un objet ?</li>
+</ul>
+<p>La construction classe va servir à contenir les données et traitements qui ne
+sont pas liés à des objets. Une classe n&rsquo;est plus seulement la description
+d&rsquo;une encapsulation mais devient utilisable à l&rsquo;execution.</p>
+<p>Par défaut, une méthode ou une variable est attaché à un objet. Le mot-clé
+<code>static</code> permet d&rsquo;attacher une méthode ou une variable à une classe. Comme
+pour un objet, c&rsquo;est la notation pointée qui est utilisée pour accéder à ces
+nouveaux membres. C&rsquo;est un message envoyé à la classe et non à une instance de
+cette classe par exemple : <code>java.lang.System.out, java.lang.Math.abs()</code>.</p>
+<h3 id="variable-de-classe">Variable de classe</h3>
+<p>Une variable de classe est partagée par toutes les instances de la classe. Sa
+modification affecte toutes les instances. Une variable de classe existe avant
+toutes instanciation de la classe $static [final] [public | private] type nom$</p>
+<ul>
+<li>Même si une variable de classe n&rsquo;est pas stockée dans la zone mémoire de
+l&rsquo;objet, elle fait partie de l&rsquo;ensemble des attributs de chaque instance de
+cette classe.</li>
+<li>L&rsquo;initialisation d&rsquo;une variable de classe s&rsquo;effectue au chargement de la
+classe. Elle peut se faire dans un &ldquo;bloc statique&rdquo; déclaré à l&rsquo;intérieur de la
+classe. La machine virtuelle exécute le bloc statique au chargement de la
+classe. Par exemple pour initialisation d&rsquo;une variable de classe qui contient
+un table.</li>
+</ul>
+<h3 id="méthode-de-classe">Méthode de classe</h3>
+<ul>
+<li>Le code d&rsquo;une méthode de classe a accès aux variables de classe et aux
+méthodes de classe définies dans la classe</li>
+<li>Par contre, la référence <code>this</code> n&rsquo;est pas définie (aucune instance n&rsquo;est
+crééée). Il n&rsquo;est donc pas possible d&rsquo;utiliser directement les variables
+d&rsquo;instance et les méthodes d&rsquo;instance. Lu&rsquo;ilisation doit se fiare à travers
+une instance de la classe soit passée par paramètre, soit instanciée par le
+code de la méthode.</li>
+<li>Une méthode de classe peut être surchargée</li>
+</ul>
+<p>Les méthodes de classe s&rsquo;emploient couramment pour fabriquer des instances ou
+contenir les traitements ne correspondant à aucune encapsulation.</p>
+<p>Pour simplifier l'écriture de l&rsquo;appel à une variable de classe ou une méthode de
+classe d&rsquo;un autre paquetage, il est possible d&rsquo;utiliser la déclaration <code>import static</code> au début du fichier. Par exemple <code>import static.java.lang.Math.*</code> permet
+d'écrire directement <code>PI</code> dans le code.</p>
+<h3 id="statut-de-la-classe-en-java">Statut de la classe en Java</h3>
+<p>Avec l&rsquo;introduction des variables de classe et des méthodes de classe, la classe
+n&rsquo;est plus seulement une construction syntaxique. Elle peut être assimilée à la
+notion de module mais aussi à la notion d&rsquo;objet.</p>
+<p>Dans le modèle objet, les objets sont les seules entités d&rsquo;exécution. Si les
+classes sont utilisables à l&rsquo;exécution (envoi de messages), ce sont forcément
+des objets. La classe est donc la mise en oeuvre d&rsquo;une encapsulation
+particulière décrivant le service commun aux classes. Ce service fournit les
+informations sur ces déclarations / définitions contenues dans une classe :
+variables, portée, méthodes, constructeurs, liste de paramètres &hellip;</p>
+<p>C&rsquo;est le choix du langage Java :</p>
+<ul>
+<li>la description de l&rsquo;encapsulation particulière <code>class</code> est définie dans la
+classe <code>java.lang.Class</code>. Chaque classe Java est instance de <code>java.lang.Class</code></li>
+<li>à l&rsquo;exécution, une classe est représentée d&rsquo;une manière unique par son
+fichier <code>.class</code> : <code>System.out.println(tec.EtatPassager.class)</code></li>
+<li>Il est possible de définir des variables du type <code>Class</code></li>
+<li>Quelques opérations définies dans <code>java.lang.Class</code>
+<ul>
+<li><code>forName(String)</code> permet de récupérer l&rsquo;instance de <code>Class</code> correspondant au
+nom complet en paramètre</li>
+<li><code>newInstance()</code> permet d&rsquo;instancier la classe qui reçoit ce message (en
+utilisant le constructeur sans paramètre)</li>
+<li><code>getFields(), getMethods(), getSuperClass(), getConstructors()</code> fournissent
+des informations sur la définition d&rsquo;une classe.</li>
+</ul>
+</li>
+</ul>
+<p>Ces opérations autorisent l&rsquo;introspection des classes Java (voir les classes du
+paquetage <code>java.lang.reflect</code>). L&rsquo;introspection est une technique de réflexion
+qui permet à un programme d&rsquo;examiner son propre état pendant l&rsquo;exécution (mais
+pas de le modifier).</p>
+<p>Dans les classes de test, pour éviter d&rsquo;oublier de compléter la méthode
+<code>lancer()</code>, il suffit par introspection de récupérer à l&rsquo;exécution toutes les
+méthodes dont le nom commence par la sous chaîne test et de les exécuter.</p>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+  </div></aside>
+<iframe src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=2&amp;bgcolor=%23A79B8E&amp;ctz=Europe%2FParis&amp;src=Z3J1azRqOXI3czdwNGV2cjVidjc4NG1xMHVwYWJwNTVAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="380" height="1000" frameborder="0" scrolling="no"></iframe>
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://eirbot.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://eirbot.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://eirbot.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://eirbot.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://eirbot.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://eirbot.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://eirbot.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>
