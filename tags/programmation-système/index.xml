@@ -14,22 +14,29 @@
     
     <item>
       <title>Les signaux</title>
-      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/4/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/10/</link>
       <pubDate>Tue, 24 Nov 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/4/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/10/</guid>
       <description>Les signaux sont un mécanisme asynchrone de communication inter-processus. Intuitivement, ils sont comparables à des sonneries, les différentes sonneries indiquant des évènements différents. Les signaux sont envoyés à un ou plusieurs processus.</description>
     </item>
     
     <item>
-      <title>Processus et gestion mémoire</title>
+      <title>La bibliothèque standard</title>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/4/</link>
+      <pubDate>Tue, 10 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/4/</guid>
+      <description>Les descripteurs de fichiers Le fichier d&amp;rsquo;inclusion &amp;lt;stdio.h&amp;gt; contient la définition du type FILE. Ce type est une structure contenant</description>
+    </item>
+    
+    <item>
+      <title>Le Buffer Cache</title>
       <link>https://Sdelpeuch.github.io/assets/md/prog_sys/3/</link>
       <pubDate>Thu, 05 Nov 2020 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/3/</guid>
-      <description>Abstraction pour le processus et la mémoire Le Processus est un programme qui s&amp;rsquo;execute ainsi que son contexte (mémoire, état des descripteurs de fichiers)
-Dans les systèmes d&amp;rsquo;exploitation :
- Support pour de multiples processus Chaque processus a un espace d&amp;rsquo;adressage privé ce qui garenti le cloisonnement entre processus (sécurité et protection), cela permet d&amp;rsquo;avoir une abstraction de la mémoire et surtout cela cache le noyau et les autres processus.</description>
+      <description>Introduction au buffer cache Le buffer cache est un ensemble de structures de données et d&amp;rsquo;algorithme qui permettent de minimiser le nombre des accès disque. Ce qui est très important car les disque sont très lents relativement au CPU et un noyau qui se chargerait de toutes les entrées/sorties serait d&amp;rsquo;une grande lenteur et l&amp;rsquo;unité de traitement ne serait effectivement utilisé qu&amp;rsquo;à un faible pourcentage.</description>
     </item>
     
     <item>
@@ -57,8 +64,8 @@ Dans les systèmes d&amp;rsquo;exploitation :
       
       <guid>https://Sdelpeuch.github.io/semestre7/prog_sys/</guid>
       <description>Le Support de cours et le Support de TD
-La Correction des TD
-   Notes personnelles - cours     Appels systèmes   Fichiers   Processus et gestion mémoire   Signaux   Mémoire partagée et syncronisation   Threads   Concurrence   Réseau - sockets    </description>
+Les notes personnelles de TD
+   Notes personnelles - cours     Introduction   Système de Gestion de Fichiers   Le Buffer Cache   [La bibliothèque standard]   [Appels système du Système de Gestion de Fichier]   [Les processus]   [La mémoire]   [La mémoire Virtuelle]   [Tubes et Tubes Nommés]   Signaux   [Mémoire partagée et syncronisation]   [Threads]   [Concurrence]   [Réseau - sockets]    </description>
     </item>
     
   </channel>

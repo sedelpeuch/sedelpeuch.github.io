@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>Processus et gestion mémoire</title>
+  <title>Le Buffer Cache</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -116,7 +116,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>Processus et gestion mémoire</h1>
+          <h1>Le Buffer Cache</h1>
           <p></p>
         </div>
       </div>
@@ -130,7 +130,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">Processus et gestion mémoire</h2>
+					<h2 class="post-title">Le Buffer Cache</h2>
 					<div class="post-meta">
 						<ul>
               <li><i class="ion-calendar"></i> November 5, 2020</li>
@@ -151,68 +151,119 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<h2 id="abstraction-pour-le-processus-et-la-mémoire">Abstraction pour le processus et la mémoire</h2>
-<p>Le <strong>Processus</strong> est un programme qui s&rsquo;execute ainsi que son contexte (mémoire,
-état des descripteurs de fichiers)</p>
-<p>Dans les systèmes d&rsquo;exploitation :</p>
+						<h2 id="introduction-au-buffer-cache">Introduction au buffer cache</h2>
+<p>Le buffer cache est un ensemble de structures de données et d&rsquo;algorithme qui
+permettent de minimiser le nombre des accès disque. Ce qui est très important
+car les disque sont très lents relativement au CPU et un noyau qui se chargerait
+de toutes les entrées/sorties serait d&rsquo;une grande lenteur et l&rsquo;unité de
+traitement ne serait effectivement utilisé qu&rsquo;à un faible pourcentage. Deux
+idées pour réduire le nombre des accès disques :</p>
+<ol>
+<li>bufferiser les différentes commandes d&rsquo;écriture et de lecture de façon à
+faire un accès disque uniquement pour une quantité de données de taille
+raisonnable</li>
+<li>Éviter des écritures inutiles quand les données peuvent encore être changées</li>
+</ol>
+<h3 id="avantages-et-désavantages-du-buffer-cache">Avantages et désavantages du buffer cache</h3>
 <ul>
-<li>Support pour de multiples processus</li>
-<li>Chaque processus a un espace d&rsquo;adressage privé ce qui garenti le cloisonnement
-entre processus (sécurité et protection), cela permet d&rsquo;avoir une abstraction
-de la mémoire et surtout cela cache le noyau et les autres processus.
- <center>
-</li>
+<li>Un accès uniforme au disque. Le noyau n&rsquo;a pas à connaître la raison de
+l&rsquo;entrée-sortie. Il copie les données depuis et vers des tampons (que ce
+soient des données, des inodes ou le superbloc). Ce mécanisme est modulaire et
+s&rsquo;intègre facilement à l&rsquo;ensemble du système qu&rsquo;il rend plus facile à écrire.</li>
+<li>Rend l&rsquo;utilisation des entrées-sorties plus simple pour l&rsquo;utilisateur qui n&rsquo;ap
+as à se soucier des problèmes d&rsquo;alignement, il rend les programmes portables
+sur d&rsquo;autres UNIX.</li>
+<li>Il réduit le trafic disque et de ce fait augmente la capacité du système.</li>
+<li>L&rsquo;implémentation du buffer cache rotège contre certaines écritures
+concurrentes</li>
+<li>L&rsquo;écriture différée pose un problème dans le cas d&rsquo;un crash système. En effet
+si votre machine s&rsquo;arrête et que un blocs est marqué &ldquo;à écrire&rdquo; il n&rsquo;ont pas
+pas étés sauvegardes physiquement. L&rsquo;intégrité des données n&rsquo;est donc pas
+assurée en cas de crash.</li>
+<li>Le buffer cache nécessite que l&rsquo;on effectue une recopie pour toute
+entrée-sortie. Dans le cas de transferts nombreux ceci ralentit les entrées
+sorties.</li>
 </ul>
-<p><img src="/assets/images/prog_sys/6.png" width="50%"></img></p>
+<h2 id="le-buffer-cache-structures-de-données">Le buffer cache, structures de données</h2>
+<p>Le statu d&rsquo;un bloc cache est une combinaison des états suivants :</p>
+<ul>
+<li><strong>verrouillé</strong> l&rsquo;accès est réservé à un processus</li>
+<li><strong>valide</strong> (les données contenues dans le bloc sont valides)</li>
+<li><strong>à écire</strong> les données du bloc doivent être écrites sur disque avant de
+réallouer le bloc</li>
+<li><strong>actif</strong> le noyau est en train d&rsquo;écrire/lire le bloc sur le disque</li>
+<li><strong>attendu</strong> un processus attend la libération du bloc</li>
+</ul>
+<h3 id="la-liste-doublement-chaînes-des-blocs-libres">La liste doublement chaînes des blocs libres</h3>
+<p>Les tampons libres appartiennent simultanément à deux lites doublement
+chaînées : la liste des blocs libres et la hash-liste correspondant au dernier
+bloc ayant été contenu dans ce tampon. L&rsquo;insertion dans la liste des tampons
+libres se fait en fin de liste, la suppression se fait en début de liste, ainsi
+le tampon alloué est le plus vieux tampon libéré. Ceci permet une réponse
+immédiate si le bloc correspondant est réutilisé avant que le tampon ne soit
+alloué à un autre bloc.</p>
+<center>
+<img src="/assets/images/prog_sys/SYS5.png" width="50%"></img>
 </center>
-<ul>
-<li>Stack : pile où sont stockées les variables locales</li>
-<li>Heap (tas) : allocation dynamique, par malloc</li>
-<li>Data : zone de données globales ou statiques</li>
-<li>Texte : zone de code, des instructions du programme</li>
-</ul>
-<h2 id="gestion-mémoire-par-los">Gestion mémoire par l&rsquo;OS</h2>
-<h3 id="lien-entre-mémoire-virtuelle-et-mémoire-réelle">Lien entre mémoire virtuelle et mémoire réelle</h3>
-<p>La traduction de la mémoire virtuelle en mémoire réelle est réalisée par le CPU
-(MMU/TLB) via un mécanisme de pages. La mémoire est gérée par blocs de 2ko de
-mémoire ce sont les <strong>pages</strong>. Chaque page virtuelle correspondà une page
-réelle.</p>
-<p>La traduction s&rsquo;appuie sur un <strong>mapping</strong> des pages (traduction par
-dictionnaire). L&rsquo;adresse virtuelle est composée de différents champs permettant
-de construire l&rsquo;adresse réelle.</p>
- <center>
-<img src="/assets/images/prog_sys/7.png" width="50%"></img>
-</center>
-<h3 id="allocation-mémoire">Allocation mémoire</h3>
-<p>Un ensemble de pages physiques sont allouée à un processus (pour les différentes
-zones). L&rsquo;allocation est une allocation paresseuse</p>
-<ul>
-<li>L&rsquo;allocation de la page est réellement faite que lorsqu&rsquo;elle est réellement
-accédée</li>
-<li>Permet une gestion plus économique de la mémoire (plutôt qu&rsquo;une allocation
-gloutonne)</li>
-<li>Rôle du swap : si plus de pages physiques, stocke sur disque les pages de
-processus en attente</li>
-</ul>
-<h2 id="interface-de-programmation-pour-la-gestion-mémoire">Interface de programmation pour la gestion mémoire</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">brk</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>end_segment);
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">skrb</span>(intptr_t displacement);
-</code></pre></div><p>Définit l&rsquo;adresse virtuelle de la fin du tas</p>
-<ul>
-<li>Soit directement avec brk</li>
-<li>Soit avec un déplacement avec sbrk</li>
-</ul>
-<p>Ces fonctions ne sont pas à utiliser directement, utiliser <code>malloc</code> plutôt</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">malloc</span>(size_t size);
-<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">calloc</span>(size_t count, size_t size);
-<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">realloc</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>p, size_t size);
-</code></pre></div><p>Cela retourne un pointeur sur une nouvelle zone libre de size octets sur le cas,
-NULL si erreur. Beaucoup d&rsquo;OS font de l&rsquo;allocation paresseuse. L&rsquo;OS peut être
-amené à terminer certains processus pour libérer de la place.</p>
-<h3 id="libérer-une-zonne-mémoire-allouée-sur-le-tas">Libérer une zonne mémoire allouée sur le tas</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> free(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>ptr)
-</code></pre></div><p>Libère une zone allouée avec <code>malloc</code>. Le comportement est indéfini si déjà
-libéré ou si pas alloué avec <code>malloc</code>. Si <code>ptr</code> est NULL, aucune opération n&rsquo;est effectuée</p>
+<!-- ## Abstraction pour le processus et la mémoire  -->
+<!-- Le **Processus** est un programme qui s'execute ainsi que son contexte (mémoire, -->
+<!-- état des descripteurs de fichiers) -->
+<!-- Dans les systèmes d'exploitation :  -->
+<!-- + Support pour de multiples processus  -->
+<!-- + Chaque processus a un espace d'adressage privé ce qui garenti le cloisonnement -->
+<!--   entre processus (sécurité et protection), cela permet d'avoir une abstraction -->
+<!--   de la mémoire et surtout cela cache le noyau et les autres processus. -->
+<!--    <center> -->
+<!-- <img src="/assets/images/prog_sys/6.png" width="50%"></img> -->
+<!-- </center> -->
+<!-- + Stack : pile où sont stockées les variables locales  -->
+<!-- + Heap (tas) : allocation dynamique, par malloc -->
+<!-- + Data : zone de données globales ou statiques -->
+<!-- + Texte : zone de code, des instructions du programme -->
+<!-- ## Gestion mémoire par l'OS -->
+<!-- ### Lien entre mémoire virtuelle et mémoire réelle  -->
+<!-- La traduction de la mémoire virtuelle en mémoire réelle est réalisée par le CPU -->
+<!-- (MMU/TLB) via un mécanisme de pages. La mémoire est gérée par blocs de 2ko de -->
+<!-- mémoire ce sont les **pages**. Chaque page virtuelle correspondà une page -->
+<!-- réelle.  -->
+<!-- La traduction s'appuie sur un **mapping** des pages (traduction par -->
+<!-- dictionnaire). L'adresse virtuelle est composée de différents champs permettant -->
+<!-- de construire l'adresse réelle. -->
+<!--  <center> -->
+<!-- <img src="/assets/images/prog_sys/7.png" width="50%"></img> -->
+<!-- </center> -->
+<!-- ### Allocation mémoire -->
+<!-- Un ensemble de pages physiques sont allouée à un processus (pour les différentes -->
+<!-- zones). L'allocation est une allocation paresseuse  -->
+<!-- + L'allocation de la page est réellement faite que lorsqu'elle est réellement -->
+<!--   accédée -->
+<!-- + Permet une gestion plus économique de la mémoire (plutôt qu'une allocation -->
+<!--   gloutonne) -->
+<!-- + Rôle du swap : si plus de pages physiques, stocke sur disque les pages de -->
+<!--   processus en attente -->
+<!-- ## Interface de programmation pour la gestion mémoire -->
+<!-- ```c -->
+<!-- int brk(void *end_segment); -->
+<!-- int skrb(intptr_t displacement); -->
+<!-- ``` -->
+<!-- Définit l'adresse virtuelle de la fin du tas  -->
+<!-- + Soit directement avec brk -->
+<!-- + Soit avec un déplacement avec sbrk  -->
+<!-- Ces fonctions ne sont pas à utiliser directement, utiliser `malloc` plutôt -->
+<!-- ```c -->
+<!-- void *malloc(size_t size); -->
+<!-- void *calloc(size_t count, size_t size); -->
+<!-- void *realloc(void *p, size_t size); -->
+<!-- ``` -->
+<!-- Cela retourne un pointeur sur une nouvelle zone libre de size octets sur le cas, -->
+<!-- NULL si erreur. Beaucoup d'OS font de l'allocation paresseuse. L'OS peut être -->
+<!-- amené à terminer certains processus pour libérer de la place. -->
+<!-- ### Libérer une zonne mémoire allouée sur le tas  -->
+<!-- ```c -->
+<!-- void free(void *ptr) -->
+<!-- ``` -->
+<!-- Libère une zone allouée avec `malloc`. Le comportement est indéfini si déjà -->
+<!-- libéré ou si pas alloué avec `malloc`. Si `ptr` est NULL, aucune opération n'est effectuée -->
 
 					</div>
 					<div class="post-comments">
@@ -248,7 +299,7 @@ libéré ou si pas alloué avec <code>malloc</code>. Si <code>ptr</code> est NUL
     
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/4/">Les signaux</a></h4>
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/10/">Les signaux</a></h4>
         <h5>[Programmation Système]</h5>
         <p>Les signaux sont un mécanisme asynchrone de …</p>
       </div>
@@ -264,9 +315,17 @@ libéré ou si pas alloué avec <code>malloc</code>. Si <code>ptr</code> est NUL
     
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/3/">Processus et gestion mémoire</a></h4>
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/4/">La bibliothèque standard</a></h4>
         <h5>[Programmation Système]</h5>
-        <p>Abstraction pour le processus et la mémoire Le …</p>
+        <p>Les descripteurs de fichiers Le fichier …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/3/">Le Buffer Cache</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Introduction au buffer cache Le buffer cache est …</p>
       </div>
     </div>
     
@@ -275,14 +334,6 @@ libéré ou si pas alloué avec <code>malloc</code>. Si <code>ptr</code> est NUL
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/2/">Classes</a></h4>
         <h5>[C&#43;&#43;]</h5>
         <p>Définition et déclaration Une classe consiste en …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/2/">Système de Gestion de Fichiers</a></h4>
-        <h5>[Programmation Système]</h5>
-        <p>Le système de gestion de fichiers est un outil de …</p>
       </div>
     </div>
     
