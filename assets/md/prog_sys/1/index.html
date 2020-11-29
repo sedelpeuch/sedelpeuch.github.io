@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>Appel systèmes</title>
+  <title>Introduction</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -116,7 +116,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>Appel systèmes</h1>
+          <h1>Introduction</h1>
           <p></p>
         </div>
       </div>
@@ -130,7 +130,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">Appel systèmes</h2>
+					<h2 class="post-title">Introduction</h2>
 					<div class="post-meta">
 						<ul>
               <li><i class="ion-calendar"></i> October 20, 2020</li>
@@ -151,27 +151,58 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<h2 id="principes-des-systèmes-dexploitation">Principes des systèmes d&rsquo;exploitation</h2>
-<h2 id="notion-de-processus">Notion de processus</h2>
-<h2 id="modes-dexécution">Modes d&rsquo;exécution</h2>
-<h2 id="appels-système">Appels système</h2>
-<p>Certaines instructions machines autorisées (gestion de la mémoire et
-interruptions) sont interdites en mode utilisateur. Le <strong>noyau</strong> est un
-gestionnaire de processus mais ce n&rsquo;est pas un processus. Il gère les ressources
-et l&rsquo;accès matériel. Il est fait pour être toujours en mémoire et est chargé au
-boot de la machine. Un processus utilisateur passe en mode noyau pour utiliser
-un service proposé par le noyau.</p>
-<p>Les <strong>appels système</strong> sont situés à l&rsquo;interface entre le mode utilisateur et le
-mode noyau. Le changement de mode se fait par une instruction assembleur
-d&rsquo;interruption (ta, int,&hellip;). Le noyau possède un gestionnaire d&rsquo;interruption,
-en revanche les appels systèmes sont coûteux ! (plusieurs centaines de cycles).</p>
+						<h2 id="structure-générale-des-systèmes-dexploitation">Structure générale des systèmes d&rsquo;exploitation</h2>
+<p>Un système d&rsquo;exploitation est un programme qui sert d&rsquo;interface entre un
+utilisateur et un ordinateur. Un système d&rsquo;exploitation est un ensemble de
+procédures manuelles et automatique qui permet à un groupe d&rsquo;utilisateur de
+partager efficacement un ordinateur.</p>
+<h3 id="structure-générale-des-systèmes-dexploitation-1">Structure générale des systèmes d&rsquo;exploitation</h3>
+<h3 id="larchitecture-du-système">L&rsquo;architecture du système</h3>
+<p>L&rsquo;architecture globale d&rsquo;UNIX est une architecture par couches (coquilles)
+successives. Les utilisateurs ordinaires communiquent avec la couche la plus
+évoluée celle des applications (en génerale aujourd&rsquo;hui associé avec une
+interface graphique). Le programmeur lui va en fonction de ses besoins utiliser
+des couches de plus en plus profondes, plus précises mais plus difficiles à
+utiliser. Chaque couche est construite pour pouvoir être utilisée sans connaitre
+les couches inférieures (ni leur fonctionnement, ni leur interface). Cette
+hiérarchie décapsulation permet d&rsquo;écrire des applications plus portables. En
+effet si elles sont écrites dans les couches hautes, le travaille de portage est
+fait par le portage des couches inférieures. Pour des applications où le tempsde
+calcul prime devant la probabilité, les couches basses seront utilisées</p>
 <center>
-<img src="/assets/images/prog_sys/1.png" width="50%"></img>
+<img src="/assets/images/prog_sys/SYS3.png" width="40%"></img>
+<img src="/assets/images/prog_sys/SYS2.png" width="40%"></img>
 </center>
-<p>Les appels systèmes retournent d&rsquo;éventuels code d&rsquo;erreur dans une variable
-<code>errno</code>, cette variable possède la valeur <code>-1</code> lorsqu&rsquo;il y a une erreur.
-L&rsquo;affichage du texte d&rsquo;erreur s&rsquo;effectue avec <code>voir perror(const char *s);</code>.
-Finalement la trace des appels système d&rsquo;un programme s&rsquo;obtient avec <code>strace executable</code>.</p>
+<center>
+<img src="/assets/images/prog_sys/SYS1.png" width="50%"></img>
+</center>
+<h3 id="larchitecture-du-noyau">L&rsquo;architecture du noyau</h3>
+<p>L&rsquo;autre approche architecturale est l&rsquo;architecture interne du noyau (kernel).
+C&rsquo;est une architecture logicielle elle permet aux développeur de structure le
+travail de développement. Le but ici est de simplifier la compréhension et la
+fabrication du système. Nous cherchons donc ici à décomposer le noyau en parties
+disjointes (qui sont concevables et programmables de façons disjointes).</p>
+<!-- ## Principes des systèmes d'exploitation -->
+<!-- ## Notion de processus -->
+<!-- ## Modes d'exécution  -->
+<!-- ## Appels système  -->
+<!-- Certaines instructions machines autorisées (gestion de la mémoire et -->
+<!-- interruptions) sont interdites en mode utilisateur. Le **noyau** est un -->
+<!-- gestionnaire de processus mais ce n'est pas un processus. Il gère les ressources -->
+<!-- et l'accès matériel. Il est fait pour être toujours en mémoire et est chargé au -->
+<!-- boot de la machine. Un processus utilisateur passe en mode noyau pour utiliser -->
+<!-- un service proposé par le noyau. -->
+<!-- Les **appels système** sont situés à l'interface entre le mode utilisateur et le -->
+<!-- mode noyau. Le changement de mode se fait par une instruction assembleur -->
+<!-- d'interruption (ta, int,...). Le noyau possède un gestionnaire d'interruption, -->
+<!-- en revanche les appels systèmes sont coûteux ! (plusieurs centaines de cycles).  -->
+<!-- <center> -->
+<!-- <img src="/assets/images/prog_sys/1.png" width="50%"></img> -->
+<!-- </center> -->
+<!-- Les appels systèmes retournent d'éventuels code d'erreur dans une variable -->
+<!-- `errno`, cette variable possède la valeur `-1` lorsqu'il y a une erreur. -->
+<!-- L'affichage du texte d'erreur s'effectue avec `voir perror(const char *s);`. -->
+<!-- Finalement la trace des appels système d'un programme s'obtient avec `strace executable`. -->
 
 					</div>
 					<div class="post-comments">
@@ -191,8 +222,63 @@ Finalement la trace des appels système d&rsquo;un programme s&rsquo;obtient ave
       <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
       <li><a href="/tags/tcp-ip">Tcp ip</a></li>
     </ul>
-  </div></aside>
-<iframe src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=2&amp;bgcolor=%23A79B8E&amp;ctz=Europe%2FParis&amp;src=Z3J1azRqOXI3czdwNGV2cjVidjc4NG1xMHVwYWJwNTVAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="380" height="1000" frameborder="0" scrolling="no"></iframe>
+</div>
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/4/">Héritage, polymorphisme</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>L&rsquo;héritage est un mécanisme permettant de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/4/">Les signaux</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Les signaux sont un mécanisme asynchrone de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/3/">Opérateurs</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>Définition Un opérateur est une notation …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/3/">Processus et gestion mémoire</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Abstraction pour le processus et la mémoire Le …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/2/">Classes</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>Définition et déclaration Une classe consiste en …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/2/">Système de Gestion de Fichiers</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Le système de gestion de fichiers est un outil de …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
 
       </div>
 		</div>

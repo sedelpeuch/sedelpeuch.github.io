@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>Fichiers</title>
+  <title>Système de Gestion de Fichiers</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -116,7 +116,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>Fichiers</h1>
+          <h1>Système de Gestion de Fichiers</h1>
           <p></p>
         </div>
       </div>
@@ -130,7 +130,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">Fichiers</h2>
+					<h2 class="post-title">Système de Gestion de Fichiers</h2>
 					<div class="post-meta">
 						<ul>
               <li><i class="ion-calendar"></i> November 3, 2020</li>
@@ -151,95 +151,126 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<h2 id="comment-accéder-aux-fichiers-">Comment accéder aux fichiers ?</h2>
-<p>Il existe plsuieurs niveaux de gestion des fichiers</p>
+						<p>Le système de gestion de fichiers est un outil de manipulation des fichiers et
+de la structure d&rsquo;arborescence des fichiers sur disque et a aussi le rôle sous
+UNIX de conserver toutes les informations dont la pérennité est importante pour
+le système (et pour les utilisateurs biensur). Ainsi tous les objets importants
+du système sont référencés dans le système de fichiers (mémoire, terminaux,
+périphériques variés etc). Le système de gestion de fichier permet une
+manipulation simple des fichiers et gère de façon transparente les différents
+problèmes d&rsquo;accès aux supports de masse</p>
 <ul>
-<li>stockage mémoire (structure du système de fichier, structure des fichiers,
-inodes)</li>
-<li>stockage du système (table des descripteurs (processus), table des fichiers
-ouverts, tables des inodes)</li>
+<li>partage : utilisation d&rsquo;un même fichier / disque par plusieurs utilisateurs</li>
+<li>efficacité : utilisation de cache, uniformisation des accès</li>
+<li>droits : protection des éléments important du système et protection
+interutilisateurs</li>
+<li>alignement : transtypage entre la mémoire et les supports magnétiques</li>
 </ul>
-<h2 id="stockage--structure-du-système-de-fichiers">Stockage : structure du système de fichiers</h2>
+<h2 id="le-concept-de-fichier">Le concept de fichier</h2>
+<p>L&rsquo;unité logique de base de l&rsquo;interface du Système de Gestion de Fichiers : <code>le fichier</code>. Un fichier UNIX est une suite finie de bytes matérialisée par des
+blocs disques, et une inode qui contient les propriétés du fichier. Le contenu
+est entièrement défini par le créateur, la gestion de l&rsquo;allocation des
+ressources nécessaires est a la seule responsabilité du système. Sur UNIX les
+fichiers ne sont pas typés du point de vue utilisateur, le concept de fichier
+permet de proposer un type générique (polymorphe) aux programmeurs le système
+gérant la multiplicité des formats effectifs (différentes marques et conceptions
+de disques dur par exemple). L&rsquo;inode définit le fichier, soit principalement les
+information :</p>
 <ul>
-<li>Boot bloc : block de données qui permet de booter la machine. Flag <em>bootable</em></li>
-<li>Superbloc : point de montage du système de fichiers, nombre de noeuds alloués
-/ libres, liste des noeuds alloués / libres</li>
-<li>Table des inodes</li>
-<li>Blocs de données : contient les données des fichiers, pour un répertoire,
-liste des noms des fichiers</li>
+<li>la localisation sur disque</li>
+<li>le propriétaire et le groupe propriétaire</li>
+<li>les droits d&rsquo;accès des différents utilisateurs</li>
+<li>la taille</li>
+<li>la date de création</li>
 </ul>
- <center>
-<img src="/assets/images/prog_sys/2.png" width="50%"></img>
-</center>
-<h2 id="fichiers--inodes">Fichiers / inodes</h2>
-<p>Il y a deux structure en Unix :</p>
-<ul>
-<li>le contenu du fichier</li>
-<li>les informations sur le fichier (metadata) : inode</li>
-</ul>
-<p>Et les informations d&rsquo;un inode :</p>
-<ul>
-<li>Type de fichier</li>
-<li>Nombre de liens dur (hard link) partageant l&rsquo;inode</li>
-<li>Longueur du fichier en octets</li>
-<li>Identifiant de device</li>
-<li>Identifiant de l&rsquo;utilisateur (UID) propriétaire, et son groupe</li>
-<li>Date de création, modification</li>
-<li>Droits d&rsquo;accès</li>
-</ul>
-<center>
-<img src="/assets/images/prog_sys/3.png" width="50%"></img>
-</center>
-<h2 id="gestion-des-fichiers-par-le-système">Gestion des fichiers par le système</h2>
-<ul>
-<li>Une table des descripteurs de fichiers ouverts/accédés <strong>par processus</strong></li>
-<li>Une table des fichiers ouverts pour chaque <code>open</code> appelé. Il peut y avoir le
-même fichier plusieurs fois dans cette table. Il en existe une seule pour le
-système.</li>
-<li>Une seule table des inodes. Elle gère le nombre d&rsquo;ouvertures de chaque
-fichier, et stocke les informations des fichiers en mémoire.</li>
-</ul>
-<center>
-<img src="/assets/images/prog_sys/4.png" width="50%"></img>
-</center>
-<h2 id="quelques-fonctions-de-base">Quelques fonctions de base</h2>
-<ul>
-<li>Manipulation des inodes <code>stat(), unlink(), chown(), chmod(), mknod(), access(), link(), ...</code></li>
-<li>Manipulation des descripteurs de fichier <code>read(), write(), creat(), open(), lseek(), fcntl(), ...</code></li>
-<li>Fonctions de bibliothèque C <code>fopen(), fclose(), fread(),...</code></li>
-</ul>
-<h2 id="informations-sur-les-fichiers">Informations sur les fichiers</h2>
-<pre><code>int stat(const char* path, struct stat* buf)
-</code></pre><p>Cette fonction retourne 0 si il n&rsquo;y a pas d&rsquo;erreur, -1 sinon.</p>
-<center>
-<img src="/assets/images/prog_sys/5.png" width="50%"></img>
-</center>
-<h2 id="les-droits-daccès">Les droits d&rsquo;accès</h2>
-<p>Comment tester les droits d&rsquo;accès à un fichier avec le champ <code>st_mode</code> ?</p>
-<ul>
-<li><code>S_ISREG(m)</code> vrai si c&rsquo;est un fichier normal</li>
-<li><code>S_ISDIR(m)</code> vrai si c&rsquo;est un répertoire</li>
-<li><code>S_ISCHR(m)</code> vrai si c&rsquo;est un device de type caractère</li>
-<li><code>S_ISBLK(m)</code> vrai si c&rsquo;est un device de type bloc</li>
-<li><code>S_ISFIFO(m)</code> vrai si c&rsquo;est une fifo</li>
-<li><code>S_ISLNK(m)</code> vrai si c&rsquo;est un lien symbolique</li>
-<li><code>S_ISSOCK(m)</code> vrai si c&rsquo;est une socket</li>
-</ul>
-<p>Pour tester les autorisations d&rsquo;accès on peut utiliser <code>int access(const char* pathname, int mode);</code>, les modes disponibles sont <code>R_OK,W_OK,X_OK,F_OK</code>. Cela
-retourne <code>-1</code> en cas d&rsquo;erreur ou si la demande est interdite, <code>0</code> sinon.</p>
-<h2 id="créer-un-fichier">Créer un fichier</h2>
-<p>Pour créer un fichier <code>int mknod(const char *pathname, mode_t mode, dev_t dev);</code>. <code>Mode</code> est l&rsquo;un des modes possibles de fichier, avec un ou logique les
-permissions. Par exemple <code>S_IFREG|S_IRUSR|S_IXUSR</code> pour un fichier normal</p>
-<h2 id="créer--détruire-des-liens">Créer / Détruire des liens</h2>
-<p>Pour créer un nouveau lien vers un fichier <code>int link(const char *oldpath, const char *newpath);</code>. Il nest pas possible de faire de nouveaux liens vers des
-répertoires. Pour détruire un lien en dur (et le fichier si c&rsquo;est le seul lien),
-<code>int unlink(const char *pathname);</code>.</p>
-<h2 id="ouvrircréer-un-fichier">Ouvrir/Créer un fichier</h2>
-<p>Pour ouvrir et créer un nouveau fichier <code>int open(const char* pathname, int flags ...); int creat(const char* pastname, mode_t mode);</code></p>
-<h2 id="fermer-un-fichier">Fermer un fichier</h2>
-<p>Pour fermer un fichier <code>int close(int fd);</code></p>
-<p>Ferme un descripteur de fichier, lorsqu&rsquo;il s&rsquo;agit du dernier descripteur de
-fichier pointant sur un fichier donné</p>
+<p>On trouvera sur d&rsquo;autre systèmes d&rsquo;autres structures d&rsquo;information pour décrire
+les fichiers, par exemple NT utiliser des &ldquo;objets files records&rdquo;.
+<em>Un nom est lié à un fichier (une référence indique un fichier) mais un fichier
+n&rsquo;est pas lié à une référence, un fichier peut exister sans avoir le nom dans
+l&rsquo;arborescence.</em></p>
+<!-- ## Comment accéder aux fichiers ? -->
+<!-- Il existe plsuieurs niveaux de gestion des fichiers  -->
+<!-- + stockage mémoire (structure du système de fichier, structure des fichiers, -->
+<!--   inodes) -->
+<!-- + stockage du système (table des descripteurs (processus), table des fichiers -->
+<!--   ouverts, tables des inodes) -->
+<!-- ## Stockage : structure du système de fichiers -->
+<!-- + Boot bloc : block de données qui permet de booter la machine. Flag *bootable* -->
+<!-- + Superbloc : point de montage du système de fichiers, nombre de noeuds alloués -->
+<!--   / libres, liste des noeuds alloués / libres  -->
+<!-- + Table des inodes -->
+<!-- + Blocs de données : contient les données des fichiers, pour un répertoire, -->
+<!--   liste des noms des fichiers -->
+<!--  <center> -->
+<!-- <img src="/assets/images/prog_sys/2.png" width="50%"></img> -->
+<!-- </center> -->
+<!-- ## Fichiers / inodes -->
+<!-- Il y a deux structure en Unix :  -->
+<!-- + le contenu du fichier  -->
+<!-- + les informations sur le fichier (metadata) : inode -->
+<!-- Et les informations d'un inode : -->
+<!-- + Type de fichier  -->
+<!-- + Nombre de liens dur (hard link) partageant l'inode -->
+<!-- + Longueur du fichier en octets -->
+<!-- + Identifiant de device -->
+<!-- + Identifiant de l'utilisateur (UID) propriétaire, et son groupe  -->
+<!-- + Date de création, modification -->
+<!-- + Droits d'accès -->
+<!-- <center> -->
+<!-- <img src="/assets/images/prog_sys/3.png" width="50%"></img> -->
+<!-- </center> -->
+<!-- ## Gestion des fichiers par le système  -->
+<!-- + Une table des descripteurs de fichiers ouverts/accédés **par processus** -->
+<!-- + Une table des fichiers ouverts pour chaque `open` appelé. Il peut y avoir le -->
+<!--   même fichier plusieurs fois dans cette table. Il en existe une seule pour le -->
+<!--   système.  -->
+<!-- + Une seule table des inodes. Elle gère le nombre d'ouvertures de chaque -->
+<!--   fichier, et stocke les informations des fichiers en mémoire.  -->
+<!-- <center> -->
+<!-- <img src="/assets/images/prog_sys/4.png" width="50%"></img> -->
+<!-- </center> -->
+<!-- ## Quelques fonctions de base  -->
+<!-- + Manipulation des inodes `stat(), unlink(), chown(), chmod(), mknod(), -->
+<!--   access(), link(), ...` -->
+<!-- + Manipulation des descripteurs de fichier `read(), write(), creat(), open(), -->
+<!--   lseek(), fcntl(), ...` -->
+<!-- + Fonctions de bibliothèque C `fopen(), fclose(), fread(),...` -->
+<!-- ## Informations sur les fichiers -->
+<!-- ``` -->
+<!-- int stat(const char* path, struct stat* buf) -->
+<!-- ``` -->
+<!-- Cette fonction retourne 0 si il n'y a pas d'erreur, -1 sinon.  -->
+<!-- <center> -->
+<!-- <img src="/assets/images/prog_sys/5.png" width="50%"></img> -->
+<!-- </center> -->
+<!-- ## Les droits d'accès -->
+<!-- Comment tester les droits d'accès à un fichier avec le champ `st_mode` ? -->
+<!-- + `S_ISREG(m)` vrai si c'est un fichier normal -->
+<!-- + `S_ISDIR(m)` vrai si c'est un répertoire -->
+<!-- + `S_ISCHR(m)` vrai si c'est un device de type caractère -->
+<!-- + `S_ISBLK(m)` vrai si c'est un device de type bloc -->
+<!-- + `S_ISFIFO(m)` vrai si c'est une fifo -->
+<!-- + `S_ISLNK(m)` vrai si c'est un lien symbolique -->
+<!-- + `S_ISSOCK(m)` vrai si c'est une socket -->
+<!-- Pour tester les autorisations d'accès on peut utiliser `int access(const char* -->
+<!-- pathname, int mode);`, les modes disponibles sont `R_OK,W_OK,X_OK,F_OK`. Cela -->
+<!-- retourne `-1` en cas d'erreur ou si la demande est interdite, `0` sinon.  -->
+<!-- ## Créer un fichier -->
+<!-- Pour créer un fichier `int mknod(const char *pathname, mode_t mode, dev_t -->
+<!-- dev);`. `Mode` est l'un des modes possibles de fichier, avec un ou logique les -->
+<!-- permissions. Par exemple `S_IFREG|S_IRUSR|S_IXUSR` pour un fichier normal -->
+<!-- ## Créer / Détruire des liens  -->
+<!-- Pour créer un nouveau lien vers un fichier `int link(const char *oldpath, const -->
+<!-- char *newpath);`. Il nest pas possible de faire de nouveaux liens vers des -->
+<!-- répertoires. Pour détruire un lien en dur (et le fichier si c'est le seul lien), -->
+<!-- `int unlink(const char *pathname);`.  -->
+<!-- ## Ouvrir/Créer un fichier  -->
+<!-- Pour ouvrir et créer un nouveau fichier `int open(const char* pathname, int -->
+<!-- flags ...); int creat(const char* pastname, mode_t mode);` -->
+<!-- ## Fermer un fichier  -->
+<!-- Pour fermer un fichier `int close(int fd);` -->
+<!-- Ferme un descripteur de fichier, lorsqu'il s'agit du dernier descripteur de -->
+<!-- fichier pointant sur un fichier donné  -->
 
 					</div>
 					<div class="post-comments">
@@ -259,8 +290,63 @@ fichier pointant sur un fichier donné</p>
       <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
       <li><a href="/tags/tcp-ip">Tcp ip</a></li>
     </ul>
-  </div></aside>
-<iframe src="https://calendar.google.com/calendar/embed?height=1000&amp;wkst=2&amp;bgcolor=%23A79B8E&amp;ctz=Europe%2FParis&amp;src=Z3J1azRqOXI3czdwNGV2cjVidjc4NG1xMHVwYWJwNTVAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;mode=AGENDA&amp;showTitle=0&amp;showNav=1&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="380" height="1000" frameborder="0" scrolling="no"></iframe>
+</div>
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/4/">Héritage, polymorphisme</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>L&rsquo;héritage est un mécanisme permettant de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/4/">Les signaux</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Les signaux sont un mécanisme asynchrone de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/3/">Opérateurs</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>Définition Un opérateur est une notation …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/3/">Processus et gestion mémoire</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Abstraction pour le processus et la mémoire Le …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/2/">Classes</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>Définition et déclaration Une classe consiste en …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/2/">Système de Gestion de Fichiers</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Le système de gestion de fichiers est un outil de …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
 
       </div>
 		</div>

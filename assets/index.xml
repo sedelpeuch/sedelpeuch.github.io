@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>Les signaux</title>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/4/</link>
+      <pubDate>Tue, 24 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/4/</guid>
+      <description>Les signaux sont un mécanisme asynchrone de communication inter-processus. Intuitivement, ils sont comparables à des sonneries, les différentes sonneries indiquant des évènements différents. Les signaux sont envoyés à un ou plusieurs processus.</description>
+    </item>
+    
+    <item>
       <title>Opérateurs</title>
       <link>https://Sdelpeuch.github.io/assets/md/cpp/3/</link>
       <pubDate>Wed, 18 Nov 2020 11:07:10 +0600</pubDate>
@@ -52,13 +61,12 @@ class NomClasse{ attributes ... methodes ... }; L&amp;rsquo;ordre des déclarati
     </item>
     
     <item>
-      <title>Fichiers</title>
+      <title>Système de Gestion de Fichiers</title>
       <link>https://Sdelpeuch.github.io/assets/md/prog_sys/2/</link>
       <pubDate>Tue, 03 Nov 2020 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/2/</guid>
-      <description>Comment accéder aux fichiers ? Il existe plsuieurs niveaux de gestion des fichiers
- stockage mémoire (structure du système de fichier, structure des fichiers, inodes) stockage du système (table des descripteurs (processus), table des fichiers ouverts, tables des inodes)  Stockage : structure du système de fichiers  Boot bloc : block de données qui permet de booter la machine.</description>
+      <description>Le système de gestion de fichiers est un outil de manipulation des fichiers et de la structure d&amp;rsquo;arborescence des fichiers sur disque et a aussi le rôle sous UNIX de conserver toutes les informations dont la pérennité est importante pour le système (et pour les utilisateurs biensur).</description>
     </item>
     
     <item>
@@ -81,12 +89,12 @@ class NomClasse{ attributes ... methodes ... }; L&amp;rsquo;ordre des déclarati
     </item>
     
     <item>
-      <title>Appel systèmes</title>
+      <title>Introduction</title>
       <link>https://Sdelpeuch.github.io/assets/md/prog_sys/1/</link>
       <pubDate>Tue, 20 Oct 2020 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/1/</guid>
-      <description>Principes des systèmes d&amp;rsquo;exploitation Notion de processus Modes d&amp;rsquo;exécution Appels système Certaines instructions machines autorisées (gestion de la mémoire et interruptions) sont interdites en mode utilisateur. Le noyau est un gestionnaire de processus mais ce n&amp;rsquo;est pas un processus.</description>
+      <description>Structure générale des systèmes d&amp;rsquo;exploitation Un système d&amp;rsquo;exploitation est un programme qui sert d&amp;rsquo;interface entre un utilisateur et un ordinateur. Un système d&amp;rsquo;exploitation est un ensemble de procédures manuelles et automatique qui permet à un groupe d&amp;rsquo;utilisateur de partager efficacement un ordinateur.</description>
     </item>
     
     <item>
