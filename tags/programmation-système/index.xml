@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>La mémoire virtuelle</title>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/8/</link>
+      <pubDate>Fri, 20 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>La mémoire</title>
       <link>https://Sdelpeuch.github.io/assets/md/prog_sys/7/</link>
       <pubDate>Wed, 18 Nov 2020 11:07:10 +0600</pubDate>
@@ -93,7 +102,7 @@
       <guid>https://Sdelpeuch.github.io/semestre7/prog_sys/</guid>
       <description>Le Support de cours et le Support de TD
 Les notes personnelles de TD
-   Notes personnelles - cours     Introduction   Système de Gestion de Fichiers   Le Buffer Cache   La bibliothèque standard   Appels système du Système de Gestion de Fichier   Les processus   La mémoire   [La mémoire Virtuelle]   [Tubes et Tubes Nommés]   Signaux   [Mémoire partagée et syncronisation]   [Threads]   [Concurrence]   [Réseau - sockets]    </description>
+   Notes personnelles - cours     Introduction   Système de Gestion de Fichiers   Le Buffer Cache   La bibliothèque standard   Appels système du Système de Gestion de Fichier   Les processus   La mémoire   La mémoire Virtuelle   [Tubes et Tubes Nommés]   Signaux   [Mémoire partagée et syncronisation]   [Threads]   [Concurrence]   [Réseau - sockets]    </description>
     </item>
     
   </channel>
