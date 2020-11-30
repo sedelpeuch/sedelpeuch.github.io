@@ -22,12 +22,40 @@
     </item>
     
     <item>
+      <title>La mémoire</title>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/7/</link>
+      <pubDate>Wed, 18 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/7/</guid>
+      <description>La mémoire d&amp;rsquo;un ordinateur se décompose en plusieurs éléments, dont le prix et le temps d&amp;rsquo;accès sont très variables. Nous développerons dans ce chapitre et le suivant les questions et solutions relatives à la mémoire centrale.</description>
+    </item>
+    
+    <item>
+      <title>Les processus</title>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/6/</link>
+      <pubDate>Sun, 15 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/6/</guid>
+      <description>Introduction aux processus Un processus est un ensemble d&amp;rsquo;octets (en langage machine) en cours d&amp;rsquo;exécution, en d&amp;rsquo;autres termes, c&amp;rsquo;est l&amp;rsquo;exécution d&amp;rsquo;un programme. Un processus UNIX se décompose en :
+ un espace d&amp;rsquo;adressage (visible par l&amp;rsquo;utilisateur / programmeur) Le bloc de contrôle du processus (BCP) lui-même décomposé en :  une entrée dans la table des processus du noyau struc proc définie dans &amp;lt;sys/proc.</description>
+    </item>
+    
+    <item>
+      <title>Appels système du Système de Gestion de Fichier</title>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/5/</link>
+      <pubDate>Wed, 11 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/5/</guid>
+      <description>Les appels système d&amp;rsquo;entrées-sorties ou entrées-sorties de bas niveau sont rudimentaires mais polymorphes, en effet c&amp;rsquo;est eux qui permettent d&amp;rsquo;écrire des programmes indépendamment des supports physiques sur lesquels se font les entrées/sorties et de pouvoir facilement changer les supports physiques associés a une entrée-sortie.</description>
+    </item>
+    
+    <item>
       <title>La bibliothèque standard</title>
       <link>https://Sdelpeuch.github.io/assets/md/prog_sys/4/</link>
       <pubDate>Tue, 10 Nov 2020 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/4/</guid>
-      <description>Les descripteurs de fichiers Le fichier d&amp;rsquo;inclusion &amp;lt;stdio.h&amp;gt; contient la définition du type FILE. Ce type est une structure contenant</description>
+      <description>Les descripteurs de fichiers Le fichier d&amp;rsquo;inclusion &amp;lt;stdio.h&amp;gt; contient la définition du type FILE. Ce type est une structure contenant les informations nécessaires au système pour la manipulation d&amp;rsquo;un fichier ouvert.</description>
     </item>
     
     <item>
@@ -65,7 +93,7 @@
       <guid>https://Sdelpeuch.github.io/semestre7/prog_sys/</guid>
       <description>Le Support de cours et le Support de TD
 Les notes personnelles de TD
-   Notes personnelles - cours     Introduction   Système de Gestion de Fichiers   Le Buffer Cache   [La bibliothèque standard]   [Appels système du Système de Gestion de Fichier]   [Les processus]   [La mémoire]   [La mémoire Virtuelle]   [Tubes et Tubes Nommés]   Signaux   [Mémoire partagée et syncronisation]   [Threads]   [Concurrence]   [Réseau - sockets]    </description>
+   Notes personnelles - cours     Introduction   Système de Gestion de Fichiers   Le Buffer Cache   La bibliothèque standard   Appels système du Système de Gestion de Fichier   Les processus   La mémoire   [La mémoire Virtuelle]   [Tubes et Tubes Nommés]   Signaux   [Mémoire partagée et syncronisation]   [Threads]   [Concurrence]   [Réseau - sockets]    </description>
     </item>
     
   </channel>

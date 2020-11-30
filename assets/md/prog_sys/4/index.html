@@ -153,7 +153,26 @@
 					<div class="post-content post-excerpt">
 						<h2 id="les-descripteurs-de-fichiers">Les descripteurs de fichiers</h2>
 <p>Le fichier d&rsquo;inclusion <code>&lt;stdio.h&gt;</code> contient la définition du type <code>FILE</code>. Ce
-type est une structure contenant</p>
+type est une structure contenant les informations nécessaires au système pour la
+manipulation d&rsquo;un fichier ouvert. Le contenu exact de cette structure peut
+varier d&rsquo;un système à l&rsquo;autre. Toutes les fonctions d&rsquo;entrées sorties utilisent
+en premier argument un pointeur sur une telle structure <code>FILE *</code>. Le rôle de cet
+argument est d&rsquo;indiquer le flux sur lequel on doit effectuer l&rsquo;opération
+d&rsquo;écriture ou de lecture. Pour pouvoir utiliser une fonction d&rsquo;entrée sortie il
+faut donc avoir une valeur pour ce premier argument, c&rsquo;est le rôle de la
+fonction <code>fopen</code> de nous fournir ce pointeur en ouvrant le fichier. Les deux
+fonctions <code>printf</code> et <code>scanf</code> sont des synonymes de <code>fprintf(stdout, format, ...)</code> et <code>fscanf(stdin,format, ...)</code>. Où <code>stdout</code> et <code>stdin</code> sont des
+expressions de type <code>FILE *</code> définies sous forme de macro-définitions dans le
+fichier <code>&lt;stdio.h&gt;</code>. Avec POSIX ce sont effectivement des fonctions. sur les
+systèmes de la famille UNIX les fichiers ouverts par un processus le restent
+dans ses fils. Par exemple le shell a en général trois flux standards :</p>
+<ul>
+<li><strong>stdin</strong> le terminal ouvert en lecture</li>
+<li><strong>stdout</strong> le terminal ouvert en écriture</li>
+<li><strong>stderr</strong> le terminal ouvert en écriture, et en mode non bufferisé</li>
+</ul>
+<p>Ainsi si l&rsquo;exécution d&rsquo;un programme C est réalisée à partir du shell le
+programme C a déjà ces trois descripteurs de fichiers utilisables.</p>
 
 					</div>
 					<div class="post-comments">
@@ -197,6 +216,14 @@ type est une structure contenant</p>
     
     <div class="media">
       <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/7/">La mémoire</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>La mémoire d&rsquo;un ordinateur se décompose en …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/3/">Opérateurs</a></h4>
         <h5>[C&#43;&#43;]</h5>
         <p>Définition Un opérateur est une notation …</p>
@@ -205,25 +232,17 @@ type est une structure contenant</p>
     
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/4/">La bibliothèque standard</a></h4>
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/6/">Les processus</a></h4>
         <h5>[Programmation Système]</h5>
-        <p>Les descripteurs de fichiers Le fichier …</p>
+        <p>Introduction aux processus Un processus est un …</p>
       </div>
     </div>
     
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/3/">Le Buffer Cache</a></h4>
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/5/">Appels système du Système de Gestion de Fichier</a></h4>
         <h5>[Programmation Système]</h5>
-        <p>Introduction au buffer cache Le buffer cache est …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/2/">Classes</a></h4>
-        <h5>[C&#43;&#43;]</h5>
-        <p>Définition et déclaration Une classe consiste en …</p>
+        <p>Les appels système d&rsquo;entrées-sorties ou …</p>
       </div>
     </div>
     

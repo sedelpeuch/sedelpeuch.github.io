@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Les processus</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 7 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/info.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Les processus</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Les processus</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> November 15, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/programmation%20syst%c3%a8me">Programmation système</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<h2 id="introduction-aux-processus">Introduction aux processus</h2>
+<p>Un processus est un ensemble d&rsquo;octets (en langage machine) en cours d&rsquo;exécution,
+en d&rsquo;autres termes, c&rsquo;est l&rsquo;exécution d&rsquo;un programme. Un processus UNIX se
+décompose en :</p>
+<ol>
+<li>un espace d&rsquo;adressage (visible par l&rsquo;utilisateur / programmeur)</li>
+<li>Le bloc de contrôle du processus (BCP) lui-même décomposé en :
+<ul>
+<li>une entrée dans la table des processus du noyau <code>struc proc</code> définie dans
+<code>&lt;sys/proc.h&gt;</code></li>
+<li>une structure <code>struct user</code> appelée <code>zone u</code> définie dans <code>&lt;sys/user.h&gt;</code></li>
+</ul>
+</li>
+</ol>
+<p>Le processus sous UNIX apportent :</p>
+<ul>
+<li>La multiplicité des exécutions, plusieurs processus peuvent être l&rsquo;exécution
+d&rsquo;un même programme</li>
+<li>La protection des exécutions, un processus ne peut exécuter que ses
+instructions propres et ce de façon séquentielle; il ne peut pas exécuter des
+instructions appartenant à un autre processus. Les processus sous UNIX
+communiquent entre eux et avec le reste du monde grâce aux appels système.</li>
+</ul>
+<h3 id="création-dun-processus---fork">Création d&rsquo;un processus - <code>fork()</code></h3>
+<p>Sous UNIX la création de processus est réalisée par l&rsquo;appel système <code>int fork(void);</code>. tous les processus sauf le processus d&rsquo;identification 0, sont
+créés par un appel à fork. Le processus qui appelle le <code>fork</code> est appelé
+processus père. Le nouveau processus est appelé processus fils. Tout processus a
+un seul processus père. Tout processus peut avoir zéro ou plusieurs processus
+fils. Chaque processus  est identifié par un numéro unique, son <strong>PID</strong>.</p>
+<center>
+<img src="assets/images/prog_sys/SYS6.png" width="50%"></img>
+</center>
+<p>Le processus de PID 0 est créé &ldquo;manuellement&rdquo; au démarrage de la machine, ce
+processus a toujours un rôle spécial pour le système, de plus pour le bon
+fonctionnement des programmes utilisant <code>fork()</code> il faut que le PID zéro reste
+toujours utilisé. Le processus zéro crée, grâce à un appel de <code>fork</code>, le
+processus init de PID 1.</p>
+<p>Le processus de PID 1 de nom <code>init</code> est l&rsquo;ancêtre de tous les autres processus
+(le processus 0 ne réalisant plus de <code>fork()</code>), c&rsquo;est lui qui accueille tous les
+processus orphelins de père (ceci a fin de collecter les informations à la mort
+de chaque processus).</p>
+<h2 id="format-dun-fichier-exécutable">Format d&rsquo;un fichier exécutable</h2>
+<p>Les compilateurs nous permettent de créer des fichiers exécutables. Ces fichiers
+ont le format suivant qui permet au noyau de les transformer en processus :</p>
+<ul>
+<li>Une en-tête qui décrit l&rsquo;ensemble du fichier, ses attributs et sa carte des
+sections</li>
+<li>La taille à allouer pour les variables non initialisées</li>
+<li>Une section TEXT qui contient le code (en langage machine)</li>
+<li>Une section données (DATA) codée en langage machine qui contient les données
+initialisées</li>
+<li>Eventuellement d&rsquo;autres sections : Table des symboles pour le débugger,
+Images, ICONS, Table des chaînes, etc</li>
+</ul>
+<h2 id="chargement--changement-dun-exécutable">Chargement / changement d&rsquo;un exécutable</h2>
+<p>L&rsquo;appel système <code>execve</code> change l&rsquo;exécutable du processus courant en chargeant
+un nouvel exécutable. Les régions associée au processus sont préalablement
+libérées : <code>int execve(...);</code></p>
+<p>Pour chaque section de l&rsquo;exécutable une région en mémoire est allouée. Soit au
+moins les régions :</p>
+<ul>
+<li>le code</li>
+<li>les données initialisées</li>
+<li>des piles</li>
+<li>du tas</li>
+</ul>
+<p>La région de la pile : C&rsquo;est une pile de structure de pile qui sont empilées et
+dépilées lors de l&rsquo;appel ou le retour de fonction. Le pointeur de pile, un des
+registres de l&rsquo;unité centrale, indique la profondeur courante de la pile. Un
+processus UNIX pouvant s&rsquo;exécuter en deux modes (noyau, utilisateur), une pile
+privée sera utilisée dans chaque mode. La pile noyau sera vide quand le
+processus est en mode utilisateur. Le tas est une zone où est réalisée
+l&rsquo;allocation dynamique avec les fonctions <code>Xalloc()</code>.</p>
+<h2 id="zone-u-et-table-des-processus"><code>zone u</code> et table des processus</h2>
+<p>Tous les processus sont associés à une entrée dans la table des processus qui
+est interne au noyau. De plus, le noyau alloue pour chaque processus une
+structure appelée <code>zone u</code>, qui contient des données privées du processus,
+uniquement manipulables par le noyau. La table des processus nous permet
+d&rsquo;accéder à la table des régions par processus qui permet d&rsquo;accéder à la table
+des régions. Ce double niveau d&rsquo;indirection permet de faire partager des
+régions. Dans l&rsquo;organisation avec une mémoire virtuelle, la table des régions
+est matérialisée logiquement dans la table de pages. Les structures de régions
+de la table des régions contiennent des informations sur le type, les droits
+d&rsquo;accès et la localisation (adresses en mémoire ou adresses sur disque) de la
+région. Seule la <code>zone u</code> du processus courant est manipulable par le noyau, les
+autres sont <code>inaccessibles</code>. L&rsquo;adresse de la zone <code>u</code> est placée dans le mot
+d&rsquo;état du processus.</p>
+<h2 id="fork-et-exec"><code>fork</code> et <code>exec</code></h2>
+<p>Quand un processus réalise un <code>fork</code>, le contenu de l&rsquo;entrée de la table des
+régions est dupliqué, chaque région est ensuite, en fonction de son type,
+partagée ou copiée. Quand un processus réalise un <code>exec</code>, il y a libération des
+régions et réallocation de nouvelles régions en fonction des valeurs définies
+dans le nouvel exécutable</p>
+<h2 id="le-contexte-dun-processus">Le contexte d&rsquo;un processus</h2>
+<p>Le contexte d&rsquo;un processus est l&rsquo;ensemble des données qui permettent de
+reprendre l&rsquo;exécution d&rsquo;un processus qui a été interrompu. Le contexte d&rsquo;un
+processus est l&rsquo;ensemble de :</p>
+<ol>
+<li>son état</li>
+<li>son mot d&rsquo;état</li>
+<li>les valeurs des variables globales statiques ou dynamiques</li>
+<li>son entrée dans la table des processus</li>
+<li>sa zone u</li>
+<li>les piles user et system</li>
+<li>les zones de code et de données</li>
+</ol>
+<p>Le noyau et ses variables ne font partie du contexte d&rsquo;aucun processus !
+L&rsquo;exécution d&rsquo;un processus se fait dans son contexte. Quand il y a un changement
+de processus courant, il y a réalisation d&rsquo;une commutation de mode d&rsquo;état et
+d&rsquo;un changement de contexte. Le noyau s&rsquo;exécute alors dans le nouveau contexte.</p>
+<h2 id="commutation-de-mot-détat-et-interruptions">Commutation de mot d&rsquo;état et interruptions</h2>
+<p>Ces fonctions de très bas niveau sont fondamentales pour pouvoir programmer un
+système d&rsquo;exploitation. Pour être exécuté et donner naissance à un processus, un
+programme et ses données doivent être chargés en mémoire centrale. Les
+instructions du programme sont transférées une à une de la mémoire centrale sur
+l&rsquo;unité centrale où elles sont exécutées. L&rsquo;unité centrale comprend des circuits
+logiques et arithmétiques qui effectuent les instructions mais aussi des mémoire
+appelées registres. Certains de ces registres sont spécialisés directement par
+les constructeurs de l&rsquo;unité centrale, d&rsquo;autre le sont par les programmeur du
+noyau. Quelques registres spécialisés :</p>
+<ul>
+<li><strong>L&rsquo;accumulateur</strong> qui reçoit le résultat d&rsquo;une instruction, sur les machines
+à registres multiples, le jeu d&rsquo;instructions permet souvent d&rsquo;utiliser
+n&rsquo;importe lequel des registres comme accumulateur</li>
+<li><strong>le registre d&rsquo;instruction</strong></li>
+<li><strong>le compteur ordinal</strong>, ce compteur change au cours de la réalisation d&rsquo;une
+instruction pour pointer sur la prochaine instruction à exécuter, la majorité
+des instructions ne font qu&rsquo;incrémenter ce compteur, les instructions de
+branchement réalisent des opérations plus complexes sur ce compteur :
+affectation, incrémentation ou décrémentation plus importantes</li>
+<li><strong>le registre d&rsquo;adresse</strong></li>
+<li><strong>les registres de données</strong> qui sont utilisés pour lire ou écrire une donnée
+à une adresse spécifiée en mémoire</li>
+<li><strong>les registres d&rsquo;état</strong> du processeur</li>
+<li><strong>les registres d&rsquo;état du processus</strong> droits, adresses, priorités etc</li>
+</ul>
+<p>Ce registres forment le contexte d&rsquo;unité centrale d&rsquo;un processus. A tout moment,
+un processus est caractérisé par ces deux contextes : le contexte d&rsquo;unité
+centrale qui est composé des mêmes données pour tous les processus et le
+contexte qui dépend du code du programme exécuté. Pour pouvoir exécuter un
+nouveau processus, il faut pouvoir sauvegarder le contexte d&rsquo;unité centrale du
+processus courant (mot d&rsquo;état), puis charger le nouveau mot d&rsquo;état du processus
+à exécuter. Cette opération délicate réalisée de façon matérielle est appelée
+commutation de mot d&rsquo;état. Elle doit se faire de façon non interruptible ! Cette
+&ldquo;Super instruction&rdquo; utilise 2 adresses qui sont respectivement : l&rsquo;adresse de
+sauvegarde du mot d&rsquo;état et l&rsquo;adresse de lecture du nouveau mot d&rsquo;état. Le
+compteur ordinal faisant partie du mot d&rsquo;état, ce changement provoque
+l&rsquo;exécution dans le nouveau processus. C&rsquo;est le nouveau processus qui devra
+réaliser la sauvegarde du contexte global. En général c&rsquo;est le noyau qui réalise
+cette sauvegarde, le noyau n&rsquo;ayant pas un contexte du même type. Le processus
+interrompu pourra ainsi reprendre exactement où il avait abandonnés.</p>
+<h2 id="les-interruptions">Les interruptions</h2>
+<p>Une interruption est une commutation de mot d&rsquo;état provoquée par un signal
+produit par le matériel. Ce signal étant la conséquence d&rsquo;un événement extérieur
+ou intérieur, il modifie l&rsquo;état d&rsquo;un indicateur qui est régulièrement testé par
+l&rsquo;unité centrale. Une fois que le signal est détecté, il faut déterminer la
+cause de l&rsquo;interruption. Pour cela on utilise un indicateur, pour les
+différentes causes, on parle alors du vecteur d&rsquo;interruptions. Trois grands
+types d&rsquo;interruptions :</p>
+<ul>
+<li><strong>externes</strong> (indépendantes du processus) interventions de l&rsquo;opérateur,
+pannes, etc</li>
+<li><strong>déroutements</strong> erreur interne du processeur, débordement, division par zéro,
+page fault etc</li>
+<li><strong>appels systèmes</strong> demande d&rsquo;entrée-sortie par exemple.</li>
+</ul>
+<p>Suivant les machines et les systèmes un nombre de variable de niveaux
+d&rsquo;interruption est utilisé. Ces différentes interruptions ne réalisent pas
+nécessairement un changement de contexte complet du processus courant. Il est
+possible que plusieurs niveaux d&rsquo;interruption soient positionnées quand le
+système les consulte. C&rsquo;est le niveau des différentes interruptions qui va
+permettre au système de sélectionner l&rsquo;interruption à traiter en priorité.
+L&rsquo;horloge est l&rsquo;interruption la plus prioritaire sur un système Unix.</p>
+<h2 id="le-problème-des-cascades-dinterruptions">Le problème des cascades d&rsquo;interruptions</h2>
+<p>Si pendant le traitement d&rsquo;une interruption, une autre interruption se produit,
+et qeu ceci se répète pendant le traitement de la nouvelle interruption, le
+système ne fait plus progresser les processus ni les interruption en cours de
+traitement. Il est donc nécessaire de pouvoir retarder ou annuler la prise en
+compte d&rsquo;un ou plusieurs signaux d&rsquo;interruption. C&rsquo;est le rôle des deux
+mécanismes de <strong>masquage</strong> et de <strong>désarmement</strong> d&rsquo;un niveau d&rsquo;interruption.
+Masquer, c&rsquo;est ignorer temporairement un niveau d&rsquo;interruption. Si ce masquage
+est fait dans le mot d&rsquo;état d&rsquo;un traitement d&rsquo;interruption, à la nouvelle
+commutation d&rsquo;état, le masquage disparaît; les interruptions peuvent de nouveau
+être prises en compte. Désarmer, c&rsquo;est rendre le positionnement de
+l&rsquo;interruption caduque.</p>
+<h2 id="accès-aux-structures-proc-et-user-du-processus-courant">Accès aux structures <code>proc</code> et <code>user</code> du processus courant</h2>
+<p>Les informations de la table des processus peuvent être lues grâce à la commande
+shell <code>ps</code>. Ou par des appels système. Par contre, les informations contenues
+dans la zone <code>u</code> ne sont pas accessibles que par une réponse du processus
+lui-même (en programmation objet, on dit que ce sont des variables d&rsquo;instances
+privées), d&rsquo;où les appels systèmes suivants : <code>times, chroot, chdir, fchdir, getuid, getgid ...</code></p>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+</div>
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/4/">Héritage, polymorphisme</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>L&rsquo;héritage est un mécanisme permettant de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/10/">Les signaux</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Les signaux sont un mécanisme asynchrone de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/7/">La mémoire</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>La mémoire d&rsquo;un ordinateur se décompose en …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/3/">Opérateurs</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>Définition Un opérateur est une notation …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/6/">Les processus</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Introduction aux processus Un processus est un …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/5/">Appels système du Système de Gestion de Fichier</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Les appels système d&rsquo;entrées-sorties ou …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>
