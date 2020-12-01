@@ -41,12 +41,12 @@ class NomClasse{ attributes ... methodes ... }; L&amp;rsquo;ordre des déclarati
     </item>
     
     <item>
-      <title>Allocation</title>
+      <title>C&#43;&#43; : la couche objet</title>
       <link>https://Sdelpeuch.github.io/assets/md/cpp/1/</link>
       <pubDate>Mon, 02 Nov 2020 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/cpp/1/</guid>
-      <description>L&amp;rsquo;allocation automatique L&amp;rsquo;allocation automatique se fait dans la pile (int i;). La variable i est allouée dans le pile automatiquement. Ainsi, &amp;amp;i correspond à une adresse dans la pile à laquelle sizeof(int) octets sont réservés.</description>
+      <description>La couche objet constitue sans doute la plus grande innovation du C++ par rapport au C. Le but de la programmation objet est de permettre une abstraction entre l&amp;rsquo;implémentation des modules et leur utilisation, apportant ainsi un plus grand confort dans la programmation.</description>
     </item>
     
     <item>

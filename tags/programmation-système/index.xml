@@ -7,10 +7,37 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 24 Nov 2020 11:07:10 +0600</lastBuildDate>
+    <lastBuildDate>Mon, 30 Nov 2020 11:30:00 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/tags/programmation-syst%C3%A8me/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Multiplexer des entrées-sorties</title>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/13/</link>
+      <pubDate>Mon, 30 Nov 2020 11:30:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/13/</guid>
+      <description>Dans ce chapitre, nous voulons présenter le problème des attentes actives sur plusieurs descripteur. L&amp;rsquo;exemple le plus fréquent est celui d&amp;rsquo;un serveur web, le serveur doit gérer simultanément un très grand nombre de flux d&amp;rsquo;entrée et de flux de sortie et de flux de contrôle.</description>
+    </item>
+    
+    <item>
+      <title>Algorithmes Distribués &amp; Interblocages</title>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/12/</link>
+      <pubDate>Mon, 30 Nov 2020 10:30:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/12/</guid>
+      <description>Ce chapitre introduit les problèmes liés à la gestion de processus concurrents. Le problème à résoudre est le partage de ressources entre différents processus asycrones. Les IPC et et les verrous sont deux types d&amp;rsquo;outils permettant le partage asynchrone de ressources entre processus.</description>
+    </item>
+    
+    <item>
+      <title>Les verous de fichiers</title>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/11/</link>
+      <pubDate>Mon, 30 Nov 2020 09:30:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/11/</guid>
+      <description>Mécanismes de contrôle d&amp;rsquo;accès concurrents à un fichier, les verrous sont d&amp;rsquo;une grande utilité dans les applications de gestion et dans l&amp;rsquo;élaboration de bases de données partagées. Les verrous sont rattachés aux inoeuds.</description>
+    </item>
     
     <item>
       <title>Les signaux</title>
@@ -102,7 +129,7 @@
       <guid>https://Sdelpeuch.github.io/semestre7/prog_sys/</guid>
       <description>Le Support de cours et le Support de TD
 Les notes personnelles de TD
-   Notes personnelles - cours     Introduction   Système de Gestion de Fichiers   Le Buffer Cache   La bibliothèque standard   Appels système du Système de Gestion de Fichier   Les processus   La mémoire   La mémoire Virtuelle   [Tubes et Tubes Nommés]   Signaux   [Mémoire partagée et syncronisation]   [Threads]   [Concurrence]   [Réseau - sockets]    </description>
+   Notes personnelles - cours     Introduction   Système de Gestion de Fichiers   Le Buffer Cache   La bibliothèque standard   Appels système du Système de Gestion de Fichier   Les processus   La mémoire   La mémoire Virtuelle   [Tubes et Tubes Nommés]   Signaux   Les verrous de fichiers   Algorithmes Distribués &amp;amp; Interblocages   Multiplexer des entrées-sorties   [Threads]   [Concurrence]   [Réseau - sockets]    </description>
     </item>
     
   </channel>

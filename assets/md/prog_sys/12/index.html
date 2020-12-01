@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Algorithmes Distribués &amp; Interblocages</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 7 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/info.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Algorithmes Distribués &amp; Interblocages</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Algorithmes Distribués &amp; Interblocages</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> November 30, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/programmation%20syst%c3%a8me">Programmation système</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<p>Ce chapitre introduit les problèmes liés à la gestion de processus concurrents.
+Le problème à résoudre est le partage de ressources entre différents processus
+asycrones. Les IPC et et les verrous sont deux types d&rsquo;outils permettant le
+partage asynchrone de ressources entre processus.</p>
+<h2 id="exemple">Exemple</h2>
+<h3 id="les-méfaits-des-accès-concurrents">LEs méfaits des accès concurrents</h3>
+<p>L&rsquo;exemple le plus simple est une variable entière partagée par deux processus ou
+threads, ou bien manipulé par une fonction asyncrones comme un handler de
+signal. Supposons que l&rsquo;on définisse deux fonctions de manipulation de la
+variable :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getValue</span>();
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setValue</span>(<span style="color:#66d9ef">int</span>);
+</code></pre></div><p>Pour incrémenter la variable, il suffit d&rsquo;exécuter <code>setValue(getValue()+1);</code>
+mais décomposont en <code>int tmp = getValue(); setValue(tmp+1);</code> ce qui ne change
+pas grand chose <code>tmp</code> étant simplement allouée sur la pile dans le premier cas.
+Regardons l&rsquo;exécution suivant du code par deux thread.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> tmp1<span style="color:#f92672">=</span>getValue();
+                    <span style="color:#f92672">|</span> <span style="color:#66d9ef">int</span> tmp2 <span style="color:#f92672">=</span> getValue();
+setValue(tmp1<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+                    <span style="color:#f92672">|</span> setValue(tmp2<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+</code></pre></div><p>Que c&rsquo;est il passé ? La variable n&rsquo;a été incrémentée qu&rsquo;une fois !</p>
+<h3 id="exclusion-mutuelle">Exclusion mutuelle</h3>
+<p>Problème : il y a une rivière que l&rsquo;on peut traverser par un gué fait de pierre
+alignées, où il n&rsquo;est pas possible de se croiser, et il n&rsquo;est pas possible de
+faire demi-tour. Comment doit on organiser le passage ?</p>
+<ol>
+<li>regarder avant de traverser</li>
+<li>si deux personnes arrivent en même temps sur chaque rive,
+<ul>
+<li>si elles avancent en même temps -&gt; interblocage</li>
+<li>si elles attendent en même temps -&gt; interblocage</li>
+</ul>
+</li>
+<li>Un remède : un conté prioritaire -&gt; famine</li>
+<li>Une solution : alterner les priorités</li>
+</ol>
+<p>Pour des ressources système comme les fichiers, le partage n&rsquo;est pas géré par le
+SGF. Il faut donc un mécanisme de partage : les verrous, qui permettent un
+partage dynamique et partiel (portions de fichiers). Pour un partage entre
+utilisateurs, on utilise plutôt des outils comme SCCS, RCS.</p>
+<h2 id="mode-dutilisation-des-ressources-par-un-processus">Mode d&rsquo;utilisation des ressources par un processus</h2>
+<p>Formalisons les opérations réalisables sur une ressource.</p>
+<ul>
+<li><strong>requete</strong> : demande bloquante des ressources</li>
+<li><strong>utilisation</strong> : lecture/écriture sur la zone verrouillée</li>
+<li><strong>libération</strong> : verrou L-type</li>
+</ul>
+<h2 id="définition-de-linterblocage-deadlock">Définition de l&rsquo;interblocage (deadlock)</h2>
+<p>Un ensemble de processus est en <strong>interblocage</strong> si et seulement si tout
+processus de l&rsquo;ensemble est en attente d&rsquo;un évènement qui ne peut être réalisé
+que par un autre processus de l&rsquo;ensemble.</p>
+<h2 id="quatre-conditions-nécessaires-à-linterblocage">Quatre conditions nécessaires à l&rsquo;interblocage</h2>
+<p>Les conditions suivantes sont nécessaires pour avoir possibilité d&rsquo;interblocage</p>
+<ul>
+<li><strong>Exclusion mutuelle</strong> les ressources ne sont pas partageables, un seul
+processus à la fois peut utiliser la ressource</li>
+<li><strong>Possession &amp; attente</strong> il doit exister un processus qui utilise une
+ressource et qui est en attente sur une requête</li>
+<li><strong>Sans préemption</strong> les ressources ne sont pas préemptibles c&rsquo;est à dire que
+les libérations sont faites volontairement par les processus. On ne peut pas
+forcer un processus à rendre une ressource</li>
+<li><strong>Attente circulaire</strong> il doit exister un ensemble de processus Pi tel que Pi
+attend une ressource possédée par Pi+1.</li>
+</ul>
+<h2 id="les-graphes-dallocation-de-ressources">Les graphes d&rsquo;allocation de ressources</h2>
+<p>Les graphes d&rsquo;allocation de ressources permettent de décrire simplement les
+problèmes d&rsquo;interblocage.</p>
+<pre><code>G = (N,T) N = P U R
+P : ensemble des processus
+R : ensemble des ressources
+</code></pre><p>Soit le coupe (x,y) appartenant à T, si (x,y) appartient à RXP, cela signifie
+que la ressource x est utilisée par le processus y, si (x,y) appartient à PXR,
+cela signifie que le processus x demande la ressource y.</p>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+</div>
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/13/">Multiplexer des entrées-sorties</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Dans ce chapitre, nous voulons présenter le …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/12/">Algorithmes Distribués &amp; Interblocages</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Ce chapitre introduit les problèmes liés à la …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/11/">Les verous de fichiers</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Mécanismes de contrôle d&rsquo;accès concurrents à …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/4/">Héritage, polymorphisme</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>L&rsquo;héritage est un mécanisme permettant de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/10/">Les signaux</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Les signaux sont un mécanisme asynchrone de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/8/">La mémoire virtuelle</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p></p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

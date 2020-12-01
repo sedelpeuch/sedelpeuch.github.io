@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>Allocation</title>
+  <title>C&#43;&#43; : la couche objet</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -116,7 +116,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>Allocation</h1>
+          <h1>C&#43;&#43; : la couche objet</h1>
           <p></p>
         </div>
       </div>
@@ -130,7 +130,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">Allocation</h2>
+					<h2 class="post-title">C&#43;&#43; : la couche objet</h2>
 					<div class="post-meta">
 						<ul>
               <li><i class="ion-calendar"></i> November 2, 2020</li>
@@ -151,29 +151,303 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<h2 id="lallocation-automatique">L&rsquo;allocation automatique</h2>
-<p>L&rsquo;allocation automatique se fait dans la pile (<code>int i;</code>). La variable i est
-allouée dans le pile automatiquement. Ainsi, <code>&amp;i</code> correspond à une adresse dans
-la pile à laquelle <code>sizeof(int)</code> octets sont réservés. À la sorte du bloc dans
-lequel est déclaré i, il y a dépilement et donc l&rsquo;adresse <code>&amp;i</code> correspond à une
-zone mémoire qui n&rsquo;est plus réservée.</p>
-<h2 id="lallocation-dynamique">L&rsquo;allocation dynamique</h2>
-<p>L&rsquo;allocation dynamique en C++ se fait à l&rsquo;aide de l&rsquo;opérateur <code>new</code>. On
-distingue deux types d&rsquo;allocation dynamique : l&rsquo;allocation d&rsquo;un objet ou
-l&rsquo;allocation d&rsquo;un tableau d&rsquo;objets.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>
-<span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[<span style="color:#ae81ff">10</span>]
-</code></pre></div><p>Dans le premier cas, on réserve sizeof(int) octets dans le tas, l&rsquo;opérateur
-<code>new</code> retourne l&rsquo;adresse de début de cette zone. Dans le deuxième cas, on
-réserve <code>sizeof(int)*10*</code> octets dans le tas, l&rsquo;opérateur <code>new</code> retourne
-l&rsquo;adresse de début de cette zone. Ces zones mémoires sont réservées tant que
-l&rsquo;on n&rsquo;a pas indiqué explicitement que l&rsquo;on souhaitait les libérer avec
-l&rsquo;opérateur <code>delete</code>.</p>
-<h2 id="lallocation-dynamique--libération">L&rsquo;allocation dynamique : libération</h2>
-<p>Il faut libérer la mémoire allouée avec <code>new</code> en utilisant <code>delete</code>. Il faut
-libérer la mémoire allouée avec <code>new type[]</code> en utilisant <code>delete[]</code>. Une fois
-l&rsquo;opérateur <code>delete</code> appelé, la mémoire qui était réservée à cette adresse ne
-l&rsquo;est plus.</p>
+						<p>La couche objet constitue sans doute la plus grande innovation du C++ par
+rapport au C. Le but de la programmation objet est de permettre une abstraction
+entre l&rsquo;implémentation des modules et leur utilisation, apportant ainsi un plus
+grand confort dans la programmation. Elle s&rsquo;intègre donc parfaitement dans le
+cadre de la modularité. Enfin, l&rsquo;encapsulation des données permet une meilleure
+protection et donc une plus grande fiabilité des programmes.</p>
+<h2 id="généralités">Généralités</h2>
+<p>Théoriquement, il y a une nette distinction entre les données et les opérations
+qui leur sont appliqués. En tout cas, les données et le code ne se mélangent pas
+dans la mémoire de l&rsquo;ordinateur, sauf cas particulier. Cependant l&rsquo;analyse des
+problèmes à traiter se présente d&rsquo;une manière plus naturelle si l&rsquo;on considère
+les données avec leurs propriétés. Les données constituent les variables, et les
+propriétés les opérations qu&rsquo;on peut leur appliquer. De ce point de vue, les
+données et le code sont logiquement inséparables, même s&rsquo;ils sont placés en
+différents endroits de la mémoire de l&rsquo;ordinateur.</p>
+<p>Ces considérations conduisent à la notion d&rsquo;objet. Un objet est un ensemble de
+données sur lesquelles des procédures peuvent être appliquées. Ces procédures ou
+fonctions applicables aux données sont appelées méthodes. La programmation d&rsquo;un
+objet se fait donc en indiquant les données de l&rsquo;objet et en définissant les
+procédures qui peuvent lui être appliquées. Il se peut qu&rsquo;il y ait plusieurs
+objets identiques, dont les données ont bien entendu des valeurs différentes,
+mais qui utilisent le même jeu de méthodes. On dit que ces différents objets
+appartiennent à la même classe d&rsquo;objets. Une classe constitue donc une sorte de
+type, et les objets de cette classe en sont des instances. La classe définit
+donc la structure des données, alors appelées champs ou variables d&rsquo;instances,
+que les objets correspondants auront, ainsi que les méthodes de l&rsquo;objet. À
+chaque instanciation, une allocation de mémoire est faite pour les données du
+nouvel objet créé. L&rsquo;initialisation de l&rsquo;objet est détruit, une autre méthode
+est appelée : le destructeur. L&rsquo;utilisateur peut définir ses propres
+constructeurs et destructeurs d&rsquo;objets si nécessaire.</p>
+<p>Comme seules les valeurs des données des différents objets d&rsquo;une classe
+diffèrent, les méthodes sont mises en commun pour tous les objets d&rsquo;une même
+classe (c&rsquo;est à dire que les méthodes ne sont pas recopiées). Pour que les
+méthodes appelées pour un objet sachent sur quelles données elles doivent
+travailler, un pointeur sur l&rsquo;objet contenant ces données leur est passé en
+paramètre. Ce mécanisme est complètement transparent pour le programmeur en C++.
+Nous voyons donc que non seulement la programmation orientée objet est plus
+logique, mais elle est également plus efficace (les méthodes sont mises en
+commun, les données sont séparées).</p>
+<p>Enfin, les données des objets peuvent être protégées : c&rsquo;est à dire que seules
+les méthodes de l&rsquo;objet peuvent y accéder. Ce n&rsquo;est pas une obligation, mais
+cela accroît la fiabilité des programmes. Si une erreur se produit, seules les
+méthodes de l&rsquo;objet doivent être vérifiées. De plus, les méthodes constituent
+ainsi une interface entre les données de l&rsquo;objet et l&rsquo;utilisateur de l&rsquo;objet.
+Cet utilisateur n&rsquo;a donc pas à savoir comment les données sont gérées dans
+l&rsquo;objet, il ne doit utiliser que les méthodes. Les avantages sont immédiats : il
+ne risque pas de faire des erreurs de programmation en modifiant les données
+lui-même, l&rsquo;objet est réutilisable dans un autre programme parce qu&rsquo;il a une
+interface standardisée, et on peut modifier l&rsquo;implémentation interne de l&rsquo;objet
+sans avoir à refaire tout le programme, pourvu que les méthodes gardent le même
+nom, les mêmes paramètres et la même sémantique. Cette notion de protection des
+données et de masquage de l&rsquo;implémentation interne aux utilisateurs de l&rsquo;objet
+constitue ce que l&rsquo;on appelle l&rsquo;encapsulation. Les avantages de l&rsquo;encapsulation
+seront souvent mis en valeur dans la suite au travers d&rsquo;exemples.</p>
+<h2 id="extensions-de-la-notion-de-type-du-c">Extensions de la notion de type du C</h2>
+<p>Il faut avant tout savoir que la couche objet n&rsquo;est pas un simple ajout au
+langage C, c&rsquo;est une véritable extension. En effet, les notions qu&rsquo;elles a
+apportées ont été intégrées au C à tel point que le typage des données de C a
+fusionné avec la notion de classe. Ainsi, les types prédéfinis char, int,
+double, etc représentent à présent l&rsquo;ensemble des propriétés des variables ayant
+ce type. Ces propriétés constituent la classe de ces variables, et elles sont
+accessibles par les opérateurs. Par exemple, l&rsquo;addition est une opération
+pouvant porter sur des entiers qui renvoie un objet de la classe entier. Par
+conséquent, les types de base se manipuleront exactement comme des objets. Du
+point de vue du C++, les utiliser revient déjà à faire de la programmation
+orientée objet.</p>
+<p>De même, le programmeur peut, à l&rsquo;aide de la notion de classe d&rsquo;objets, définir
+de nouveaux types. Ces types comprennent la structure des données représentées
+par ces types et les opérations qui peuvent leur être appliquées. En fait, le
+C++ assimile complètement les classes avec les types, et la définition d&rsquo;un
+nouveau type se fait donc en définissant la classes des variables de ce type.</p>
+<h2 id="déclaration-de-classes-en-c">Déclaration de classes en C++</h2>
+<p>Afin de permettre la définition des méthodes qui peuvent être appliquées aux
+structures des classes C++, la syntaxe des structures C a été étendue. Il est à
+présent possible de définir complètement des méthodes dans la définition de la
+structure. Cependant il est préférable de la reporter et de ne laisser que leur
+déclaration dans la structure. En effet, cela accroît la lisibilité et permet de
+masquer l&rsquo;implémentation de la classe à ses utilisateurs en ne leur montrant que
+sa déclaration dans un fichier d&rsquo;en tête. Ils ne peuvent donc ni la voir, ni la
+modifier. La syntaxe est la suivante :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Nom</span>{
+    attribute; 
+    methode;
+}
+</code></pre></div><p>où <code>Nom</code> est le nom de la classe. Elle peut contenir divers champs de divers
+types. Les méthodes peuvent être des définitions de fonctions, ou seulement
+leurs déclarations. Si on ne donne que leurs déclarations, on devra les définir
+plus loin. Pour cela, il faudra spécifier la classe à laquelle elles
+appartiennent avec la syntaxe suivante</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">type classe:nom(paramètres){
+    <span style="color:#75715e">//définition de la méthode
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>La syntaxe est donc identique à la définition d&rsquo;une fonction normale, à la
+différence près que leur nom est précédé du nom de la classe à laquelle elles
+appartiennent et deux deux points. Cet opérateur <code>::</code> est appelé l&rsquo;opérateur de
+résolution de portée. Il permet, d&rsquo;une manière générale, de spécifier le bloc
+auquel l&rsquo;objet qui le suit appartient. Ainsi, le fait de précéder le nom de la
+méthode par le nom de la classe permet au compilateur de savoir de quelle classe
+cette méthode fait partie. Rien n&rsquo;interdit, en effet, d&rsquo;avoir des méthodes de
+même signature, pourvu qu&rsquo;elles soient dans des classes différentes.</p>
+<p>De même, l&rsquo;opérateur de résolution de portée permettra d&rsquo;accéder à une variable
+globale lorsqu&rsquo;une autre variable homonyme aura été définie dans le bloc en
+cours. Les champs d&rsquo;une classe peuvent être accèdes comme des variables normales
+dans les méthodes de cette classes.</p>
+<p>L&rsquo;accès aux méthodes de la classe se fait comme pour accéder aux champs des
+structures. On donne le nom de l&rsquo;objet et le nom du champ ou de la méthode,
+séparés par un point. Par exemple :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> i; 
+<span style="color:#66d9ef">for</span> (i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">100</span>; <span style="color:#f92672">++</span>i)
+    <span style="color:#66d9ef">if</span>(clientele[i].dans_le_rouge()) relance(clientele[i]);
+</code></pre></div><p>Lorsque les fonctions membres d&rsquo;une classe sont définies dans la déclaration de
+cette classe, le compilateur les implémente en inline. Si les méthodes ne sont
+pas définies dans la classe, la déclaration de la classe sera mise dans un
+fichier d&rsquo;en-tête, et la définition des méthodes sera reportée dans un fichier
+C++, ce qui sera compilé et lié aux autres fichiers utilisant la classe client.
+Bien entendu, il est toujours possible de déclarer les fonctions membres comme
+étant des fonctions inline même lorsqu&rsquo;elles sont définies en dehors de la
+déclaration de la classe. Pour cela, il faut utiliser le mot clé inline, et
+placer le code de ces fonctions dans le fichier d&rsquo;en-tête.</p>
+<h2 id="encapsulation-des-données">Encapsulation des données</h2>
+<p>Les divers champs d&rsquo;une structure sont accessibles en n&rsquo;importe quel endroit du
+programme. Une opération telle que celle-ci est donc faisable
+<code>clientele[0].Sole=25 000;</code>. Le solde d&rsquo;un client peut donc être modifié sans
+passer par une méthode dont ce serait le but. Elle pourrait par exemple vérifier
+que l&rsquo;on n&rsquo;affecte pas un solde supérieur au solde maximal autorisé par le
+programme (la borne supérieure des valeurs des entiers signés).</p>
+<p>Il est possible d&rsquo;empêcher l&rsquo;accès des champs ou de certaines méthodes à toute
+fonction autre que celles de la classe. Cette opération s&rsquo;appelle
+l&rsquo;encapsulation. Pour la réaliser il faut utiliser les mots clés suivants :</p>
+<ul>
+<li>
+<p><code>public</code> : les accès sont libres</p>
+</li>
+<li>
+<p><code>private</code> : les accès sont autorisés dans les fonctions de classe seulement</p>
+</li>
+<li>
+<p><code>protected</code> : les accès sont autorisés dans les fonctions de la classe et de
+ses descendantes (voir la section suivante) seulement. Le mot clé <code>protected</code>
+n&rsquo;est utilisé que dans le cadre de l&rsquo;héritage des classes. La section suivante
+détaillera ce point.</p>
+<p>Pour changer les droits d&rsquo;accès des champs et des méthodes d&rsquo;une classe, il
+faut faire précéder ceux-ci du mot clé indiquant les droits d&rsquo;accès suivi des
+deux points. Par exemple pour protéger les données relatives au client, on
+changera simplement la déclaration de la classe en :</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">client</span>
+{
+<span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>   <span style="color:#75715e">// Données privées :
+</span><span style="color:#75715e"></span> 
+    <span style="color:#66d9ef">char</span> Nom[<span style="color:#ae81ff">21</span>], Prenom[<span style="color:#ae81ff">21</span>];
+    <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> Date_Entree;
+    <span style="color:#66d9ef">int</span> Solde;
+    <span style="color:#75715e">// Il n&#39;y a pas de méthode privée.
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>    <span style="color:#75715e">// Les données et les méthodes publiques :
+</span><span style="color:#75715e"></span> 
+    <span style="color:#75715e">// Il n&#39;y a pas de donnée publique.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> dans_le_rouge(<span style="color:#66d9ef">void</span>);
+    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">bon_client</span>(<span style="color:#66d9ef">void</span>)
+};
+</code></pre></div><p>Outre la vérification de la validité des opérations l&rsquo;encapsulation a comme
+intérêt fondamental de définir une interface stable pour la classe au niveau des
+méthodes et données membres publiques et protégées. L&rsquo;implémentation de cette
+interface, réalisée en privé, peut être modifiée à loisir sans pour autant
+perturber les utilisateurs de cette classe, tant que cette interface n&rsquo;est pas
+elle-même modifiée.</p>
+<p>Par défaut, les classes construites avec <code>struct</code> ont tous les membres publics.
+Les classes construites avec ̀class` ont tous les membres privés.</p>
+<h2 id="héritage">Héritage</h2>
+<p>L&rsquo;héritage permet de donner à une classe toutes les caractéritiques d&rsquo;une ou de
+plusieurs autres classes. Les classes dont elle hérite sont appelées classes
+mères, classes de base ou classes antécédentes. La classe elle-même est appelée
+classe file, classe dérivée ou classe descendante.</p>
+<p>Les propriétés héritées sont les champs et les méthodes des classes de base.</p>
+<p>Pour faire un héritage en C++, il faut faire suivre le nom de la classe fille
+par la liste des classes mères dans la déclaration avec les restrictions d&rsquo;accès
+aux données, chaque élément étant séparé des autres par une virgule. La syntaxe
+est la suivante</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Classe_mere</span>
+{
+
+};
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Classe_fille</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Classe_mere
+</code></pre></div><p>On peut utiliser les mots clés private, protected et public dans l&rsquo;héritage à la
+place de public.</p>
+<p>Il est possible de redéfinir les fonctions et les données des classes de base
+dans une classe dérivée. Par exemple, si une classe B dérive de la classe A, et
+que toutes deux contiennent une donnée d, les instances de la classe B
+utiliseront la donnée d de la classe B et les instances de la classe A
+utiliseront la donnée d de la classe A. Cependant, les objets de classe B
+contiendront également un sous-objet, lui même instance de la classe de base A.
+Par conséquent, ils contiendront la donnée d de la classe A, mais cette dernière
+sera cachée par la donnée d de la classe la plus dérivée, à savoir la classe B.</p>
+<p>Ce mécanisme est général : quand une classe dérivée redéfinit un membre d&rsquo;une
+classe de base, ce membre est caché et on ne peut plus accéder directement qu&rsquo;au
+membre redéfini (celui de la classe dérivée). Cependant, il est possible
+d&rsquo;accéder aux données cachées si l&rsquo;on connaît leur classe, pour cela, il faut
+nommer le membre complètement à l&rsquo;aide de l&rsquo;opérateur de résolution de portée.
+Le nom complet d&rsquo;un membre est constitué du nom de sa classe suivi de
+l&rsquo;opérateur de résolution de portée, suivis du nom du membre.</p>
+<h2 id="classes-virtuelles">Classes virtuelles</h2>
+<p>Supposons à présent qu&rsquo;une classe D hérite de deux classes mères, les classes B
+et C. Supposons également que ces deux classes héritent d&rsquo;une classe mère
+commune appelée classe A. On sait que B et C héritent des données et des
+méthodes publiques et protégées de A. De même, D hérite des données de B et C,
+et par leur intermédiaire des données de A. Il se pose donc le problème
+suivant : quelles sont les données que l&rsquo;on doit utiliser quand on référence les
+champs de A ? Celles de B ou celles de C ? On peut accéder aux deux sous-objets
+de classe A en spécifiant le chemin à suivre dans l&rsquo;arbre généalogique à l&rsquo;aide
+de l&rsquo;opérateur de résolution de portée. Cependant, cela n&rsquo;est ni pratique ni
+efficace, et en général, on s&rsquo;attend à ce qu&rsquo;une seule copie de A apparaisse
+dans D. Le problème est résolu en déclarant virtuelle la classe de base commune
+dans la spécification de l&rsquo;héritage pour les classes filles. Les données de la
+classe de base ne seront alors plus dupliquées. Pour déclarer une classe mère
+comme une classe virtuelle, il faut faire précéder son nom du mot clé virtual
+dans l&rsquo;héritage des classes filles.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>
+{
+<span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> Donnee;        <span style="color:#75715e">// La donnée de la classe de base.
+</span><span style="color:#75715e"></span>};
+ 
+<span style="color:#75715e">// Héritage de la classe A, virtuelle :
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">public</span> A
+{
+<span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> Valeur_B;      <span style="color:#75715e">// Autre donnée que &#34;Donnee&#34; (héritée).
+</span><span style="color:#75715e"></span>};
+ 
+<span style="color:#75715e">// A est toujours virtuelle :
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">C</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">public</span> A
+{
+<span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> valeur_C;      <span style="color:#75715e">// Autre donnée
+</span><span style="color:#75715e"></span>                       <span style="color:#75715e">// (&#34;Donnee&#34; est acquise par héritage).
+</span><span style="color:#75715e"></span>};
+ 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">D</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> B, <span style="color:#66d9ef">public</span> C   <span style="color:#75715e">// Ici, Donnee n&#39;est pas dupliqué.
+</span><span style="color:#75715e"></span>{
+    <span style="color:#75715e">/* Définition de la classe D. */</span>
+};
+</code></pre></div><p>Premièrement, il est impossible de transtyper directement un pointeur sur un
+objet d&rsquo;une classe de base virtuelle en un pointeur sur un objet de ses classes
+dérivées. Il faut impérativement utiliser l&rsquo;opérateur de transtypage dynamique.
+Cet opérateur sera décrit plus tard.</p>
+<p>Deuxièmement, chaque classe dérivée directement ou indirectement d&rsquo;une classe
+virtuelle doit en appeler le constructeur explicitement dans son constructeur si
+celui-ci prend des paramètres. En effet, elle ne peut pas se fier au fait qu&rsquo;une
+autre de ses classes de base, elle-même dérivée de la classe de base virtuelle,
+appelle un constructeur spécifique, car il est possible que plusieurs classes de
+base cherchent à initialiser différemment chacune un objet commun hérité de
+classe virtuelle. Pour reprendre l&rsquo;exemple donnée ci-dessus, si les classes B et
+C appellaient toutes les deux un constructeur non trivial de la classe virtuell
+A et que la classe D appellait elle même les constructeurs de B et C, le sous
+objet hérité de A serait construit plusieurs fois. Pour éviter cela, le
+compilateur ignore purement et simplement les appels au constructeur des classes
+de bases virtuelles dans les classes de base dérivées. Il faut donc
+systématiquement le spécifier, à chaque niveau de la hiérarchie de classe. La
+notion de constructeur sera vue plus tard.</p>
+<h2 id="fonctions-et-classes-amies">Fonctions et classes amies</h2>
+<p>Il est parfois nécessaire d&rsquo;avoir des fonctions qui ont un accès illimité aux
+champs d&rsquo;une classe. En général, l&rsquo;emploi de telles fonctions traduit un manque
+d&rsquo;analyse dans la hiérarchie des classes, mais pour toujours. Elles restent donc
+nécessaires malgré tout.</p>
+<p>De telles fonctions sont appelées des fonctions amies. Pour qu&rsquo;une fonction soit
+amie d&rsquo;une classe, il faut qu&rsquo;elle soit déclarée dans la classe avec le mot clé
+<code>friend</code>.</p>
+<p>Il est également possible de faire une classe amie d&rsquo;une autre classe, mais dans
+ce cas cette classe devrait peut-être être une classe fille. L&rsquo;utilisation des
+classes amies peut traduire un défaut de conception.</p>
+<!-- ## L'allocation automatique -->
+<!-- L'allocation automatique se fait dans la pile (```int i;```). La variable i est -->
+<!-- allouée dans le pile automatiquement. Ainsi, `&i` correspond à une adresse dans -->
+<!-- la pile à laquelle `sizeof(int)` octets sont réservés. À la sorte du bloc dans -->
+<!-- lequel est déclaré i, il y a dépilement et donc l'adresse `&i` correspond à une -->
+<!-- zone mémoire qui n'est plus réservée. -->
+<!-- ## L'allocation dynamique -->
+<!-- L'allocation dynamique en C++ se fait à l'aide de l'opérateur `new`. On -->
+<!-- distingue deux types d'allocation dynamique : l'allocation d'un objet ou -->
+<!-- l'allocation d'un tableau d'objets.  -->
+<!-- ```cpp -->
+<!-- new int -->
+<!-- new int[10] -->
+<!-- ``` -->
+<!-- Dans le premier cas, on réserve sizeof(int) octets dans le tas, l'opérateur -->
+<!-- `new` retourne l'adresse de début de cette zone. Dans le deuxième cas, on -->
+<!-- réserve `sizeof(int)*10*` octets dans le tas, l'opérateur `new` retourne -->
+<!-- l'adresse de début de cette zone. Ces zones mémoires sont réservées tant que -->
+<!-- l'on n'a pas indiqué explicitement que l'on souhaitait les libérer avec -->
+<!-- l'opérateur `delete`. -->
+<!-- ## L'allocation dynamique : libération  -->
+<!-- Il faut libérer la mémoire allouée avec `new` en utilisant `delete`. Il faut -->
+<!-- libérer la mémoire allouée avec `new type[]` en utilisant `delete[]`. Une fois -->
+<!-- l'opérateur `delete` appelé, la mémoire qui était réservée à cette adresse ne -->
+<!-- l'est plus.  -->
 
 					</div>
 					<div class="post-comments">
@@ -201,6 +475,30 @@ l&rsquo;est plus.</p>
     
     <div class="media">
       <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/13/">Multiplexer des entrées-sorties</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Dans ce chapitre, nous voulons présenter le …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/12/">Algorithmes Distribués &amp; Interblocages</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Ce chapitre introduit les problèmes liés à la …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/11/">Les verous de fichiers</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Mécanismes de contrôle d&rsquo;accès concurrents à …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/4/">Héritage, polymorphisme</a></h4>
         <h5>[C&#43;&#43;]</h5>
         <p>L&rsquo;héritage est un mécanisme permettant de …</p>
@@ -220,30 +518,6 @@ l&rsquo;est plus.</p>
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/8/">La mémoire virtuelle</a></h4>
         <h5>[Programmation Système]</h5>
         <p></p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/7/">La mémoire</a></h4>
-        <h5>[Programmation Système]</h5>
-        <p>La mémoire d&rsquo;un ordinateur se décompose en …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/3/">Opérateurs</a></h4>
-        <h5>[C&#43;&#43;]</h5>
-        <p>Définition Un opérateur est une notation …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/6/">Les processus</a></h4>
-        <h5>[Programmation Système]</h5>
-        <p>Introduction aux processus Un processus est un …</p>
       </div>
     </div>
     
