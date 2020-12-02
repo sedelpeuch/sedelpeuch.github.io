@@ -36,12 +36,11 @@
       <pubDate>Wed, 04 Nov 2020 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/cpp/2/</guid>
-      <description>Définition et déclaration Une classe consiste en un regroupement de méthodes et d&amp;rsquo;attributs
-class NomClasse{ attributes ... methodes ... }; L&amp;rsquo;ordre des déclarations ne compte pas. La classe est une description des données internes et comportements qu&amp;rsquo;aura une instance générée par cette classe.</description>
+      <description>Constructeurs et destructeurs Le constructeur et le destructeur sont deux méthodes particulières qui sont appelées respectivement à la création et à la destruction d&amp;rsquo;un objet. Toute classe a un constructeur et un destructeur par défaut, fournis par le compilateur.</description>
     </item>
     
     <item>
-      <title>C&#43;&#43; : la couche objet</title>
+      <title>C&#43;&#43; : la couche objet - Partie 1</title>
       <link>https://Sdelpeuch.github.io/assets/md/cpp/1/</link>
       <pubDate>Mon, 02 Nov 2020 11:07:10 +0600</pubDate>
       
@@ -56,7 +55,7 @@ class NomClasse{ attributes ... methodes ... }; L&amp;rsquo;ordre des déclarati
       
       <guid>https://Sdelpeuch.github.io/semestre7/cpp/</guid>
       <description>Support de cours
-   Notes personnelles     Allocation   Classes   Opérateur    </description>
+   Notes personnelles     C++ : la couche objet - Partie 1   C++ : la couche objet - Partie 2   [Les exceptions en C++]   [Identification dynamique des types]   [Les espaces de nommage]   [Les template]    </description>
     </item>
     
   </channel>

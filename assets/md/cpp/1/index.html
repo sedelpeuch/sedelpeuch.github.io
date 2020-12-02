@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>C&#43;&#43; : la couche objet</title>
+  <title>C&#43;&#43; : la couche objet - Partie 1</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -116,7 +116,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>C&#43;&#43; : la couche objet</h1>
+          <h1>C&#43;&#43; : la couche objet - Partie 1</h1>
           <p></p>
         </div>
       </div>
@@ -130,7 +130,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">C&#43;&#43; : la couche objet</h2>
+					<h2 class="post-title">C&#43;&#43; : la couche objet - Partie 1</h2>
 					<div class="post-meta">
 						<ul>
               <li><i class="ion-calendar"></i> November 2, 2020</li>
@@ -423,6 +423,75 @@ amie d&rsquo;une classe, il faut qu&rsquo;elle soit déclarée dans la classe av
 <p>Il est également possible de faire une classe amie d&rsquo;une autre classe, mais dans
 ce cas cette classe devrait peut-être être une classe fille. L&rsquo;utilisation des
 classes amies peut traduire un défaut de conception.</p>
+<h3 id="fonctions-amies">Fonctions amies</h3>
+<p>Les fonctions amies se déclarent en faisant précéder la déclaration classique de
+la fonction du mot clé <code>friend</code> à l&rsquo;intérieur de la classe cible. Les fonctions
+amies ne sont pas des méthodes de la classe cependant (cela n&rsquo;aurait pas de sens
+puisque les méthodes ont déjà accès aux membre de la classe).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>
+{
+    <span style="color:#66d9ef">int</span> a;                        <span style="color:#75715e">// Une donnée privée.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ecrit_a</span>(<span style="color:#66d9ef">int</span> i);   <span style="color:#75715e">// Une fonction amie.
+</span><span style="color:#75715e"></span>};
+ 
+A essai;
+ 
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ecrit_a</span>(<span style="color:#66d9ef">int</span> i)
+{
+    essai.a<span style="color:#f92672">=</span>i;          <span style="color:#75715e">// Initialise a.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span>;
+}
+</code></pre></div><p>Il est possible de déclarer amie une fonction d&rsquo;une autre classe, en précisant
+son nom complet à l&rsquo;aide de l&rsquo;opérateur de résolution de portée.</p>
+<h3 id="classes-amies">Classes amies</h3>
+<p>Pour rendre toutes les méthodes d&rsquo;une classe amies d&rsquo;une autre classe, il suffit
+de déclarer la classe complète comme étant amie. Pour cela, il faut encore une
+fois utiliser le mot clé <code>friend</code> avant la déclaration de la classe, à
+l&rsquo;intérieur de la classe cible. Cette fois encore, la classe amie déclarée ne
+sera pas une sous-classe de la classe cible, mais bien une classe de portée
+globale</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Hote</span>
+{
+    <span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Amie</span>;  <span style="color:#75715e">// Toutes les méthodes de Amie sont amies.
+</span><span style="color:#75715e"></span> 
+    <span style="color:#66d9ef">int</span> i;              <span style="color:#75715e">// Donnée privée de la classe Hote.
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    Hote(<span style="color:#66d9ef">void</span>)
+    {
+        i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+        <span style="color:#66d9ef">return</span> ;
+    }
+};
+ 
+Hote h;
+ 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Amie</span>
+{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">void</span> print_hote(<span style="color:#66d9ef">void</span>)
+    {
+        printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, h.i); <span style="color:#75715e">// Accède à la donnée privée de h.
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> ;
+    }
+};
+ 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+    Amie a;
+    a.print_hote();
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>On remarquera plusieurs choses importantes. Premièrement, l&rsquo;amitié n&rsquo;est pas
+transitive. Cela signifie que les amis des amis ne sont pas des amis. Une classe
+A amie d&rsquo;une classe B, elle-même amie d&rsquo;une classe C, n&rsquo;est pas amie de la
+classe C par défaut. Il faut la déclarer amie explicitement si on désire qu&rsquo;elle
+le soit. Deuxièmement, les amis ne sont pas hérités. Ainsi, si une classe A est
+amie d&rsquo;une classe B et que la classe C est une classe fille de la classe B,
+alors A n&rsquo;est pas amie de la classe C par défaut. Encore une fois, il faut la
+déclarer amie explicitement. Ces remarques s&rsquo;appliquent également aux fonctions amies.</p>
 <!-- ## L'allocation automatique -->
 <!-- L'allocation automatique se fait dans la pile (```int i;```). La variable i est -->
 <!-- allouée dans le pile automatiquement. Ainsi, `&i` correspond à une adresse dans -->

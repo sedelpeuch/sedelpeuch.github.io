@@ -151,350 +151,878 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<h2 id="définition-et-déclaration">Définition et déclaration</h2>
-<p>Une classe consiste en un regroupement de méthodes et d&rsquo;attributs</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NomClasse</span>{
-attributes
-...
-methodes
-...
-};
-</code></pre></div><p>L&rsquo;ordre des déclarations ne compte pas. La classe est une description des
-données internes et comportements qu&rsquo;aura une instance générée par cette classe.</p>
-<p>L&rsquo;<strong>instanciation</strong> (ou réification), c&rsquo;est à dire la création d&rsquo;un objet
-instance (ressource) à partir de l&rsquo;objet classe (description / générateur) peut
-se faire de façon dynamique</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">A <span style="color:#f92672">*</span>a<span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> A();
-</code></pre></div><p>ou automatique</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">A a;
-</code></pre></div><p>Dans les deux cas, une ressource (adresse mémoire) est associée à l&rsquo;instance.
-Dans l&rsquo;allocation dynamique, cette ressource est située dans le tas, dans le cas
-automatique elle est située dans la pile.</p>
-<h2 id="visibilité-friend-struct">Visibilité, friend, struct</h2>
-<p>On contrôle l&rsquo;accès au méthodes et attributs pour une sous-classe ou un objet
-extérieur avec <code>public, protected, private</code></p>
-<table>
-<thead>
-<tr>
-<th align="left"></th>
-<th align="left">la classe</th>
-<th align="left">sous-classe</th>
-<th align="left">extérieur</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">public</td>
-<td align="left">oui</td>
-<td align="left">oui</td>
-<td align="left">oui</td>
-</tr>
-<tr>
-<td align="left">protected</td>
-<td align="left">oui</td>
-<td align="left">oui</td>
-<td align="left">non</td>
-</tr>
-<tr>
-<td align="left">private</td>
-<td align="left">oui</td>
-<td align="left">non</td>
-<td align="left">non</td>
-</tr>
-</tbody>
-</table>
-<p>La visibilité par défaut dans une classe est private. On modifie la visibilité
-de la façon suivante</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NomClasse</span>{
-<span style="color:#75715e">//attributs et méthodes privés
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-<span style="color:#75715e">//attributs et méthodes publiques
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
-<span style="color:#75715e">//attributs et méthodes protégés
+						<h2 id="constructeurs-et-destructeurs">Constructeurs et destructeurs</h2>
+<p>Le <em>constructeur</em> et le <em>destructeur</em> sont deux méthodes particulières qui sont
+appelées respectivement à la création et à la destruction d&rsquo;un objet. Toute
+classe a un constructeur et un destructeur par défaut, fournis par le
+compilateur. Ces constructeurs et destructeurs appellent les constructeurs par
+défaut et les destructeurs des classes de base et des données membre de la
+classe, mais en dehors de cela, ils ne font absolument rien. Il est donc souvent
+nécessaire de les redéfinir afin de gérer certaines actions qui doivent avoir
+lieu lors de la création d&rsquo;un objet et de leur destruction. Par exemple, si
+l&rsquo;objet doit contenir des objets allouées dynamiquement, il faut leur réserver
+de la mémoire à la création de l&rsquo;objet ou au moins mettre les pointeurs
+correspondants à NULL. À la destruction de l&rsquo;objet, il convient de restituer la
+mémoire allouée, s&rsquo;il en a été alloué. On peut trouver bien d&rsquo;autres situations
+où une phase d&rsquo;initialisation et une phase de terminaison son nécessaires.</p>
+<p>Dés qu&rsquo;un constructeur ou un destructeur a été défini par l&rsquo;utilisateur, le
+compilateur ne définit plus automatiquement le constructeur ou le destructeur
+par défaut correspondant. En particulier, si l&rsquo;utilisateur définit un
+constructeur prenant des paramètres, il ne sera plus possible de construire un
+objet simplement, sans fournir les paramètres à ce constructeur, à moins bien
+entendu de définir également un constructeur qui ne prenne pas de paramètres.</p>
+<h3 id="définition-des-constructeurs-et-des-destructeurs">Définition des constructeurs et des destructeurs</h3>
+<p>Le constructeur se définit comme une méthode normale. Cependant, pour que le
+compilateur puisse la reconnaître en tant que constructeur, les deux conditions
+suivantes doivent vérifiées :</p>
+<ul>
+<li>elle doit porter le même nom que la classe</li>
+<li>elle ne doit avoir aucun type, pas même le type void</li>
+</ul>
+<p>Le destructeur doit également respecter ces règles. Pour différencier du
+constructeur, son nom sera toujours précédé du signe tilde.</p>
+<p>Un constructeur est appelé automatiquement lors de l&rsquo;instanciation de l&rsquo;objet.
+Le destructeur est appelé automatiquement lors de sa destruction. Cette
+destruction a lieu lors de la sortie du bloc de portée courante pour les objets
+de classe de stockage <code>auto</code>. Pour les objets alloués dynamiquement, le
+constructeur et le destructeur sont appelés automatiquement par les expressions
+qui utilisent les opérateurs <code>new, new[], delete, delete[]</code>. C&rsquo;est pour cela
+qu&rsquo;il est recommandé de les utiliser à la place des fonctions <code>malloc</code> et <code>free</code>
+du C pour créer dynamiquement des objets. De plus, il ne faut pas utiliser
+<code>delete</code> ou <code>delete[]</code> sur des pointeurs de type void, car il n&rsquo;existe pas
+d&rsquo;objets de type void. La compilateur ne peut donc pas déterminer quel est le
+destructeur à appeler avec ce type de pointer.</p>
+<p>Le constructeur est appelé après l&rsquo;allocation de la mémoire de l&rsquo;objet et le
+destructeur est appelé avant la libération de cette mémoire. La gestion de
+l&rsquo;allocation dynamique de mémoire avec les classes est ainsi simplifiée. Dans le
+cas des tables, l&rsquo;ordre de construction est celui des adresses croissantes, et
+l&rsquo;ordre de destruction est celui des adresses décroissantes. C&rsquo;est dans cet
+ordre que les constructeurs et destructeurs de chaque élement du tableau sont
+appelés.</p>
+<p>Les constructeurs pourront avoir des paramètres. Ils peuvent donc être
+surchargés, mais pas les destructeurs. Cela est dû au fait qu&rsquo;en général on
+connaît le contexte dans lequel un objet est créé, mais qu&rsquo;on ne peut pas
+connaître le contexte dans lequel il est détruit : il ne peut donc y avoir qu&rsquo;un
+seul destructeur. Les constructeurs qui ne prennent pas de paramètre ou dont
+tous les paramètres ont une valeur par défaut, remplacent automatiquement les
+constructeurs par défaut définis par le compilateur lorsqu&rsquo;il n&rsquo;y a aucun
+constructeur dans les classes. Cela signifie que ce sont ces constructeurs qui
+seront appelés automatiquement par les constructeurs par défaut des classes
+dérivées.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">chaine</span>    <span style="color:#75715e">// Implémente une chaîne de caractères.
+</span><span style="color:#75715e"></span>{
+    <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> s;   <span style="color:#75715e">// Le pointeur sur la chaîne de caractères.
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    chaine(<span style="color:#66d9ef">void</span>);           <span style="color:#75715e">// Le constructeur par défaut.
+</span><span style="color:#75715e"></span>    chaine(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>);   <span style="color:#75715e">// Le constructeur. Il n&#39;a pas de type.
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">~</span>chaine(<span style="color:#66d9ef">void</span>);          <span style="color:#75715e">// Le destructeur.
+</span><span style="color:#75715e"></span>};
+ 
+chaine<span style="color:#f92672">::</span>chaine(<span style="color:#66d9ef">void</span>)
+{
+    s<span style="color:#f92672">=</span>NULL;                 <span style="color:#75715e">// La chaîne est initialisée avec
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> ;                <span style="color:#75715e">// le pointeur nul.
 </span><span style="color:#75715e"></span>}
-</code></pre></div><p>On peut à tout moment changer la visibilité, celle-ci sera appliquée à toutes
-les déclarations suivantes jusqu&rsquo;au prochaine changement de visibilité.</p>
-<h3 id="les-structures">Les structures</h3>
-<p>Les structures se déclarent comme en C. En C++, les structures sont des classes
-dont la visibilité par défaut est <code>public</code>. Par conséquent, elles peuvent
-contenir des attributs et des méthodes. Deux noms de type sont associés à la
-structure : struct Nom et Nom.</p>
-<p>L&rsquo;instanciation des structures se fait comme pour les classes</p>
-<p>allocation dynamique</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span>{...};
-A <span style="color:#f92672">*</span>a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> A();
-A <span style="color:#f92672">*</span>a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span>();
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">*</span>a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span>();
-</code></pre></div><p>allocation automatique</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span>{...};
-A a;
-<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">A</span> a;
-</code></pre></div><h3 id="friend">Friend</h3>
-<p>Dans une classe <code>A</code>, le mot clé <code>friend</code> permet de donner à une fonction ou une
-autre classe les mêmes droits qu&rsquo;une méthode de <code>A</code>. Une fonction <code>f</code> amie d&rsquo;une
-classe <code>A</code> pourra accéder aux attributs privés de <code>A</code> ainsi qu&rsquo;aux attributs
-privés de <code>A</code> ainsi qu&rsquo;aux attributs protected d&rsquo;une des classes parents de <code>A</code>.</p>
-<p>La déclaration se fait dans la classe en indiquant soit le prototype de la
-fonction amié soit le nom de la classe amie</p>
-<p>Classe amie</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NomClasse</span>{
-...; <span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NomClasseAmie</span>; ...
+ 
+chaine<span style="color:#f92672">::</span>chaine(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> Taille)
+{
+    s <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">char</span>[Taille<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]; <span style="color:#75715e">// Alloue de la mémoire pour la chaîne.
+</span><span style="color:#75715e"></span>    s[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;\0&#39;</span>;              <span style="color:#75715e">// Initialise la chaîne à &#34;&#34;.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span>;
+}
+ 
+chaine<span style="color:#f92672">::~</span>chaine(<span style="color:#66d9ef">void</span>)
+{
+    <span style="color:#66d9ef">if</span> (s<span style="color:#f92672">!=</span>NULL) <span style="color:#66d9ef">delete</span>[] s; <span style="color:#75715e">// Restitue la mémoire utilisée si
+</span><span style="color:#75715e"></span>                             <span style="color:#75715e">// nécessaire.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span>;
+}
+</code></pre></div><p>Pour passer les paramètres au constructeur, on donne la liste des paramètres
+entre parenthèses juste après le nom de l&rsquo;objet lors de son instanciation :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">chaine s1;        <span style="color:#75715e">// Instancie une chaîne de caractères
+</span><span style="color:#75715e"></span>                  <span style="color:#75715e">// non initialisée.
+</span><span style="color:#75715e"></span>chaine <span style="color:#a6e22e">s2</span>(<span style="color:#ae81ff">200</span>);   <span style="color:#75715e">// Instancie une chaîne de caractères
+</span><span style="color:#75715e"></span>                  <span style="color:#75715e">// de 200 caractères.
+</span></code></pre></div><p>Les constructeurs devront parfois effectuer des tâches plus compliquées que
+celles données dans cet exemple. En général, ils peuvent faire toutes les
+opérations faisables dans une méthode normale, sauf utiliser les données non
+initialisées bien entendu. En particulier, les données des sous-objets d&rsquo;un
+objet ne sont pas initialisées tant que les constructeurs des classes de base ne
+sont pas appelés. C&rsquo;est pour cela qu&rsquo;il faut toujours appeler les constructeurs
+des classes de base avant d&rsquo;exécuter le constructeur de la classe en cours
+d&rsquo;instanciation. Si les constructeurs des classes de base ne sont pas appelés
+explicitement, le compilateur appellera, par défaut, les constructeurs des
+classes mères qui ne prennent pas de paramètre ou dont tous les paramètres ont
+une valeur par défaut.</p>
+<p>Comment appeler les constructeurs et les destructeurs des classes mères lors de
+l&rsquo;instanciation et de la destruction d&rsquo;une classe dérivée ? Le compilateur ne
+peut en effet pas savoir quel constructeur il faut appeler parmi les différents
+constructeurs surchargés potentiellement présents &hellip; Pour appeler un autre
+constructeur d&rsquo;une classe de base que le constructeur ne prenant pas de
+paramètre, il faut spécifier explicitement ce constructeur avec ses paramètres
+après le nom du constructeur de la classe fille, en les séparant de deux points.</p>
+<p>En revanche, il est inutile de préciser le destructeur à appeler, puisque
+celui-ci est unique. Le programmeur ne doit donc pas appeler lui-même les
+destructeurs des classes mères, le langage s&rsquo;en charge.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">/* Déclaration de la classe mère. */</span>
+ 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mere</span>
+{
+    <span style="color:#66d9ef">int</span> m_i;
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    Mere(<span style="color:#66d9ef">int</span>);
+    <span style="color:#f92672">~</span>Mere(<span style="color:#66d9ef">void</span>);
 };
-</code></pre></div><p>Fonction amie</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NomClasse</span>{
-...; <span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fonctionAmie</span>(<span style="color:#66d9ef">int</span>,<span style="color:#66d9ef">char</span>, NomClasse); ...
+ 
+<span style="color:#75715e">/* Définition du constructeur de la classe mère. */</span>
+ 
+Mere<span style="color:#f92672">::</span>Mere(<span style="color:#66d9ef">int</span> i)
+{
+    m_i<span style="color:#f92672">=</span>i;
+    printf(<span style="color:#e6db74">&#34;Exécution du constructeur de la classe mère.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">return</span>;
+}
+ 
+<span style="color:#75715e">/* Définition du destructeur de la classe mère. */</span>
+ 
+Mere<span style="color:#f92672">::~</span>Mere(<span style="color:#66d9ef">void</span>)
+{
+    printf(<span style="color:#e6db74">&#34;Exécution du destructeur de la classe mère.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">return</span>;
+}
+ 
+<span style="color:#75715e">/* Déclaration de la classe fille. */</span>
+ 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Fille</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Mere
+{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    Fille(<span style="color:#66d9ef">void</span>);
+    <span style="color:#f92672">~</span>Fille(<span style="color:#66d9ef">void</span>);
 };
-</code></pre></div><p>la visibilité courante n&rsquo;importe pas pour déclarer une classe ou fonction amie.</p>
-<h2 id="attributs-et-méthodes">Attributs et méthodes</h2>
-<p>Une classe est un regroupement d&rsquo;attributs, propriétés interne qu&rsquo;aura une
-instance de la classe, et de méthodes, comportements qu&rsquo;aura une instance. Ces
-attributs sont déclarés à l&rsquo;intérieur de la classe. L&rsquo;implémentation des
-méthodes peut se faire au moment de la déclaration ou à l&rsquo;extérieur de la
-classe. On l&rsquo;écrira dans la classe pour</p>
-<ul>
-<li>les classes template</li>
-<li>les classes à usage locale au fichier</li>
-<li>l&rsquo;inlining</li>
-</ul>
-<p>Sinon on écrit un fichier entête <code>NomClasse.hpp</code> et un fichier source
-<code>NomClasse.cpp</code></p>
-<h3 id="accès-aux-attributs">Accès aux attributs</h3>
-<p>L&rsquo;accès aux champs d&rsquo;une classe se fait à l&rsquo;aide de <code>.</code> ou <code>-&gt;</code> selon que l&rsquo;on
-dispose d&rsquo;une instance de classe ou d&rsquo;un pointeur sur une instance de classe.
-Tout membre de classe a pour nom <code>NomClasse::membre</code>. Lorsqu&rsquo;il n&rsquo;y a pas
-d&rsquo;ambiguïté, <code>NomClasse::</code> peut être omis.</p>
-<p>Cas automatique</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">ClasseA a;
-a.i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">//i est un attribut public de ClasseA
-</span><span style="color:#75715e"></span>a.ClasseA<span style="color:#f92672">::</span>i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; <span style="color:#75715e">//idem
-</span><span style="color:#75715e"></span>a.methode(); <span style="color:#75715e">//appel de méthode 
-</span><span style="color:#75715e"></span>a.ClasseA<span style="color:#f92672">::</span>methode(); <span style="color:#75715e">//idem
-</span></code></pre></div><p>Dans ce cas l&rsquo;instance se trouve dans la <strong>pile</strong>.</p>
-<p>Cas dynamique</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">ClasseA <span style="color:#f92672">*</span>a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClasseA();
-a<span style="color:#f92672">-&gt;</span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; 
-a<span style="color:#f92672">-&gt;</span>ClasseA<span style="color:#f92672">::</span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-a<span style="color:#f92672">-&gt;</span>methode();
-a<span style="color:#f92672">-&gt;</span>ClasseA<span style="color:#f92672">::</span>methode();
-</code></pre></div><p>Dans ce cas l&rsquo;instance est allouée dynamique dans le tas.</p>
-<h2 id="this">This</h2>
-<p>Le mot clé <code>this</code> permet, lors d&rsquo;un appel de méthode, de faire référence à
-l&rsquo;instance source (site d&rsquo;appel). Le type de la variable <code>this</code> est <code>NomDeClasse const * </code> : c&rsquo;est un pointeur.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
-    <span style="color:#66d9ef">int</span> attributPrive;
-    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-    voir setAttribut(<span style="color:#66d9ef">int</span> valeur){
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>attributPrive<span style="color:#f92672">=</span>valeur;
+ 
+<span style="color:#75715e">/* Définition du constructeur de la classe fille
+</span><span style="color:#75715e">   avec appel du constructeur de la classe mère. */</span>
+ 
+Fille<span style="color:#f92672">::</span>Fille(<span style="color:#66d9ef">void</span>) <span style="color:#f92672">:</span> Mere(<span style="color:#ae81ff">2</span>)
+{
+    printf(<span style="color:#e6db74">&#34;Exécution du constructeur de la classe fille.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">return</span>;
+}
+ 
+<span style="color:#75715e">/* Définition du destructeur de la classe fille
+</span><span style="color:#75715e">   avec appel automatique du destructeur de la classe mère. */</span>
+ 
+Fille<span style="color:#f92672">::~</span>Fille(<span style="color:#66d9ef">void</span>)
+{
+    printf(<span style="color:#e6db74">&#34;Exécution du destructeur de la classe fille.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+    <span style="color:#66d9ef">return</span>;
+}
+</code></pre></div><p>Lors de l&rsquo;instanciation d&rsquo;un objet de la classe fille, le programme affichera
+dans l&rsquo;ordre les messages suivants :</p>
+<ol>
+<li>Exécution du constructeur de la classe mère</li>
+<li>Exécution du constructeur de la classe fille</li>
+</ol>
+<p>et lors de la destruction de l&rsquo;objet</p>
+<ol>
+<li>Exécution du destructeur de la classe fille</li>
+<li>Exécution du destructeur de la classe mère</li>
+</ol>
+<p>Si l&rsquo;on n&rsquo;avait pas précisé que le constructeur à appeler pour la classe Mère
+était le constructeur prenant un entier en paramètre, le compilateur aurait
+essayé d&rsquo;appeler le constructeur par défaut de cette classe. Or, ce constructeur
+n&rsquo;étant plus généré automatiquement par le compilateur (à cause de la définition
+d&rsquo;un constructeur prenant un paramètre), il y aurait eu une erreur de
+compilation.</p>
+<p>Il est possible d&rsquo;appeler plusieurs constructeurs si la classé dérive de
+plusieurs classes de base. Pour cela, il suffit de lister les constructeurs un à
+un, en séparant leurs appels par des virgules. On notera cependant que l&rsquo;ordre
+dans lequel les constructeurs sont appelés n&rsquo;est pas forcément l&rsquo;ordre dans
+lequel ils sont listés dans la définition du constructeur de la classe fille. En
+effet, le C++ appelle toujours les constructeurs dans l&rsquo;ordre d&rsquo;apparition de
+leurs classes dans la liste des classes de base de la classe dérivée.</p>
+<blockquote>
+<p>Une fonction virtuelle peut donc toujours être appelée dans un constructeur,
+mais la fonction effectivement appelée est celle de la classe du sous-objet en
+cours de construction : pas celle de la classe de l&rsquo;objet complet. Ainsi, si
+une classe A hérite d&rsquo;une classe B et qu&rsquo;elles ont toutes les deux une
+fonction virtuelle f, l&rsquo;appel de f dans le constructeur de B utilisera la
+fonction f de B, pas celle de A (même si l&rsquo;objet que l&rsquo;on instancie est de
+classe A).</p>
+</blockquote>
+<p>La syntaxe utilisée pour appeler les constructeurs des classes de base peut
+également être utilisée pour initialiser les données membres de la classe. En
+particulier, cette syntaxe est obligatoire pour les données membres constantes
+et pour les références, car le C++ ne permet pas l&rsquo;affectation d&rsquo;une valeur à
+des variables de ce type. Encore une fois, l&rsquo;ordre d&rsquo;appel des constructeurs des
+données membres ainsi initialisées n&rsquo;est pas forcément l&rsquo;ordre dans lequel ils
+sont listés dans le constructeur de classe. En effet, le C++ utilise cette fois
+l&rsquo;ordre de déclaration de chaque donnée membre.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">tableau</span>
+{
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> m_iTailleMax;
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>m_pDonnees;
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    tableau(<span style="color:#66d9ef">int</span> iTailleMax);
+    <span style="color:#f92672">~</span>tableau();
+};
+ 
+tableau<span style="color:#f92672">::</span>tableau(<span style="color:#66d9ef">int</span> iTailleMax) <span style="color:#f92672">:</span>
+    m_iTailleMax(iTailleMax)    <span style="color:#75715e">// Initialise la donnée membre constante.
+</span><span style="color:#75715e"></span>{
+    <span style="color:#75715e">// Allocation d&#39;un tableau de m_iTailleMax entrées :
+</span><span style="color:#75715e"></span>    m_pDonnees <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[m_iTailleMax];
+}
+ 
+tableau<span style="color:#f92672">::~</span>tableau()
+{
+    <span style="color:#75715e">// Destruction des données :
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">delete</span>[] m_pDonnees;
+}
+</code></pre></div><h3 id="constructeurs-de-copie">Constructeurs de copie</h3>
+<p>Il faudra parfois créer un constructeur de copie. Le but de ce type de
+constructeur est d&rsquo;initialiser un objet lors de son instanciation à partir d&rsquo;un
+autre objet. Toute classe dispose d&rsquo;un constructeur de copie par défaut généré
+automatiquement par le compilateur, dont le seul but est de recopier les champs
+de l&rsquo;objet à recopier un à un dans les champs de l&rsquo;objet à instancier.
+Toutefois, ce constructeur par défaut ne suffira pas toujours, et le programmeur
+devra parfois en fournir un explicitement.</p>
+<p>Ce sera notamment le cas lorsque certaines données des objets auront été
+allouées dynamiquement. Une copie brutale des champs d&rsquo;un objet dans un autre ne
+ferait que recopier les pointeurs, pas les données pointées. Ainsi, la
+modification de ces données pour un objet entraînerait la modification des
+données de l&rsquo;autre objet, ce qui ne serait sans doute pas l&rsquo;effet désiré.</p>
+<p>La définition des constructeurs de copie se fait comme celle des constructeurs
+normaux. Le nom doit être celui de la classe, et il ne doit y avoir aucun type.
+Dans la liste des paramètres cependant, il devra toujours y avoir une référence
+sur l&rsquo;objet à copier.</p>
+<p>Pour la classe chaine définie ci-dessus, il faut un constructeur de copie.
+Celui-ci peut être déclaré de la façon suivante</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">chaine(<span style="color:#66d9ef">const</span> chaine <span style="color:#f92672">&amp;</span>Source);
+</code></pre></div><p>où Source est l&rsquo;objet à copier. Si l&rsquo;on rajoute la donnée membre Taille dans la
+déclaration de la classe, la définition de ce constructeur peut être :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">chaine<span style="color:#f92672">::</span>chaine(<span style="color:#66d9ef">const</span> chaine <span style="color:#f92672">&amp;</span>Source)
+{
+    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;                   <span style="color:#75715e">// Compteur de caractères.
+</span><span style="color:#75715e"></span>    Taille <span style="color:#f92672">=</span> Source.Taille;
+    s <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">char</span>[Taille <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];    <span style="color:#75715e">// Effectue l&#39;allocation.
+</span><span style="color:#75715e"></span>    strcpy(s, Source.s);         <span style="color:#75715e">// Recopie la chaîne de caractères source.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span>;
+}
+</code></pre></div><p>Le constructeur de copie est appelé dans toute instanciation avec
+initialisation, comme celles qui suivent</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">chaine <span style="color:#a6e22e">s2</span>(s1);
+chainse s2 <span style="color:#f92672">=</span> s1;
+</code></pre></div><p>Dans les deux exemples, c&rsquo;est le constructeur de copie qui est appelé. En
+particulier, à la deuxième ligne, le constructeur normal n&rsquo;est pas appelé et
+aucune affectation entre objets n&rsquo;a lieu.</p>
+<h3 id="utilisation-des-constructeurs-dans-les-transtypages">Utilisation des constructeurs dans les transtypages</h3>
+<p>Les constructeurs sont utilisés dans les conversions de type dans lesquelles le
+type cible est celui de la classe du constructeur. Ces conversions peuvent être
+soit implicites (dans une expression), soit explicite (à l&rsquo;aide d&rsquo;un
+transtypage). Par défaut, les conversions implicites sont légales, pourvu qu&rsquo;il
+existe un constructeur dont le premier paramètre a le même type que l&rsquo;objet
+source. Par exemple, la classe Entier suivante :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Entier</span>
+{
+    <span style="color:#66d9ef">int</span> i;
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    Entier(<span style="color:#66d9ef">int</span> j)
+    {
+        i<span style="color:#f92672">=</span>j;
+        <span style="color:#66d9ef">return</span> ;
     }
+};
+</code></pre></div><p>dispose d&rsquo;un constructeur de transtypage pour les entiers. Les expressions</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
+Entier e1, e2<span style="color:#f92672">=</span>j;
+e1<span style="color:#f92672">=</span>j;
+</code></pre></div><p>sont donc légales, la valeur entière située à la droite de l&rsquo;expression étant
+convertie implicitement en un objet du type de la classe Entier.</p>
+<p>Si, pour une raison quelconque, ce comportement n&rsquo;est pas souhaitable, on peut
+forcer le compilateur à n&rsquo;accepter que les conversions explicites (à l&rsquo;aide de
+transtypage). Pour cela, il suffit de placer le mot clé <code>explicit</code> avant la
+déclaration du constructeur. Par exemple, le constructeur de la classe chaine
+vue ci-dessus prenant un entier en paramètre risque d&rsquo;être utilisé dans des
+conversions implicites. Or ce constructeur ne permet pas de construire une
+chaîne de caractères à partir d&rsquo;un entier, et ne doit pas être utilisé dans les
+opérations de transtypage. Ce constructeur doit donc être déclaré <code>explicit</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">chaine</span>
+{
+    size_t Taille;
+    <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> s;
+ 
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    chaine(<span style="color:#66d9ef">void</span>);
+    <span style="color:#75715e">// Ce constructeur permet de préciser la taille de la chaîne
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// à sa création :
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">explicit</span> <span style="color:#a6e22e">chaine</span>(<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span>);
+    <span style="color:#f92672">~</span>chaine(<span style="color:#66d9ef">void</span>);
+};
+</code></pre></div><p>Avec cette déclaration, l&rsquo;expression suivante</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
+chainse s<span style="color:#f92672">=</span>j;
+</code></pre></div><p>n&rsquo;est plus valide, alors qu&rsquo;elle l&rsquo;était lorsque le constructeur n&rsquo;était pas
+explicit.</p>
+<h2 id="pointeur-this">Pointeur <code>this</code></h2>
+<p>Nous allons à présent voir comment les fonctions membres, qui appartiennent à la
+classe, peuvent accéder aux données d&rsquo;un objet, qui est une instance de cette
+classe. Cela est indispensable pour bien comprendre les paragraphes suivants.</p>
+<p>À chaque appel d&rsquo;une fonction membre, le compilateur passe implicitement un
+pointeur sur les données de l&rsquo;objet en paramètre. Ce paramètre est le premier
+paramètre de la fonction. Ce mécanisme est complètement invisible au programmeur,
+et nous ne nous attarderons pas dessus.</p>
+<p>En revanche, in faut savoir que le pointeur sur l&rsquo;objet est accessible à
+l&rsquo;intérieur de la fonction membre. Il porte le nom <code>this</code>. Par conséquent,
+<code>*this</code> représente l&rsquo;objet lui-même. Nous verrons une utilisation de <code>this</code> dans
+le paragraphe suivant</p>
+<p><code>this</code> est un pointeur constant, c&rsquo;est à dire qu&rsquo;on ne peut pas le modifier (il
+est donc impossible de faire des opérations arithmétiques dessus). Cela est tout
+à fait normal, puisque le faire reviendrait à sortir de l&rsquo;objet en cours (celui
+pour lequel la méthode en cours d&rsquo;exécution travaille).</p>
+<p>Il est possible de transformer ce pointeur constant en un pointeur constant sur
+des données constantes pour chaque fonction membre. Le pointeur ne peut toujours
+pas être modifié, et les données de l&rsquo;objet ne peuvent pas être modifiées non
+plus. L&rsquo;objet est donc considéré par la fonction membre concernée comme un objet
+constant. Cela revient à dire que la fonction membre s&rsquo;interdit la modification
+des données de l&rsquo;objet. On parvient à ce résultat en ajoutant le mot clé <code>const</code>
+à la suite de l&rsquo;en te de la fonction membre.</p>
+<p>Il est à noter qu&rsquo;une méthode qui n&rsquo;est pas déclarée comme étant <code>const</code> modifie
+a priori les données de l&rsquo;objet sur lequel elle travaille. Donc, si elle est
+appelée sur un objet déclaré <code>const</code>, une erreur de compilation se produit. Ce
+comportement est normal. On devra donc toujours déclarer <code>const</code> une méthode qui
+ne modifie pas réellement l&rsquo;objet, afin de laisse à l&rsquo;utilisateur le choix de
+déclarer <code>const</code> ou non les objets de sa classe.</p>
+<h2 id="données-et-fonctions-membres-statiques">Données et fonctions membres statiques</h2>
+<p>Nous allons voir dans ce paragraphe l&rsquo;emploi du mot clé <code>static</code> dans les
+classes. Ce mot clé intervient pour caractériser les données membres statiques
+des classes, les fonctions membres statiques des classes, et les données
+statiques des fonctions membres.</p>
+<h3 id="données-membres-statiques">Données membres statiques</h3>
+<p>Une classe peut contenir des données membres statiques. Ces données sont soit
+des données membres propres à la classe, soit des données locales statiques des
+fonctions membres de la classe. Dans tous les cas, elles appartiennent à la
+classe, et non pas aux objets de cette classe. Elles sont donc communes à tous
+ces objets.</p>
+<p>Il est impossible d&rsquo;initialiser les données d&rsquo;une classe dans le constructeur de
+la classe, car le constructeur n&rsquo;initialise que les données des nouveaux objets.
+Les données statiques ne sont pas spécifiques à un objet particulier et ne
+peuvent donc pas être initialisées dans le constructeur. En fait, leur
+initialisation doit se faire lors de leur définition, en dehors de la
+déclaration de la classe. Pour préciser la classe à laquelle les données sont
+définies appartiennent, on devra utiliser l&rsquo;opérateur de résolution de portée.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">test</span>
+{
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> i;       <span style="color:#75715e">// Déclaration dans la classe.
+</span><span style="color:#75715e"></span>    ...
+};
+ 
+<span style="color:#66d9ef">int</span> test<span style="color:#f92672">::</span>i<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>;         <span style="color:#75715e">// Initialisation en dehors de la classe.
+</span></code></pre></div><p>La variable <code>test::i</code> sera partagée par tous les objets de classe test, et sa
+valeur initiale est 3.</p>
+<p>Les variables statiques des fonctions membres doivent être initialisées à
+l&rsquo;intérieur des fonctions membres. Elles appartiennent également à la classe, et
+non pas aux objets. De plus, leur portée est réduite à celle du bloc dans lequel
+elles ont été déclarées. Ainsi le code suivante :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">test</span>
+{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> n(<span style="color:#66d9ef">void</span>);
+};
+ 
+<span style="color:#66d9ef">int</span> test<span style="color:#f92672">::</span>n(<span style="color:#66d9ef">void</span>)
+{
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> compte<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">return</span> compte<span style="color:#f92672">++</span>;
 }
-</code></pre></div><p>Lorsqu&rsquo;il n&rsquo;y a pas de variable locale de même nom que l&rsquo;attribut, on peut
-omettre this.</p>
-<h3 id="opérateur-de-portée">Opérateur de portée</h3>
-<p>L&rsquo;opérateur de portée <code>::</code> peut être utilisé pour indiquer précisément la
-variable que l&rsquo;on souhaite manipuler.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> lunatique;
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
-    <span style="color:#66d9ef">char</span> lunatique;
-    <span style="color:#66d9ef">public</span> <span style="color:#f92672">:</span>
-        <span style="color:#66d9ef">void</span> printAllVariable(<span style="color:#66d9ef">double</span> lunatique){
-            lunatique;
-            A<span style="color:#f92672">::</span>lunatique; <span style="color:#75715e">// fait référence à la variable locale
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>A<span style="color:#f92672">::</span>lunatique; <span style="color:#75715e">// fait référence à l&#39;attribut d&#39;instance 
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>lunatique; <span style="color:#75715e">// fait référence à l&#39;attribut d&#39;instance
-</span><span style="color:#75715e"></span>            <span style="color:#f92672">::</span>lunatique; <span style="color:#75715e">// fait référence à la variable globale
-</span><span style="color:#75715e"></span>        }
+ 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+    test objet1, objet2;
+    printf(<span style="color:#e6db74">&#34;%d &#34;</span>, objet1.n());   <span style="color:#75715e">// Affiche 0
+</span><span style="color:#75715e"></span>    printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, objet2.n());  <span style="color:#75715e">// Affiche 1
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-</code></pre></div><h2 id="espace-de-nom">Espace de nom</h2>
-<p>Les espaces de nom permettent de regrouper un ensemble d&rsquo;éléments (classes,
-variables, globales, fonctions,&hellip;). Les espaces de nom sont utilisés pour
-structurer le code et pour éviter les problèmes de collisions. Pour déclarer un
-espace de nom on utilise le mot clé <code>namespace</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> Nom{
-    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
-        ...
-    };
+</code></pre></div><p>affichera 0 et 1, parque la variable statique compte est la même pour les deux
+objets</p>
+<h3 id="fonctions-membres-statiques">Fonctions membres statiques</h3>
+<p>Les classes peuvent également contenir des fonctions membres statiques. Cela
+peut surprendre à première vue, puisque les fonctions membres appartiennent déjà
+à la classe, c&rsquo;est à dire à tous les objets. En fait, cela signifie que ces
+fonctions membres ne recevront pas le pointeur sur l&rsquo;objet <code>this</code>, comme c&rsquo;est
+le cas pour les autres fonctions membres. Par conséquent, elles ne pourront
+accéder qu&rsquo;aux données statiques de l&rsquo;objet</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Entier</span>
+{
     <span style="color:#66d9ef">int</span> i;
-    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fonction</span>();
-} <span style="color:#75715e">// fin de l&#39;espace de nom
-</span></code></pre></div><p>Lors de l&rsquo;écriture du code des fonctions ou des méthodes des classes dans le
-fichier .cpp on peut soit ré-ouvrir l&rsquo;espace de nom, soit indiquer explicitement
-le nom de l&rsquo;objet avec l&rsquo;opérateur de portée.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> tec{
-    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
-        <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-            <span style="color:#66d9ef">void</span> m();
-    };
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> j;
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> get_value(<span style="color:#66d9ef">void</span>);
 };
-</code></pre></div><p>Lors de l&rsquo;écriture du code des fonctions ou des méthodes des classes dans le
-fichier .cpp on peut soit ré-ouvrir l&rsquo;espace de nom, soit indiquer explicitement
-le nom de l&rsquo;objet avec l&rsquo;opérateur de portée.</p>
-<h3 id="espace-de-noms--using">Espace de noms : using</h3>
-<p>Le mot clé <code>using</code> permet de rendre accessible tout ou partie d&rsquo;un espace de nom
-dans une fonction, un espace nom ou tout le code</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> spatial{
-    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Navette</span>{};
-}
-
-<span style="color:#66d9ef">namespace</span> missions{
-    spatial<span style="color:#f92672">::</span>Navette n;
-}
-
-spatial<span style="color:#f92672">::</span>Navette n;
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">starWars</span>(){
-    spatial<span style="color:#f92672">::</span>Navette n;
-}
-</code></pre></div><p>Le <code>using</code> crée des synonymes locaux entre les espaces de nom :</p>
-<p>example.hpp</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> math{
-    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> pi<span style="color:#f92672">=</span><span style="color:#ae81ff">3.14</span>;
-}
-<span style="color:#66d9ef">namespace</span> cercle{
-    <span style="color:#66d9ef">using</span> math<span style="color:#f92672">::</span>pi;
-    <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">surf</span>(<span style="color:#66d9ef">double</span>);
-}
-</code></pre></div><p>exemple.cpp</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;exemple.hpp&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">double</span> cercle<span style="color:#f92672">::</span>surf(<span style="color:#66d9ef">double</span> r){
-    <span style="color:#66d9ef">return</span> pi<span style="color:#f92672">*</span>r<span style="color:#f92672">*</span>r;
-}
-</code></pre></div><p>Permet de remplacer facilement une référence externe par une autre. Permet aussi
-l&rsquo;introduction de modularité sans modification profonde du code.</p>
-<h2 id="constructeur">Constructeur</h2>
-<p>Un constructeur est une méthode de classe qui est appelée après la reservation
-des ressources nécessaires à la création d&rsquo;une instance de la classe et qui a
-pour objectif d&rsquo;initialiser les attributs de cette instance.</p>
-<h3 id="définition">Définition</h3>
-<p>Une constructeur est une méthode de classe qui est appelée après la réservation
-des ressources nécessaires à la créations d&rsquo;une instance de la classe et qui a
-pour objectif d&rsquo;initialiser les attributs de cette instance. En C++, le
-constructeur est une méthode sans valeur de retour de même nom que la classe. On
-appelle constructeur par défaut le constructeur ne prenant aucun argument. Dans
-le cas où la classe ne comporte aucun constructeur, le compilateur ajoute un
-constructeur par défaut. Celui-ci n&rsquo;est plus présent à partir du moment où l&rsquo;on
-a écrit au moins un constructeur.</p>
-<h3 id="par-recopie">Par recopie</h3>
-<p>Le constructeur par recopie est le constructeur qui permet d&rsquo;instancier une
-classe à partir d&rsquo;une autre instance de cette classe. Ce constructeur est
-utilisé entre autre lors de la transmission de paramètres à une fonction et lors
-d&rsquo;une valeur de retour de fonction</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">A <span style="color:#a6e22e">f</span>(A p){<span style="color:#66d9ef">return</span> p;}
-...
-A a;
-f(a)
-</code></pre></div><ul>
-<li>La variable <code>p</code>, locale à la fonction <code>f</code>, est allouée automatiquement et
-instanciée avec le constructeur par recopie à partir de l&rsquo;instance <code>a</code>.</li>
-<li>La valeur de retour de <code>f</code> est instanciée par recopie de la valeur locale.</li>
-</ul>
-<p>L&rsquo;idée est donc d&rsquo;avoir un constructeur dans la classe <code>A</code> qui prend une
-instance de type <code>A</code> en argument</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
-    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-        A(A a);
+ 
+<span style="color:#66d9ef">int</span> Entier<span style="color:#f92672">::</span>j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+ 
+<span style="color:#66d9ef">int</span> Entier<span style="color:#f92672">::</span>get_value(<span style="color:#66d9ef">void</span>)
+{
+    j<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;         <span style="color:#75715e">// Légal.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> i;    <span style="color:#75715e">// ERREUR ! get_value ne peut pas accéder à i.
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>La fonction <code>get_value</code> de l&rsquo;exemple ci-dessus ne peut pas accéder à la donnée
+membre non statique <code>i</code>, parce qu&rsquo;elle ne travaille sur aucun objet. Son champ
+d&rsquo;action est uniquement la classe Entier. En revanche, elle peut modifier la
+variable statique <code>j</code>, puisque celle-ci appartient à la classe Entier et non aux
+objets de cette classe.</p>
+<p>L&rsquo;appel des fonctions membre statiques se fait exactement comme celui des
+fonctions membres non statiques, en spécifiant l&rsquo;identificateur d&rsquo;un des objets
+de la classe et le nom de la fonction membre, séparés par un point. Cependant,
+comme les fonctions membres ne travaillent pas sur les objets des classes mais
+plutôt sur les classes elles-mêmes, la présence de l&rsquo;objet lors de l&rsquo;appel est
+facultatif. On peut donc se contenter d&rsquo;appeler une fonction statique en
+qualifiant son nom du nom de la classe à laquelle elle appartient à l&rsquo;aide de
+l&rsquo;opérateur de résolution de portée.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Entier</span>
+{
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> i;
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> get_value(<span style="color:#66d9ef">void</span>);
 };
-</code></pre></div><p>Le problème est que pour instancier la variable locale au constructeur il nous
-faut le constructeur par recopie. La solution repose sur l&rsquo;utilisation des
-références</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
-    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-        A(<span style="color:#66d9ef">const</span> A<span style="color:#f92672">&amp;</span>);
-        A(A <span style="color:#f92672">&amp;</span>);
-};
-</code></pre></div><h4 id="références">Références.</h4>
-<p>Une référence peut être vue comme un &ldquo;alias&rdquo; sur une instance, une référence
-doit obligatoirement être initialisée au moment de sa création et ne peut
-référencer une autre instance par la suite.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> i:
-<span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>r<span style="color:#f92672">=</span>i;
-</code></pre></div><p>Après l&rsquo;initialisation :</p>
-<ul>
-<li>les variables <code>i</code> et <code>r</code> représentent la même donnée</li>
-<li>l&rsquo;adresse de <code>r</code> est égale à l&rsquo;adresse de <code>i</code></li>
-</ul>
-<p>Contrairement à un pointeur, une référence &ldquo;pointe&rdquo; toujours sur une instance.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swap</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>i, <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>j){
-    <span style="color:#66d9ef">int</span> k<span style="color:#f92672">=</span>i;
-    i<span style="color:#f92672">=</span>j;
-    j<span style="color:#f92672">=</span>k;
+ 
+<span style="color:#66d9ef">int</span> Entier<span style="color:#f92672">::</span>i<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>;
+ 
+<span style="color:#66d9ef">int</span> Entier<span style="color:#f92672">::</span>get_value(<span style="color:#66d9ef">void</span>)
+{
+    <span style="color:#66d9ef">return</span> i;
 }
-
-<span style="color:#66d9ef">int</span> a<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, b<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>;
-swap(a,b);
-<span style="color:#66d9ef">int</span> t[<span style="color:#ae81ff">5</span>];
-swap(t[<span style="color:#ae81ff">1</span>],t[<span style="color:#ae81ff">2</span>]);
-</code></pre></div><h4 id="const">Const.</h4>
-<p>Le mot clé <code>const</code> sert à indiquer qu&rsquo;une donnée ne peut être modifiée. Une
-variable déclaré <code>const</code> doit être initialisée lors de sa déclaration. Lorsque
-l&rsquo;on dispose d&rsquo;une référence constante sur une instance de classe, comment
-garantir que l&rsquo;appel à une méthode de cette instance ne va pas modifier
-l&rsquo;instance ?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
-    <span style="color:#66d9ef">int</span> i;
-    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span> 
-        <span style="color:#66d9ef">int</span> get(){<span style="color:#66d9ef">return</span> i;}
-        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">set</span>(<span style="color:#66d9ef">int</span> i){
-            <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>i<span style="color:#f92672">=</span>i;
-        }
-};
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">const</span> A <span style="color:#f92672">&amp;</span>a){
-    a.get();
-    a.set(<span style="color:#ae81ff">0</span>);
+ 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+    <span style="color:#75715e">// Appelle la fonction statique get_value :
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> resultat<span style="color:#f92672">=</span>Entier<span style="color:#f92672">::</span>get_value();
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-
-A b;
-f(b);
-</code></pre></div><p>La référence est constante (l&rsquo;instance ne doit pas être modifiée) mais l&rsquo;appel
-de méthode modifie l&rsquo;objet ! On distingue deux types de méthodes : celles qui
-sont susceptibles de modifier l&rsquo;objet et celles qui ne modifient pas l&rsquo;objet.</p>
-<p>Une méthode de classe peut être typée <code>const</code>. Cela indique que dans cette
-méthode le type de <code>this</code> est <code>const NomClasse const *</code>. L&rsquo;ensemble des
-attributs de la classe deviennent alors constants eux aussi. Lorsque l&rsquo;on
-dispose d&rsquo;une variable constante sur une instance, seules les méthodes indiquées
-comme constantes peuvent être appelées sur cette instance. Une méthode <code>const</code>
-peut appeler sur tout type de variable tandis qu&rsquo;une méthode non const ne peut
-être appelée que sur une variable non constante.</p>
-<p>Lors de l&rsquo;écriture d&rsquo;une méthode, on ne doit pas se demander si la méthode doit
-être const mais plutôt si on a besoin qu&rsquo;elle ne soit pas const.</p>
-<p>Les arguments de fonctions (non primitifs) seront des références constantes sauf
-si l&rsquo;on veut modifier l&rsquo;argument.</p>
-<p>Il est possible de surcharger une méthode en utilisant le <code>const</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
-    <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-        <span style="color:#66d9ef">void</span> m(){
-            printf(<span style="color:#e6db74">&#34;Le site d&#39;appel n&#39;est pas constant&#34;</span>);
-        }
-        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m</span>() <span style="color:#66d9ef">const</span>{
-            printf(<span style="color:#e6db74">&#34;Le site d&#39;appel est constant&#34;</span>)
-        }
-};
-
-A a;
-<span style="color:#66d9ef">const</span> A <span style="color:#f92672">&amp;</span>b;
-A <span style="color:#66d9ef">const</span> <span style="color:#f92672">*</span>p;
-a.m();
-b.m();
-p<span style="color:#f92672">-&gt;</span>m();
-</code></pre></div><p>Le <code>const</code> fait partie de la signature de la méthode, il doit être présent dans
-le <code>.cpp</code> et le <code>.hpp</code>.</p>
-<h2 id="destructeur">Destructeur</h2>
-<p>Le destructeur est une méthode d&rsquo;instance n&rsquo;ayant pas de type de retour et ayant
-pour nom : <code>~NomClasse</code>. Toute classe ayant allouée dynamiquement ces attributs
-devra écrire un destructeur. Si l&rsquo;instance a été allouée dynamiquement alors
-l&rsquo;appel au destructeur est déclenché par l&rsquo;opérateur delete. Si l&rsquo;instance a été
-allouée automatiquement alors l&rsquo;appel au destructeur se fait à la sortie du bloc
-d&rsquo;instructions qui contient cette instance. Les ressources mémoires associées à
-l&rsquo;instance sont libérées après l&rsquo;appel au destructeur.</p>
-<h2 id="static">Static</h2>
-<p>Une variable statique est une variable dont la durée de vie est égale à celle du
-programme et dont la portée peut être réduite à un fichier, une classe, une
-fonction ou méthode selon l&rsquo;endroit où elle est déclarée.</p>
-<p>Dans le contexte des classes, une méthode publique statique est équivalente à
-une fonction amie (sauf pour la portée). On pourra utiliser les méthodes
-statiques en fonction avec un constructeur privé On peut utiliser le mot clé
-<code>static</code> en jonction avec <code>const</code> afin de définir des propriétés constantes de
-classes. Les variables <code>static</code> et <code>const</code> sont les seules à pouvoir être
-initialisées lors que la déclaration dans le fichier .hpp.</p>
+</code></pre></div><p>Les fonctions membres statiques sont souvent utilisées afin de regrouper un
+certain nombre de fonctionnalités en rapport avec leur classe. Ainsi, elles sont
+facilement localisable et les risques de conflits de noms entre deux fonctions
+membres homonymes sont réduits. Nous verrons également plus tard comment éviter
+les conflits de noms globaux dans le cadre des espaces de nommage.</p>
+<h2 id="surcharge-des-opérateurs">Surcharge des opérateurs</h2>
+<p>On a vu précédemment que les opérateurs ne se différencient des fonctions que
+syntaxiquement, pas logiquement. D&rsquo;ailleurs, le compilateur traite un appel à un
+opérateur comme un appel à une fonction. Le C++ permet donc de surcharger les
+opérateurs pour les classes définies par l&rsquo;utilisateur, en utilisant une
+syntaxe particulière calquée sur la syntaxe utilisée pour définir des fonctions
+membres normales. En fait, il est même possible de surcharger les opérateurs du
+langage pour les classes de l&rsquo;utilisateur en dehors de la définition de ces
+classes. Le C++ dispose donc de deux méthodes différentes pour surcharger les
+opérateurs.</p>
+<p>Nous allons à présent voir dans les sections suivantes les deux syntaxes
+permettant de surcharger les opérateurs pour les types de l&rsquo;utilisateur, ainsi
+que les règles spécifiques à certains opérateurs particuliers.</p>
+<h3 id="surcharge-des-opérateurs-internes">Surcharge des opérateurs internes</h3>
+<p>Une première méthode pour surcharger les opérateurs consiste à les considérer
+comme des méthodes normales de la classe sur laquelle ils s&rsquo;appliquent. Le nom
+de ces méthodes est donné par le mot clé <code>operator</code>, suivi de l&rsquo;opérateur à
+surcharger. Le type de la fonction de l&rsquo;opérateur est le type du résultat donné
+par l&rsquo;opération, et les paramètres, donnés entre parenthèses, sont les
+opérandes. Les opérateurs de ce type sont appelés opérateurs internes, parce
+qu&rsquo;ils sont déclarés à l&rsquo;intérieur de la classe.</p>
+<p>Avec cette syntaxe, le premier opérande est toujours l&rsquo;objet auquel cette
+fonction s&rsquo;applique. Cette manière de surcharger les opérateurs est donc
+particulièrement bien adaptée pour les opérateurs qui modifient l&rsquo;objet sur
+lequel ils travaillent, comme par exemple ,es opérateurs =, +=, ++, etc. Les
+paramètres de la fonction opérateur sont alors le deuxième opérande et les
+suivants.</p>
+<p>Les opérateurs définis en interne devront souvent renvoyer l&rsquo;objet sur lequel
+ils travaillent (ce n&rsquo;est pas une nécessité cependant). Cela est faisable grâce
+au pointeur <code>this</code>.</p>
+<h3 id="surcharge-des-opérateurs-externes">Surcharge des opérateurs externes</h3>
+<p>Une deuxième possibilité nous est offerte par le langage pour surcharger les
+opérateurs. La définition de l&rsquo;opérateur ne se fait plus dans la classe qui
+l&rsquo;utilise, mais en dehors de celle-ci, par surcharge d&rsquo;un opérateur de l&rsquo;espace
+de nommage global. Il s&rsquo;agit donc d&rsquo;opérateurs externes cette fois.</p>
+<p>La surcharge des opérateurs externes se fait donc exactement comme on surcharge
+les fonctions normales. Dans ce cas, tous les opérandes de l&rsquo;opérateur devront
+être passés en paramètres : il n&rsquo;y aura pas de paramètre implicite (le pointeur
+<code>this</code> n&rsquo;est pas passé en paramètre).</p>
+<p>L&rsquo;avantage de cette syntaxe est que l&rsquo;opérateur est réellement symétrique,
+contrairement à ce qui se passe pour ces opérateurs définis à l&rsquo;intérieur de la
+classe. Ainsi, si l&rsquo;utilisation de cet opérateur nécessite un transtypage sur
+l&rsquo;un des opérandes, il n&rsquo;est pas nécessaire que cet opérande soit
+obligatoirement le deuxième. Donc si la classe dispose de constructeurs
+permettant de convertir un type de donnée en son propre type, ce type de donnée
+peut être utilisé avec tous les opérateurs de la classe.</p>
+<p>On constatera que les opérateurs externes doivent être déclarés comme étant des
+fonctions amies de la classe sur laquelle ils travaillent, faut de quoi ils ne
+pourraient pas manipuler les données membres de leurs opérandes.</p>
+<p>La syntaxe des opérateurs externes permet également d&rsquo;implémenter les opérateurs
+pour lesquels le type de la valeur de retour est celui de l&rsquo;opérande de gauche
+et que le type de cet opérande n&rsquo;est pas une classe définie par l&rsquo;utilisateur
+(par exemple si c&rsquo;est un type prédéfini). En effet, on ne peut pas définir
+l&rsquo;opérateur à l&rsquo;intérieur de la classe du premier opérande dans ce cas, puisque
+cette classe est déjà définie. De même, cette syntaxe peut être utile dans le
+cas de l&rsquo;écriture d&rsquo;opérateurs optimisés pour certains types de données, pour
+lesquels les opérations réalisées par l&rsquo;opérateur sont plus simples que celles
+qui auraient été effectuées après transtypage.</p>
+<h3 id="opérateurs-daffectation">Opérateurs d&rsquo;affectation</h3>
+<!-- ## Définition et déclaration -->
+<!-- Une classe consiste en un regroupement de méthodes et d'attributs  -->
+<!-- ```cpp -->
+<!-- class NomClasse{ -->
+<!-- attributes -->
+<!-- ... -->
+<!-- methodes -->
+<!-- ... -->
+<!-- }; -->
+<!-- ``` -->
+<!-- L'ordre des déclarations ne compte pas. La classe est une description des -->
+<!-- données internes et comportements qu'aura une instance générée par cette classe. -->
+<!-- L'**instanciation** (ou réification), c'est à dire la création d'un objet -->
+<!-- instance (ressource) à partir de l'objet classe (description / générateur) peut -->
+<!-- se faire de façon dynamique -->
+<!-- ```cpp -->
+<!-- A *a=new A(); -->
+<!-- ``` -->
+<!-- ou automatique  -->
+<!-- ```cpp -->
+<!-- A a; -->
+<!-- ``` -->
+<!-- Dans les deux cas, une ressource (adresse mémoire) est associée à l'instance. -->
+<!-- Dans l'allocation dynamique, cette ressource est située dans le tas, dans le cas -->
+<!-- automatique elle est située dans la pile. -->
+<!-- ## Visibilité, friend, struct -->
+<!-- On contrôle l'accès au méthodes et attributs pour une sous-classe ou un objet -->
+<!-- extérieur avec `public, protected, private` -->
+<!-- |           | la classe | sous-classe | extérieur | -->
+<!-- | :--       | :--       | :--         | :--       | -->
+<!-- | public    | oui       | oui         | oui       | -->
+<!-- | protected | oui       | oui         | non       | -->
+<!-- | private   | oui       | non         | non       | -->
+<!-- La visibilité par défaut dans une classe est private. On modifie la visibilité -->
+<!-- de la façon suivante -->
+<!-- ```cpp -->
+<!-- class NomClasse{ -->
+<!-- //attributs et méthodes privés -->
+<!-- public: -->
+<!-- //attributs et méthodes publiques -->
+<!-- protected: -->
+<!-- //attributs et méthodes protégés -->
+<!-- } -->
+<!-- ``` -->
+<!-- On peut à tout moment changer la visibilité, celle-ci sera appliquée à toutes -->
+<!-- les déclarations suivantes jusqu'au prochaine changement de visibilité.  -->
+<!-- ### Les structures -->
+<!-- Les structures se déclarent comme en C. En C++, les structures sont des classes -->
+<!-- dont la visibilité par défaut est `public`. Par conséquent, elles peuvent -->
+<!-- contenir des attributs et des méthodes. Deux noms de type sont associés à la -->
+<!-- structure : struct Nom et Nom.  -->
+<!-- L'instanciation des structures se fait comme pour les classes  -->
+<!-- allocation dynamique -->
+<!-- ```cpp -->
+<!-- struct A{...}; -->
+<!-- A *a = new A(); -->
+<!-- A *a = new struct A(); -->
+<!-- struct A *a = new struct A(); -->
+<!-- ``` -->
+<!-- allocation automatique -->
+<!-- ```cpp -->
+<!-- struct A{...}; -->
+<!-- A a; -->
+<!-- struct A a; -->
+<!-- ``` -->
+<!-- ### Friend -->
+<!-- Dans une classe `A`, le mot clé `friend` permet de donner à une fonction ou une -->
+<!-- autre classe les mêmes droits qu'une méthode de `A`. Une fonction `f` amie d'une -->
+<!-- classe `A` pourra accéder aux attributs privés de `A` ainsi qu'aux attributs -->
+<!-- privés de `A` ainsi qu'aux attributs protected d'une des classes parents de `A`. -->
+<!-- La déclaration se fait dans la classe en indiquant soit le prototype de la -->
+<!-- fonction amié soit le nom de la classe amie  -->
+<!-- Classe amie  -->
+<!-- ```cpp -->
+<!-- class NomClasse{ -->
+<!-- ...; friend class NomClasseAmie; ... -->
+<!-- }; -->
+<!-- ``` -->
+<!-- Fonction amie -->
+<!-- ```cpp -->
+<!-- class NomClasse{ -->
+<!-- ...; friend void fonctionAmie(int,char, NomClasse); ... -->
+<!-- }; -->
+<!-- ``` -->
+<!-- la visibilité courante n'importe pas pour déclarer une classe ou fonction amie. -->
+<!-- ## Attributs et méthodes -->
+<!-- Une classe est un regroupement d'attributs, propriétés interne qu'aura une -->
+<!-- instance de la classe, et de méthodes, comportements qu'aura une instance. Ces -->
+<!-- attributs sont déclarés à l'intérieur de la classe. L'implémentation des -->
+<!-- méthodes peut se faire au moment de la déclaration ou à l'extérieur de la -->
+<!-- classe. On l'écrira dans la classe pour  -->
+<!-- + les classes template -->
+<!-- + les classes à usage locale au fichier -->
+<!-- + l'inlining -->
+<!-- Sinon on écrit un fichier entête `NomClasse.hpp` et un fichier source -->
+<!-- `NomClasse.cpp` -->
+<!-- ### Accès aux attributs -->
+<!-- L'accès aux champs d'une classe se fait à l'aide de `.` ou `->` selon que l'on -->
+<!-- dispose d'une instance de classe ou d'un pointeur sur une instance de classe. -->
+<!-- Tout membre de classe a pour nom `NomClasse::membre`. Lorsqu'il n'y a pas -->
+<!-- d'ambiguïté, `NomClasse::` peut être omis. -->
+<!-- Cas automatique -->
+<!-- ```cpp -->
+<!-- ClasseA a; -->
+<!-- a.i = 1; //i est un attribut public de ClasseA -->
+<!-- a.ClasseA::i=1; //idem -->
+<!-- a.methode(); //appel de méthode  -->
+<!-- a.ClasseA::methode(); //idem -->
+<!-- ``` -->
+<!-- Dans ce cas l'instance se trouve dans la **pile**.  -->
+<!-- Cas dynamique  -->
+<!-- ```cpp -->
+<!-- ClasseA *a = new ClasseA(); -->
+<!-- a->i = 1;  -->
+<!-- a->ClasseA::i = 1; -->
+<!-- a->methode(); -->
+<!-- a->ClasseA::methode(); -->
+<!-- ``` -->
+<!-- Dans ce cas l'instance est allouée dynamique dans le tas. -->
+<!-- ## This -->
+<!-- Le mot clé `this` permet, lors d'un appel de méthode, de faire référence à -->
+<!-- l'instance source (site d'appel). Le type de la variable `this` est `NomDeClasse -->
+<!-- const * ` : c'est un pointeur.  -->
+<!-- ```cpp -->
+<!-- class A{ -->
+<!--     int attributPrive; -->
+<!--     public: -->
+<!--     voir setAttribut(int valeur){ -->
+<!--         this->attributPrive=valeur; -->
+<!--     } -->
+<!-- } -->
+<!-- ``` -->
+<!-- Lorsqu'il n'y a pas de variable locale de même nom que l'attribut, on peut -->
+<!-- omettre this.  -->
+<!-- ### Opérateur de portée -->
+<!-- L'opérateur de portée `::` peut être utilisé pour indiquer précisément la -->
+<!-- variable que l'on souhaite manipuler. -->
+<!-- ```cpp -->
+<!-- int lunatique; -->
+<!-- class A{ -->
+<!--     char lunatique; -->
+<!--     public : -->
+<!--         void printAllVariable(double lunatique){ -->
+<!--             lunatique; -->
+<!--             A::lunatique; // fait référence à la variable locale -->
+<!--             this->A::lunatique; // fait référence à l'attribut d'instance  -->
+<!--             this->lunatique; // fait référence à l'attribut d'instance -->
+<!--             ::lunatique; // fait référence à la variable globale -->
+<!--         } -->
+<!-- } -->
+<!-- ``` -->
+<!-- ## Espace de nom -->
+<!-- Les espaces de nom permettent de regrouper un ensemble d'éléments (classes, -->
+<!-- variables, globales, fonctions,...). Les espaces de nom sont utilisés pour -->
+<!-- structurer le code et pour éviter les problèmes de collisions. Pour déclarer un -->
+<!-- espace de nom on utilise le mot clé `namespace` -->
+<!-- ```cpp -->
+<!-- namespace Nom{ -->
+<!--     class A{ -->
+<!--         ... -->
+<!--     }; -->
+<!--     int i; -->
+<!--     int fonction(); -->
+<!-- } // fin de l'espace de nom -->
+<!-- ``` -->
+<!-- Lors de l'écriture du code des fonctions ou des méthodes des classes dans le -->
+<!-- fichier .cpp on peut soit ré-ouvrir l'espace de nom, soit indiquer explicitement -->
+<!-- le nom de l'objet avec l'opérateur de portée. -->
+<!-- ```cpp -->
+<!-- namespace tec{ -->
+<!--     class A{ -->
+<!--         public: -->
+<!--             void m(); -->
+<!--     }; -->
+<!-- }; -->
+<!-- ``` -->
+<!-- Lors de l'écriture du code des fonctions ou des méthodes des classes dans le -->
+<!-- fichier .cpp on peut soit ré-ouvrir l'espace de nom, soit indiquer explicitement -->
+<!-- le nom de l'objet avec l'opérateur de portée. -->
+<!-- ### Espace de noms : using -->
+<!-- Le mot clé `using` permet de rendre accessible tout ou partie d'un espace de nom -->
+<!-- dans une fonction, un espace nom ou tout le code  -->
+<!-- ```cpp -->
+<!-- namespace spatial{ -->
+<!--     class Navette{}; -->
+<!-- } -->
+<!-- namespace missions{ -->
+<!--     spatial::Navette n; -->
+<!-- } -->
+<!-- spatial::Navette n; -->
+<!-- void starWars(){ -->
+<!--     spatial::Navette n; -->
+<!-- } -->
+<!-- ``` -->
+<!-- Le `using` crée des synonymes locaux entre les espaces de nom : -->
+<!-- example.hpp -->
+<!-- ```cpp -->
+<!-- namespace math{ -->
+<!--     const double pi=3.14; -->
+<!-- } -->
+<!-- namespace cercle{ -->
+<!--     using math::pi; -->
+<!--     double surf(double); -->
+<!-- } -->
+<!-- ``` -->
+<!-- exemple.cpp -->
+<!-- ```cpp -->
+<!-- #include "exemple.hpp" -->
+<!-- double cercle::surf(double r){ -->
+<!--     return pi*r*r; -->
+<!-- } -->
+<!-- ``` -->
+<!-- Permet de remplacer facilement une référence externe par une autre. Permet aussi -->
+<!-- l'introduction de modularité sans modification profonde du code. -->
+<!-- ## Constructeur -->
+<!-- Un constructeur est une méthode de classe qui est appelée après la reservation -->
+<!-- des ressources nécessaires à la création d'une instance de la classe et qui a -->
+<!-- pour objectif d'initialiser les attributs de cette instance. -->
+<!-- ### Définition -->
+<!-- Une constructeur est une méthode de classe qui est appelée après la réservation -->
+<!-- des ressources nécessaires à la créations d'une instance de la classe et qui a -->
+<!-- pour objectif d'initialiser les attributs de cette instance. En C++, le -->
+<!-- constructeur est une méthode sans valeur de retour de même nom que la classe. On -->
+<!-- appelle constructeur par défaut le constructeur ne prenant aucun argument. Dans -->
+<!-- le cas où la classe ne comporte aucun constructeur, le compilateur ajoute un -->
+<!-- constructeur par défaut. Celui-ci n'est plus présent à partir du moment où l'on -->
+<!-- a écrit au moins un constructeur. -->
+<!-- ### Par recopie -->
+<!-- Le constructeur par recopie est le constructeur qui permet d'instancier une -->
+<!-- classe à partir d'une autre instance de cette classe. Ce constructeur est -->
+<!-- utilisé entre autre lors de la transmission de paramètres à une fonction et lors -->
+<!-- d'une valeur de retour de fonction  -->
+<!-- ```cpp -->
+<!-- A f(A p){return p;} -->
+<!-- ... -->
+<!-- A a; -->
+<!-- f(a) -->
+<!-- ``` -->
+<!-- + La variable `p`, locale à la fonction `f`, est allouée automatiquement et -->
+<!--   instanciée avec le constructeur par recopie à partir de l'instance `a`. -->
+<!-- + La valeur de retour de `f` est instanciée par recopie de la valeur locale. -->
+<!-- L'idée est donc d'avoir un constructeur dans la classe `A` qui prend une -->
+<!-- instance de type `A` en argument -->
+<!-- ```cpp -->
+<!-- class A{ -->
+<!--     public: -->
+<!--         A(A a); -->
+<!-- }; -->
+<!-- ``` -->
+<!-- Le problème est que pour instancier la variable locale au constructeur il nous -->
+<!-- faut le constructeur par recopie. La solution repose sur l'utilisation des -->
+<!-- références  -->
+<!-- ```cpp -->
+<!-- class A{ -->
+<!--     public: -->
+<!--         A(const A&); -->
+<!--         A(A &); -->
+<!-- }; -->
+<!-- ``` -->
+<!-- #### Références.  -->
+<!-- Une référence peut être vue comme un "alias" sur une instance, une référence -->
+<!-- doit obligatoirement être initialisée au moment de sa création et ne peut -->
+<!-- référencer une autre instance par la suite.  -->
+<!-- ```cpp -->
+<!-- int i: -->
+<!-- int &r=i; -->
+<!-- ``` -->
+<!-- Après l'initialisation : -->
+<!-- + les variables `i` et `r` représentent la même donnée -->
+<!-- + l'adresse de `r` est égale à l'adresse de `i` -->
+<!-- Contrairement à un pointeur, une référence "pointe" toujours sur une instance.  -->
+<!-- ```cpp -->
+<!-- void swap(int &i, int &j){ -->
+<!--     int k=i; -->
+<!--     i=j; -->
+<!--     j=k; -->
+<!-- } -->
+<!-- int a=3, b=5; -->
+<!-- swap(a,b); -->
+<!-- int t[5]; -->
+<!-- swap(t[1],t[2]); -->
+<!-- ``` -->
+<!-- #### Const.  -->
+<!-- Le mot clé `const` sert à indiquer qu'une donnée ne peut être modifiée. Une -->
+<!-- variable déclaré `const` doit être initialisée lors de sa déclaration. Lorsque -->
+<!-- l'on dispose d'une référence constante sur une instance de classe, comment -->
+<!-- garantir que l'appel à une méthode de cette instance ne va pas modifier -->
+<!-- l'instance ? -->
+<!-- ```cpp -->
+<!-- class A{ -->
+<!--     int i; -->
+<!--     public:  -->
+<!--         int get(){return i;} -->
+<!--         void set(int i){ -->
+<!--             this->i=i; -->
+<!--         } -->
+<!-- }; -->
+<!-- void f(const A &a){ -->
+<!--     a.get(); -->
+<!--     a.set(0); -->
+<!-- } -->
+<!-- A b; -->
+<!-- f(b); -->
+<!-- ``` -->
+<!-- La référence est constante (l'instance ne doit pas être modifiée) mais l'appel -->
+<!-- de méthode modifie l'objet ! On distingue deux types de méthodes : celles qui -->
+<!-- sont susceptibles de modifier l'objet et celles qui ne modifient pas l'objet.  -->
+<!-- Une méthode de classe peut être typée `const`. Cela indique que dans cette -->
+<!-- méthode le type de `this` est `const NomClasse const *`. L'ensemble des -->
+<!-- attributs de la classe deviennent alors constants eux aussi. Lorsque l'on -->
+<!-- dispose d'une variable constante sur une instance, seules les méthodes indiquées -->
+<!-- comme constantes peuvent être appelées sur cette instance. Une méthode `const` -->
+<!-- peut appeler sur tout type de variable tandis qu'une méthode non const ne peut -->
+<!-- être appelée que sur une variable non constante.  -->
+<!-- Lors de l'écriture d'une méthode, on ne doit pas se demander si la méthode doit -->
+<!-- être const mais plutôt si on a besoin qu'elle ne soit pas const.  -->
+<!-- Les arguments de fonctions (non primitifs) seront des références constantes sauf -->
+<!-- si l'on veut modifier l'argument.  -->
+<!-- Il est possible de surcharger une méthode en utilisant le `const` -->
+<!-- ```cpp -->
+<!-- class A{ -->
+<!--     public: -->
+<!--         void m(){ -->
+<!--             printf("Le site d'appel n'est pas constant"); -->
+<!--         } -->
+<!--         void m() const{ -->
+<!--             printf("Le site d'appel est constant") -->
+<!--         } -->
+<!-- }; -->
+<!-- A a; -->
+<!-- const A &b; -->
+<!-- A const *p; -->
+<!-- a.m(); -->
+<!-- b.m(); -->
+<!-- p->m(); -->
+<!-- ``` -->
+<!-- Le `const` fait partie de la signature de la méthode, il doit être présent dans -->
+<!-- le `.cpp` et le `.hpp`. -->
+<!-- ## Destructeur  -->
+<!-- Le destructeur est une méthode d'instance n'ayant pas de type de retour et ayant -->
+<!-- pour nom : `~NomClasse`. Toute classe ayant allouée dynamiquement ces attributs -->
+<!-- devra écrire un destructeur. Si l'instance a été allouée dynamiquement alors -->
+<!-- l'appel au destructeur est déclenché par l'opérateur delete. Si l'instance a été -->
+<!-- allouée automatiquement alors l'appel au destructeur se fait à la sortie du bloc -->
+<!-- d'instructions qui contient cette instance. Les ressources mémoires associées à -->
+<!-- l'instance sont libérées après l'appel au destructeur. -->
+<!-- ## Static -->
+<!-- Une variable statique est une variable dont la durée de vie est égale à celle du -->
+<!-- programme et dont la portée peut être réduite à un fichier, une classe, une -->
+<!-- fonction ou méthode selon l'endroit où elle est déclarée. -->
+<!-- Dans le contexte des classes, une méthode publique statique est équivalente à -->
+<!-- une fonction amie (sauf pour la portée). On pourra utiliser les méthodes -->
+<!-- statiques en fonction avec un constructeur privé On peut utiliser le mot clé -->
+<!-- `static` en jonction avec `const` afin de définir des propriétés constantes de -->
+<!-- classes. Les variables `static` et `const` sont les seules à pouvoir être -->
+<!-- initialisées lors que la déclaration dans le fichier .hpp. -->
 
 					</div>
 					<div class="post-comments">
