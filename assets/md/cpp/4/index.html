@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>Héritage, polymorphisme</title>
+  <title>La couche objet - Partie 4 : Les entrées/sorties, Méthodes virtuelles, Dérivation, Classe abstraites</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -116,7 +116,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>Héritage, polymorphisme</h1>
+          <h1>La couche objet - Partie 4 : Les entrées/sorties, Méthodes virtuelles, Dérivation, Classe abstraites</h1>
           <p></p>
         </div>
       </div>
@@ -130,7 +130,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">Héritage, polymorphisme</h2>
+					<h2 class="post-title">La couche objet - Partie 4 : Les entrées/sorties, Méthodes virtuelles, Dérivation, Classe abstraites</h2>
 					<div class="post-meta">
 						<ul>
               <li><i class="ion-calendar"></i> November 25, 2020</li>
@@ -151,53 +151,61 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<p></style></p>
-<p>L&rsquo;héritage est un mécanisme permettant de construire un type <code>T</code> à partir d&rsquo;un
-autre type <code>Base</code>. Le type <code>T</code> se retrouve doté des comportements (méthodes) et
-propriétés (attributs) du type de Base. Une relation de typage relie ces deux
-types : <code>T</code> est un sous-type de <code>Base</code> (ou classe dérivée de <code>Base</code>) tandis que
-<code>Base</code> est un super-type de <code>T</code>.</p>
-<p>En C++, les membres hérités et la relation de typage qu&rsquo;il existe entre <code>T</code> et
-<code>Base</code> ne sont pas nécessairement visible de l&rsquo;extérieur. La relation est
-indiquée lors de la déclaration de <code>T</code>. voici un exemple classique d&rsquo;héritage</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tuyau</span>{
-    <span style="color:#66d9ef">double</span> _diametre;
-    <span style="color:#66d9ef">public</span> <span style="color:#f92672">:</span> 
-        <span style="color:#66d9ef">double</span> debit() <span style="color:#66d9ef">const</span>;
-        <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">diametre</span>() <span style="color:#66d9ef">const</span>;
-};
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TuyauPer</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Tuyau{
-    <span style="color:#66d9ef">double</span> _densite;
-    <span style="color:#66d9ef">public</span> <span style="color:#f92672">:</span> 
-        <span style="color:#66d9ef">double</span> densite() <span style="color:#66d9ef">const</span>;
-};
-</code></pre></div><h2 id="pointeurs-et-référence">Pointeurs et référence</h2>
-<p>L&rsquo;utilisation de la relation de typage ne peut se faire qu&rsquo;avec les pointeurs ou
-les références. En effet, pour faire jouer la relation de sous-typage on
-souhaite manipuler une même instance à travers différentes variables de types
-différents.</p>
-<h2 id="héritage--appel-de-méthodes">Héritage : appel de méthodes</h2>
-<p>En C++ l&rsquo;appel de méthode doit être vu comme un appel de fonction avec passage
-d&rsquo;un premier paramètre caché (this dans la méthode). Lors d&rsquo;un appel, la méthode
-choisie est celle du type de la variable. Si la méthode n&rsquo;est pas présente
-directement dans le type, c&rsquo;est la méthode compatible de son parent le plus
-proche qui est choisie. On utilise l&rsquo;opérateur de portée pour spécifier la
-méthode à appeler.</p>
-<h2 id="héritage--et-mangling">Héritage : et mangling</h2>
-<p>Le &ldquo;mangling&rdquo; désigne la façon de générer un nom de symbole à partir d&rsquo;une
-fonction ou méthode :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">g++ -c /tmp/mang.c
-nm mang.o 
-         U __gxx_personality_v0
-<span style="color:#ae81ff">00000000</span> T _ZN1A1mEv
-<span style="color:#ae81ff">00000006</span> T _ZN1B1mEv
-</code></pre></div><p>La première fonction correspond à <code>A::m()</code>, la deuxième à <code>B::m()</code>. Il faut
-savoir que cette étape d&rsquo;encodage n&rsquo;est pas normalisée et est propre à chaque
-compilateur. Ainsi, les objets compilés avec un compilateur ne seront sans doute
-pas exploitable avec un autre compilateur ! En C, il n&rsquo;y a pas de &ldquo;mangling&rdquo;,
-une fonction génère un symbole de même nom que cette fonction. Le &ldquo;mangling&rdquo;
-permet la mise en oeuvre de la surcharge, des espaces de nom, des méthodes de classes</p>
+						<h2 id="des-entrées---sorties-simplifiées">Des entrées - sorties simplifiées</h2>
+<p>Les flux d&rsquo;entrée / sortie de la bibliothèque standard C++ constituent sans
+doute l&rsquo;une des applications les plus intéressantes de la surcharge des
+opérateurs. Comme nous allons le voir, la surcharge des opérateurs <code>&lt;&lt;</code> et <code>&gt;&gt;</code>
+permet d&rsquo;écrire et de lire sur ces flux de manière très intuitive</p>
+<!-- </style> -->
+<!-- L'héritage est un mécanisme permettant de construire un type `T` à partir d'un -->
+<!-- autre type `Base`. Le type `T` se retrouve doté des comportements (méthodes) et -->
+<!-- propriétés (attributs) du type de Base. Une relation de typage relie ces deux -->
+<!-- types : `T` est un sous-type de `Base` (ou classe dérivée de `Base`) tandis que -->
+<!-- `Base` est un super-type de `T`.  -->
+<!-- En C++, les membres hérités et la relation de typage qu'il existe entre `T` et -->
+<!-- `Base` ne sont pas nécessairement visible de l'extérieur. La relation est -->
+<!-- indiquée lors de la déclaration de `T`. voici un exemple classique d'héritage  -->
+<!-- ```cpp -->
+<!-- class Tuyau{ -->
+<!--     double _diametre; -->
+<!--     public :  -->
+<!--         double debit() const; -->
+<!--         double diametre() const; -->
+<!-- }; -->
+<!-- class TuyauPer : public Tuyau{ -->
+<!--     double _densite; -->
+<!--     public :  -->
+<!--         double densite() const; -->
+<!-- }; -->
+<!-- ``` -->
+<!-- ## Pointeurs et référence  -->
+<!-- L'utilisation de la relation de typage ne peut se faire qu'avec les pointeurs ou -->
+<!-- les références. En effet, pour faire jouer la relation de sous-typage on -->
+<!-- souhaite manipuler une même instance à travers différentes variables de types -->
+<!-- différents.  -->
+<!-- ## Héritage : appel de méthodes -->
+<!-- En C++ l'appel de méthode doit être vu comme un appel de fonction avec passage -->
+<!-- d'un premier paramètre caché (this dans la méthode). Lors d'un appel, la méthode -->
+<!-- choisie est celle du type de la variable. Si la méthode n'est pas présente -->
+<!-- directement dans le type, c'est la méthode compatible de son parent le plus -->
+<!-- proche qui est choisie. On utilise l'opérateur de portée pour spécifier la -->
+<!-- méthode à appeler. -->
+<!-- ## Héritage : et mangling -->
+<!-- Le "mangling" désigne la façon de générer un nom de symbole à partir d'une -->
+<!-- fonction ou méthode :  -->
+<!-- ```shell -->
+<!-- g++ -c /tmp/mang.c -->
+<!-- nm mang.o  -->
+<!--          U __gxx_personality_v0 -->
+<!-- 00000000 T _ZN1A1mEv -->
+<!-- 00000006 T _ZN1B1mEv -->
+<!-- ``` -->
+<!-- La première fonction correspond à `A::m()`, la deuxième à `B::m()`. Il faut -->
+<!-- savoir que cette étape d'encodage n'est pas normalisée et est propre à chaque -->
+<!-- compilateur. Ainsi, les objets compilés avec un compilateur ne seront sans doute -->
+<!-- pas exploitable avec un autre compilateur ! En C, il n'y a pas de "mangling", -->
+<!-- une fonction génère un symbole de même nom que cette fonction. Le "mangling" -->
+<!-- permet la mise en oeuvre de la surcharge, des espaces de nom, des méthodes de classes -->
 
 					</div>
 					<div class="post-comments">
@@ -249,9 +257,9 @@ permet la mise en oeuvre de la surcharge, des espaces de nom, des méthodes de c
     
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/4/">Héritage, polymorphisme</a></h4>
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/4/">La couche objet - Partie 4 : Les entrées/sorties, Méthodes virtuelles, Dérivation, Classe abstraites</a></h4>
         <h5>[C&#43;&#43;]</h5>
-        <p>L&rsquo;héritage est un mécanisme permettant de …</p>
+        <p>Des entrées - sorties simplifiées Les flux …</p>
       </div>
     </div>
     

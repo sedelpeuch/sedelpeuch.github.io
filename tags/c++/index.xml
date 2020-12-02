@@ -13,25 +13,26 @@
     
     
     <item>
-      <title>Héritage, polymorphisme</title>
+      <title>La couche objet - Partie 4 : Les entrées/sorties, Méthodes virtuelles, Dérivation, Classe abstraites</title>
       <link>https://Sdelpeuch.github.io/assets/md/cpp/4/</link>
       <pubDate>Wed, 25 Nov 2020 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/cpp/4/</guid>
-      <description>L&amp;rsquo;héritage est un mécanisme permettant de construire un type T à partir d&amp;rsquo;un autre type Base. Le type T se retrouve doté des comportements (méthodes) et propriétés (attributs) du type de Base.</description>
+      <description>Des entrées - sorties simplifiées Les flux d&amp;rsquo;entrée / sortie de la bibliothèque standard C++ constituent sans doute l&amp;rsquo;une des applications les plus intéressantes de la surcharge des opérateurs. Comme nous allons le voir, la surcharge des opérateurs &amp;lt;&amp;lt; et &amp;gt;&amp;gt; permet d&amp;rsquo;écrire et de lire sur ces flux de manière très intuitive</description>
     </item>
     
     <item>
-      <title>Opérateurs</title>
+      <title>La couche Objet - Partie 3 : opérateurs</title>
       <link>https://Sdelpeuch.github.io/assets/md/cpp/3/</link>
       <pubDate>Wed, 18 Nov 2020 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/cpp/3/</guid>
-      <description>Définition Un opérateur est une notation raccourcie permettant de représenter une opération fréquemment utilisée, par exemple : a+b*c;. On ajoute à a le résultat de la multiplication de b par c.</description>
+      <description>Ce cours présente les différents types d&amp;rsquo;opérateurs en C++.
+Opérateurs d&amp;rsquo;affectation Nous avons déjà vu un exemple d&amp;rsquo;opérateur d&amp;rsquo;affectation avec la classe complexe ci-dessus. Cet opérateur était très simple, mais ce n&amp;rsquo;est généralement pas toujours le cas, et l&amp;rsquo;implémentation des opérateurs d&amp;rsquo;affectation peut parfois soulever quelques problèmes.</description>
     </item>
     
     <item>
-      <title>Classes</title>
+      <title>La couche objet - Partie 2 : Constructeur, Destructeurs, Pointeur this, Statique, Surcharge</title>
       <link>https://Sdelpeuch.github.io/assets/md/cpp/2/</link>
       <pubDate>Wed, 04 Nov 2020 11:07:10 +0600</pubDate>
       
@@ -40,7 +41,7 @@
     </item>
     
     <item>
-      <title>C&#43;&#43; : la couche objet - Partie 1</title>
+      <title>La couche objet - Partie 1 : Classe, Héritage, Classe virtuelle, fonction et classes amies</title>
       <link>https://Sdelpeuch.github.io/assets/md/cpp/1/</link>
       <pubDate>Mon, 02 Nov 2020 11:07:10 +0600</pubDate>
       
@@ -55,7 +56,7 @@
       
       <guid>https://Sdelpeuch.github.io/semestre7/cpp/</guid>
       <description>Support de cours
-   Notes personnelles     C++ : la couche objet - Partie 1   C++ : la couche objet - Partie 2   [Les exceptions en C++]   [Identification dynamique des types]   [Les espaces de nommage]   [Les template]    </description>
+   Notes personnelles     C++ : la couche objet - Partie 1   C++ : la couche objet - Partie 2   C++ : la couche objet - Partie 3   [Identification dynamique des types]   [Les espaces de nommage]   [Les template]    </description>
     </item>
     
   </channel>
