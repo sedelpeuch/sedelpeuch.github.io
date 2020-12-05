@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>Les espaces de nommage</title>
+      <link>https://Sdelpeuch.github.io/assets/md/cpp/6/</link>
+      <pubDate>Wed, 02 Dec 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/cpp/6/</guid>
+      <description>Les espaces de nommage sont des zones de déclaration qui permettent de délimiter la recherche des noms des identificateurs par le compilateur. Leur but est essentiellement de regrouper les identificateurs logiquement et d&amp;rsquo;éviter les conflits de noms entre plusieurs parties d&amp;rsquo;un même projet.</description>
+    </item>
+    
+    <item>
       <title>Les exceptions en C&#43;&#43;</title>
       <link>https://Sdelpeuch.github.io/assets/md/cpp/5/</link>
       <pubDate>Wed, 02 Dec 2020 11:07:10 +0600</pubDate>
