@@ -200,13 +200,14 @@ Dupont</em></li>
 <ul>
 <li><em>Donner la liste des élèves qui ont le même nom, mais pas le même prénom</em></li>
 </ul>
-<p>$\Pi_{E_1 \text{Nom}, E_1 \text{Prénom}}\text{Eleves} E_1 \rhd \lhd {E_1.\text{NomEleve}=E_2.\text{NomEleve ET}
-E_1.\text{PrenomEleve} \neq E_2.\text{PrenomEleve}}$</p>
+<p>$\Pi_{E_1 \text{Nom}, E_1 \text{Prénom}} (E_1 \rhd
+\lhd_{E_1.\text{NomEleve}=E_2.\text{NomEleve AND }
+E_1.\text{PrenomEleve} \neq E_2.\text{PrenomEleve}} E_2)$</p>
 <ul>
 <li><em>Donner la liste des élèves qui suivent tous les cours</em></li>
 </ul>
-<p>$\Pi_{\text{Prénom Nom}}(\text{Eleve}\rhd \lhd \text{Suivre} \rhd \lhd
-\text{Matiere}) \div \text{Matiere}$</p>
+<p>$\Pi_{\text{Prénom Nom}}((\text{Eleve}\rhd \lhd \text{Suivre} \rhd \lhd
+\text{Matiere}) \div \text{Matiere})$</p>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>

@@ -362,9 +362,213 @@ construit en interne pour propager l&rsquo;exception. Les gestionnaires d&rsquo;
 peuvent donc modifier les paramètres des exceptions, s&rsquo;ils les attrapent avec
 une référence.</p>
 <h2 id="liste-des-exceptions-autorisées-pour-une-fonction">Liste des exceptions autorisées pour une fonction</h2>
-<h2 id="hiérarchie-des-exceptions">Hiérarchie des exceptions</h2>
+<p>Il est possible de spécifier les exceptions qui peuvent être lancées par une
+fonction. Pour cela, il faut faire suivre son en-tête du mot clé <code>throw</code> avec,
+entre parenthèses et séparées par des virgules, les classes des exceptions
+qu&rsquo;elle est autorisée à lancer. Par exemple, la fonction suivante :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fonction_sensible</span>(<span style="color:#66d9ef">void</span>)
+<span style="color:#66d9ef">throw</span>(<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">double</span>, erreur){
+    ...
+}
+</code></pre></div><p>n&rsquo;a le droit de lancer que des exceptions du type <code>int</code>, <code>double</code> ou <code>erreur</code>.
+Si une exception d&rsquo;un autre type est lancée, par exemple une exception du type
+<code>char*</code>, il se produit encore une fois une erreur à l&rsquo;exécution.</p>
+<p>En fait, la fonction <code>std::unexpected</code> est appelée. Cette fonction se comporte
+de manière similaire à <code>std::terminate</code>, puisqu&rsquo;elle appelle par défaut une
+fonction de traitement de l&rsquo;erreur qui elle-même appelle la fonction
+<code>std::terminate</code> (et donc <code>abort</code> en fin de compte). Cela conduit à la
+terminaison du programme. On peut encore une fois changer ce comportement par
+défaut en remplaçant la fonction appelée par <code>std::unexpected</code> par une autre
+fonction à l&rsquo;aide de <code>std::set_unexpected</code>, qui est déclarée dans le fichier
+d&rsquo;en-tête exception. Cette dernière attend en paramètre un pointeur sur la
+fonction de traitement d&rsquo;erreur, qui ne doit prendre aucun paramètre et qui ne
+doit rien renvoyer. <code>std::set_unexpected</code> renvoie le pointeur sur la fonction de
+traitement d&rsquo;erreur précédemment appelée par <code>std::unexpected</code>.</p>
+<p>Il est possible de relancer une autre exception à l&rsquo;intérieur de la fonction de
+traitement d&rsquo;erreur. Si cette exception satisfait la liste des exceptions
+autorisées, le programme reprend son cours normalement dans le gestionnaire
+correspondant. C&rsquo;est généralement ce que l&rsquo;on cherche à faire. Le gestionnaire
+peut également lancer une exception de type <code>std::bad_exception</code>, déclarée comme
+suit dans le fichier d&rsquo;en-tête exception :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">bad_exception</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> exception
+{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    bad_exception(<span style="color:#66d9ef">void</span>) <span style="color:#66d9ef">throw</span>();
+    bad_exception(<span style="color:#66d9ef">const</span> bad_exception <span style="color:#f92672">&amp;</span>) <span style="color:#66d9ef">throw</span>();
+    bad_exception <span style="color:#f92672">&amp;</span><span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span>(<span style="color:#66d9ef">const</span> bad_exception <span style="color:#f92672">&amp;</span>) <span style="color:#66d9ef">throw</span>();
+    <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>bad_exception(<span style="color:#66d9ef">void</span>) <span style="color:#66d9ef">throw</span>();
+    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">what</span>(<span style="color:#66d9ef">void</span>) <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">throw</span>();
+};
+</code></pre></div><p>Cela a pour conséquence de terminer le programme.</p>
+<p>Enfin, le gestionnaire d&rsquo;exceptions non autorisées peut directement mettre fin à
+l&rsquo;exécution du programme en appelant <code>std::terminate</code>. C&rsquo;est le comportement
+utilisé par la fonction <code>std::unexpected</code> définie par défaut.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;exception&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+ 
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mon_gestionnaire</span>(<span style="color:#66d9ef">void</span>)
+{
+    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Une exception illégale a été lancée.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Je relance une exception de type int.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    <span style="color:#66d9ef">throw</span> <span style="color:#ae81ff">2</span>;
+}
+ 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">void</span>) <span style="color:#66d9ef">throw</span> (<span style="color:#66d9ef">int</span>)
+{
+    <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;5.35&#34;</span>;
+}
+ 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+    set_unexpected(<span style="color:#f92672">&amp;</span>mon_gestionnaire);
+    <span style="color:#66d9ef">try</span>
+    {
+        f();
+    }
+    <span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">int</span> i)
+    {
+        cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Exception de type int reçue : &#34;</span> <span style="color:#f92672">&lt;&lt;</span>
+           i <span style="color:#f92672">&lt;&lt;</span> endl;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h2 id="hiérarchie-des-exceptions">Hiérarchie des exceptions</h2>
+<p>Le mécanisme des exceptions du C++ se base sur le typage des objets, puisque le
+lancement d&rsquo;une exception nécessite la construction d&rsquo;un objet qui la
+caractérise, et le bloc <code>catch</code> destination de cette exception sera sélectionné
+en fonction du type de cet objet. Bien entendu, les objets utilisés pour lancer
+les exceptions peuvent contenir des informations concernant la nature des
+erreurs qui se produisent, mais il est également possible de classifier ces
+erreurs par catégories en se basant sur les types.</p>
+<p>En effet, les objets exceptions peuvent être des instances de classes disposant
+de relations d&rsquo;héritage. Comme les objets des classes dérivées peuvent être
+considérés comme des instances de leurs classes de base, les gestionnaires
+d&rsquo;exception peuvent récupérer les exceptions de ces classes dérivées en
+récupérant un objet du type d&rsquo;une de leurs classes de base. Ainsi, il est
+possible de classifier les différents cas d&rsquo;erreurs en définissant une
+hiérarchie de classe d&rsquo;exceptions, et d&rsquo;écrire des traitements génériques en
+n&rsquo;utilisant que les objets d&rsquo;un certain niveau dans cette hiérarchie.</p>
+<p>Le mécanisme des exceptions se montre donc plus puissant que toutes les autres
+méthodes de traitement d&rsquo;erreurs à ce niveau, puisque la sélection du
+gestionnaire d&rsquo;erreur est automatiquement réalisée par le langage. Cela peut
+être très pratique pour peu que l&rsquo;on ait défini correctement sa hiérarchie de
+classes d&rsquo;exceptions.</p>
+<p>La bibliothèque standard C++ définit elle-même un certain nombre d&rsquo;exceptions
+standards, qui sont utilisées pour signaler les erreurs qui se produisent à
+l&rsquo;exécution des programmes. Quelques-unes de ces exceptions ont déjà été
+présentées avec les fonctionnalités qui sont susceptibles de les lancer.</p>
 <h2 id="exceptions-dans-les-contructeurs">Exceptions dans les contructeurs</h2>
-
+<p>Il est parfaitement légal de lancer une exception dans un constructeur. En fait,
+c&rsquo;est même la seule solution pour signaler une erreur lors de la construction
+d&rsquo;un objet, puisque les constructeurs n&rsquo;ont pas de valeur de retour.</p>
+<p>Lorsqu&rsquo;une exception est lancée à partir d&rsquo;un constructeur, la construction de
+l&rsquo;objet échoue. Par conséquent, le compilateur n&rsquo;appellera jamais le destructeur
+pour cet objet, puisque cela n&rsquo;a pas de sens. Cependant, ce comportement soulève
+le problème des objets partiellement initialisés, pour lesquels il est
+nécessaire de faire un peu de nettoyage à la suite du lancement de l&rsquo;exception.
+Le C++ dispose donc d&rsquo;une syntaxe particulière pour les constructeurs des objets
+susceptibles de lancer des exceptions. Cette syntaxe particulière permet
+simplement d&rsquo;utiliser un bloc <code>try</code> pour le corps de fonction des constructeurs.
+Les blocs <code>catch</code> suivent alors la définition du constructeur, et effectuent la
+libération des ressources que le constructeur aurait pu allouer avant que
+l&rsquo;exception ne se produise.</p>
+<p>Le comportement du bloc <code>catch</code> des constructeurs avec bloc <code>try</code> est différent
+de celui des blocs <code>catch</code> classique. En effet, les exceptions ne sont
+normalement pas relancées une fois qu&rsquo;elles ont été traitées. Comme on l&rsquo;a vu
+ci-dessus, il faut utiliser explicitement le mot clé <code>throw</code> pour relancer une
+exception à l&rsquo;issue de son traitement. Dans le cas des constructeurs avec un
+bloc <code>try</code> cependant, l&rsquo;exception est systématiquement relancée. Le bloc <code>catch</code>
+du constructeur ne doit donc prendre en charge que la destruction des données
+membres partiellement construites, et il faut toujours capter l&rsquo;exception au
+niveau du programme qui a cherchée à créer l&rsquo;objet.</p>
+<p>De même, lorsque la construction de l&rsquo;objet se fait dans le cadre d&rsquo;une
+allocation dynamique de mémoire, le compilateur appelle automatiquement
+l&rsquo;opérateur <code>delete</code> afin de restituer la mémoire allouée pour cet objet. Il est
+donc inutile de restituer la mémoire de l&rsquo;objet alloué dans le traitement de
+l&rsquo;exception qui suit la création dynamique de l&rsquo;objet, et il ne faut pas y
+appeler l&rsquo;opérateur <code>delete</code> manuellement.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+ 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>
+{
+    <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>pBuffer;
+    <span style="color:#66d9ef">int</span>  <span style="color:#f92672">*</span>pData;
+ 
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    A() <span style="color:#66d9ef">throw</span> (<span style="color:#66d9ef">int</span>);
+ 
+    <span style="color:#f92672">~</span>A()
+    {
+        cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;A::~A()&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    }
+ 
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">operator</span> <span style="color:#a6e22e">new</span>(size_t taille)
+    {
+        cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;new()&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+        <span style="color:#66d9ef">return</span> malloc(taille);
+    }
+ 
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#66d9ef">operator</span> <span style="color:#a6e22e">delete</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>p)
+    {
+        cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;delete&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+        free(p);
+    }
+};
+ 
+<span style="color:#75715e">// Constructeur susceptible de lancer une exception :
+</span><span style="color:#75715e"></span>A<span style="color:#f92672">::</span>A() <span style="color:#66d9ef">throw</span> (<span style="color:#66d9ef">int</span>)
+<span style="color:#66d9ef">try</span>
+{
+    pBuffer <span style="color:#f92672">=</span> NULL;
+    pData <span style="color:#f92672">=</span> NULL;
+    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Début du constructeur&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    pBuffer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">char</span>[<span style="color:#ae81ff">256</span>];
+    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Lancement de l&#39;exception&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    <span style="color:#66d9ef">throw</span> <span style="color:#ae81ff">2</span>;
+    <span style="color:#75715e">// Code inaccessible :
+</span><span style="color:#75715e"></span>    pData <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>;
+}
+<span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">int</span>)
+{
+    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Je fais le ménage...&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    <span style="color:#66d9ef">delete</span>[] pBuffer;
+    <span style="color:#66d9ef">delete</span> pData;
+}
+ 
+ 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+    <span style="color:#66d9ef">try</span>
+    {
+        A <span style="color:#f92672">*</span>a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> A;
+    }
+    <span style="color:#66d9ef">catch</span> (...)
+    {
+        cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Aïe, même pas mal !&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>Dans cet exemple, lors de la création dynamique d&rsquo;un objet <code>A</code>, une erreur
+d&rsquo;initialisation se produit et une exception est lancée. Celle-ci est alors
+traitée dans le bloc <code>catch</code> qui suit la définition du constructeur de la classe
+<code>A</code>. L&rsquo;opérateur <code>delete</code> est bien appelé automatiquement, mais le destructeur
+de <code>A</code> n&rsquo;est jamais exécuté.</p>
+<p>En général, si une classe hérite de une ou plusieurs classes de base, l&rsquo;appel
+aux constructeurs des classes de base doit se faire entre le mot clé <code>try</code> et la
+première accolade. En effet, les constructeurs des classes de base sont
+susceptibles, eux aussi, de lancer des exceptions. La syntaxe est alors la
+suivante</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Classe<span style="color:#f92672">::</span>Classe
+   <span style="color:#66d9ef">try</span> <span style="color:#f92672">:</span> Base(paramètres) [, Base(paramètres) [...]]
+{
+}
+<span style="color:#66d9ef">catch</span> ...
+</code></pre></div>
 					</div>
 					<div class="post-comments">
 						
