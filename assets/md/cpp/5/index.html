@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Les exceptions en C&#43;&#43;</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 7 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/cpp.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Les exceptions en C&#43;&#43;</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Les exceptions en C&#43;&#43;</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> December 2, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/c&#43;&#43;">C&#43;&#43;</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<p>Une exception est l&rsquo;interruption de l&rsquo;exécution du programme à la suite d&rsquo;un
+événement particulier. Le but des exceptions est de réaliser des traitements
+spécifiques aux événements qui en sont la cause. Ces traitements peuvent
+rétablir le programme dans son mode de fonctionnement normal, auquel cas son
+exécution reprend. Il se peut aussi que le programme se termine, si aucun
+traitement n&rsquo;est approprié.</p>
+<p>Le C++ supporte les exceptions logicielles, dont le but est de gérer les erreurs
+qui surviennent lors de l&rsquo;exécution des programmes. Lorsqu&rsquo;une telle erreur
+survient, le programme doit lancer une exception. L&rsquo;exécution normale du
+programme s&rsquo;arrête dès que l&rsquo;exception est lancée, et le contrôle est passé à un
+gestionnaire d&rsquo;exception. Lorsqu&rsquo;un gestion d&rsquo;exception s&rsquo;exécute, on dit qu&rsquo;il
+a attrapé l&rsquo;exception.</p>
+<p>Les exceptions permettent une gestion simplifiée des erreurs, parce qu&rsquo;elles en
+reportent le traitement. Le code peut alors être écrit sans se soucier des cas
+particuliers, ce qui le simplifie grandement. Les cas particuliers sont traités
+dans les gestionnaires d&rsquo;exception.</p>
+<p>En général, une fonction qui détecte une erreur d&rsquo;exécution ne peut pas se
+terminer normalement. Comme son traitement n&rsquo;ap as pu se dérouler normalement,
+il est probable que la fonction qui l&rsquo;a appelée considère elle aussi qu&rsquo;une
+erreur a eu lieu et termine son exécution. L&rsquo;erreur remonte ainsi la liste des
+appelants de la fonction qui a généré l&rsquo;erreur. Ce processus continue, de
+fonction en fonction, jusqu&rsquo;à ce que l&rsquo;erreur soit complètement gérée ou jusqu&rsquo;à
+ce que le programme se termine (ce cas survient lorsque la fonction principale
+ne peut pas gérer l&rsquo;erreur).</p>
+<p>Traditionnellement, ce mécanisme est implémenté à l&rsquo;aide de codes de retour des
+fonctions. Chaque fonction doit renvoyer une valeur spécifique à l&rsquo;issue de son
+exécution, permettant d&rsquo;indiquer si elle s&rsquo;est correctement déroulée ou non. La
+valeur renvoyée est donc utilisée par l&rsquo;appelant pour déterminer la nature de
+l&rsquo;erreur, et, si erreur il y a, prendre les mesures nécessaires. Cette méthode
+permet à chaque fonction de libérer les ressources qu&rsquo;elle a allouées lors de la
+remontée des erreurs, et d&rsquo;effectuer ainsi sa part du traitement d&rsquo;erreur.</p>
+<p>Malheureusement, cette technique nécessite de tester les codes de retour de
+chaque fonction appelée, et la logique d&rsquo;erreur développée finit par devenir
+très lourde, puisque ces tests s&rsquo;imbriquent les une à la suite des autres et que
+le code du traitement des erreurs se trouve mélangé avec le code du
+fonctionnement normal de l&rsquo;algorithme. Cette complication peut devenir ingérable
+lorsque plusieurs valeurs de codes de retour peuvent être renvoyées afin de
+distinguer les différents cas d&rsquo;erreur possible, car il peut en découler un
+grand nombre de tests et beaucoup de cas particulier à gérer dans les fonctions
+appelantes.</p>
+<p>Certains programmes utilisent donc une solution astucieuse, qui consiste à
+déporter le traitement des erreurs à effectuer en dehors de l&rsquo;algorithme par des
+sauts vers la fin de la fonction. Le code de nettoyage, qui se trouve alors
+après l&rsquo;algorithme, est exécuté complètement si tout se passe correctement. En
+revanche, si la moindre erreur est détectée en cours d&rsquo;exécution, un saut est
+réalisé vers la partie du code de nettoyage correspondante au traitement qui a
+déjà été effectué. Ainsi, ce code n&rsquo;est écrit qu&rsquo;une seule fois, et le
+traitement des erreurs est situé en dehors du traitement normal.</p>
+<p>La solution précédente est tout à fait valable (en fait, c&rsquo;est même la solution
+la plus simple), mais elle souffre d&rsquo;un inconvénient. Elle rend le programme
+moins structuré, car toutes les ressources utilisées par l&rsquo;algorithme doivent
+être accessibles depuis le code de traitement des erreurs. Ces ressources
+doivent donc être placées dans une porte relativement globale, voir déclarées en
+te de fonction. De plus, le traitement des codes d&rsquo;erreurs multiples pose
+toujours les mêmes problèmes de complication des tests.</p>
+<p>La solution qui met en oeuvre les exceptions est beaucoup plus simple, puisque
+la fonction qui détecte une erreur peut se contenter de lancer une exception.
+Cette exception interrompt l&rsquo;exécution de la fonction, et un gestionnaire
+d&rsquo;exception approprié est recherché. La recherche du gestionnaire suit le même
+chemin que celui utilisé lors de la remontée des erreurs : à savoir la liste des
+appelants. La première fonction appelante qui contient un gestionnaire
+d&rsquo;exception approprié prend donc le contrôle, et effectue le traitement de
+l&rsquo;erreur. Si le traitement est complet, le programme reprend son exécution
+normale. Dans le cas contraire, le gestionnaire d&rsquo;exception peut relancer
+l&rsquo;exception (auquel cas le gestionnaire d&rsquo;exception suivant est recherché) ou
+terminer le programme.</p>
+<p>Le mécanisme des exceptions du C++ garantit que tous les objets de classe de
+stockage automatique sont détruits lorsque l&rsquo;exception qui remonte sort de leur
+portée. Ainsi, si toutes les ressources sont encapsulées dans des classes
+disposant d&rsquo;un destructeur capable de les détruire ou de les ramener dans un
+état cohérent, la remontée des exceptions effectue automatiquement le ménage. De
+plus, les exceptions peuvent être typées, et caractériser ainsi la nature de
+l&rsquo;erreur qui s&rsquo;est produite. Ce mécanisme est donc strictement équivalent en
+termes de fonctionnalités aux aux codes d&rsquo;erreurs utilisés précédemment.</p>
+<p>Comme on le voit, les exceptions permettent de simplifier le code, en reportant
+en dehors de l&rsquo;algorithme normal le traitement des erreurs. Par ailleurs, la
+logique d&rsquo;erreur est complètement prise en charge par le langage, et le
+programmeur n&rsquo;a plus à faire les tests qui permettent de déterminer le
+traitement approprié pour chaque type d&rsquo;erreur. Les mécanismes de gestion des
+exceptions du C++ sont décrits dans les paragraphes suivants.</p>
+<h2 id="lancement-et-récupération-dune-exception">Lancement et récupération d&rsquo;une exception</h2>
+<p>En C++, lorsqu&rsquo;il faut lancer une exception, on doit créer un objet dont la
+classe caractérise cette exception, et utiliser le mot clé <code>throw</code>. Sa syntaxe
+est la suivante :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">throw</span> objet;
+</code></pre></div><p>où objet est l&rsquo;objet correspondant à l&rsquo;exception. Cet objet peut être de
+n&rsquo;importe quel type, et pourra ainsi caractériser pleinement l&rsquo;exception.</p>
+<p>L&rsquo;exception doit alors être traitée par le gestionnaire d&rsquo;exception
+correspondant. On ne peut attraper que les exceptions qui sont apparues dans une
+zone de code limitée (cette zone est dite protégée contre les erreurs
+d&rsquo;exécution), pas sur tout un programme. On doit donc placer le code susceptible
+de lancer une exception d&rsquo;un bloc d&rsquo;instructions particulier. Ce bloc est
+introduit avec le mot clé <code>try</code> :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">try</span>{
+    <span style="color:#75715e">// Code susceptible de générer des exceptions
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Les gestionnaires d&rsquo;exceptions doivent suivre le bloc <code>try</code>. Ils sont introduits
+avec le mot clé <code>catch</code> :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">catch</span> (classe [<span style="color:#f92672">&amp;</span>][temp]){
+    <span style="color:#75715e">//Traitement de l&#39;exception associée à la classe
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>De même, les blocs <code>catch</code> peuvent recevoir leurs paramètres par valeur ou par
+référence, comme le montre la syntaxe indiquée ci-dessus. En général, il est
+préférable d&rsquo;utiliser une référence, afin d&rsquo;éviter une nouvelle copie de l&rsquo;objet
+de l&rsquo;exception pour le bloc <code>catch</code>. Toutefois, on prendra garde au fait que
+dans ce cas, les modifications effectuées sur le paramètre seront effectuées
+dans la copie de travail du compilateur et seront donc également visibles dans
+les blocs <code>catch</code> des fonctions appelantes ou de portée supérieure, si
+l&rsquo;exception est relancée après traitement.</p>
+<p>Il peut y avoir plusieurs gestionnaires d&rsquo;exceptions. Chacun traitera les
+exceptions qui ont été générées dans le bloc <code>try</code> et dont l&rsquo;objet est de la
+classe indiquée par son paramètre. Il n&rsquo;est pas nécessaire de donner un nom à
+l&rsquo;objet (temp) dans l&rsquo;expression <code>catch</code>. Cependant, cela permet de le
+récupérer, ce qui peut être nécessaire si l&rsquo;on doit récupérer des informations
+sur la nature de l&rsquo;erreur.</p>
+<p>Enfin, il est possible de définir un gestionnaire d&rsquo;exception universel, qui
+récupérera toutes les exceptions possibles, quels que soient leurs types. Ce
+gestionnaire d&rsquo;exception doit prendre comme paramètre trois points de suspension
+entre parenthèses dans sa clause <code>catch</code>. Bien entendu, dans ce cas, il est
+impossible de spécifier une variable qui contient l&rsquo;exception, puisque son type
+est indéfini.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+ 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">erreur</span>   <span style="color:#75715e">// Première exception possible, associée
+</span><span style="color:#75715e"></span>               <span style="color:#75715e">// à l&#39;objet erreur.
+</span><span style="color:#75715e"></span>{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> cause;  <span style="color:#75715e">// Entier spécifiant la cause de l&#39;exception.
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Le constructeur. Il appelle le constructeur de cause.
+</span><span style="color:#75715e"></span>    erreur(<span style="color:#66d9ef">int</span> c) <span style="color:#f92672">:</span> cause(c) {}
+    <span style="color:#75715e">// Le constructeur de copie. Il est utilisé par le mécanisme
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// des exceptions :
+</span><span style="color:#75715e"></span>    erreur(<span style="color:#66d9ef">const</span> erreur <span style="color:#f92672">&amp;</span>source) <span style="color:#f92672">:</span> cause(source.cause) {}
+};
+ 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">other</span> {};   <span style="color:#75715e">// Objet correspondant à toutes
+</span><span style="color:#75715e"></span>                  <span style="color:#75715e">// les autres exceptions.
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+    <span style="color:#66d9ef">int</span> i;            <span style="color:#75715e">// Type de l&#39;exception à générer.
+</span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Tapez 0 pour générer une exception Erreur, &#34;</span>
+        <span style="color:#e6db74">&#34;1 pour une Entière :&#34;</span>;
+    cin <span style="color:#f92672">&gt;&gt;</span> i;         <span style="color:#75715e">// On va générer une des trois exceptions
+</span><span style="color:#75715e"></span>                      <span style="color:#75715e">// possibles.
+</span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> endl;
+    <span style="color:#66d9ef">try</span>               <span style="color:#75715e">// Bloc où les exceptions sont prises en charge.
+</span><span style="color:#75715e"></span>    {
+        <span style="color:#66d9ef">switch</span> (i)    <span style="color:#75715e">// Selon le type d&#39;exception désirée,
+</span><span style="color:#75715e"></span>        {
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span>
+            {
+                erreur a(<span style="color:#ae81ff">0</span>);
+                <span style="color:#66d9ef">throw</span> (a);   <span style="color:#75715e">// on lance l&#39;objet correspondant
+</span><span style="color:#75715e"></span>                             <span style="color:#75715e">// (ici, de classe erreur).
+</span><span style="color:#75715e"></span>                             <span style="color:#75715e">// Cela interrompt le code. break est
+</span><span style="color:#75715e"></span>                             <span style="color:#75715e">// donc inutile ici.
+</span><span style="color:#75715e"></span>            }
+        <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>
+            {
+                <span style="color:#66d9ef">int</span> a<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+                <span style="color:#66d9ef">throw</span> (a);   <span style="color:#75715e">// Exception de type entier.
+</span><span style="color:#75715e"></span>            }
+        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>             <span style="color:#75715e">// Si l&#39;utilisateur n&#39;a pas tapé 0 ou 1,
+</span><span style="color:#75715e"></span>            {
+                other c;     <span style="color:#75715e">// on crée l&#39;objet c (type d&#39;exception
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">throw</span> (c);   <span style="color:#75715e">// other) et on le lance.
+</span><span style="color:#75715e"></span>            }
+        }
+    }                 <span style="color:#75715e">// fin du bloc try. Les blocs catch suivent :
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">catch</span> (erreur <span style="color:#f92672">&amp;</span>tmp) <span style="color:#75715e">// Traitement de l&#39;exception erreur ...
+</span><span style="color:#75715e"></span>    {                 <span style="color:#75715e">// (avec récupération de la cause).
+</span><span style="color:#75715e"></span>        cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Erreur erreur ! (cause &#34;</span> <span style="color:#f92672">&lt;&lt;</span> tmp.cause <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;)&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    }
+    <span style="color:#66d9ef">catch</span> (<span style="color:#66d9ef">int</span> tmp)   <span style="color:#75715e">// Traitement de l&#39;exception int...
+</span><span style="color:#75715e"></span>    {
+        cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Erreur int ! (cause &#34;</span> <span style="color:#f92672">&lt;&lt;</span> tmp <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;)&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    }
+    <span style="color:#66d9ef">catch</span> (...)       <span style="color:#75715e">// Traitement de toutes les autres
+</span><span style="color:#75715e"></span>    {                 <span style="color:#75715e">// exceptions (...).
+</span><span style="color:#75715e"></span>                      <span style="color:#75715e">// On ne peut pas récupérer l&#39;objet ici.
+</span><span style="color:#75715e"></span>        cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Exception inattendue !&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>Selon ce qu&rsquo;entre l&rsquo;utilisateur, une exception du type erreur, int ou other est générée.</p>
+<h2 id="remontée-des-exceptions">Remontée des exceptions</h2>
+<p>Les fonctions intéressées par les exceptions doivent les capter avec le mot clé
+<code>catch</code> comme on l&rsquo;a vu ci-dessus. Elles peuvent alors effectuer tous les
+traitements d&rsquo;erreurs que le C++ ne fera pas automatiquement. Ces traitements
+comprennent généralement le rétablissement de l&rsquo;état des données manipulées par
+la fonction (dont, pour les fonctions membres d&rsquo;une classe, les données membres
+de l&rsquo;objet courant), ainsi que la libération des ressources non encapsulées dans
+des objets de classe de stockage automatique (par exemple, les fichiers ouverts,
+les connexions réseau, etc).</p>
+<p>Une fois ce travail effectué, elles peuvent, si elles le désirent, relancer
+l&rsquo;exception, afin de permettre un traitement complémentaire par leur fonction
+appelante. Le parcours de l&rsquo;exception s&rsquo;arrêtera donc dès que l&rsquo;erreur aura été
+complètement traitée. Bien entendu, il est également possible de lancer une
+autre exception que celle que l&rsquo;on a reçue, comme ce peut être par exemple le
+cas si le traitement de l&rsquo;erreur provoque lui-même une erreur.</p>
+<p>Pour relancer l&rsquo;exception en cours de traitement dans un gestionnaire
+d&rsquo;exception, il faut utiliser le mot clé <code>throw</code>. La syntaxe est la suivante :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">throw</span> ;
+</code></pre></div><p>L&rsquo;exception est alors relancée, avec comme valeur l&rsquo;objet que le compilateur a
+construit en interne pour propager l&rsquo;exception. Les gestionnaires d&rsquo;exception
+peuvent donc modifier les paramètres des exceptions, s&rsquo;ils les attrapent avec
+une référence.</p>
+<h2 id="liste-des-exceptions-autorisées-pour-une-fonction">Liste des exceptions autorisées pour une fonction</h2>
+<h2 id="hiérarchie-des-exceptions">Hiérarchie des exceptions</h2>
+<h2 id="exceptions-dans-les-contructeurs">Exceptions dans les contructeurs</h2>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+</div>
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/5/">Les exceptions en C&#43;&#43;</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>Une exception est l&rsquo;interruption de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/13/">Multiplexer des entrées-sorties</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Dans ce chapitre, nous voulons présenter le …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/12/">Algorithmes Distribués &amp; Interblocages</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Ce chapitre introduit les problèmes liés à la …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/11/">Les verous de fichiers</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Mécanismes de contrôle d&rsquo;accès concurrents à …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/4/">La couche objet - Partie 4 : Les entrées/sorties, Méthodes virtuelles, Dérivation, Classe abstraites</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>Des entrées - sorties simplifiées Les flux …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/10/">Les signaux</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Les signaux sont un mécanisme asynchrone de …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>
