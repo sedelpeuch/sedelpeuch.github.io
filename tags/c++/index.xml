@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Wed, 02 Dec 2020 11:07:10 +0600</lastBuildDate>
+    <lastBuildDate>Mon, 07 Dec 2020 11:07:10 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Les templates</title>
+      <link>https://Sdelpeuch.github.io/assets/md/cpp/7/</link>
+      <pubDate>Mon, 07 Dec 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/cpp/7/</guid>
+      <description>Généralités Nous avons vu précédemment comment réaliser des structures de données relativement indépendantes de la classe de leurs données (c&amp;rsquo;est à dire leur type) avec les classes abstraites. Par ailleurs, il est faisable de faire des fonctions travaillant sur de nombreux types grâce à la surcharge.</description>
+    </item>
     
     <item>
       <title>Les espaces de nommage</title>
@@ -74,7 +83,7 @@ Opérateurs d&amp;rsquo;affectation Nous avons déjà vu un exemple d&amp;rsquo;
       
       <guid>https://Sdelpeuch.github.io/semestre7/cpp/</guid>
       <description>Support de cours
-   Notes personnelles     La Couche Objet - Partie 1 : Classe, Héritage, Classe Virtuelle, Fonction Et Classes Amies   La Couche Objet - Partie 2 : Constructeur, Destructeurs, Pointeur This, Statique, Surcharge   La Couche Objet - Partie 3 : Opérateurs   La Couche Objet - Partie 4 : Les Entrées/Sorties, Méthodes Virtuelles, Dérivation, Classe Abstraites   Les exceptions en C++   Les espaces de nommage   [Les template]    </description>
+   Notes personnelles     La Couche Objet - Partie 1 : Classe, Héritage, Classe Virtuelle, Fonction Et Classes Amies   La Couche Objet - Partie 2 : Constructeur, Destructeurs, Pointeur This, Statique, Surcharge   La Couche Objet - Partie 3 : Opérateurs   La Couche Objet - Partie 4 : Les Entrées/Sorties, Méthodes Virtuelles, Dérivation, Classe Abstraites   Les exceptions en C++   Les espaces de nommage   Les template    </description>
     </item>
     
   </channel>
