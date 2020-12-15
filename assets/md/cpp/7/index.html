@@ -489,17 +489,113 @@ syntaxe est exactement la même que pour les fonctions template non membre.</p>
     i<span style="color:#f92672">=</span>i<span style="color:#f92672">+</span>((<span style="color:#66d9ef">int</span>) valeur);   <span style="color:#75715e">// Ajoute valeur à A::i.
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> ;
 }
-</code></pre></div><h2 id="instanciation-des-template">Instanciation des template</h2>
+</code></pre></div><p>Si, en revanche, la classe dont la fonction membre fait partie est elle aussi
+template, il faut spécifier deux fois la syntaxe template : une fois pour la
+classe, et une fois pour la fonction. Si la fonction membre template est définie
+à l&rsquo;intérieur de la classe, il n&rsquo;est pas nécessaire de donner les paramètres
+template de la classe, et la fonction membre template se fait donc exactement
+comme celle d&rsquo;une fonction template classique.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Chaine</span>
+{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#75715e">// Fonction membre template définie
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// à l&#39;extérieur de la classe template :
+</span><span style="color:#75715e"></span> 
+    <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T2</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">int</span> compare(<span style="color:#66d9ef">const</span> T2 <span style="color:#f92672">&amp;</span>);
+ 
+    <span style="color:#75715e">// Fonction membre template définie
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// à l&#39;intérieur de la classe template :
+</span><span style="color:#75715e"></span> 
+    <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T2</span><span style="color:#f92672">&gt;</span>
+    Chaine(<span style="color:#66d9ef">const</span> Chaine<span style="color:#f92672">&lt;</span>T2<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span>s)
+    {
+        <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>    }
+};
+ 
+<span style="color:#75715e">// À l&#39;extérieur de la classe template, on doit donner
+</span><span style="color:#75715e">// les déclarations template pour la classe
+</span><span style="color:#75715e">// et pour la fonction membre template :
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T2</span><span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">int</span> Chaine<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;::</span>compare(<span style="color:#66d9ef">const</span> T2 <span style="color:#f92672">&amp;</span>s)
+{
+    <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Les fonctions membres virtuelles ne peuvent pas être template. Si une fonction
+membre template a le même nom qu&rsquo;une fonction membre virtuelle d&rsquo;une classe de
+base, elle ne constitue pas une redéfinition de cette fonction. Par conséquent,
+les mécanismes de virtualité sont inutilisables avec les fonctions membres
+template. On peut contourner ce problème de la manière suivante : on définira
+une fonction membre virtuelle non template qui appellera la fonction membre template.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span>
+{
+    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">int</span>);
+};
+ 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">D</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> B
+{
+    <span style="color:#66d9ef">template</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#66d9ef">void</span> f(T);     <span style="color:#75715e">// Cette fonction ne redéfinit pas B::f(int).
+</span><span style="color:#75715e"></span> 
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">f</span>(<span style="color:#66d9ef">int</span> i)  <span style="color:#75715e">// Cette fonction surcharge B::f(int).
+</span><span style="color:#75715e"></span>    {
+        f<span style="color:#f92672">&lt;&gt;</span>(i);    <span style="color:#75715e">// Elle appelle de la fonction template.
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> ;
+    }
+};
+</code></pre></div><p>Dans l&rsquo;exemple précédent, on est obligé de préciser que la fonction à appeler
+dans la fonction virtuelle est template, et qu&rsquo;il ne s&rsquo;agit donc pas d&rsquo;un appel
+récursif de la fonction virtuelle. Pour cela, on fait suivre le nom de la
+fonction template d&rsquo;une paire de signes inférieur et supérieur.</p>
+<p>Plus généralement, si une fonction membre template d&rsquo;une classe peut être
+spécialisée en une fonction qui a la même signature qu&rsquo;une autre fonction membre
+de la même classe, et que ces deux fonctions ont le même nom, toute référence à
+ce nom utilisera la fonction non-template. Il est possible de passer outre cette
+règle, à condition de donner explicitement la liste des paramètres template
+entre les signes inférieur et supérieur lors de l&rsquo;appel de la fonction.</p>
+<h2 id="instanciation-des-template">Instanciation des template</h2>
+<p>La définition des fonctions et des classes template ne génère aucun code tant
+que tous les paramètres template n&rsquo;ont pas pris chacun une valeur spécifique. Il
+faut donc, lors de l&rsquo;utilisation d&rsquo;une fonction ou d&rsquo;une classe template,
+fournir les valeurs pour tous les paramètres qui n&rsquo;ont pas de valeur de défaut.
+Lorsque suffisamment de valeurs sont données, le code est généré pour ce jeu de
+valeurs. On appelle cette opération l&rsquo;instanciation des template.</p>
+<p>Plusieurs possibilités sont offertes pour parvenir à ce résultat :
+l&rsquo;instanciation implicite et l&rsquo;instanciation explicite.</p>
 <h3 id="instanciation-implicite">Instanciation implicite</h3>
+<p>L&rsquo;instanciation implicite est utilisée par le compilateur lorsqu&rsquo;il rencontre
+une expression qu&rsquo;il utilise pour la première fois une fonction ou une classe
+template, et qu&rsquo;il doit instancier pour continuer son travail. Le compilateur se
+base alors sur le contexte courant pour déterminer les types des paramètres
+template à utiliser. Si aucune ambiguïté n&rsquo;a lieu, il génère le code pour ce jeu
+de paramètres.</p>
+<p>La détermination des types des paramètres template peut se faire simplement ou
+être déduite de l&rsquo;expression à compiler. Par exemple, les fonctions membres
+template sont instanciées en fonction du type de leurs paramètres. Si l&rsquo;on
+reprend l&rsquo;exemple de la fonction template Min, c&rsquo;est son utilisation directe qui
+provoque l&rsquo;instanciation implicite.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> Min(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>);
+</code></pre></div><p>dans cet exemple, le paramètre template est forcé à <code>int</code>, et 3.0 est converti
+en entier.</p>
+<p>On prendra garde au fait que le compilateur utiliser une politique minimaliste
+pour l&rsquo;instanciation des template. Cela signifie qu&rsquo;il ne créera que le code
+nécessaire pour compiler l&rsquo;expression qui exige une instanciation implicite. Par
+exemple, la définition d&rsquo;un objet d&rsquo;une classe template dont tous les types
+définis provoque l&rsquo;instanciation de cette classe, mais la définition d&rsquo;un
+pointeur sur cette classe ne le fait pas. L&rsquo;instanciation aura lieu lorsqu&rsquo;un
+déréférencement sera fait par l&rsquo;intermédiaire de ce pointeur. De même, seules
+les fonctionnalités utilisées de la classe template seront effectivement
+définies dans le programme final.</p>
 <h3 id="instanciation-explicite">Instanciation explicite</h3>
-<h3 id="problèmes-soulevés-par-linstanciation-des-template">Problèmes soulevés par l&rsquo;instanciation des template</h3>
-<h2 id="spécialisation-des-template">Spécialisation des template</h2>
-<h3 id="spécialisation-totale">Spécialisation totale</h3>
-<h3 id="spécialisation-partielle">Spécialisation partielle</h3>
-<h3 id="spécialisation-dune-méthode-dune-classe-template">Spécialisation d&rsquo;une méthode d&rsquo;une classe template</h3>
-<h2 id="mot-clé-typename">Mot-clé typename</h2>
-<h2 id="fonctions-exportées">Fonctions exportées</h2>
-
+<p>L&rsquo;instanciation explicite des template est une technique permettant au
+programmeur de forcer l&rsquo;instanciation des template dans son programme. Pour
+réaliser une instanciation explicite, il faut spécifier explicitement tous les
+paramètres template à utiliser. Cela se fait simplement en donnant la
+déclaration du template, précédée par le mot clé template.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">template</span> nom<span style="color:#f92672">&lt;</span>valeur[, valeur[...]]<span style="color:#f92672">&gt;</span>;
+</code></pre></div>
 					</div>
 					<div class="post-comments">
 						
