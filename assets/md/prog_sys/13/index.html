@@ -163,6 +163,43 @@ d&rsquo;être la solution optimale car notre processus va réaliser de nombreux 
 système inutile d&rsquo;autant plus si dans le cas d&rsquo;un serveur avec des comportements
 de clients très aléatoires. Le coût en ressources de cette attente active est
 extrêmement cher, et doit être évité dans le cas d&rsquo;une machine en temps partagé.</p>
+<h3 id="utiliser-les-mécanismes-asynchrones">Utiliser les mécanismes asynchrones</h3>
+<p>On peut utiliser des entrées-sorties asynchrones et demander au noyau de nous
+prévenir par un signal qui informe de l&rsquo;arrivée de données sur un descripteur.
+Ce signal est SIGIO, mais ce n&rsquo;est valable que sur les descripteurs qui sont des
+périphériques. De plus ce mécanisme ne désigne pas le descripteur sur lequel
+s&rsquo;est faite l&rsquo;arrivée de caractères, d&rsquo;où de nouvelles pertes de temps dûes aux
+appels réalisés inutilement en mode non bloquant.</p>
+<h2 id="les-outils-de-sélection">Les outils de sélection</h2>
+<p>La solution la plus efficace vient de systèmes de sélection qui prend un
+paramètre un ensemble de descripteurs et qui permet de tester si l&rsquo;un de ses
+descripteurs est près à satisfaire un appel système <code>read</code> ou <code>write</code>. Cet appel
+est bloquant jusqu&rsquo;à l&rsquo;arrivée de caractères sur un des descripteurs de
+l&rsquo;ensemble. Ainsi il n&rsquo;y a pas de consommation de ressource processus inutile,
+le travail est fait à un niveau plus bas (dans le noyau) de façon plus
+économique en ressources.</p>
+<h3 id="la-primitive-select">La primitive <code>select</code></h3>
+<p>La première implémentation d&rsquo;un outil de sélection sous Unix est l&rsquo;appel système
+<code>select</code>, malheureusement sa syntaxe est devenu inadapté pour des situations où
+le nombre de descripteur utilisé par le programme est très grand ce qui peut
+arriver facilement avec un serveur de fichier. Nous fournissons à la primitive
+select :</p>
+<ul>
+<li>Les descripteurs que nous voulons scruter (l&rsquo;indice du plus grand descripteur
+qui nous intéresse dans la table des descripteurs du processus)</li>
+<li>Les conditions de réveil sur chaque descripteur (en attente de lecture,
+écriture, évènement)</li>
+<li>Combien de temps nous voulons attendre.</li>
+</ul>
+<p>La fonction retourne pour chaque descripteur s&rsquo;il est prêt en lecture, écriture
+ou si l&rsquo;évènement a eu lieu, et aussi le nombre de descripteur prêts. Cette
+information nous permet ensuite d&rsquo;appeler <code>read</code> ou <code>write</code> sur les bons
+descripteurs.</p>
+<h3 id="la-primitive-poll">La primitive <code>poll</code></h3>
+<p>La primitive <code>poll</code> fournit un service proche de <code>select</code> avec une autre forme
+d&rsquo;interface. Cette interface est adaptée quand le nombre de descripteurs ouvert
+par le processus est très grand mais que l&rsquo;on ne s&rsquo;intéresse qu&rsquo;à un petit
+nombre de ceux ci.</p>
 
 					</div>
 					<div class="post-comments">
@@ -214,6 +251,14 @@ extrêmement cher, et doit être évité dans le cas d&rsquo;une machine en temp
     
     <div class="media">
       <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/14/">Les threads POSIX</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>La programmation par thread (activité) est …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/13/">Multiplexer des entrées-sorties</a></h4>
         <h5>[Programmation Système]</h5>
         <p>Dans ce chapitre, nous voulons présenter le …</p>
@@ -225,14 +270,6 @@ extrêmement cher, et doit être évité dans le cas d&rsquo;une machine en temp
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/12/">Algorithmes Distribués &amp; Interblocages</a></h4>
         <h5>[Programmation Système]</h5>
         <p>Ce chapitre introduit les problèmes liés à la …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/11/">Les verous de fichiers</a></h4>
-        <h5>[Programmation Système]</h5>
-        <p>Mécanismes de contrôle d&rsquo;accès concurrents à …</p>
       </div>
     </div>
     

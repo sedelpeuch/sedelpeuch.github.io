@@ -40,6 +40,15 @@
     </item>
     
     <item>
+      <title>Les threads POSIX</title>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/14/</link>
+      <pubDate>Tue, 01 Dec 2020 13:50:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/14/</guid>
+      <description>La programmation par thread (activité) est naturelle pour gérer des phénomènes asynchrones. Les entrées utilisateur dans les interfaces graphiques (souris, clavier) sont plus facile à gérer si l&amp;rsquo;on peut séparer l&amp;rsquo;activité principale du logiciel de la gestion des commandes utilisateurs.</description>
+    </item>
+    
+    <item>
       <title>Multiplexer des entrées-sorties</title>
       <link>https://Sdelpeuch.github.io/assets/md/prog_sys/13/</link>
       <pubDate>Mon, 30 Nov 2020 11:30:00 +0600</pubDate>
