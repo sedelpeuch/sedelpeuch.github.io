@@ -63,7 +63,8 @@
       <pubDate>Fri, 20 Nov 2020 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/8/</guid>
-      <description></description>
+      <description>Les méthodes de gestion mémoire que nous venons de voir ont toutes un défaut majeur qui est de garder l&amp;rsquo;ensemble du processus en mémoire, ce qui donne :
+ un coût en swap important impossibilité de créer de très gros processus  Les méthodes de mémoire virtuelle permettent d&amp;rsquo;exécuter un programme qui ne tient pas entièrement en mémoire centrale !</description>
     </item>
     
     <item>

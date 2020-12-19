@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Objet et encapsulation - Les classes</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 7 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 7" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/gl">Génie Logiciel</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/java.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Objet et encapsulation - Les classes</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Objet et encapsulation - Les classes</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> September 14, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/poo">P o o</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<p>Une <code>classe</code> est un moule qui décrit le <strong>quoi</strong> : la spécification des messages
+qui peuvent être envoyés à l&rsquo;objet. Et le <strong>comment</strong> la manière de réaliser
+cette spécification. Pour instancier une classe, se répartit en trois formes :</p>
+<ol>
+<li><strong>Classe Concrète</strong> : une classe instanciable</li>
+<li><strong>Classe abstraite</strong> : la réalisation est incomplète, au moins une des
+méthodes d&rsquo;instance n&rsquo;a pas de mise en oeuvre (pas corps défini).</li>
+<li><strong>Classe abstraite pure ou interface</strong> : aucune réalisation n&rsquo;est définie,
+elle contient les déclarations des méthodes d&rsquo;instance.</li>
+</ol>
+<p>Ce chapitre est centrée sur la construction des classes concrètes.</p>
+<h2 id="classe-java">Classe Java</h2>
+<p>La syntaxe du langage Java différencie la construction d&rsquo;une classe contenant
+une réalisation et d&rsquo;une classe ne contenant pas de réalisation.</p>
+<ol>
+<li>Construction avec réalisation :</li>
+</ol>
+<ul>
+<li>classe concrète avec le mot clé seul <code>class</code></li>
+<li>classe abstraite en ajoutant le mot-clé <code>abstract</code> au mot clé <code>class</code></li>
+</ul>
+<ol start="2">
+<li>Construction sans réalisation : classe abstraite pure avec le mot-clé
+<code>interface</code>. Cette construction ne contient ni attributs, ni constructeurs.</li>
+</ol>
+<p>Une classe/interface Java correspond à un fichier <code>.class</code> obtenu après
+java d&rsquo;un fichier source. Ce fichier (en &ldquo;bytecode&rdquo; ou code
+intermédiaire) contient le code à exécuter mais aussi les informations sur la
+définition de la classe, par exemple : le type des paramètres d&rsquo;une méthode.</p>
+<p>Le contenu des fichiers <code>.class</code> est utilisé par le compilateur (pour les
+informations de type) et par la machine virtuelle java (JVM) (interprétation du
+code intermédiaire)</p>
+<h3 id="paquetage">Paquetage</h3>
+<p>Les paquetages permettent de regrouper les classes / interfaces par thème. Le
+système de paquetage est hiérarchique avec la notion de sous-paquetage. Le
+caractère . sert de séparateur. Les paquetages commençant par <code>java, javax</code> font
+partie de la distribution stard (JRE et JDK).</p>
+<p>Un paquetage correspond à un domain de nom : le nom d&rsquo;une classe / interface est
+unique dans un paquetage. Le nom complet d&rsquo;une classe / interface est constitué
+de la hiérarchie de paquetage puis du nom de la classe/interface. Par exemple
+<code>java.lang.String</code>. L&rsquo;inclusion d&rsquo;une classe/interface dans un paquetage est
+précisée par l&rsquo;instruction <code>package nom</code> sur la première ligne du fichier
+source. Sans ce mot-clé, les classes sont incluses dans un paquetage unique sans
+nom (paquetage anonyme ou paquetage par défaut). Pour désigner une
+classe/interface à l&rsquo;extérieur d&rsquo;un paquetage, il est nécessaire d&rsquo;utiliser son
+nom complet : <code>matos.on.DentBleu maDent = new matos.onde.DentBleu();</code>. Dans
+l&rsquo;écriture d&rsquo;un fichier source, il est possible de raccourcir le nom complet
+d&rsquo;une classe à son nom, en utilisant le mot clé <code>import</code>. Au début du fichier
+source, l&rsquo;instruction <code>import matos.onde.DentBleu</code>; permet de désigner la classe
+uniquement par <code>DentBleu</code>. Le compilateur lui attribue son nom complet.</p>
+<p>L&rsquo;organisation physique des fichiers <code>.class</code> correspond à la hiérarchie de
+paquetage. Le fichier <code>String.class</code> se trouve dans l&rsquo;arborescence de répertoire
+<code>java/lang</code>. Lorsque le compilateur ou la machine virtuelle ont besoin de la
+définition d&rsquo;une classe, ils utilisent son nom complet comme chemin de recherche
+du fichier <code>.class</code>. Par défaut, la recherche s&rsquo;effectue à partir du répertoire
+courant (celui du lancement de la commande). L&rsquo;option <code>-cp</code> et la variable
+d&rsquo;environnement <code>CLASSPATH</code> permettant d&rsquo;indiquer les répertoires à analyser
+pour trouver ce chemin.</p>
+<h2 id="classe-concrète">Classe concrète</h2>
+<p>La construction Java <code>class</code> contient trois catégories de membre : les
+variables, les méthodes et les constructeurs.</p>
+<h3 id="portée-des-membres-dune-classe">Portée des membres d&rsquo;une classe</h3>
+<p>Les modificateurs de porte précisent la <em>portée d&rsquo;utilisation</em> d&rsquo;un membre d&rsquo;une
+classe. Ils se placent devant chaque définition :</p>
+<ol>
+<li><code>private</code> : accessible uniquement par la classe</li>
+<li><code>public</code> : accessible partout</li>
+<li>au paquetage : accessible par les classes du même paquetage</li>
+</ol>
+<p>Une classe possède deux portées. Sans mot-clé, sa portée est restreinte à son
+paquetage. Avec le mot-clé <code>public</code>, elle est accessible à l&rsquo;extrieur de son
+paquetage : <code>public class DentBleu</code>.</p>
+<h3 id="définition-dune-classe-concrète">Définition d&rsquo;une classe concrète</h3>
+<p>Définition d&rsquo;une classe concrèete Java et de ses membres</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">[</span><span style="color:#66d9ef">public</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NomClasse</span> <span style="color:#f92672">{</span> 
+  <span style="color:#75715e">//Variables d&#39;instance/attributs,
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">[</span><span style="color:#66d9ef">final</span><span style="color:#f92672">]</span> <span style="color:#f92672">[</span><span style="color:#66d9ef">public</span><span style="color:#f92672">|</span><span style="color:#66d9ef">private</span><span style="color:#f92672">]</span> type nom <span style="color:#f92672">[=</span> expression<span style="color:#f92672">];</span>
+  
+  <span style="color:#75715e">//Méthodes d&#39;instance,
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">[</span><span style="color:#66d9ef">public</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">private</span><span style="color:#f92672">]</span> typeRetour <span style="color:#a6e22e">méthodeInstance</span><span style="color:#f92672">([</span>liste de paramètres<span style="color:#f92672">])</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//code
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">}</span>
+  
+  <span style="color:#75715e">//constructeurs
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">[</span><span style="color:#66d9ef">public</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">private</span><span style="color:#f92672">]</span> <span style="color:#a6e22e">NomClasse</span> <span style="color:#f92672">([</span>liste de paramètres<span style="color:#f92672">]){</span>
+    <span style="color:#75715e">//code
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="variable-dinstance">Variable d&rsquo;instance</h3>
+<p>C&rsquo;est une variable locale à chaque instance. Sa valeur est stockée dans la zone
+mémoire de l&rsquo;instance. Son initialisation s&rsquo;effectue soit à sa déclaration soit
+dans le code d&rsquo;une constructeur. La machine virtuelle Java initialise
+systématiquement les variables d&rsquo;instance avec une valeur par défaut dépendant
+du type (référence/null, int/0, boolean/false). Le mot-clé <code>final</code> devant la
+définition d&rsquo;une variable correspond à une variable constante. Son initialisation
+est possible dans un constructeur.</p>
+<h3 id="méthode-dinstance">Méthode d&rsquo;instance</h3>
+<p>Une méthode d&rsquo;instance s&rsquo;applique à une instance. Il existe deux catégories de
+méthode :</p>
+<ul>
+<li>méthode d&rsquo;accès, ou acccesseur. Elle donne des informations sur l&rsquo;état des
+attributs.</li>
+<li>méthode d&rsquo;altération ou modificateur. Elle modifie l&rsquo;état des attributs.</li>
+</ul>
+<p>Le mécanisme de surcharge autorise plusieurs méthodes à porter le même nom. La
+distinction se fait, à la java, en fonction de la liste des paramètres
+d&rsquo;appel (nombre, type et ordre). Par exemple, la méthode <code>println</code> de la classe
+<code>java.io.PrintStream</code>.</p>
+<p>Le mot clé <code>this</code> désigne / référence l&rsquo;instance qui vient de recevoir le
+message. Il est utilisé dans le code</p>
+<ul>
+<li>Soit pour passer l&rsquo;objet en paramètre d&rsquo;une méthode (ou d&rsquo;un constructeur)</li>
+<li>Soit pour désigner un attribut en cas d&rsquo;ambiguïté</li>
+</ul>
+<h3 id="constructeur">Constructeur</h3>
+<p>Un constructeur n&rsquo;est pas une méthode. Il est uniquement appelé à
+<em>l&rsquo;instanciation</em>. Son code assure la bonne initialisation des variables
+d&rsquo;instance. Le constructeur prendre le nom de la classe. Il n&rsquo;a pas de type de
+retour. L&rsquo;instance existe au moment de l&rsquo;appel du constructeur. Le code du
+constructeur peut utiliser les méthodes d&rsquo;instance et la référence <code>this</code>. Si
+une classe ne contient pas de constructeur le compilateur Java ajoute un
+constructeur publique sans paramètre avec un corps vide (désigné par le terme
+constructeur par défaut). La surcharge des constructeurs est autorisée. Avec la
+définition de plusieurs constructeurs, il est nécessaire d&rsquo;avoir un mécanisme de
+factorisation du code d&rsquo;initialisation. Un constructeur peut déclencher le code
+d&rsquo;un autre constructeur par l&rsquo;instruction (qui utilise le mécanisme de
+surcharge) : <code>this(par1, par2, par3)</code>. Cette instruction doit être la première
+ligne du constructeur.</p>
+<h2 id="lien-a-un-entre-classes">Lien &ldquo;a-un&rdquo; entre classes</h2>
+<p>Le lien &ldquo;a-un&rdquo; correspond à la relation d&rsquo;utilisation la plus basique : la
+réalisation d&rsquo;une encapsulation nécessite l&rsquo;appel aux méthodes d&rsquo;une autre
+encapsulation.</p>
+<h3 id="relation-dutilisation-dans-la-réalisation">Relation d&rsquo;utilisation dans la réalisation</h3>
+<p>La classe <code>PorteCharniere</code> possède un lien &ldquo;a-un&rdquo; avec la classe <code>DentBleu</code>. Une
+instance de <code>PorteCharniere</code> contient dans ses attributs la référence à une
+instance de <code>DentBleu</code>.</p>
+<p>Dans notre cas de réalisation, l&rsquo;instant de <code>DentBleu</code> ne peut pas être partagée
+et doit être utilisée dès l&rsquo;instanciation de <code>PorteCharniere</code>.</p>
+<p>Le lien &ldquo;a-un&rdquo; se traduit dans le code de la classe <code>PorteCharniere</code> :</p>
+<ul>
+<li>définition d&rsquo;une variable d&rsquo;instance du type <code>DentBleu</code></li>
+<li>instanciation de <code>DentBleu</code> dans le constructeur et affectation à la variable
+d&rsquo;instance</li>
+</ul>
+<h3 id="factoriser-du-code">Factoriser du code</h3>
+<p>Pour éviter de dupliquer le code, la construction de la classe
+<code>PorteVerrouCharniere</code> peut se faire en utilisant un lien &ldquo;a-un&rdquo; avec la classe
+<code>PorteCharniere</code>. L&rsquo;instanciation de la classe <code>PorteVerrouCharniere</code> doit
+instancier la classe <code>PorteCharniere</code></p>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar"><div class="widget widget-tag">
+    <h4 class="widget-title">Mots clefs</h4>
+    <ul class="widget-tag-list">
+      <li><a href="/tags/c&#43;&#43;">C&#43;&#43;</a></li>
+      <li><a href="/tags/compilation">Compilation</a></li>
+      <li><a href="/tags/poo">Poo</a></li>
+      <li><a href="/tags/programmation-syst%c3%a8me">Programmation système</a></li>
+      <li><a href="/tags/quantique">Quantique</a></li>
+      <li><a href="/tags/syst%c3%a8me-de-gestion-de-base-de-donn%c3%a9es">Système de gestion de base de données</a></li>
+      <li><a href="/tags/tcp-ip">Tcp ip</a></li>
+    </ul>
+</div>
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/7/">Les templates</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>Généralités Nous avons vu précédemment comment …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/6/">Les espaces de nommage</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>Les espaces de nommage sont des zones de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/cpp/5/">Les exceptions en C&#43;&#43;</a></h4>
+        <h5>[C&#43;&#43;]</h5>
+        <p>Une exception est l&rsquo;interruption de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/14/">Les threads POSIX</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>La programmation par thread (activité) est …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/13/">Multiplexer des entrées-sorties</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Dans ce chapitre, nous voulons présenter le …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/prog_sys/12/">Algorithmes Distribués &amp; Interblocages</a></h4>
+        <h5>[Programmation Système]</h5>
+        <p>Ce chapitre introduit les problèmes liés à la …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

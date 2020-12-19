@@ -7,27 +7,63 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Thu, 01 Oct 2020 11:07:10 +0600</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2020 11:07:10 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/tags/poo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Substitution d&#39;objets</title>
-      <link>https://Sdelpeuch.github.io/assets/md/poo/cours2/</link>
-      <pubDate>Thu, 01 Oct 2020 11:07:10 +0600</pubDate>
+      <title>Substitution d&#39;objets - Hiérarchie de classes</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/6/</link>
+      <pubDate>Mon, 05 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/poo/cours2/</guid>
-      <description>La substitution d&amp;rsquo;objets ou polymorphisme Nous voulons pouvoir adapter le code d&amp;rsquo;une application en substituant une instance d&amp;rsquo;une classe par une instance d&amp;rsquo;une autre classe. Dans notre exemple : une instance de Telecommande doit manipuler plusieurs réalisations différentes de l&amp;rsquo;abstraction Porte.</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/6/</guid>
+      <description>La hiérarchie de classes correspond à une hiérarchie de type / sous type entre classes. Elle organise les trois catégories de classe : concrète, abstraite et abstraite pure. La construction de cette hiérarchie se fait au travers du mécanisme d&amp;rsquo;héritage.</description>
     </item>
     
     <item>
-      <title>Objet et encapsulation</title>
-      <link>https://Sdelpeuch.github.io/assets/md/poo/cours1/</link>
-      <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
+      <title>Substitution d&#39;objets - La substitution d&#39;objets ou polymorphisme</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/5/</link>
+      <pubDate>Mon, 28 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/poo/cours1/</guid>
-      <description>L&amp;rsquo;encapsulation L&#39;encapsulation dans l&amp;rsquo;approche objet consiste à regrouper le code (données et traitements) qui fournit un même service dans une seule entité. Une encapsulation spécifie le fonctionnement d&amp;rsquo;un service (par un ensemble d&amp;rsquo;actions) en masquant la manière de le réaliser.</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/5/</guid>
+      <description>Nous voulons pouvoir adapter le code d&amp;rsquo;une application en substituant une instance d&amp;rsquo;une classe par une instance d&amp;rsquo;une autre classe. Dans notre exemple : une instance de Telecommande doit manipuler plusieurs réalisations différentes de l&amp;rsquo;abstraction Porte.</description>
+    </item>
+    
+    <item>
+      <title>Objet et encapsulation - Variables et méthodes de classe</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/4/</link>
+      <pubDate>Mon, 21 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/4/</guid>
+      <description>Dans le modèle objet, toutes les variables et méthodes sont liées à un objet. C&amp;rsquo;est à dire que pour accéder à une donnée ou déclencher un traitement, il faut d&amp;rsquo;abord instancier une classe.</description>
+    </item>
+    
+    <item>
+      <title>Objet et encapsulation - Les classes</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/3/</link>
+      <pubDate>Mon, 14 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/3/</guid>
+      <description>Une classe est un moule qui décrit le quoi : la spécification des messages qui peuvent être envoyés à l&amp;rsquo;objet. Et le comment la manière de réaliser cette spécification. Pour instancier une classe, se répartit en trois formes :</description>
+    </item>
+    
+    <item>
+      <title>Objet et encapsulation - Les objets</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/2/</link>
+      <pubDate>Wed, 09 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/2/</guid>
+      <description>L&#39;objet est l&amp;rsquo;entit de base de l&amp;rsquo;exécution. À chaque objet est attribu une zone mémoire différente. Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire d&amp;rsquo;identifier de manière unique un objet.</description>
+    </item>
+    
+    <item>
+      <title>Objet et encapsulation - Encapsulation</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/1/</link>
+      <pubDate>Mon, 07 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/1/</guid>
+      <description>L&#39;encapsulation dans l&amp;rsquo;approche objet consiste à regrouper le code (données et traitements) qui fournit un même service dans une seule entité. Une encapsulation spécifie le fonctionnement d&amp;rsquo;un service (par un ensemble d&amp;rsquo;actions) en masquant la manière de le réaliser.</description>
     </item>
     
     <item>
@@ -38,7 +74,7 @@
       <guid>https://Sdelpeuch.github.io/semestre7/poo/</guid>
       <description>Ressources pédagogiques Le polycopié de cours.
 Le site contenant tous les TD
-Notes personnelles    Cours     Objet et encapsulation   Substitution d&amp;rsquo;objets   Autres mécanismes    Travaux dirigés    Sujet Réalisation Rapport     Presentation-existant  Rapport 0   Approche Objet Jauge Position TD 1 Rapport 1   Autobus Passager Standard TD 2 Rapport 2   Integration rassemblement TD 3 Rapport 3   Masquage d&amp;rsquo;information TD 4a TD 4b Rapport 4   Nouveaux caractères TD 5a TD 5b Rapport 5   Est UN a UN TD 6a TD 6b Rapport 6   Exceptions TD 7a TD 7b Rapport 7    Projet Projet  .</description>
+Partie 1 - Objet et encapsulation  L&amp;rsquo;encapsulation Les objets Les classes Variables et Méthodes de classe  Partie 2 - Substitution d&amp;rsquo;objets  La substitution d&amp;rsquo;objets ou polymorphisme Hiérarchie de classes  Partie 3 - Autres mécanismes (non objet)  Le mécanisme des exceptions Les types paramétrés  Travaux dirigés    Sujet Réalisation Rapport     Presentation-existant  Rapport 0   Approche Objet Jauge Position TD 1 Rapport 1   Autobus Passager Standard TD 2 Rapport 2   Integration rassemblement TD 3 Rapport 3   Masquage d&amp;rsquo;information TD 4a TD 4b Rapport 4   Nouveaux caractères TD 5a TD 5b Rapport 5   Est UN a UN TD 6a TD 6b Rapport 6   Exceptions TD 7a TD 7b Rapport 7    Projet Projet  .</description>
     </item>
     
   </channel>

@@ -99,7 +99,8 @@
       <pubDate>Fri, 20 Nov 2020 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/8/</guid>
-      <description></description>
+      <description>Les méthodes de gestion mémoire que nous venons de voir ont toutes un défaut majeur qui est de garder l&amp;rsquo;ensemble du processus en mémoire, ce qui donne :
+ un coût en swap important impossibilité de créer de très gros processus  Les méthodes de mémoire virtuelle permettent d&amp;rsquo;exécuter un programme qui ne tient pas entièrement en mémoire centrale !</description>
     </item>
     
     <item>
@@ -262,12 +263,12 @@ Outils et astuces pour l&amp;rsquo;analyse sémantique et la production de code 
     </item>
     
     <item>
-      <title>Substitution d&#39;objets</title>
-      <link>https://Sdelpeuch.github.io/assets/md/poo/cours2/</link>
-      <pubDate>Thu, 01 Oct 2020 11:07:10 +0600</pubDate>
+      <title>Substitution d&#39;objets - Hiérarchie de classes</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/6/</link>
+      <pubDate>Mon, 05 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/poo/cours2/</guid>
-      <description>La substitution d&amp;rsquo;objets ou polymorphisme Nous voulons pouvoir adapter le code d&amp;rsquo;une application en substituant une instance d&amp;rsquo;une classe par une instance d&amp;rsquo;une autre classe. Dans notre exemple : une instance de Telecommande doit manipuler plusieurs réalisations différentes de l&amp;rsquo;abstraction Porte.</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/6/</guid>
+      <description>La hiérarchie de classes correspond à une hiérarchie de type / sous type entre classes. Elle organise les trois catégories de classe : concrète, abstraite et abstraite pure. La construction de cette hiérarchie se fait au travers du mécanisme d&amp;rsquo;héritage.</description>
     </item>
     
     <item>
@@ -301,6 +302,15 @@ Par exemple la grammaire
     </item>
     
     <item>
+      <title>Substitution d&#39;objets - La substitution d&#39;objets ou polymorphisme</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/5/</link>
+      <pubDate>Mon, 28 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/5/</guid>
+      <description>Nous voulons pouvoir adapter le code d&amp;rsquo;une application en substituant une instance d&amp;rsquo;une classe par une instance d&amp;rsquo;une autre classe. Dans notre exemple : une instance de Telecommande doit manipuler plusieurs réalisations différentes de l&amp;rsquo;abstraction Porte.</description>
+    </item>
+    
+    <item>
       <title>TD4 - Normalisation</title>
       <link>https://Sdelpeuch.github.io/assets/md/bdd/td4/</link>
       <pubDate>Mon, 28 Sep 2020 11:07:10 +0600</pubDate>
@@ -329,6 +339,15 @@ Par exemple la grammaire
       <description>Question du jour : Que faire avec les arbres de dérivation ?
 Sur un exemple : les expressions arithmétiques
    Comment évaluer cette expression ? Il suffit d&amp;rsquo;effectuer une évaluation des feuilles vers la racine</description>
+    </item>
+    
+    <item>
+      <title>Objet et encapsulation - Variables et méthodes de classe</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/4/</link>
+      <pubDate>Mon, 21 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/4/</guid>
+      <description>Dans le modèle objet, toutes les variables et méthodes sont liées à un objet. C&amp;rsquo;est à dire que pour accéder à une donnée ou déclencher un traitement, il faut d&amp;rsquo;abord instancier une classe.</description>
     </item>
     
     <item>
@@ -377,6 +396,15 @@ Compilation des expressions Exercice 1 Donner une majoration du nombre d&amp;rsq
       <description>Notes inspirées du cours de JANIN David
 Exemple des expressions arithmétiques. Une grammaire reconnaissant les expressions arithmétiques se reconnaît avec les expressions suivantes
  exp -&amp;gt; ID exp -&amp;gt; Cste exp -&amp;gt; exp + exp exp -&amp;gt; exp * exp exp -&amp;gt; (exp)  Ces 5 règles sont appelées les règle de grammaire ou règle de production.</description>
+    </item>
+    
+    <item>
+      <title>Objet et encapsulation - Les classes</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/3/</link>
+      <pubDate>Mon, 14 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/3/</guid>
+      <description>Une classe est un moule qui décrit le quoi : la spécification des messages qui peuvent être envoyés à l&amp;rsquo;objet. Et le comment la manière de réaliser cette spécification. Pour instancier une classe, se répartit en trois formes :</description>
     </item>
     
     <item>
@@ -430,12 +458,21 @@ Un ordinateur quantique n&amp;rsquo;est pas simplement un ordinateur plus rapide
     </item>
     
     <item>
-      <title>Objet et encapsulation</title>
-      <link>https://Sdelpeuch.github.io/assets/md/poo/cours1/</link>
-      <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
+      <title>Objet et encapsulation - Les objets</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/2/</link>
+      <pubDate>Wed, 09 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/poo/cours1/</guid>
-      <description>L&amp;rsquo;encapsulation L&#39;encapsulation dans l&amp;rsquo;approche objet consiste à regrouper le code (données et traitements) qui fournit un même service dans une seule entité. Une encapsulation spécifie le fonctionnement d&amp;rsquo;un service (par un ensemble d&amp;rsquo;actions) en masquant la manière de le réaliser.</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/2/</guid>
+      <description>L&#39;objet est l&amp;rsquo;entit de base de l&amp;rsquo;exécution. À chaque objet est attribu une zone mémoire différente. Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire d&amp;rsquo;identifier de manière unique un objet.</description>
+    </item>
+    
+    <item>
+      <title>Objet et encapsulation - Encapsulation</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/1/</link>
+      <pubDate>Mon, 07 Sep 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/1/</guid>
+      <description>L&#39;encapsulation dans l&amp;rsquo;approche objet consiste à regrouper le code (données et traitements) qui fournit un même service dans une seule entité. Une encapsulation spécifie le fonctionnement d&amp;rsquo;un service (par un ensemble d&amp;rsquo;actions) en masquant la manière de le réaliser.</description>
     </item>
     
     <item>
