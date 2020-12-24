@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 05 Oct 2020 11:07:10 +0600</lastBuildDate>
+    <lastBuildDate>Mon, 12 Oct 2020 11:07:10 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/tags/poo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Autres mécanismes (non objet) - Le Mécanisme des exceptions</title>
+      <link>https://Sdelpeuch.github.io/assets/md/poo/8/</link>
+      <pubDate>Mon, 12 Oct 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/poo/8/</guid>
+      <description>Définition : Le mécanisme des exceptions est une technique de gestion d&amp;rsquo;erreurs qui permet de transmettre une erreur en dehors du flot normal de la pile d&amp;rsquo;appel.
+La gestion d&amp;rsquo;erreurs La gestion d&amp;rsquo;erreurs se charge des défauts de programme (cas anormaux) se produisant au cours de l&amp;rsquo;exécution.</description>
+    </item>
     
     <item>
       <title>Substitution d&#39;objets - Hiérarchie de classes</title>
