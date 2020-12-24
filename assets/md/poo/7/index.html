@@ -467,8 +467,201 @@ abstraite <code>PorteAbstraite</code> doit posséder un lien &ldquo;est-un&rdquo
 <code>Porte</code>.</p>
 <h3 id="factoriser-le-traitement-du-verrou">Factoriser le traitement du verrou</h3>
 <p>De la même façon, le code est factorisé dans une classe de base commune aux deux
-classes. Le code de la méthode <code>ouvrir()</code></p>
+classes. Le code de la méthode <code>ouvrir()</code> contient une partie de code à
+factoriser et une partie de code dépendant de chaque réalisation de
+l&rsquo;abstraction <code>porte</code>. La méthode <code>ouvrir()</code> est définie dans la classe de base
+avec le code factorisé. Pour contenir le code dépendant des réalisations, nous
+définissons une méthode abstraite. Cette fois, c&rsquo;est la classe abstraite qui
+déclenche un traitement sur les classes dérivées.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> porte<span style="color:#f92672">;</span>
 
+<span style="color:#f92672">import</span> matos.onde.DenBleu<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> abstact <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PorteAbstraite</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> DentBleu canal<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> estDeVerrouille<span style="color:#f92672">;</span>
+    
+    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">envoyerCommande</span><span style="color:#f92672">(</span>String <span style="color:#f92672">...</span> cmms<span style="color:#f92672">){</span>
+        canal<span style="color:#f92672">.</span><span style="color:#a6e22e">connecter</span><span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> cmms<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span>
+            canal<span style="color:#f92672">.</span><span style="color:#a6e22e">envoyer</span><span style="color:#f92672">(</span>cmms<span style="color:#f92672">[</span>i<span style="color:#f92672">]);</span>
+        canal<span style="color:#f92672">.</span><span style="color:#a6e22e">deconnecter</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">PorteAbstraite</span><span style="color:#f92672">(</span>DentBleu d<span style="color:#f92672">){</span>
+        canal <span style="color:#f92672">=</span> d<span style="color:#f92672">;</span>
+        estDeVerouille <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span> 
+        envoyerCommande<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;mettre_verrou&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">verrouiller</span><span style="color:#f92672">(){</span>
+        envoyerCommande<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;mettre_verrou&#34;</span><span style="color:#f92672">);</span>
+        estDeVerrouille <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">deverrouiller</span><span style="color:#f92672">(){</span>
+        envoyerCommande<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;enlever_verrou&#34;</span><span style="color:#f92672">);</span>
+        estDeVerouille <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">estVerrouille</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#f92672">!</span>estDeVerrouille<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#75715e">//code factorisé de la méthode ouvrir()
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>estDeVerrouille<span style="color:#f92672">)</span>
+            faireOuvrir<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#75715e">//code de la méthode ouvrir() dépendant des réalisations
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">faireOuvrir</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="substitution-dobjets-et-factorisation-de-code">Substitution d&rsquo;objets et factorisation de code</h2>
+<p>Le cas de la factorisation du verrou peut s&rsquo;envisager d&rsquo;une autre manière. Nous
+allons encapsuler le code à factoriser. C&rsquo;est à dire que le code factorisé dans
+un objet séparé des instances de <code>PorteCharniere</code> et de <code>PorteCoulissante</code>. Nous
+définissons une classe <code>Verrou</code> contenant la réalisation du verrou et les
+méthodes définies dans l&rsquo;interface <code>Porte</code>. Le code factorisé est appliqué sur
+les instances de <code>PorteCharniere</code> et de <code>PorteCoulissante</code>. La classe <code>Verrou</code>
+possède un lien &ldquo;a-un&rdquo; pour déclencher les méthodes sur ces instances. Cette
+solution nécessite une substitution des instances de <code>PorteCharniere</code> et de
+<code>PorteCoulissante</code> dans le code de la classe <code>Verrou</code>. Nous avons besoin de
+l&rsquo;interface <code>Porte</code> et de la relation de type / sous-type.</p>
+<h2 id="héritage-multiple-et-choix-des-membres-hérités">Héritage multiple et choix des membres hérités</h2>
+<p>Dans le cas de l&rsquo;héritage multiple, la déclaration / signature d&rsquo;une méthode
+abstraite ou la définition d&rsquo;un membre hérité peut provenir de plusieurs classes
+de base directes.</p>
+<p>L&rsquo;héritage multiple de la déclaration / signature d&rsquo;une méthode abstraite ne
+provoque pas de cas ambigu de choix. La déclaration / signature est unique même
+si elle est répétée et un code est à fournir pour cette déclaration.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Allsage</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mrRobot</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Evilcorp</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mrRobot</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Fsociety</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mrRobot</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Elliot</span> <span style="color:#66d9ef">extends</span> Fsociety <span style="color:#66d9ef">implements</span> AllSafe<span style="color:#f92672">,</span> Evilcorp<span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mrRobot</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Par contre l&rsquo;héritage multiple de définition (de code) peut aboutir à une
+ambiguïté dans le choix de la définition à utiliser. Un exemple avec des
+variables de classe constante :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Ulukai</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> MAX <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>999<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Adelpha</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> MAX <span style="color:#f92672">=</span> 666<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Outcast</span> <span style="color:#66d9ef">extends</span> Adelpha<span style="color:#f92672">,</span> Ulukai<span style="color:#f92672">{}</span>
+</code></pre></div><p>L&rsquo;appel <code>Outcast.MAX</code> est ambigu; le compilateur provoque une erreur. Pour
+l&rsquo;éviter dans <code>Outcast</code>, il est nécessaire de définir une autre variable <code>MAX</code>
+qui va masquer les deux autres : <code>public static final MAX = Ulukai.MAX</code>;</p>
+<h3 id="les-interfaces-en-java-8">Les interfaces en Java 8</h3>
+<p>La version 8 du langage Java a modifié la construction <code>interface</code>. Elle peut
+contenir la définition de méthodes de classe et le code par défaut de méthodes
+d&rsquo;instances.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">[</span><span style="color:#66d9ef">public</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">NomInterface</span> <span style="color:#f92672">[</span><span style="color:#66d9ef">extends</span> interface1<span style="color:#f92672">,</span> interface2<span style="color:#f92672">]{</span>
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">public</span> type nom <span style="color:#f92672">=</span> valeur<span style="color:#f92672">;</span>
+    
+    <span style="color:#f92672">[</span><span style="color:#66d9ef">public</span><span style="color:#f92672">]</span> <span style="color:#66d9ef">static</span> type <span style="color:#a6e22e">methodeClasse</span><span style="color:#f92672">([</span>liste paramètre<span style="color:#f92672">]);</span>
+    
+    <span style="color:#66d9ef">default</span> <span style="color:#f92672">[</span><span style="color:#66d9ef">public</span><span style="color:#f92672">]</span> type <span style="color:#a6e22e">methodeInstanceAvecCode</span><span style="color:#f92672">([</span>liste paramètre<span style="color:#f92672">]){</span>
+    
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Le code par défaut de la méthode d&rsquo;instance est uitlisé si la classe réalisant
+cette interface ne redéfinit pas cette méthode.</p>
+<p>Ce mécanisme de code par défaut (&ldquo;défault method&rdquo;) permet d&rsquo;ajouter de nouvelles
+fonctionnalités à une interface sans régression du code binaire des sources
+écrits avant la version précédent de cette interface. Le cas classique
+d&rsquo;héritage multiple d&rsquo;interfaces :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Ulukai</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mClasse</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Classe_Ulukai&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mInstance</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Ulukai&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Adelpha</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mClasse</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Classe_Adelpha&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mInstance</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Adelpha&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Outcast</span> <span style="color:#66d9ef">extends</span> Adelpha<span style="color:#f92672">,</span> Ulukai<span style="color:#f92672">{</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Pour éviter l&rsquo;ambiguïté, une méthode de classe définie dans une interface n&rsquo;est
+pas héritée. Elle est accessible uniquement à travers l&rsquo;interface. Par contre
+pour une méthode d&rsquo;instance, il y a ambiguïté sur le code par défaut à utiliser.
+Le compilateur provoque une erreur.</p>
+<pre><code>error : interface Outcast inherits unrelated defaults for mInstance() from types Adelpha and Ulukai 
+</code></pre><p>Il faut redéfinir le code par défaut dans l&rsquo;interface <code>Outcast</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Outcast</span> <span style="color:#66d9ef">extends</span> Adelpha<span style="color:#f92672">,</span> Ulukai<span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mInstance</span><span style="color:#f92672">(){</span>
+        Adelpha<span style="color:#f92672">.</span><span style="color:#a6e22e">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mInstance</span><span style="color:#f92672">();</span>
+        <span style="color:#75715e">//Ulukai.super.mInstance();
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Comme l&rsquo;objectif est de fournir un code par défaut à une méthode d&rsquo;instance, un
+algorithme de résolution a été ajouté pour éviter les cases les plus fréquents
+d&rsquo;ambiguïté.</p>
+<ul>
+<li>L&rsquo;héritage de classe est prioritaire</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Allsafe</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mrRobot</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Allsafe&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Fsociety</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mrRobot</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Fsociety&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Elliot</span> <span style="color:#66d9ef">extends</span> Fsociety <span style="color:#66d9ef">implements</span> Evilcorp<span style="color:#f92672">{</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><p>C&rsquo;est toujours la définition faite dans la hiérarchie de classes qui est
+choisie.</p>
+<ul>
+<li>Sans définition de la méthode dans la hiérarchie de classes, c&rsquo;est la dernière
+redéfinition dans la hiérarchie d&rsquo;interfaces qui est choisie.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Allsafe</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mrRobot</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Allsafe&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Fsociety</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mrRobot</span><span style="color:#f92672">(){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Fsociety&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Fsociety</span> <span style="color:#66d9ef">implements</span> Evilcorp<span style="color:#f92672">{}</span>
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Elliot</span> <span style="color:#66d9ef">extends</span> Fsociety <span style="color:#66d9ef">implements</span> Allsafe<span style="color:#f92672">{}</span>
+</code></pre></div>
 					</div>
 					<div class="post-comments">
 						
