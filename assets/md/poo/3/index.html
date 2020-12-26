@@ -153,9 +153,10 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<p>Une <code>classe</code> est un moule qui décrit le <strong>quoi</strong> : la spécification des messages
+						<p><strong>Définition</strong> : Une <strong>classe</strong> est un moule qui décrit le <strong>quoi</strong> : la spécification des messages
 qui peuvent être envoyés à l&rsquo;objet. Et le <strong>comment</strong> la manière de réaliser
-cette spécification. Pour instancier une classe, se répartit en trois formes :</p>
+cette spécification.</p>
+<p>Pour instancier une classe, se répartit en trois formes :</p>
 <ol>
 <li><strong>Classe Concrète</strong> : une classe instanciable</li>
 <li><strong>Classe abstraite</strong> : la réalisation est incomplète, au moins une des
@@ -163,7 +164,7 @@ méthodes d&rsquo;instance n&rsquo;a pas de mise en oeuvre (pas corps défini).<
 <li><strong>Classe abstraite pure ou interface</strong> : aucune réalisation n&rsquo;est définie,
 elle contient les déclarations des méthodes d&rsquo;instance.</li>
 </ol>
-<p>Ce chapitre est centrée sur la construction des classes concrètes.</p>
+<p>Ce chapitre est centré sur la construction des classes concrètes.</p>
 <h2 id="classe-java">Classe Java</h2>
 <p>La syntaxe du langage Java différencie la construction d&rsquo;une classe contenant
 une réalisation et d&rsquo;une classe ne contenant pas de réalisation.</p>
@@ -203,14 +204,15 @@ l&rsquo;écriture d&rsquo;un fichier source, il est possible de raccourcir le no
 d&rsquo;une classe à son nom, en utilisant le mot clé <code>import</code>. Au début du fichier
 source, l&rsquo;instruction <code>import matos.onde.DentBleu</code>; permet de désigner la classe
 uniquement par <code>DentBleu</code>. Le compilateur lui attribue son nom complet.</p>
+<h4 id="organisation-physique-des-paquetages">Organisation physique des paquetages</h4>
 <p>L&rsquo;organisation physique des fichiers <code>.class</code> correspond à la hiérarchie de
 paquetage. Le fichier <code>String.class</code> se trouve dans l&rsquo;arborescence de répertoire
 <code>java/lang</code>. Lorsque le compilateur ou la machine virtuelle ont besoin de la
 définition d&rsquo;une classe, ils utilisent son nom complet comme chemin de recherche
 du fichier <code>.class</code>. Par défaut, la recherche s&rsquo;effectue à partir du répertoire
-courant (celui du lancement de la commande). L&rsquo;option <code>-cp</code> et la variable
-d&rsquo;environnement <code>CLASSPATH</code> permettant d&rsquo;indiquer les répertoires à analyser
-pour trouver ce chemin.</p>
+courant (celui du lancement de la commande).</p>
+<p>L&rsquo;option <code>-cp</code> et la variable d&rsquo;environnement <code>CLASSPATH</code> permettant d&rsquo;indiquer
+les répertoires à analyser pour trouver ce chemin.</p>
 <h2 id="classe-concrète">Classe concrète</h2>
 <p>La construction Java <code>class</code> contient trois catégories de membre : les
 variables, les méthodes et les constructeurs.</p>
@@ -218,9 +220,9 @@ variables, les méthodes et les constructeurs.</p>
 <p>Les modificateurs de porte précisent la <em>portée d&rsquo;utilisation</em> d&rsquo;un membre d&rsquo;une
 classe. Ils se placent devant chaque définition :</p>
 <ol>
-<li><code>private</code> : accessible uniquement par la classe</li>
-<li><code>public</code> : accessible partout</li>
-<li>au paquetage : accessible par les classes du même paquetage</li>
+<li><em>private</em> : accessible uniquement par la classe</li>
+<li><em>public</em> : accessible partout</li>
+<li><em>au paquetage</em> (pas de mot clé) : accessible par les classes du même paquetage</li>
 </ol>
 <p>Une classe possède deux portées. Sans mot-clé, sa portée est restreinte à son
 paquetage. Avec le mot-clé <code>public</code>, elle est accessible à l&rsquo;extrieur de son
@@ -242,14 +244,47 @@ paquetage : <code>public class DentBleu</code>.</p>
 </span><span style="color:#75715e"></span>  <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><h3 id="variable-dinstance">Variable d&rsquo;instance</h3>
-<p>C&rsquo;est une variable locale à chaque instance. Sa valeur est stockée dans la zone
-mémoire de l&rsquo;instance. Son initialisation s&rsquo;effectue soit à sa déclaration soit
-dans le code d&rsquo;une constructeur. La machine virtuelle Java initialise
-systématiquement les variables d&rsquo;instance avec une valeur par défaut dépendant
-du type (référence/null, int/0, boolean/false). Le mot-clé <code>final</code> devant la
-définition d&rsquo;une variable correspond à une variable constante. Son initialisation
-est possible dans un constructeur.</p>
-<h3 id="méthode-dinstance">Méthode d&rsquo;instance</h3>
+<ul>
+<li>
+<p>C&rsquo;est une variable locale à chaque instance. Sa valeur est stockée dans la
+zone mémoire de l&rsquo;instance.</p>
+</li>
+<li>
+<p>Son initialisation s&rsquo;effectue soit à sa déclaration soit dans le code d&rsquo;une
+constructeur. La machine virtuelle Java initialise systématiquement les
+variables d&rsquo;instance avec une valeur par défaut dépendant du type
+(référence/null, int/0, boolean/false).</p>
+</li>
+<li>
+<p>Le mot-clé <code>final</code> devant la définition d&rsquo;une variable correspond à une
+variable constante. Son initialisation est possible dans un constructeur.</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Telecommande</span><span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> nbPortes<span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> ProteCharniere<span style="color:#f92672">[]</span> mesPortes<span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> NB_MAX<span style="color:#f92672">;</span>
+  
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Telecommande</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> capacite<span style="color:#f92672">){</span>
+    NB_MAX <span style="color:#f92672">=</span> capacite<span style="color:#f92672">;</span>
+    nbPortes <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> 
+    mesPortes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCharniere<span style="color:#f92672">[</span>NB_MAX<span style="color:#f92672">];</span>
+  <span style="color:#f92672">}</span>
+  
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">positionner</span><span style="color:#f92672">(</span>Portecharniere p<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>NB_MAX <span style="color:#f92672">&lt;=</span> nbPortes<span style="color:#f92672">)</span>
+      <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
+    mesPortes<span style="color:#f92672">[</span>nbPortes<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> p<span style="color:#f92672">;</span>
+    nbPortes<span style="color:#f92672">++;</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">estRempli</span><span style="color:#f92672">(){</span>
+    <span style="color:#66d9ef">return</span> NB_MAX <span style="color:#f92672">&lt;=</span> nbPortes<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">activer</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> numero<span style="color:#f92672">){</span>
+    mesPortes<span style="color:#f92672">[</span>numero<span style="color:#f92672">].</span><span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">();</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="méthode-dinstance">Méthode d&rsquo;instance</h3>
 <p>Une méthode d&rsquo;instance s&rsquo;applique à une instance. Il existe deux catégories de
 méthode :</p>
 <ul>
@@ -267,20 +302,59 @@ message. Il est utilisé dans le code</p>
 <li>Soit pour passer l&rsquo;objet en paramètre d&rsquo;une méthode (ou d&rsquo;un constructeur)</li>
 <li>Soit pour désigner un attribut en cas d&rsquo;ambiguïté</li>
 </ul>
-<h3 id="constructeur">Constructeur</h3>
-<p>Un constructeur n&rsquo;est pas une méthode. Il est uniquement appelé à
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Telecommande</span><span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> nbPortes<span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> Portecharniere<span style="color:#f92672">[]</span> mesPortes<span style="color:#f92672">;</span>
+  
+  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Telecommande</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> nbPortes<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">nbPortes</span> <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> 
+    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mesPortes</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCharniere<span style="color:#f92672">[</span>nbPortes<span style="color:#f92672">];</span>
+  <span style="color:#f92672">}</span>
+  
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">positionner</span><span style="color:#f92672">(</span>PorteCharniere p<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">estRempli</span><span style="color:#f92672">())</span>
+      <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mesPortes</span><span style="color:#f92672">[</span>nbPortes<span style="color:#f92672">]=</span>p<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">nbPortes</span><span style="color:#f92672">++;</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">estRempli</span><span style="color:#f92672">(){</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mesPorteS</span><span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">&lt;=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">nbPortes</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">activer</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> numero<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mesPortes</span><span style="color:#f92672">[</span>nummero<span style="color:#f92672">].</span><span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">();</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">desactiver</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> numero<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mesPortes</span><span style="color:#f92672">[</span>numero<span style="color:#f92672">].</span><span style="color:#a6e22e">fermer</span><span style="color:#f92672">();</span>
+  <span style="color:#f92672">}</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">desactiver</span><span style="color:#f92672">(){</span>
+    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">nbPortes</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span>
+      <span style="color:#66d9ef">if</span><span style="color:#f92672">(!</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">mesPortes</span><span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">estFerme</span><span style="color:#f92672">())</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">desactiver</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">//Donner les références this à conserver ? 
+</span></code></pre></div><p>Exemple d&rsquo;appel avec surcharge résolu à la compilation :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">tele<span style="color:#f92672">.</span><span style="color:#a6e22e">desactiver</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+tele<span style="color:#f92672">.</span><span style="color:#a6e22e">desactiver</span><span style="color:#f92672">();</span>
+</code></pre></div><h3 id="constructeur">Constructeur</h3>
+<ul>
+<li>Un constructeur n&rsquo;est pas une méthode. Il est uniquement appelé à
 <em>l&rsquo;instanciation</em>. Son code assure la bonne initialisation des variables
-d&rsquo;instance. Le constructeur prendre le nom de la classe. Il n&rsquo;a pas de type de
-retour. L&rsquo;instance existe au moment de l&rsquo;appel du constructeur. Le code du
-constructeur peut utiliser les méthodes d&rsquo;instance et la référence <code>this</code>. Si
-une classe ne contient pas de constructeur le compilateur Java ajoute un
+d&rsquo;instance.</li>
+<li>Le constructeur prendre le nom de la classe. Il n&rsquo;a pas de type de
+retour.</li>
+<li>L&rsquo;instance existe au moment de l&rsquo;appel du constructeur. Le code du
+constructeur peut utiliser les méthodes d&rsquo;instance et la référence <code>this</code>.</li>
+<li>Si une classe ne contient pas de constructeur le compilateur Java ajoute un
 constructeur publique sans paramètre avec un corps vide (désigné par le terme
-constructeur par défaut). La surcharge des constructeurs est autorisée. Avec la
-définition de plusieurs constructeurs, il est nécessaire d&rsquo;avoir un mécanisme de
-factorisation du code d&rsquo;initialisation. Un constructeur peut déclencher le code
-d&rsquo;un autre constructeur par l&rsquo;instruction (qui utilise le mécanisme de
-surcharge) : <code>this(par1, par2, par3)</code>. Cette instruction doit être la première
-ligne du constructeur.</p>
+constructeur par défaut).</li>
+<li>La surcharge des constructeurs est autorisée.</li>
+<li>Avec la définition de plusieurs constructeurs, il est nécessaire d&rsquo;avoir un
+mécanisme de factorisation du code d&rsquo;initialisation. Un constructeur peut
+déclencher le code d&rsquo;un autre constructeur par l&rsquo;instruction (qui utilise le
+mécanisme de surcharge) : <code>this(par1, par2, par3)</code>. Cette instruction doit être
+la première ligne du constructeur.</li>
+</ul>
 <h2 id="lien-a-un-entre-classes">Lien &ldquo;a-un&rdquo; entre classes</h2>
 <p>Le lien &ldquo;a-un&rdquo; correspond à la relation d&rsquo;utilisation la plus basique : la
 réalisation d&rsquo;une encapsulation nécessite l&rsquo;appel aux méthodes d&rsquo;une autre
