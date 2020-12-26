@@ -180,8 +180,9 @@ cette classe par exemple : <code>java.lang.System.out, java.lang.Math.abs()</cod
 <h2 id="variable-de-classe">Variable de classe</h2>
 <p>Une variable de classe est partagée par toutes les instances de la classe. Sa
 modification affecte toutes les instances. Une variable de classe existe avant
-toutes instanciation de la classe $static [final] [public | private] type nom$</p>
-<ul>
+toutes instanciation de la classe</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span> <span style="color:#f92672">[</span><span style="color:#66d9ef">final</span><span style="color:#f92672">]</span> <span style="color:#f92672">[</span><span style="color:#66d9ef">public</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">private</span><span style="color:#f92672">]</span> type nom
+</code></pre></div><ul>
 <li>Même si une variable de classe n&rsquo;est pas stockée dans la zone mémoire de
 l&rsquo;objet, elle fait partie de l&rsquo;ensemble des attributs de chaque instance de
 cette classe.</li>
@@ -191,8 +192,22 @@ classe. La machine virtuelle exécute le bloc statique au chargement de la
 classe. Par exemple pour initialisation d&rsquo;une variable de classe qui contient
 un table.</li>
 </ul>
-<h2 id="méthode-de-classe">Méthode de classe</h2>
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Exemple</span><span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">private</span> Porte<span style="color:#f92672">[]</span> portes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Porte<span style="color:#f92672">[</span>10<span style="color:#f92672">];</span>
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span><span style="color:#f92672">[]</span> mesReels <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">double</span><span style="color:#f92672">[</span>20<span style="color:#f92672">];</span>
+  <span style="color:#75715e">//...
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">static</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> mesIndicateurs<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span>
+      portes<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCharniere<span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> mesReels<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span>
+      mesReels<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">random</span><span style="color:#f92672">();</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="méthode-de-classe">Méthode de classe</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span><span style="color:#f92672">[</span><span style="color:#66d9ef">public</span><span style="color:#f92672">|</span><span style="color:#66d9ef">private</span><span style="color:#f92672">]</span> type <span style="color:#a6e22e">méthodedeClasse</span><span style="color:#f92672">([</span>liste de paramètres<span style="color:#f92672">]){</span>
+  <span style="color:#75715e">//code
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><ul>
 <li>Le code d&rsquo;une méthode de classe a accès aux variables de classe et aux
 méthodes de classe définies dans la classe</li>
 <li>Par contre, la référence <code>this</code> n&rsquo;est pas définie (aucune instance n&rsquo;est
@@ -242,7 +257,21 @@ pas de le modifier).</p>
 <p>Dans les classes de test, pour éviter d&rsquo;oublier de compléter la méthode
 <code>lancer()</code>, il suffit par introspection de récupérer à l&rsquo;exécution toutes les
 méthodes dont le nom commence par la sous chaîne test et de les exécuter.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">runTest</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception<span style="color:#f92672">{</span>
+    Class c <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">();</span>
+    java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">reflect</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Method</span><span style="color:#f92672">[]</span> mesMethodes <span style="color:#f92672">=</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">getMethods</span><span style="color:#f92672">();</span>
+    <span style="color:#66d9ef">int</span> nbTest <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> mesMethodes<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++){</span>
+      java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">reflect</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Method</span> m <span style="color:#f92672">=</span> mesMethodes<span style="color:#f92672">[</span>i<span style="color:#f92672">];</span>
+      <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>m<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">().</span><span style="color:#a6e22e">startsWith</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">)){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;.&#34;</span><span style="color:#f92672">);</span>
+        m<span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>
+        nbTest<span style="color:#f92672">++;</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;(&#34;</span> <span style="color:#f92672">+</span> nbTest <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;):OK: &#34;</span><span style="color:#f92672">+</span> getClass<span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
+  <span style="color:#f92672">}</span>
+</code></pre></div>
 					</div>
 					<div class="post-comments">
 						
