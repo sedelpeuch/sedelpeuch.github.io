@@ -153,13 +153,18 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<p>L'<code>encapsulation</code> dans l&rsquo;approche objet consiste à regrouper le code (données et
+						<p><strong>Définition</strong> : L&rsquo;<strong>encapsulation</strong> dans l&rsquo;approche objet consiste à regrouper le code (données et
 traitements) qui fournit un même service dans une seule entité. Une
 encapsulation spécifie le fonctionnement d&rsquo;un service (par un ensemble
 d&rsquo;actions) en masquant la manière de le réaliser.
 Respecter le concept d&rsquo;encapsulation permet de séparer l&rsquo;utilisation d&rsquo;un
 service de sa réalisation et renforcer la manipulation d&rsquo;abstractions dans la
 fabrication d&rsquo;un logiciel.</p>
+<blockquote>
+<p>Respecter le concept d&rsquo;encapsulation permet de séparer l&rsquo;utillisation d&rsquo;un
+service de sa réalisation et renforcer la manipulation d&rsquo;abstractions dans la
+fabrication d&rsquo;un logiciel</p>
+</blockquote>
 <h2 id="objet">Objet</h2>
 <p>L'<code>objet</code> est l&rsquo;entité qui met en oeuvre, à l&rsquo;exécution, une encapsulation.
 Plusieurs objets peuvent mettre en oeuvre la même encapsulation.
@@ -202,7 +207,32 @@ description des encapsulations.</p>
         <span style="color:#66d9ef">return</span> estFerme<span style="color:#f92672">;</span>
     <span style="color:#f92672">}</span>
     <span style="color:#f92672">}</span>
-</code></pre></div>
+</code></pre></div><p>En Java, la définition d&rsquo;une classe correspond à la déclaration d&rsquo;un type. Nous
+pouvons déclarer une variable <code>maPorte</code> du type <code>ProteCharniere</code> qui peut
+contenir à l&rsquo;exécution, un objet de la classe <code>PorteCharniere</code>.</p>
+<ul>
+<li>Définition de la classe <code>Telecommande</code> dans le fichier source
+<code>Telecommande.java</code>.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Telecommande</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">positionner</span><span style="color:#f92672">(</span>PorteCharniere p<span style="color:#f92672">){</span>
+        
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">activer</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> numero<span style="color:#f92672">){</span>
+        
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">desactiver</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> numero<span style="color:#f92672">){</span>
+    
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">desactiverTout</span><span style="color:#f92672">(){</span>
+        
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">int</span> nbPortes<span style="color:#f92672">;</span>
+    PorteCharniere<span style="color:#f92672">[]</span> mesPortes<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Cette description (attributs, méthodes va être applicable aux objets créés à
+partir de la classe <code>Telecommande</code>).</p>
+
 					</div>
 					<div class="post-comments">
 						
