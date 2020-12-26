@@ -240,7 +240,154 @@ partie logicielle est beaucoup plus importante. Enfin il faut que les
 <strong>instructions soient interruptibles</strong>, ce qui n&rsquo;est pas toujours le cas sur
 tous les processeurs et ce qui est fondamental.</p>
 <h3 id="efficacité">Efficacité</h3>
+<p>Efficacité des performances de Demande Paging : Soit ma = 500 nanosecondes, le
+temps moyen d&rsquo;accès a une mémoire. Le temps effectif d&rsquo;accès avec le Demand
+Paging est : temps effectif = (1-p)*ma + p* &ldquo;temps de gestion de l&rsquo;erreur de
+page&rdquo; où p est la probabilité d&rsquo;occurrence d&rsquo;une erreur de page (page fault).
+Une erreur de page nécessite de réaliser les opérations suivantes</p>
+<ol>
+<li>lever une interruption pour le système</li>
+<li>sauvegarder le contexte du processus</li>
+<li>déterminer que l&rsquo;interruption est une erreur de page</li>
+<li>vérifier que la page en question est une page légale de l&rsquo;espace logique,
+déterminer où se trouve la page dans la mémoire secondaire</li>
+<li>exécuter une lecture de la page sur une mémoire libre (libérer éventuellement
+une page cf. algorithme de remplacement de page)
+<ul>
+<li>attendre que le périphérique soit libre</li>
+<li>temps de latence du périphérique</li>
+<li>commencer le transfert</li>
+</ul>
+</li>
+<li>allouer pendant ce temps là le cpu à un autre utilisateur</li>
+<li>interruption du périphérique</li>
+<li>sauvegarde du contexte du processus courant</li>
+<li>déterminer que l&rsquo;interruption était la bonne interruption (venant du
+périphérique)</li>
+<li>mise à jour de la table des pages et d&rsquo;autres pages pour indiquer que la
+page demandée est en mémoire maintenant.</li>
+<li>attendre que le processus soit sélectionné de nouveau pour utiliser l&rsquo;unité
+centrale (cpu)</li>
+<li>charger le contexte du processus</li>
+</ol>
+<p>Toutes ces instructions ne sont pas toujours réalisées (on peut en particulier
+supposer que l&rsquo;on ne peut pas préempter l&rsquo;unité centrale, mais alors quelle
+perte de temps pour l&rsquo;ensemble du système). Dans tous les cas, nous devons au
+moins réaliser les 3 actions suivantes :</p>
+<ul>
+<li>gérer l&rsquo;interruption</li>
+<li>swapper la page demandée</li>
+<li>relance le processus</li>
+</ul>
+<p>Ce qui coûte le plus cher est la recherche de la page sur le disque et son
+transfert en mémoire, ce qui prend de l&rsquo;ordre de 1 à 10 millisecondes.</p>
+<p>Ce qui nous donne en prenant une vitesse d&rsquo;accès mémoire de 1 microseconde et un
+temps de gestion de page de 5 millisecondes un</p>
+<p>temps effectif = (1-p)+p * 5000 microsecondes</p>
+<p>Une erreur de page toutes les mille pages nous donne un temps effectif onze fois
+plus long que l&rsquo;accès standard.</p>
+<p>Il faut réduire à moins d&rsquo;une erreur de page tout les 100 000 accès pour obtenir
+une dégradation inférieur à 10. On comprend bien que les choix  à faire sur des
+pages qu&rsquo;il faut placer en mémoire sont donc très importants.</p>
+<p>Ces choix deviennent encore plus importants quand l&rsquo;on a de nombreux
+utilisateurs et qu&rsquo;il y a sur-allocation de la mémoire, exécution concurrente de
+6 processus de la taille supérieure ou égale à la mémoire physique !</p>
+<p>Si l&rsquo;on suppose de plus que nos 6 programmes utilisent dans une petite séquence
+d&rsquo;instructions toutes les pages de leur mémoire logique, nous nous trouvons
+alors dans une situation de pénurie de pages libres. Le système d&rsquo;exploitation
+peut avoir recours à plusieurs solution dans ce cas-là</p>
+<ol>
+<li>tuer le processus fautif</li>
+<li>utiliser un algorithme de remplacement de page</li>
+</ol>
+<p>Cet algorithme de remplacement est introduit dans notre séquence de gestion
+d&rsquo;erreur de page là où l&rsquo;on s&rsquo;attribuait une page libre de la mémoire centrale.</p>
+<p>Maintenant il nous faut sélectionne une victime, c&rsquo;est à dire, une des pages
+occupées de la mémoire centrale qui sera swappée sur disque et remplacée par la
+page demandée. Remarquons que dans ce cas-là notre temps de transfert est
+doublé, comme i faut à la fois lire une page et sauvegarder une page sur disque
+(le temps de transfert disque est ce qui est le plus coûteux dans la gestion
+d&rsquo;une erreur de page). Il est possible de réaliser des systèmes de <strong>demande
+segments</strong>, mais le lecteur avisé remarquera rapidement les problèmes posés par
+la taille variable des segments.</p>
+<h2 id="allocation-de-pages-aux-processus">Allocation de pages aux processus</h2>
+<p>Comment répartir les pages sur les différents processus et le système ?</p>
+<ul>
+<li>
+<p><strong>remplacement local</strong> le processus se voit affecté un certain nombre de pages
+qu&rsquo;il va utiliser de façon autonome, son temps d&rsquo;exécution ne dépend que de
+son propre comportement</p>
+</li>
+<li>
+<p><strong>remplacement global</strong> le comportement d&rsquo;allocation de pages aux processus
+dépend de la charge du système et du comportement des différents processus.</p>
+<p>Le remplacement local demande que l&rsquo;on réalise un partage entre les différents
+processus.</p>
+</li>
+</ul>
+<p>Le partage &ldquo;équitable&rdquo; : <code>m</code> pages de mémoire physique, <code>n</code> processus, <code>m/n</code>
+pages par processus ! O nretrouve ici un problème proche de la fragmentation
+interne, un grand nombre de pages est donné à un processus qui en utilise
+effectivement peu.</p>
+<p>Si la mémoire est libre et assez grande, les deux processus sont grossièrement
+aussi rapides, par contre si on lance dix exemplaires du premier, le temps
+d&rsquo;attente est juste multiplié par 10. Pour le deuxième, le temps d&rsquo;attente est
+au moins multiplié par 100.</p>
+<h2 id="lappel-fork-et-la-mémoire-virtuelle">L&rsquo;appel fork et la mémoire virtuelle</h2>
+<p>Nous avons vu que la primitive <code>fork()</code> réalise une copie de l&rsquo;image mémoire du
+processus père pour créer le processus fils. Cette copie n&rsquo;est pas intégrale car
+les deux processus peuvent partager des pages marquées en lecture seule, en
+particulier le segment du code est partagé par les deux processus (réentrance
+standard des processus unix).</p>
+<p>Mais avec le système de demand-paging, on peut introduire une nouvelle notion
+qui est la &ldquo;copie sur écriture&rdquo; (copy on write). On ajoute à la structure de
+page de la table des pages des indicateurs de &ldquo;copie sur écriture&rdquo;. L&rsquo;idée est
+de réaliser la copie de la page uniquement dans le cas où l&rsquo;un des processus qui
+peuvent y accéder réaliser une écriture. Dans ce cas-là, la page est recopiée
+avant l&rsquo;écriture et le processus écrivain possède alors sa propre page.
+L&rsquo;intérêt de ce mécanisme est srutout visible dans le cas très fréquent où le
+<code>fork</code> est immédiatement suivi par un <code>exec</code>. En effet ce dernier va réaliser
+une libération de toutes les pages, il est donc inutile de les recopier juste
+avant cette libération.</p>
+<p>Le système BSD a introduit la première version de cette idée en partant de
+l&rsquo;appel système <code>vfork()</code> qui lui permet le partage total de toutes les pages
+entre le processus père et le processus fils sans aucune copie. L&rsquo;intérêt est de
+pouvoir réaliser rapidement un <code>execve</code> sans avoir à recopier l&rsquo;espace
+d&rsquo;adressage du processus père.</p>
+<h2 id="projection-de-fichiers-en-mémoire">Projection de fichiers en mémoire</h2>
+<p>La fonction <code>mmap</code> permet la projection de fichiers en mémoire. LE segment du
+fichier indique est placé en mémoire à partir de l&rsquo;adresse indiquée. Le segment
+de fichier peut aisni être parcouru par des accès par adresse sans utiliser de
+commande de lecture ou d&rsquo;écriture.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/mman.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/types.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">mmap</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>adr, <span style="color:#66d9ef">int</span> len, <span style="color:#66d9ef">int</span> prot, <span style="color:#66d9ef">int</span> options, <span style="color:#66d9ef">int</span> desc, <span style="color:#66d9ef">int</span> offset);
 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">munmap</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>adr, <span style="color:#66d9ef">int</span> len);
+</code></pre></div><p>L&rsquo;adresse <code>adr</code> indique où doit être placé le fichier, cette adresse doit être
+une adresse de début de page (un multiple de <code>sysconf(_SC_PAGE_SIZE)</code>, si le
+paramètre est <code>NULL</code> alors le système sélectionne l&rsquo;adresse de placement qui est
+retournée par la fonction. L&rsquo;intervalle de position <code>[offset, offset+len]</code> du
+fichier <code>desc</code> est placé en mémoire). <code>prot</code> indique les protections d&rsquo;accès
+sous <code>HP-UX</code> les protections suivantes sont disponibles : <code>PROT_NONE, PROT_READ, PROT_READ|PROT_EXECUTE, PROT_READ|PROT_WRITE, PROT_READ|PROT_WRITE|PROT_EXECUTE</code>
+<code>options</code> indique si l&rsquo;on veut que les écritures réalisées dans les pages
+contenant la projection soient partagées (<code>MAP_SHARED</code>), ou au contraire qu&rsquo;une
+copie sur écriture soit réalisée (<code>MAP_PRIVATE</code>). La fonction <code>munmap</code> permet de
+libérer la zone mémoire d&rsquo;adresse <code>adr</code> et de longueur <code>len</code>. Pour une autre
+forme de mémoire partagée.</p>
+<h2 id="les-conseils-et-politiques-de-chargement-des-zonnes-mmapés">Les conseils et politiques de chargement des zonnes mmapés</h2>
+<p>Une fois que l&rsquo;on a décidé de faire des projections en mémoire avec <code>mmap</code> il
+peut être opportun de faire appel à la fonction <code>madvise</code> qui permet de donner
+un conseil au système en le prévenant par avance de la façon dont vous allez
+utiliser le segment de mémoire. En particulier allez vous lire le fichier
+sequentiellement ou de façon aléaatoire. Avez vous encore besoin du fichier
+après lecture etc. Biensur la fonction <code>madvise</code> ne se limite pas aux pages
+mappés mais c&rsquo;est sur celle ci q&rsquo;il est le plus facile de prendre des décisions,
+les autres pages étant gérées dans la pile, le tas et le code dans des zone plus
+délicates et moins bien cartographiées en général (sic).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">
+</code></pre></div>
 					</div>
 					<div class="post-comments">
 						
