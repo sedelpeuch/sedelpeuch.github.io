@@ -153,13 +153,13 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<p>L'<code>objet</code> est l&rsquo;entit de base de l&rsquo;exécution. À chaque objet est attribu une
-zone mémoire différente.
-Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire
-d&rsquo;identifier de manière unique un objet.
-L'<code>identité</code> d&rsquo;un objet est assurée par l&rsquo;adresse de la zone mémoire attribuée à
-cet objet.
-La zone mémoire d&rsquo;un objet contient la valeur de ses attributs (suivant la
+						<p><strong>Définition</strong> : L&rsquo;<strong>objet</strong> est l&rsquo;entit de base de l&rsquo;exécution. À chaque objet est attribu une
+zone mémoire différente.</p>
+<p>Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire
+d&rsquo;identifier de manière unique un objet.</p>
+<p><strong>Définition</strong> : L&rsquo;<strong>identité</strong> d&rsquo;un objet est assurée par l&rsquo;adresse de la zone mémoire attribuée à
+cet objet.</p>
+<p>La zone mémoire d&rsquo;un objet contient la valeur de ses attributs (suivant la
 description de l&rsquo;encapsulation).
 Un objet encapsule les méthodes. En pratique, tous les objets mettant en oeuvre
 la même encapsulation partagent le code des méthodes. Ce code commun est exécuté
@@ -172,17 +172,43 @@ action.</p>
 <li>assurer la séparation utilisation/ réalisation : <strong>masquage d&rsquo;information</strong></li>
 </ul>
 <h2 id="instanciation">Instanciation</h2>
-<p>L'<code>instanciation</code> désigne l&rsquo;opération de créer un objet à partir de la
+<p><strong>Définition</strong> : L&rsquo;<strong>instanciation</strong> désigne l&rsquo;opération de créer un objet à partir de la
 description de l&rsquo;encapsulation. Elle attribue une zone mémoire à l&rsquo;objet et
-initialise ses attributs.
-Dans un langage à classe, un objet est instancié à partir d&rsquo;une classe. Un objet
-est souvent désigné par le terme <code>instance</code>.
-Pour respecter l&rsquo;encapsulation, la classe fournit le code d&rsquo;initialisation par
+initialise ses attributs.</p>
+<p><strong>Définition</strong> : Dans un langage à classe, un objet est instancié à partir d&rsquo;une classe. Un objet
+est souvent désigné par le terme <strong>instance</strong>.</p>
+<p>Pour respecter l&rsquo;encapsulation, la classe fournit le code d&rsquo;initialisation par
 l&rsquo;intermédiaire d&rsquo;un traitement appelé <em>constructeur</em>. Comme une méthode, un
 constructeur admet une liste de paramètres.
 En Java, l&rsquo;instanciation est une expression atomique construire à partir de
 l&rsquo;opérateur <code>new</code> et d&rsquo;un constructeur de la classe.</p>
-<h3 id="affectation-dans-une-variable">Affectation dans une variable</h3>
+<p>Le constructeur dans la classe <code>PorteCharniere</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PorteCharniere</span><span style="color:#f92672">{</span>
+  <span style="color:#75715e">//La définition d&#39;un constructeur
+</span><span style="color:#75715e"></span>  PorteCharniere<span style="color:#f92672">(){</span>
+    estFerme <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+    <span style="color:#75715e">//...
+</span><span style="color:#75715e"></span>  <span style="color:#f92672">}</span>
+  
+  <span style="color:#75715e">//La définition des variables/attributs
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">boolean</span> estFerme<span style="color:#f92672">;</span>
+  
+  <span style="color:#75715e">//La définition des méthodes
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fermer</span><span style="color:#f92672">(){</span>
+    <span style="color:#75715e">//...
+</span><span style="color:#75715e"></span>    estFerme<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+  
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">(){</span>
+    <span style="color:#75715e">//...
+</span><span style="color:#75715e"></span>    estFerme<span style="color:#f92672">=</span><span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+  
+  <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">estFerme</span><span style="color:#f92672">(){</span>
+    rrturn estFerme<span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="affectation-dans-une-variable">Affectation dans une variable</h3>
 <p>Comme habituellement dans le code, les variables / paramètres (de méthode) vont
 permettre de manipuler les objets / instances.
 Dans un langage typé, le compilateur vérifie la compatibilité des types entre le
@@ -200,12 +226,17 @@ maTelecommande <span style="color:#f92672">=</span> sesame<span style="color:#f9
 références. La variable <code>paradis</code> contient l&rsquo;adresse d&rsquo;un objet. La libération
 de la zone mémoire d&rsquo;un objet est prise en charge par le ramasse miettes de la
 machine virtuelle de Java (&ldquo;jvm&rdquo;)</p>
-<p>Les variables des type de base (comme <code>int, float, boolean, byte, char</code>)
+<ul>
+<li>Les variables des type de base (comme <code>int, float, boolean, byte, char</code>)
 contiennent des valeurs. Les comportements entre type de base et type référence
-sont différents dans l&rsquo;affectation et le passage de paramètres. Les chaînes de
-caractères constantes sont des instances de la classe <code>string</code>. Les tableaux
+sont différents dans l&rsquo;affectation et le passage de paramètres.</li>
+<li>Les chaînes de
+caractères constantes sont des instances de la classe <code>String</code>.</li>
+<li>Les tableaux
 Java sont des objets avec des méthodes d&rsquo;accès et possède l&rsquo;attribut de
-longueur.</p>
+longueur.</li>
+</ul>
+<p>Le constructeur dans la classe <code>Telecommande</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Telecommande</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">int</span> nbPortes<span style="color:#f92672">;</span>
     Portecharniere<span style="color:#f92672">[]</span> mesPortes<span style="color:#f92672">;</span>
@@ -236,8 +267,8 @@ respecteront pas le service proposé par l&rsquo;encapsulation. Le cas le plus f
 est une valeur invalide par les paramètres du constructeur. Les actions d&rsquo;une
 instance de télécommande sont elles cohérentes avec le service de
 l&rsquo;encapsulation si la valeur du paramètre d&rsquo;initialisation est égale à zéro ?</p>
-<h2 id="envoie-de-messages">Envoie de messages</h2>
-<p>Un <code>message</code> est formé d&rsquo;un nom et d&rsquo;une liste de valeur de paramètres (cette
+<h2 id="envoi-de-messages">Envoi de messages</h2>
+<p><strong>Définition</strong> : Un <strong>message</strong> est formé d&rsquo;un nom et d&rsquo;une liste de valeur de paramètres (cette
 liste peut être vide). À la réception d&rsquo;un message, l&rsquo;objet fait la
 correspondant entre le message et l&rsquo;action à déclencher.</p>
 <p>La notion d&rsquo;envoi de messages cherche à abstraire la manière dont est choisie
@@ -292,10 +323,8 @@ l&rsquo;attribut risque de changer :</p>
 </li>
 </ul>
 <p>Le choix de définir un attribut est une décision de réalisation.</p>
-<blockquote>
-<p>Afin de respecter l&rsquo;encapsulation, tous les attributs d&rsquo;un objet doivent être
-déclarés privés et seules les méthodes peuvent être déclarées publiques</p>
-</blockquote>
+<p><strong>Définition</strong> : Le principe de masquage des attributs : Afin de respecter l&rsquo;encapsulation, tous les attributs d&rsquo;un objet doivent être
+déclarés privés et seules les méthodes peuvent être déclarées publiques.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Telecommande</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> nbPortes<span style="color:#f92672">;</span>
     <span style="color:#66d9ef">private</span> PorteCharniere<span style="color:#f92672">[]</span> mesPortes<span style="color:#f92672">;</span>
@@ -344,37 +373,38 @@ moins au moment de l&rsquo;exécution de l&rsquo;envoi du message. La solution d
 stocker cette référence dans les attributs de l&rsquo;objet <code>t</code>; l&rsquo;objet <code>t</code> &ldquo;a un&rdquo;
 objet <code>r</code>. La classe <code>Petit</code> doit déclarer un attribut / une variable d&rsquo;instance
 de type <code>Coeur</code>.</p>
-<p>Le lien <code>&quot;a-un&quot;</code> entre deux classes. Une classe <code>P</code> possède un lien &ldquo;a un&rdquo; avec
+<p><strong>Définition</strong> : Le lien <code>&quot;a-un&quot;</code> entre deux classes. Une classe <code>P</code> possède un lien &ldquo;a un&rdquo; avec
 une classe <code>R</code> si elle définit un attribut de type <code>R</code>. Une instance de <code>P</code>
 possède dans ses attributs une instance de <code>R</code>.</p>
 <p>Le lien &ldquo;a-un&rdquo; ne fixe pas la manière d&rsquo;obtenir la référence stockée dans
 l&rsquo;attribut : instanciation de la classe Coeur dans le constructeur de la classe
 <code>Petit</code> ou passage de la référence comme paramètre d&rsquo;un constructeur ou d&rsquo;une
 méthode de la classe <code>Petit</code>.</p>
+<p>Le lien &ldquo;a-un&rdquo; dans la classe <code>Telecommande</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Telecommande</span><span style="color:#f92672">{</span>
   <span style="color:#66d9ef">int</span> nbPortes <span style="color:#f92672">;</span>
-  PorteCharniere <span style="color:#f92672">[</span> <span style="color:#f92672">]</span> mesPortes <span style="color:#f92672">;</span>
-  Telecommande <span style="color:#f92672">(</span> <span style="color:#66d9ef">int</span> capac ite <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    nbPortes <span style="color:#f92672">=</span> 0 <span style="color:#f92672">;</span>
-    mesPortes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCharniere <span style="color:#f92672">[</span> capac ite <span style="color:#f92672">]</span> <span style="color:#f92672">;</span>
+  PorteCharniere<span style="color:#f92672">[]</span> mesPortes <span style="color:#f92672">;</span>
+  Telecommande<span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> capacite<span style="color:#f92672">){</span>
+    nbPortes <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+    mesPortes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCharniere<span style="color:#f92672">[</span>capacite<span style="color:#f92672">];</span>
   <span style="color:#f92672">}</span>
 
-  <span style="color:#66d9ef">void</span> pos it <span style="color:#a6e22e">ionner</span> <span style="color:#f92672">(</span> PorteCharniere p <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    i <span style="color:#a6e22e">f</span> <span style="color:#f92672">(</span> nbPortes <span style="color:#f92672">&gt;=</span> mesPortes <span style="color:#f92672">.</span> length <span style="color:#f92672">)</span>
-      <span style="color:#66d9ef">return</span> <span style="color:#f92672">;</span> <span style="color:#75715e">/* Todo erreur de depassement */</span>
-    mesPortes <span style="color:#f92672">[</span> nbPortes <span style="color:#f92672">]</span> <span style="color:#f92672">=</span> p <span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">positionner</span><span style="color:#f92672">(</span>PorteCharniere p<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>nbPortes <span style="color:#f92672">&gt;=</span> mesPortes<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">)</span>
+      <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span> <span style="color:#75715e">/* Todo erreur de depassement */</span>
+    mesPortes<span style="color:#f92672">[</span>nbPortes<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> p <span style="color:#f92672">;</span>
     nbPortes <span style="color:#f92672">++;</span>
   <span style="color:#f92672">}</span>
-  <span style="color:#66d9ef">void</span> a c t i v e <span style="color:#a6e22e">r</span> <span style="color:#f92672">(</span> <span style="color:#66d9ef">int</span> numero <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    mesPortes <span style="color:#f92672">[</span>numero <span style="color:#f92672">]</span> <span style="color:#f92672">.</span> ouvr <span style="color:#a6e22e">ir</span> <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">activer</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> numero<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    mesPortes<span style="color:#f92672">[</span>numero<span style="color:#f92672">].</span><span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">();</span>
   <span style="color:#f92672">}</span>
-  <span style="color:#66d9ef">void</span> desac t <span style="color:#a6e22e">iver</span> <span style="color:#f92672">(</span> <span style="color:#66d9ef">int</span> numero <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    mesPortes <span style="color:#f92672">[</span>numero <span style="color:#f92672">]</span> <span style="color:#f92672">.</span> fermer <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">desactiver</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> numero<span style="color:#f92672">){</span>
+    mesPortes<span style="color:#f92672">[</span>numero<span style="color:#f92672">].</span><span style="color:#a6e22e">fermer</span><span style="color:#f92672">();</span>
   <span style="color:#f92672">}</span>
-  <span style="color:#66d9ef">void</span> desact <span style="color:#a6e22e">iverTout</span> <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span> <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0 <span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> nbPortes <span style="color:#f92672">;</span> i <span style="color:#f92672">++</span> <span style="color:#f92672">)</span>
-      i <span style="color:#a6e22e">f</span> <span style="color:#f92672">(</span> <span style="color:#f92672">!</span> mesPortes <span style="color:#f92672">[</span> i <span style="color:#f92672">]</span> <span style="color:#f92672">.</span> estFerme <span style="color:#f92672">)</span>
-        mesPortes <span style="color:#f92672">[</span> i <span style="color:#f92672">]</span> <span style="color:#f92672">.</span> fermer <span style="color:#f92672">(</span> <span style="color:#f92672">)</span> <span style="color:#f92672">;</span>
+  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">desactiverTout</span><span style="color:#f92672">(){</span>
+    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0 <span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> nbPortes <span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span>
+      <span style="color:#66d9ef">if</span><span style="color:#f92672">(!</span>mesPortes<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">estFerme</span><span style="color:#f92672">)</span>
+        mesPortes<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">fermer</span><span style="color:#f92672">();</span>
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><h3 id="des-traitements-applicables-à-toutes-les-encapsulations">Des traitements applicables à toutes les encapsulations</h3>
@@ -396,7 +426,12 @@ l&rsquo;égalité de référence.</p>
 chaîne de caractère qui va permettre de tracer, par exemple, la valeur des
 attributs d&rsquo;un objet. Son code par défaut retourne une chaîne correspondant à
 l&rsquo;identité de l&rsquo;objet.</p>
-
+<p>Voici une manière d&rsquo;écrire son code dans la classe <code>Telcommande</code> pour tracer la
+valeur de deux attributs</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">(){</span>
+  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&lt;nbPorte:&#34;</span> <span style="color:#f92672">+</span> nbPortes <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, capacite :&#34;</span> <span style="color:#f92672">+</span> mesPortes<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&gt;&#39;</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div>
 					</div>
 					<div class="post-comments">
 						

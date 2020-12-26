@@ -483,7 +483,8 @@ Un ordinateur quantique n&amp;rsquo;est pas simplement un ordinateur plus rapide
       <pubDate>Wed, 09 Sep 2020 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/poo/2/</guid>
-      <description>L&#39;objet est l&amp;rsquo;entit de base de l&amp;rsquo;exécution. À chaque objet est attribu une zone mémoire différente. Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire d&amp;rsquo;identifier de manière unique un objet.</description>
+      <description>Définition : L&amp;rsquo;objet est l&amp;rsquo;entit de base de l&amp;rsquo;exécution. À chaque objet est attribu une zone mémoire différente.
+Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire d&amp;rsquo;identifier de manière unique un objet.</description>
     </item>
     
     <item>
