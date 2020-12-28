@@ -386,8 +386,26 @@ après lecture etc. Biensur la fonction <code>madvise</code> ne se limite pas au
 mappés mais c&rsquo;est sur celle ci q&rsquo;il est le plus facile de prendre des décisions,
 les autres pages étant gérées dans la pile, le tas et le code dans des zone plus
 délicates et moins bien cartographiées en général (sic).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">
-</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/mman.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">madvise</span>(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>start, size_t length, <span style="color:#66d9ef">int</span> advise<span style="color:#f92672">*</span>);
+</code></pre></div><p>La valeur du conseil <code>advice</code> :</p>
+<ul>
+<li>MADV_NORMAL : Comportement par défaut</li>
+<li>MADV_RANDOM : prévoit des accès aux pages dans un ordre aléatoire</li>
+<li>MADV_SEQUENTIAL : prévoit des accès aux pages dans un ordre séquentiel</li>
+<li>MADV_WILINEED : prévoit un accès dans un futur proche</li>
+<li>MADV_DONTNEED : ne prévoit pas d&rsquo;accès dans un futur proche</li>
+</ul>
+<p>Biensur ce ne sont que des conseils le système les utilisera si il en a la
+possibilité, soit parce qu&rsquo;il a du temps idle soit parce qu&rsquo;il profitera des
+lectures groupées sur disque en réalisant des lectures en avance dans le cas
+séquentiel. Il peut aussi profiter de l&rsquo;indication <code>DONTNEED</code> pour prendre des
+décisions dans le code de remplacement de page.</p>
+<h2 id="chargement-dynamique">Chargement dynamique</h2>
+<p>Indépendemment de l&rsquo;existence de la mémoire virtuelle il est possible de gérer
+&ldquo;à la main&rdquo; le code accessible en utilisant le chargement direct (non
+automatique) de librairies.</p>
+
 					</div>
 					<div class="post-comments">
 						

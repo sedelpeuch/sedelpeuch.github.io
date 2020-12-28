@@ -58,6 +58,15 @@
     </item>
     
     <item>
+      <title>Tubes et tubes nommés</title>
+      <link>https://Sdelpeuch.github.io/assets/md/prog_sys/9/</link>
+      <pubDate>Sun, 22 Nov 2020 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/prog_sys/9/</guid>
+      <description>Les tubes sont un mécanisme de communication qui permet de réaliser des communications entre processus osus forme d&amp;rsquo;un flot continu d&amp;rsquo;octets. Les tubes sont un des éléments de l&amp;rsquo;agrément d&amp;rsquo;utilisation d&amp;rsquo;UNIX.</description>
+    </item>
+    
+    <item>
       <title>La mémoire virtuelle</title>
       <link>https://Sdelpeuch.github.io/assets/md/prog_sys/8/</link>
       <pubDate>Fri, 20 Nov 2020 11:07:10 +0600</pubDate>
@@ -139,7 +148,7 @@
       <guid>https://Sdelpeuch.github.io/semestre7/prog_sys/</guid>
       <description>Le Support de cours et le Support de TD
 Les notes personnelles de TD
-   Notes personnelles - cours     Introduction   Système de Gestion de Fichiers   Le Buffer Cache   La bibliothèque standard   Appels système du Système de Gestion de Fichier   Les processus   La mémoire   La mémoire Virtuelle   [Tubes et Tubes Nommés]   Signaux   Les verrous de fichiers   Algorithmes Distribués &amp;amp; Interblocages   Multiplexer des entrées-sorties   Les Threads POSIX   [Concurrence]    </description>
+   Notes personnelles - cours     Introduction   Système de Gestion de Fichiers   Le Buffer Cache   La bibliothèque standard   Appels système du Système de Gestion de Fichier   Les processus   La mémoire   La mémoire Virtuelle   Tubes et Tubes Nommés   Signaux   Les verrous de fichiers   Algorithmes Distribués &amp;amp; Interblocages   Multiplexer des entrées-sorties   Les Threads POSIX    </description>
     </item>
     
   </channel>
