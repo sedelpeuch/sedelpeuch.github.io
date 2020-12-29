@@ -203,7 +203,24 @@ Si le tube n&rsquo;est pas vide et contient taille caractères :</p>
 Si lecture non bloquante alors en fonction de l'indicateur
     O_NONBLOCK nb_lu = -1 et errno=EAGAIN
     O_NDELAY nb_lu = 0
-</code></pre>
+</code></pre><h2 id="écriture-dans-un-tube">Écriture dans un tube</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">nb_ecrit <span style="color:#f92672">=</span> write(p[<span style="color:#ae81ff">1</span>],buf,n);
+</code></pre></div><p>L&rsquo;écriture est atomique si le nombre de caractères à écrire est inférieur à
+<code>PIPE_BUF</code>, la taille du tube du sur le système.</p>
+<h2 id="interblocage-avec-des-tubes">Interblocage avec des tubes</h2>
+<p>Un même processus a deux accès à un tube, un accès en lecture, un accès en
+écriture et essai de lire sur le tube vide en mode non bloquante, le processus
+est bloqué indéfiniment dans la primitive <code>read</code>. Avec deux processus : deux
+tubes entre les deux processus, tous les deux bloqués en lecture ou tous les
+deux bloqués en écriture, tous les deux en attente d&rsquo;une action de l&rsquo;autre
+processus.</p>
+<h2 id="les-tubes-nommés">Les tubes nommés</h2>
+<p>Les tubes nommés sont des tubes qui existent dans le système de fichier et
+peuvent être ouverts grâce à une référence. Il faut préalablement créer le tube
+nommé dans le système de fichiers, grâce à la primitive <code>mknob</code>, avant de
+pouvoir l&rsquo;ouvrir avec la primitive <code>open</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">mknob</span>(reference, mode <span style="color:#f92672">|</span> S_IFIFO,O);
+</code></pre></div>
 					</div>
 					<div class="post-comments">
 						
