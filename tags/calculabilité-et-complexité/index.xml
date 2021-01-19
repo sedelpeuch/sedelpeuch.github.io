@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 18 Jan 2021 12:07:10 +0600</lastBuildDate>
+    <lastBuildDate>Tue, 19 Jan 2021 12:07:10 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/tags/calculabilit%C3%A9-et-complexit%C3%A9/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Robustesse du modèle de calcul par Machines de Turing</title>
+      <link>https://Sdelpeuch.github.io/assets/md/complex/3/</link>
+      <pubDate>Tue, 19 Jan 2021 12:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/complex/3/</guid>
+      <description>Definition des MTs : des choix arbitraires  Nombre de rubans : 1,2,&amp;hellip;,k Choix de l&amp;rsquo;alphabet : {0,1}, {a,b,c,&amp;hellip;,z}, etc Rubans infinis dans une direction ou deux directions  Influence de la taille de l&amp;rsquo;alphabet Soit $f:{0,1}^\star \rightarrow {0,1}^\star$ et $T:\mathbb{N} \rightarrow \mathbb{N}$</description>
+    </item>
     
     <item>
       <title>Machines de Turing</title>

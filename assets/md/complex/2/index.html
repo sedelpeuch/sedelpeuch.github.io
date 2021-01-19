@@ -200,6 +200,43 @@
 <li>$Q$ est un ensemble fini d&rsquo;états. On supposera que $Q$ contient un état initial $q_{\text{start}}$ et un état terminal $q_{\text{halt}},</li>
 <li>$\delta$ est une fonction $\delta : Q \times \Sigma^k \rightarrow Q \times \Sigma^{k-1} \times {L,R,S}^k$ qui décrit les actions effectuées par M.</li>
 </ul>
+<p>Soit $M=(\Sigma, Q, \delta)$ une MT à $k$ rubans <strong>état initial</strong> pour l&rsquo;entrée
+$x=x_1,&hellip;,x_n$</p>
+<center>
+<img src="/assets/images/complex/1.png" width="50%"></img>
+</center>
+<p>Faisons une transition en supposant que $\delta(q,(\sigma_1,&hellip;,\sigma_k)) =
+(q&rsquo;, (\sigma&rsquo;_2,&hellip;,\sigma&rsquo;_k),(d_1,&hellip;,d_k))$ avec $d_i \in {L,R,S}, 1 \leq i
+\leq k$</p>
+<center>
+<img src="/assets/images/complex/2.png" width="50%"></img>
+</center>
+<center>
+<img src="/assets/images/complex/3.png" width="50%"></img>
+</center>
+<h2 id="un-peu-de-vocabulaire">Un peu de vocabulaire</h2>
+<p>Soit $L$ un langage et $M$ une Machine de Turing. On dit que M <strong>accepte</strong> L si
+et seulement si $\forall w \in L, M(w) = q_{yes}, \forall w
+\notin L, M(w) \neq q_{yes}$ (pour tout mot d&rsquo;entrée $w \in L$, M s&rsquo;arrête dans
+l&rsquo;état $q_{yes}$ et pour tout mot d&rsquo;entrée $w \notin L$, M ne s&rsquo;arrête pas ou
+s&rsquo;arrête et dans ce cas son état final est différent de $q_{yes}$)</p>
+<p>M <strong>décide</strong> L si et seulement si $\forall w \in L, M(w) = q_{yes}, \forall w
+\notin L, M(w) = q_{no}$ (pour tout mot d&rsquo;entrée $w$, $M$ s&rsquo;arrête. Son état
+final est $q_{yes}$ si $w \in L$ et $q_{no} si $w \notin L$).</p>
+<p>Un langage $L$ est dit <strong>reconnaissable</strong> ou <strong>récursivement énumérable</strong> si il
+existe une MT qui accepte L. Il est <strong>décidable</strong> ou <strong>récursif</strong> si il existe
+une MT qui décide L.</p>
+<h2 id="calcul-dune-fonction--complexité-en-temps">Calcul d&rsquo;une fonction / Complexité en temps</h2>
+<p>Temps de calcul d&rsquo;une fonction $f : {0,1}^\star \rightarrow {0,1}$ exprimée
+en fonction de la taille de l&rsquo;entrée. Soit $f : {0,1}^\star \rightarrow
+{0,1}$ et $T : \mathbb{N} \rightarrow \mathbb{N}$ deux fonctions, et M une
+MT :</p>
+<ul>
+<li>M <strong>calcule</strong> f si et seulement si $\forall x \in {0,1}^\star$, M s&rsquo;arrête
+sur l&rsquo;entrée x et avec f(x) sur son ruban de sortie.</li>
+<li>M <strong>calcule f en temps T(n)</strong> si et seulement si M calcule f et $\forall x \in
+{0,1}^\star$, M sur l&rsquo;entrée $x$ s&rsquo;arrête après au plus $T(|X|)$ transitions.</li>
+</ul>
 <p></script></p>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
@@ -207,8 +244,8 @@
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[','\]']],
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
     processEscapes: true,
     processEnvironments: true,
     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
@@ -227,8 +264,7 @@ MathJax.Hub.Config({
         all[i].SourceElement().parentNode.className += ' has-jax';
     }
 });
-</script><blockquote>
-</blockquote>
+</script>
 
 					</div>
 					<div class="post-comments">
@@ -270,6 +306,14 @@ MathJax.Hub.Config({
     
     <div class="media">
       <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/3/">Robustesse du modèle de calcul par Machines de Turing</a></h4>
+        <h5>[Calculabilité et complexité]</h5>
+        <p>Definition des MTs : des choix arbitraires  Nombre …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/2/">Machines de Turing</a></h4>
         <h5>[Calculabilité et complexité]</h5>
         <p>Ruban, tête de lecture, registre  Ruban : infini, …</p>
@@ -303,14 +347,6 @@ MathJax.Hub.Config({
     <div class="media">
       <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre8/robotique/">Initiation à la robotique Page d&#39;accueil</a></h4>
-        <h5></h5>
-        <p></p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre8/ia/">Intelligence Artificielle Page d&#39;accueil</a></h4>
         <h5></h5>
         <p></p>
       </div>
