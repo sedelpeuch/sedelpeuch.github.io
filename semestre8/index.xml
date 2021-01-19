@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Semestre8s on Semestre 8</title>
+    <link>https://Sdelpeuch.github.io/semestre8/</link>
+    <description>Recent content in Semestre8s on Semestre 8</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 18 Jan 2021 11:07:10 +0600</lastBuildDate>
+    
+	<atom:link href="https://Sdelpeuch.github.io/semestre8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Applications TCP-IP Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre8/apptcp-ip/</link>
+      <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre8/apptcp-ip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Calculabilité et complexité Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre8/complex/</link>
+      <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre8/complex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cryptologie Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre8/crypto/</link>
+      <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre8/crypto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Initiation à la robotique Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre8/robotique/</link>
+      <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre8/robotique/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Intelligence Artificielle Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre8/ia/</link>
+      <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre8/ia/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Maker Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre8/maker/</link>
+      <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre8/maker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Système d&#39;exploitation Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre8/se/</link>
+      <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre8/se/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Théorie des jeux pour la modélisation informatique Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre8/jeux/</link>
+      <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre8/jeux/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
