@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Calculabilité et complexité on Semestre 8</title>
+    <link>https://Sdelpeuch.github.io/tags/calculabilit%C3%A9-et-complexit%C3%A9/</link>
+    <description>Recent content in Calculabilité et complexité on Semestre 8</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 18 Jan 2021 12:07:10 +0600</lastBuildDate>
+    
+	<atom:link href="https://Sdelpeuch.github.io/tags/calculabilit%C3%A9-et-complexit%C3%A9/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Machines de Turing</title>
+      <link>https://Sdelpeuch.github.io/assets/md/complex/2/</link>
+      <pubDate>Mon, 18 Jan 2021 12:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/complex/2/</guid>
+      <description>Ruban, tête de lecture, registre  Ruban : infini, divisé en cases. Chaque case contient un symbole $s \in \Sigma \cup {\square, \triangleright }$ où $\Sigma$ est un alphabet fini, $\triangleright$ le marqueur de début de ruban et $\square$ (&amp;ldquo;blanc&amp;rdquo;) un symbole par défaut.</description>
+    </item>
+    
+    <item>
+      <title>Langages, problèmes et fonctions</title>
+      <link>https://Sdelpeuch.github.io/assets/md/complex/1/</link>
+      <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/complex/1/</guid>
+      <description>Quelques rappels Un alphabet A est un ensemble fini de symbole. Un mot sur l&amp;rsquo;alphabet A est une suite finie de symboles de A. On note $\epsilon$ le mot vide. La taille d&amp;rsquo;un mot m, noté $| m |$ est le nombre de symboles qui le composent.</description>
+    </item>
+    
+  </channel>
+</rss>
