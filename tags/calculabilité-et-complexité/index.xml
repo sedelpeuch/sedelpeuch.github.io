@@ -7,13 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 19 Jan 2021 12:07:10 +0600</lastBuildDate>
+    <lastBuildDate>Tue, 26 Jan 2021 11:00:00 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/tags/calculabilit%C3%A9-et-complexit%C3%A9/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Robustesse du modèle de calcul par Machines de Turing</title>
+      <title>Indécidabilité</title>
+      <link>https://Sdelpeuch.github.io/assets/md/complex/4/</link>
+      <pubDate>Tue, 26 Jan 2021 11:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/complex/4/</guid>
+      <description>Arrêt des machines de Turing Soit $\text{HALT} : {0,1}^\star \rightarrow {0,1}$ la fonction qui
+ prendre en entrée un couple $(\alpha, x)$ retourne 1 si et seulement si la MT, $M_\alpha$ s&amp;rsquo;arrête sur l&amp;rsquo;entrée $x$.</description>
+    </item>
+    
+    <item>
+      <title>Robustesse du modèle de calcul par Machines de Turing, Machine de Turing universelle</title>
       <link>https://Sdelpeuch.github.io/assets/md/complex/3/</link>
       <pubDate>Tue, 19 Jan 2021 12:07:10 +0600</pubDate>
       

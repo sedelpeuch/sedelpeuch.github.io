@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SE on Semestre 8</title>
+    <link>https://Sdelpeuch.github.io/tags/se/</link>
+    <description>Recent content in SE on Semestre 8</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 18 Jan 2021 11:07:10 +0600</lastBuildDate>
+    
+	<atom:link href="https://Sdelpeuch.github.io/tags/se/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Système d&#39;exploitation Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre8/se/</link>
+      <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre8/se/</guid>
+      <description>Ressources de cours Slides de cours complet
+   Slides du cours Notes de cours     Introduction et Concepts Généraux 1   Processus et Exécution 2    Ressources de TD    Sujets de TD Notes de TD     TD1 - Ordonnancement des processus TD1   TD2 - Sommeil et réveil des processus TD2   TD3 - Mémoire virtuelle TD3    </description>
+    </item>
+    
+    <item>
+      <title>Processus et exécution</title>
+      <link>https://Sdelpeuch.github.io/assets/md/se/2/</link>
+      <pubDate>Mon, 18 Jan 2021 11:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/se/2/</guid>
+      <description>Description des processus Les processus permettent à toutes les applications de progresser simultanément, les processeurs physiques les exécutent en alternance et chaque application a l&amp;rsquo;illusion d&amp;rsquo;être seule sur la machine. Les processus ont pour objectif de partager les ressources disponibles entre de multiples applications pour utiliser les ressources efficacement.</description>
+    </item>
+    
+    <item>
+      <title>Introduction et Concepts Généraux</title>
+      <link>https://Sdelpeuch.github.io/assets/md/se/1/</link>
+      <pubDate>Mon, 18 Jan 2021 09:30:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/se/1/</guid>
+      <description>Les principaux concepts L&amp;rsquo;objectif des systèmes d&amp;rsquo;exploitation est de rendre le système plus facile à utiliser en utilisant l&amp;rsquo;abstraction des périphériques. D&amp;rsquo;améliorer l&amp;rsquo;efficacité du système en fournissant des ressources efficacement. Il possède une facilité d&amp;rsquo;évolution, protège les différents programmes et assure la sécurité vis-à-vis des autres utilisateurs.</description>
+    </item>
+    
+  </channel>
+</rss>

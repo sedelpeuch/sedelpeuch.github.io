@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Application TCP-IP on Semestre 8</title>
+    <link>https://Sdelpeuch.github.io/tags/application-tcp-ip/</link>
+    <description>Recent content in Application TCP-IP on Semestre 8</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Fri, 22 Jan 2021 08:00:00 +0600</lastBuildDate>
+    
+	<atom:link href="https://Sdelpeuch.github.io/tags/application-tcp-ip/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Introduction aux couches hautes</title>
+      <link>https://Sdelpeuch.github.io/assets/md/apptcp/1/</link>
+      <pubDate>Fri, 22 Jan 2021 08:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/apptcp/1/</guid>
+      <description>Rappel du modèle OSI et TCP/IP
+   Couche session La couche session est la première couche ne so&amp;rsquo;ccupant pas de la communication entre entités. Son objectif est l&amp;rsquo;organisation du dialogue entre les entités</description>
+    </item>
+    
+  </channel>
+</rss>

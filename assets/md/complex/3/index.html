@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>Robustesse du modèle de calcul par Machines de Turing</title>
+  <title>Robustesse du modèle de calcul par Machines de Turing, Machine de Turing universelle</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -144,7 +144,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>Robustesse du modèle de calcul par Machines de Turing</h1>
+          <h1>Robustesse du modèle de calcul par Machines de Turing, Machine de Turing universelle</h1>
           <p></p>
         </div>
       </div>
@@ -158,7 +158,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">Robustesse du modèle de calcul par Machines de Turing</h2>
+					<h2 class="post-title">Robustesse du modèle de calcul par Machines de Turing, Machine de Turing universelle</h2>
 					<div class="post-meta">
 						<ul>
               <li><i class="ion-calendar"></i> January 19, 2021</li>
@@ -237,6 +237,62 @@ les cases pointées par les têtes de lecture de M</li>
 chacune de ces bandes, cela implique une simulation d&rsquo;une transitions de $M$
 en au plus $cT(n)$ transitions de $M'$</li>
 </ul>
+<h3 id="mt-à-rubans-bidirectionnels">MT à rubans bidirectionnels</h3>
+<p>Une machine est dites à rubans bidirectionnels si ses rubans sont infinis dans
+les deux directions. Soit $f : {0,1}^\star \rightarrow {0,1}^\star$ et $T:
+\mathbb{N} \rightarrow \mathbb{N}$</p>
+<p><strong>Lemme</strong> Si $f$ est calculable par une MT $M$ utilisant des rubans
+bidirectionnels en temps $T(n)$, alors $f$ est calculable par une MT standard (à
+rubans unidirectionnels) en temps $4T(n)$.</p>
+<h4 id="démonstration-2">Démonstration</h4>
+<p>Le but est de simuler une machine $M$ à rubans bidirectionnels par une machine à
+rubans standards</p>
+<center>
+<img src="/assets/images/complex/6.png" width="50%"></img>
+</center>
+<h2 id="codage-des-mt">Codage des MT</h2>
+<p>Rappel : une machine de turing $M$ à $k$ rubans est défini par :</p>
+<ul>
+<li>un alphabet $\Sigma$</li>
+<li>un ensemble d&rsquo;états $Q$</li>
+<li>une fonction $\delta : Q \times \Sigma^k \rightarrow Q \times \Sigma^{k-1}
+\times {L,R,S}^k$ complètement décrite par une table finie</li>
+</ul>
+<p>Toute machine de Turing peut donc être encodée par un mot de ${0,1}^\star$. Il
+est donc possible de définir une MT dont les entrées sont des MT.</p>
+<p>Dans la suite, on supposera l&rsquo;existence d&rsquo;un codage des MT par des mots de
+${0,1}^\star$ tel que :</p>
+<ol>
+<li>Tout mot de ${0,1}^\star$ représente une MT</li>
+<li>Toute machine de Turing $M$ est codée par une infinité de mots de
+${0,1}^\star$. Par exemple, spécifier que le code termine par un nombre
+arbitraire de 1 qui sont ignorés.</li>
+</ol>
+<p>La notation choisies sera donc</p>
+<ul>
+<li>Soit $\alpha \in {0,1}^\star M_\alpha$ dénote la MT codée par $\alpha$</li>
+<li>Soit $M$ une MT, $\underline{M}$ dénote sa représentation par un mot de
+${0,1}^\star$.</li>
+</ul>
+<h2 id="machine-de-turing-universelle">Machine de Turing universelle</h2>
+<p><strong>Théorème</strong> : Il existe une machine de turing $\mathcal{U}$ tel que</p>
+<ul>
+<li>$\forall x, \alpha \in {0,1}^\star, \mathcal{U}(x,a) = M_\alpha(x)$ (où
+$M_\alpha$ dénote la MT codée par le mot $\alpha$)</li>
+<li>De plus, si $M_\alpha$ s&rsquo;arrête sur l&rsquo;entrée $x$ après $T$ transitions, alors
+$\mathcal{U}(x,\alpha)$ s&rsquo;arrête après au plus $cT^2$ transitions, où $c$
+dépend uniquement de la taille de l&rsquo;alphabet, du nombre de bandes et du nombre
+d&rsquo;état de $M_\alpha$.</li>
+</ul>
+<p>Il existe une version plus efficace ou $cT^2$ est remplacé par $cT log T$.</p>
+<h2 id="thèse-de-church-turing">Thèse de Church-Turing</h2>
+<p>Les procédures de calcul effectives sont exactement celles exprimables par
+machine de Turing puis tous les formalismes connus ont le même pouvoir
+d&rsquo;expression.</p>
+<h3 id="thèse-de-church-turing-forte">Thèse de Church-Turing forte</h3>
+<p>Toute procédure de calcul effective est simulable par MT avec un surcoût
+polunomial (c&rsquo;est à dire pas de calcul modèle sont simulées par $t^c$
+transitions de la MT, $c$ étant une constante dépendant uniquement du modèle)</p>
 <p></script></p>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
@@ -303,12 +359,31 @@ MathJax.Hub.Config({
 
 
 
+
+
 <div class="widget widget-latest-post">
     <h4 class="widget-title">Derniers cours</h4>
     
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/3/">Robustesse du modèle de calcul par Machines de Turing</a></h4>
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/4/">Indécidabilité</a></h4>
+        <h5>[Calculabilité et complexité]</h5>
+        <p>Arrêt des machines de Turing Soit $\text{HALT} : …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/apptcp/1/">Introduction aux couches hautes</a></h4>
+        <h5>[Application TCP-IP]</h5>
+        <p>Rappel du modèle OSI et TCP/IP
+   Couche session …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/3/">Robustesse du modèle de calcul par Machines de Turing, Machine de Turing universelle</a></h4>
         <h5>[Calculabilité et complexité]</h5>
         <p>Definition des MTs : des choix arbitraires  Nombre …</p>
       </div>
@@ -326,7 +401,7 @@ MathJax.Hub.Config({
       <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre8/apptcp-ip/">Applications TCP-IP Page d&#39;accueil</a></h4>
         <h5></h5>
-        <p></p>
+        <p>Ressources pédagogiques Slides de cours …</p>
       </div>
     </div>
     
@@ -335,22 +410,6 @@ MathJax.Hub.Config({
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre8/complex/">Calculabilité et complexité Page d&#39;accueil</a></h4>
         <h5></h5>
         <p>Ressources pédagoqiues Présentation du cours …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre8/crypto/">Cryptologie Page d&#39;accueil</a></h4>
-        <h5></h5>
-        <p></p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre8/robotique/">Initiation à la robotique Page d&#39;accueil</a></h4>
-        <h5></h5>
-        <p></p>
       </div>
     </div>
     
