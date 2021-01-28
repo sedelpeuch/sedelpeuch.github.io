@@ -227,7 +227,64 @@ dans un état connu des deux interlocuteurs en cas d&rsquo;erreur. Le but de ce 
 <em>n&rsquo;est pas de corriger les erreurs</em> de transmission de données (c&rsquo;est le travail
 de la couche transport), mais <strong>de proposer des outils de reprise</strong> sur erreur
 (erreurs liées aux couches supérieures). Il existe deux types de synchronisation
-la majeure et la mineure</p>
+la majeure et la mineure.</p>
+<h2 id="couche-présentation">Couche présentation</h2>
+<p>La couche présentation s&rsquo;intéresse <strong>à la syntaxe</strong> et à la <strong>sémantique</strong> des
+informations :</p>
+<ul>
+<li><strong>Représentation</strong> des données transférées entre entités d&rsquo;application</li>
+<li><strong>Représentation</strong> de la structure des données et représentation de l&rsquo;ensemble
+des actions effectuées sur cette structure</li>
+<li><strong>Encodage</strong> dans une norme agrée permettant à des équipements de communiquer</li>
+</ul>
+<p>Le rôle de la couche présentation est <strong>d&rsquo;assurer le codage</strong> et <strong>décodage</strong>
+des données. La représentation des données (chaîne de caractères, nombre
+entiers, nombres flottants) à l&rsquo;intérieur d&rsquo;un système <strong>réel dépend de son
+architecture</strong> (en particulier de la nature du processeur). L&rsquo;objectif est de
+définir des règles de codage communes permettant en particulier de représenter
+des nombres dont la taille n&rsquo;est pas limitée. Le destinataire doit connaître la
+<strong>signification</strong> des données en définissant un certain nombre de types de
+données et en faisant précéder le codage d&rsquo;une données par une étiquette qui en
+précise la nature.</p>
+<p>La couche présentation utilise les notions suivantes</p>
+<ul>
+<li><strong>la syntaxe abstraite</strong> : elle définit la structure générique des données
+(les différents types de données traitées) et elle est utilisée pour dialoguer
+avec la couche application</li>
+<li><strong>la syntaxe concrète locale</strong> : elle définit la représentation des données
+sur le système local</li>
+<li><strong>la syntaxe de transfert</strong> : elle définit la représentation des données
+échangées entre les couches présentation de deux systèmes par l&rsquo;intermédiaire
+de la couche session</li>
+<li><strong>les règles de codage</strong> qui permettent de passer de la syntaxe concrète
+locale à la syntaxe de transfert et réciproquement</li>
+</ul>
+<p>La combinaison d&rsquo;une syntaxe abstraite et d&rsquo;une syntaxe de transfert constitue
+<strong>un contexte de présentation</strong>.</p>
+<p>La couche de présentation comporte <strong>trois unités fonctionnelles</strong> spécifiques :</p>
+<ul>
+<li>le <strong>noyau de présentation</strong> : il permet d&rsquo;utiliser le contexte par défaut ou
+les contextes négociés lors de l&rsquo;ouverture de la connexion. Cette unité
+fonctionnelle est toujours utilisée</li>
+<li>la <strong>gestion de contextes</strong> : elle permet d&rsquo;ajouter ou de supprimer des
+contextes de représentation durant la connexion</li>
+<li>la <strong>restauration de contextes</strong> : elle permet lors d&rsquo;une resynchronisation de
+présentation, de reprendre les contextes antérieurs. L&rsquo;unité fonctionnelle de
+gestion de contextes modifie également le fonctionnement des activités.</li>
+</ul>
+<h3 id="notation-de-syntaxe-abstraite-asn1">Notation de syntaxe abstraite ASN.1</h3>
+<p>L&rsquo;ASN.1 permet de décrire les types de données qui peuvent être codées et
+transmises au travers de la couche présentation.</p>
+<ul>
+<li>SNMP (Simple Network Management Protocol), protocole de la famille internet
+permettant la gestion de réseaux</li>
+<li>MIB (Management information base), ensemble des objets gérés par SNMP, objets
+de la MIB référencés grâce par des identificateurs ASN.1</li>
+</ul>
+<h2 id="couche-application">Couche Application</h2>
+<p>Elle offre aux processus d&rsquo;application <strong>le moyen d&rsquo;accéder</strong> à l&rsquo;environnement
+OSI. Les processus d&rsquo;application échangent leurs informations par
+l&rsquo;intermédiaire des entités d&rsquo;applications</p>
 
 					</div>
 					<div class="post-comments">
@@ -237,6 +294,8 @@ la majeure et la mineure</p>
 			</div>
       <div class="col-md-4">
         <aside class="sidebar">
+
+
 
 
 
@@ -281,6 +340,14 @@ la majeure et la mineure</p>
     
     <div class="media">
       <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/apptcp/2/">DNS - Domain Name System</a></h4>
+        <h5>[Application TCP-IP]</h5>
+        <p>Les DNS sont utilisés pour la résolution de nom, …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/apptcp/1/">Introduction aux couches hautes</a></h4>
         <h5>[Application TCP-IP]</h5>
         <p>Rappel du modèle OSI et TCP/IP
@@ -309,14 +376,6 @@ la majeure et la mineure</p>
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre8/apptcp-ip/">Applications TCP-IP Page d&#39;accueil</a></h4>
         <h5></h5>
         <p>Ressources pédagogiques Slides de cours …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre8/complex/">Calculabilité et complexité Page d&#39;accueil</a></h4>
-        <h5></h5>
-        <p>Ressources pédagoqiues Présentation du cours …</p>
       </div>
     </div>
     

@@ -23,6 +23,16 @@
     </item>
     
     <item>
+      <title>DNS - Domain Name System</title>
+      <link>https://Sdelpeuch.github.io/assets/md/apptcp/2/</link>
+      <pubDate>Fri, 22 Jan 2021 09:30:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/apptcp/2/</guid>
+      <description>Les DNS sont utilisés pour la résolution de nom, c&amp;rsquo;est une adresse de haut niveau utilisant
+ identifcateur utile au traitement des informations (datagrammes IP) par le réseau peu pratique à manipuler pour les utilisateurs 32 bits pour IPv4, 128 bits (IPv6) correspondant à la structure logique du réseau (adressage, sous-adressage, etc) mais rarement à la structure humaine de l&amp;rsquo;organisation utilisant ce réseau  Le nom d&amp;rsquo;une entité réseau est définie par</description>
+    </item>
+    
+    <item>
       <title>Introduction aux couches hautes</title>
       <link>https://Sdelpeuch.github.io/assets/md/apptcp/1/</link>
       <pubDate>Fri, 22 Jan 2021 08:00:00 +0600</pubDate>
@@ -704,6 +714,16 @@ Pour transformer un automate fini déterministe et complet en automate minimal �
       
       <guid>https://Sdelpeuch.github.io/assets/semestre_6/automates/</guid>
       <description>Objectif du cours Les automates finis permettent de modéliser des programmes informatiques à mémoire finie. Ils permettent de résoudre des problèmes à un niveau d&amp;rsquo;abstraction élevé, sans s&amp;rsquo;encombrer des spécificités d&amp;rsquo;un langage donné, et en se concentrant sur les invariants à maintenir pour parvenir à une solution.</description>
+    </item>
+    
+    <item>
+      <title>Bases sur les automates et la logique</title>
+      <link>https://Sdelpeuch.github.io/assets/md/jeux/1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/jeux/1/</guid>
+      <description>$ -- $ -- $ si -- Jeux combinatoires On commence par quelques exemples : l&amp;rsquo;exemple du jeu chomp
+Étant donnée une tablette de chocolat (rectangle $m \times n$) avec le carré (1,1) empoisonné, 2 joueurs P1 et P2 jouent de façon alternée, avec P1 qui commence.</description>
     </item>
     
     <item>

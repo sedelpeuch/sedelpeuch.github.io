@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>DNS - Domain Name System</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 7 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 8" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 8 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre8/apptcp-ip">Applications TCP/IP</a></li>
+                  
+                  <li><a href="/semestre8/complex">Calculabilité</a></li>
+                  
+                  <li><a href="/semestre8/crypto">Cryptologie</a></li>
+                  
+                  <li><a href="/semestre8/ia">Intelligence artificielle</a></li>
+                  
+                  <li><a href="/semestre8/maker">Maker</a></li>
+                  
+                  <li><a href="/semestre8/robotique">Robotique</a></li>
+                  
+                  <li><a href="/semestre8/se">Sys Exploitation</a></li>
+                  
+                  <li><a href="/semestre8/jeux">Théorie des jeux</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 7 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre7/compilation/">Compilation</a></li>
+                  
+                  <li><a href="/semestre7/gl">Génie Logiciel</a></li>
+                  
+                  <li><a href="/semestre7/poo">POO</a></li>
+                  
+                  <li><a href="/semestre7/cpp">Programmation C&#43;&#43;</a></li>
+                  
+                  <li><a href="/semestre7/quantique">Quantique</a></li>
+                  
+                  <li><a href="/semestre7/bdd">SGBD</a></li>
+                  
+                  <li><a href="/semestre7/prog_sys/">Système</a></li>
+                  
+                  <li><a href="/semestre7/tcp">TCP/IP</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+              
+              
+              
+              <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/info.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>DNS - Domain Name System</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">DNS - Domain Name System</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> January 22, 2021</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/application%20tcp-ip">Application t c p i p</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<p>Les DNS sont utilisés pour la résolution de nom, c&rsquo;est une <strong>adresse de haut
+niveau</strong> utilisant</p>
+<ul>
+<li>identifcateur utile au traitement des informations (datagrammes IP) par le
+réseau</li>
+<li>peu pratique à manipuler pour les utilisateurs 32 bits pour IPv4, 128 bits
+(IPv6)</li>
+<li>correspondant à la structure logique du réseau (adressage, sous-adressage,
+etc) mais rarement à la structure humaine de l&rsquo;organisation utilisant ce
+réseau</li>
+</ul>
+<p>Le <strong>nom d&rsquo;une entité réseau</strong> est définie par</p>
+<ul>
+<li>une chaîne de caractères significative pour les utilisateurs</li>
+<li>pouvant / devant respecter des conventions pour le bon fonctionnement d&rsquo;un
+réseau particulier voir de l&rsquo;Internet</li>
+</ul>
+<p>L&rsquo;utilisation d&rsquo;adresse de haut niveau et d&rsquo;un nom d&rsquo;une entité réseau forment
+ce que l&rsquo;on appelle la <strong>résolution de nom</strong>.</p>
+<p>Le nommage des hîtes réseaux est géré par une organisation mondiale de gestion
+des noms, elle est indispensable pour les hôtes participant à
+l&rsquo;Internet.(Internet Corporation for Assigned Names and Numbers (ICANN)). ICANN
+est chargée d&rsquo;allouer l&rsquo;espace des adresses de protocole internet (IP),
+d&rsquo;attribuer les identificateurs de protocole, de gérer le système de nom de
+domaine de premier niveau &hellip;</p>
+<p>Le système de noms de dommaine DNS exploite le mode de nommage hiérarchique des
+entités réseau internet.</p>
+<h3 id="noms-de-domaine">Noms de domaine</h3>
+<p>On utilise un niveau hiérarchique des étiquettes croissant, le label à droite du
+point le plus à droite est appelé domaine de premier niveau. Le suffixe d&rsquo;un
+label est appelé <strong>nom de domaine</strong>.</p>
+<p>Les noms de domaines sont pris en charge sur les caractères Unicode pour des noms
+de domaine internationalisés <strong>Internatiolized domain name</strong> (IDN). La syntaxe
+des noms de domaine ne permet pas de distinguer un hôte particulier d&rsquo;un
+ensemble d&rsquo;hôtes, la structure hiérarchique est organisée en arbre correspondant
+au schéma de la délégation des responsabilités d&rsquo;administration des noms. Le nom
+de domaine peut donc être associé à</p>
+<ul>
+<li>un hôte (une adresse ip)</li>
+<li>une zone de courrier électronique, c&rsquo;est à dire un serveur de courier
+électronique</li>
+<li>zone de responsabilité d&rsquo;administration</li>
+</ul>
+<h3 id="hiérarchie-du-dns-et-de-sa-structure-arborescente">Hiérarchie du DNS et de sa structure arborescente</h3>
+<center>
+<img src="/assets/images/apptcp/5.png" widht="50%"></img>
+</center>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/4/">Indécidabilité</a></h4>
+        <h5>[Calculabilité et complexité]</h5>
+        <p>Arrêt des machines de Turing Soit $\text{HALT} : …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/apptcp/2/">DNS - Domain Name System</a></h4>
+        <h5>[Application TCP-IP]</h5>
+        <p>Les DNS sont utilisés pour la résolution de nom, …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/apptcp/1/">Introduction aux couches hautes</a></h4>
+        <h5>[Application TCP-IP]</h5>
+        <p>Rappel du modèle OSI et TCP/IP
+   Couche session …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/3/">Robustesse du modèle de calcul par Machines de Turing, Machine de Turing universelle</a></h4>
+        <h5>[Calculabilité et complexité]</h5>
+        <p>Definition des MTs : des choix arbitraires  Nombre …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/2/">Machines de Turing</a></h4>
+        <h5>[Calculabilité et complexité]</h5>
+        <p>Ruban, tête de lecture, registre  Ruban : infini, …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre8/apptcp-ip/">Applications TCP-IP Page d&#39;accueil</a></h4>
+        <h5></h5>
+        <p>Ressources pédagogiques Slides de cours …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+            <li><a href="https://Sdelpeuch.github.io/about">Semestre 7</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/contact">Semestre 6</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/project">Semestre 5</a></li>
+            
+            <li><a href="https://Sdelpeuch.github.io/cpbx">CPBx</a></li>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

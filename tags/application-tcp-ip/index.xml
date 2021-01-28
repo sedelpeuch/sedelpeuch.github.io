@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 22 Jan 2021 08:00:00 +0600</lastBuildDate>
+    <lastBuildDate>Fri, 22 Jan 2021 09:30:00 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/tags/application-tcp-ip/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DNS - Domain Name System</title>
+      <link>https://Sdelpeuch.github.io/assets/md/apptcp/2/</link>
+      <pubDate>Fri, 22 Jan 2021 09:30:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/apptcp/2/</guid>
+      <description>Les DNS sont utilisés pour la résolution de nom, c&amp;rsquo;est une adresse de haut niveau utilisant
+ identifcateur utile au traitement des informations (datagrammes IP) par le réseau peu pratique à manipuler pour les utilisateurs 32 bits pour IPv4, 128 bits (IPv6) correspondant à la structure logique du réseau (adressage, sous-adressage, etc) mais rarement à la structure humaine de l&amp;rsquo;organisation utilisant ce réseau  Le nom d&amp;rsquo;une entité réseau est définie par</description>
+    </item>
     
     <item>
       <title>Introduction aux couches hautes</title>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jeux on Semestre 8</title>
+    <link>https://Sdelpeuch.github.io/tags/jeux/</link>
+    <description>Recent content in Jeux on Semestre 8</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    
+	<atom:link href="https://Sdelpeuch.github.io/tags/jeux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bases sur les automates et la logique</title>
+      <link>https://Sdelpeuch.github.io/assets/md/jeux/1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/jeux/1/</guid>
+      <description>$ -- $ -- $ si -- Jeux combinatoires On commence par quelques exemples : l&amp;rsquo;exemple du jeu chomp
+Étant donnée une tablette de chocolat (rectangle $m \times n$) avec le carré (1,1) empoisonné, 2 joueurs P1 et P2 jouent de façon alternée, avec P1 qui commence.</description>
+    </item>
+    
+  </channel>
+</rss>
