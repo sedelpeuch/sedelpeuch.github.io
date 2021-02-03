@@ -255,8 +255,55 @@ concret en espace utilisateur par instruction spéciale (iret, sysexit).</p>
 inutiles (le retour de <code>getpid()</code> varie peu) on cherche donc à optimiser
 certains appels en espace utilisateur.</p>
 <h2 id="processus-et-threads">Processus et threads</h2>
-<h2 id="vie-et-mort-des-processus">Vie et mort des processus</h2>
-<h2 id="ordonnancement">Ordonnancement</h2>
+<h3 id="vie-et-mort-des-processus">Vie et mort des processus</h3>
+<p>Sous Unix la création de processus se fait via la création d&rsquo;un nouveau
+processus puis l&rsquo;exécution d&rsquo;une commande (<code>fork() + exec()</code>). Le <code>fork()</code>
+permet de dupliquer l&rsquo;espace d&rsquo;adressage, de créer une nouvelle file d&rsquo;exécution
+dans cet espace. Le fils créé est identique au père, sauf pour son PID.</p>
+<p>La création d&rsquo;un threads est équivalent à rajouter une file d&rsquo;exécution dans
+l&rsquo;espace d&rsquo;adressage courant via les commandes <code>pthread_create()</code> ou <code>clone()</code>.
+Pour lancer une tâche le noyau créé un contexte utilisateur. Ce contexte pointe
+vers une fonction à exécuter, possède une nouvelle pile. Lors de la terminaison
+d&rsquo;une tâche il faut passer en mode noyaux. Pour cela il faut un moyen d&rsquo;entrer
+(appel système <code>exit</code> ou <code>exception</code>). La file d&rsquo;exécution est alors détruite et
+relâche les ressources qu&rsquo;elle utilisait. Lorsqu&rsquo;une tâche se termine elle
+renvoie un code de retour destiné au père. Le père peut attendre la terminaison
+d&rsquo;un ou n&rsquo;importe quel fils (<code>wait()</code> et <code>waitpid()</code>). C&rsquo;est une tâche zombie
+tant que le père ne s&rsquo;en occupe pas.</p>
+<p>Les processus prêts à s&rsquo;exécuter sont dans une file d&rsquo;attente spéciale appelée
+<strong>runqueue</strong>. Cette liste est utilisée uniquement pour les processus pret, les
+processus non prêts sont dans des files spéciales avec un moyen de les
+retrouver. Il ne sert à rien de parcourir une liste de 1000 processus pour
+trouver le seul prêt à s&rsquo;exécuter.</p>
+<p>Les <strong>attente active</strong> sont des boucle infinie qui attendent un événement, elles
+monopolisent le processeur jusqu&rsquo;à l&rsquo;événement. Ils possèdent une très bonne
+réactivité mais gaspillent des cycles processus. L&rsquo;<strong>attente semi-active</strong> est
+une attente active en renadant la main. L&rsquo;opération <code>yield()</code> à chaque itération
+d&rsquo;une boucle while est effectuée et la réactivité est imprévisible (pas de
+garantie de reprise de main rapide). Cela peut gaspiller autant de temps CPU
+(dépend de l&rsquo;activité des autres tâches). L&rsquo;attente semi active n&rsquo;est à utiliser
+que quand une attente passive est totalement impossible.</p>
+<p>L&rsquo;<strong>attente passive</strong> d&rsquo;un événement est une mécanisme de réveil lors d&rsquo;un
+événement. La tâches est placée sur une file d&rsquo;attente et elle n&rsquo;est plus dans
+la runqueue (ignorée par l&rsquo;ordonnanceur). Lors de l&rsquo;événement, celui qui produit
+l&rsquo;événement déplace la tâche de la file d&rsquo;attente vers la runqueue. En revanche
+l&rsquo;endormissement et le réveil d&rsquo;un processus coûte assez cher puisqu&rsquo;il est
+nécessaire d&rsquo;effectuer un changements de contexte. Il est donc rentable de
+mettre en sommeil si processus uniquement si le délai d&rsquo;attente n&rsquo;est pas très court.</p>
+<h3 id="ordonnancement">Ordonnancement</h3>
+<p>Les états des processus sont représentés par un automate de transition entre les
+états</p>
+<ul>
+<li>Running</li>
+<li>Ready (prêt mais pas en train de s&rsquo;exécuter)</li>
+<li>Blocked (non-prêt, en attente d&rsquo;un événement)</li>
+<li>New (en cours de création)</li>
+<li>Exit (en cours de destruction, zombie)</li>
+<li>Suspend (suspendu par l&rsquo;utilisateur)</li>
+</ul>
+<p>L&rsquo;exécution de l&rsquo;ordonnanceur nécessite l&rsquo;existence du noyau, si le noyau
+n&rsquo;existe pas il n&rsquo;y a pas d&rsquo;homme en noir pour ordonnancer les tâches en arrière
+plan. L&rsquo;ordonnancement nécessite l&rsquo;exécution du code de l&rsquo;ordonnanceur.</p>
 <h2 id="algorithmes-dordonnancement">Algorithmes d&rsquo;ordonnancement</h2>
 <h2 id="exécution-du-système">Exécution du système</h2>
 

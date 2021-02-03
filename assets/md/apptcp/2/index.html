@@ -226,6 +226,27 @@ de domaine peut donc être associé à</p>
 <center>
 <img src="/assets/images/apptcp/5.png" widht="50%"></img>
 </center>
+<h3 id="principe-de-la-résolution-de-noms">Principe de la résolution de noms</h3>
+<p>Le but de la résolution de noms associé est d&rsquo;obtenir l&rsquo;adresse IP associée à un
+nom de domaine. Pour ce faire on utilise un système client serveur distribué</p>
+<ul>
+<li>client : solveur de noms</li>
+<li>serveur : serveur de noms</li>
+</ul>
+<p>Cela est possible via l&rsquo;utilisation d&rsquo;un ensemble hiérarchisé de serveurs de
+noms communiquant par un réseau TCP/IP.</p>
+<center>
+<img src="/assets/images/apptcp/6.png" widht="50%"></img>
+</center>
+<p>Les solveurs et serveurs de noms peuvent gérer des caches contenant des entrées
+à dure de vie limitée. La fraicheur des réponses est indiquée au client. En
+principe, un solveur s&rsquo;adresse au serveur de noms de son domaine. Un seveur de
+noms qui n&rsquo;est pas capable de répondre à une requête s&rsquo;adresse à</p>
+<ul>
+<li>un autre serveur de noms</li>
+<li>ou au serveur racine</li>
+</ul>
+<p>C&rsquo;est la résolution <strong>itérative</strong> ou <strong>récursive</strong></p>
 
 					</div>
 					<div class="post-comments">
