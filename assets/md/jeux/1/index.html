@@ -207,8 +207,7 @@
 (1,1) empoisonné, 2 joueurs P1 et P2 jouent de façon alternée, avec P1 qui
 commence. Chaque joueur choisit une position $(i,j)$ (donc tout carré $(k,m)$
 avec $k \geq i$ et $m \geq j$). Le joueur qui prend le dernier carré $(1,1)$
-perd.</p>
-<p>On veut savoir quel joueur gagne ce jeu. Le  joueur P1 gagne si, quelque soient
+perd. On veut savoir quel joueur gagne ce jeu. Le  joueur P1 gagne si, quelque soient
 les coups de P2, il ne prend pas le dernier carré. Une stratégie de P1 est une
 façon de jouer, c&rsquo;est à dire, de répondre aux coups de P2. Une partie du jeu est
 une séquence alternée de coups, avec P1 qui commence. Une partie est conforme à
@@ -249,7 +248,94 @@ nulle&rdquo;, c&rsquo;est à dire qu&rsquo;aucune partie n&rsquo;est gagnée par
 arêtes les coups possibles, on peut voir les noeuds de niveaux 0,2 &hellip; comme
 noeuds existentiels et ceux aux niveaux 1,3 &hellip; comme noeuds universels. Les
 premiers appartiennent à P1, les seconds à P2. On montre le résultat par
-induction sur la hauteur, en partant des feuilles.</p>
+induction sur la hauteur, en partant des feuilles. On note $P$ l&rsquo;ensemble des positions de jeu tel que $W \cup L$. Avec $W$
+l&rsquo;ensemble des positions gagnantes de $P1$ et $L$ l&rsquo;ensemble des positions
+perdantes de $P1$.</p>
+<p><strong>Remarque :</strong> $W$ et $L$ sont exactement les ensembles qui satisfont les
+propriétés suivantes</p>
+<ol>
+<li>toute position &ldquo;dead&rdquo; (sans successeur) est dans $L$</li>
+<li>$p \in L$ si et seulement si tous les coups $(p,p&rsquo;)$ mènent à $p&rsquo; \in W$</li>
+<li>$p \in W$ si et seulement si il existe un coup $(p,p&rsquo;)$ où $p \in L$</li>
+</ol>
+<h3 id="exemple-du-jeu-de-nim">Exemple du jeu de Nim</h3>
+<p>On utilise $p$ tas avec $n_1,&hellip;n_p$ jetons chacun. La règle du jeu est de
+choisir un tas puis d&rsquo;enlever un nombre positif de jetons de ce tas. Le joueur
+qui prend le dernier jeton gagne.</p>
+<p>Si $m,n$ sont des nombres, on écrit $m XOR n$ pour le nombre obtenu en prenant
+le XOR bitwise de $m$ et $n$. Exemple : 6 XOR 11 = 13 (110 XOR 1011 = 1101)</p>
+<p><strong>Théorème de Bouton :</strong> $(n_1,&hellip;,n_p) \in W$ si et seulement si $(n_1 XOR n_2
+&hellip; XOR n_p) \neq 0$.</p>
+<p>Nous allons montrer que $(n_1,&hellip;,n_p) \in W$ est une configuration gagnante
+pour $P_1$ si et seulement si $n_1 XOR &hellip; XOR n_p \neq 0$.</p>
+<p>Commençons par caractériser les ensembles W et L (pour un jeu fini).</p>
+<ul>
+<li>toute position de jeu qui n&rsquo;a aucun successeur est dans L $(0,&hellip;,0) \in L$
+pour le jeu de NIM</li>
+<li>pour toute position $p$,
+<ul>
+<li>$p \in W$ si il existe $p'$ tel que $p \rightarrow p'$ et $p&rsquo; \in L$.</li>
+<li>$p \in L$ si pour tout $p'$ tel que $p \rightarrow p'$ et $p&rsquo; \in W$.</li>
+</ul>
+</li>
+</ul>
+<p>Revenons au jeu de NIM. On veut montrer que $W = {(n_1,&hellip;,n_p) : n_1 XOR &hellip;
+XOR n_p \neq 0}$. On utilise alors la caractérisation de $W,L$</p>
+<ol>
+<li>$p=(0,&hellip;,0) \in L : 0 XOR &hellip; XOR 0 = 0$</li>
+<li>
+<ul>
+<li>$p= (n_1,&hellip;,n_p) \in L$. On montre que $\forall p \rightarrow p'$ avec $p&rsquo;
+\in W$ Ainsi $p'=(n_1,&hellip;,m_i,&hellip;,n_p)$, on définit $k := n_1 XOR n_2 &hellip; XOR
+{i-1} XOR n_{i+1} &hellip; XOR n_p$. Ainsi $k XOR n_1 = 0$ si et seulement si
+$k=n_i$.</li>
+<li>$p=(n_1,&hellip;,n_p) \in W$. On veut prouver $p \rightarrow p&rsquo; \in L$. On sait que $\underbrace{n_1 XOR &hellip; XOR n_p}_{a} \neq
+0$. Soit $r$ le bit le plus fort de $a$ différent de 0. Il doit exister un $n_i$
+tel que le bit de $n_i$ à la position $r$ est 1. Donc, $n_i XOR a &lt;n_i$</li>
+</ul>
+</li>
+</ol>
+<p>L&rsquo;action de $P1$ dans $p$ consiste à réduire le i-ème tas à $m_i = n_i XOR a$
+c&rsquo;est à dire</p>
+<p>$$ n_1 XOR &hellip; m_i &hellip; XOR n_p = n_1 XOR &hellip; (n_i XOR a) &hellip; XOR n_p = a XOR a
+= 0$$</p>
+<h3 id="jeux-de-hex">Jeux de hex</h3>
+<p>$R$ et $B$ alternent, $R$ doit former un chemin rouge N-S et B un chemin bleu
+O-E.</p>
+<p><strong>Lemme</strong> : Il n&rsquo;y a pas de partie indécise dans Hex (c&rsquo;est à dire : si l&rsquo;arène
+est remplie de jetons rouges et bleus, alors il existe soit un chemin N-S rouge,
+soit un chemin E-O bleu).</p>
+<p>Le jeu de Hex est fini, donc déterminé.</p>
+<p><strong>Théorème</strong> : Le joueur qui commence a une stratégie gagnante, pourtoute arène
+$n \times n$</p>
+<p>Supposons que $R$ commence. On montre par l&rsquo;absurde. Supposons que $B$ a une
+stratégie gagnante $S$. On définit maintenant une stratégie $S'$ pour $R$ (&ldquo;vol
+de stratégie&rdquo;). $R$ commence par un coup arbitraire, il marque ce coup par un
+jeton additionnel $X$ (rouge). Après le premier coup de $B$, le joueur $R$
+commence à joueur la stratégie $S$. Si $S$ lui indique de mettre un jeton sur la
+place de $X$, $R$ choisit une autre place libre arbitraire, qui devient le
+nouveau jeton $X$, et met un jeton sur celle-ci.</p>
+<p><strong>Remarque :</strong> à chaque instant, les jetons de $R$ (hormis $X$) correspondent à
+la stratégie $S$. LE joueur $R$ joue $S$ en tant que 2e joueur, mais à partir du
+tablier avec jeton additionnel $X$.</p>
+<p>On montre que $S'$ est gagnante pour $R$ : si $B$ réussissait à former un
+chemin, alors il aurait réussi aussi sans la présence du jeton (rouge) $X$. Donc
+$S$ ne serait pas une stratégie gagnante pour le 2e joueur, contradiction.</p>
+<p><strong>Remarque :</strong> on ne connaît pas de stratégie explicite pour $n&gt;9$</p>
+<p><strong>Lemme :</strong> si l&rsquo;arène est couverte par des jetons rouge/bleu, alors il existe
+soit un chemin rouge N-S, ou un chemin bleu E-O.</p>
+<p>On colorie en rouge la région en dessosu de la rangée sud, et en bleu celle à
+gauche de la rangée ouest.</p>
+<p>Ensuite on construit un chemin en partant du coin sud-ouest, et en suivant les
+arêtes, pour préserver l&rsquo;invariant suivant : la couleur à gauche de l&rsquo;arête
+actuelle est bleu, et la couleur à droite est rouge. Si on montrer que le chemin
+atteint le côté &ldquo;est&rdquo;, alors P2 a gagné. Si le chemin atteint le côté &ldquo;nord&rdquo;,
+c&rsquo;est $P1$ qui gagne.</p>
+<p>Si le chemin arrive dans un noeud de degré 3, on va à gauche/droite selon la
+couleur de la 3e région.</p>
+<p>Si le chemin arrive dans un noeud de degré 2, ça doit être sur le côté &ldquo;sud&rdquo; et
+&ldquo;ouest&rdquo;, et l&rsquo;invariant est préservé à cause du coloriage des 2 régions.</p>
+<p>De plus en utilisant l&rsquo;invariant on montre que le chemin ne peut pas boucler.</p>
 <p></script></p>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
