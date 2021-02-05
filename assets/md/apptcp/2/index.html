@@ -206,7 +206,7 @@ d&rsquo;attribuer les identificateurs de protocole, de gérer le système de nom
 domaine de premier niveau &hellip;</p>
 <p>Le système de noms de dommaine DNS exploite le mode de nommage hiérarchique des
 entités réseau internet.</p>
-<h3 id="noms-de-domaine">Noms de domaine</h3>
+<h2 id="noms-de-domaine">Noms de domaine</h2>
 <p>On utilise un niveau hiérarchique des étiquettes croissant, le label à droite du
 point le plus à droite est appelé domaine de premier niveau. Le suffixe d&rsquo;un
 label est appelé <strong>nom de domaine</strong>.</p>
@@ -222,11 +222,11 @@ de domaine peut donc être associé à</p>
 électronique</li>
 <li>zone de responsabilité d&rsquo;administration</li>
 </ul>
-<h3 id="hiérarchie-du-dns-et-de-sa-structure-arborescente">Hiérarchie du DNS et de sa structure arborescente</h3>
+<h2 id="hiérarchie-du-dns-et-de-sa-structure-arborescente">Hiérarchie du DNS et de sa structure arborescente</h2>
 <center>
 <img src="/assets/images/apptcp/5.png" widht="50%"></img>
 </center>
-<h3 id="principe-de-la-résolution-de-noms">Principe de la résolution de noms</h3>
+<h2 id="principe-de-la-résolution-de-noms">Principe de la résolution de noms</h2>
 <p>Le but de la résolution de noms associé est d&rsquo;obtenir l&rsquo;adresse IP associée à un
 nom de domaine. Pour ce faire on utilise un système client serveur distribué</p>
 <ul>
@@ -247,6 +247,61 @@ noms qui n&rsquo;est pas capable de répondre à une requête s&rsquo;adresse à
 <li>ou au serveur racine</li>
 </ul>
 <p>C&rsquo;est la résolution <strong>itérative</strong> ou <strong>récursive</strong></p>
+<center>
+<img src="/assets/images/apptcp/7.png" widht="40%"></img>
+<img src="/assets/images/apptcp/7.png" widht="40%"></img>
+</center>
+<h2 id="ressources-dns">Ressources DNS</h2>
+<ul>
+<li>Chaque noeud de l&rsquo;arbre contient une ou plusieurs ressources</li>
+<li>Une ressource est principalement constituée
+<ul>
+<li>un type qui indique comment interpréter les données associées</li>
+<li>une durée de validité (TTL)</li>
+<li>un objet associé au nom pointé dans l&rsquo;arbre</li>
+</ul>
+</li>
+<li>Type ou enregistrement DNS
+<ul>
+<li>A : adresse IPv4</li>
+<li>AAAA : adresse IPv6</li>
+<li>CNAME : nom canonique, il permet de faire correspondre un alias au nom
+canonique</li>
+<li>MX : liste des serveurs de courrier électronique et préférences</li>
+<li>NS : nom du serveur de noms responsable du domaine</li>
+<li>SOA : zones de responsabilité gérées par le serveur de noms du domaine. Ce
+champs permet de décrire le serveur de nom ayant autorité sur la zone</li>
+<li>PTR : Pointeur du nom de domaine</li>
+<li>SRV : Service mapping (nom machine + numéro port)</li>
+<li>TXT : Zone de texte libre</li>
+</ul>
+</li>
+</ul>
+<h3 id="zone-dautorité">Zone d&rsquo;autorité</h3>
+<p>Un serveur de noms définit une zone, c&rsquo;est à dire un ensemble de domaines sur
+lequel le serveur a autorité. Par exemple, le serveur DNS de l&rsquo;ENSEIRB a
+autorité sur le domaine enseirb-matmeca.fr. Plusieurs serveurs peuvent partager
+cette autorité, sans faire partie de ce domaine forcément.</p>
+<h2 id="résolution-inverse">Résolution inverse</h2>
+<p>Le DNS permet la conversion inverse : objet vers noms. Il s&rsquo;agit par exemple de
+résoudre le nom pour IP = 209.85.229.104 la réponse est <a href="http://www.google.com">www.google.com</a>. Le DNS
+maintient un sous-arbre particulier sous la zone IN-ADDR.ARPA (penser à
+retourner l&rsquo;adresse).</p>
+<h2 id="configuration-des-indications-de-racine">Configuration des indications de racine</h2>
+<p>Lorsque le serveur dNS n&rsquo;est pas configuré pour utiliser des redirecteurs, il se
+sert des <strong>indications de racine</strong> pour résoudre les noms d&rsquo;hôtes ou les adresse
+IP appartenant à des zones qu&rsquo;il n&rsquo;héberge pas. Les indications de racine sont
+un ensemble de serveurs hébergeant la zone contenant les enregistrement <strong>du
+domaine racine</strong> ou domaine .. Les &ldquo;serveurs DNS racines&rdquo; sont au nombre de 13 à
+travers le nomde. Il appartiennet tous à un même domaine nommé
+<em>root-servers.net</em>.</p>
+<h2 id="configuration-des-redirecteurs">Configuration des redirecteurs</h2>
+<p>Lorsque le serveur DNS n&rsquo;est pas capable de résoudre un nom en adresse IP, il va
+essayer de contacter un autre serveur DNS, le DNS redirecteur. Il est possible
+de configurer un ou plusieurs redirecteurs pour un domaine précis. L&rsquo;utilisation
+des redirecteurs permet d&rsquo;utiliser des serveurs DNS locaux pour résoudre les
+enregistrements de ressources des domaines locaux et des serveurs DNS extérieurs
+pour résoudre les enregistrements de ressources des domaines internet.</p>
 
 					</div>
 					<div class="post-comments">
@@ -294,6 +349,14 @@ noms qui n&rsquo;est pas capable de répondre à une requête s&rsquo;adresse à
     
     <div class="media">
       <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/apptcp/3/">Le protocole HTTP - Le courrier électronique</a></h4>
+        <h5>[Application TCP-IP]</h5>
+        <p>Le protocole HTTP HTTP (Hypertext Transfer …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/4/">Indécidabilité</a></h4>
         <h5>[Calculabilité et complexité]</h5>
         <p>Arrêt des machines de Turing Soit $\text{HALT} : …</p>
@@ -330,14 +393,6 @@ noms qui n&rsquo;est pas capable de répondre à une requête s&rsquo;adresse à
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/2/">Machines de Turing</a></h4>
         <h5>[Calculabilité et complexité]</h5>
         <p>Ruban, tête de lecture, registre  Ruban : infini, …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre8/apptcp-ip/">Applications TCP-IP Page d&#39;accueil</a></h4>
-        <h5></h5>
-        <p>Ressources pédagogiques Slides de cours …</p>
       </div>
     </div>
     
