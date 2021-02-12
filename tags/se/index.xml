@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 18 Jan 2021 11:07:10 +0600</lastBuildDate>
+    <lastBuildDate>Mon, 08 Feb 2021 09:30:00 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/tags/se/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Gestion mémoire</title>
+      <link>https://Sdelpeuch.github.io/assets/md/se/3/</link>
+      <pubDate>Mon, 08 Feb 2021 09:30:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/se/3/</guid>
+      <description>Programmation modulaire Le chargement des programmes est l&amp;rsquo;assemblage de modules (programme, bibliothèques). Le calcul des adresses mémoires se fait via deux moyens :
+ le chargement absolu par le programmeur, le compilateur ou l&amp;rsquo;assembleur le chargement dynamique qui sont des adresses relatives calculées à l&amp;rsquo;exécution  Pour cela on utilse de l&amp;rsquo;édition de liens , c&amp;rsquo;est à dire l&amp;rsquo;utilisation de &amp;ldquo;symboles&amp;rdquo; pour référencer des adresses inconnues.</description>
+    </item>
     
     <item>
       <title>Système d&#39;exploitation Page d&#39;accueil</title>
