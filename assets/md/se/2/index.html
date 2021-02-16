@@ -303,9 +303,58 @@ mettre en sommeil si processus uniquement si le délai d&rsquo;attente n&rsquo;e
 </ul>
 <p>L&rsquo;exécution de l&rsquo;ordonnanceur nécessite l&rsquo;existence du noyau, si le noyau
 n&rsquo;existe pas il n&rsquo;y a pas d&rsquo;homme en noir pour ordonnancer les tâches en arrière
-plan. L&rsquo;ordonnancement nécessite l&rsquo;exécution du code de l&rsquo;ordonnanceur.</p>
+plan. L&rsquo;ordonnancement nécessite l&rsquo;exécution du code de l&rsquo;ordonnanceur.
+L&rsquo;ordonnancement peut être activé <strong>explicitement</strong> par les applications (processus
+qui rend la main <code>_yield</code> ou processus qui attend <code>sleep()</code>) ou
+<strong>implicitement</strong> par des appel système bloquant (<code>read()</code>, <code>poll()</code>). Cependant
+nous n&rsquo;avons aucune garantie d&rsquo;un ordonnancement régulier, cela dépend du bon
+vouloir des applications. Il y a aussi un problème d&rsquo;équité et de réactivité, un
+processus peut conserver le processeur indéfiniment. Les tâches doivent donc
+<strong>coopérer</strong>.</p>
+<p>Il faut donc qu&rsquo;une tâche s&rsquo;exécutant en mode noyau, sur le bon processeur qui
+doit appeler le code de l&rsquo;ordonnanceur. Il faut donc trouver un moyen d&rsquo;appeler
+l&rsquo;ordonnanceur même si l&rsquo;application ne fait pas d&rsquo;ordonnancement explicite ou
+implicite. Il faut donc utiliser le mécanisme de <strong>préemption</strong>.</p>
+<p>La préemption est le mécanisme qui permet de désordonnancer une tâche de force
+si une tâche s&rsquo;exécute depuis trop longtemps ou si une autre tâche est
+prioritaire. La préemption engrange un léger surcoût puisque l&rsquo;on doit vérifier
+de temps en temps s&rsquo;il faut désordonnancer de force mais c&rsquo;est un gain énorme en
+équité et réactivité. Il n&rsquo;y a plus besoin de coopération des processus.</p>
+<p>Sous Linux l&rsquo;ordonnanceur vérifie s&rsquo;il faut passer la main à une autre tâche
+lors du retour en espace utilisateur sur le code utilisateur (le code du noyau
+peut être long et nuire à la réactivité du système). Il n&rsquo;y a pas de préemption
+directe en espace utilisateur (il faut être dans le noyau pour exécuter le code
+de l&rsquo;ordonnancement), les processus sont préemptés dans le noyau de la même
+façon (par exemple juste avant leur retour en espace utilisateur). Les
+interruptions peuvent préempter n&rsquo;importe quand.</p>
+<h2 id="processus-et-threads-1">Processus et threads</h2>
+<p>L&rsquo;intérêt des threads est le partage de ressources entre les tâches permettant
+une meilleur exploitation des processeurs, un seul programme peut tourner sur
+plusieurs processus (critique depuis l&rsquo;avènement des multicores).</p>
+<p>Un <strong>thread</strong> est une file d&rsquo;exécution interne à un processus. Le processus
+devient un conteneur (au moins un thread et des ressources partagées). Certaines
+données ne peuvent pas être partagées (piles registres) alors que d&rsquo;autre le
+peuvent (espace d&rsquo;adressage mémoire, fichiers ouverts, signaux, identifiant des
+processus &hellip;)</p>
+<h3 id="modèle-1-on-1">Modèle 1 on 1</h3>
+<p>Un thread noyau est actif pour chaque thread, la création / destruction /
+changement de contexte sont aussi coûteux que les processus, les processus
+multi-threads sont avantagés.</p>
+<h3 id="threads-en-espace-utilisateur">Threads en espace utilisateur</h3>
+<p>Un seul thread noyau propulse plusieurs threads utilisateurs, le coût
+d&rsquo;ordonnancement est très réduit (on reste en espace utilisateur), le
+multithreads est ignoré par le système</p>
+<h3 id="modèle-m-on-n">Modèle M on N</h3>
+<p>Dans ce modèle il y a plusieurs threads utilisateurs sur plusieurs threads
+noyau. Si un thread bloque une tâche, les autres tâches peuvent continuer à
+travailler, l&rsquo;ajout de threads noyau se fait à la volée.</p>
 <h2 id="algorithmes-dordonnancement">Algorithmes d&rsquo;ordonnancement</h2>
-<p>TODO</p>
+<p>Actuellement nous devons résoudre le problème suivant, nous avons besoin d&rsquo;une
+équité et de l&rsquo;interactivité de progression de toutes les tâches sans que cela
+ne dépende de la bonne volonté des tâches (préemption). Il est donc nécessaire
+de déterminer la durée d&rsquo;ordonnancement (choix de la durée des Timesclices). Il
+nous faut un temps pas trop court sinon le coût d&rsquo;ordonnancement devient
+prohibitif. Ni trop long sinon les processus n&rsquo;avancent pas assez régulièrement.</p>
 <h2 id="exécution-du-système">Exécution du système</h2>
 
 					</div>
