@@ -22,6 +22,17 @@
     </item>
     
     <item>
+      <title>Réductions</title>
+      <link>https://Sdelpeuch.github.io/assets/md/complex/5/</link>
+      <pubDate>Tue, 02 Feb 2021 11:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/complex/5/</guid>
+      <description>Théorème de Rice Notons $L(M)$ le langage reconnu par la Machine de Turing $M$.
+$$L(M) = {x \in {0,1}^\star : M(x) = 1}$$
+Théorème (Rice) : Soit $\mathcal{C} \subseteq 2^{{0,1}^\star}$ un ensemble de langages non trivial c&amp;rsquo;est a dire tel que</description>
+    </item>
+    
+    <item>
       <title>Indécidabilité</title>
       <link>https://Sdelpeuch.github.io/assets/md/complex/4/</link>
       <pubDate>Tue, 26 Jan 2021 11:00:00 +0600</pubDate>

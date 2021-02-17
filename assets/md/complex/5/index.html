@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>Gestion mémoire</title>
+  <title>Réductions</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -144,7 +144,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>Gestion mémoire</h1>
+          <h1>Réductions</h1>
           <p></p>
         </div>
       </div>
@@ -158,10 +158,10 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">Gestion mémoire</h2>
+					<h2 class="post-title">Réductions</h2>
 					<div class="post-meta">
 						<ul>
-              <li><i class="ion-calendar"></i> February 8, 2021</li>
+              <li><i class="ion-calendar"></i> February 2, 2021</li>
               
               
               
@@ -170,7 +170,7 @@
               
               <li><i class="ion-pricetags"></i> 
                 
-                <a href="/tags/se">S e</a>
+                <a href="/tags/calculabilit%c3%a9%20et%20complexit%c3%a9">Calculabilité et complexité</a>
 								
               </li>
             </ul>
@@ -179,17 +179,110 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<h2 id="programmation-modulaire">Programmation modulaire</h2>
-<p>Le chargement des programmes est l&rsquo;assemblage de modules (programme,
-bibliothèques). Le calcul des adresses mémoires se fait via deux moyens :</p>
+						<h2 id="théorème-de-rice">Théorème de Rice</h2>
+<p>Notons $L(M)$ le langage reconnu par la Machine de Turing $M$.</p>
+<p>$$L(M) = {x \in {0,1}^\star : M(x) = 1}$$</p>
+<p><strong>Théorème (Rice)</strong> : Soit $\mathcal{C} \subseteq 2^{{0,1}^\star}$ un ensemble de
+langages <strong>non trivial</strong> c&rsquo;est a dire tel que</p>
 <ul>
-<li>le chargement absolu par le programmeur, le compilateur ou l&rsquo;assembleur</li>
-<li>le chargement dynamique qui sont des adresses relatives calculées à l&rsquo;exécution</li>
+<li>Il existe une MT $M_1, L(M_1) \in \mathcal{C}$</li>
+<li>Il existe une MT $M_2, L(M_2) \notin \mathcal{C}$</li>
 </ul>
-<p>Pour cela on utilse de l&rsquo;édition de liens , c&rsquo;est à dire l&rsquo;utilisation de
-&ldquo;symboles&rdquo; pour référencer des adresses inconnues. Les références non-résolues
-provoquent des chargement d&rsquo;autres modules. Cela permet de mettre à jour des
-modules sans recompiler</p>
+<p>Le langage $L_{\mathcal{C}} = {M : M MT, L(M) \in \mathcal{C}}$ est
+**indécidable**</p>
+<h3 id="démonstration">Démonstration</h3>
+<p>Soit $RICE_\mathcal{C}$ :</p>
+<ul>
+<li>entrée : MT $M$</li>
+<li>sortie : 1 si $L(M) \in \mathcal{C}$ et 0 sinon</li>
+</ul>
+<p>On veut montrer que $RICE_\mathcal{C}$ n&rsquo;est pas calculable. On rappelle le
+langage HALT :</p>
+<ul>
+<li>entrée : MT $M, x \in {0,1}^\star$</li>
+<li>sortie : 1 si $M$ s&rsquo;arrête sur l&rsquo;entrée $x$ et 0 sinon.</li>
+</ul>
+<p>Pour démontrer le théorème de Rice, on veut montrer que HALT <strong>se réduit à</strong>
+$RICE_\mathcal{C}$</p>
+<p>Faisons l&rsquo;hypothèse que $\emptyset \notin \mathcal{C}$ (sinon, remplacer
+$\mathcal{C}$ par $\overline{\mathcal{C}}$). Par contradiction, supposons qu&rsquo;il
+existeu ne MT $M_R$ qui calcule $RICE_\mathcal{C}$. On montre qu&rsquo;on peut
+utiliser $M_R$ pour le calcul de HALT.</p>
+<ul>
+<li>soit $L \in \mathcal{C}$ et $M_L$ une MT qui reconnaît $L$ ($L$ existe car
+$\mathcal{C}$ est non trivial)</li>
+<li>À chaque entrée $M$, $x$ de HALT, on associe la MT $N_x$ qui sur l&rsquo;entrée $y$
+<ul>
+<li>simule l&rsquo;exécution de $M$ sur l&rsquo;entrée $x$</li>
+<li>puis simule l&rsquo;exécution de $M_L$ sur l&rsquo;entrée $y$</li>
+</ul>
+</li>
+</ul>
+<p>$$ L(N_x) \in \mathcal{C} \Leftrightarrow (M,x) \in HALT$$</p>
+<ul>
+<li>$M$ s&rsquo;arrête sur l&rsquo;entrée $x$ $\Rightarrow L(N_x) = L(M_L) \in \mathcal{C}$</li>
+<li>$M$ ne s&rsquo;arrête pas sur l&rsquo;entrée $x$ $\Rightarrow L(N_x) = \emptyset \notin
+\mathcal{C}$</li>
+</ul>
+<p>Supposons qu&rsquo;il existe une machine de Turing $M_R$ qui calcule
+$RICE_\mathcal{C}$</p>
+<pre><code>HALT(M,x) :
+    construire la description de la MT Nx
+    exécuter MR(Nx)
+    si MR(Nx) = 1 alors retourner 1
+    sinon retourner 0
+</code></pre><p>Nous arrivons donc sur une contradiction, HALT n&rsquo;est pas calculable.</p>
+<h2 id="réduction">Réduction</h2>
+<p>Soit la
+fonction $r : \mathcal{I}_{HALT} \rightarrow I_{RICE_\mathcal{C}}$, $r$
+associe à chaque entrée de HALT une entrée de $RICE_\mathcal{C}$ : $\forall(M,x)
+\in \mathcal{I}_{HALT}, r(M,x) = N_x$ tel que</p>
+<ol>
+<li>$r$ est calculable</li>
+<li>$\forall M, x \in \mathcal{I}_{HALT}$ : $HALT(M,x) = 1 \Leftrightarrow
+RICE_\mathcal{C}(r(M,x)) = 1$</li>
+</ol>
+<p>Soit $A,B : {0,1}^\star \rightarrow {0,1}$ deux fonctions booléennes
+(langages).</p>
+<p><strong>Définition :</strong> $A$ se réduit à $B$ si et seulement si il existe une fonction
+$r : {0,1}^\star \rightarrow {0,1}^\star$ telle que</p>
+<ol>
+<li>$r$ est <strong>calculable</strong></li>
+<li>$\forall x \in {0,1}^\star, A(x) = B(r(x))$</li>
+</ol>
+<p>Les conséquences d&rsquo;une réduction sont les suivantes</p>
+<ul>
+<li>Si $B$ est calculable alors $A$ l&rsquo;est aussi</li>
+<li>Si $A$ n&rsquo;est pas calculable, alors $B$ ne l&rsquo;est pas non plus</li>
+</ul>
+<p></script></p>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
 
 					</div>
 					<div class="post-comments">
