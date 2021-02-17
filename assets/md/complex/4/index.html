@@ -187,7 +187,8 @@
 </ul>
 <p>Version langage : $(\alpha, x) \in \text{HALT} \Leftrightarrow$ la machine codée
 par $\alpha$ s&rsquo;arrête sur l&rsquo;entrée $x$.</p>
-<p><strong>Conjecture de Goldbach</strong> : tout nombre pair supérieur ou égal à 3 peut
+<h2 id="conjecture-de-goldbach">Conjecture de Goldbach</h2>
+<p><strong>Théorème</strong> : tout nombre pair supérieur ou égal à 3 peut
 s&rsquo;écrire comme la somme de deux nombres premiers</p>
 <p>Supposons $\text{HALT}$ décidable</p>
 <ol>
@@ -216,8 +217,33 @@ n&rsquo;est pas décibable)</p>
 <li>Existence d&rsquo;une fonction $UD : {0,1}^\star \rightarrow {0,1}$</li>
 <li>Réduction : $UD$ se réduit à HALT</li>
 </ol>
-<p><strong>Théorème</strong> Il existe une fonction $UD : {0,1}$<br>
-</script></p>
+<p><strong>Théorème</strong> Il existe une fonction $UD : {0,1}$ qui n&rsquo;est calculable par
+<strong>aucune</strong> machine de Turing. De façon équivalente, le langage $L_{UD}={w \in
+{0,1}^\star, UD(w) = 1}$ **n&rsquo;est pas décidable**.</p>
+<h2 id="existence-de-fonctions-indécidables">Existence de fonctions indécidables</h2>
+<p>Soit $UD : {0,1}^\star \rightarrow {0,1}$ la fonction $UD(\alpha) = 0$ si
+$M_\alpha(\alpha)=1$ et $UD(\alpha) = 1$ si $M_\alpha(\alpha) \neq 1$. Supposons
+qu&rsquo;il existe une machine de Turing $M$ qui calcule $UD$ c&rsquo;est à dire $\forall
+\alpha \in {0,1}^\star, (\alpha) = UD(\alpha)$. On cherche à trouver
+$M(\underline{M})$.</p>
+<ul>
+<li>$UD(\underline{M}) = 1 \Rightarrow M(\underline{M}) \neq 1$</li>
+<li>$UD(M) = 0 \Rightarrow M(\underline{M}) = 1$</li>
+</ul>
+<p>Nous avons donc une contradiction.</p>
+<h2 id="arrêt-des-machines-de-turing-1">Arrêt des machines de Turing</h2>
+<p>Supposons qu&rsquo;il existe une MT $M_{HALT}$ qui calcule HALT. On montre qu&rsquo;on peut
+utiliser $M_{HALT}$ pour construire une MT $M_{UD}$ qui calcule $UD$ : une
+contradiction. Sur l&rsquo;entrée $\alpha$, $M_{UD}$ exécute $M_{HALT}(\alpha,\alpha)$</p>
+<ul>
+<li>si $M_{HALT}(\alpha, \alpha) = 0$, $M_\alpha$ ne s&rsquo;arrête pas sur l&rsquo;entrée
+$\alpha$. $M_{UD}$ retourne 1</li>
+<li>si $M_{HALT}(\alpha,\alpha) = 1$, $M_\alpha$ s&rsquo;arrête sur l&rsquo;entrée $\alpha$.
+$M_{UD}$ utilise la $MT$ universelle $\mathcal{U}$ pour calculer $b =
+M_{\alpha}(\alpha)$. Si $b=1$, $M_{UD}$ retourne 0, sinon $M_{UD}$ retourne 1.</li>
+</ul>
+<p>Par réduction on a montré que $UD$ se réduit à HALT.</p>
+<p></script></p>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
