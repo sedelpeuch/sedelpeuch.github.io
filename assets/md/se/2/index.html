@@ -355,6 +355,49 @@ ne dépende de la bonne volonté des tâches (préemption). Il est donc nécessa
 de déterminer la durée d&rsquo;ordonnancement (choix de la durée des Timesclices). Il
 nous faut un temps pas trop court sinon le coût d&rsquo;ordonnancement devient
 prohibitif. Ni trop long sinon les processus n&rsquo;avancent pas assez régulièrement.</p>
+<p>En revanche il faut noter qu&rsquo;il est difficile de savoir précisément si un
+processus est gourmand en temps processeur, l&rsquo;ordonnancement est essentiellement
+basé sur les ticks d&rsquo;holorge (peu précis).</p>
+<h3 id="critères-dordonnancement">Critères d&rsquo;ordonnancement</h3>
+<ol>
+<li>Pour l&rsquo;utilisateur : il est nécessaire d&rsquo;avoir des performances (rapidité
+d&rsquo;exécution ou de terminaison, réactivité, deadlines &hellip;), d&rsquo;équité et de
+prédictabilité</li>
+<li>Pour le système : performance (quantité de travail, utilisation du
+processus), équité et respect des priorités</li>
+</ol>
+<p>Nous avons donc quelques idées pour l&rsquo;ordonnancement :</p>
+<ul>
+<li>FIFO</li>
+<li>Round-Robin</li>
+<li>Short First ou Short Remaining Next</li>
+<li>Feedback</li>
+</ul>
+<h3 id="liste-triée-par-priorités">Liste triée par priorités</h3>
+<p>Trier par priorité la liste des tâches s&rsquo;effectue en complexité linéaire en
+fonction du nombre de tâches. Chaque opération d&rsquo;ordonnancement coûtera cher. Il
+faut aussi faire attention aux famines, les processus non-prioritaires ne
+doivent pas rester indéfiniment en fin de liste.</p>
+<h3 id="listes-par-priorités">Listes par priorités</h3>
+<p>Nous pouvons aussi effectuer plusieurs listes de tâches possédant toutes les
+mêmes priorités, la manipulation se fait alors en temps constant. Les listes
+sont alors parcourues plus ou moins souvent selon la priorité.</p>
+<h3 id="ajuster-la-timeslice-aux-priorités">Ajuster la timeslice aux priorités</h3>
+<p>Cela implique de définir un quantum de temps d&rsquo;exécution variable (Timeslice)
+selon la priorité. Cela est éventuellement dynamique et calculable en temps
+constant.</p>
+<h3 id="le-multicoeurs-et-multiprocesseur">Le multicoeurs et multiprocesseur</h3>
+<p>Nous rappelons que la préemption est la concurrence entre tâches sur un seul
+processeur. Le multiprocesseur implique une concurrence réelle entre les tâches.
+La question se pose sur quel processeur / coeur exécuter quelles tâches.</p>
+<p>Il y a donc deux modes de fonctionnement</p>
+<ol>
+<li>Une seule runqueue (load sharing) où tous les processeurs piochent</li>
+<li>Une runqueue par processeur, qu&rsquo;il faudra équilibre (load balancing)</li>
+</ol>
+<h3 id="ordonnancement-dans-linux">Ordonnancement dans Linux</h3>
+<p>L&rsquo;ordonnanceur dans Linux est assez classique possédant une bonne interactivité
+et équité. Il possède une priorité effective avec un bonus ou pénalité.</p>
 <h2 id="exécution-du-système">Exécution du système</h2>
 
 					</div>
