@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 09 Feb 2021 11:00:00 +0600</lastBuildDate>
+    <lastBuildDate>Wed, 24 Feb 2021 10:20:10 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Jeux</title>
+      <link>https://Sdelpeuch.github.io/tags/jeux/</link>
+      <pubDate>Wed, 24 Feb 2021 10:20:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/tags/jeux/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Calculabilité et complexité</title>
@@ -99,15 +108,6 @@
       <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/tags/tcp-ip/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Jeux</title>
-      <link>https://Sdelpeuch.github.io/tags/jeux/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/tags/jeux/</guid>
       <description></description>
     </item>
     

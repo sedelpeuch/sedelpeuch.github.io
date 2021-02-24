@@ -7,17 +7,47 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Wed, 24 Feb 2021 10:20:10 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/tags/jeux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Bases sur les automates et la logique</title>
+      <title>Cours 4</title>
+      <link>https://Sdelpeuch.github.io/assets/md/jeux/4/</link>
+      <pubDate>Wed, 24 Feb 2021 10:20:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/jeux/4/</guid>
+      <description>MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;]], displayMath: [[&#39;$$&#39;,&#39;$$&#39;]], processEscapes: true, processEnvironments: true, skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;], TeX: { equationNumbers: { autoNumber: &#34;AMS&#34; }, extensions: [&#34;AMSmath.js&#34;, &#34;AMSsymbols.js&#34;] } } });  MathJax.</description>
+    </item>
+    
+    <item>
+      <title>Cours 3</title>
+      <link>https://Sdelpeuch.github.io/assets/md/jeux/3/</link>
+      <pubDate>Wed, 10 Feb 2021 10:20:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/jeux/3/</guid>
+      <description>Comment modélise t on un jeu ? une arène ? etc
+Arène Nous définissons une arène comme un graphe orienté $(V,E)$ où $V$ est l&amp;rsquo;ensemble des sommets et $E$ l&amp;rsquo;ensemble des arêtes.</description>
+    </item>
+    
+    <item>
+      <title>Cours 2 - Jeux de Hex</title>
+      <link>https://Sdelpeuch.github.io/assets/md/jeux/2/</link>
+      <pubDate>Wed, 03 Feb 2021 10:20:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/jeux/2/</guid>
+      <description>$R$ et $B$ alternent, $R$ doit former un chemin rouge N-S et B un chemin bleu O-E.
+Lemme : Il n&amp;rsquo;y a pas de partie indécise dans Hex (c&amp;rsquo;est à dire : si l&amp;rsquo;arène est remplie de jetons rouges et bleus, alors il existe soit un chemin N-S rouge, soit un chemin E-O bleu).</description>
+    </item>
+    
+    <item>
+      <title>Cours 1 - Jeux combinatoires</title>
       <link>https://Sdelpeuch.github.io/assets/md/jeux/1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 27 Jan 2021 10:20:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/jeux/1/</guid>
-      <description>$ -- $ -- $ si -- Jeux combinatoires On commence par quelques exemples : l&amp;rsquo;exemple du jeu chomp
+      <description>$ -- $ -- $ si -- On commence par quelques exemples : l&amp;rsquo;exemple du jeu chomp
 Étant donnée une tablette de chocolat (rectangle $m \times n$) avec le carré (1,1) empoisonné, 2 joueurs P1 et P2 jouent de façon alternée, avec P1 qui commence.</description>
     </item>
     

@@ -7,10 +7,29 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Tue, 09 Feb 2021 11:00:00 +0600</lastBuildDate>
+    <lastBuildDate>Wed, 24 Feb 2021 10:20:10 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/assets/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cours 4</title>
+      <link>https://Sdelpeuch.github.io/assets/md/jeux/4/</link>
+      <pubDate>Wed, 24 Feb 2021 10:20:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/jeux/4/</guid>
+      <description>MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;]], displayMath: [[&#39;$$&#39;,&#39;$$&#39;]], processEscapes: true, processEnvironments: true, skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;], TeX: { equationNumbers: { autoNumber: &#34;AMS&#34; }, extensions: [&#34;AMSmath.js&#34;, &#34;AMSsymbols.js&#34;] } } });  MathJax.</description>
+    </item>
+    
+    <item>
+      <title>Cours 3</title>
+      <link>https://Sdelpeuch.github.io/assets/md/jeux/3/</link>
+      <pubDate>Wed, 10 Feb 2021 10:20:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/jeux/3/</guid>
+      <description>Comment modélise t on un jeu ? une arène ? etc
+Arène Nous définissons une arène comme un graphe orienté $(V,E)$ où $V$ est l&amp;rsquo;ensemble des sommets et $E$ l&amp;rsquo;ensemble des arêtes.</description>
+    </item>
     
     <item>
       <title>Complexité</title>
@@ -41,6 +60,16 @@
     </item>
     
     <item>
+      <title>Cours 2 - Jeux de Hex</title>
+      <link>https://Sdelpeuch.github.io/assets/md/jeux/2/</link>
+      <pubDate>Wed, 03 Feb 2021 10:20:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/jeux/2/</guid>
+      <description>$R$ et $B$ alternent, $R$ doit former un chemin rouge N-S et B un chemin bleu O-E.
+Lemme : Il n&amp;rsquo;y a pas de partie indécise dans Hex (c&amp;rsquo;est à dire : si l&amp;rsquo;arène est remplie de jetons rouges et bleus, alors il existe soit un chemin N-S rouge, soit un chemin E-O bleu).</description>
+    </item>
+    
+    <item>
       <title>Réductions</title>
       <link>https://Sdelpeuch.github.io/assets/md/complex/5/</link>
       <pubDate>Tue, 02 Feb 2021 11:00:00 +0600</pubDate>
@@ -59,6 +88,16 @@ Théorème (Rice) : Soit $\mathcal{C} \subseteq 2^{{0,1}^\star}$ un ensemble de 
       <guid>https://Sdelpeuch.github.io/assets/md/apptcp/3/</guid>
       <description>Le protocole HTTP HTTP (Hypertext Transfer Protocol) est un protocole de transfert de différents formats de données entre serveur et client : texte, images, vidéo, &amp;hellip;
    Le protocole HTTP est basé sur le principe de requête réponse.</description>
+    </item>
+    
+    <item>
+      <title>Cours 1 - Jeux combinatoires</title>
+      <link>https://Sdelpeuch.github.io/assets/md/jeux/1/</link>
+      <pubDate>Wed, 27 Jan 2021 10:20:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/jeux/1/</guid>
+      <description>$ -- $ -- $ si -- On commence par quelques exemples : l&amp;rsquo;exemple du jeu chomp
+Étant donnée une tablette de chocolat (rectangle $m \times n$) avec le carré (1,1) empoisonné, 2 joueurs P1 et P2 jouent de façon alternée, avec P1 qui commence.</description>
     </item>
     
     <item>
@@ -763,16 +802,6 @@ Pour transformer un automate fini déterministe et complet en automate minimal �
       
       <guid>https://Sdelpeuch.github.io/assets/semestre_6/automates/</guid>
       <description>Objectif du cours Les automates finis permettent de modéliser des programmes informatiques à mémoire finie. Ils permettent de résoudre des problèmes à un niveau d&amp;rsquo;abstraction élevé, sans s&amp;rsquo;encombrer des spécificités d&amp;rsquo;un langage donné, et en se concentrant sur les invariants à maintenir pour parvenir à une solution.</description>
-    </item>
-    
-    <item>
-      <title>Bases sur les automates et la logique</title>
-      <link>https://Sdelpeuch.github.io/assets/md/jeux/1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/md/jeux/1/</guid>
-      <description>$ -- $ -- $ si -- Jeux combinatoires On commence par quelques exemples : l&amp;rsquo;exemple du jeu chomp
-Étant donnée une tablette de chocolat (rectangle $m \times n$) avec le carré (1,1) empoisonné, 2 joueurs P1 et P2 jouent de façon alternée, avec P1 qui commence.</description>
     </item>
     
     <item>

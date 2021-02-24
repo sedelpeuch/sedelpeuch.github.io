@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>Bases sur les automates et la logique</title>
+  <title>Cours 1 - Jeux combinatoires</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -144,7 +144,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>Bases sur les automates et la logique</h1>
+          <h1>Cours 1 - Jeux combinatoires</h1>
           <p></p>
         </div>
       </div>
@@ -158,10 +158,10 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">Bases sur les automates et la logique</h2>
+					<h2 class="post-title">Cours 1 - Jeux combinatoires</h2>
 					<div class="post-meta">
 						<ul>
-              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              <li><i class="ion-calendar"></i> January 27, 2021</li>
               
               
               
@@ -201,7 +201,6 @@
 <!--   construit à partir d'un alphabet fini $\Sigma$. L'ensemble de mots fini est -->
 <!--   noté $\Sigma^\star$, ensemble de mots infini est noté $\Sigma^w$ -->
 <!-- + -->
-<h2 id="jeux-combinatoires">Jeux combinatoires</h2>
 <p>On commence par quelques exemples : l&rsquo;exemple du jeu chomp</p>
 <p>Étant donnée une tablette de chocolat (rectangle $m \times n$) avec le carré
 (1,1) empoisonné, 2 joueurs P1 et P2 jouent de façon alternée, avec P1 qui
@@ -299,43 +298,6 @@ tel que le bit de $n_i$ à la position $r$ est 1. Donc, $n_i XOR a &lt;n_i$</li>
 c&rsquo;est à dire</p>
 <p>$$ n_1 XOR &hellip; m_i &hellip; XOR n_p = n_1 XOR &hellip; (n_i XOR a) &hellip; XOR n_p = a XOR a
 = 0$$</p>
-<h3 id="jeux-de-hex">Jeux de hex</h3>
-<p>$R$ et $B$ alternent, $R$ doit former un chemin rouge N-S et B un chemin bleu
-O-E.</p>
-<p><strong>Lemme</strong> : Il n&rsquo;y a pas de partie indécise dans Hex (c&rsquo;est à dire : si l&rsquo;arène
-est remplie de jetons rouges et bleus, alors il existe soit un chemin N-S rouge,
-soit un chemin E-O bleu).</p>
-<p>Le jeu de Hex est fini, donc déterminé.</p>
-<p><strong>Théorème</strong> : Le joueur qui commence a une stratégie gagnante, pourtoute arène
-$n \times n$</p>
-<p>Supposons que $R$ commence. On montre par l&rsquo;absurde. Supposons que $B$ a une
-stratégie gagnante $S$. On définit maintenant une stratégie $S'$ pour $R$ (&ldquo;vol
-de stratégie&rdquo;). $R$ commence par un coup arbitraire, il marque ce coup par un
-jeton additionnel $X$ (rouge). Après le premier coup de $B$, le joueur $R$
-commence à joueur la stratégie $S$. Si $S$ lui indique de mettre un jeton sur la
-place de $X$, $R$ choisit une autre place libre arbitraire, qui devient le
-nouveau jeton $X$, et met un jeton sur celle-ci.</p>
-<p><strong>Remarque :</strong> à chaque instant, les jetons de $R$ (hormis $X$) correspondent à
-la stratégie $S$. LE joueur $R$ joue $S$ en tant que 2e joueur, mais à partir du
-tablier avec jeton additionnel $X$.</p>
-<p>On montre que $S'$ est gagnante pour $R$ : si $B$ réussissait à former un
-chemin, alors il aurait réussi aussi sans la présence du jeton (rouge) $X$. Donc
-$S$ ne serait pas une stratégie gagnante pour le 2e joueur, contradiction.</p>
-<p><strong>Remarque :</strong> on ne connaît pas de stratégie explicite pour $n&gt;9$</p>
-<p><strong>Lemme :</strong> si l&rsquo;arène est couverte par des jetons rouge/bleu, alors il existe
-soit un chemin rouge N-S, ou un chemin bleu E-O.</p>
-<p>On colorie en rouge la région en dessosu de la rangée sud, et en bleu celle à
-gauche de la rangée ouest.</p>
-<p>Ensuite on construit un chemin en partant du coin sud-ouest, et en suivant les
-arêtes, pour préserver l&rsquo;invariant suivant : la couleur à gauche de l&rsquo;arête
-actuelle est bleu, et la couleur à droite est rouge. Si on montrer que le chemin
-atteint le côté &ldquo;est&rdquo;, alors P2 a gagné. Si le chemin atteint le côté &ldquo;nord&rdquo;,
-c&rsquo;est $P1$ qui gagne.</p>
-<p>Si le chemin arrive dans un noeud de degré 3, on va à gauche/droite selon la
-couleur de la 3e région.</p>
-<p>Si le chemin arrive dans un noeud de degré 2, ça doit être sur le côté &ldquo;sud&rdquo; et
-&ldquo;ouest&rdquo;, et l&rsquo;invariant est préservé à cause du coloriage des 2 régions.</p>
-<p>De plus en utilisant l&rsquo;invariant on montre que le chemin ne peut pas boucler.</p>
 <p></script></p>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
@@ -411,6 +373,22 @@ MathJax.Hub.Config({
     
     <div class="media">
       <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/jeux/4/">Cours 4</a></h4>
+        <h5>[Jeux]</h5>
+        <p>MathJax.Hub.Config({ tex2jax: { inlineMath: …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/jeux/3/">Cours 3</a></h4>
+        <h5>[Jeux]</h5>
+        <p>Comment modélise t on un jeu ? une arène ? etc …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/6/">Complexité</a></h4>
         <h5>[Calculabilité et complexité]</h5>
         <p>Rappels Fonctions, langages et problèmes Soit la …</p>
@@ -435,25 +413,9 @@ MathJax.Hub.Config({
     
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/5/">Réductions</a></h4>
-        <h5>[Calculabilité et complexité]</h5>
-        <p>Théorème de Rice Notons $L(M)$ le langage reconnu …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/apptcp/3/">Le protocole HTTP - Le courrier électronique</a></h4>
-        <h5>[Application TCP-IP]</h5>
-        <p>Le protocole HTTP HTTP (Hypertext Transfer …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/complex/4/">Indécidabilité</a></h4>
-        <h5>[Calculabilité et complexité]</h5>
-        <p>Arrêt des machines de Turing Soit $\text{HALT} : …</p>
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/jeux/2/">Cours 2 - Jeux de Hex</a></h4>
+        <h5>[Jeux]</h5>
+        <p>$R$ et $B$ alternent, $R$ doit former un chemin …</p>
       </div>
     </div>
     
