@@ -187,8 +187,6 @@
 de $(\theta_0, \theta_1, \theta_2)$ (modèle direct) puis l&rsquo;expression de $(\theta_0, \theta_1,
 \theta_2)$ en fonction de $(x,y,z)$ (modèle inverse). Nous définissons le repère
 $\mathcal{R}$ centré sur la première articulation de la patte (repère 0).</p>
-<p>soit la matrice $A$ correspondant à l&rsquo;origine du repère 1, $A = \begin{pmatrix}
-l_0 \times \cos{\theta_0} \\ l_0 \times \sin{\theta_0} \\ 0 &amp; \end{pmatrix}_\mathcal{R}$</p>
 <h4 id="rappel-sur-la-matrice-de-rotation">Rappel sur la matrice de rotation.</h4>
 <p>En 2D autour de 0 : $rot_{(0,\theta)} = \begin{pmatrix} \cos{\theta} &amp; - \sin{\theta} \\<br>
 \sin{\theta} &amp; \cos{\theta} \end{pmatrix}$</p>
@@ -199,6 +197,28 @@ l_0 \times \cos{\theta_0} \\ l_0 \times \sin{\theta_0} \\ 0 &amp; \end{pmatrix}_
 0 &amp; 0 &amp; 1 \\<br>
 \end{pmatrix}$</p>
 <h2 id="modèle-direct">Modèle Direct</h2>
+<p>Soit la matrice $A$ correspondant à l&rsquo;origine du repère 1, $A = \begin{pmatrix}
+l_0 \times \cos{\theta_0} \\ l_0 \times \sin{\theta_0} \\ 0 &amp; \end{pmatrix}_\mathcal{R}$</p>
+<p>Soit la matrice $B$ correspondant à l&rsquo;origine du repère 2, $B = \begin{pmatrix}
+l_1 \cos{(\pi - \theta_1 )} \\ 0 \\ l_1 \sin{(\pi - \theta_1)}\end{pmatrix}_{\mathcal{R}_1}$ on a donc</p>
+<p>$$\begin{align*}
+rot_{\theta_0, \mathcal{O}_z} &amp;\cdot B_{\mathcal{R}_1} + A_2 \\<br>
+\begin{pmatrix} \cos{\theta} &amp; -\sin{\theta} &amp; 0 \\<br>
+\sin{\theta} &amp; \cos{\theta}  \\<br>
+0 &amp; 0 &amp; 1 \end{pmatrix} &amp;\cdot \begin{pmatrix}
+l_1 \cos{(\pi - \theta_1)} \\<br>
+0 \\<br>
+l_1 \sin{(\pi - \theta_1)}
+\end{pmatrix} + \begin{pmatrix} l_0 \cos{\theta_0} \\ l_0 \sin{\theta_0} \\<br>
+0 \end{pmatrix}
+\end{align*}$$</p>
+<p>Soit $M$ le point au bout de la patte, nous pouvons donc caractériser $\vec{BM}
+= \begin{pmatrix} l_2 \cos{(\pi - \theta_2)} \\ 0 \\ l_2 \sin{(\pi -
+\theta_2)} \end{pmatrix}_{\mathcal{R}_2}$</p>
+<p>Au final on a $(x,y,z) = r_{\mathcal{O}_z, \theta_0} \cdot r_{(0,y),
+\pi-\theta_1} \cdot \vec{BM}_{\mathcal{R}_2} + B_{\mathcal{R}_0}$</p>
+<h2 id="modèle-inverse">Modèle Inverse</h2>
+<h2 id="modèle-direct-1">Modèle Direct</h2>
 <h3 id="repère-1">Repère 1</h3>
 <p>$$
 \begin{cases}
