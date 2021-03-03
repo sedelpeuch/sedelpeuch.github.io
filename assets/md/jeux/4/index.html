@@ -179,7 +179,68 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<p></script></p>
+						<p>Nous avons vu la dernière fois qu&rsquo;un jeu est défini par une arène de jeu (un
+graphe $V$) et une condition de victoire.</p>
+<h2 id="jeux-de-gale">Jeux de Gale</h2>
+<p>Soit un alphabet $A$, deux joueurs $P_0$ et $P_1$ qui jouent de façon alternée.
+Les différentes configuration de jeu sont les mots de $A^\star$, si la
+configuration actuelle $w \in A^\star$ est de longueur paire c&rsquo;est le tour de
+$P_0$, si elle est de longueur impaire c&rsquo;est le tour de $P_1$. Chaque coup de
+$P_i$ consiste à rajouter une lettre à $w \rightarrow w_a$. Une partie maximale
+est alors un mot infini sur $A$ tel que $w \in A^w$.</p>
+<h3 id="exemple">Exemple</h3>
+<ol>
+<li>$w_i$ est l&rsquo;ensemble des mots de $A^w$ qui contiennent $aa$ comme facteur, le
+langage est donc $A = {a,b}$, $V_0$ est représenté par des ronds et $V_1$
+par des carrés. Une stratégie gagnante pour $P_1$ est de toujours jouer $b$</li>
+</ol>
+<center>
+<img src="/assets/images/jeux/3.png" width="50%"></img>
+</center>
+<ol start="2">
+<li>$win$ est désormais l&rsquo;ensemble des mots qui contienne comme facteur $aa$ ou
+$bb$. La stratégie gagnante de $P_0$ est de faire en sorte de répéter le
+motif $abb$.</li>
+</ol>
+<h2 id="jeux-daccessibilité">Jeux d&rsquo;accessibilité</h2>
+<p>Un jeu d&rsquo;accessibilité se définit par $(V = V_0 \cup V_1, E) + F \subseteq V$.
+Le but de $P_0$ est d&rsquo;atteindre un sommet de $F$. Le but de $P_1$ est d&rsquo;éviter
+$F$ (jeu de sureté). LA solution pour un jeu d&rsquo;accessibilité est l&rsquo;attraction.
+Soit $v \in V$, soit les notations suivantes $\begin{cases}
+\verb|pre|(v) = \{u: u \rightarrow v\} \; \; \text{(predec)} \\<br>
+\verb|post|(v) = \{u : v \rightarrow u\} \; \text{(succ)} \\<br>
+\end{cases}$</p>
+<p>On note $\verb|Attr_0|(F)$ l&rsquo;attrracteur de $P_0$ vers $F$ de
+niveau $K$. Pour la phase d&rsquo;initialisation ($K=0$) on a $\verb|Attr|^0_0(F) = F$.
+Pour tout $K&gt;1$ on a $$\verb|Attr|^K_0(F) = \verb|Attr|^{K-1}_0(F) \cup \{ v \in
+V_0 : \verb|post|(u) \cap \verb|Attr|_0^{K-1}(F) \neq 0 \} \cup \{v \in V_1 :
+\verb|post|(u) \subseteq \verb|Attr|_0^{K-1}(F)\}$$. Nous avons donc
+$\verb|Attr|_0^0(F) \subseteq \verb|Attr|^1_0(F) \subseteq &hellip; \subseteq
+\verb|Attr|^{n-1}_0 \subseteq \verb|Attr|^n_0(F)$. Nous pouvons alors définir
+$\verb|Attr_0|(F) := \verb|Attr|_0^n(F)$ l&rsquo;attracteur de $P_0$ vers $F$.</p>
+<h3 id="démonstration-1">Démonstration 1</h3>
+<p>On montre que $\verb|Attr|(F)$ est équivalent au nombre de sommets à partir
+duquel $P_0$ gagne le jeu d&rsquo;accessibilité vers $F$. Pour chaque $K \geq 0 :
+\verb|Attr|^K_0(F)$ est équivalent au ommets à partir duquel $P_0$ a une
+stratégie pour atteindre $F$ en moins de $K$ coups. Pour l&rsquo;intialisation
+$P_0$ garantit d&rsquo;atteindre $F$ en $\leq 0$ coups à partir de $v$ autrement
+dit $v \in F$. Si $k&gt;1$ on suppose que c&rsquo;est vrai pour $k-1$</p>
+<ul>
+<li>$v \in V_0$ soit $P_0$ garantit à partir de $v$ d&rsquo;atteindre $f$ en moins de
+$(k-1)$ coups ou $P_0$ va de $v$ à $w$, à partir duquel $P_0$ garantit
+d&rsquo;atteindre $F$ en moins de $(k-1)$ coups</li>
+<li>$v \in V_1$ soit $P_0$ garantit à partir de $v$ d&rsquo;atteindre $F$ en moins de
+$k-1$ coups, soit quelque soit le coup de $P_1$ dans $F$ en moins de $k-1$
+coups</li>
+</ul>
+<p>$$\begin{cases}
+v \in \verb|Attr|_0(F) \\<br>
+v \in V_0
+\end{cases} \Rightarrow \text{ une stratégie de} P_0 \text{dans} \; v \; \text{: aller
+vers le successeur de} \; v \; \text{qui diminue le niveau de l&rsquo;attracteur}$$</p>
+<p>$v \in \verb|Attr|_0^K(F) \backslash \verb|Attr|^{K-1}_0(F) \Rightarrow v v
+\rightarrow w \in \verb|Attr|_0^{K-1}(F)$</p>
+<p></script></p>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
@@ -256,6 +317,14 @@ MathJax.Hub.Config({
     
     <div class="media">
       <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/jeux/5/">Cours 5</a></h4>
+        <h5>[Jeux]</h5>
+        <p>Réalisation d&rsquo;un algorithme de complexité en …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/robotique/1/">Modélisation du problème</a></h4>
         <h5>[Robotique]</h5>
         <p>Définition du problème    On cherche à trouver le …</p>
@@ -266,7 +335,7 @@ MathJax.Hub.Config({
       <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/jeux/4/">Cours 4</a></h4>
         <h5>[Jeux]</h5>
-        <p>MathJax.Hub.Config({ tex2jax: { inlineMath: …</p>
+        <p>Nous avons vu la dernière fois qu&rsquo;un jeu est …</p>
       </div>
     </div>
     
@@ -291,14 +360,6 @@ MathJax.Hub.Config({
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/se/3/">Gestion mémoire</a></h4>
         <h5>[SE]</h5>
         <p>Programmation modulaire Le chargement des …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/apptcp/4/">Le routage dans les réseaux</a></h4>
-        <h5>[Application TCP-IP]</h5>
-        <p>Les réseaux sont reliés entre eux par des routeurs …</p>
       </div>
     </div>
     

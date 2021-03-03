@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 01 Mar 2021 09:30:00 +0600</lastBuildDate>
+    <lastBuildDate>Wed, 03 Mar 2021 10:20:10 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/assets/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cours 5</title>
+      <link>https://Sdelpeuch.github.io/assets/md/jeux/5/</link>
+      <pubDate>Wed, 03 Mar 2021 10:20:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/jeux/5/</guid>
+      <description>Réalisation d&amp;rsquo;un algorithme de complexité en temps linéaire pour le calcul de l&amp;rsquo;attracteur $\verb|Attr|_0(F), F \subseteq V$. Soit les éléments suivants
+ Une file $Q$ de sommets un tableau $R$ répertoriant les sommets traités ($\verb|done|$) un tableau $C$ (counter) : $0 \leq C(v) \leq | \verb|Post|(v) |$  On supposera que $\verb|Pre|$ et $\verb|Post|$ sont disponibles sous forme de tableau de liste, in fine $R$ sera $\verb|Attr|_0(F)$, $\verb|done|$ est l&amp;rsquo;ensemble des sommets déjà traités, $Q$ est l&amp;rsquo;ensemble des sommets en cours de traitement et $C$ est utilisé uniquement pour $V_1$</description>
+    </item>
     
     <item>
       <title>Modélisation du problème</title>
@@ -27,7 +37,8 @@
       <pubDate>Wed, 24 Feb 2021 10:20:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/jeux/4/</guid>
-      <description>MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;]], displayMath: [[&#39;$$&#39;,&#39;$$&#39;]], processEscapes: true, processEnvironments: true, skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;], TeX: { equationNumbers: { autoNumber: &#34;AMS&#34; }, extensions: [&#34;AMSmath.js&#34;, &#34;AMSsymbols.js&#34;] } } });  MathJax.</description>
+      <description>Nous avons vu la dernière fois qu&amp;rsquo;un jeu est défini par une arène de jeu (un graphe $V$) et une condition de victoire.
+Jeux de Gale Soit un alphabet $A$, deux joueurs $P_0$ et $P_1$ qui jouent de façon alternée.</description>
     </item>
     
     <item>
