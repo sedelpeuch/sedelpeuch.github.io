@@ -37,7 +37,7 @@
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/semestre8/crypto/</guid>
-      <description></description>
+      <description> Cours 1  </description>
     </item>
     
     <item>
@@ -85,6 +85,15 @@
       <guid>https://Sdelpeuch.github.io/semestre8/jeux/</guid>
       <description>Ressources pédagogiques Le site du cours
  Cours 1 Cours 2 Cours 3 Cours 4 Cours 5  </description>
+    </item>
+    
+    <item>
+      <title>Management de la qualité</title>
+      <link>https://Sdelpeuch.github.io/semestre8/qualite/</link>
+      <pubDate>Sun, 17 Jan 2021 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre8/qualite/</guid>
+      <description>Définition de la qualité La qualité est une notion vaste et floue, quel que soit le domaine abordé, la qualité est une notion subjective et relative. La qualité exprime le degré de satisfaction du client lié à une transaction.</description>
     </item>
     
   </channel>
