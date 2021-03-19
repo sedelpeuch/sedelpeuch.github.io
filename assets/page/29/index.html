@@ -167,7 +167,7 @@
           
           
           
-          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/automates/cours3/">Langages non réguliers</a></h3>
+          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes4/">Récursivité</a></h3>
           <div class="post-meta">
             <ul>
               <li><i class="ion-calendar"></i> January 1, 0001</li>
@@ -183,8 +183,8 @@
             </ul>
           </div>
           <div class="post-content">
-            <p>Au chapitre précédent, nous avons étudié les langages réguliers. Nous avons particulièrement montré que les langages réguliers. Ainsi donc, le problème de décision $\omega \in L$ peut être résolu par un automate fini uniquement si $L$ est un langage régulier.</p>
-            <a href="https://Sdelpeuch.github.io/assets/md/automates/cours3/" class="btn btn-main">Voir Plus</a>
+            <p>Exemple d&rsquo;introduction fact(0)=1 fact(n)=n * fact(n-1) (define (fact n) (if (zero? n) 1 (* n (fact (sub1 n)))))  Récursivité terminale Pour rendre une fonction récursive terminale, on déplace le calcul effectuée après l&rsquo;appel récursif pour le faire avant.</p>
+            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes4/" class="btn btn-main">Voir Plus</a>
           </div>
         </div>
         
@@ -194,7 +194,7 @@
           
           
           
-          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes7/">Les fonctionnelles</a></h3>
+          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes6/">Système de type</a></h3>
           <div class="post-meta">
             <ul>
               <li><i class="ion-calendar"></i> January 1, 0001</li>
@@ -210,64 +210,69 @@
             </ul>
           </div>
           <div class="post-content">
-            <p>La forme lambda : rappel et utilisation (lambda (&lt;p1&gt; &lt;p2&gt; ... &lt;pn&gt;) &lt;e&gt;)  Nommage de $\lambda$-expressions : (define f (lambda (x y) (+ (* 10 x) y))) Application de $\lambda$-expressions : mise en position fonctionnelle, stratégie applicative (par valeur) Passage de $\lambda$-expressions en paramètres : juxtaposition $\lambda$-expressions en retour de fonction : imbrication  Juxtaposition On appelle rédex un terme de la forme $(\lambda x.</p>
-            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes7/" class="btn btn-main">Voir Plus</a>
-          </div>
-        </div>
-        
-        <div class="post">
-          
-          
-          
-          
-          
-          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes8/">Les formes impératives</a></h3>
-          <div class="post-meta">
-            <ul>
-              <li><i class="ion-calendar"></i> January 1, 0001</li>
-              
-              
-              
-              
-              
-              
-              <li><i class="ion-pricetags"></i> 
-                
-              </li>
-            </ul>
-          </div>
-          <div class="post-content">
-            <p>Références Une référence est un objet correspondant à une adresse mémoire et donc l&rsquo;indirection est faite automatiquement dans toute situation où une valeur est requise. L&rsquo;adresse associée à une référence n&rsquo;est pas directement manipulable en tant que telle (il n&rsquo;existe pas d&rsquo;opérations pour le programmeur sur les références)</p>
-            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes8/" class="btn btn-main">Voir Plus</a>
-          </div>
-        </div>
-        
-        <div class="post">
-          
-          
-          
-          
-          
-          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes5/">Les listes</a></h3>
-          <div class="post-meta">
-            <ul>
-              <li><i class="ion-calendar"></i> January 1, 0001</li>
-              
-              
-              
-              
-              
-              
-              <li><i class="ion-pricetags"></i> 
-                
-              </li>
-            </ul>
-          </div>
-          <div class="post-content">
-            <p>Résumé des différents objets en Scheme
+            <p>Classification des valeurs en ensembles appelés types de manière à garantir la correction de certains programmes
 {:class=&quot;image about center&rdquo;}
- Les listes Définition récursive des listes  Liste vide : '() ou null Une paire pointée dont le car est un élément de la liste, et le cdr est une liste Liste impropre : une liste qui ne se termine pas par la liste vide Liste circulaire : une chaîne de cons sans fin  Fonctions de base sur les listes  Prédicat : list?</p>
-            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes5/" class="btn btn-main">Voir Plus</a>
+ Styles de typage  Le typage dynamique : déterminé pendant l&rsquo;exécution par le runtime, il ne nécessite aucune intervention du programmeur Le typage statique : fixé avant l&rsquo;exécution par le compilateur, il est soit inféré automatiquement, soit indiqué par des annotations dans le code  Afin d&rsquo;annoter une valeur &lt;val&gt; par un type &lt;typ&gt;, il suffit d&rsquo;écrire avant la définition de &lt;val&gt;</p>
+            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes6/" class="btn btn-main">Voir Plus</a>
+          </div>
+        </div>
+        
+        <div class="post">
+          
+          
+          
+          
+          
+          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes2/">Types et constructions de base du langage</a></h3>
+          <div class="post-meta">
+            <ul>
+              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+              </li>
+            </ul>
+          </div>
+          <div class="post-content">
+            <p>Résumé des constructions syntaxiques du langage
+{:class=&quot;image about center&rdquo;}
+Résumé des opérations numériques
+{:class=&quot;image about center&rdquo;}
+ Les caractères et les chaînes de caractères  Caractère : ̀#\a` Chaîne : &ldquo;de caracteres&rdquo; Type : ̀char?</p>
+            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes2/" class="btn btn-main">Voir Plus</a>
+          </div>
+        </div>
+        
+        <div class="post">
+          
+          
+          
+          
+          
+          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes3/">Types et constructions de base du langage</a></h3>
+          <div class="post-meta">
+            <ul>
+              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+              </li>
+            </ul>
+          </div>
+          <div class="post-content">
+            <p>Définitions : Symboles et liaisons Un symbole est un identificateur, c&rsquo;est à dire un nom symbolique.
+Une liaison est une entité, c&rsquo;est à dire un objet nommé résidant dans la mémoire, donc l&rsquo;association d&rsquo;un symbole avec un emplacement mémoire contenant une valeur.</p>
+            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes3/" class="btn btn-main">Voir Plus</a>
           </div>
         </div>
         
@@ -641,11 +646,83 @@
 						
 						
 						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<li class="">
+							<a href="/assets/page/25/">
+								25
+							</a>
+						</li>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<li class="">
+							<a href="/assets/page/26/">
+								26
+							</a>
+						</li>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
 						<li class="">
 							<a href="/assets/page/27/">
 								27
 							</a>
 						</li>
+						
+						
 						
 						
 						
@@ -683,6 +760,8 @@
 						
 						
 						
+						
+						
 						<li class=" active ">
 							<a href="/assets/page/29/">
 								29
@@ -692,86 +771,12 @@
 						
 						
 						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						<li class="">
-							<a href="/assets/page/30/">
-								30
-							</a>
-						</li>
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						<li class="">
-							<a href="/assets/page/31/">
-								31
-							</a>
-						</li>
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						<li>
-							<a href="/assets/page/30/">Suivant</a>
-						</li>
-						
 					</ul>
 				</nav>
 				
       </div>
       <div class="col-md-4">
         <aside class="sidebar">
-
-
 
 
 

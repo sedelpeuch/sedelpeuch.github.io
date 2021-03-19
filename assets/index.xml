@@ -71,15 +71,6 @@ Arène Nous définissons une arène comme un graphe orienté $(V,E)$ où $V$ est
     </item>
     
     <item>
-      <title>Complexité</title>
-      <link>https://Sdelpeuch.github.io/assets/md/complex/6/</link>
-      <pubDate>Tue, 09 Feb 2021 11:00:00 +0600</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/md/complex/6/</guid>
-      <description>Rappels Fonctions, langages et problèmes Soit la fonction booléenne : $</description>
-    </item>
-    
-    <item>
       <title>Gestion mémoire</title>
       <link>https://Sdelpeuch.github.io/assets/md/se/3/</link>
       <pubDate>Mon, 08 Feb 2021 09:30:00 +0600</pubDate>
@@ -109,17 +100,6 @@ Lemme : Il n&amp;rsquo;y a pas de partie indécise dans Hex (c&amp;rsquo;est à 
     </item>
     
     <item>
-      <title>Réductions</title>
-      <link>https://Sdelpeuch.github.io/assets/md/complex/5/</link>
-      <pubDate>Tue, 02 Feb 2021 11:00:00 +0600</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/md/complex/5/</guid>
-      <description>Théorème de Rice Notons $L(M)$ le langage reconnu par la Machine de Turing $M$.
-$$L(M) = {x \in {0,1}^\star : M(x) = 1}$$
-Théorème (Rice) : Soit $\mathcal{C} \subseteq 2^{{0,1}^\star}$ un ensemble de langages non trivial c&amp;rsquo;est a dire tel que</description>
-    </item>
-    
-    <item>
       <title>Le protocole HTTP - Le courrier électronique</title>
       <link>https://Sdelpeuch.github.io/assets/md/apptcp/3/</link>
       <pubDate>Fri, 29 Jan 2021 08:10:00 +0600</pubDate>
@@ -140,16 +120,6 @@ Théorème (Rice) : Soit $\mathcal{C} \subseteq 2^{{0,1}^\star}$ un ensemble de 
     </item>
     
     <item>
-      <title>Indécidabilité</title>
-      <link>https://Sdelpeuch.github.io/assets/md/complex/4/</link>
-      <pubDate>Tue, 26 Jan 2021 11:00:00 +0600</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/md/complex/4/</guid>
-      <description>Arrêt des machines de Turing Soit $\text{HALT} : {0,1}^\star \rightarrow {0,1}$ la fonction qui
- prendre en entrée un couple $(\alpha, x)$ retourne 1 si et seulement si la MT, $M_\alpha$ s&amp;rsquo;arrête sur l&amp;rsquo;entrée $x$.</description>
-    </item>
-    
-    <item>
       <title>DNS - Domain Name System</title>
       <link>https://Sdelpeuch.github.io/assets/md/apptcp/2/</link>
       <pubDate>Fri, 22 Jan 2021 09:30:00 +0600</pubDate>
@@ -167,33 +137,6 @@ Théorème (Rice) : Soit $\mathcal{C} \subseteq 2^{{0,1}^\star}$ un ensemble de 
       <guid>https://Sdelpeuch.github.io/assets/md/apptcp/1/</guid>
       <description>Rappel du modèle OSI et TCP/IP
    Couche session La couche session est la première couche ne so&amp;rsquo;ccupant pas de la communication entre entités. Son objectif est l&amp;rsquo;organisation du dialogue entre les entités</description>
-    </item>
-    
-    <item>
-      <title>Robustesse du modèle de calcul par Machines de Turing, Machine de Turing universelle</title>
-      <link>https://Sdelpeuch.github.io/assets/md/complex/3/</link>
-      <pubDate>Tue, 19 Jan 2021 12:07:10 +0600</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/md/complex/3/</guid>
-      <description>Definition des MTs : des choix arbitraires  Nombre de rubans : 1,2,&amp;hellip;,k Choix de l&amp;rsquo;alphabet : {0,1}, {a,b,c,&amp;hellip;,z}, etc Rubans infinis dans une direction ou deux directions  Influence de la taille de l&amp;rsquo;alphabet Soit $f:{0,1}^\star \rightarrow {0,1}^\star$ et $T:\mathbb{N} \rightarrow \mathbb{N}$</description>
-    </item>
-    
-    <item>
-      <title>Machines de Turing</title>
-      <link>https://Sdelpeuch.github.io/assets/md/complex/2/</link>
-      <pubDate>Mon, 18 Jan 2021 12:07:10 +0600</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/md/complex/2/</guid>
-      <description>Ruban, tête de lecture, registre  Ruban : infini, divisé en cases. Chaque case contient un symbole $s \in \Sigma \cup {\square, \triangleright }$ où $\Sigma$ est un alphabet fini, $\triangleright$ le marqueur de début de ruban et $\square$ (&amp;ldquo;blanc&amp;rdquo;) un symbole par défaut.</description>
-    </item>
-    
-    <item>
-      <title>Langages, problèmes et fonctions</title>
-      <link>https://Sdelpeuch.github.io/assets/md/complex/1/</link>
-      <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/md/complex/1/</guid>
-      <description>Quelques rappels Un alphabet A est un ensemble fini de symbole. Un mot sur l&amp;rsquo;alphabet A est une suite finie de symboles de A. On note $\epsilon$ le mot vide. La taille d&amp;rsquo;un mot m, noté $| m |$ est le nombre de symboles qui le composent.</description>
     </item>
     
     <item>
@@ -727,16 +670,6 @@ Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire d&
     </item>
     
     <item>
-      <title>Algorithmique numérique</title>
-      <link>https://Sdelpeuch.github.io/assets/semestre_6/algo_num/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/semestre_6/algo_num/</guid>
-      <description>Objectif du cours Le module d&amp;rsquo;Algorithmique Numérique décrit un ensemble de méthodes et d&amp;rsquo;algorithmes adaptés à la modélisation de problèmes numériques.
-   Thème Sujet Réalisation     Méthode de calcul numérique / Limite de la machine sujet 1 rapport 1   Résolution de système linéaire / Equation chaleur sujet 2 rapport 2   Compression image par algorithme de décomposition SVD sujet 3 rapport 3   Non-linear systems of equations / Newton-Rasphon Method sujet 4 rapport 4   Interpolation and integration methods / Cubic splines and surface interpolation sujet 5 rapport 5   Résolution approchée d&amp;rsquo;équations différentielles / Modélisation des systèmes dynamiques sujet 6 rapport 6    </description>
-    </item>
-    
-    <item>
       <title>Architecture des Réseaux TCP/IP</title>
       <link>https://Sdelpeuch.github.io/assets/md/tcp/exercices/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -832,15 +765,6 @@ Pour transformer un automate fini déterministe et complet en automate minimal �
       
       <guid>https://Sdelpeuch.github.io/assets/md/automates/cours2/</guid>
       <description>Grâce au chapitre précédent nus pouvons représenter $x$ par un mot, l&amp;rsquo;algorithme par un automate fini, mais comment représenter $\mathcal{L}$ ? S&amp;rsquo;il est fini, il suffit d&amp;rsquo;énumérer tous les mots qui le composent, mais que faire quand il est infini ?</description>
-    </item>
-    
-    <item>
-      <title>Automates, Applications finies</title>
-      <link>https://Sdelpeuch.github.io/assets/semestre_6/automates/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/semestre_6/automates/</guid>
-      <description>Objectif du cours Les automates finis permettent de modéliser des programmes informatiques à mémoire finie. Ils permettent de résoudre des problèmes à un niveau d&amp;rsquo;abstraction élevé, sans s&amp;rsquo;encombrer des spécificités d&amp;rsquo;un langage donné, et en se concentrant sur les invariants à maintenir pour parvenir à une solution.</description>
     </item>
     
     <item>
@@ -983,15 +907,6 @@ Le problème posé à l&amp;rsquo;aviation anglaise durant la bataille d&amp;rsq
     </item>
     
     <item>
-      <title>Graphes</title>
-      <link>https://Sdelpeuch.github.io/assets/semestre_6/algo_graph/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/semestre_6/algo_graph/</guid>
-      <description>Objectif du cours Après une brève introduction des graphes, ce cours présente des problèmes sur les graphes admettant une solution algorithmique efficace. L&amp;rsquo;étude de ces solutions sera l&amp;rsquo;occasion d&amp;rsquo;exhiber des propriétés classiques en Théorie des Graphes.</description>
-    </item>
-    
-    <item>
       <title>Impératif - code-legacy-sujet</title>
       <link>https://Sdelpeuch.github.io/assets/md/imp/code-legacy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1026,15 +941,6 @@ Exercice 2 git clone https://github.com/allali/statelib.git  Le système de comp
       
       <guid>https://Sdelpeuch.github.io/assets/md/tcp/cours1/</guid>
       <description>Historique et définition de l&amp;rsquo;internet 3 définitions pour Internet  Une famille de protocoles de communication, appelée :  TCP/IP : Transmission Control Protocol / Internetworking Protocol ou Internet Protocol Suite   Un réseaum mondial constituéé de milliers de réseaux hétérogènes interconnectés au moyen des protocoles TCP/IP  Réseaux locaux d&amp;rsquo;agences gouvernementales, institutions d&amp;rsquo;éducation, hôpitaux, des commerciaux &amp;hellip; Réseaux fédérateur de Campus Réseaux Régionaux, Nationaux, Intercontinentaux   Une communauté de personnes utilisant différents services  Courrier électronique, Web, Transfert de fichiers FTP &amp;hellip;    Gouvernance d&amp;rsquo;Internet La gouvernance d&amp;rsquo;internet se base sur trois axes, la gestion des adresses IP (IANA attribue les blocs d&amp;rsquo;adresses, RIR distribue les adresses aux fournisseurs).</description>
-    </item>
-    
-    <item>
-      <title>Introduction aux réseaux</title>
-      <link>https://Sdelpeuch.github.io/assets/semestre_6/reseau/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/semestre_6/reseau/</guid>
-      <description>Objectif du cours Cours d’introduction aux réseaux avec présentation des modèles OSI et TCP/IP. Historique des réseaux, les réseaux locaux informatiques (LAN), classification des réseaux, les couches ISO et TCP/IP, technologies pour les LAN, notion de base sur l’Ethernet : adressage, commutation, type ethernet, équipements d’interconnexions réseaux, autres protocoles pour les LAN, travaux pratiques</description>
     </item>
     
     <item>
@@ -1161,41 +1067,12 @@ On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&amp;rs
     </item>
     
     <item>
-      <title>Prog fonctionnelle</title>
-      <link>https://Sdelpeuch.github.io/assets/semestre_6/prog_fonc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/semestre_6/prog_fonc/</guid>
-      <description>Objectif du cours Initiation à la programmation fonctionnelle (evaluation, environnements, récursivité, listes, fonctionnelles, macroexpansion).
-Ressources pédagogiques Le support de cours
-   Thème Notes     Introduction notes1   Types et constructions de base du langage notes2   Environnements notes3   Récursivité notes4   Les listes notes5   Système de type notes6   Les fonctionnelles notes7   Les formes impératives notes8   Les macroexpansions notes9       Thème Sujet Correction     Expressions, fonctions TD 1 corrigé 1   Fonctions, récursivité TD 2 corrigé 2   Récursivité terminale TD 3 corrigé 3   Listes, paires pointées TD 4 corrigé 4   Listes et récursivité TD 5 corrigé 5   Fonctionnelles TD 6 corrigé 6   Map et reduce TD 7 corrigé 7   Modules, fermetures et macros TD 8 corrigé 8    </description>
-    </item>
-    
-    <item>
       <title>Programmation fonctionnelle - Introduction</title>
       <link>https://Sdelpeuch.github.io/assets/md/fonc/notes1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/fonc/notes1/</guid>
       <description>Concepts et terminologie  Ecriture fonctionnelle : programmation par applications de fonctions plutôt que par l&amp;rsquo;exécution de séquences d&amp;rsquo;instructions Transparence référentielle : chaque expression peut être remplacée par son résultat sans changer le comportement du programme - sans effets de bord Programmation fonctionnelle pure : sans effets de bords, avec transparence référentielle Fonctions de première classe : type fonction, constantes fonction, opérateurs sur les fonctions Type dynamique : les variables sont typées au moment de l&amp;rsquo;exécution et non au moment de la compilation Références : ce sont les adresse sur des objets, elles sont utilisées chaque fois que les contenus ne sont pas utiles (passages de paramètres, retours de fonctions) Garbage collector : gestion dynamique et automatique de la mémoire.</description>
-    </item>
-    
-    <item>
-      <title>Programmation impérative</title>
-      <link>https://Sdelpeuch.github.io/assets/semestre_6/prog_imp/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/semestre_6/prog_imp/</guid>
-      <description>Objectif du cours L&amp;rsquo;objectif de ce cours est d&amp;rsquo;approfondir l&amp;rsquo;étude de la programmation en langage C et l&amp;rsquo;usage des outils associés. On y aborde l&amp;rsquo;utilisation de constructions avancées du langage (typage, pointeurs de fonctions) permettant de mettre en application certains principes de génie logiciel, et on y présente plusieurs outils (débogueurs, outils de gestion de sources, de documentation automatique et de mesure de performance) permettant d&amp;rsquo;augmenter l&amp;rsquo;efficacité de la programmation.</description>
-    </item>
-    
-    <item>
-      <title>Recherche opérationnelle</title>
-      <link>https://Sdelpeuch.github.io/assets/semestre_6/recherche/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/semestre_6/recherche/</guid>
-      <description>Ressources Pédagogiques    Cours Sujet du TD Notes de cours Notes de TD     PL-1 PL-1 TD notes1 notes-td1   PL-2 PL-2 TD notes2 notes-td2   PL-3 PL-3 TD     PL-4       </description>
     </item>
     
     <item>
