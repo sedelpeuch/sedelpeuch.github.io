@@ -37,7 +37,7 @@
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/semestre8/crypto/</guid>
-      <description> Cours 1  </description>
+      <description>Ressources pédagogiques  Slides 1 Slides 2 TD1 TD2  Devoirs maisons  DM1  </description>
     </item>
     
     <item>
@@ -55,7 +55,7 @@
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/semestre8/ia/</guid>
-      <description></description>
+      <description>Théorie  Introduction Jeux de plateau 1 Jeux de plateau 2 Problème SAT  Travaux Dirigés  TD1  Projet  Sujet  </description>
     </item>
     
     <item>
@@ -64,7 +64,7 @@
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/semestre8/maker/</guid>
-      <description></description>
+      <description>Réalisation d&amp;rsquo;un Vertical Plotter</description>
     </item>
     
     <item>
@@ -74,7 +74,7 @@
       
       <guid>https://Sdelpeuch.github.io/semestre8/se/</guid>
       <description>Ressources de cours Slides de cours complet
-   Slides du cours Notes de cours     Introduction et Concepts Généraux 1   Processus et Exécution 2    Ressources de TD    Sujets de TD Notes de TD     TD1 - Ordonnancement des processus TD1   TD2 - Sommeil et réveil des processus TD2   TD3 - Mémoire virtuelle TD3    </description>
+   Slides du cours Notes de cours     Introduction et Concepts Généraux 1   Processus et Exécution 2   Gestion mémoire TODO   Concurrence et synchronisation TODO   Gestion du temps TODO   Virtualisation TODO    Ressources de TD    Sujets de TD Notes de TD     TD1 - Ordonnancement des processus TD1   TD2 - Sommeil et réveil des processus TD2   TD3 - Mémoire virtuelle TD3    Projet  Rapport de mi parcours [Rapport final] : Fin mai [Archive] : Fin mai  </description>
     </item>
     
     <item>
@@ -84,7 +84,16 @@
       
       <guid>https://Sdelpeuch.github.io/semestre8/jeux/</guid>
       <description>Ressources pédagogiques Le site du cours
- Cours 1 Cours 2 Cours 3 Cours 4 Cours 5  </description>
+ Cours 1 Cours 2 Cours 3 Cours 4 Cours 5 Cours 6 Cours 7 Cours 8  Fiches </description>
+    </item>
+    
+    <item>
+      <title>Évaluation des projets et maîtrise des coups</title>
+      <link>https://Sdelpeuch.github.io/semestre8/projet/</link>
+      <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre8/projet/</guid>
+      <description>WIP</description>
     </item>
     
     <item>
