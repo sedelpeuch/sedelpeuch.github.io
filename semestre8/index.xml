@@ -19,7 +19,7 @@
       
       <guid>https://Sdelpeuch.github.io/semestre8/apptcp-ip/</guid>
       <description>Ressources pédagogiques Slides de cours
- Introduction aux couches hautes Etudes DNS, HTPP, SMTP, POP Routage dans IP Programmation socket  </description>
+ Introduction aux couches hautes Etudes DNS, HTPP, SMTP, POP Routage dans IP Programmation socket  Projet  Rapport de mi parcours [Rapport final]: fin mai [Archive]: fin mai  </description>
     </item>
     
     <item>
@@ -37,7 +37,7 @@
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/semestre8/crypto/</guid>
-      <description>Ressources pédagogiques  Slides 1 Slides 2 TD1 TD2  Devoirs maisons  DM1  </description>
+      <description>Ressources pédagogiques  Slides 1 Slides 2 TD1 TD2  Devoirs maisons  DM1 TP Noté  </description>
     </item>
     
     <item>
@@ -46,7 +46,7 @@
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/semestre8/robotique/</guid>
-      <description> Modélisation du problème  </description>
+      <description> Modélisation du problème Projet  </description>
     </item>
     
     <item>
@@ -55,7 +55,7 @@
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/semestre8/ia/</guid>
-      <description>Théorie  Introduction Jeux de plateau 1 Jeux de plateau 2 Problème SAT  Travaux Dirigés  TD1  Projet  Sujet  </description>
+      <description>Théorie  Introduction Jeux de plateau 1 Jeux de plateau 2 Problème SAT  Travaux Dirigés  TD1 TD2 Archive  Projet  Sujet [Archive]: fin mai  </description>
     </item>
     
     <item>
@@ -64,7 +64,7 @@
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/semestre8/maker/</guid>
-      <description>Réalisation d&amp;rsquo;un Vertical Plotter</description>
+      <description>1. Présentation du projet Un plotter est un mécanisme d&amp;rsquo;impression permettant d&amp;rsquo;effectuer des tracés sur un support à partir d&amp;rsquo;un fichier (.svg par exemple). L&amp;rsquo;objectif de ce projet est de réaliser un plotter vertical sur l&amp;rsquo;un des tableaux blancs d&amp;rsquo;EirLab permettant de dessiner et d&amp;rsquo;effacer ses dessins en boucle.</description>
     </item>
     
     <item>
@@ -73,8 +73,7 @@
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/semestre8/se/</guid>
-      <description>Ressources de cours Slides de cours complet
-   Slides du cours Notes de cours     Introduction et Concepts Généraux 1   Processus et Exécution 2   Gestion mémoire TODO   Concurrence et synchronisation TODO   Gestion du temps TODO   Virtualisation TODO    Ressources de TD    Sujets de TD Notes de TD     TD1 - Ordonnancement des processus TD1   TD2 - Sommeil et réveil des processus TD2   TD3 - Mémoire virtuelle TD3    Projet  Rapport de mi parcours [Rapport final] : Fin mai [Archive] : Fin mai  </description>
+      <description>Ressources de cours    Slides du cours Notes de cours     Introduction et Concepts Généraux 1   Processus et Exécution 2   Gestion mémoire TODO   Concurrence et synchronisation TODO   Gestion du temps TODO   Virtualisation TODO    Ressources de TD    Sujets de TD Notes de TD     TD1 - Ordonnancement des processus TD1   TD2 - Sommeil et réveil des processus TD2   TD3 - Mémoire virtuelle TD3    Projet  Rapport de mi parcours Rapport final Archive  </description>
     </item>
     
     <item>
@@ -84,7 +83,8 @@
       
       <guid>https://Sdelpeuch.github.io/semestre8/jeux/</guid>
       <description>Ressources pédagogiques Le site du cours
- Cours 1 Cours 2 Cours 3 Cours 4 Cours 5 Cours 6 Cours 7 Cours 8  Fiches </description>
+ Cours 1 Cours 2 Cours 3 Cours 4 Cours 5 Cours 6 Cours 7 Cours 8  Devoir maison
+Fiches </description>
     </item>
     
     <item>
@@ -93,7 +93,7 @@
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/semestre8/projet/</guid>
-      <description>WIP</description>
+      <description>Cours 1 : Le système d&amp;rsquo;organisation comptable  Diaporama du cours Applications du cours Correction du cas 2 Correction du cas 3  Cours 2 : Faire le choix de valider le démarage d&amp;rsquo;un projet  Diaporama du cours Applications du cours Correction du cas 1-7, 9, 11, 12 Correction du cas 7  Cours 3 : La rentabilité d&amp;rsquo;exploitation des projets  Diaporama du cours Applications du cours Correction du cas 2 Correction du cas 6 Correction du cas 8  Cours 4 : Prise de décision et contrôle  Diaporama du cours Applications du cours Correction du cas 2 Correction du cas 3 Correction du cas 5 Correction du cas 6  </description>
     </item>
     
     <item>

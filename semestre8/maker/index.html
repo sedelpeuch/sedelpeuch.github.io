@@ -181,7 +181,117 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<p><a href="http://www.eirlab.fr/tiki-index.php?page=Vertical+Plotter">Réalisation d&rsquo;un Vertical Plotter</a></p>
+						<h1 id="1-présentation-du-projet">1. Présentation du projet</h1>
+<p>Un plotter est un mécanisme d&rsquo;impression permettant d&rsquo;effectuer des tracés sur un support à partir d&rsquo;un fichier (.svg par exemple). L&rsquo;objectif de ce projet est de réaliser un plotter vertical sur l&rsquo;un des tableaux blancs d&rsquo;EirLab permettant de dessiner et d&rsquo;effacer ses dessins en boucle.</p>
+<p><a href="http://www.eirlab.fr/tiki-download_file.php?fileId=285&amp;display=y">Slides de présentation du projet</a></p>
+<p><a href="http://www.eirlab.fr/tiki-download_file.php?fileId=287&amp;display=y">Slides de présentation de mi-parcours</a></p>
+<p><a href="http://www.eirlab.fr/tiki-download_file.php?fileId=350&amp;display=y">Slides de présentation de fin de projet</a></p>
+<h2 id="état-de-lart">État de l&rsquo;art</h2>
+<p>Des centaines de projets de plotter existent sur thingiverse / instructables  &hellip;  Nous pouvons citer parmi les différents projets deux qui ont retenu notre attention et qui nous ont permis de nous familiariser avec les différentes technologies pouvant être utilisées pour réaliser un plotter vertical :</p>
+<ol>
+<li><a href="https://www.thingiverse.com/thing:2349232">Thingiverse</a></li>
+<li><a href="https://www.instructables.com/ARDUINO-POLAR-V-PLOTTER/">Instructable</a></li>
+</ol>
+<h2 id="matériel-nécessaire">Matériel nécessaire</h2>
+<ul>
+<li>Arduino board (uno )</li>
+<li>Motor driver controller (<a href="https://components101.com/modules/a4988-stepper-motor-driver-module#:~:text=The%20A4988%20is%20a%20complete,%2C%20and%20sixteenth%2Dstep%20modes">A4988</a>)</li>
+<li>Steppers (<a href="https://www.geeetech.com/hybrid-stepper-motor-42shd003420b-for-3d-printer-p-1011.html%7C42SHD0034-20B">42SHD0034-20B</a>) x2</li>
+<li>Pulley 16 teeth x2</li>
+<li>Mini Servo Motor MG90S x1</li>
+<li>Rubber Belt (2mm)</li>
+<li>Stylo tableau</li>
+</ul>
+<h1 id="2-mécanique">2. Mécanique</h1>
+<p>Pour la mécanique du projet nous avons opté pour deux versions. Nous nous sommes rendus compte que la première possédait des défauts intrinsèques qui rendaient son utilisation impossible, nous avons donc changé complètement la mécanique à mi-projet pour une version moins esthétique mais fonctionnelle.</p>
+<h2 id="première-version--centralisation">Première version : centralisation</h2>
+<p>Jusqu&rsquo;à la moitié du projet, nous avons cherché à centraliser toute l&rsquo;électronique dans le cœur de la machine. Nous voulions que le shield, les steppers, et les mécanismes de levé du stylo ou de la brosse se trouvent au même endroit, dans la partie mobile. L&rsquo;idée était de n&rsquo;avoir qu&rsquo;un câble d&rsquo;alimentation apparent en mettant tous les composants électroniques au centre.</p>
+<p>Nous avons donc commencé par modéliser notre plotter en 3D, sur Solidworks.</p>
+<center>
+<img src="/assets/images/maker/PlotterV1Meca.jpg" width="50%"></img>
+</center>
+<p>Une fois le modèle réalisé, nous avons imprimé les pièces 3d complexes (la pièce serrant le stylo en place et les roues pour la courroie en caoutchouc) et découpé les autres pièces à la laser.</p>
+<p>Entre temps, l&rsquo;électronique avait bien avancé et nous pouvions lancer nos premiers tests. Voici une vidéo d&rsquo;un des tests réalisé sur la version 1 de notre plotter :</p>
+<p><a href="http://www.eirlab.fr/tiki-download_file.php?fileId=329&amp;display=y">Vidéo de démonstration</a></p>
+<p>On se rend compte que le centre de gravité de la partie mobile est bien trop en arrière ce qui fait pencher considérablement notre tête et empêche le stylo d&rsquo;écrire.</p>
+<p>On a réfléchi aux solutions qui se présentaient à nous.</p>
+<ul>
+<li>Descendre les steppers n&rsquo;allait pas résoudre notre problème, juste changer l&rsquo;angle d&rsquo;inclinaison. Mais pas suffisamment pour que la pointe du stylo touche le tableau.</li>
+<li>Utiliser des câbles pouvoir les plaquer plus facilement contre le tableau comme le montre une des <a href="https://youtu.be/QYwWyuI_DsA?t=109">vidéo</a> review de Scribit, un vertical plotter commercialisé. Nous avions des craintes concernant la précision des déplacements avec l&rsquo;utilisation des câbles. Un tour de stepper de correspond pas à la même longueur de câble tirée si on a un axe vide ou si le câble a déjà une trentaine de tours enroulés.</li>
+<li>Refaire totalement la mécanique et enlever les steppers du cœur de la machine. C&rsquo;est la solution pour laquelle nous avons opté.</li>
+</ul>
+<h2 id="la-deuxième">La deuxième</h2>
+<p>Nous avons enlevé les steppers du coeur de la machine mais aussi le shield. Nous n&rsquo;avons donc que les mécanismes de lever de stylo et de brosse qui restent au centre du plotter.</p>
+<p>Voici le nouveau modèle 3d : <a href="http://www.eirlab.fr/tiki-download_file.php?fileId=323&amp;display=y">video</a></p>
+<p>Une fois les pièces imprimées et découpées, nous avons fait l&rsquo;assemblage et avons bien observé que notre problème de centre de gravité n&rsquo;apparaissait plus.</p>
+<p>Voici une liste des différents avantages et inconvénients de ce nouveau modèle :</p>
+<h3 id="avantages">Avantages:</h3>
+<ul>
+<li>Pas de bascule à cause d&rsquo;un poids trop important</li>
+<li>Plus esthétique avec un cœur en forme du logo d&rsquo;Eirlab</li>
+</ul>
+<h3 id="inconvénients-">Inconvénients :</h3>
+<ul>
+<li>Une partie de l&rsquo;élec se trouve hors du cœur, il y a donc des câbles qui vont se balader.</li>
+</ul>
+<p>Nous avons ensuite rajouté un petit boîtier pour intégrer la carte Arduino.</p>
+<p>Les différents fichiers permettant de reproduire la mécanique du projet sont disponible <a href="https://github.com/Sdelpeuch/MakerPlotter">ici</a> (utilisation d&rsquo;une découpeuse laser et d&rsquo;une imprimante 3D)</p>
+<h1 id="3-électronique">3. Électronique</h1>
+<p>Notre projet implique le contrôle de différents modules à différentes tensions. Nous devons principalement contrôler les deux steppers qui permettent de faire bouger notre module sur le tableau. Ces steppers sont contrôlés par deux drivers (<a href="https://components101.com/modules/a4988-stepper-motor-driver-module#:~:text=The%20A4988%20is%20a%20complete,%2C%20and%20sixteenth%2Dstep%20modes">A4988</a>). Chaque driver nécessite une entrée 5V, une masse, deux connexions avec des pins &ldquo;DIGITAL&rdquo; de l&rsquo;arduino (pour contrôler la direction et le nombre de pas). Chaque driver nécessite de plus une alimentation comprise entre 8V et 12V pour alimenter les steppers.</p>
+<p>De plus pour monter / descendre le stylo et la brosse, nous allons utiliser des servo moteurs, il est donc nécessaire d&rsquo;avoir plusieurs sorties 5V, GND et PWM pour contrôler ces derniers.</p>
+<p>Pour éviter l&rsquo;utilisation abusive de dupont partant de l&rsquo;arduino nous avons opté pour la création d&rsquo;un shield sur mesure. Ce shield comprend 6 sorties pour servo moteurs (5V + GND + PWM). Des emplacements pour les drivers ainsi que des connecteurs mâles pour accueillir les connecteurs des steppers. Nous avons rajouté une led et un bouton au cas où.</p>
+<p>Concernant l&rsquo;alimentatslion de l&rsquo;ensemble se fera via le shield grâce à un transformateur  220V vers 9V. Sur la photo ci dessous, le connecteur n&rsquo;est pas installé sur la photo.</p>
+<center>
+<img src="/assets/images/maker/elec.jpg" width="50%"></img>
+</center>
+<hr>
+<h3 id="__ne-jamais-brancher-le-port-usb-et-lalimentation-via-le-shield-en-même-temps__"><strong>===NE JAMAIS BRANCHER LE PORT USB ET L&rsquo;ALIMENTATION VIA LE SHIELD EN MÊME TEMPS===</strong></h3>
+<hr>
+<p>Lorsque l&rsquo;on alimente une Arduino par l&rsquo;extérieur (utilisation du pin Vin) le régulateur de tension s&rsquo;assure que l&rsquo;arduino n&rsquo;est pas alimentée en plus de 5V. Cela nous permet d&rsquo;alimenter en 10V l&rsquo;ensemble tout en sachant que l&rsquo;arduino sera alimentée en 5V. Si l&rsquo;arduino est alimentée à la fois via son port USB type B et par son pin Vin le régulateur de tension assure le fonctionnement.</p>
+<p>Cependant, nous n’utilisons pas une arduino uno mais une copie (Joy-it R3DIP). Le régulateur de tension n&rsquo;est pas le même que sur arduino uno. Ainsi si la carte est alimentée à la fois par le shield et par son port USB type B, le régulateur de tension n&rsquo;assurera plus la régulation à 5V sur la carte et celle-ci sera parcourue par une tension égale à Vin (soit 10V dans notre cas, ce qui a pour effet de rendre hors service l&rsquo;ATMEGA)</p>
+<p>L&rsquo;alimentation se fait via la shield grâce à un transformateur que nous avons trouvé à Eirlab, ce dernier se branche sur une prise conventionnelle et délivre du courant 12V en sortie.</p>
+<p>Les éléments pour reproduire le shield sont disponibles
+<a href="http://www.eirlab.fr/tiki-download_file.php?fileId=290">ici</a></p>
+<h1 id="4-logiciel">4. Logiciel</h1>
+<h2 id="41-mathématiques">4.1. Mathématiques</h2>
+<p>Pour réussir à dessiner la première étape est de trouver les équations mathématiques permettant de convertir un déplacement en un nombre de tour pour le moteur. Pour ce faire commençons par définir le problème.</p>
+<center>
+<img src="/assets/images/maker/PlotterSchema.png" width="70%"></img>
+<img src="/assets/images/maker/PlotterMath.png" width="60%"></img>
+</center>
+<h2 id="42-programme">4.2 Programme</h2>
+<p>Maintenant que nous avons à notre disposition tous les éléments physiques et mathématiques permettant de mettre en place le vertical plotter nous allons nous attarder sur la réalisation du contrôle et du logiciel permettant de dessiner.</p>
+<p>Pour réaliser le logiciel nous utilisons le langage C++, le logiciel se décompose en 3 parties. D&rsquo;une part la définition d&rsquo;un tableau (classe <strong>board</strong>), le contrôle de &ldquo;bas niveau&rdquo; (classe <strong>control</strong>) c&rsquo;est à dire la transformation entre un ordre de déplacement et un nombre de tour à appliquer aux moteurs. Enfin nous avons le contrôle &ldquo;haut niveau&rdquo; (classe <strong>drawer</strong>) permettant de transformer un dessin en une succession de mouvement. Une classe <strong>position</strong> a été mise en place pour simplifier les manipulations mathématiques sur les couples (x,y).  Ce découpage est résumé dans le diagramme de classe suivant.  Le diagramme ne représente pas les constructeurs et destructeurs ni les accesseurs et mutateurs.</p>
+<center>
+<img src="/assets/images/maker/PlotterClasse.png" width="50%"></img>
+</center>
+<p>La classe <strong>board</strong> définit physiquement un tableau principalement par sa taille et la position initiale du module sur le tableau (classiquement au centre). Les champs _<strong>a</strong> et _<strong>b</strong> sont des artéfacts de la première version mécanique, il convient de les mettre à 0 dorénavant. Les tableaux d&rsquo;eirlab sont préprogrammés, il suffit d&rsquo;utiliser la méthode <strong>generateBoard(Little)</strong> pour  obtenir un objet de classe tableau correspondant l&rsquo;un des petits tableaux d&rsquo;Eirlab.</p>
+<p>La classe <strong>control</strong> met en œuvre les équations mathématiques vues en 4.1 elle est composée de deux fonctions principales : <strong>simpleMove(Position objective)</strong> qui permet de réaliser un déplacement unitaire. Et <strong>complexMove</strong> qui permet de réaliser une chemin (c&rsquo;est à dire une succession de point qui seront transformé en succession de déplacement unitaire par interpolation)</p>
+<p>La classe <strong>drawer</strong>  est la classe qui permet de transformer un dessin en une succession de chemin tout en prenant en compte les moments où il faut relever et baisser le stylo.</p>
+<p>Concrètement le fonctionnement est relativement simple, un fichier (<strong>aDraw.cpp</strong>) décrit un dessin, ce dessin est composé de plusieurs tableaux de chemin. Chaque tableau de chemin va être analysé par la classe Drawer qui va le décomposer en chemin et demander à la classe Control de l&rsquo;analyser. La classe Control va décomposer ce chemin en succession de position et utiliser la fonction simpleMove pour comparer la position actuelle et la position objectif et ainsi se déplacer. Entre chaque chemin le stylo est levé et rebaissé au début du nouveau chemin.</p>
+<p>C&rsquo;est trois classes permettent de contrôler le tableau mais n&rsquo;ont pas vocation à être utilisée directement par l&rsquo;utilisateur.</p>
+<h2 id="43-principale-difficulté--la-mémoire">4.3 Principale difficulté : la mémoire</h2>
+<p>Maintenant que nous pouvons contrôler le module physique comme l&rsquo;on veut nous
+allons chercher à transformer une image en succession de chemin c&rsquo;est à dire en
+un tableau de tableau de points. Pour réaliser cela nous utilisons <a href="https://shinao.github.io/PathToPoints/">ce site</a> qui transforme une image vectorielle en un tableau de points.</p>
+<p>Cependant étant donné que nous travaillons sur un arduino uno nous avons 32 Ko de mémoire Flash et 2 Ko de mémoire SRAM autrement dit nous ne pouvons pas stocker une grande quantité de points (en allocation uniquement automatique nous étions limité à 200 points par dessin). Pour nous affranchir de cette contrainte nous allouons dynamiquement les tableaux de points et nous les désallouons au fur et à mesure. Pour éviter à l&rsquo;utilisateur de devoir transformer un tableau (en format python) en une allocation dynamique de tableau en C++ un script python permet de générer du code C++ à partir d&rsquo;un fichier .txt contenant le tableau de position.</p>
+<p>Le script permet de simplifier la vie de l&rsquo;utilisateur (il a juste à remplir un .txt) et nous permet de faire des dessins plus grands, nous pouvons avoir une infinité de chemin comportant chacun au maximum 50 points.</p>
+<h2 id="44-tutoriel-pour-dessiner-une-image">4.4 Tutoriel pour dessiner une image</h2>
+<ol start="0">
+<li>Récupérer les sources de notre projet disponible <a href="https://github.com/Sdelpeuch/MakerPlotter">ici</a></li>
+<li>Commencer par choisir une image au format svg, les meilleurs résultats sont obtenus avec des images polygonales (low poly)</li>
+<li>Téléverser l&rsquo;image sur [ce site](<a href="https://shinao.github.io/PathToPoints/">https://shinao.github.io/PathToPoints/</a>|ce site) choisissez &ldquo;Point every x length&rdquo; et cliquez sur &ldquo;Apply&rdquo; : le nombre de path est illimité mais chaque path doit avoir moins de 50 points</li>
+<li>Le site génère alors un tableau de point, récupérer le tableau qui s&rsquo;affiche dans &ldquo;AllPath&rdquo;</li>
+<li>Copier ce tableau dans le fichier &ldquo;drawing.txt&rdquo; disponible dans le dossier src/ de notre projet</li>
+<li>Lancer la commande python3 coordinate_to_cpp.py</li>
+<li>Brancher le cable usb à l&rsquo;arduino (<strong>EN DÉBRANCHANT L&rsquo;ALIMENTATION</strong>) et réalisez la commande make upload depuis la racine du projet</li>
+<li>Débrancher le cable usb, rebrancher l&rsquo;alimentation et regardez.</li>
+</ol>
+<h1 id="membres-du-projet">Membres du projet</h1>
+<ul>
+<li>Delpeuch Sébastien</li>
+<li>Pringalle Antoine</li>
+</ul>
 
 					</div>
 					<div class="post-comments">
