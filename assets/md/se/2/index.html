@@ -403,6 +403,25 @@ La question se pose sur quel processeur / coeur exécuter quelles tâches.</p>
 <p>L&rsquo;ordonnanceur dans Linux est assez classique possédant une bonne interactivité
 et équité. Il possède une priorité effective avec un bonus ou pénalité.</p>
 <h2 id="exécution-du-système">Exécution du système</h2>
+<p>En réalité il n&rsquo;y a pas de processus noyau qui surveille tout le monde, le
+système s&rsquo;exécute essentiellement dans le contexte des processus lorsqu&rsquo;ils sont
+en mode noyau. Il peut seulement exister éventuellement des démons dédiés à des
+tâches périodiques.</p>
+<p>Le noyau s&rsquo;exécute à travers des hooks un peu partout dans le code qui n&rsquo;a rien
+à voir (pendant les appels systèmes, dans le cas d&rsquo;interruptions / exceptions).</p>
+<p>L&rsquo;exécution en mode noyau est possible grâce à un changement de contexte (qui
+implique un changement des privilèges) et l&rsquo;utilisation d&rsquo;une pile spéciale
+(éviter de stocker des informations critiques en espace utilisateur). Le
+contexte utilisateur est sauvegardé puis restauré.</p>
+<p>Dans le cas des micro-noyaux on réalise les appels systèmes minimaux, la gestion
+effective du système d&rsquo;exploitation est réalisé en dehors du noyau (dans les
+processus serveurs dédiés).</p>
+<p>Nous pouvons noter que les noyaux monolithiques ont besoin de traitement annexes
+(appels systèmes imprévisibles, traitants d&rsquo;interruption dans contexte trop
+limité). Nous mettons donc en place l&rsquo;utilisation de threads dédiés, qui
+tournent toujours en mode noyau (pas d&rsquo;espace d&rsquo;utilisateur). Les threads noyau
+sont partout, tout processus est propulsé par un thread noyau, il passe en mode
+utilisateur juste après sa création. Il revient en mode noyau de temps en temps.</p>
 
 					</div>
 					<div class="post-comments">
@@ -412,6 +431,8 @@ et équité. Il possède une priorité effective avec un bonus ou pénalité.</p
 			</div>
       <div class="col-md-4">
         <aside class="sidebar">
+
+
 
 
 
@@ -462,6 +483,22 @@ et équité. Il possède une priorité effective avec un bonus ou pénalité.</p
     
     <div class="media">
       <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/projet/1/">Le système d&#39;organisation comptable</a></h4>
+        <h5>[Évaluation des projets et maîtrise des coûts]</h5>
+        <p>Les obligations comptables et fiscales de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/projet/2/">Le système d&#39;organisation comptable</a></h4>
+        <h5>[Évaluation des projets et maîtrise des coûts]</h5>
+        <p>Un projet est un ensemble finalisé d’activités et …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/jeux/5/">Cours 5</a></h4>
         <h5>[Jeux]</h5>
         <p>Réalisation d&rsquo;un algorithme de complexité en …</p>
@@ -470,33 +507,17 @@ et équité. Il possède une priorité effective avec un bonus ou pénalité.</p
     
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/robotique/1/">Modélisation du problème</a></h4>
-        <h5>[Robotique]</h5>
-        <p>Définition du problème    On cherche à trouver le …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/jeux/4/">Cours 4</a></h4>
-        <h5>[Jeux]</h5>
-        <p>Nous avons vu la dernière fois qu&rsquo;un jeu est …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/jeux/3/">Cours 3</a></h4>
-        <h5>[Jeux]</h5>
-        <p>Comment modélise t on un jeu ? une arène ? etc …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/se/3/">Gestion mémoire</a></h4>
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/se/4/">Concurrence et synchronisation</a></h4>
         <h5>[SE]</h5>
-        <p>Programmation modulaire Le chargement des …</p>
+        <p>Les systèmes d&rsquo;exploitations actuels …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/se/5/">Gestion du temps</a></h4>
+        <h5>[SE]</h5>
+        <p>La notion de temps est critique pour …</p>
       </div>
     </div>
     

@@ -194,6 +194,87 @@ bibliothèques). Le calcul des adresses mémoires se fait via deux moyens :</p>
 &ldquo;symboles&rdquo; pour référencer des adresses inconnues. Les références non-résolues
 provoquent des chargement d&rsquo;autres modules. Cela permet de mettre à jour des
 modules sans recompiler</p>
+<p>Comment stocker les adresses si on peut charger à différents endroits ?
+Les adresses absolues sont simples à gérer mais imposent un emplacement du code
+en mémoire et impose un seul programme ou mémoire virtuelle. Les adresses
+relatives sont ajustées plus tard, au chargement ou à l&rsquo;exécution (édition de
+liens entre modules, fixer les adresses à l&rsquo;intérieur des modules).</p>
+<p>Le code est indépendant de la position, on utilise uniquement des adresses
+relatives (facile à charger, pas besoin de modifier le code, peu coûteux en
+temps)</p>
+<h2 id="mémoire-virtuelle">Mémoire virtuelle</h2>
+<p>Nous souhaitons que chaque processus voit un espace linéaire. Cependant il n&rsquo;est
+pas forcément linéaire physiquement et n&rsquo;est pas forcément utilisé
+intégralement. Nous souhaitons aussi que la taille ne soit pas limité par la
+mémoire physique ainsi que pouvoir protéger et partager la mémoire.</p>
+<p>L&rsquo;intérêt de la mémoire virtuelle est de nous offrir plus de mémoire que de
+mémoire physique disponible. Les codes et données non-utilisées peuvent donc
+rester sur le disque (chargés par l&rsquo;OS quand ils deviennent nécessaires). Elle
+permet aussi de faire cohabiter de nombreux processsus mais surtout d&rsquo;isoler des
+processus puisque l&rsquo;espace virtuel des autres processsus est inaccessible.</p>
+<p>Cette abstraction n&rsquo;entraine pas de contraintes pour le programmeur puisque
+l&rsquo;abstraction est linéaire et uniforme du stockage physique.</p>
+<p>En revanche la mémoire virtuelle possède des inconvénients, en effet le premier
+est un inconvénient de performance puisque l&rsquo;on consomme de l&rsquo;espace mémoire
+pour stocker des tables de pages mais aussi de la consommation en temps pour
+consulter la table des pages.</p>
+<h3 id="pagination">Pagination</h3>
+<p>Permet une forte non-contiguité de l&rsquo;espace virtuel en mémoire physique. Il y a
+une division de la mémoire physique en bloc de taille fixe et la division de
+l&rsquo;espace virtuel en blocs de tailles fixes. Chaque cadre virtuel nécessite
+l&rsquo;allocation d&rsquo;une page physique.</p>
+<p>L&rsquo;association entre les pages et les cadres est gérée par l&rsquo;OS (table de pages),
+il n&rsquo;y a pas de contrainte sur le choix des pages (les espaces virtuels
+dispersés dans l&rsquo;espace physique). Aucune adresse virtuelle ne pointe sur les
+pages de autres processus.</p>
+<p>La traduction des adresses virtuelles équivaut au numéro du cadre virtuel plus
+le décalage. Ce numéro est l&rsquo;index dans le table de page et permet de récupérer
+le numéro de page physique. L&rsquo;adresse physique est alors égale au PFN (page
+frame number) plus le décalage.</p>
+<p>Chaque cadre virtuel dispose de bits de protections, un bit permet de dire si la
+page est valide ou non (seg fault), un bit permet de dire si la page est
+présente ou non (défauts de page, swap &hellip;). En fonction de l&rsquo;architecture il
+peut y avoir des bits de read-only, read-write etc</p>
+<p>Les avantages de la pagination sont multiples, l&rsquo;allocation de pages est
+faciles, le swap de morceaux de programmes aussi (tous les cadres virtuels ont
+la même taille, un bit de présence est utilisé pour savoir si swappé ou non). Le
+partage et la protection des pages est facile.</p>
+<p>En revanche cela implique une fragmentation interne (de l&rsquo;ordre de la taille
+d&rsquo;une page), cela est coûteux (2 références par accès mémoire) et implique une
+consommation de mémoire importante.</p>
+<h3 id="segmentation">Segmentation</h3>
+<p>Cela consiste à partitionner la mémoire en unités logiques (code, tas, pile).
+L&rsquo;espace d&rsquo;adressage est alors défini par l&rsquo;ensemble des segments indépendants.
+Les adresses virtuelles sont alors composé du sélecteur de segment plus du
+décalage dans ce segment. Cela permet de mettre en place une protection par
+segment et un partage à forte granularité. Cependant l&rsquo;allocation est difficile et le swap est
+plus lourd que lors de la pagination.</p>
+<h3 id="approches-hybrides--segments-paginés">Approches hybrides : Segments paginés</h3>
+<p>Nous utilisons des segments pour distinguer des unités logiques (code, tas,
+pile) et une pagination interne à chaque segment (allocation, swap à granularité
+fine). La traduction d&rsquo;une adresse virtuelle en adresse physique est en deux
+temps</p>
+<ul>
+<li>Décalage d&rsquo;index dans la table de pages via la table des segments : adresse linéaire</li>
+<li>Traduction de l&rsquo;adresse linéaire en adresse physique via la table des pages.</li>
+</ul>
+<h3 id="partage-mémoire">Partage mémoire</h3>
+<p>Plusieurs zones virtuelles peuvent pointer sur les mêmes pages physiques avec
+des protections différentes. Il existe un compteur de références dans les pages,
+la page est libre quand la dernière référence est relâchée. On peut alors la
+réutiliser.</p>
+<h2 id="tables-de-pages">Tables de pages</h2>
+<p>La table de page est défini par l&rsquo;ensemble des associations entre les cadres
+virtuels et la validité, la localisation et la protection. Elle est accédé
+quasiquement uniquement par adresse virtuelle. La table des pages complète prend
+beaucoup de place en mémoire (4MB pour un espace 32 bits avec pages de 4Ko).</p>
+<p>Une grande part de l&rsquo;espace d&rsquo;adressage n&rsquo;est pas utilisé car il n&rsquo;est pas
+valide ou valide mais inutilisé actuellement. Ainsi doit on vraiment décrire
+toutes ces pages virtuelles inutiles individuellement ?</p>
+<p>L&rsquo;idée est d&rsquo;utiliser des tables hiérarchiques à plusieurs niveaux, chaque
+niveau est un tableau d&rsquo;indirection vers des sous-tableaux. Cela permet de
+supprimer les tableaux inutiles (au lieu d&rsquo;allouer un tableau d&rsquo;entrées
+invalides, on marque le pointeur du père comme invalide)</p>
 
 					</div>
 					<div class="post-comments">
@@ -203,6 +284,8 @@ modules sans recompiler</p>
 			</div>
       <div class="col-md-4">
         <aside class="sidebar">
+
+
 
 
 
@@ -253,6 +336,22 @@ modules sans recompiler</p>
     
     <div class="media">
       <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/projet/1/">Le système d&#39;organisation comptable</a></h4>
+        <h5>[Évaluation des projets et maîtrise des coûts]</h5>
+        <p>Les obligations comptables et fiscales de …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/projet/2/">Le système d&#39;organisation comptable</a></h4>
+        <h5>[Évaluation des projets et maîtrise des coûts]</h5>
+        <p>Un projet est un ensemble finalisé d’activités et …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/jeux/5/">Cours 5</a></h4>
         <h5>[Jeux]</h5>
         <p>Réalisation d&rsquo;un algorithme de complexité en …</p>
@@ -261,33 +360,17 @@ modules sans recompiler</p>
     
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/robotique/1/">Modélisation du problème</a></h4>
-        <h5>[Robotique]</h5>
-        <p>Définition du problème    On cherche à trouver le …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/jeux/4/">Cours 4</a></h4>
-        <h5>[Jeux]</h5>
-        <p>Nous avons vu la dernière fois qu&rsquo;un jeu est …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/jeux/3/">Cours 3</a></h4>
-        <h5>[Jeux]</h5>
-        <p>Comment modélise t on un jeu ? une arène ? etc …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/se/3/">Gestion mémoire</a></h4>
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/se/4/">Concurrence et synchronisation</a></h4>
         <h5>[SE]</h5>
-        <p>Programmation modulaire Le chargement des …</p>
+        <p>Les systèmes d&rsquo;exploitations actuels …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/se/5/">Gestion du temps</a></h4>
+        <h5>[SE]</h5>
+        <p>La notion de temps est critique pour …</p>
       </div>
     </div>
     

@@ -22,6 +22,24 @@
     </item>
     
     <item>
+      <title>Le système d&#39;organisation comptable</title>
+      <link>https://Sdelpeuch.github.io/assets/md/projet/1/</link>
+      <pubDate>Mon, 15 Mar 2021 10:20:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/projet/1/</guid>
+      <description>Les obligations comptables et fiscales de l&amp;rsquo;entreprise  Enregistrement chronologique des faits économiques (achats, ventes) Contrôler l&amp;rsquo;existence de la valeur des lééments actifs et passifs par un inventaire au moins tous les 12 mois Établir les comptes annuels (bilan, compte de résultat, annexes) Application de la règle de la comptabilité d&amp;rsquo;engagement Principes de Régularité - sincérité - image fidèle  Synoptique du système d&amp;rsquo;organisation comptable    Nature des engagements Fournir le compte de résultat c&amp;rsquo;est à dire produit - charges</description>
+    </item>
+    
+    <item>
+      <title>Le système d&#39;organisation comptable</title>
+      <link>https://Sdelpeuch.github.io/assets/md/projet/2/</link>
+      <pubDate>Mon, 15 Mar 2021 10:20:10 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/projet/2/</guid>
+      <description>Un projet est un ensemble finalisé d’activités et d’actions entreprises dans le but de répondre à un besoin défini dans des délais fixés et dans la limite d’une enveloppe budgétaire allouée.</description>
+    </item>
+    
+    <item>
       <title>Cours 5</title>
       <link>https://Sdelpeuch.github.io/assets/md/jeux/5/</link>
       <pubDate>Wed, 03 Mar 2021 10:20:10 +0600</pubDate>
@@ -32,12 +50,39 @@
     </item>
     
     <item>
+      <title>Concurrence et synchronisation</title>
+      <link>https://Sdelpeuch.github.io/assets/md/se/4/</link>
+      <pubDate>Mon, 01 Mar 2021 09:30:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/se/4/</guid>
+      <description>Les systèmes d&amp;rsquo;exploitations actuels induisent inévitablement de la concurrence car plusieurs files d&amp;rsquo;exécution sont simultanées (machines multi-processeur / coeur &amp;hellip;). De plus l&amp;rsquo;existence d&amp;rsquo;instructions non-atomiques ainsi que de la préemption font que nous n&amp;rsquo;avons aucune garantie que quelqu&amp;rsquo;un d&amp;rsquo;autre n&amp;rsquo;est pas en train de modifier la même ressource que nous.</description>
+    </item>
+    
+    <item>
+      <title>Gestion du temps</title>
+      <link>https://Sdelpeuch.github.io/assets/md/se/5/</link>
+      <pubDate>Mon, 01 Mar 2021 09:30:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/se/5/</guid>
+      <description>La notion de temps est critique pour l&amp;rsquo;exécution globale du système car il est nécessaire de savoir quand exécuter des tâches. (Travaux régulier, travaux déferrés). Il permet aussi de fournir des indications à l&amp;rsquo;utilisateur (date courante, dates de modifications / accès aux fichiers, fonctions avec timeout, alarmes &amp;hellip;).</description>
+    </item>
+    
+    <item>
       <title>Modélisation du problème</title>
       <link>https://Sdelpeuch.github.io/assets/md/robotique/1/</link>
       <pubDate>Mon, 01 Mar 2021 09:30:00 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/robotique/1/</guid>
       <description>Définition du problème    On cherche à trouver le modèle direct ie l&amp;rsquo;expression de $(x,y,z)$ en fonction de $(\theta_0, \theta_1, \theta_2)$ (modèle direct) puis l&amp;rsquo;expression de $(\theta_0, \theta_1, \theta_2)$ en fonction de $(x,y,z)$ (modèle inverse).</description>
+    </item>
+    
+    <item>
+      <title>Virtualisation</title>
+      <link>https://Sdelpeuch.github.io/assets/md/se/6/</link>
+      <pubDate>Mon, 01 Mar 2021 09:30:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/se/6/</guid>
+      <description>L&amp;rsquo;objectif de la virtualisation est d&amp;rsquo;exécuter plusieurs OS en même temps (placer plusieurs serveurs sur une même machine sans risquer que les pannes d&amp;rsquo;un ne gênent les autres, développement et débogage).</description>
     </item>
     
     <item>
