@@ -275,6 +275,133 @@ toutes ces pages virtuelles inutiles individuellement ?</p>
 niveau est un tableau d&rsquo;indirection vers des sous-tableaux. Cela permet de
 supprimer les tableaux inutiles (au lieu d&rsquo;allouer un tableau d&rsquo;entrées
 invalides, on marque le pointeur du père comme invalide)</p>
+<p>Si un processus n&rsquo;utilise qu&rsquo;un seul cadre virtuel alors on alloue une seule
+page par niveau. Si un processus utilise toute la mémoire virtuelle alors le
+dernier niveau fait exactement la même taille qu&rsquo;une table linéaire à 1 seul
+niveau (surcoût des niveaux supérieurs est négligeable de l&rsquo;ordre de 1/ nombre
+de pointeurs par niveau).</p>
+<p>Les processeurs supportent 2 à 4 niveaux et l&rsquo;OS les utilise comme il veut.</p>
+<p>Les adresses virtuelles sont égales à l&rsquo;agréagation d&rsquo;index pour chaque niveau.
+(premiers bits est l&rsquo;entrée dans la table du premier niveau etc). L&rsquo;os choisit
+le nombre de bits en faisant tenir la table et chaque sous-table dans une page
+exactement. La traduction des adresses virtuelles en adresses physique se fait
+via le parcours de la table de haut en bas.</p>
+<p>Concernant les tables de pages hachées, on réalise l&rsquo;hachage de l&rsquo;adresse
+virtuelle puis un parcours d&rsquo;une liste pour localise la PTE. Cela est efficace
+pour les espaces d&rsquo;adressage très dispersés, lent pour les espaces remplis.</p>
+<h3 id="bilan">Bilan</h3>
+<ul>
+<li>Table linéaire originale : très simple, bon temps d&rsquo;accès, très mauvais en
+espace mémoire</li>
+<li>Table hiérarchique : assez simple, bon temps d&rsquo;accès, très bon en espace
+mémoire</li>
+<li>Table hachée : relativement simple, temps d&rsquo;accès bon en moyenne, très très
+bon en espace mémoire</li>
+</ul>
+<h2 id="pagination-à-la-demande-et-défauts-de-page">Pagination à la demande et défauts de page</h2>
+<p>L&rsquo;OS peut souvent être fainéant (ne pas charger une page en mémoire tant qu&rsquo;elle
+n&rsquo;est pas accédée), cela implique un défaut de page lors du premier accès qui
+entraîne l&rsquo;allocation et le remplissage de la page (reprise sur erreur)</p>
+<p>On utilise aussi la pagination à la demande (<em>demand paging</em>) puisque la mémoire
+n&rsquo;est qu&rsquo;un cache des données manipulées par le processus. Initialement tout est
+sur le disque, entre temps, on charge ce qui est accédé quand c&rsquo;est nécessaire.</p>
+<p>Un <strong>défaut de page</strong> est un accès qui ne peut être réalisé par le matériel (le
+processeur ne peut pas le faire) et demande l&rsquo;aide de l&rsquo;OS (adresse virtuelle
+invalide, adresse valide mais page absente en mémoire physique, adresse valide
+mais écriture interdite)</p>
+<p>L&rsquo;OS a défini un traitant pour l&rsquo;exception &ldquo;défaut de page&rdquo;. Le traitant va
+alors identifier le problème, le réparer si cela est possible (chargement d&rsquo;une
+page depuis le disque) sinon le processus ne peut pas continuer.</p>
+<p>L&rsquo;allocation de pages se fait via l&rsquo;OS, il dispose d&rsquo;une liste de pages libres.
+Si la liste est vide, il faut libérer une page (sinon il y a une erreur).</p>
+<p>Pour charger une page lors d&rsquo;un défaut nous allons d&rsquo;une part récupérer une page
+libre et d&rsquo;autre par localiser les données à charger. Il suffit ensuite de
+soumettre l&rsquo;I/O de lecture depuis le disque. Lorsque l&rsquo;I/O termine il suffit
+d&rsquo;adapter le statut de la page et reprendre le processus.</p>
+<p>La pagination à la demande possède les avantages suivants :</p>
+<ul>
+<li>Localité temporelle : une page accédée récemment le sera sûrement à nouveau
+dans le futur proche</li>
+<li>Localité spatiale : les zones mémoire voisines seront sûrement accédées dans
+le futur proche</li>
+<li>Une page chargée va être réutilisée plusieurs fois</li>
+<li>En moyenne, on utilise beaucoup les choses déjà chargées</li>
+<li>Ne pas charger trop de choses inutilement</li>
+</ul>
+<p>En revanche certaines applications ne respectent pas vraiment la localité
+spatiale ou temporelle, les politiques de chargement et remplacement doivent
+être bonnes.</p>
+<h3 id="projection-de-fichiers">Projection de fichiers</h3>
+<p>Dans un OS tout est fichier. L&rsquo;OS ne fait que manipuler des pages de fichiers.
+Nous pouvons réaliser une projection publique où les modifications effectuées en
+mémoire sont répercutées dans le fichier. Ou une projection privée où les
+modifications sont sauvées dans le swap et sont perdues à la fin du processus.</p>
+<p>La projection anonyme est une projection sans fichier de support. Il utilise la
+pile ou le tas et est utilisé par malloc pour les allocations en dehors du tas.
+Il peut être privé ou public.</p>
+<h3 id="copy-on-write">Copy-on-Write</h3>
+<p>Les copies mémoire coûtent cher, il faut éviter de dupliquer inutilement et
+retarder la duplication au maximum jusqu&rsquo;à la première modification concurrente.
+Pour détecter une modification concurrent la page est mise en lecture seule dans
+le matériel et provoquer un défaut de page. Le traitant alloue une page, copie
+le contenu dedans et la donne au processus.</p>
+<h3 id="le-swap">Le swap</h3>
+<p>Le swap est une extension de la mémoire physique. Elle est plus lente et n&rsquo;a pas
+besoin d&rsquo;être déréférencable par le processeur et est entièrement géré par l&rsquo;OS.</p>
+<p>Historiquement on swappait des processus entiers ce qui provoque la suspension
+complète de l&rsquo;exécution. La pagination permet la granularité de la page. Un
+processus gigantesque peut continuer à s&rsquo;exécuter en résidant essentiellement
+dans le swap.</p>
+<p>Les PTE valides mais non-présentes peuvent pointer vers un bloc du swap. Un
+accès provoque un défaut de page et le chargement du bloc en mémoire. L&rsquo;OS
+décide de quelles pages envoyer sur le disque (selon le principe de localité).</p>
+<p>Le swap sert uniquement quand il faut libérer de la mémoire physique. Seules les
+pages privées et/ou anonymes vont dans le swap (la libérations des pages de
+mappings publics les renvoit sur le disque contenant le fichier correspondant)</p>
+<h2 id="heuristiques-de-gestion-mémoire">Heuristiques de gestion mémoire</h2>
+<p>Le chargement des pages se fait quand elles sont accédées lors du défaut de
+page. Le prepaging et prefaulting permet de charger à l&rsquo;avance des pages
+suivantes (principe de localité). Le chargement s&rsquo;effectue généralement dans
+n&rsquo;importe quelle page physique. Lorsque l&rsquo;on utilise une architecture NUMA on
+privilégie généralement l&rsquo;utilisation de mémoire proche.</p>
+<p>Les modifications sont sauvées sur les pages modifiées dans des fichiers
+correspondants ou dans le swap. Les pages mappées sont difficiles à gérer, il
+n&rsquo;y a pas dappel explicite à l&rsquo;OS lors des modifications. Le matériel ajoute
+alors un bit <em>Dirty</em> et l&rsquo;on sauve uniquement les pages <em>Dirty</em>.</p>
+<p>Concernant le swap nous allons swaper les pages non-utilisées à l&rsquo;avenir
+(algorithme de Belady) en utilisant la politique LRU (Least Recentyle Used) ou
+LFU (Least Frequently Used). Le swap se produit soit au dernier moment, soit
+quand la mémoire disponible passe en dessous d&rsquo;un seuil.</p>
+<p>On conserve en mémoire le plus de choses possibles car elle est rapide au cas où
+cela serve plus tard. On effectue des sauvegardes régulière des modifications
+sans forcément libérer les pages. En régime permanent, un OS utilise toute la
+mémoire, au cas où. Les pages publiques sont gardées en mémoire si un processus
+les réutilise et les pages privées jusqu&rsquo;à la fin du processus courant.</p>
+<p>Si une allocation mémoire échoue le système doit tout de même survivre.
+L&rsquo;utilisateur doit pouvoir continuer à utiliser le système (tuer un processus
+pour libérer de la mémoire). Pour déterminer qui tuer plusieurs politiques
+existent, tuer ceux qui essaie d&rsquo;allouer, ceux qui allouent beaucoup ou les
+processus les moins importants.</p>
+<h2 id="support-matériel">Support matériel</h2>
+<p>Le code manipule uniquement des adresses virtuelles mais le processeur doit les
+traduire en adresse physique. Il faut que la table des pages soit accessible au
+matériel (soit directement par une MMU, soit indirectement par l&rsquo;OS via une exception)</p>
+<p>La MMU (memory management unit) est un cricuit dédié du processeur pour traduire
+les adresses virtuelles. Cependant la traduction des adresses virtuelles peut
+être lente. Il est de plus nécessaire de cacher les traductions (Translation
+Lookaside Buffer). Si le TLB cache miss :</p>
+<ul>
+<li>Si MMU, la MMU parcourt la table des pages</li>
+<li>Si pas de MMU, exception gérée par l&rsquo;OS.</li>
+</ul>
+<h2 id="mémoire-du-noyau">Mémoire du noyau</h2>
+<p>L&rsquo;espace d&rsquo;adressage utilisé par le noyau se divise en deux partie. D&rsquo;une part il existe un espace virtuel spécifique au noyau accessible uniquement en mode
+privilégié. Et un espace virtuel utilisateur du processus courant utilisé
+pendant un appel système ou une interruption.</p>
+<p>Le noyau est un contexte d&rsquo;exécution et à potentiellement le droit d&rsquo;accéder à
+tout ce qui possède une adresse virtuelle. Cependant il est réellement besoin de
+son propre code et de ses données propres pour fonctionner (10-100 Mo). Le noyau
+ne mappe rien par défaut à part le strict minimum.</p>
 
 					</div>
 					<div class="post-comments">
