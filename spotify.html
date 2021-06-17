@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<body>
+<meta charset="utf-8"/>
+<iframe id=embedSpotify style="overflow: hidden;" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+<iframe id=loginWindow height="200" width="1000" style="overflow: hidden;" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+<div>
+  <div id="allButtons">
+    <input type="button" id="login" value="Login">
+    <input type="button" id="nextToken" value="Génère le nouveau token">
+    <input type="button" id="newSong" value="Actualise la chanson">
+  </div>
+  <div id="allValues" style='font-size: 10px;'>
+    <p id="refreshtoken"></p>
+    <p id="actualtoken"></p>
+    <p id="actualsong"></p>
+  </div>
+</div>
+
+<script>
+  // VARIABLES
+  let lastSongUrl = "https://open.spotify.com/embed/track/4NBTZtAt1F13VvlSKe6KTl";
+  let client_id = 'ed32d9e573db4c9298d532d0a18b65b8'; // Your client id
+  let refreshToken = 'AQBcV7r_T0O81CaofswXsvOvP87VcEHMM1Lmwrlj6xO6RPI9g16XSogJa8LxxjjP60kDAhR6eZnARl3DpkF7J9WBcC5wV_X2o6A-Jxmb1BsC0gwijD7pW6H8JFLwZa9qx_M';
+  let actualToken = '';
+  let scope = 'user-read-private user-read-email user-read-currently-playing';
+  let raspURL = "http://10.2.11.56:8888" //"http://localhost:8888"
+  let redirect_uri = raspURL + '/callback'; // Your redirect uri
+  document.getElementById("embedSpotify").src = lastSongUrl;
+
+
+  // Login to get your refresh Token
+  async function login() {
+    if (refreshToken !== '') {
+      actualToken = getNextToken();
+      console.log('refreshtoken: ' + refreshToken);
+      console.log('actualtoken: ' + actualToken);
+      document.getElementById("refreshtoken").innerHTML = 'refreshtoken: ' + refreshToken;
+      document.getElementById("actualtoken").innerHTML = 'actualtoken: ' + actualToken;
+      mode("music");
+    } else {
+      mode("login");
+
+      let loginLink = "https://accounts.spotify.com/authorize" + '?response_type=code' +
+      '&client_id=' + client_id + (scope ? '&scope=' + encodeURIComponent(scope) : '') +
+      '&redirect_uri=' + encodeURIComponent(redirect_uri);
+      console.log("loginLink: ", loginLink);
+      
+      document.getElementById("loginWindow").src = loginLink;
+
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Access-Control-Allow-Origin', '*');
+      headers.append('Accept', 'application/json');
+      
+      let url = raspURL + "/getToken";
+      
+      const response = await fetch(url, {
+        mode: 'cors',
+        method: 'GET',
+        headers: headers,
+      });
+
+      if (response.ok) {
+        let tokens = await response.json();
+        refreshToken = tokens.refreshToken;
+        actualToken = tokens.accessToken;
+        console.log('refreshtoken: ' + refreshToken);
+        console.log('actualtoken: ' + actualToken);
+        document.getElementById("refreshtoken").innerHTML = 'refreshtoken: ' + refreshToken;
+        document.getElementById("actualtoken").innerHTML = 'actualtoken: ' + actualToken;
+        mode("music");
+        return tokens;
+      } else {
+        console.error(response);
+      }
+    }   
+  }
+  
+  // getNextToken
+  async function getNextToken() {
+    if (refreshToken === '')
+      return login();
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Accept', 'application/json');
+
+    let url = raspURL + "/nextToken";
+    
+    const response = await fetch(url, {
+      mode: 'cors',
+      method: 'GET',
+      headers: headers,
+    });
+
+    if (response.ok) {
+      let token = await response.json();
+      actualToken = token.accessToken;
+      console.log('my new Token: ' + actualToken);
+      document.getElementById("actualtoken").innerHTML = 'actualtoken: ' + actualToken;
+      return token;
+    } else {
+      console.error(response);
+    }   
+  }
+
+
+  // musicUrl gives the url of the music played, given a token
+  async function getMusic(token) {
+    let headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + token);
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    let url = 'https://api.spotify.com/v1/me/player/currently-playing?market=FR';
+    const response = await fetch(url, {
+      mode: 'cors',
+      method: 'GET',
+      headers: headers,
+    })
+    if (response.status === 204) {
+      console.log("Aucune musique n'est jouée.");
+      return {noMusic: true};
+    } else if (response.status === 401) {
+      console.log("Plus de droits ! Il faut changer de Token.");
+      let nextToken = getNextToken();
+      return getMusic(nextToken);
+    } else if (response.ok) {
+      return await response.json();
+    } else {
+      console.error(response);
+    }
+  }
+
+  // music refreshes the embed link when called
+  async function music() {
+    if (actualToken === '')
+      return login();
+
+    let data = await getMusic(actualToken);
+    console.log("data:", data);
+    if (data.hasOwnProperty('noMusic')) {
+      let embedUrl = "https://www.jquery-az.com/html/images/banana.jpg";
+      if (embedUrl !== lastSongUrl) {
+        lastSongUrl = embedUrl; 
+        document.getElementById('embedSpotify').src = embedUrl;
+      }
+    } else {
+      if (data.hasOwnProperty('item')) {
+        document.getElementById("actualsong").innerHTML = data.item.artists[0].name + " - " + data.item.name;
+        let embedUrl = data.item.external_urls.spotify.replace("/track/", "/embed/track/");
+        if (embedUrl !== lastSongUrl) {
+          lastSongUrl = embedUrl; 
+          document.getElementById('embedSpotify').src = embedUrl;
+        }
+      } else {
+        console.log("No attribute item was found");
+      }
+    }
+  };
+  
+  let lastMode = "music";
+  function mode(modeUsed) {
+    if (modeUsed === "login" && lastMode !== "login") {
+      lastMode = "login";
+      document.getElementById("embedSpotify").width = 0;
+      document.getElementById("embedSpotify").height = 0;
+    } else if (modeUsed === "music" && lastMode !== "music") {
+      lastMode = "music";
+      document.getElementById("embedSpotify").width = 1259;
+      document.getElementById("embedSpotify").height = 702;
+    } else {
+      console.log("mode inconnu");
+    }
+  }
+
+  function loopRefreshMusic() {
+    if (actualToken !== '') {
+      music();
+      console.log("new call for music");
+      setTimeout(loopRefreshMusic, 5000)
+    } else {
+      actualToken = getNextToken();
+      setTimeout(loopRefreshMusic, 10000)
+    }
+  }
+  
+  document.getElementById("login").addEventListener('click', login);
+  document.getElementById("nextToken").addEventListener('click', getNextToken);
+  document.getElementById("newSong").addEventListener('click', music);
+
+  mode("login");
+  music();
+  loopRefreshMusic();
+</script>
+</body>
+</html>
