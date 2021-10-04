@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Modélisation on Semestre 9</title>
+    <link>https://Sdelpeuch.github.io/tags/mod%C3%A9lisation/</link>
+    <description>Recent content in Modélisation on Semestre 9</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 27 Sep 2021 09:00:00 +0600</lastBuildDate>
+    
+	<atom:link href="https://Sdelpeuch.github.io/tags/mod%C3%A9lisation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Modélisation des robots et analyse des performances Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre9/modelisation/</link>
+      <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre9/modelisation/</guid>
+      <description>Ce cours a pour objectif de présenter les concepts de base de la robotique, pour permettre aux étudiants d&amp;rsquo;aborder la lecture de textes plus avancés. Un étudiant ayant suivi cet enseignement doit disposer d&amp;rsquo;une approche rigoureuse et systématique pour décrire un robot manipaleur: modèles géométrique, cinématique et dynamique, forces et moments.</description>
+    </item>
+    
+  </channel>
+</rss>

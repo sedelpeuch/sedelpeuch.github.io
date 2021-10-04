@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Outils d&#39;imagerie on Semestre 9</title>
+    <link>https://Sdelpeuch.github.io/tags/outils-dimagerie/</link>
+    <description>Recent content in Outils d&#39;imagerie on Semestre 9</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 27 Sep 2021 09:00:00 +0600</lastBuildDate>
+    
+	<atom:link href="https://Sdelpeuch.github.io/tags/outils-dimagerie/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Outils d&#39;imagerie pour la robotique Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre9/imagerie/</link>
+      <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre9/imagerie/</guid>
+      <description>Il s&amp;rsquo;agit d&amp;rsquo;une introduction aux différentes méthodes existantes pour traiter les images et les vidéos dans le contexte de la robotique.</description>
+    </item>
+    
+  </channel>
+</rss>
