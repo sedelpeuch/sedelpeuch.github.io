@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 04 Oct 2021 09:00:00 +0600</lastBuildDate>
+    <lastBuildDate>Mon, 11 Oct 2021 09:00:00 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/assets/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,10 +15,10 @@
     <item>
       <title>Modélisation</title>
       <link>https://Sdelpeuch.github.io/assets/md/semestre9/maths/1/</link>
-      <pubDate>Mon, 04 Oct 2021 09:00:00 +0600</pubDate>
+      <pubDate>Mon, 11 Oct 2021 09:00:00 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/semestre9/maths/1/</guid>
-      <description>À partir d&amp;rsquo;une position initiale, le robot tounr de $\theta$ puis avance de $t$ puis tourne de $\alpha$ puis avance de $d$. Donner son positionnement dans le repère $(x,y,\theta)$.
+      <description>À partir d&amp;rsquo;une position initiale, le robot tourne de $\theta$ puis avance de $t$ puis tourne de $\alpha$ puis avance de $d$. Donner son positionnement dans le repère $(x,y,\theta)$.
  Le robot tourne de $\theta$ puis avance de $t$.</description>
     </item>
     

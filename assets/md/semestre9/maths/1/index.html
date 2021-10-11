@@ -189,7 +189,7 @@
 					<h2 class="post-title">Modélisation</h2>
 					<div class="post-meta">
 						<ul>
-              <li><i class="ion-calendar"></i> October 4, 2021</li>
+              <li><i class="ion-calendar"></i> October 11, 2021</li>
               
               
               
@@ -207,7 +207,7 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<p>À partir d&rsquo;une position initiale, le robot tounr de $\theta$ puis avance de $t$ puis tourne de $\alpha$ puis avance de $d$. Donner son positionnement dans le repère $(x,y,\theta)$.</p>
+						<p>À partir d&rsquo;une position initiale, le robot tourne de $\theta$ puis avance de $t$ puis tourne de $\alpha$ puis avance de $d$. Donner son positionnement dans le repère $(x,y,\theta)$.</p>
 <ul>
 <li>Le robot tourne de $\theta$ puis avance de $t$. Dans le repère $\Omega_O = (O, \vec{i}, \vec{j})$ : $$ \vec{T}_{\Omega_O} = \begin{pmatrix} u\\ v \end{pmatrix} = t. \begin{pmatrix} \cos{\theta} \\ \sin{\theta} \end{pmatrix}$$</li>
 <li>Puis, le robot tourne de $\alpha$ puis avance de $d$. Dans le repère $\Omega_C = (C, \vec{x}, \vec{y})$ : $$ \vec{D}_{\Omega_C} = \begin{pmatrix} p\\ q \end{pmatrix} = d. \begin{pmatrix} \cos{\alpha} \\ \sin{\alpha} \end{pmatrix}$$</li>
@@ -221,7 +221,7 @@
 <li><strong>Quels sont les variables ?</strong> : Les entrées vont être le tuple de $\theta$ ainsi que les longueurs des 3 paramètres $t$</li>
 <li><strong>Poser le problème</strong> : Dans le modèle directe on souhaite trouver les coordonées cartésiennes en fonction des $\theta$ et des longueurs $t$. Le modèle inverse lui fournit la position des différents joints $\theta$ en fonction de la position cartésienne de l&rsquo;effecteur.</li>
 </ul>
-<h3 id="modèles-directe--sorties-en-fonction-des-entrées">Modèles directe : sorties en fonction des entrées</h3>
+<h3 id="modèles-direct--sorties-en-fonction-des-entrées">Modèles direct : sorties en fonction des entrées</h3>
 <p>Enchainer le changement de repère revient à ajouter la matrice de rotation multiplié par celle des translations.</p>
 <p>$$\mathcal{X} = \begin{pmatrix} t_1. \cos{\theta} + t_2 . \cos(\theta_1 + \theta_2) + t_3 . \cos(\theta_1 + \theta_2 + \theta_3) \\ t_1 . \sin{\theta} + t_2 . \sin(\theta_1 + \theta_2) + t_3 . \sin(\theta_1 + \theta_2 + \theta_3) \\ \theta_1 + \theta_2 + \theta_3 \end{pmatrix}$$</p>
 <h3 id="modèles-inverse--entrées-en-fonction-des-sorties">Modèles inverse : entrées en fonction des sorties</h3>
@@ -236,9 +236,19 @@ t_1 . \sin{\theta_1} + t_2 \sin(\theta_1 + \theta_2) + t_3 \sin(\theta_1 + \thet
 \theta_1 + \theta_2 + \theta_3 = X_3
 \end{cases}$$</p>
 <p>Pour résoudre ce problème nous pouvons poser $\theta_3 = X_3 - \theta_1 - \theta_2$.</p>
-<p>La résolution algébrique donne les résultats suivants</p>
-<p>$$\begin{cases}</p>
-<p>\end{cases}$$</p>
+<h4 id="résolution-numérique--méthode-de-newton">Résolution numérique : méthode de Newton</h4>
+<p>Nous cherchons à déterminer $x$ tel que $f(x) = 0$. Nous connaissons une approximation de $x$ noté $x_0$. Nous avons $f(x_0) - f(x) = f&rsquo;(x_0).(x_0-x)$ avec $f(x) = 0$ nous obtenons :
+$$x = x_0 - \dfrac{f(x_0)}{f&rsquo;(x_0)}$$</p>
+<p>Le schéma de Newton est donc
+$$ x_{k+1} = x_k - \dfrac{f(x_k)}{f&rsquo;(x_k)}$$</p>
+<p>$C_1$ et $C_2$ sont les positions des goniomètres, $a_1$ et $a_2$ sont les mesures angulaires et $S$ la position du robot.</p>
+<h3 id="un-exemple-simple">Un exemple simple</h3>
+<center>
+  <img src="/assets/images/semestre9/maths/2.png" width="50%">
+</center>
+<center>
+  <img src="/assets/images/semestre9/maths/3.jpg" width="100%">
+</center>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
