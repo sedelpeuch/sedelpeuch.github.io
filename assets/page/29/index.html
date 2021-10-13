@@ -193,7 +193,7 @@
           
           
           
-          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/pl/notes2/">PL - Cours 2</a></h3>
+          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes5/">Les listes</a></h3>
           <div class="post-meta">
             <ul>
               <li><i class="ion-calendar"></i> January 1, 0001</li>
@@ -209,8 +209,10 @@
             </ul>
           </div>
           <div class="post-content">
-            <p>On dispose d&rsquo;un formalisme pour modéliser des problèmes réels : la programmation linéaire. On a appris à résoudre le problème à la main en deux dimensions. Intuition pour résoudre en dimension supérieure : se déplacer de sommet en sommet du polyèdre convexe formé par les contraintes linéaires.</p>
-            <a href="https://Sdelpeuch.github.io/assets/md/pl/notes2/" class="btn btn-main">Voir Plus</a>
+            <p>Résumé des différents objets en Scheme
+{:class=&quot;image about center&rdquo;}
+ Les listes Définition récursive des listes  Liste vide : '() ou null Une paire pointée dont le car est un élément de la liste, et le cdr est une liste Liste impropre : une liste qui ne se termine pas par la liste vide Liste circulaire : une chaîne de cons sans fin  Fonctions de base sur les listes  Prédicat : list?</p>
+            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes5/" class="btn btn-main">Voir Plus</a>
           </div>
         </div>
         
@@ -220,7 +222,7 @@
           
           
           
-          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/pl/notes-td2/">PL - Notes TD 2</a></h3>
+          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes9/">Les macroexpensions</a></h3>
           <div class="post-meta">
             <ul>
               <li><i class="ion-calendar"></i> January 1, 0001</li>
@@ -236,10 +238,8 @@
             </ul>
           </div>
           <div class="post-content">
-            <p>Exercice 1 Rappel du problème initial en forme standard
-$\begin{align*} \max z \ sc ; ; z&amp;= 7I+9II \ s_1 &amp;= 8-I-II\ s_2&amp;=19-2I-3II \ s_3 &amp;= 4-II \end{align*}$
-On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&rsquo;il reste hors base.</p>
-            <a href="https://Sdelpeuch.github.io/assets/md/pl/notes-td2/" class="btn btn-main">Voir Plus</a>
+            <p>Rappels sur l&rsquo;évaluation et l&rsquo;application Evaluation application $\texttt{(eval o env)}$ Cette forme d&rsquo;évaluation est utilisée pour toutes les fonctions construites avec des $lambda$, $define$, $let$ et $letrec$. C&rsquo;est celle qui est mise en oeuvre dans la plupart des langages de programmation, en particulier impératifs $(C,Java)$.</p>
+            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes9/" class="btn btn-main">Voir Plus</a>
           </div>
         </div>
         
@@ -249,7 +249,7 @@ On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&rsquo;
           
           
           
-          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes1/">Programmation fonctionnelle - Introduction</a></h3>
+          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/automates/cours5/">Non-déterminisme et déterminisation</a></h3>
           <div class="post-meta">
             <ul>
               <li><i class="ion-calendar"></i> January 1, 0001</li>
@@ -265,8 +265,8 @@ On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&rsquo;
             </ul>
           </div>
           <div class="post-content">
-            <p>Concepts et terminologie  Ecriture fonctionnelle : programmation par applications de fonctions plutôt que par l&rsquo;exécution de séquences d&rsquo;instructions Transparence référentielle : chaque expression peut être remplacée par son résultat sans changer le comportement du programme - sans effets de bord Programmation fonctionnelle pure : sans effets de bords, avec transparence référentielle Fonctions de première classe : type fonction, constantes fonction, opérateurs sur les fonctions Type dynamique : les variables sont typées au moment de l&rsquo;exécution et non au moment de la compilation Références : ce sont les adresse sur des objets, elles sont utilisées chaque fois que les contenus ne sont pas utiles (passages de paramètres, retours de fonctions) Garbage collector : gestion dynamique et automatique de la mémoire.</p>
-            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes1/" class="btn btn-main">Voir Plus</a>
+            <p>Nous avons introduit au chapitre 1 une distinction entre automates finis déterministes et automates finis non-déterministes. La notion de non déterministe provient de l&rsquo;impossiblité de déterminer l&rsquo;état courant de l&rsquo;automate, à partir de son état initial et les symboles lus.</p>
+            <a href="https://Sdelpeuch.github.io/assets/md/automates/cours5/" class="btn btn-main">Voir Plus</a>
           </div>
         </div>
         
@@ -276,7 +276,7 @@ On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&rsquo;
           
           
           
-          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes4/">Récursivité</a></h3>
+          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/pl/notes1/">PL - Cours 1</a></h3>
           <div class="post-meta">
             <ul>
               <li><i class="ion-calendar"></i> January 1, 0001</li>
@@ -292,8 +292,8 @@ On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&rsquo;
             </ul>
           </div>
           <div class="post-content">
-            <p>Exemple d&rsquo;introduction fact(0)=1 fact(n)=n * fact(n-1) (define (fact n) (if (zero? n) 1 (* n (fact (sub1 n)))))  Récursivité terminale Pour rendre une fonction récursive terminale, on déplace le calcul effectuée après l&rsquo;appel récursif pour le faire avant.</p>
-            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes4/" class="btn btn-main">Voir Plus</a>
+            <p>Introduction par l&rsquo;exemple Un fabricant produit 2 types de yaourts à la fraise A et B à partir de Fraise, de Lait, et de Sucre. Chaque yaourt doit respecter les proportions suivantes de matières premières A : 2 fraises, 1 lait et 0 sucre.</p>
+            <a href="https://Sdelpeuch.github.io/assets/md/pl/notes1/" class="btn btn-main">Voir Plus</a>
           </div>
         </div>
         
@@ -706,14 +706,6 @@ On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&rsquo;
 						
 						
 						
-						<li class="">
-							<a href="/assets/page/26/">
-								26
-							</a>
-						</li>
-						
-						
-						
 						
 						
 						
@@ -807,6 +799,29 @@ On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&rsquo;
 						
 						
 						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<li class="">
+							<a href="/assets/page/31/">
+								31
+							</a>
+						</li>
+						
+						
+						
+						
 						<li>
 							<a href="/assets/page/30/">Suivant</a>
 						</li>
@@ -864,8 +879,44 @@ On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&rsquo;
 
 
 
+
+
+
+
 <div class="widget widget-latest-post">
     <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/">Introduction</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>Commençons par définir les différents termes que …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p></p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Programmer un microcontrolleur Un microcontrolleur …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/2/">Bus de communication</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p></p>
+      </div>
+    </div>
     
     <div class="media">
       <div class="media-body">
@@ -880,38 +931,6 @@ On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&rsquo;
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre9/controle/">Contrôle commande Page d&#39;accueil</a></h4>
         <h5>[Contrôle commande]</h5>
         <p>L&rsquo;objet du cours est de présenter …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre9/interaction/">Interactions homme robot Page d&#39;accueil</a></h4>
-        <h5>[Interactions homme robot]</h5>
-        <p>Ce cours est une initiation à la problématique de …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre9/maths/">Mathématiques pour la robotique Page d&#39;accueil</a></h4>
-        <h5>[Maths]</h5>
-        <p>Cet enseignement a pour objet de présenter un …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre9/modelisation/">Modélisation des robots et analyse des performances Page d&#39;accueil</a></h4>
-        <h5>[Modélisation]</h5>
-        <p>Ce cours a pour objectif de présenter les concepts …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre9/imagerie/">Outils d&#39;imagerie pour la robotique Page d&#39;accueil</a></h4>
-        <h5>[Outils d&#39;imagerie]</h5>
-        <p>Il s&rsquo;agit d&rsquo;une introduction aux …</p>
       </div>
     </div>
     

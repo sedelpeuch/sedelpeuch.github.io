@@ -193,7 +193,7 @@
           
           
           
-          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes6/">Système de type</a></h3>
+          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/pl/notes2/">PL - Cours 2</a></h3>
           <div class="post-meta">
             <ul>
               <li><i class="ion-calendar"></i> January 1, 0001</li>
@@ -209,10 +209,8 @@
             </ul>
           </div>
           <div class="post-content">
-            <p>Classification des valeurs en ensembles appelés types de manière à garantir la correction de certains programmes
-{:class=&quot;image about center&rdquo;}
- Styles de typage  Le typage dynamique : déterminé pendant l&rsquo;exécution par le runtime, il ne nécessite aucune intervention du programmeur Le typage statique : fixé avant l&rsquo;exécution par le compilateur, il est soit inféré automatiquement, soit indiqué par des annotations dans le code  Afin d&rsquo;annoter une valeur &lt;val&gt; par un type &lt;typ&gt;, il suffit d&rsquo;écrire avant la définition de &lt;val&gt;</p>
-            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes6/" class="btn btn-main">Voir Plus</a>
+            <p>On dispose d&rsquo;un formalisme pour modéliser des problèmes réels : la programmation linéaire. On a appris à résoudre le problème à la main en deux dimensions. Intuition pour résoudre en dimension supérieure : se déplacer de sommet en sommet du polyèdre convexe formé par les contraintes linéaires.</p>
+            <a href="https://Sdelpeuch.github.io/assets/md/pl/notes2/" class="btn btn-main">Voir Plus</a>
           </div>
         </div>
         
@@ -222,7 +220,7 @@
           
           
           
-          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes2/">Types et constructions de base du langage</a></h3>
+          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/pl/notes-td2/">PL - Notes TD 2</a></h3>
           <div class="post-meta">
             <ul>
               <li><i class="ion-calendar"></i> January 1, 0001</li>
@@ -238,12 +236,10 @@
             </ul>
           </div>
           <div class="post-content">
-            <p>Résumé des constructions syntaxiques du langage
-{:class=&quot;image about center&rdquo;}
-Résumé des opérations numériques
-{:class=&quot;image about center&rdquo;}
- Les caractères et les chaînes de caractères  Caractère : ̀#\a` Chaîne : &ldquo;de caracteres&rdquo; Type : ̀char?</p>
-            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes2/" class="btn btn-main">Voir Plus</a>
+            <p>Exercice 1 Rappel du problème initial en forme standard
+$\begin{align*} \max z \ sc ; ; z&amp;= 7I+9II \ s_1 &amp;= 8-I-II\ s_2&amp;=19-2I-3II \ s_3 &amp;= 4-II \end{align*}$
+On choisit de faire rentrer $II$ en base, on peut donc annuler $I$ puisqu&rsquo;il reste hors base.</p>
+            <a href="https://Sdelpeuch.github.io/assets/md/pl/notes-td2/" class="btn btn-main">Voir Plus</a>
           </div>
         </div>
         
@@ -253,7 +249,7 @@ Résumé des opérations numériques
           
           
           
-          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes3/">Types et constructions de base du langage</a></h3>
+          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes1/">Programmation fonctionnelle - Introduction</a></h3>
           <div class="post-meta">
             <ul>
               <li><i class="ion-calendar"></i> January 1, 0001</li>
@@ -269,9 +265,35 @@ Résumé des opérations numériques
             </ul>
           </div>
           <div class="post-content">
-            <p>Définitions : Symboles et liaisons Un symbole est un identificateur, c&rsquo;est à dire un nom symbolique.
-Une liaison est une entité, c&rsquo;est à dire un objet nommé résidant dans la mémoire, donc l&rsquo;association d&rsquo;un symbole avec un emplacement mémoire contenant une valeur.</p>
-            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes3/" class="btn btn-main">Voir Plus</a>
+            <p>Concepts et terminologie  Ecriture fonctionnelle : programmation par applications de fonctions plutôt que par l&rsquo;exécution de séquences d&rsquo;instructions Transparence référentielle : chaque expression peut être remplacée par son résultat sans changer le comportement du programme - sans effets de bord Programmation fonctionnelle pure : sans effets de bords, avec transparence référentielle Fonctions de première classe : type fonction, constantes fonction, opérateurs sur les fonctions Type dynamique : les variables sont typées au moment de l&rsquo;exécution et non au moment de la compilation Références : ce sont les adresse sur des objets, elles sont utilisées chaque fois que les contenus ne sont pas utiles (passages de paramètres, retours de fonctions) Garbage collector : gestion dynamique et automatique de la mémoire.</p>
+            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes1/" class="btn btn-main">Voir Plus</a>
+          </div>
+        </div>
+        
+        <div class="post">
+          
+          
+          
+          
+          
+          <h3 class="post-title"><a href="https://Sdelpeuch.github.io/assets/md/fonc/notes4/">Récursivité</a></h3>
+          <div class="post-meta">
+            <ul>
+              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+              </li>
+            </ul>
+          </div>
+          <div class="post-content">
+            <p>Exemple d&rsquo;introduction fact(0)=1 fact(n)=n * fact(n-1) (define (fact n) (if (zero? n) 1 (* n (fact (sub1 n)))))  Récursivité terminale Pour rendre une fonction récursive terminale, on déplace le calcul effectuée après l&rsquo;appel récursif pour le faire avant.</p>
+            <a href="https://Sdelpeuch.github.io/assets/md/fonc/notes4/" class="btn btn-main">Voir Plus</a>
           </div>
         </div>
         
@@ -684,14 +706,6 @@ Une liaison est une entité, c&rsquo;est à dire un objet nommé résidant dans 
 						
 						
 						
-						<li class="">
-							<a href="/assets/page/26/">
-								26
-							</a>
-						</li>
-						
-						
-						
 						
 						
 						
@@ -785,6 +799,33 @@ Une liaison est une entité, c&rsquo;est à dire un objet nommé résidant dans 
 						
 						
 						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<li class="">
+							<a href="/assets/page/31/">
+								31
+							</a>
+						</li>
+						
+						
+						
+						
+						<li>
+							<a href="/assets/page/31/">Suivant</a>
+						</li>
+						
 					</ul>
 				</nav>
 				
@@ -838,8 +879,44 @@ Une liaison est une entité, c&rsquo;est à dire un objet nommé résidant dans 
 
 
 
+
+
+
+
 <div class="widget widget-latest-post">
     <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/">Introduction</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>Commençons par définir les différents termes que …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p></p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Programmer un microcontrolleur Un microcontrolleur …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/2/">Bus de communication</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p></p>
+      </div>
+    </div>
     
     <div class="media">
       <div class="media-body">
@@ -854,38 +931,6 @@ Une liaison est une entité, c&rsquo;est à dire un objet nommé résidant dans 
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre9/controle/">Contrôle commande Page d&#39;accueil</a></h4>
         <h5>[Contrôle commande]</h5>
         <p>L&rsquo;objet du cours est de présenter …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre9/interaction/">Interactions homme robot Page d&#39;accueil</a></h4>
-        <h5>[Interactions homme robot]</h5>
-        <p>Ce cours est une initiation à la problématique de …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre9/maths/">Mathématiques pour la robotique Page d&#39;accueil</a></h4>
-        <h5>[Maths]</h5>
-        <p>Cet enseignement a pour objet de présenter un …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre9/modelisation/">Modélisation des robots et analyse des performances Page d&#39;accueil</a></h4>
-        <h5>[Modélisation]</h5>
-        <p>Ce cours a pour objectif de présenter les concepts …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/semestre9/imagerie/">Outils d&#39;imagerie pour la robotique Page d&#39;accueil</a></h4>
-        <h5>[Outils d&#39;imagerie]</h5>
-        <p>Il s&rsquo;agit d&rsquo;une introduction aux …</p>
       </div>
     </div>
     
