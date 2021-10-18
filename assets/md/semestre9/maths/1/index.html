@@ -246,9 +246,20 @@ $$ x_{k+1} = x_k - \dfrac{f(x_k)}{f&rsquo;(x_k)}$$</p>
 <center>
   <img src="/assets/images/semestre9/maths/2.png" width="50%">
 </center>
-<center>
-  <img src="/assets/images/semestre9/maths/3.jpg" width="100%">
-</center>
+<p>Nous pouvons déterminer les équations suivantes</p>
+<p>$$\begin{align*}
+M_1 &amp;= \begin{pmatrix} u_1 \\ v_1 \end{pmatrix} = \begin{pmatrix} \cos{a_1} \\ \sin{a_1} \end{pmatrix} \\<br>
+M_2 &amp;= \begin{pmatrix} u_2 \\ v_2 \end{pmatrix} = \begin{pmatrix} \cos{a_2} \\ \sin{a_2} \end{pmatrix} \\<br>
+\begin{pmatrix} x - c_{1_x} \\ y - c_{1_y} \end{pmatrix} \begin{pmatrix} \cos{\pi/2} &amp; - \sin{\pi/2} \\ \sin{\pi / 2} &amp; \cos{\pi / 2} \end{pmatrix} \begin{pmatrix} u_1 \\ v_1 \end{pmatrix} &amp;= 0\\<br>
+\begin{pmatrix} x - c_{2_x} \\ y - c_{2_y} \end{pmatrix} \begin{pmatrix} \cos{\pi/2} &amp; - \sin{\pi/2} \\ \sin{\pi / 2} &amp; \cos{\pi / 2} \end{pmatrix} \begin{pmatrix} u_2 \\ v_2 \end{pmatrix} &amp;= 0 \\<br>
+\begin{pmatrix} \sin{a_1} &amp; - \cos{a_1} \\ \sin{a_2} &amp; - \cos{a_2} \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} &amp;= \begin{pmatrix} \sin{a_1}.c_{1_x} - \cos{a_1} c_{1_y} \\ \sin{a_2}.c_{2_x} - \cos{a_2} c_{2_y} \end{pmatrix} \\<br>
+A.S &amp;= B
+\end{align*}$$</p>
+<p>Nous cherchons donc à résoudre l&rsquo;équation $A.x = b$ cependant la résolution avec $x = A^{-1}.b$ peut s&rsquo;avérer trop complexe dans certaines situations. Nous allons donc utiliser une décomposition SVD pour résoudre l&rsquo;équation, la décomposition s&rsquo;écrit alors $svd(A) = U.S.V^{T}$. <a href="/assets/pdf/semestre9/maths/svd.pdf">Détails sur la décomposition SVG</a></p>
+<h3 id="résolution-de-systèmes-sous-contraints">Résolution de systèmes sous contraints</h3>
+<p>Soit le système $A_{n \times m} . x_{m \times 1} = b_{n \times 1}$ avec $n &lt; m$. Par exemple $x_1 + x_2 = 4$ est un système sous contraints. Il existe une infinité de solution et nous cherchons à en carctériser une. La résolution va se réaliser en résoluvant $arg min H(x)$ avec $H(x) = x^{T} x + \lambda^T (Ax-b)$.</p>
+<p>Pour résoudre des systèmes sosus contraints nous allons avoir besoin d&rsquo;une notion supplémentaire : la pseudo inverse. La pseudo inverse (droite) se définit comme : $A^+_{R} = A^T (AA^T)^{-1} = \sum \limits_{i=1}^N \sigma^{-1} v_i u_i^T$.</p>
+<p>La solution d&rsquo;un système linéaire sous contraint est donc $x = A^+_R b + \sum \limits_{i=n+1}^m \alpha_i v_i \forall \alpha_i = A^+_R b + [I - A^+_RA] \omega$. Nous pouvons remaquer que $Ax=b \Leftrightarrow A(x+z) = b$ avec $Az =0$, $z$ est donc choisi dans le noyau de la matrice $A$.</p>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
