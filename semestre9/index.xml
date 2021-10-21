@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>Contrôle commande Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre9/energie/</link>
+      <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre9/energie/</guid>
+      <description>L&amp;rsquo;objet du cours est de présenter succinctement la commande des robots. Après un bref rappel des outils de modélisation développés (modèles géométriques, cinématiques et dynamiques) et du principe des régulations d&amp;rsquo;axes de type PID, les principales architecture de commande des systèmes robotisés sont présentés.</description>
+    </item>
+    
+    <item>
       <title>Interactions homme robot Page d&#39;accueil</title>
       <link>https://Sdelpeuch.github.io/semestre9/interaction/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
