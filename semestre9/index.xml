@@ -13,20 +13,20 @@
     
     
     <item>
+      <title>Autonomie Énergétique Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre9/energie/</link>
+      <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre9/energie/</guid>
+      <description>Ce module traite de la conversion et de la gestion d’énergie électrique pour les deux principaux besoins en robotique que sont l’alimentation électrique d’une part et le contrôle moteur de l’actionneur d’autre part.</description>
+    </item>
+    
+    <item>
       <title>Contrôle commande Page d&#39;accueil</title>
       <link>https://Sdelpeuch.github.io/semestre9/controle/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/semestre9/controle/</guid>
-      <description>L&amp;rsquo;objet du cours est de présenter succinctement la commande des robots. Après un bref rappel des outils de modélisation développés (modèles géométriques, cinématiques et dynamiques) et du principe des régulations d&amp;rsquo;axes de type PID, les principales architecture de commande des systèmes robotisés sont présentés.</description>
-    </item>
-    
-    <item>
-      <title>Contrôle commande Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre9/energie/</link>
-      <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/semestre9/energie/</guid>
       <description>L&amp;rsquo;objet du cours est de présenter succinctement la commande des robots. Après un bref rappel des outils de modélisation développés (modèles géométriques, cinématiques et dynamiques) et du principe des régulations d&amp;rsquo;axes de type PID, les principales architecture de commande des systèmes robotisés sont présentés.</description>
     </item>
     
@@ -66,6 +66,19 @@ Prise de notes Introduction</description>
       
       <guid>https://Sdelpeuch.github.io/semestre9/imagerie/</guid>
       <description>Il s&amp;rsquo;agit d&amp;rsquo;une introduction aux différentes méthodes existantes pour traiter les images et les vidéos dans le contexte de la robotique.</description>
+    </item>
+    
+    <item>
+      <title>Reachy Mobile - Projet de robotique autonome</title>
+      <link>https://Sdelpeuch.github.io/semestre9/reachy/</link>
+      <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre9/reachy/</guid>
+      <description>Définition du projet Compte rendu de réunion 15 octobre 2021
+22 octobre 2021
+État de l&amp;rsquo;art Lien de consultation de l&amp;rsquo;overleaf
+Rapport final - à venir
+Développement Lien du github</description>
     </item>
     
     <item>

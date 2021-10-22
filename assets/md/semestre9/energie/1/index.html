@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>Introduction</title>
+  <title>Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,6 +78,8 @@
                   <li><a href="/semestre9/mecatronique">Mécatronique</a></li>
                   
                   <li><a href="/semestre9/imagerie">Outils d&#39;imagerie</a></li>
+                  
+                  <li><a href="/semestre9/reachy">Reachy</a></li>
                   
                   <li><a href="/semestre9/energie">Énergétique</a></li>
                   
@@ -172,7 +174,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>Introduction</h1>
+          <h1>Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</h1>
           <p></p>
         </div>
       </div>
@@ -186,10 +188,10 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">Introduction</h2>
+					<h2 class="post-title">Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</h2>
 					<div class="post-meta">
 						<ul>
-              <li><i class="ion-calendar"></i> October 12, 2021</li>
+              <li><i class="ion-calendar"></i> October 21, 2021</li>
               
               
               
@@ -198,7 +200,7 @@
               
               <li><i class="ion-pricetags"></i> 
                 
-                <a href="/tags/outils%20d%27imagerie">Outils d&#39;imagerie</a>
+                <a href="/tags/%c3%a9nergie">Énergie</a>
 								
               </li>
             </ul>
@@ -207,20 +209,59 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<p>Commençons par définir les différents termes que nous allons utiliser :</p>
+						<h2 id="régime-des-grandeurs-électriques-rencontrées">Régime des grandeurs électriques rencontrées</h2>
+<p>Régime continu ou quasi-continu avec ondulation périodique valeur moyenne $&lt; x &gt; = \dfrac{1}{T} \int \limits_0^{\infty} x(t) dt$</p>
+<p>Régime sinusoïdal, valeur efficace $X = (\dfrac{1}{T}\int \limits_0^\infty x^2(t)dt)^{\frac{1}{2}}$</p>
+<p>Régime quelconque périodique, décomposition en série de Fourier d&rsquo;un signal $x(t)$, $T$ périodique. $x(t) = X_0 + \sum \limits_{k=1}^\infty (A_k \cos{k\omega t}+B_k \sin{k \omega t})$ où $\omega = 2 \pi f$ la pulsation du fondamental, $k$ le rang de l&rsquo;harmonique, $X_k$ la valeur efficace, $\phi_k$ déphasage.</p>
+<h2 id="régime-sinusoïdal-monophasé">Régime sinusoïdal (monophasé)</h2>
+<p>Soit les caractéristiques de la grandeur sinusoïdale $x$ : amplitude $X_m$ (ou $\hat{x}, X_p$), phase $\omega t + \phi_x$, phase à l&rsquo;origine $\phi_x$, sa valeur efficace est $X = \dfrac{X_m}{\sqrt{2}}$.</p>
+<h3 id="principe-de-la-correspondance-expression-temporelle--amplitude-complexe">Principe de la correspondance expression temporelle / amplitude complexe</h3>
+<p>$$\begin{align*}
+\text{Grandeur instantanée} &amp;\Leftrightarrow \text{Grandeur complexe} &amp;\Leftrightarrow \text{Phaseur} \\<br>
+x(t) = X_m \cos(\omega t + \phi_x) &amp;\Leftrightarrow \underline{x} = X_m e^{j(\omega t + \phi_x) = X \sqrt{2} e^{j \omega t} e^{j \phi x}} &amp;\Leftrightarrow \underline{X} = X e^{j \phi x}
+\end{align*}$$</p>
+<h2 id="définition-et-utilisation-des-puissances">Définition et utilisation des puissances</h2>
 <ul>
-<li>Le <strong>traitement d&rsquo;images</strong> : améliorer, transformer l&rsquo;image</li>
-<li>L&rsquo;<strong>Analyse d&rsquo;image</strong> : extraire des informations de l&rsquo;image</li>
-<li><strong>Interprétation d&rsquo;images</strong> : interpréter ces informations, extraire et comprendre le contenu</li>
+<li>Puissance instantanée $p(t) = u(t) i(t) [W]$</li>
+<li>Puissance active $P = &lt;p(t)&gt; = \dfrac{1}{T} \int \limits_0^T p(t) dt [W]$. En régime sinusoïdal $P = UI \cos \phi$</li>
+<li>Puissance apparente $S = UI$ [VA]</li>
+<li>Facteur de puissance $F_P = \dfrac{P}{S}$. En régime sinusoïdal $F_P = \cos \phi$</li>
+<li>Puissance réactive $Q = UI \sin \phi [VAR]$. En régime sinusoïdal $S = \sqrt{P^2 + Q^2}$, $\tan \phi = \dfrac{Q}{P}$, $\cos \phi = \dfrac{P}{S}$, $\sin \phi = \dfrac{Q}{S}$</li>
+<li>Puissance apparente complexe $\underline{S} = \underline{U} \underline{I}^\ast = P + jQ$ soit $P=Re(\underline{S})$, $Q = Im(\underline{S})$ et $S = | \underline{S} |$.</li>
 </ul>
-<p>Ces trois phases constituent la vision par ordinateur, cependant pour un ordinateur cela se complexifie. Ainsi le but de la vision par ordinateur se définit comme l&rsquo;extraction automatique d&rsquo;informations permanente sur une image donnée.</p>
-<p>Dans quel cadre utiliser la vision par ordinateur :</p>
-<ul>
-<li>Amélioration des capacités humaines</li>
-<li>Perception pour la robotique / agents autonomes</li>
-<li>Organisation et accès aux millions de contenus visuels actuels : photos, vidéos, etc</li>
-<li>La vision humaine reste un mécanisme difficile</li>
-</ul>
+<h2 id="actionneur-électrique">Actionneur électrique</h2>
+<center>
+  <img src="/assets/images/semestre9/energie/1.png" width="80%">
+</center>
+<h3 id="focus-sur-la-conversion-électromécanique">Focus sur la conversion électromécanique</h3>
+<center>
+  <img src="/assets/images/semestre9/energie/2.png" width="80%">
+</center>
+<h3 id="équations-mécaniques">Équations mécaniques</h3>
+<p>Principe fondamental de la dynamique en translation $\sum \vec{F} = M.\vec{\gamma}$ avec $\gamma = \dot{v} = \ddot{x}$ expression de la puissance $P = F.v$. Dans le cas d&rsquo;un actionneur électrique, même pour un besoin en translation, on utilisera très majoritairement une machine tournante. Le principe fondamental de la dynamique en rotation devient alors $\Sigma \vec{C} = J . \dfrac{d\Omega}{dt} = C_m - C_r$ avec $\gamma = \dot{\Omega} - \ddot{theta}$ expression de la puissance est $P = C . \Omega$. Le besoin en entrainement se définira donc dans le plan mécanique couple - vitesse où on représentera le couple moteur $C_m$ et le couple résistant $C_r$.</p>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for(i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script>
 
 					</div>
 					<div class="post-comments">
@@ -281,8 +322,28 @@
 
 
 
+
+
+
+
 <div class="widget widget-latest-post">
     <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/">Généralités sur les machines tournantes</a></h4>
+        <h5>[Énergie]</h5>
+        <p>La constitution d&rsquo;une machine tournante est …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/">Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</a></h4>
+        <h5>[Énergie]</h5>
+        <p>Régime des grandeurs électriques rencontrées …</p>
+      </div>
+    </div>
     
     <div class="media">
       <div class="media-body">
@@ -302,14 +363,6 @@
     
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/">Introduction</a></h4>
-        <h5>[Outils d&#39;imagerie]</h5>
-        <p>Commençons par définir les différents termes que …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/">Introduction</a></h4>
         <h5>[Outils d&#39;imagerie]</h5>
         <p>Commençons par définir les différents termes que …</p>
@@ -321,14 +374,6 @@
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/1/">Architecture</a></h4>
         <h5>[Système embarqués]</h5>
         <p>Programmer un microcontrolleur Un microcontrolleur …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/2/">Bus de communication</a></h4>
-        <h5>[Système embarqués]</h5>
-        <p></p>
       </div>
     </div>
     

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Énergie on Semestre 9</title>
+    <link>https://Sdelpeuch.github.io/tags/%C3%A9nergie/</link>
+    <description>Recent content in Énergie on Semestre 9</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 21 Oct 2021 11:00:00 +0600</lastBuildDate>
+    
+	<atom:link href="https://Sdelpeuch.github.io/tags/%C3%A9nergie/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Généralités sur les machines tournantes</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/</link>
+      <pubDate>Thu, 21 Oct 2021 11:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/</guid>
+      <description>La constitution d&amp;rsquo;une machine tournante est la suivante
+ Partie mobile rotor (peut être intérieur ou extérieur) Partie fixe stator Entrefer (mécanique, magnétique) Inducteur ou excitation Cammenbert ou saucisson Champ radial ou axial  Toutes les machines tournantes sont réversibles.</description>
+    </item>
+    
+    <item>
+      <title>Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/</link>
+      <pubDate>Thu, 21 Oct 2021 10:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/</guid>
+      <description>Régime des grandeurs électriques rencontrées Régime continu ou quasi-continu avec ondulation périodique valeur moyenne $&amp;lt; x &amp;gt; = \dfrac{1}{T} \int \limits_0^{\infty} x(t) dt$
+Régime sinusoïdal, valeur efficace $X = (\dfrac{1}{T}\int \limits_0^\infty x^2(t)dt)^{\frac{1}{2}}$</description>
+    </item>
+    
+    <item>
+      <title>Autonomie Énergétique Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre9/energie/</link>
+      <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre9/energie/</guid>
+      <description>Ce module traite de la conversion et de la gestion d’énergie électrique pour les deux principaux besoins en robotique que sont l’alimentation électrique d’une part et le contrôle moteur de l’actionneur d’autre part.</description>
+    </item>
+    
+  </channel>
+</rss>

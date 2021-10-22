@@ -7,10 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 15 Oct 2021 08:00:00 +0600</lastBuildDate>
+    <lastBuildDate>Thu, 21 Oct 2021 11:00:00 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/assets/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Généralités sur les machines tournantes</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/</link>
+      <pubDate>Thu, 21 Oct 2021 11:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/</guid>
+      <description>La constitution d&amp;rsquo;une machine tournante est la suivante
+ Partie mobile rotor (peut être intérieur ou extérieur) Partie fixe stator Entrefer (mécanique, magnétique) Inducteur ou excitation Cammenbert ou saucisson Champ radial ou axial  Toutes les machines tournantes sont réversibles.</description>
+    </item>
+    
+    <item>
+      <title>Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/</link>
+      <pubDate>Thu, 21 Oct 2021 10:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/</guid>
+      <description>Régime des grandeurs électriques rencontrées Régime continu ou quasi-continu avec ondulation périodique valeur moyenne $&amp;lt; x &amp;gt; = \dfrac{1}{T} \int \limits_0^{\infty} x(t) dt$
+Régime sinusoïdal, valeur efficace $X = (\dfrac{1}{T}\int \limits_0^\infty x^2(t)dt)^{\frac{1}{2}}$</description>
+    </item>
     
     <item>
       <title>Mouvements, changements de coordonnées</title>
@@ -29,16 +49,6 @@
       
       <guid>https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/</guid>
       <description>Introduction Pourquoi fait on de la robotique ? Car l&amp;rsquo;humain est limité, il est nécessaire qu&amp;rsquo;il évolue dans un environnement sans danger, facile d&amp;rsquo;accès et il possède des limites physiologiques (rapidité, précision, force &amp;hellip;).</description>
-    </item>
-    
-    <item>
-      <title>Introduction</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/</link>
-      <pubDate>Tue, 12 Oct 2021 08:00:00 +0600</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/</guid>
-      <description>Commençons par définir les différents termes que nous allons utiliser :
- Le traitement d&amp;rsquo;images : améliorer, transformer l&amp;rsquo;image L&amp;rsquo;Analyse d&amp;rsquo;image : extraire des informations de l&amp;rsquo;image Interprétation d&amp;rsquo;images : interpréter ces informations, extraire et comprendre le contenu  Ces trois phases constituent la vision par ordinateur, cependant pour un ordinateur cela se complexifie.</description>
     </item>
     
     <item>
