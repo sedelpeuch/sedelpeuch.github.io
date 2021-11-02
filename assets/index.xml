@@ -90,6 +90,15 @@ Régime sinusoïdal, valeur efficace $X = (\dfrac{1}{T}\int \limits_0^\infty x^2
     </item>
     
     <item>
+      <title>Réunion 22 octobre</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/reachy/1/</link>
+      <pubDate>Mon, 11 Oct 2021 09:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/reachy/1/</guid>
+      <description>Résumé rapide d&amp;rsquo;une proposition de plan itératif par l&amp;rsquo;équipe sans notion de temps  V0 + V1 Intégration mécatronique et logicielle V2 + V3 Navigation (ajout de la stack navigation ROS classique puis des &amp;ldquo;astuces&amp;rdquo; pour gérer les problèmes comme les tables) V4 - V8 Interactions avec un humain (mise en place de détection des choses, des humains, de jeux etc)  Le plan semble bien mais (trop) ambitieux, il va être nécessaire de paralléliser des tâches pour avoir un prototype fonctionnel en décembre.</description>
+    </item>
+    
+    <item>
       <title></title>
       <link>https://Sdelpeuch.github.io/assets/md/ia/1/</link>
       <pubDate>Mon, 15 Mar 2021 10:20:10 +0600</pubDate>
