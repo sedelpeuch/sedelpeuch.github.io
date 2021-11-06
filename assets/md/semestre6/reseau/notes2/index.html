@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Introduction aux réseaux - Le modèle de référence OSI</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 9 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 9" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 9 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre9/controle">Contrôle commande</a></li>
+                  
+                  <li><a href="/semestre9/interaction">IHR</a></li>
+                  
+                  <li><a href="/semestre9/maths">Mathématiques</a></li>
+                  
+                  <li><a href="/semestre9/modelisation">Modélisation</a></li>
+                  
+                  <li><a href="/semestre9/mecatronique">Mécatronique</a></li>
+                  
+                  <li><a href="/semestre9/imagerie">Outils d&#39;imagerie</a></li>
+                  
+                  <li><a href="/semestre9/reachy">Reachy</a></li>
+                  
+                  <li><a href="/semestre9/energie">Énergétique</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">ENSEIRB-MATMECA <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+                  
+                  <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+                  
+                  <li><a href="/semestre7/semestre_7">Semestre 7</a></li>
+                  
+                  <li><a href="/semestre8/semestre_8">Semestre 8</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Introduction aux réseaux - Le modèle de référence OSI</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Introduction aux réseaux - Le modèle de référence OSI</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<p>Le principe de base est la représentation des réseaux sous la forme de couche de
+fonctions superposées les unes aux autres. Leur nombre, leur nom et leur
+fonction varient selon les réseaux.</p>
+<h2 id="i-classfas-fa-serveri-principe-du-protocole"><i class="fas fa-server"></i> Principe du protocole</h2>
+<p><code>Protocole :</code> Ensemble des règles définisant le mode de communication entre deux
+ordinateurs.</p>
+<p>Les 7 couches du modèle ISO/OSI sont à connaitre par coeur.</p>
+<p><img src="/assets/images/reseau/principe.png" alt="principe">
+{:class=&quot;image featured&rdquo;}</p>
+<h3 id="fonctionnement-des-couches">Fonctionnement des couches</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Nom de la couche</th>
+<th align="left">Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Application</td>
+<td align="left">Quelles sont les données à envoyer ?</td>
+</tr>
+<tr>
+<td align="left">Presentation</td>
+<td align="left">Sous quelle forme ?</td>
+</tr>
+<tr>
+<td align="left">Session</td>
+<td align="left">Qui est le destinataire ?</td>
+</tr>
+<tr>
+<td align="left">Transport</td>
+<td align="left">Où est le destinataire ?</td>
+</tr>
+<tr>
+<td align="left">Réseau</td>
+<td align="left">Quel route faut-il prendre ?</td>
+</tr>
+<tr>
+<td align="left">Liaison</td>
+<td align="left">Quelles sont les caractérisation du réseau ?</td>
+</tr>
+<tr>
+<td align="left">Physique</td>
+<td align="left">Quel est le support physique ?</td>
+</tr>
+</tbody>
+</table>
+<h4 id="couche-physique">Couche Physique.</h4>
+<p>La couche pysique fournit les moyens (logiciels, matériels, électroniques,
+mécaniques &hellip;) nécessaire à la transmission des données binaires (train
+binaire). Elle implémente des fonctionnalités telles que codage, modulation ou
+multiplexage. La conception de la couche physique relève du domaine d&rsquo;ingénieur
+en électronique.</p>
+<h4 id="couche-liaison">Couche Liaison.</h4>
+<p>La couche liaison fournit les moyens nécessaires à l&rsquo;établissement, le maintient
+et la libération des connexions de liaison de données entre les entités
+communicantes. Elle détecte et corrige les erreurs pouvant se produire dans la
+couche physique. Les fonctions essentielles de la couche de liaison sont</p>
+<ul>
+<li>établissement et libération de la liaison</li>
+<li>délimitation et synchronisation des PDU</li>
+<li>contrôle de séquence</li>
+<li>Détection d&rsquo;erreurs</li>
+<li>Reprise sur erreurs
+Pour les réseaux locaux, cette couche peut être décomposée en deux sous-couches</li>
+<li>Sous-couche MAC : gère l&rsquo;accès au canal</li>
+<li>Sous-couche LLC : gère la détection des erreurs et la gestion de trames et
+liaison logique</li>
+</ul>
+<h4 id="couche-réseau">Couche réseau.</h4>
+<p>La couche réseau assure les fonctionnalité</p>
+<ul>
+<li>Routage : recherche de chemin ou d&rsquo;une route selon des critères de
+performances</li>
+<li>Interconnexion des réseaux</li>
+<li>Adressage : nommage des entités</li>
+<li>Contrôle de flux</li>
+<li>Gestion de la qualité de service</li>
+<li>Fragmentation et adaptation des unités de données aux contraintes du support
+sous-jacent</li>
+<li>Deux modes de fonctionnement : connecté / non-connecté</li>
+</ul>
+<h4 id="couche-transport">Couche transport.</h4>
+<p>La couche transport assure les fonctionnalités</p>
+<ul>
+<li>Transport de bout en bout des données</li>
+<li>Découpage des flux de données reçus des couches supérieures</li>
+<li>Assemblage des données : remise dans l&rsquo;ordre des données</li>
+<li>Contrôle de flux et contrôle de congestion</li>
+<li>Fiabilité par acquittement et retransmission des données</li>
+<li>Multiplexage des messages (appelés segments de donnée)</li>
+</ul>
+<h4 id="couche-session">Couche session.</h4>
+<p>La couche session assure les fonctionnalités</p>
+<ul>
+<li>Gestion du dialogue entre entités communicantes : gestion de tour de parole,
+transaction</li>
+<li>Synchronisation : sauvegarde de contexte et reprise après échec</li>
+<li>Orchestration des communication</li>
+</ul>
+<h4 id="couche-présentation">Couche présentation.</h4>
+<p>La couche présentation assure les fonctionnalités</p>
+<ul>
+<li>Structuration des donnés pour assurer leurs vérifications</li>
+</ul>
+<h4 id="couche-application">Couche application.</h4>
+<p>La couche application assure les fonctionnalité de communications à travers
+l&rsquo;environnement OI en offrant des applications (ou des services) de Web,
+messagerie électronique, transfert de fichier, IPTV, téléponique &hellip;</p>
+<h3 id="principe-de-lencapsulation">Principe de l&rsquo;encapsulation</h3>
+<p><img src="/assets/images/reseau/schema.png" alt="schema">
+{:class=&quot;image featured&rdquo;}</p>
+<h3 id="terminologie--trame-paquet-message">Terminologie : Trame, paquet, message</h3>
+<p><img src="/assets/images/reseau/7couches2.png" alt="term">
+{:class=&quot;image featured&rdquo;}</p>
+<h3 id="principe-du-relais">Principe du relais</h3>
+<p><img src="/assets/images/reseau/protocolecouches.png" alt="relais">
+{:class=&quot;image featured&rdquo;}</p>
+<h3 id="comparaison-du-modèle-osi-et-tcpip">Comparaison du modèle OSI et TCP/IP</h3>
+<p><img src="/assets/images/reseau/OSI-TCPIP.png" alt="comparaison"></p>
+<ul>
+<li>TCP/ip intègre la couche présentation et la couche session dans sa couche
+application</li>
+<li>TCP/IP regroupe la couche physique et la couche liaison de données du modèle
+OSI dans la couche d&rsquo;accès réseau</li>
+<li>TCP/IP regroupe la couche physique et la couche liaison de donnés du modèle
+OSI dans la couche d&rsquo;accès réseau</li>
+<li>TCP/IP paraît plus simple, car il compote moins de couches</li>
+<li>Les protocoles TCP/IP constituent la norme sur laquelle s&rsquo;est développé Internet</li>
+</ul>
+<p>{:class=&quot;image about right&rdquo;}</p>
+<h2 id="i-classfas-fa-serveri-explication-de-la-couche-physique"><i class="fas fa-server"></i> Explication de la couche physique</h2>
+<h3 id="la-bande-passante">La bande passante</h3>
+<p>La largeur de bande est la mesure de la quantité d&rsquo;information pouvant circuler
+d&rsquo;un endroiit à un autre en une période d&rsquo;un endroit à un autre en une période
+de temps donné, l&rsquo;unité est le <code>bit/s</code>. Le <strong>débit effectif</strong> d&rsquo;une connexion
+est inférieur à la bande passante du câble ou du support physique.</p>
+<h3 id="la-couche-physique">La couche physique</h3>
+<p>Fournit les procédure et les fonctions mécaniques, électriques ou électroniques</p>
+<ul>
+<li>pour établir maintenir et libérer les connexions physiques entre équipements</li>
+<li>représente tout ce qui constitue le support physique de l&rsquo;information</li>
+</ul>
+<p>Assure la transmission de données sous forme de signaux électriques</p>
+<ul>
+<li>Selon une connexion permanente ou dynamique</li>
+<li>En l&rsquo;alternat ou en bidirectionnel (flux duplex, simplex, half duplex)</li>
+<li>En série ou en parallèle</li>
+<li>Entre une ou plusieurs extrémités : point à point ou multipoint</li>
+</ul>
+<p>Assure la compatibilité des interfaces</p>
+<ul>
+<li>pour le codage de la bande de base ou modulation</li>
+<li>pour l&rsquo;amplification du signal</li>
+<li>pour le multiplexage de plusieurs signaux provenant de sources différentes</li>
+</ul>
+<h3 id="transmission-de-données">Transmission de données</h3>
+<p>La transmission consiste à faire transiter des informations sur le support
+physique de communication sous forme de signau numériques ou analogiques. Pour
+que la transmission soit optimale, ilest nécessaire que le signal soit codé de
+façon à faciliter sa transmission sur le support physique.</p>
+<ol>
+<li>Données numériques, signaux numériques</li>
+</ol>
+<ul>
+<li>Comment représenter des bits ?</li>
+<li>Exemple : réseaux locaux (LAN), connexion entre PCs</li>
+<li>Codage NRZ (non return to zero), NRZI, Manchester . Le principe du NRZ repose sur le codage de 1 par $$+V$$ volt et le 0 par $$-V$$
+volt. En revanche pour le NRZi le codage du bit courant dépend du bit
+précédemment émis.  Le codage Manchester duplique la quantité d&rsquo;information pour assurer une
+transition de front il est utilisé dans l&rsquo;Ethernet 10base-t.</li>
+</ul>
+<ol start="2">
+<li>Données analogiques, signaux numériques</li>
+</ol>
+<ul>
+<li>Comment représenter un voltage (échantillonnage)</li>
+<li>Exemple : Transmission de la voix sur un canal numériques</li>
+<li>Codage PCM à 8KH</li>
+</ul>
+<ol start="3">
+<li>Données numériques, signaux analogiques</li>
+</ol>
+<ul>
+<li>Comment représenter des bits</li>
+<li>Exemple : Transmission de données numériques sur un canal téléphonique</li>
+<li>Exemple : modulation d&rsquo;amplitude (ASK), de fréquence (FSK) et de phase (PSK).</li>
+</ul>
+<ol start="4">
+<li>Données analogiques, signaux analogiques</li>
+</ol>
+<ul>
+<li>Comment représenter un voltage</li>
+<li>Exemple : modulation d&rsquo;amplitude, de fréquence et de phase</li>
+</ul>
+<h3 id="exemple-de-ladsl">Exemple de l&rsquo;ADSL</h3>
+<ol>
+<li>Utilisation</li>
+</ol>
+<ul>
+<li>Mode asymétrique</li>
+<li>Mode de connexion permanente</li>
+<li>Communications simultanées voix et données</li>
+</ul>
+<ol start="2">
+<li>Caractéristiques</li>
+</ol>
+<ul>
+<li>Spectre divisé en 3 régions (Téléphone 4Khz, Canal data montant 100Khz, Canal
+data descendant 1Mhz)</li>
+<li>Codage DMT, divisé en 256 canaux de 4kHz</li>
+</ul>
+<h3 id="les-spécifications-des-câbles">Les spécifications des câbles</h3>
+<ol>
+<li>A quelles vitesses la transmission de données peut-elle être réalisée ?</li>
+</ol>
+<ul>
+<li>La vitesse de transmission des bits dans un câble est extrêmement important</li>
+<li>Le type de conduit utilisé influence la vitesse de transmission</li>
+</ul>
+<ol start="2">
+<li>Les transmissions doivent-elles être numériques ou analogiques ?</li>
+</ol>
+<ul>
+<li>La transmission numérique (ou à bande de base) nécessiste des types de câble
+différents de ceux utilisés pour la transmission analogique</li>
+</ul>
+<ol start="3">
+<li>Quelle distance un signal peut-il parcourir avant que l&rsquo;atténuation n&rsquo;affecte
+la transmission ?</li>
+</ol>
+<ul>
+<li>Si le signal est dégradé, les équipements réseau ne peuvent ni recevoir ni
+l&rsquo;interpréter</li>
+<li>La dégradation est directement liée à la distance parcourue par le signal et
+au type de câble utilisé</li>
+</ul>
+<h3 id="ethernet">Ethernet</h3>
+<p>Il existe plusieurs variantes d&rsquo;Ethernet, ils diffèrent par leurs <strong>type de
+support</strong>, leurs <strong>topologie</strong> et leurs <strong>débit</strong></p>
+<ul>
+<li>Ethernet 802.3 1-10 Mbps</li>
+<li>Ethernet 802.3a - 10 base 2 (Thinnet ou Cheapernet)</li>
+<li>Ethernet 802.3 - 10 base T</li>
+</ul>
+<h3 id="câbles-à-paires-torsadées">Câbles à paires torsadées</h3>
+<p>Le câble est constitué de deux paires (émission &amp; réception), lune distance est
+maintenant entre les deux paires pour diminuer la diaphonie, plus il y a de
+torsades, moins il y a de diaphonie</p>
+<h3 id="câble-à-paires-torsadées-blindées-stp">Câble à paires torsadées blindées (STP)</h3>
+<p>Chaque paire de fils est enveloppée dans une feuille métallique et lles deux
+paires sont enveloppées ensemble dans un revêtement tressé ou un film
+métallique. Il s&rsquo;agit généralement d&rsquo;un câble de 150 ohms. Comme l&rsquo;indiquent les
+instructions d&rsquo;installation de réseau Token Ring, les paires torsadées blindées
+réduisent le bruit électrique à l&rsquo;intérieur du câble (couplage paire à paire ou
+diaphonie), ainsi qu&rsquo;à l&rsquo;extérieur du câble (interférences électromagniques et
+radio).</p>
+<h3 id="câble-à-paire-torsadées-non-blindées">Câble à paire torsadées non blindées</h3>
+<p>Le câble à paires torsadées non blindées (UTP) est un média constitué de quatre
+paires de fils, présent dans divers types de réseau. Chacun des huit fils de
+cuivre du câble est protégé par un matériau isolant. De plus les paires de fil
+sont tressées entre elles. Ce type de câble repose uniquement sur l&rsquo;effet
+d&rsquo;annulation produit par les paires torsadées pour limiter la dégradation du
+signal due aux interférences électromagnétiques et radio.</p>
+<h2 id="i-classfas-fa-serveri-explication-de-la-couche-liaison-de-données-et-notion-dethernet"><i class="fas fa-server"></i> Explication de la couche liaison de données et notion d&rsquo;Ethernet.</h2>
+<h3 id="protocoles-daccès-au-support">Protocoles d&rsquo;accès au support</h3>
+<p>Suivant la façon dont les sollicitations d&rsquo;accès au support de communications
+sont gérées on distingue essentiellement deux approches</p>
+<ul>
+<li>Allocation aléatoire : le délai d&rsquo;accès n&rsquo;est pas borné (Aloha, Carrier Sense
+Multiple access)</li>
+<li>Allocation déterministe : il est possible de borner le delai d&rsquo;accès (polling,
+jeton)</li>
+</ul>
+<p>L&rsquo;ethernet exploite la technique d&rsquo;accès aléatoire au support</p>
+<h3 id="lethernet">L&rsquo;Ethernet</h3>
+<p>Aujourd&rsquo;hui l&rsquo;ethernet est la technologie de réseau local dominante sur le plan
+mondial. L&rsquo;Ethernet est une famille de technologies de réseau local que le
+modèle de référence OSI rend plus facile à appréhender. Tous les réseaux locaux
+doivent traiter le problème de base qui est l&rsquo;attribution des noms à chaque
+station au noeud. Les spécifications Ethernet prennent en charge différents
+médias, bandes passantes et autres variantes des couches 1 et 2. Le format de
+trame de base et le système d&rsquo;adressage sont les mêmes pour toutes les variantes
+d&rsquo;Ethernet.</p>
+<h3 id="lancêtre-dethernet--alohanet">L&rsquo;ancêtre d&rsquo;Ethernet : Alohanet</h3>
+<p>L&rsquo;idée était de permettre à deux hôtes au moins d&rsquo;utiliser le même média sans
+aucune interférence entre les signaux. Ce problème d&rsquo;accès multiple de
+l&rsquo;utilisateur à un média partagé a été étudié au début des années 70 à
+l&rsquo;Université d&rsquo;Hawaï. Un système nommé Alohanet a été développé pour donner à
+plusieurs stations des îles Hawaï un accès structuré à la fréquence radio
+partagée dans l&rsquo;atmospère. Ce travail a par la suite constitué la base de la
+méthode d&rsquo;accès Ethernet connue sous l&rsquo;acronyme CSMA/CD. Le principe est qu&rsquo;une
+station émet dès lors qu&rsquo;elle souhaite, en cas de collision, la station
+réémettra sa trame au terme d&rsquo;un délai aléatoire, au bout de $$N$$ collisions
+successives, la station abandonne. L&rsquo;efficacité est très faible $$18 %$$
+(définit par le rapport du débit utile sur le débit brut).</p>
+<h3 id="slotted-aloha">Slotted aloha</h3>
+<p>Le principe est que le temps est discrétisé et découpé en tranches de temps
+appelées slots (temps de propagation aller-retour maximum). Les stations sont
+synchronisées et une station ne tramet un paquet uniquement au début d&rsquo;un slot.
+Le système est amélioré puisque 2 trames qui se superposent ne le font que sur
+un slot au maximum, au lieu de 2 slots (car ils commencent au début du même
+slot). Le nouveau problème est la mauvaise utilisation du canal.</p>
+<h3 id="technique-de-csmacd">Technique de CSMA/CD</h3>
+<p>Accès aléatoire avec écoute de la porteuse : CSMA</p>
+<ul>
+<li>Une satiation qui désire émettre se met à l&rsquo;écoute du canal</li>
+<li>Si elle détecte un signal en ligne, elle diffère l&rsquo;émission de sa trame</li>
+</ul>
+<p>Les variantes selon le type de décision prile lorsque le canal est détecté
+occupé</p>
+<ul>
+<li>CSMA non persistant: lorsque la station détecte un signal, elle attend un
+délai aléatoire avant de réitérer la procédure (écoute de la porteuse)</li>
+<li>CSMA persistant la station persisste à écouter le canal jusqu&rsquo;à ce que
+celui-ci devienne libre, puis émet</li>
+<li>CSMA p-persistant lorsque le canal devient libre, la station émet avec une
+probabilité $$p$$, et diffère son emission avec une probabilité $$(1-p)$$.
+Ceci permet de diminuer la probabilité de collision par rapport au CSMA persistant.</li>
+</ul>
+<p>On a l&rsquo;apparition d&rsquo;une période de vulnérabilité : le temps de propagation entre
+le couple de stations les plus éloignées. Si la durée des trames est
+considérablement supérieur à la période de vulnérabilité alors le débit peut
+s&rsquo;approcher de $$100%$$
+C&rsquo;est la technique la plus utilisée parmi les disciplines d&rsquo;accès aléatoire.
+Elle est normalisée par l&rsquo;ISO. A l&rsquo;écoute préalable du canal s&rsquo;ajoute l&rsquo;écoute
+pendant la transmission un coupleur prêt à emettre, ayant détecté le canal
+libre, transmet et continue à écouter le canal. S&rsquo;il se produit une collision,
+il interrompt immédiatement sa transmission et il envoie des signaux spéciaux
+appelés bits de bourrage que tous les coupleurs soient prévenus de la collision,
+il tentera la réémission ultérieurement.
+<img src="/assets/images/reseau/csma.png" alt="CSMA">
+{:class=&quot;images about center&rdquo;}</p>
+<h3 id="le-succès-dethernet">Le succès d&rsquo;Ethernet</h3>
+<p>Le succès d&rsquo;Ethernet est dû aux facteurs suivants :</p>
+<ul>
+<li>Simplicité et facilité de maintenance</li>
+<li>Capacité à incorporer de nouvelles technologies</li>
+<li>Fiabilité</li>
+<li>Faible coût d&rsquo;installation et de mise à niveau</li>
+</ul>
+<h3 id="adresse-universelle-mac-802">Adresse Universelle MAC 802</h3>
+<ul>
+<li>Adresse sur 6 octets</li>
+<li>Unique pour chaque carte réseau</li>
+<li>@MAC = partie Constructeur + Numéro Séquentiel</li>
+</ul>
+<h2 id="i-classfas-fa-serveri-bilan-sur-lethernet"><i class="fas fa-server"></i> Bilan sur l&rsquo;Ethernet</h2>
+<h3 id="trame-ethernet">Trame Ethernet</h3>
+<table>
+<thead>
+<tr>
+<th align="center">Type</th>
+<th align="center">Taille</th>
+<th align="left">Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Preamble</td>
+<td align="center">7o</td>
+<td align="left">pour la synchronisation</td>
+</tr>
+<tr>
+<td align="center">SoF</td>
+<td align="center">1o</td>
+<td align="left">délimiteur début de la trame</td>
+</tr>
+<tr>
+<td align="center">@Ethernet Destination</td>
+<td align="center">6o</td>
+<td align="left">@MAC de destination</td>
+</tr>
+<tr>
+<td align="center">@Ethernet Source</td>
+<td align="center">6o</td>
+<td align="left">@MAC source</td>
+</tr>
+<tr>
+<td align="center">Length/Type</td>
+<td align="center">2o</td>
+<td align="left">indique longueur type de la trame</td>
+</tr>
+<tr>
+<td align="center">Data</td>
+<td align="center">46 à 1500o</td>
+<td align="left">les données</td>
+</tr>
+<tr>
+<td align="center">FCS</td>
+<td align="center">4o</td>
+<td align="left">contrôle d&rsquo;intégrité de la trame</td>
+</tr>
+</tbody>
+</table>
+<h3 id="csmacd">CSMA/CD</h3>
+<ul>
+<li>Toute station d&rsquo;un réseau Ethernet qui souhaite transmettre un message &ldquo;écoute&rdquo; d&rsquo;abord pour s&rsquo;assurer qu&rsquo;aucune autre station n&rsquo;est en cours de transmission</li>
+<li>Si le câble est silencieux, elle entame immédiatement la transmission</li>
+<li>Le signal électrique met un certain temps à parcourir le câble, et chaque répéteur introduit un bref temps de latence lors de la transmission de la trame entre deux ports</li>
+<li>En raison du délai et du temps de latence, il est possible pour plusieurs stations de commencer la transmission au même moment ou quasiment au même moment, ce qui engendre une collision</li>
+</ul>
+<h3 id="fonctionnement">Fonctionnement</h3>
+<ul>
+<li>La station émettrice transmet 64 bits d&rsquo;informations de synchronisation appelées ppréambule. LA station émettrice transmet alors les informations suivant</li>
+</ul>
+<ol>
+<li>Informations sur les adresses MAC destination et source</li>
+<li>Certainnes autres informations d&rsquo;en tête</li>
+<li>Charge utile réelle de données</li>
+<li>Somme de contrôle : FCS(CRC) utilisée pour s&rsquo;assurer que le message n&rsquo;ap as été corrompu en cours de route</li>
+</ol>
+<ul>
+<li>Les stations qui reçoivent la trame recalculent le CRC pour déterminer si les messages entrant est valide, puis transmettent les messages valides à la couche supérieure suivante de la pile de protocoles.</li>
+<li>Remarque : La taille maximale d&rsquo;une trame de niveau liaison de données (niveau 2) est appelée MTU (Maximum Transmission Unit)</li>
+</ul>
+<h3 id="détection-et-prévention-de-collision-sur-un-réseau-csmacd">Détection et prévention de collision sur un réseau CSMA/CD</h3>
+<p><img src="/assets/images/reseau/collision.png" alt="collision">
+{:class=&quot;image about center&rdquo;}</p>
+<p>{:class=&quot;image about center&rdquo;}</p>
+<h4 id="principe">Principe.</h4>
+<p><img src="/assets/images/reseau/principe_collision.png" alt="principe"></p>
+<pre><code>Emetteur 
+- Ecoute du canal
+- Si le canal est libre alors 
+  transmission de l'information et écoute simultanée du canal pour détecter une éventuelle collision 
+  si collision détectée
+      arrête immédiat de la transmission et notification de la collision à toutes les stations
+      gestion de la collision (procédure du Backoff)
+  sinon reporter la transmission
+</code></pre><h3 id="algortihme-backoff-beb">Algortihme backoff (BEB)</h3>
+<p>La procédure Backoff utilise 3 fonctions</p>
+<ul>
+<li><code>random()</code> tire un nombre réel aléatoire entre 0 et 1</li>
+<li>̀int()` rend la partie entière d&rsquo;un réel</li>
+<li><code>délai()</code> calcul le délai d&rsquo;attente multiple d&rsquo;un slot_time (51.2 microsec) et est compris entre $$[0,2^k[$$. Avec $$k=\min(n,10)$$, où $$n$$ est le nombre de ré-émission déjà faites</li>
+</ul>
+<pre><code>procédure BACKOFF(no_tentative:entier, VAR maxbackoff:entier)
+Const : slot_time=51.2 (microsecondes); limite_tentative=16
+var : delai : entier
+BEGIN
+    Si (no_tentative=1)
+    Alors maxbackoff=2 (borne de temps d'attente maximale)
+    Sinon 
+        Si (tentative &lt; limite_tentative)
+        Alors maxbackoff=2 maxbackoff
+        Sinon maxbackoff=2^10 (au dela de 10 essais la borne devient constante)
+    délai = int(random()*maxbackoff)
+    attendre(delai*slot_time)
+END
+</code></pre><h3 id="tranche-de-temps-ethernet">Tranche de temps Ethernet</h3>
+<p>Pour tous les débits de transmission Ethernet égales ou inférieures à 1000Mbits/S, la norme stipule qu&rsquo;une transmission ne peut pas être inférieure à une tranche de temps. La tranche de temps pour l&rsquo;Ethenet 10 à 100 Mbits/s est de 512 temps de bit, soit 64 octets. Pour l&rsquo;éthernet 1000 Mbits/s est de 512 octets. La tranche de temps est calculée en se basant sur des longueurs de câble maximale dans l&rsquo;architecture de réseau légale la plus étendue. Tous les délais de propagation sont au maximum légal et le signal de bourrage 32 bits est utilisé lorsque des collisions sont détectées.</p>
+<h2 id="i-classfas-fa-serveri-equipements-dinterconnexion"><i class="fas fa-server"></i> Equipements d&rsquo;interconnexion</h2>
+<ul>
+<li>Interconnexion de niveau 1 : répéteur, concentrateur : amplification du signal</li>
+<li>Interconnexion de niveau 2 : pont, commutateur : amplificateur de signal et traitement de niveau 2</li>
+<li>Interconnexion de niveau 3 : routeur</li>
+<li>Interconnexion de niveau 4 à 7 : passerelle</li>
+</ul>
+<p><img src="/assets/images/reseau/symboles.png" alt="quelques-symboles">{:class=&quot;image about center&rdquo;}</p>
+<h3 id="les-équipements-de-couche-1">Les équipements de couche 1</h3>
+<p>Les équipements de couche 1 : les répéteurs et les concentrateur (HUB), sont principalement utiisés pour étendre les segments de câble Ethernet. Ils permettent d&rsquo;ajouter d&rsquo;avantage d&rsquo;hôtes. Cependant, chaque hôte ajouté augmente la quantité de trafic potentiel sur le réseau. Les équipements de couche 1 transmettent la totalité des données qui sont reçues sur le média. Plus le trafic est dense dans un domaine de collision, plus les risques de collisions sont importants. Les équipements de couche 1 peuvent être à l&rsquo;origine de collisions en raison d&rsquo;une augmentation trop important du réseau LAN.</p>
+<h3 id="commutation-ethernet">Commutation Ethernet</h3>
+<p>Un réseau Ethernet partagé fonctionne parfaitement dans des conditions optimales d&rsquo;utilisation. Lorsque le nombre des équipements qui tentent d&rsquo;accéder au réseau est peu élevé, le nombre de collisions se maintient à un niveau acceptable. En revanche, lorsque le nombre des utilisateurs augmente, le nombre croissant de collisions peut considérablement réduire les performanes du réseau. Les problèmes de broadcas et de collision sont des événements connus dans les réseaux modernes. Afin d&rsquo;en limiter les effets, des domaines de collision et de broadcast doivent être créés en installant des points ou encore des commutateurs.</p>
+<h3 id="définition">Définition</h3>
+<p>On appelle domaines de collisions des segments du réseau physique dans lesquels des collisions peuvent se produire. Les collisions rendent le réseau inefficace. Chaque fois qu&rsquo;une collision survient sur un réseau, les transmissions s&rsquo;interrompent momentanément. La durée de cette interruption est variable et est fonction d&rsquo;un algorithme de réémission temporisée pour chaque équipement du réseau. Les types d&rsquo;équipements assurant l&rsquo;interconnexion des segments de médias définissent les domaines de collision.</p>
+<h3 id="fonctionnement-dun-pont">Fonctionnement d&rsquo;un pont</h3>
+<p>Plus le nombre de noeuds situés sur un segment Ethernet augmente, plus le média est utilisé. Ethernet étant un média partagé, un seul noeud à la fois peut transmettre des données. L&rsquo;ajout de noeuds entraîne un besoin croissant de bande passante et occasionne des charges supplémentaires sur le média. En outre, la probabilité de collisions est plus forte, ce qui entraîne d&rsquo;avantage de retransmissions. L&rsquo;une des solutions consiste à fragmenter le segment principal en plusieurs parties et à le diviser en domaine de collision distincts.</p>
+<p>Lorsqu&rsquo;un pont vient d&rsquo;être installé, sa table est vide. Le pont attend le transfert de données sur le segment. Dés qu&rsquo;une transmission est détectée, le pont la traite. L&rsquo;hôte A émet une requête vers l&rsquo;hôte B. Les données étant transmises sur l&rsquo;ensemble du segment de domaine de collision, le pont et l&rsquo;hôte B traitent le paquet. Le pont ajoute l&rsquo;adresse source de la trame à sa table de pontage. Sachant que l&rsquo;adresse se trouve dans le champ d&rsquo;adresse source et que la trame est reçue sur le port 1, la trame doit être associée au port 1 dans la table. L&rsquo;adresse de destination de la trame est comparée à toutes les adresses de la table de pontage. Bien que les deux adresses se trouvent dans le même domaine de collision, si l&rsquo;adresse de destination ne se trouve pas dans la table, la trame est transférée vers le segment suivant. L&rsquo;adresse de l&rsquo;hôte B n&rsquo;est pas encore enregistrée. Et ainsi de suite jusqu&rsquo;à l&rsquo;apprentissage total des machines dans le segments Ethernet.</p>
+<h3 id="pont-et-commutateur">Pont et commutateur</h3>
+<p>En règle générale, un pont comprend deux ports et subdivise un domaine de collision en deux segments. Les décisions prises par un pont dépendent uniquement des adresses MAC et n&rsquo;affectent pas les adresses de la couche 3. Un commutateur est en fait un pont multiport très rapide qui peut contenir des douzaines de ports. Chaque port crée son propre domaine de collision. Lorsqu&rsquo;un réseau comporte 20 noeuds, 20 domaines de collision doivent exister si chaque noeud est connecté à son propre port de commutation. Un commutateur crée et gère de façon dynamique une table de mémoire associative, qui contient toutes les informations MAC nécessaires aux ports</p>
+<h4 id="principe-dun-commutateur-ethernet">Principe d&rsquo;un commutateur Ethernet.</h4>
+<ul>
+<li>Réduire les collisions pour accroître les débits</li>
+<li>Remplacer le noeud central passif par un commutateur</li>
+<li>Mettre à peu de frais des réseaux virtuels</li>
+</ul>
+<h3 id="modes-de-commutation">Modes de commutation</h3>
+<p>La commutation d&rsquo;une trame vers un port de destination est fonction du niveau de latence et de fiabilité. Un commutateur peut commencer à transférer la trame dès que l&rsquo;adresse MAC est reçue. Ce mode de commutation des paquets est appelé &ldquo;Cut-through&rdquo;. Avec le mode de commutation &ldquo;Cut-through&rdquo;, les débits des ports source et de destination doivent être identiques pour ne pas endommager la trame.</p>
+<p>Un commutateur peut également attendre de recevoir la trame entière avant de la transférer vers le port de destination. Cela permet au logiciel de commutation de vérifier la séquence de contrôle de trame. Si la trame n&rsquo;est pas correcte, elle est rejetée au niveau du commutateur. Étant donné que la trame entière est stockée avant d&rsquo;être transmise, ce mode de commutation des paquets est appelé &ldquo;Store and Forward&rdquo;.</p>
+<p>Une solution intermédiaire de commutation des paquets est le mode &ldquo;Fragment-Free&rdquo;. Ce mode lit les 64 premiers octets, incluant l&rsquo;en-tête de la trame, puis il commence à transmettre le paquet avant même d&rsquo;avoir terminé la lecture du champ de données et de la somme de contrôle. Ce mode vérifie la fiabilité des adresses et des informations relatives au protocole de niveau supérieur afin de garantir que les données sont correctement traitées et qu&rsquo;elles sont acheminées vers la destination appropriée. Permet la détection des collisions (détectée pendant les 64 premiers octets selon la norme Ethernet. Cette taille correspond en nombre d&rsquo;octets nécessaire à l&rsquo;occupation du bus pendant la durée aller/retour entre stations les plus éloignées)</p>
+<h3 id="les-équipements-de-couche-2">Les équipements de couche 2</h3>
+<ul>
+<li>Les équipements de couche 2 segmentent ou divisent les domaines
+de collision.</li>
+<li>Ils utilisent les adresses MAC affectées à chaque équipement
+Ethernet pour effectuer le contrôle de propagation de la trame.</li>
+<li>Les équipements de couche 2 sont des ponts et des commutateurs
+qui permettent d&rsquo;effectuer le suivi des adresses MAC et de leurs
+segments.</li>
+<li>Les équipements peuvent contrôler le flux de trafic au niveau de la
+couche 2.</li>
+<li>Grâce à cette caractéristique, les réseaux s&rsquo;avèrent plus efficaces.</li>
+<li>Cela permet au réseau de transporter des données simultanément
+sur différents segments sans collisions.</li>
+<li>Les ponts et les commutateurs subdivisent les domaines de collision
+en éléments plus petits.</li>
+<li>Chaque élément devient alors son propre domaine de collision.</li>
+</ul>
+<h3 id="boucles-de-commutation">Boucles de commutation</h3>
+<p>En cas de présence de boucles entre équipements de couche 2, les trames risquent de boucler avant d&rsquo;atteindre leur destination</p>
+<ul>
+<li>Perte d&rsquo;efficacité</li>
+<li>Congestion sur le support</li>
+<li>Retard de transmission</li>
+</ul>
+<p>Plusieurs solution possible</p>
+<ul>
+<li>Elimination logique des boucles en désactivant certains ports</li>
+<li>Trouver un arbre couvrant : Spanning Tree Protocole</li>
+<li>Idée du STP : les équipements d&rsquo;interconnexion communiquent entre eux pour déterminer un arbre couvrant, et ainsi supprimer les boucles de commutation</li>
+</ul>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/">Généralités sur les machines tournantes</a></h4>
+        <h5>[Énergie]</h5>
+        <p>La constitution d&rsquo;une machine tournante est …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/">Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</a></h4>
+        <h5>[Énergie]</h5>
+        <p>Régime des grandeurs électriques rencontrées …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/1/">Mouvements, changements de coordonnées</a></h4>
+        <h5>[Modélisation]</h5>
+        <p>Repère affine $[O_i, R_i = {x_i, y_i z_i}]$ Une …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/">Introduction à la cobotique</a></h4>
+        <h5>[Interactions homme robot]</h5>
+        <p>Introduction Pourquoi fait on de la robotique ? …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/">Introduction</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>Commençons par définir les différents termes que …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Programmer un microcontrolleur Un microcontrolleur …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

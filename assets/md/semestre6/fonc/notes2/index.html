@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Types et constructions de base du langage</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 9 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 9" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 9 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre9/controle">Contrôle commande</a></li>
+                  
+                  <li><a href="/semestre9/interaction">IHR</a></li>
+                  
+                  <li><a href="/semestre9/maths">Mathématiques</a></li>
+                  
+                  <li><a href="/semestre9/modelisation">Modélisation</a></li>
+                  
+                  <li><a href="/semestre9/mecatronique">Mécatronique</a></li>
+                  
+                  <li><a href="/semestre9/imagerie">Outils d&#39;imagerie</a></li>
+                  
+                  <li><a href="/semestre9/reachy">Reachy</a></li>
+                  
+                  <li><a href="/semestre9/energie">Énergétique</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">ENSEIRB-MATMECA <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+                  
+                  <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+                  
+                  <li><a href="/semestre7/semestre_7">Semestre 7</a></li>
+                  
+                  <li><a href="/semestre8/semestre_8">Semestre 8</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Types et constructions de base du langage</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Types et constructions de base du langage</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<p>Résumé des constructions syntaxiques du langage</p>
+<p><img src="/assets/images/fonc/resume.png" alt="resume">{:class=&quot;image about center&rdquo;}</p>
+<p>Résumé des opérations numériques</p>
+<p><img src="/assets/images/fonc/operation.png" alt="operation">{:class=&quot;image about center&rdquo;}</p>
+<h2 id="i-classfas-fa-code-branchi-les-caractères-et-les-chaînes-de-caractères"><i class="fas fa-code-branch"></i> Les caractères et les chaînes de caractères</h2>
+<ul>
+<li>Caractère : ̀#\a`</li>
+<li>Chaîne : &ldquo;de caracteres&rdquo;</li>
+<li>Type : ̀char?<code> </code>string?`</li>
+<li>Comparaisons <code>char=?, char&lt;?, char&gt;?, string=?, string&lt;?, string&gt;?</code></li>
+<li>Constructeurs : <code>make-string, string</code></li>
+<li>Accesseurs : <code>string-ref</code></li>
+<li>Longueur : <code>string-length</code></li>
+<li>Conversion : <code>number-&gt;string, string-&gt;number</code></li>
+</ul>
+<h2 id="i-classfas-fa-code-branchi-les-expressions-conditionnelles"><i class="fas fa-code-branch"></i> Les expressions conditionnelles</h2>
+<p><code>(if &lt;condition&gt; &lt;alors&gt; &lt;sinon&gt;)</code></p>
+<p><code>(when &lt;condition&gt; &lt;e1&gt; ... &lt;en&gt;)</code></p>
+<p>Cette forme évalue les expression <code>&lt;ei&gt;</code> et renvoie le résultat de la dernière quand l&rsquo;expression <code>&lt;condition&gt;</code> vaut vrai.</p>
+<p><code>(cond [&lt;condition&gt; &lt;e1&gt; ... &lt;en&gt;] ... [&lt;condition&gt; &lt;e1&gt; ... &lt;en&gt;])</code></p>
+<p>Les crochets définissant les clauses peuvent être remplaccés par des parenthèses, conformément à la norme R6RS du langage Scheme</p>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/">Généralités sur les machines tournantes</a></h4>
+        <h5>[Énergie]</h5>
+        <p>La constitution d&rsquo;une machine tournante est …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/">Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</a></h4>
+        <h5>[Énergie]</h5>
+        <p>Régime des grandeurs électriques rencontrées …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/1/">Mouvements, changements de coordonnées</a></h4>
+        <h5>[Modélisation]</h5>
+        <p>Repère affine $[O_i, R_i = {x_i, y_i z_i}]$ Une …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/">Introduction à la cobotique</a></h4>
+        <h5>[Interactions homme robot]</h5>
+        <p>Introduction Pourquoi fait on de la robotique ? …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/">Introduction</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>Commençons par définir les différents termes que …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Programmer un microcontrolleur Un microcontrolleur …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

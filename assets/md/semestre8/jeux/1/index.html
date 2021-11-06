@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Cours 1 - Jeux combinatoires</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 9 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 9" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 9 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre9/controle">Contrôle commande</a></li>
+                  
+                  <li><a href="/semestre9/interaction">IHR</a></li>
+                  
+                  <li><a href="/semestre9/maths">Mathématiques</a></li>
+                  
+                  <li><a href="/semestre9/modelisation">Modélisation</a></li>
+                  
+                  <li><a href="/semestre9/mecatronique">Mécatronique</a></li>
+                  
+                  <li><a href="/semestre9/imagerie">Outils d&#39;imagerie</a></li>
+                  
+                  <li><a href="/semestre9/reachy">Reachy</a></li>
+                  
+                  <li><a href="/semestre9/energie">Énergétique</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">ENSEIRB-MATMECA <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+                  
+                  <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+                  
+                  <li><a href="/semestre7/semestre_7">Semestre 7</a></li>
+                  
+                  <li><a href="/semestre8/semestre_8">Semestre 8</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/info.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Cours 1 - Jeux combinatoires</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Cours 1 - Jeux combinatoires</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> January 27, 2021</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/jeux">Jeux</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<!-- ## Rappels des bases sur les automates -->
+<!-- Un **système a transition** est noté $S = <S,AP,S_0,\rightarrow,\lambda>$ -->
+<!-- + $S$ est l'ensemble des états  -->
+<!-- + AP est un ensemble fini de propositions atomiques  -->
+<!-- + $S_0 \subseteq S$ est l'ensemble des états initiaux  -->
+<!-- + $\rightarrow \subseteq S \times S$ est la relation de transition  -->
+<!-- + $\lambda : S \rightarrow 2^{AP}$ est l'étiquette des états par ensembles de -->
+<!--   propositions atomiques.  -->
+<!-- Un **automate fini** est noté $\mathcal{A} = <S,\Sigma,S_0, -->
+<!-- (\stackrel{a}{\rightarrow})_{a\in \Sigma}, Acc>$ -->
+<!-- + $S$ est un ensemble fini d'états  -->
+<!-- + $\Sigma$ est un alphabet fini  -->
+<!-- + $S_0 \subseteq$ est un ensemble d'état initiaux  -->
+<!-- + $(\stackrel{a}{\rightarrow})_{a\in\Sigma} \subseteq S \times S$ est une -->
+<!--   relation de transition -->
+<!-- + $Acc$ est une condition d'acceptabilité -->
+<!-- Un langage est dit **régulier** $\mathcal{A} = <S,\Sigma,S_0, -->
+<!-- (\stackrel{a}{\rightarrow})_{a\in \Sigma}, Acc>$ si  -->
+<!-- + le mot $w = a_0a_1 ...$ est éventuellement une séquence infinie de symboles -->
+<!--   construit à partir d'un alphabet fini $\Sigma$. L'ensemble de mots fini est -->
+<!--   noté $\Sigma^\star$, ensemble de mots infini est noté $\Sigma^w$ -->
+<!-- + -->
+<p>On commence par quelques exemples : l&rsquo;exemple du jeu chomp</p>
+<p>Étant donnée une tablette de chocolat (rectangle $m \times n$) avec le carré
+(1,1) empoisonné, 2 joueurs P1 et P2 jouent de façon alternée, avec P1 qui
+commence. Chaque joueur choisit une position $(i,j)$ (donc tout carré $(k,m)$
+avec $k \geq i$ et $m \geq j$). Le joueur qui prend le dernier carré $(1,1)$
+perd. On veut savoir quel joueur gagne ce jeu. Le  joueur P1 gagne si, quelque soient
+les coups de P2, il ne prend pas le dernier carré. Une stratégie de P1 est une
+façon de jouer, c&rsquo;est à dire, de répondre aux coups de P2. Une partie du jeu est
+une séquence alternée de coups, avec P1 qui commence. Une partie est conforme à
+une stratégie de P1 si tous les coups de P1 sont conformes à la stratégie. Une
+stratégie S de P1 est gagnante, si tout partie conforme à S est gagnée par P1.
+Toutes ces définitions sont analogues pour P2.</p>
+<p>On montre que dans le chomp, P1 a toujours une stratégie gagnante.</p>
+<ol>
+<li>Cas $m=n$ : P1 joue la stratégie $S$ suivante
+<ul>
+<li>P1 choisit d&rsquo;abord (2,2) // il reste la 1e ligne et la 1colonne</li>
+<li>Si P2 prend $(1,i)$, alors P1 prend $(i,1)$</li>
+<li>Si P2 prend $(i,1)$, alors P1 prend $(1,i)$</li>
+</ul>
+</li>
+</ol>
+<p>La stratégie $S$ est gagnante pour P1.</p>
+<ol start="2">
+<li>Cas général</li>
+</ol>
+<p>On montre que P1 a une stratégie gagnante par l&rsquo;absurde. Supposons que P2 a une
+stratégie gagnante : si P1 choisit $(m,n)$, ensuite P2 peut joueur un coup
+$(i,j)$, qui est gagnant par hypothèse. Alors P1 aurait pu jouer lui-même
+$(i,j)$ dès le départ, et gagner. Contradiction</p>
+<p>Cette technique s&rsquo;appelle <strong>vol de stratégie</strong></p>
+<p><strong>Caractéristiques de jeu combinatoires</strong> :</p>
+<ul>
+<li>nombre fini de positions de jeu</li>
+<li>jeu impartial : à chaque position, P1 et P2 on a les mêmes coups possibles</li>
+<li>P1 et P2 jouent en alternance</li>
+<li>Je joueur qui ne peut plus bouger, perd</li>
+</ul>
+<p>Le jeu est dit fini si toutes les parties sont finies. Un jeu est <strong>déterminé</strong>
+si soit P1 ou P2 a une stratégie gagnante. (On considère que de jeux &ldquo;à somme
+nulle&rdquo;, c&rsquo;est à dire qu&rsquo;aucune partie n&rsquo;est gagnée par P1 et P2 en même temps).</p>
+<p><strong>Théorème :</strong> tout jeu fini est déterminé.</p>
+<p>On considère l&rsquo;arbre de jeu, où les noeuds sont les positions du jeu et les
+arêtes les coups possibles, on peut voir les noeuds de niveaux 0,2 &hellip; comme
+noeuds existentiels et ceux aux niveaux 1,3 &hellip; comme noeuds universels. Les
+premiers appartiennent à P1, les seconds à P2. On montre le résultat par
+induction sur la hauteur, en partant des feuilles. On note $P$ l&rsquo;ensemble des positions de jeu tel que $W \cup L$. Avec $W$
+l&rsquo;ensemble des positions gagnantes de $P1$ et $L$ l&rsquo;ensemble des positions
+perdantes de $P1$.</p>
+<p><strong>Remarque :</strong> $W$ et $L$ sont exactement les ensembles qui satisfont les
+propriétés suivantes</p>
+<ol>
+<li>toute position &ldquo;dead&rdquo; (sans successeur) est dans $L$</li>
+<li>$p \in L$ si et seulement si tous les coups $(p,p&rsquo;)$ mènent à $p&rsquo; \in W$</li>
+<li>$p \in W$ si et seulement si il existe un coup $(p,p&rsquo;)$ où $p \in L$</li>
+</ol>
+<h3 id="exemple-du-jeu-de-nim">Exemple du jeu de Nim</h3>
+<p>On utilise $p$ tas avec $n_1,&hellip;n_p$ jetons chacun. La règle du jeu est de
+choisir un tas puis d&rsquo;enlever un nombre positif de jetons de ce tas. Le joueur
+qui prend le dernier jeton gagne.</p>
+<p>Si $m,n$ sont des nombres, on écrit $m XOR n$ pour le nombre obtenu en prenant
+le XOR bitwise de $m$ et $n$. Exemple : 6 XOR 11 = 13 (110 XOR 1011 = 1101)</p>
+<p><strong>Théorème de Bouton :</strong> $(n_1,&hellip;,n_p) \in W$ si et seulement si $(n_1 XOR n_2
+&hellip; XOR n_p) \neq 0$.</p>
+<p>Nous allons montrer que $(n_1,&hellip;,n_p) \in W$ est une configuration gagnante
+pour $P_1$ si et seulement si $n_1 XOR &hellip; XOR n_p \neq 0$.</p>
+<p>Commençons par caractériser les ensembles W et L (pour un jeu fini).</p>
+<ul>
+<li>toute position de jeu qui n&rsquo;a aucun successeur est dans L $(0,&hellip;,0) \in L$
+pour le jeu de NIM</li>
+<li>pour toute position $p$,
+<ul>
+<li>$p \in W$ si il existe $p'$ tel que $p \rightarrow p'$ et $p&rsquo; \in L$.</li>
+<li>$p \in L$ si pour tout $p'$ tel que $p \rightarrow p'$ et $p&rsquo; \in W$.</li>
+</ul>
+</li>
+</ul>
+<p>Revenons au jeu de NIM. On veut montrer que $W = {(n_1,&hellip;,n_p) : n_1 XOR &hellip;
+XOR n_p \neq 0}$. On utilise alors la caractérisation de $W,L$</p>
+<ol>
+<li>$p=(0,&hellip;,0) \in L : 0 XOR &hellip; XOR 0 = 0$</li>
+<li>
+<ul>
+<li>$p= (n_1,&hellip;,n_p) \in L$. On montre que $\forall p \rightarrow p'$ avec $p&rsquo;
+\in W$ Ainsi $p'=(n_1,&hellip;,m_i,&hellip;,n_p)$, on définit $k := n_1 XOR n_2 &hellip; XOR
+{i-1} XOR n_{i+1} &hellip; XOR n_p$. Ainsi $k XOR n_1 = 0$ si et seulement si
+$k=n_i$.</li>
+<li>$p=(n_1,&hellip;,n_p) \in W$. On veut prouver $p \rightarrow p&rsquo; \in L$. On sait que $\underbrace{n_1 XOR &hellip; XOR n_p}_{a} \neq
+0$. Soit $r$ le bit le plus fort de $a$ différent de 0. Il doit exister un $n_i$
+tel que le bit de $n_i$ à la position $r$ est 1. Donc, $n_i XOR a &lt;n_i$</li>
+</ul>
+</li>
+</ol>
+<p>L&rsquo;action de $P1$ dans $p$ consiste à réduire le i-ème tas à $m_i = n_i XOR a$
+c&rsquo;est à dire</p>
+<p>$$ n_1 XOR &hellip; m_i &hellip; XOR n_p = n_1 XOR &hellip; (n_i XOR a) &hellip; XOR n_p = a XOR a
+= 0$$</p>
+<p></script></p>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/">Généralités sur les machines tournantes</a></h4>
+        <h5>[Énergie]</h5>
+        <p>La constitution d&rsquo;une machine tournante est …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/">Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</a></h4>
+        <h5>[Énergie]</h5>
+        <p>Régime des grandeurs électriques rencontrées …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/1/">Mouvements, changements de coordonnées</a></h4>
+        <h5>[Modélisation]</h5>
+        <p>Repère affine $[O_i, R_i = {x_i, y_i z_i}]$ Une …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/">Introduction à la cobotique</a></h4>
+        <h5>[Interactions homme robot]</h5>
+        <p>Introduction Pourquoi fait on de la robotique ? …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/">Introduction</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>Commençons par définir les différents termes que …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Programmer un microcontrolleur Un microcontrolleur …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Les threads POSIX</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 9 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 9" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 9 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre9/controle">Contrôle commande</a></li>
+                  
+                  <li><a href="/semestre9/interaction">IHR</a></li>
+                  
+                  <li><a href="/semestre9/maths">Mathématiques</a></li>
+                  
+                  <li><a href="/semestre9/modelisation">Modélisation</a></li>
+                  
+                  <li><a href="/semestre9/mecatronique">Mécatronique</a></li>
+                  
+                  <li><a href="/semestre9/imagerie">Outils d&#39;imagerie</a></li>
+                  
+                  <li><a href="/semestre9/reachy">Reachy</a></li>
+                  
+                  <li><a href="/semestre9/energie">Énergétique</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">ENSEIRB-MATMECA <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+                  
+                  <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+                  
+                  <li><a href="/semestre7/semestre_7">Semestre 7</a></li>
+                  
+                  <li><a href="/semestre8/semestre_8">Semestre 8</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/info.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Les threads POSIX</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Les threads POSIX</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> December 1, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/programmation%20syst%c3%a8me">Programmation système</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<p>La programmation par thread (activité) est naturelle pour gérer des phénomènes
+asynchrones. Les entrées utilisateur dans les interfaces graphiques (souris,
+clavier) sont plus facile à gérer si l&rsquo;on peut séparer l&rsquo;activité principale du
+logiciel de la gestion des commandes utilisateurs. Les entrées sorites multiples
+sont gérées plus simplement en utilisant des threads.</p>
+<p>Les activités sont une nouvelle façon de voire les processus dans un système.
+L&rsquo;idée est de séparer en deux le concept de processus. La première partie est
+l&rsquo;environnement d&rsquo;exécution, on y retrouve une très grande partie des éléments
+constitutifs d&rsquo;un processus en particulier les informations sur le propriétaire,
+la position dans l&rsquo;arborescence le masque de création de fichier etc. La
+deuxième partie est l&rsquo;activité, c&rsquo;est la partie dynamique, elle contient une
+pile, un context processeur (pointeur d&rsquo;instruction etc), et des données
+d&rsquo;ordonancement.</p>
+<p>L&rsquo;idée de ce découpage est de pouvoir associer plusieurs activité au même
+environnement d&rsquo;exécution. L&rsquo;organisation en mémoire pour un processus UNIX avec
+plusieurs threads est disponible dans la figure ci dessous</p>
+<center>
+<img src="/assets/images/prog_sys/SYS7.png", width="30%"></img>
+</center>
+<p>On peut grâce au thread gérer plusieurs phénomènes asynchrone dans le même
+contexte, c&rsquo;est à dire, un espace d&rsquo;adressage commun, ce qui est plus confortable
+que de la mémoire partagée et moins coûteux en ressource que plusieurs processus
+avec un segment de mémoire partagé. Un processus correspond à une instance d&rsquo;un
+programme en cours d&rsquo;exécution. Un thread correspond à l&rsquo;activité d&rsquo;un
+processeur dans le cadre d&rsquo;un processus. Un thead ne peut pas exister sans
+processus (la tâche englobante), mais il peut y avoir plusieurs thread par
+processus dans le cas de linux il ne peut y avoir de tâche sans au moins une
+activité.</p>
+<h3 id="description">Description</h3>
+<p>Un processus est composé des parties suivantes : du code, des données, une pile,
+des descripteurs de fichiers, des tables de signaux. Du point de vue du noyau,
+transférer l&rsquo;exécution à un autre processus revient à rediriger les bons
+pointeurs et recharger les registres du processeur de la pile. Les divers
+threads d&rsquo;un même processus peuvent partager certaines parties : le code, les
+données, les descripteurs de fichiers, les tables de signaux. En fait, ils ont
+au minimum leur propre pile, et partagent le reste.</p>
+<h3 id="fork-et-exec"><code>fork</code> et <code>exec</code></h3>
+<p>Après un fork, le fils ne contient qu&rsquo;une seule activité (celle qui a exécuté le
+fork). Attention aux variables d&rsquo;exclusion mutuelle (qui font parti de l&rsquo;espace
+d&rsquo;adressage partagé) qui sont conservées après le <code>fork()</code> et donc le contenu ne
+varie pas. Ainsi si une activité a pris le sémaphore avant le <code>fork()</code>, si
+l&rsquo;activité principale cherche à prendre ce sémaphore après le <code>fork()</code> elle sera
+indéfiniment bloquée.</p>
+<p>Après un <code>exec</code>, le processus ne contient plus que la thread qui a executé l&rsquo;une
+des six commandes <code>exec</code>. Pas de problème avec les sémaphores comme l&rsquo;espace
+d&rsquo;adressage a changé.</p>
+<h3 id="clone"><code>clone</code></h3>
+<p>Sous linux (et rarement sous les sytèmes Unix) il existe un appel système un peu
+spécial. Cet appel système réalise un dédoublement de processus comme <code>fork</code>
+d&rsquo;où son nom de <code>clone</code>. Cet appel système permet de préciser exactement ce que
+l&rsquo;on entend partager entre le processus père et le processus fils. Éléments
+partageables :</p>
+<ul>
+<li><strong>ppid</strong> Création d&rsquo;un frère au lieux d&rsquo;un fils</li>
+<li><strong>FS</strong> Partage de la structure d&rsquo;information liée au système de fichier</li>
+<li><strong>FILES</strong> Partage de la table des descripteurs</li>
+<li><strong>SIGHAND</strong> Partage de la table des gestionnaires de Signaux, mais pas des
+masques de signaux</li>
+<li><strong>PTRACE</strong> Partage du crochet (hook) de debug voir l&rsquo;appel ptrace</li>
+<li><strong>VFORK</strong> Partage du processeur ! le processus père est bloqué tant que le
+fils n&rsquo;a pas exécuté soit <code>_exit</code> soit <code>execve</code>, c&rsquo;est à dire qu&rsquo;il s&rsquo;est
+détaché de tout les éléments partageable du processus père (sauf les <code>FILEs</code>)</li>
+<li><strong>VM</strong> Partage de la mémoire virtuelle, en particulier les allocations et
+désallocations par <code>mmap</code> et <code>munmap</code> sont visibles par les deux processus.</li>
+<li><strong>pid</strong> Les deux processus ont le même numéro</li>
+<li><strong>THREAD</strong> Partage du groupe de thread, les deux processus sont ou ne sont pas
+dans le même groupe de threads.</li>
+</ul>
+<h3 id="les-noms-de-fonctions">Les noms de fonctions</h3>
+<p><code>pthread[_objet]_operation[_np]</code> où</p>
+<ul>
+<li><strong>objet</strong> désigne si il est présent le type de l&rsquo;objet auquel la fonction
+s&rsquo;applique. Les valeurs possibles de objet peuvent être <code>cond</code> pour une
+variable de condition et <code>mutex</code> pour un sémaphore d&rsquo;exclusion mutuelle</li>
+<li><strong>opération</strong> désigne l&rsquo;opération a réaliser, par exemple <code>create</code>, <code>exit</code> ou
+<code>init</code>.</li>
+</ul>
+<p>Le suffixe <code>np</code> indique, si il est présent, qu&rsquo;il s&rsquo;agit d&rsquo;une fonction non
+portable, c&rsquo;est à dire Hors Norme.</p>
+<h3 id="les-noms-de-types">Les noms de types</h3>
+<p><code>pthread[_objet]_t</code></p>
+<p>avec objet prenant comme valeur cond, mutex ou rien pour une thread</p>
+<h3 id="attributs-dune-activité">Attributs d&rsquo;une activité</h3>
+<p>Identification d&rsquo;une <code>pthread</code> : le TIP de type <code>pthread_t</code> obtenu par un appel
+à la primitive : <code>pthread_t pthread_self(void);</code> pour le processus propriétaire
+<code>pid_t getpid(void);</code>. En POSIX, le fait de tuer la thread de numéro 1 a pour
+effet de tuer les processus ainsi que toutes les autres threads éventuelles du
+processus. Pour tester l&rsquo;égalité de deux pthreads on utilise <code>int pthread_equal(pthread_t tid1, pthread_t tid2);</code>.</p>
+<h3 id="création-et-terminaison-des-activités">Création et terminaison des activités</h3>
+<h4 id="création">Création</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">pthread_create</span>(pthread_t      <span style="color:#f92672">*</span>p_tid,
+                   pthread_attr_t attr,
+                   <span style="color:#66d9ef">void</span>           <span style="color:#f92672">*</span>(<span style="color:#f92672">*</span>fonction)(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>arg),
+                   <span style="color:#66d9ef">void</span>           <span style="color:#f92672">*</span>arg
+                  );
+</code></pre></div><p>La création et l&rsquo;activation d&rsquo;une activité retourne -1 en cas d&rsquo;échec, 0 sinon.</p>
+<ul>
+<li>le tid de la nouvelle thread est placé à l&rsquo;adresse p_tid</li>
+<li>attr attribut de l&rsquo;activité (ordonnancement), utiliser pthread_attr_default</li>
+<li>le paramètre fonction correspond à la fonction exécutée par l&rsquo;activité après
+sa création : il s&rsquo;agit donc de son point d&rsquo;entrée (comme la fonction main
+pour les processus). Un retour de cette fonction correspondra à la terminaison
+de cette activité</li>
+<li>le paramètre arg est transmis à la fonction au lancement de l&rsquo;activité</li>
+</ul>
+<h4 id="terminaison">Terminaison</h4>
+<ul>
+<li>les appels UNIX <code>_exit</code> et donc <code>exit</code> terminent toutes les threads du
+processus</li>
+<li>terminaison d&rsquo;une thread</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">pthread_exit</span>(<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>p_status);
+</code></pre></div><p><code>p_status</code> code retour de la thread, comme dans les processus UNIX la thread est
+zombifiée pour attendre la lecture du code de retour par une autre thread. À
+l&rsquo;inverse des processus, comme il peut y avoir plusieurs threads qui attendent,
+la thread zombie n&rsquo;est pas libérée par la lecture du <code>p_status</code>, il faut pour
+cela utiliser une commande spéciale qui permettra de libérer effectivement
+l&rsquo;espace mémoire utilisé par la thread. Cette destruction est explicitement
+demandée par la commande</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">pthread_detack</span>(pthread_t <span style="color:#f92672">*</span>p_tid);
+</code></pre></div><p>Si un tel appel a lieu alors que l&rsquo;activité est en cours d&rsquo;exécution, cela
+indique seulement qu&rsquo;à l&rsquo;exécution de pthread_exit les ressources seront
+restituées.</p>
+<h2 id="synchronisation">Synchronisation</h2>
+<p>Trois mécanismes de synchronisation inter-activités :</p>
+<ul>
+<li>la primitive <code>join</code></li>
+<li>les sémaphores d&rsquo;exclusion mutuelle</li>
+<li>les conditions (évènements)</li>
+</ul>
+<h3 id="le-modèle-forkjoin-paterson">Le modèle fork/join (Paterson)</h3>
+<p>Les rendez-vous : join</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">pthread_join</span>(pthread_t tid, <span style="color:#66d9ef">int</span> <span style="color:#f92672">**</span>status);
+</code></pre></div><p>Cette primitive permet de suspendre l&rsquo;exécution de l&rsquo;activité courante jusqu&rsquo;à
+ce que l&rsquo;activité <code>tid</code> exécute un appel (implicite ou explicite) à
+<code>pthread_exit</code>. Si l&rsquo;activité <code>tid</code> est déjà terminée, le retour est immédiat,
+et le code de retour de l&rsquo;activité visée est égal à <code>**status</code> (double
+indirection). La primitive retourne 0 en cas de succès et -1 en cas d&rsquo;erreur.</p>
+<h3 id="le-problème-de-lexclusion-mutuelle-sur-les-variables-gérées-par-le-noyau">Le problème de l&rsquo;exclusion mutuelle sur les variables gérées par le noyau</h3>
+<p>Il est nécessaire d&rsquo;avoir plusieurs variables <code>errno</code>, une par activité. En
+effet cette variable globale pourrait être changée par une autre activité. Voir
+plus loin comment définir des variables globales locales à chaque activité.</p>
+<h3 id="les-sémaphores-dexclusion-mutuelle">Les sémaphores d&rsquo;exclusion mutuelle</h3>
+<p>Ces sémaphores binaires permettent d&rsquo;assurer l&rsquo;exclusion mutuelle.</p>
+<ul>
+<li>Il faut définir un objet de type <code>pthread_mutex_t</code> qui correspond à un
+ensemble d&rsquo;attributs de type <code>pthread_mutexattr_t</code></li>
+<li>Initialiser la variable par un appel à la fonction</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">pthread_mutex_init</span>(pthread_mutex_t <span style="color:#f92672">*</span>p_mutex,
+                       pthread_mutexattr_t attr);
+</code></pre></div><ul>
+<li>On pourra détruire le sémaphore par un appel à la fonction <code>int pthread_mutex_destroy(pthread_mutex_t *p_mutex);</code></li>
+</ul>
+<h3 id="utilisation-des-sémaphores">Utilisation des sémaphores</h3>
+<p>Opération P : Un appel à la fonction <code>pthread_mutex_lock(pthread_mutex_t *pmutex);</code> permet à une activité de réaliser une opération P sur le sémaphore.
+Si le sémaphore est déjà utilisé, l&rsquo;activité est bloquée jusqu&rsquo;à la réalisation
+de l&rsquo;opération V (par une autre activité) qui libèrera le sémaphore.</p>
+<p>Opération P non bloquante : <code>pthread_mutex_trylock(pthread_mutex_t *pmutex);</code>
+renvoie 1 si le sémaphore est libre, 0 si le sémaphore est occupé par une autre
+activité et -1 en cas d&rsquo;erreur.</p>
+<p>Opération v : un appel à la fonction <code>pthread_mutex_unlock(pthread_mutex_t *pmutex);</code> réalise la libération du sémaphore désigné.</p>
+<h3 id="les-conditions-évènements">Les conditions (évènements)</h3>
+<p>Les conditions permettent de bloquer une activité sur une attente d&rsquo;évènement.
+Pour cela l&rsquo;activité doit posséder un sémaphore, l&rsquo;activité peut alors libérer
+le sémaphore sur l&rsquo;évènement, c&rsquo;est à dire : elle libère le sémaphore, se bloque
+en attente de l&rsquo;évènement, à la réception de l&rsquo;évènement elle reprend le
+sémaphore. Initialisation d&rsquo;une variable de type <code>pthread_cond_t</code> se fait avec
+la fonction</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">pthread_cond_init</span>(pthread_cond_t <span style="color:#f92672">*</span>p_cond, pthread_condattr_t attr);
+</code></pre></div><p>L&rsquo;attente sur une condition se fait via la fonction suivante</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">pthread_cond_wait</span>(pthread_cond_t <span style="color:#f92672">*</span>p_cond, pthread_mutex_t <span style="color:#f92672">*</span>p_mutex);
+</code></pre></div><ol>
+<li>libération du sémaphore <code>*p_mutex</code></li>
+<li>activité mise en sommeil sur l&rsquo;évènement</li>
+<li>réception de l&rsquo;évènement, récupération du sémaphore</li>
+</ol>
+<p>La condition est indépendante de l&rsquo;évènement et n&rsquo;est pas nécessairement valide
+à la reception.</p>
+<h2 id="ordonnancement-des-activités">Ordonnancement des activités</h2>
+<h3 id="lordonnancement-posix-des-activités">L&rsquo;ordonnancement POSIX des activités</h3>
+<p>L&rsquo;ordonnancement des activités DCE basé sur POSIX est très similaire à
+l&rsquo;ordonnancement des activités sous MACH. Deux valeurs permettent de définir le
+mode d&rsquo;ordonnancement d&rsquo;une activité : la politique et la priorité. Pour
+manipuler ces deux valeurs, il vous faut créer un objet attribut d&rsquo;activité
+(pthread_attr) en appelant <code>pthread_attr_create()</code>, puis changer les valeurs par
+défaut avec les fonctions décrites plus loin et créer la pthread avec cet objet
+<code>pthread_attr</code>. Ou bien la pthread peut elle-même changer ses deux valeurs,
+priorité et politique. Les fonctions sont :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pthread.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>pthread_attr_setsched(pthread_attr_t <span style="color:#f92672">*</span>attr, <span style="color:#66d9ef">int</span> politique);
+pthread_attr_setprio(pthread_attr_t <span style="color:#f92672">*</span>attr, <span style="color:#66d9ef">int</span> prio);
+</code></pre></div><p>Les différentes politiques possibles sont :</p>
+<ul>
+<li><code>SCHED_FIFO</code> la thread la plus prioritaire s&rsquo;exécute jusqu&rsquo;à ce qu&rsquo;elle
+bloque. Si il y a plus d&rsquo;une pthread de priorité maximum, la première qui
+obtient le cpu s&rsquo;exécute jusqu&rsquo;à ce qu&rsquo;elle bloque</li>
+<li><code>SCHED_RR</code> Round Robin. La thread la plus prioritaire s&rsquo;exécute jusqu&rsquo;à ce
+qu&rsquo;elle bloque. Les threads de même priorités maximum sont organisées avec le
+principe du tourniquet, c&rsquo;est à dire qu&rsquo;il existe un quantum de temps au bout
+duquel le cpu est préempté pour une autre thread.</li>
+<li><code>SCHED_OTHER</code> Comportement par défaut. Tous les threads sont dans le même
+tourniquet, il n&rsquo;y a pas de niveau de priorité, ceci permet l&rsquo;absence de
+famine. Mais les threads avec une politique <code>SCHED_FIFO</code> ou <code>SCHED_RR</code> peuvent
+placer les threads <code>SCHED_OTHER</code> en situation de famine.</li>
+</ul>
+<h3 id="les-variables-spécifiques-à-une-thread">Les variables spécifiques à une thread</h3>
+<p>Avec un processus multi-thread, nous sommes dans une situation de partage de
+données. Toutes les données du processus sont à priori manipulables par toutes
+les threads. Or certainns données sont critiques et difficilement partageables.
+Premièrement ce sont les données de la bibliothèque standard. Pour les fonctions
+de la bibliothèque standard, on peut résoudre le problème en utilisant un
+sémaphore d&rsquo;exclusion mutuelle <code>pthread_mutex_t</code> pour POSIX.</p>
+<p>Mais certaines variables ne peuvent être protégées. C&rsquo;est le cas de la variable
+<code>errno</code>, comme nous l&rsquo;avons vu précédemment. Pour cette variable, la solution
+est d&rsquo;avoir une variable par thread. Ainsi le fichier <code>&lt;errno.h&gt;</code> contient</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">_errno</span>();
+<span style="color:#75715e">#define errno (*_errno())
+</span></code></pre></div><p>La valeur <code>errno</code> est obtenue par une fonction qui retourne la valeur de <code>errno</code>
+associée à la thread qui fait l&rsquo;appel à <code>_errno</code>.</p>
+<h3 id="principe-général-des-données-spécifiques-posix">Principe général des données spécifiques, POSIX</h3>
+<p>L&rsquo;idée des données spécifique est de créer un vecteur pour chaque donnée
+spécifique. Ainsi pour des données spécifique statiques, chaque thread possède
+son propre exemplaire. Les données spécifiques sont identifiées par des clés de
+type <code>pthread_key_t</code>.</p>
+<h3 id="création-de-clés">Création de clés</h3>
+<p>La création d&rsquo;une clé est liée à la création d&rsquo;un tableau statique (variable
+globale), initialisé à NULL à la création. La fonction</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pthread.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">pthread_keycreate</span>(pthread_key_t <span style="color:#f92672">*</span>p_cle, 
+                      <span style="color:#66d9ef">void</span> (<span style="color:#f92672">*</span>destructeur)(<span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>valeur));
+</code></pre></div><p>permet la création du tableau, 0 succès et -1 échec. La structure pointée par
+<code>p_cle</code> nous permettra d&rsquo;accéder aux valeurs stockées, la clé est évidemment la
+même pour toutes les threads. Le paramètre <code>destructeur</code> de type pointeur sur
+fonction prenant un pointeur sur void en paramètre et renvoyant void, donne
+l&rsquo;adresse d&rsquo;une fonction qui est exécutée à la terminaison de la thread (ce qui
+permet de faire le ménage). Si ce pointeur est nul, l&rsquo;information n&rsquo;est pas
+détruite à la terminaison de l&rsquo;activité.</p>
+<h3 id="lecture--écriture-dune-variable-spécifique">Lecture / écriture d&rsquo;une variable spécifique</h3>
+<p>La fonction</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pthread.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">pthread_getspecific</span>(pthread_key_t <span style="color:#f92672">*</span>p_clé, <span style="color:#66d9ef">void</span> <span style="color:#f92672">**</span>pvaleur);
+</code></pre></div><p>permet la lecture de la valeur qui est copiée à l&rsquo;adresse <code>pvaleur</code> retourne 0
+ou -1 selon que l&rsquo;appel a réussi ou non. La fonction</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;pthread.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">pthread_setspecific</span>(pthread_key_t <span style="color:#f92672">*</span>p_clé, <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>valeur);
+</code></pre></div><p>permet la création du tableau, 0 succès et -1 échec. La structure pointée par
+<code>p_cle</code> nous permettra d&rsquo;accéder aux valeurs stockées, la clé est évidemment la
+même pour toutes les threads. Le paramètre <code>destructeur</code> de type pointeur sur
+fonction prenant un pointeur sur void en paramètre et renvoyant void, donne
+l&rsquo;adresse d&rsquo;une fonction qui est exécutée à la terminaison de la thread (ce qui
+permet de faire le ménage). Si ce pointeur est nul, l&rsquo;information n&rsquo;est pas
+détruite à la terminaison de l&rsquo;activité.</p>
+<h2 id="les-fonctions-standardes-utilisant-des-zones-statiques">Les fonctions standardes utilisant des zones statiques</h2>
+<p>Certaines fonctions standardes comme <code>ttyname()</code> ou <code>readdir()</code> retourne
+l&rsquo;adresse d&rsquo;une zone statique. Plusieurs threads en concurrence peuvent donc
+nous amener à des situations incohérentes. La solution des sémaphores
+d&rsquo;exclusion étant coûteuse, ces fonctions sont réécrites pour la bibliothèque de
+thread de façon à être réentrantes.</p>
+<p>Attention les problèmes de réentrance peuvent avoir lieu en utilisant des appels
+systèmes non réentrant dans les handlers des signaux ! Ceci sans utiliser de
+threads !</p>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/">Généralités sur les machines tournantes</a></h4>
+        <h5>[Énergie]</h5>
+        <p>La constitution d&rsquo;une machine tournante est …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/">Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</a></h4>
+        <h5>[Énergie]</h5>
+        <p>Régime des grandeurs électriques rencontrées …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/1/">Mouvements, changements de coordonnées</a></h4>
+        <h5>[Modélisation]</h5>
+        <p>Repère affine $[O_i, R_i = {x_i, y_i z_i}]$ Une …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/">Introduction à la cobotique</a></h4>
+        <h5>[Interactions homme robot]</h5>
+        <p>Introduction Pourquoi fait on de la robotique ? …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/">Introduction</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>Commençons par définir les différents termes que …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Programmer un microcontrolleur Un microcontrolleur …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

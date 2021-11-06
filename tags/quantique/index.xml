@@ -14,47 +14,47 @@
     
     <item>
       <title>Calcul quantique, algorithme de Deutsch</title>
-      <link>https://Sdelpeuch.github.io/assets/md/quantique/cours5/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/quantique/cours5/</link>
       <pubDate>Wed, 21 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/quantique/cours5/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/quantique/cours5/</guid>
       <description>Ordinateur classique vs ordinateur quantique On peut schématise un ordinateur classique (machine de Turing) à l&amp;rsquo;aide de 3 composants,
  des registres (qui contiennent les données à traiter) une unité de calcul (qui transforme les données suivant un algorithme défini en actionnant des portes logiques) une unité d&amp;rsquo;entrées/sorties (qui initialise les registres au début du traitement et lit les résultats à la fin)  Les registres  les registres classiques sont un ensemble de $n$ bits permettant de stocker $m=2^n$ entiers entre 0 et $2^n-1$.</description>
     </item>
     
     <item>
       <title>Intrication quantique</title>
-      <link>https://Sdelpeuch.github.io/assets/md/quantique/cours4/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/quantique/cours4/</link>
       <pubDate>Wed, 14 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/quantique/cours4/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/quantique/cours4/</guid>
       <description>Rappels : produit tensoriel de qubits Produit tensoriel et qubits Représentation matricielle des qubits $\vert \psi \rangle = \alpha \vert 0 \rangle + \beta \vert 1 \rangle, | \alpha |^2 + | \beta |^2 = 1$</description>
     </item>
     
     <item>
       <title>Qubits et mécanique quantique</title>
-      <link>https://Sdelpeuch.github.io/assets/md/quantique/cours3/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/quantique/cours3/</link>
       <pubDate>Wed, 07 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/quantique/cours3/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/quantique/cours3/</guid>
       <description>Qubits et observables Les états du système quantique associé à un qubit sont les éléments d&amp;rsquo;un espce à deux dimensions, engendrés par les états de la base $\vert 0 \rangle$ et $\vert 1 \rangle$.</description>
     </item>
     
     <item>
       <title>Le monde quantique</title>
-      <link>https://Sdelpeuch.github.io/assets/md/quantique/cours2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/quantique/cours2/</link>
       <pubDate>Wed, 16 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/quantique/cours2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/quantique/cours2/</guid>
       <description>Introduction des idées de base de la mécanique quantique La mécanique quantique étudie des phénomènes fondamentaux à l&amp;rsquo;oeuvre dans des systèmes physique de petites échelles (ex : échelle atomique). Hors cela provoque donc des profondes difficultés conceptuelles.</description>
     </item>
     
     <item>
       <title>Introduction</title>
-      <link>https://Sdelpeuch.github.io/assets/md/quantique/cours1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/quantique/cours1/</link>
       <pubDate>Wed, 09 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/quantique/cours1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/quantique/cours1/</guid>
       <description>Qu&amp;rsquo;est ce que l&amp;rsquo;informatique quantique et le calcul quantique ?
 Le calcul quantique et l&amp;rsquo;informatique quantique sont l&amp;rsquo;étude de traitement d&amp;rsquo;information en utilisant des système quantiques.
 Un ordinateur quantique n&amp;rsquo;est pas simplement un ordinateur plus rapide, mais c&amp;rsquo;est un ordinateur qui permet une nouvelle manière de concevoir les algorithmes, les algorithmes quantique</description>

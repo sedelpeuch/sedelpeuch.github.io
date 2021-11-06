@@ -96,5 +96,14 @@ Les notes personnelles de TD
       <description>Les cours    Cours Notes personnelles     Conception d&amp;rsquo;une base de donnée Cours 1   Le modèle relationnel Cours 2   Algèbre relationnelle et langage SQL Cours 3 : Algèbre relationnelle    Cours 3 : Langage SQl   Transactions et concurrence    Algorithme de SGBD     Les travaux dirigés    Sujet de TD Notes personnelles Correction des TD     Sujet 1 TD 1    Sujet 2 TD 2 Correction 2   Sujet 3 TD 3 Correction 3   Sujet 4 TD 4 Correction 4   Sujet 5 TD 5 Correction 5    Les travaux pratique    Sujet de TP Correction des TP     TP 1 Correction 1   TP 2 Correction 2   TP 3     </description>
     </item>
     
+    <item>
+      <title>Semestre 7</title>
+      <link>https://Sdelpeuch.github.io/semestre7/semestre_7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre7/semestre_7/</guid>
+      <description>Cette page propose différentes ressources du Semestre 7 de l’ENSEIRB-MATMECA en filière informatique. Il propose notamment les supports de cours lorsqu’ils sont publics, les sujets (et parfois les corrections) des travaux dirigés.</description>
+    </item>
+    
   </channel>
 </rss>

@@ -14,76 +14,76 @@
     
     <item>
       <title>Autres mécanismes (non objet) - Les types paramétrés</title>
-      <link>https://Sdelpeuch.github.io/assets/md/poo/9/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/poo/9/</link>
       <pubDate>Mon, 19 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/poo/9/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/poo/9/</guid>
       <description>Les types paramétrés (&amp;ldquo;parameterized type&amp;rdquo;) est un mécanisme de programmation générique introduit dans la version 5.0 du langage java.
 Il permet de définir une classe/interface ou une méthode sans précision du type de variables, paramètres et la valeur de retour.</description>
     </item>
     
     <item>
       <title>Autres mécanismes (non objet) - Le Mécanisme des exceptions</title>
-      <link>https://Sdelpeuch.github.io/assets/md/poo/8/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/poo/8/</link>
       <pubDate>Mon, 12 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/poo/8/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/poo/8/</guid>
       <description>Définition : Le mécanisme des exceptions est une technique de gestion d&amp;rsquo;erreurs qui permet de transmettre une erreur en dehors du flot normal de la pile d&amp;rsquo;appel.
 La gestion d&amp;rsquo;erreurs La gestion d&amp;rsquo;erreurs se charge des défauts de programme (cas anormaux) se produisant au cours de l&amp;rsquo;exécution.</description>
     </item>
     
     <item>
       <title>Substitution d&#39;objets - Hiérarchie de classes</title>
-      <link>https://Sdelpeuch.github.io/assets/md/poo/7/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/poo/7/</link>
       <pubDate>Mon, 05 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/poo/7/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/poo/7/</guid>
       <description>La hiérarchie de classes correspond à une hiérarchie de type / sous type entre classes. Elle organise les trois catégories de classe : concrète, abstraite et abstraite pure. La construction de cette hiérarchie se fait au travers du mécanisme d&amp;rsquo;héritage.</description>
     </item>
     
     <item>
       <title>Substitution d&#39;objets - La substitution d&#39;objets ou polymorphisme</title>
-      <link>https://Sdelpeuch.github.io/assets/md/poo/5/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/poo/5/</link>
       <pubDate>Mon, 28 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/poo/5/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/poo/5/</guid>
       <description>Nous voulons pouvoir adapter le code d&amp;rsquo;une application en substituant une instance d&amp;rsquo;une classe par une instance d&amp;rsquo;une autre classe. Dans notre exemple : une instance de Telecommande doit manipuler plusieurs réalisations différentes de l&amp;rsquo;abstraction Porte.</description>
     </item>
     
     <item>
       <title>Objet et encapsulation - Variables et méthodes de classe</title>
-      <link>https://Sdelpeuch.github.io/assets/md/poo/4/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/poo/4/</link>
       <pubDate>Mon, 21 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/poo/4/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/poo/4/</guid>
       <description>Dans le modèle objet, toutes les variables et méthodes sont liées à un objet. C&amp;rsquo;est à dire que pour accéder à une donnée ou déclencher un traitement, il faut d&amp;rsquo;abord instancier une classe.</description>
     </item>
     
     <item>
       <title>Objet et encapsulation - Les classes</title>
-      <link>https://Sdelpeuch.github.io/assets/md/poo/3/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/poo/3/</link>
       <pubDate>Mon, 14 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/poo/3/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/poo/3/</guid>
       <description>Définition : Une classe est un moule qui décrit le quoi : la spécification des messages qui peuvent être envoyés à l&amp;rsquo;objet. Et le comment la manière de réaliser cette spécification.</description>
     </item>
     
     <item>
       <title>Objet et encapsulation - Les objets</title>
-      <link>https://Sdelpeuch.github.io/assets/md/poo/2/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/poo/2/</link>
       <pubDate>Wed, 09 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/poo/2/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/poo/2/</guid>
       <description>Définition : L&amp;rsquo;objet est l&amp;rsquo;entit de base de l&amp;rsquo;exécution. À chaque objet est attribu une zone mémoire différente.
 Plusieurs objets mettant en oeuvre la même encapsulation, il est nécessaire d&amp;rsquo;identifier de manière unique un objet.</description>
     </item>
     
     <item>
       <title>Objet et encapsulation - Encapsulation</title>
-      <link>https://Sdelpeuch.github.io/assets/md/poo/1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre7/poo/1/</link>
       <pubDate>Mon, 07 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/poo/1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/poo/1/</guid>
       <description>Définition : L&amp;rsquo;encapsulation dans l&amp;rsquo;approche objet consiste à regrouper le code (données et traitements) qui fournit un même service dans une seule entité. Une encapsulation spécifie le fonctionnement d&amp;rsquo;un service (par un ensemble d&amp;rsquo;actions) en masquant la manière de le réaliser.</description>
     </item>
     

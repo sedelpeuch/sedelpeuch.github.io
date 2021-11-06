@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Les verous de fichiers</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 9 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 9" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 9 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre9/controle">Contrôle commande</a></li>
+                  
+                  <li><a href="/semestre9/interaction">IHR</a></li>
+                  
+                  <li><a href="/semestre9/maths">Mathématiques</a></li>
+                  
+                  <li><a href="/semestre9/modelisation">Modélisation</a></li>
+                  
+                  <li><a href="/semestre9/mecatronique">Mécatronique</a></li>
+                  
+                  <li><a href="/semestre9/imagerie">Outils d&#39;imagerie</a></li>
+                  
+                  <li><a href="/semestre9/reachy">Reachy</a></li>
+                  
+                  <li><a href="/semestre9/energie">Énergétique</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">ENSEIRB-MATMECA <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+                  
+                  <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+                  
+                  <li><a href="/semestre7/semestre_7">Semestre 7</a></li>
+                  
+                  <li><a href="/semestre8/semestre_8">Semestre 8</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/info.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Les verous de fichiers</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Les verous de fichiers</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> November 30, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/programmation%20syst%c3%a8me">Programmation système</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<p>Mécanismes de contrôle d&rsquo;accès concurrents à un fichier, les verrous sont d&rsquo;une
+grande utilité dans les applications de gestion et dans l&rsquo;élaboration de bases
+de données partagées. Les verrous sont rattachés aux <strong>inoeuds</strong>. Ainsi toutes
+les ouvertures d&rsquo;un même fichier, et à fortiori tous les descripteurs sur ces
+ouvertures, voient le verrou. La protection réalisée par le verrou a donc lieu
+sur le fichier physique. Un verrou est la <strong>propriété</strong> d&rsquo;un seul <strong>processus</strong>,
+et seul le processus propriétaire du verrou peut le modifier ou l&rsquo;enlever,
+attention le verrou ne protège pas contre les accès du processus propriétaire</p>
+<h2 id="caractéristiques-dun-verrou">Caractéristiques d&rsquo;un verrou</h2>
+<p>Les verrous sont définis par deux caractéristiques</p>
+<ul>
+<li><strong>La portée</strong> : ensemble de positions du fichier auxquelles le verrou
+s&rsquo;applique. Cet ensemble est un intervalle, soit une portion de fichier
+<code>[position1, position2]</code> soit jusqu&rsquo;à la fin du fichier <code>[position1, fin de fichier[</code> dans ce dernier cas si le fichier augmente, le verrou protège les
+nouvelles positions</li>
+<li><strong>Le type</strong> : qui décrit les possibilités de cohabitation des différents
+verrous</li>
+</ul>
+<h2 id="le-mode-opératoire-des-verrous">Le mode opératoire des verrous</h2>
+<p>Le mode opératoire joue sur le comportement des primitives <code>read</code> et <code>write</code>.
+Les verrous d&rsquo;un fichier sont soit consultatifs soit impératifs. Dans le premier
+mode, la présence d&rsquo;un verrou n&rsquo;est testée qu&rsquo;à la pose d&rsquo;un verrou, la pose
+sera refusée s&rsquo;il existe un verrou de portée non disjointe et que l&rsquo;un des deux
+verrous est exclusif. Dans le second mode, la présence de verrous est testée
+pour la pose mais aussi pour les appels systèmes <code>read</code> et <code>write</code>. Dans le mode
+consultatif, les verrous n&rsquo;ont d&rsquo;effet que sur les processus jouant
+effectivement le jeu, c&rsquo;est à dire, posant des verrous sur les zones du fichiers
+sur lesquels ils veulent réaliser une lecture (verrou partagé) ou une écriture
+(verrou exclusif).</p>
+<p>Dans le mode impératif, les verrous ont un impact sur les lectures / écritures
+de tous les processus :</p>
+<ul>
+<li>sur les verrous de type partagé, toute tentative d&rsquo;écriture par un autre
+processus est bloquée</li>
+<li>sur les verrous de type exclusif, toute tentative de lecture ou d&rsquo;écriture par
+un autre processus est bloquée</li>
+</ul>
+<p>Pour rendre l&rsquo;utilisation impérative il faut sous linux monter le disque avec
+l&rsquo;option <code>-o mand</code>. Puis il faut utiliser la commande <code>chmod</code> pour positionner
+le <code>SETGID bit</code></p>
+<h2 id="manipulation-des-verrous">Manipulation des verrous</h2>
+<p>La structure de verrou <code>flock</code> :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">flock</span>{
+    <span style="color:#66d9ef">short</span> l_type; <span style="color:#75715e">//F_RDLCK (verrou partagé), F_WRLCK (verrou exclusif), F_UNCLK (déverrouillage)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">short</span> l_whence; <span style="color:#75715e">//SEEK_SET, SEEK_CUR, SEEK_END
+</span><span style="color:#75715e"></span>    off_t l_start; <span style="color:#75715e">//position relative à l_whence
+</span><span style="color:#75715e"></span>    off_t l_len; <span style="color:#75715e">//longueur de l&#39;intervalle 
+</span><span style="color:#75715e"></span>    pid_t l_pid; <span style="color:#75715e">//PID du processus propriétaire  
+</span><span style="color:#75715e"></span>};
+</code></pre></div><p>Les manipulations de verrous se font avec la primitive <code>fcntl</code>, c&rsquo;est à dire par
+le biais d&rsquo;un descripteur. Pour poser un verrou partagé, ce descripteur doit
+pointer sur une ouverture en lecture. De même, il faut un descripteur sur une
+ouverture en écriture pour un verrou de type exclusif</p>
+<p>Pour décrire la portée du verrou que l&rsquo;on veut poser, on utilise la même syntaxe
+que pour la primitive <code>lseek</code>, le début de l&rsquo;intervalle est <code>whence+l_start</code></p>
+<p>La longueur du verrou est définie par le champ <code>l_len</code>. Si cette valeur est
+nulle, le verrou va jusqu&rsquo;à la fin du fichier. Le champ <code>l_pid</code> contient le pid
+du processus propriétaire du verrou, ce champ est rempli par <code>fcntl</code> dans le cas
+d&rsquo;un appel consultatif (<code>F_GETLK</code>).</p>
+<h2 id="utilisation-de-fcntl-pour-manipuler-les-verrous">Utilisation de <code>fcntl</code> pour manipuler les verrous</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/types.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;unistd.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;fcntl.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">fcntl</span>(<span style="color:#66d9ef">int</span> desc, <span style="color:#66d9ef">int</span> commande, <span style="color:#66d9ef">struct</span> flock <span style="color:#f92672">*</span>verrou);
+</code></pre></div><p>Trois commandes sont possible :</p>
+<ul>
+<li><code>F_SETLK</code> pose non bloquante</li>
+<li><code>F_SETLKW</code> pose bloquante (Wait)</li>
+<li><code>F_GETLK</code> test d&rsquo;existence d&rsquo;un verrou incompatible avec le verrou passé en
+paramètre</li>
+</ul>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/">Généralités sur les machines tournantes</a></h4>
+        <h5>[Énergie]</h5>
+        <p>La constitution d&rsquo;une machine tournante est …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/">Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</a></h4>
+        <h5>[Énergie]</h5>
+        <p>Régime des grandeurs électriques rencontrées …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/1/">Mouvements, changements de coordonnées</a></h4>
+        <h5>[Modélisation]</h5>
+        <p>Repère affine $[O_i, R_i = {x_i, y_i z_i}]$ Une …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/">Introduction à la cobotique</a></h4>
+        <h5>[Interactions homme robot]</h5>
+        <p>Introduction Pourquoi fait on de la robotique ? …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/">Introduction</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>Commençons par définir les différents termes que …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Programmer un microcontrolleur Un microcontrolleur …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

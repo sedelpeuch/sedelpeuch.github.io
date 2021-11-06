@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Calcul quantique, algorithme de Deutsch</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 9 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 9" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 9 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre9/controle">Contrôle commande</a></li>
+                  
+                  <li><a href="/semestre9/interaction">IHR</a></li>
+                  
+                  <li><a href="/semestre9/maths">Mathématiques</a></li>
+                  
+                  <li><a href="/semestre9/modelisation">Modélisation</a></li>
+                  
+                  <li><a href="/semestre9/mecatronique">Mécatronique</a></li>
+                  
+                  <li><a href="/semestre9/imagerie">Outils d&#39;imagerie</a></li>
+                  
+                  <li><a href="/semestre9/reachy">Reachy</a></li>
+                  
+                  <li><a href="/semestre9/energie">Énergétique</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">ENSEIRB-MATMECA <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+                  
+                  <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+                  
+                  <li><a href="/semestre7/semestre_7">Semestre 7</a></li>
+                  
+                  <li><a href="/semestre8/semestre_8">Semestre 8</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/quantique.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Calcul quantique, algorithme de Deutsch</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Calcul quantique, algorithme de Deutsch</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> October 21, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/quantique">Quantique</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<h2 id="ordinateur-classique-vs-ordinateur-quantique">Ordinateur classique vs ordinateur quantique</h2>
+<p>On peut schématise un ordinateur classique (machine de Turing) à l&rsquo;aide de 3
+composants,</p>
+<ol>
+<li>des registres (qui contiennent les données à traiter)</li>
+<li>une unité de calcul (qui transforme les données suivant un algorithme défini
+en actionnant des portes logiques)</li>
+<li>une unité d&rsquo;entrées/sorties (qui initialise les registres au début du
+traitement et lit les résultats à la fin)</li>
+</ol>
+<h3 id="les-registres">Les registres</h3>
+<ul>
+<li>les registres classiques sont un ensemble de $n$ bits permettant de stocker
+$m=2^n$ entiers entre 0 et $2^n-1$.</li>
+<li>un registre quantique est un système quantique de $n$ qubits dont les états
+seront éléments de l&rsquo;espace des états de dimension $m=2^n$. On définit dans
+cet espace la base $\vert j_1,j_2,&hellip;,j_n \rangle := \vert j_1 \rangle \vert
+j_2 \rangle &hellip; \vert j_n \rangle$</li>
+</ul>
+<ol>
+<li>Liste des états de chaque qubit, éléments de $\mathbb{Z}_2 = {0,1}$ :
+$\vert j_1 j_2 &hellip; j_n \rangle$</li>
+<li>nombre entier $j \in [0,2^n-1]$ dont l&rsquo;ensemble $(j_1,j_,&hellip;,j_n)$
+constitue la décomposition binaire $j=j_1 2^{n-1} + &hellip; + j_n$</li>
+</ol>
+<p>$\mathbb{Z}_M$ est l&rsquo;ensemble des entiers modulo $M$ tel que</p>
+<p>$\begin{align} j \in
+\mathbb{Z}_M &amp;\Leftrightarrow (j_1,j_2,&hellip;,j_n) \in \mathbb{Z}^n_2, M = 2^n \ 
+j &amp;= j_1 2^{n-1} + j_2 2^{n-2} + &hellip; + j_n 2^0 \<br>
+k &amp;= k_1 2^{n-1} + k_2 2^{n-2} + &hellip; + k_n 2^0
+\end{align}
+$</p>
+<h3 id="spécificité-des-registres-quantiques">Spécificité des registres quantiques</h3>
+<p>Les registres quantiques peuvent se trouver non seulement dans un des états de
+la base (comme le registre classique), mais aussi dans un état de superposition</p>
+<p>$\vert \psi \rangle = \sum \limits_{x=0}^{N+1} \alpha_x \vert x \rangle$</p>
+<p>Les algorithmes quantiques sont représentés par l&rsquo;évolution d&rsquo;un ou plusieurs
+registres sous l&rsquo;effet de l&rsquo;application d&rsquo;opérateurs unitaires. L&rsquo;état de
+l&rsquo;ordinateur peut comprendre plusieurs registres.</p>
+<h2 id="les-entrées--sorties">Les entrées / sorties</h2>
+<p>L&rsquo;entrée correspond à mettre le système quantique lui même constitué par les
+registres dans un état initial, on dit qu&rsquo;on prépare le système. Le plus souvent
+les différents registres sont initialement dans l&rsquo;état $\vert 0 \rangle$, et
+la préparation consiste à faire agir différents opérateurs, comme la
+transformation de Hadamard.</p>
+<p>La sortie correspond à la lecture d&rsquo;un registre mesure de l&rsquo;état quantique final
+du registre. D&rsquo;après (le postulat de la mesure de la mécanique quantique) il la
+modifie, et de façon irréversible, l&rsquo;état du registre (qui est projette sur 1
+des états de la base). En général, les algorithmes quantique utilisent des
+mesures partielles de l&rsquo;état final (mesure de seulement un des registres, voir
+même quelques bits d&rsquo;un registre)</p>
+<h2 id="parallélisme-quantique">Parallélisme quantique</h2>
+<p>Souvent on a besoin d&rsquo;évaluer la fonction</p>
+<p>$ f : \mathbb{Z}^M_2 \rightarrow \mathbb{Z}^M_2 $</p>
+<p>qu&rsquo;on ne peut pas toujours représenter par un opérateur unitaire. Pour associer
+un opérateur unitaire à l&rsquo;évaluation d&rsquo;une fonction, on introduit une fonction
+et on définit</p>
+<ul>
+<li>un registre de données $\vert x \rangle à $n$ qubits, $x \in
+\mathbb{Z}_{2^n}$ contiendra la valeur de la varible</li>
+<li>un registre de résultats $\vert y \rangle$ à $n$ qubits, $y\in
+\mathbb{Z}_{2^m}$ contiendra le résultat</li>
+<li>un opérateur unitaire
+$ U_f \vert x \rangle \vert y \rangle = \vert x \rangle \vert y \oplus f(x)
+\rangle$</li>
+</ul>
+<p>Le parallélisme est un trait de beaucoup d&rsquo;algorithme quantique une fonction
+$f(x)$ peut être évaluée simultanément en plusieurs valeurs de $x$
+(conséquence de la superposition des états de qubits)</p>
+<h3 id="exemple">Exemple</h3>
+<p>Soit un registre donné et un registre de résultats chacun à 1 qubit. La valeur
+initiale de chaque registre est $\vert 0 \rangle$</p>
+<p><img src="/assets/images/quantique/2.png" alt="exemple">{:class=&quot;image about center&rdquo;}</p>
+<p>Exercice : calculer les états $\vert \Psi_1 \rangle$ et $\vert \Psi_2
+\rangle$</p>
+<p>$\Rightarrow$ on effectue l&rsquo;application de la porte de Hadamard sur 2 qubits</p>
+<p>$H_2 (\dfrac{1}{\sqrt{2}} \vert 00 \rangle + \vert 1 0 \rangle) =
+\dfrac{1}{\sqrt{2^2}}(\vert 0 0 \rangle + \vert 0 1 \rangle + \vert 1 0
+\rangle + \vert 1 1 \rangle)$</p>
+<p>$\vert \Psi_1 \rangle = \dfrac{1}{\sqrt{2}}(\vert 00 \rangle + \vert 1 0
+\rangle)$</p>
+<p>L&rsquo;état de sortie est</p>
+<p>$ \vert \Psi_2 = \dfrac{1}{\sqrt{2}}(\vert 0, f(0)\rangle + \vert 1,
+f(1)\rangle)$</p>
+<p>Il contient ) la fois $f(0)$ et $f(1)$ obtenues par une seule application de
+la porte $U_f$</p>
+<h3 id="généralisation">Généralisation</h3>
+<p>Soit un registre à $n$ qubits (registre de données). La transformation / porte
+de Hadamard sur chaque qubit donne pour le registre de données</p>
+<p>$\dfrac{1}{\sqrt{2^n}} \sum \limits_{x=0}^{2^n-1} \vert x \rangle, x \in
+\mathbb{Z}_{2^n} = \dfrac{1}{\sqrt{2^n}}(\vert 00&hellip;0 \rangle + \vert
+00&hellip;01\rangle + &hellip; + \vert 11 .. 11 \rangle)$</p>
+<p><img src="/assets/images/quantique/3.png" alt="generalisation">{:class=&quot;image about center&rdquo;}</p>
+<p>Les états de sortie sont</p>
+<p>$ \dfrac{1}{\sqrt{2^n}} \sum \limits_{x=0}^{2^n-1} \vert x \rangle \vert 0 +
+f(x) \rangle = \dfrac{1}{\sqrt{2^n}} \sum \limits_{x=0}^{2^n-1}\vert x \rangle
+\vert f(x) \rangle$</p>
+<p>Cela fait apparaître de nouveau toutes les valeurs de $f$ en une seule
+opération, c&rsquo;est le parallélisme quantique.</p>
+<h2 id="algorithme-de-deutsh-1985">Algorithme de Deutsh (1985)</h2>
+<p>L&rsquo;algorithme de Deutsh-Jozsa est un algorithme quantique, proposé par David
+Deutsh et Richard Jozsa en 1992. Dans le cas du problème de Deutsh-Jozsa, nous
+disposons d&rsquo;une boite noire quantique, connu sous le nom d&rsquo;oracle qui implémente
+une fonction mathématique $f : {0,1}^n \rightarrow {0,1}$. Nous savons que
+cette fonction est soit constante (la sortie est 0 ou 1 pour toutes les entrées)
+soit équilibrée (la sortie est 0 dans la moitié des cas, 1 dans les autres). Le
+but du problème est de savoir si la fonction est constante ou équilibrée à
+l&rsquo;aide de l&rsquo;oracle.</p>
+<h3 id="la-solution-déterministe">La solution déterministe</h3>
+<p>Si un algorithme</p>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/">Généralités sur les machines tournantes</a></h4>
+        <h5>[Énergie]</h5>
+        <p>La constitution d&rsquo;une machine tournante est …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/">Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</a></h4>
+        <h5>[Énergie]</h5>
+        <p>Régime des grandeurs électriques rencontrées …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/1/">Mouvements, changements de coordonnées</a></h4>
+        <h5>[Modélisation]</h5>
+        <p>Repère affine $[O_i, R_i = {x_i, y_i z_i}]$ Une …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/">Introduction à la cobotique</a></h4>
+        <h5>[Interactions homme robot]</h5>
+        <p>Introduction Pourquoi fait on de la robotique ? …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/">Introduction</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>Commençons par définir les différents termes que …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Programmer un microcontrolleur Un microcontrolleur …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

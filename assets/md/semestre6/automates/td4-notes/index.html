@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Automates finis et application - TD4</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 9 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 9" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 9 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre9/controle">Contrôle commande</a></li>
+                  
+                  <li><a href="/semestre9/interaction">IHR</a></li>
+                  
+                  <li><a href="/semestre9/maths">Mathématiques</a></li>
+                  
+                  <li><a href="/semestre9/modelisation">Modélisation</a></li>
+                  
+                  <li><a href="/semestre9/mecatronique">Mécatronique</a></li>
+                  
+                  <li><a href="/semestre9/imagerie">Outils d&#39;imagerie</a></li>
+                  
+                  <li><a href="/semestre9/reachy">Reachy</a></li>
+                  
+                  <li><a href="/semestre9/energie">Énergétique</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">ENSEIRB-MATMECA <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+                  
+                  <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+                  
+                  <li><a href="/semestre7/semestre_7">Semestre 7</a></li>
+                  
+                  <li><a href="/semestre8/semestre_8">Semestre 8</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Automates finis et application - TD4</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Automates finis et application - TD4</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<h2 id="exercice-1">Exercice 1</h2>
+<p>Lemme d&rsquo;Arden : $A^\ast.B$ est une solution de $X = A.X U B$ (et si A ne
+contient pas eps, cette solution est unique)</p>
+<ul>
+<li>En pratique, il faut choisir la variable qui sera éliminée en premier. Ici, on
+va remplacer $X_2$ par sa valeur dans $X_1$ (on se permet de confondre
+les singletons avec l&rsquo;élement par concision) : $X1 = b.X_1 U (b.A.X_0 U
+{a, b}.X_1) U \epsilon$ $X1 = {b, ba, bb}.X_1 U ba.X_0 U \epsilon$</li>
+</ul>
+<p>D&rsquo;après le Lemme d&rsquo;Arden, on a : $X_1 = {b, ba, bb}^\ast . (ba.X_0 U
+\epsilon)$</p>
+<p>On remplace dans X0 : $X_0 = (a U b.{b, ba, bb}^\ast .ba).X_0 U b.{b, ba,
+bb}^\ast U \epsilon$</p>
+<p>Encore une fois, avec le lemme : $X0 = (a U b.{b, ba, bb}^\ast.ba)^\ast .
+(b.{b, ba, bb}* U \epsilon)$</p>
+<p>Et on termine en remplaçant $X_0$ et $X_1$ dans $X_2$.</p>
+<ul>
+<li>On veut montrer que $\Sigma^\ast$ est toujours solution si $A$ contient le
+mot vide.</li>
+</ul>
+<p>Si A contient eps, alors $A.Σ* = Σ*$ de plus, $B$ est inclus dans $Σ*$
+donc $A.Σ* U B = Σ*$</p>
+<p>donc $Σ*$ est bien solution de l&rsquo;équation $X = A.X U B$</p>
+<ul>
+<li>Pour prouver le lemme, il faut montrer que A*.B est bien une solution puis
+l&rsquo;unicité (ce qu&rsquo;on va faire en montrant qu&rsquo;elle est la plus petit et la plus
+grande)</li>
+</ul>
+<ul>
+<li>Montrons d&rsquo;abord que $A*.B$ est une solution de $X = A.X U B$</li>
+</ul>
+<p>$A*.B = (eps U A.A*).B = B U A.A*.B$
+or le produit de langages est associatif, donc
+$A*.B = A(A*.B U B)$</p>
+<ul>
+<li>Dans la cas où $A$ ne contient pas le mot vide Soit $S$ une solution, et
+$w$ un mot de $S$ Supposons que $w$ est le plus court possible tel que
+$w$ n&rsquo;est pas dans $A*.B$ $w$ est dans $S = A.S U B$ donc $w$ est soit :
+<ul>
+<li>dans $B$ (impossible)</li>
+<li>soit dans $AS$</li>
+</ul>
+</li>
+</ul>
+<p>donc $w = u.v$ avec $u$ dans $A$ et $v$ dans $S v$ est aussi dans $A*.B$ (car $|v| &lt; |w|$)
+donc $w$ est dans $A.A*.B$, donc dans $A*.B$</p>
+<p>Supposons maintenant que $S$ est une solution et $w$ dans $A*.B$ qui n&rsquo;est pas dans $S$, de longueur minimale</p>
+<p>On a toujours que $A*.B = A.A*B U B$ donc $w$ appartient à l&rsquo;un des deux
+ensembles Or $B$ est inclus dans $S$, donc $w$ est dans $A.A*.B$ Ainsi,
+$w = x.y.z$ avec $x$ non-vide, $y$ dans $A*$ et $z$ dans $B$</p>
+<p>$yz$ est dans $A*.B$, donc dans $S$
+or $S = AS U B$, donc $x.yz$ est dans $S$      -&gt; contradiction</p>
+<ul>
+<li>On construit l&rsquo;automate en créant un état par variable + un état final et on crée les transitions pour chaque règle (cf. cours)</li>
+</ul>
+<h2 id="exercice-2-">Exercice 2 :</h2>
+<p>L&rsquo;intuition naïve qu&rsquo;on pourrait avoir serait &ldquo;d&rsquo;inverser&rdquo; les résultats de
+chaque règle. Cependant, cette méthode génère en fait le miroir du langage de la
+grammaire de départ.</p>
+<p>À partir d&rsquo;une grammaire linéaire droite G, on peut obtenir un automate fini A
+qui accepte le langage de la grammaire. Ensuite, on calcule l&rsquo;automate A&rsquo; qui
+accepte le langage miroir, ce qui permet d&rsquo;obtenir une grammaire linéaire droite
+G&rsquo;. Enfin, on inverse &ldquo;naïvement&rdquo; G&rsquo; et on obtient une grammaire linéaire gauche
+G&rsquo;&rsquo; de même langage que G. (on peut bien sûr effectuer l&rsquo;opération inverse)</p>
+<p>On peut aussi convertir en automate fini puis inverser les états initiaux et
+finaux du résultat, ainsi que toutes les transitions. FH: cette transformation
+correspond au calcul de l&rsquo;automate miroir dans la solution ci-dessus. C&rsquo;est une
+étape de la construction, mais elle ne répond pas totalement à la question</p>
+<h3 id="parenthèse-sur-un-arbre-de-dérivation-pour-une-grammaire-régulière">Parenthèse sur un arbre de dérivation pour une grammaire régulière</h3>
+<p>$\begin{align} S &amp;\rightarrow aS | bT \<br>
+T &amp;\rightarrow aT | bS | \epsilon \end{align}$</p>
+<p>pour une génération $S \Rightarrow aS \Rightarrow abT \Rightarrow ab$</p>
+<pre><code>     S
+    / \
+   a   S
+      / \
+      b  T
+         |
+        eps
+</code></pre><p>$S \rightarrow S + S | x$</p>
+<p>On peut avoir deux suites de dérivations différentes, mais le même arbre</p>
+<ol>
+<li>$S \Rightarrow S + S \Rightarrow x + S \Rightarrow x + x$</li>
+<li>$S \Rightarrow S + S \Rightarrow S + x \Rightarrow x + x$</li>
+</ol>
+<pre><code>       S
+    /  |  \
+   S   +   S
+   |       |
+   x       x
+</code></pre><p>$S \Rightarrow S+S \Rightarrow S+S+S \Rightarrow$
+Dans ce cas, on peut choisir de remplacer le premier ou le deuxième $S$ par $S + S$</p>
+<p>En remplaçant le deuxième, on trouve l&rsquo;arbre suivant :</p>
+<pre><code>       S
+    /  |  \
+   S   +   S
+   |     / | \
+   x     S +  S
+         |    |
+         x    x
+</code></pre><h2 id="exercice-3">Exercice 3</h2>
+<p>On est en présence d&rsquo;une grammaire non-linéaire (à cause de la première règle qui mène à A1B avec deux symboles non-terminaux)</p>
+<ol>
+<li>$S \rightarrow A1B
+A1B \rightarrow 0A1B | 1B
+B \rightarrow 0B | 1B | eps$</li>
+</ol>
+<p>$S \rightarrow A&rsquo;
+A&rsquo; \rightarrow 0A&rsquo; | 1B
+B \rightarrow 0B | 1B | eps$</p>
+<p>Finalement en supprimant la variable inutile
+$S \rightarrow 0S | 1B \<br>
+B \rightarrow 0B | 1B | eps$</p>
+<p>Il faut garder à l&rsquo;esprit que les grammaire hors-contexte ne sont pas toutes équivalentes à des grammaires linéaires.</p>
+<h2 id="exercice-4">Exercice 4</h2>
+<p>Conversion de langages en grammaires</p>
+<ol>
+<li>
+<p>${a^n.b^n} : S \rightarrow aSb | eps$</p>
+</li>
+<li>
+<p>${a^n.b^m, m &lt;= n} : S \rightarrow aS | aSb| eps$</p>
+</li>
+</ol>
+<p>D&rsquo;ailleurs, cette grammaire est ambigüe</p>
+<p>$S \Rightarrow aS \Rightarrow aaSb \Rightarrow aab$
+mais aussi $S \Rightarrow aSb \Rightarrow aaSb \Rightarrow aab$
+qui ont deux arbres différents donc on a deux façon différentes de construire $aab$</p>
+<ol start="3">
+<li>
+<p>${w.w^R} : S \rightarrow aSa | bSb | eps$
+qui n&rsquo;est pas ambigüe</p>
+</li>
+<li>
+<p>Les mots de Dyck : $S \rightarrow SS | (S) | [S] | {S} | \epsilon$
+qui est ambigüe</p>
+</li>
+<li>
+<p>variante avec les parenthèses dans l&rsquo;ordre :
+$ 1: {}, 2: (), 3: []$</p>
+</li>
+</ol>
+<p>$S \rightarrow SS | {T} | \epsilon \<br>
+T \rightarrow TT | (U) | \epsilon \<br>
+U \rightarrow UU | [] | \epsilon$</p>
+<h2 id="exercice-5">Exercice 5</h2>
+<p>$S \rightarrow S + S | S * S \<br>
+S \rightarrow 0 | 1$</p>
+<ol>
+<li>
+<p>Cette grammaire est hors-contexte</p>
+</li>
+<li>
+<p>On exhibe deux arbres différents qui génèrent le même mot
+cf. la Parenthèse au début de ces notes</p>
+</li>
+</ol>
+<p>Problème : difficulté pour évaluer l&rsquo;expression (arithmétique) car on ne sait pas quel arbre choisir</p>
+<ol start="3">
+<li>
+<p>On peut se baser sur l&rsquo;expression régulière $({0,1}{+,x})<em>{0,1}$,
+on trouve $S \rightarrow 0+S | 1+S | 0</em>S | 1*S | 0 | 1$</p>
+</li>
+<li>
+<p>on ajoute la règle $S \rightarrow (S)$
+Il n&rsquo;y a pas de grammaire régulière qui décrit ce nouveau langage, car ce n&rsquo;est pas un langage régulier</p>
+</li>
+</ol>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/">Généralités sur les machines tournantes</a></h4>
+        <h5>[Énergie]</h5>
+        <p>La constitution d&rsquo;une machine tournante est …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/">Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</a></h4>
+        <h5>[Énergie]</h5>
+        <p>Régime des grandeurs électriques rencontrées …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/1/">Mouvements, changements de coordonnées</a></h4>
+        <h5>[Modélisation]</h5>
+        <p>Repère affine $[O_i, R_i = {x_i, y_i z_i}]$ Une …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/">Introduction à la cobotique</a></h4>
+        <h5>[Interactions homme robot]</h5>
+        <p>Introduction Pourquoi fait on de la robotique ? …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/">Introduction</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>Commençons par définir les différents termes que …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Programmer un microcontrolleur Un microcontrolleur …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

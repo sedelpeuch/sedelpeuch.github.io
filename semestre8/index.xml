@@ -104,5 +104,14 @@
       <description>Définition de la qualité La qualité est une notion vaste et floue, quel que soit le domaine abordé, la qualité est une notion subjective et relative. La qualité exprime le degré de satisfaction du client lié à une transaction.</description>
     </item>
     
+    <item>
+      <title>Semestre 8</title>
+      <link>https://Sdelpeuch.github.io/semestre8/semestre_8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre8/semestre_8/</guid>
+      <description>Cette page propose différentes ressources du Semestre 7 de l’ENSEIRB-MATMECA en filière informatique. Il propose notamment les supports de cours lorsqu’ils sont publics, les sujets (et parfois les corrections) des travaux dirigés.</description>
+    </item>
+    
   </channel>
 </rss>

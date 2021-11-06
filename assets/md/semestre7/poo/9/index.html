@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Autres mécanismes (non objet) - Les types paramétrés</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 9 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 9" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 9 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre9/controle">Contrôle commande</a></li>
+                  
+                  <li><a href="/semestre9/interaction">IHR</a></li>
+                  
+                  <li><a href="/semestre9/maths">Mathématiques</a></li>
+                  
+                  <li><a href="/semestre9/modelisation">Modélisation</a></li>
+                  
+                  <li><a href="/semestre9/mecatronique">Mécatronique</a></li>
+                  
+                  <li><a href="/semestre9/imagerie">Outils d&#39;imagerie</a></li>
+                  
+                  <li><a href="/semestre9/reachy">Reachy</a></li>
+                  
+                  <li><a href="/semestre9/energie">Énergétique</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">ENSEIRB-MATMECA <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+                  
+                  <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+                  
+                  <li><a href="/semestre7/semestre_7">Semestre 7</a></li>
+                  
+                  <li><a href="/semestre8/semestre_8">Semestre 8</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/java.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Autres mécanismes (non objet) - Les types paramétrés</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Autres mécanismes (non objet) - Les types paramétrés</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> October 19, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/poo">P o o</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<p>Les types paramétrés (&ldquo;parameterized type&rdquo;) est un mécanisme de programmation
+générique introduit dans la version 5.0 du langage java.</p>
+<p>Il permet de définir une classe/interface ou une méthode sans précision du type
+de variables, paramètres et la valeur de retour. La spécification des types
+manquants est faite au moment de l&rsquo;utilisation (pour une classe à
+l&rsquo;instanciation ou la déclaration d&rsquo;une variable de cette classe, pour une
+méthode à son appel).</p>
+<p>L&rsquo;exemple standard de la programmation générique se trouve dans l&rsquo;utilisation et
+la réalisation des classes conteneurs de données.</p>
+<h2 id="les-conetneurs-de-données">Les conetneurs de données</h2>
+<p><strong>Définition</strong> : une classe &ldquo;conteneur&rdquo; encapsule une collection d&rsquo;objets dans
+une structure de données particulière (liste, ensemble, pile, arbre, &hellip;). Elle
+est chargée du stockage, de la gestion (ajouter, enlever,&hellip;) de l&rsquo;accès à un
+objet et du parcours des objets de la collection (notion d&rsquo;itérateur).</p>
+<p>Un conteneur ne déclenche pas le comportement des objets de la collection (à
+part l&rsquo;égalité et la comparaison tiré). Pourtant, dans un langage typé, la
+réalisation de ces conteneurs entraîne un problème de cohérence du type des
+éléments gérés par un conteneur.</p>
+<h2 id="cohérence-de-type">Cohérence de type</h2>
+<p>En Java, les classes &ldquo;conteneurs&rdquo; les plus communes sont fournies :</p>
+<ul>
+<li>par les tableaux</li>
+<li>par des classes collection de l&rsquo;API standard, dans le paquetage <code>java.util</code>
+(voir les interfaces <code>Collection</code> et <code>Iterator</code>).</li>
+</ul>
+<h3 id="pour-les-tableaux">Pour les tableaux</h3>
+<p>Exemple d&rsquo;une erreur de cohérence de type avec un tableau</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CoherenceTableau</span><span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">parcours</span><span style="color:#f92672">(</span>Porte<span style="color:#f92672">[]</span> portes<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> portes<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++){</span>
+            pourtes<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
+        Porte<span style="color:#f92672">[]</span> mesPortes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Porte<span style="color:#f92672">[</span>3<span style="color:#f92672">];</span>
+        
+        mesPortes<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCoulissante<span style="color:#f92672">(</span>20<span style="color:#f92672">);</span>
+        mesPortes<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCharniere<span style="color:#f92672">();</span>
+        mesPortes<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Coucou&#34;</span><span style="color:#f92672">;</span>
+        
+        parcours<span style="color:#f92672">(</span>mesPortes<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">/*
+</span><span style="color:#75715e">% javac CoherenceTableau.java
+</span><span style="color:#75715e">Conteneur.java:17: incompatible types
+</span><span style="color:#75715e">found : java.lang.String
+</span><span style="color:#75715e">required : Porte
+</span><span style="color:#75715e">error
+</span><span style="color:#75715e">*/</span>
+</code></pre></div><p>La déclaration d&rsquo;un tableau spécifie le type des objets acceptés par la
+collection. La cohérence de type est vérifiée à la compilation lors de l&rsquo;ajout
+d&rsquo;un objet.</p>
+<h3 id="pour-les-classes-collection">Pour les classes &ldquo;collection&rdquo;</h3>
+<p>Dans la réalisation de ces classes, le type des éléments est déclaré du type
+<code>Object</code> puisque c&rsquo;est la racine de la hiérarchie de classes en java. Les
+méthodes d&rsquo;ajout et d&rsquo;accès utilisent aussi le type <code>Object</code>. La cohérence de
+type est vérifiée à l&rsquo;exécution lors de l&rsquo;accès à un élément de la collection.
+Il est nécessaire d&rsquo;inclure un code de vérification de la conversion de type
+(opérateur <code>instanceof</code> ou par capture de l&rsquo;exception
+<code>java.lang.ClassCastException</code>).</p>
+<h2 id="paramétrer-les-types">Paramétrer les types</h2>
+<p>Le mécanisme des types paramétrés peut s&rsquo;utiliser sur une interface, une classe,
+une méthode ou un constructeur. L&rsquo;objectif est de détecter l&rsquo;incohérence de type
+dans un conteneur à la compilation plutôt qu&rsquo;à l&rsquo;exécution. Pour cela, il est
+possible de définir le type des éléments à l&rsquo;utilisation du conteneur.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">ClasseParametree<span style="color:#f92672">&lt;</span>Porte<span style="color:#f92672">,</span> PassagerStandard<span style="color:#f92672">&gt;</span> var<span style="color:#f92672">;</span>
+
+var <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClasseParametree<span style="color:#f92672">&lt;</span>Porte<span style="color:#f92672">,</span> PassagerStandard<span style="color:#f92672">&gt;();</span>
+var<span style="color:#f92672">.</span><span style="color:#a6e22e">methodeParametree</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> DentBleu<span style="color:#f92672">());</span>
+</code></pre></div><p>Dans la définition d&rsquo;une classe paramétrée, il est nécessaire de déclarer des
+&ldquo;paramètres formels&rdquo; pour la spécification du type. Par convention, le nom du
+paramètre formel est une seule lettre en majuscule.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClassParametree</span><span style="color:#f92672">&lt;</span>E<span style="color:#f92672">,</span>T<span style="color:#f92672">&gt;{</span>
+    <span style="color:#66d9ef">private</span> E uneInstance<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">nomMethode</span><span style="color:#f92672">(</span>E par1<span style="color:#f92672">,</span> String par2<span style="color:#f92672">){</span>
+        T t<span style="color:#f92672">;</span>
+        <span style="color:#75715e">//...
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> t<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">methodeParametree</span><span style="color:#f92672">(</span>U u<span style="color:#f92672">){</span>
+        <span style="color:#75715e">//...
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Chaque paramètre effectif précisé à l&rsquo;utilisation va remplacer dans l&rsquo;ordre
+chaque paramètre formel de la définition.</p>
+<p>Cohérence de type pour la version avec type paramétré de la classe
+<code>java.util.Vector</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Vector<span style="color:#f92672">&lt;</span>Porte<span style="color:#f92672">&gt;</span> portes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Vector<span style="color:#f92672">&lt;</span>Porte<span style="color:#f92672">&gt;(</span>5<span style="color:#f92672">);</span>
+
+portes<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PorteCoulissante<span style="color:#f92672">(</span>999<span style="color:#f92672">));</span>
+portes<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PorteCharniere<span style="color:#f92672">());</span>
+portes<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Coucou&#34;</span><span style="color:#f92672">)</span> <span style="color:#75715e">// erreur à la compilation
+</span><span style="color:#75715e"></span>
+Vector<span style="color:#f92672">&lt;</span>PorteCoulissante<span style="color:#f92672">&gt;</span> coulissantes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Vector<span style="color:#f92672">&lt;</span>PorteCoulissante<span style="color:#f92672">&gt;(</span>3<span style="color:#f92672">);</span>
+
+coulissantes<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PorteCoulissante<span style="color:#f92672">(</span>666<span style="color:#f92672">));</span>
+coulissantes<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PorteCharniere<span style="color:#f92672">());</span> <span style="color:#75715e">//erreur à la compilation 
+</span></code></pre></div><p>L&rsquo;accès aux éléments se fait sans conversion de type. Le langage Java a
+introduit une boucle simplifiée pour le parcours d&rsquo;un conteneur paramétré de
+l&rsquo;API <code>java.util.Collection</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">boucleSimpleifiee</span><span style="color:#f92672">(</span>Vector<span style="color:#f92672">&lt;</span>Porte<span style="color:#f92672">&gt;</span> portes<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>Porte p <span style="color:#f92672">:</span> portes<span style="color:#f92672">)</span>
+        p<span style="color:#f92672">.</span><span style="color:#a6e22e">ouvir</span><span style="color:#f92672">();</span>
+    <span style="color:#75715e">//équivalent à
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>Iterator<span style="color:#f92672">&lt;</span>Porte<span style="color:#f92672">&gt;</span> it <span style="color:#f92672">=</span> portes<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span> it<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">();){</span>
+        Porte p <span style="color:#f92672">=</span> it<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+        p<span style="color:#f92672">.</span><span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p><em>Remarque</em>: Pour des raisons de compatibilité, il n&rsquo;est pas obligatoire de
+préciser le type paramétré à la déclaration ou à l&rsquo;instanciation (le type est
+alors <code>Object</code>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Vector desObjets <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Vector<span style="color:#f92672">(</span>5<span style="color:#f92672">);</span>
+<span style="color:#75715e">// équivalent à
+</span><span style="color:#75715e"></span>Vector<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;</span>  desObjets <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Vector<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;(</span>5<span style="color:#f92672">);</span>
+</code></pre></div><h3 id="compilation-dune-classe-paramétrée">Compilation d&rsquo;une classe paramétrée</h3>
+<p>En Java, tous les paramètres effectifs d&rsquo;une classe paramétrée partagent le même
+code. Il y a toujours un seul fichier compilé (.class) par classe. Le mécanisme
+n&rsquo;implique pas une recompilation du code pour chaque utilisation d&rsquo;une classe
+paramétrée.</p>
+<p>L&rsquo;information sur une type paramétré est présente que pour la compilation de
+l&rsquo;utilisation de la classe paramétrée. Dans la fichier compilé, l&rsquo;information
+sur le type paramétré est remplacée par le type <code>Object</code>; il y a effacement du
+type (&ldquo;erasure type&rdquo;).</p>
+<p>Cette compilation unique aboutit à des contraintes sur l&rsquo;utilisation des types
+paramétrés :</p>
+<ul>
+<li>Un type paramétré n&rsquo;est possible qu&rsquo;avec des références.</li>
+<li>Les instruction impliquant la classe ne sont pas autorisées sur un type
+paramétré : <code>new T(),T.methodeDeClasse(), new T[initTaille]</code>.</li>
+</ul>
+<h3 id="envoi-de-messages-sur-un-paramètre-formel">Envoi de messages sur un paramètre formel</h3>
+<p>Le compilateur vérifie la validité d&rsquo;un envoi de message par rapport au type de
+la variable. Il est possible de donner une contrainte sur le paramètre formel
+pour s&rsquo;assurer d&rsquo;un intervale de type. Par exemple tous les sous-types de
+l&rsquo;interface <code>Porte</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#f92672">&lt;</span>U <span style="color:#66d9ef">extends</span> Porte<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">parametreUneMethode</span><span style="color:#f92672">(</span>U u<span style="color:#f92672">){</span>
+    u<span style="color:#f92672">.</span><span style="color:#a6e22e">estFerme</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Le compilateur vérifie cette contraintes sur le paramètre effectif. Il est
+possible de combiner ces contraintes, par exemple : <code>&lt;T extends Porte 1 Comparable&lt;T&gt;&gt;</code></p>
+<h2 id="relation-de-typesous-type-entre-paramètres-effectifs">Relation de type/sous-type entre paramètres effectifs</h2>
+<p>Comment considérer les trois conteneurs <code>Vector&lt;Porte&gt;, Vector&lt;PorteCoulissante&gt;</code> et <code>Vector&lt;PorteCharniere&gt;</code> par rapprot à la relation
+de type / sous-type entre <code>ProteCharniere</code>, <code>PorteCoulissante</code> et <code>Porte</code> ?</p>
+<p>Regardons le cas des tableaux, il est possible de passer le paramètre
+<code>PorteCoulissante[]</code> à la méthode <code>parcours(Porte[] portes)</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">parcours</span><span style="color:#f92672">(</span>Porte<span style="color:#f92672">[]</span> portes<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Porte p <span style="color:#f92672">:</span> portes<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>p <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
+            p<span style="color:#f92672">.</span><span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#75715e">//...
+</span><span style="color:#75715e"></span>PorteCoulissante<span style="color:#f92672">[]</span> coulissantes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCoulissante<span style="color:#f92672">[</span>3<span style="color:#f92672">];</span>
+
+coulissantes<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCoulissante<span style="color:#f92672">(</span>20<span style="color:#f92672">);</span>
+coulissantes<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCoulissante<span style="color:#f92672">(</span>10<span style="color:#f92672">);</span>
+coulissantes<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCoulissante<span style="color:#f92672">(</span>11<span style="color:#f92672">);</span>
+
+parcours<span style="color:#f92672">(</span>coulissantes<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Quand la relation de type/sous-type est transmise aux conteneurs, nous avons un
+mécanisme de covariance. C&rsquo;est le cas pour les tableaux, <code>PorteCoulissante[]</code>
+est sous-type de <code>Porte[]</code>. Cela permet de factoriser la méthode <code>parcours()</code> à
+tous les tableaux correspondant à un sous-type de <code>Porte</code>.</p>
+<p>Que se passe-t-il si le tableau référencé par la variable de type <code>Porte[]</code> est
+modifié ?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">PorteCoulissante<span style="color:#f92672">[]</span> coulissantes <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCoulissante<span style="color:#f92672">[</span>3<span style="color:#f92672">];</span>
+
+Porte<span style="color:#f92672">[]</span> portes <span style="color:#f92672">=</span> coulissantes<span style="color:#f92672">;</span>
+portes<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCoulissante<span style="color:#f92672">(</span>66<span style="color:#f92672">);</span>
+portes<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PorteCharniere<span style="color:#f92672">();</span>
+
+coulissantes<span style="color:#f92672">[</span>1<span style="color:#f92672">].</span><span style="color:#a6e22e">coulisser</span><span style="color:#f92672">();</span>
+</code></pre></div><p>Les conteneur typé par <code>PorteCoulissante</code> contient une instance de
+<code>PorteCharniere</code>. Pour les tableaux, cette incohérence est détectée non pas à la
+compilation mais à l&rsquo;exécution : la vérification est faite au moment de
+l&rsquo;affectation avec la levée de l&rsquo;exception <code>java.lang.ArrayStoreException</code>.</p>
+<h3 id="la-variance-des-types-paramétrés">La variance des types paramétrés</h3>
+<p>Par défaut, la relation de type/sous-type du paramètre effectif n&rsquo;est pas
+transmise à la classe paramétrée. C&rsquo;est l&rsquo;invariance.</p>
+<p>Mais, pour permettre la factorisation de code, le langage Java permet de
+modifier la variance des classes paramétrées sous certaines contraintes qui vont
+assurer la cohérence du conteneur.</p>
+<h4 id="invariance">Invariance.</h4>
+<p>Dans notre exemple, <code>Vector&lt;PorteCharniere&gt;</code> et <code>Vector&lt;PorteCoulissante&gt;</code> ne
+sont pas sous-type de <code>Vector&lt;Porte&gt;</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">parcours</span><span style="color:#f92672">(</span>Vector<span style="color:#f92672">&lt;</span>Porte<span style="color:#f92672">&gt;</span> portes<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>Porte p <span style="color:#f92672">:</span> portes<span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>p <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
+            p<span style="color:#f92672">.</span><span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">//...
+</span><span style="color:#75715e"></span>parcours<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Vector<span style="color:#f92672">&lt;</span>Porte<span style="color:#f92672">&gt;());</span>
+parcours<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Vector<span style="color:#f92672">&lt;</span>PorteCoulissante<span style="color:#f92672">&gt;());</span> <span style="color:#75715e">//erreur à la compilation 
+</span><span style="color:#75715e"></span>parcours<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Vector<span style="color:#f92672">&lt;</span>PorteCharniere<span style="color:#f92672">&gt;());</span> <span style="color:#75715e">//erreur à la compilation
+</span></code></pre></div><h4 id="covariance">Covariance.</h4>
+<p>Le type de la classe paramétrée varie de la même manière que le type du
+paramètre effectif. La covariance est indiquée par le mot-clé <code>extends</code> au
+niveau du paramètre formel. Pour accéder aux élémnets du conteneur, c&rsquo;est la
+borne supérieure qui est fixée (les éléments sont récupérés à travers ce type) :
+<code>&lt;D extends B&gt;</code> toute classe <code>D</code> sous-type de la classe <code>B</code> ou <code>&lt;? extends B&gt;</code>
+toute classe sous-type de la classe <code>B</code>. Avec la covariance, le code de la
+méthode <code>parcours()</code> est valide pour des instance de <code>Vector&lt;PorteCharniere&gt;</code> et
+<code>Vector&lt;PorteCoulissante&gt;</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">parcours</span><span style="color:#f92672">(</span>Vector<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> Porte<span style="color:#f92672">&gt;</span> portes<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>Porte p <span style="color:#f92672">:</span> portes<span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>p <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
+            p<span style="color:#f92672">.</span><span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">&lt;</span>T <span style="color:#66d9ef">extends</span> Porte<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">autreEcriture</span><span style="color:#f92672">(</span>Vector <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> portes<span style="color:#f92672">){</span>
+    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>T p <span style="color:#f92672">:</span> portes<span style="color:#f92672">)</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>p <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
+            p<span style="color:#f92672">.</span><span style="color:#a6e22e">ouvrir</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">//...
+</span><span style="color:#75715e"></span>
+parcours<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Vector<span style="color:#f92672">&lt;</span>Porte<span style="color:#f92672">&gt;());</span> 
+parcours<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Vector<span style="color:#f92672">&lt;</span>PorteCoulissante<span style="color:#f92672">&gt;());</span>
+autreEcriture<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Vector<span style="color:#f92672">&lt;</span>PorteCharniere<span style="color:#f92672">&gt;());</span>
+</code></pre></div><p>Pour éviter une incohérence des éléments du conteneur (le problème rencontré
+avec les tableaux), la covariance ne permet pas la modification du conteneur
+passé en paramètre. Dans le code de la méthode <code>parcours(Vector&lt;? extends Porte&gt; portes)</code>, l&rsquo;instruction <code>portes.add(new PorteCharniere());</code> provoque une erreur
+de compilation.</p>
+<h4 id="contravariance">Contravariance.</h4>
+<p>Pour factoriser le code qui ajoute un élément à un conteneur, il faut utiliser
+la contravariance. La contravariance est indiquée par le mot-clé <code>super</code> au
+niveau du paramètre formel. Pour modifier le conteneur, il faut fixer la borne
+inférieure du type accepté : <code>&lt;? super C&gt;</code> toute classe dont la classe <code>C</code> est
+le sous-type.</p>
+<p>Par exemple, pour ajouter des instances de <code>PorteCoulissante</code>, il faut que le
+type paramétré soit au moins <code>PorteCoulissante</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ajouter</span><span style="color:#f92672">(</span>Vector <span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> PorteCoulissante<span style="color:#f92672">&gt;</span> portes<span style="color:#f92672">){</span>
+    portes<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PorteCoulissante<span style="color:#f92672">(</span>999<span style="color:#f92672">));</span>
+    portes<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PorteCoulissante<span style="color:#f92672">(</span>666<span style="color:#f92672">));</span>
+    portes<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PorteCharniere<span style="color:#f92672">());</span> <span style="color:#75715e">//erreur à la compilation 
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+
+ajouter<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Vector<span style="color:#f92672">&lt;</span>Porte<span style="color:#f92672">&gt;());</span> 
+ajouter<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Vector<span style="color:#f92672">&lt;</span>PorteCoulissante<span style="color:#f92672">&gt;());</span>
+ajouter<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Vector <span style="color:#f92672">&lt;</span>PorteCharniere<span style="color:#f92672">&gt;());</span> <span style="color:#75715e">//erreur à la compilation
+</span></code></pre></div><p>La contravariance interdit l&rsquo;accès aux éléments du conteneur passé en paramètre;
+cela provoque une erreur à la compilation.</p>
+<h4 id="bivariance">Bivariance</h4>
+<p>La bivariance est indiquée par le caractère joker seul <code>&lt;?&gt;</code>. Dans ce cas,
+toutes les classes sont acceptées. Il n&rsquo;est pas possible de modifier le
+conteneur et le élément sont récupérés sous le type <code>Object</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bivariant</span><span style="color:#f92672">(</span>Vector<span style="color:#f92672">&lt;?&gt;</span> v<span style="color:#f92672">){</span>
+    v<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PorteCoulissante<span style="color:#f92672">(</span>999<span style="color:#f92672">));</span> <span style="color:#75715e">//erreur à la compilation
+</span><span style="color:#75715e"></span>    v<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;coucou&#34;</span><span style="color:#f92672">);</span> <span style="color:#75715e">//erreur à la compilation
+</span><span style="color:#75715e"></span>    Porte p1 <span style="color:#f92672">=</span> v<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span> <span style="color:#75715e">//erreur à la compilation
+</span><span style="color:#75715e"></span>    
+    Porte p2 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Porte<span style="color:#f92672">)</span> v<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+    Object o <span style="color:#f92672">=</span> v<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div>
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/">Généralités sur les machines tournantes</a></h4>
+        <h5>[Énergie]</h5>
+        <p>La constitution d&rsquo;une machine tournante est …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/">Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</a></h4>
+        <h5>[Énergie]</h5>
+        <p>Régime des grandeurs électriques rencontrées …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/1/">Mouvements, changements de coordonnées</a></h4>
+        <h5>[Modélisation]</h5>
+        <p>Repère affine $[O_i, R_i = {x_i, y_i z_i}]$ Une …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/">Introduction à la cobotique</a></h4>
+        <h5>[Interactions homme robot]</h5>
+        <p>Introduction Pourquoi fait on de la robotique ? …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/">Introduction</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>Commençons par définir les différents termes que …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Programmer un microcontrolleur Un microcontrolleur …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

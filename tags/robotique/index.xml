@@ -14,10 +14,10 @@
     
     <item>
       <title>Modélisation du problème</title>
-      <link>https://Sdelpeuch.github.io/assets/md/robotique/1/</link>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre8/robotique/1/</link>
       <pubDate>Mon, 01 Mar 2021 09:30:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/robotique/1/</guid>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre8/robotique/1/</guid>
       <description>Définition du problème    On cherche à trouver le modèle direct ie l&amp;rsquo;expression de $(x,y,z)$ en fonction de $(\theta_0, \theta_1, \theta_2)$ (modèle direct) puis l&amp;rsquo;expression de $(\theta_0, \theta_1, \theta_2)$ en fonction de $(x,y,z)$ (modèle inverse).</description>
     </item>
     

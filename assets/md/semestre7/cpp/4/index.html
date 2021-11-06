@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>La couche objet - Partie 4 : Les entrées/sorties, Méthodes virtuelles, Dérivation, Classe abstraites</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 9 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 9" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 9 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre9/controle">Contrôle commande</a></li>
+                  
+                  <li><a href="/semestre9/interaction">IHR</a></li>
+                  
+                  <li><a href="/semestre9/maths">Mathématiques</a></li>
+                  
+                  <li><a href="/semestre9/modelisation">Modélisation</a></li>
+                  
+                  <li><a href="/semestre9/mecatronique">Mécatronique</a></li>
+                  
+                  <li><a href="/semestre9/imagerie">Outils d&#39;imagerie</a></li>
+                  
+                  <li><a href="/semestre9/reachy">Reachy</a></li>
+                  
+                  <li><a href="/semestre9/energie">Énergétique</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">ENSEIRB-MATMECA <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+                  
+                  <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+                  
+                  <li><a href="/semestre7/semestre_7">Semestre 7</a></li>
+                  
+                  <li><a href="/semestre8/semestre_8">Semestre 8</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/cpp.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>La couche objet - Partie 4 : Les entrées/sorties, Méthodes virtuelles, Dérivation, Classe abstraites</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">La couche objet - Partie 4 : Les entrées/sorties, Méthodes virtuelles, Dérivation, Classe abstraites</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> November 25, 2020</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/c&#43;&#43;">C&#43;&#43;</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<h2 id="des-entrées---sorties-simplifiées">Des entrées - sorties simplifiées</h2>
+<p>Les flux d&rsquo;entrée / sortie de la bibliothèque standard C++ constituent sans
+doute l&rsquo;une des applications les plus intéressantes de la surcharge des
+opérateurs. Comme nous allons le voir, la surcharge des opérateurs <code>&lt;&lt;</code> et <code>&gt;&gt;</code>
+permet d&rsquo;écrire et de lire sur ces flux de manière très intuitive.</p>
+<p>En effet, la bibliothèque standard C++ définit dans l&rsquo;en-tête <code>iostream</code> des
+classes extrêmement puissantes permettant de manipuler les flux d&rsquo;entrée /
+sortie. Ces classes réalisent en particulier les opérations d&rsquo;entrée / sortie et
+vers les périphériques d&rsquo;entrée et les périphériques de sortie standards
+(généralement, le clavier et l&rsquo;écran), mais elles ne s&rsquo;arrêtent pas là : elles
+permettent également de travailler sur des fichiers ou encore sur des tampons en
+mémoire.</p>
+<p>Les classes d&rsquo;entrée / sortie de la bibliothèque standard C++ permettent donc
+d&rsquo;effectuer les mêmes opérations que les fonctions <code>printf</code> et <code>scanf</code> de la
+bibliothèque C standard. Cependant, grâce au mécanisme de surcharge des
+opérateurs, elles sont beaucoup plus faciles d&rsquo;utilisation. En effet, les
+opérateurs <code>&lt;&lt;</code> et <code>&gt;&gt;</code> de ces classes ont été surchargés pour chaque type de
+donnée du langage, permettant ainsi de réaliser des entrées / sorties typées
+extrêmement facilement. L&rsquo;opérateur <code>&lt;&lt;</code>, également appelé opérateur
+d&rsquo;insertion, sera utilisé pour réaliser des écritures sur un flux de données,
+tant que l&rsquo;opérateur <code>&gt;&gt;</code>, ou opérateur d&rsquo;extraction, permettra de réaliser la
+lecture d&rsquo;une nouvelle donnée dans le flux d&rsquo;entrée. Ces deux opérateurs
+renvoient tous les deux le flux de données utilisé, ce qui permet de réaliser
+plusieurs opérations d&rsquo;entrée / sortie successivement sur le même flux.</p>
+<p>La bibliothèque standard définit quatre instances particulières de ses classes
+d&rsquo;entrée / sortie : <code>cin</code>, <code>cout</code>, <code>cerr</code> et <code>clog</code>. Ces objets sont des
+instances des classes <code>istream</code> et <code>ostream</code>, prenant respectivement en charge
+l&rsquo;entrée et la sortie des données des programmes. L&rsquo;objet <code>cin</code> correspond au
+flux d&rsquo;entrée standard <code>stdin</code> du programme, et l&rsquo;objet <code>cout</code> aux flux de
+sortie standard <code>stdout</code>. Enfin, les objets <code>cerr</code> et <code>clog</code> sont associés au
+flux d&rsquo;erreurs standard <code>stderr</code>. Théoriquement, <code>cerr</code> doit être utilisé pour
+l&rsquo;écriture des messages d&rsquo;erreur des programmes, et <code>clog</code> pour les messages
+d&rsquo;information. Cependant, en pratique, les données écrites sur ces deux flux
+sont écrites dans le même flux, et l&rsquo;emploi de l&rsquo;objet <code>clog</code> est assez rare.</p>
+<p>L&rsquo;utilisation des opérateurs d&rsquo;insertion et d&rsquo;extraction sur ces flux se résume
+donc à la syntaxe suivante</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">cin <span style="color:#f92672">&gt;&gt;</span> variable [<span style="color:#f92672">&gt;&gt;</span> variable [...]];
+cout <span style="color:#f92672">&lt;&lt;</span> valeur [<span style="color:#f92672">&lt;&lt;</span> valeur [...]];
+</code></pre></div><p>Comme on le voit, il est possible d&rsquo;effectuer plusieurs entrées ou plusieurs
+sortie successivement sur un même flux.</p>
+<p>DE plus, la bibliothèque standard définie ce que l&rsquo;on appelle des manipulateurs
+permettant de réaliser des opérations simples sur les flux d&rsquo;entrée / sortie .
+Le manipulateur le plus utilisé est sans nul doute le manipulateur <code>endl</code> qui,
+comme son nom l&rsquo;indique, permet de signaler une fin de ligne et d&rsquo;effectuer un
+saut de ligne lorsqu&rsquo;il est employé sur un flux de sortie.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+ 
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+    <span style="color:#66d9ef">int</span> i;
+    <span style="color:#75715e">// Lit un entier :
+</span><span style="color:#75715e"></span>    cin <span style="color:#f92672">&gt;&gt;</span> i;
+    <span style="color:#75715e">// Affiche cet entier et le suivant :
+</span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> i <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><h2 id="méthodes-virtuelles">Méthodes virtuelles</h2>
+<p>Les méthodes virtuelles <strong>n&rsquo;ont strictement rien à voir</strong> avec les classes
+virtuelles, bien qu&rsquo;elles utilisent le même mot clé <code>virtual</code>. Ce mot clé est
+utilisé dans un contexte et dans un sens différent.</p>
+<p>Nous savons qu&rsquo;il est possible de redéfinir les méthodes d&rsquo;une classe mère dans
+une classe fille. Lors de l&rsquo;appel d&rsquo;une fonction ainsi redéfinie, la fonction
+appelée est la dernière fonction définie dans la hiérarchie de classe. Pour
+appeler la fonction de la classe mère alors qu&rsquo;elle a été redéfinie, il faut
+préciser le nom de la classe à laquelle elle appartient avec l&rsquo;opérateur de
+résolution de portée.</p>
+<p>Bien que simple, cette utilisation de la redéfinition des méthodes peut poser
+des problèmes. Supposons qu&rsquo;une classe B hérite de sa classe mère A. Si A
+possède une méthode x appelant une autre méthode y redéfinie dans la classe
+fille B, que se passe-t-il lorsqu&rsquo;un objet de classe B appelle la méthode x ? La
+méthode appelée étant celle de la classe A, elle appellera la méthode y de la
+classe A. Par conséquent, la redéfinition de y ne sert à rien dès qu&rsquo;on
+l&rsquo;appelle à partir d&rsquo;une des fonctions d&rsquo;une des classes mères.</p>
+<p>Une première solution consisterait à redéfinir la méthode x dans la classe B.
+Mais ce n&rsquo;est ni élégant, ni efficace. Il faut en fait forcer le compilateur à
+ne pas faire le lien dans la fonction x de la classe A avec la fonction y de la
+classe A. Il faut que x appelle soit la fonction y de la classe A si elle est
+appelée pour un objet de la classe B. Le lien avec l&rsquo;une des méthodes y ne doit
+être fait qu&rsquo;au moment de l&rsquo;exécution, c&rsquo;est à dire qu&rsquo;on doit faire une édition
+de liens dynamique.</p>
+<p>Le C++ permet de faire cela. Pour cela, il suffit de déclarer virtuelle la
+fonction de la classe de base qui est redéfinie dans la classe fille, c&rsquo;est à
+dire la fonction y. Cela se fait en faisant précéder par le mot clé <code>virtual</code>
+dans la classe de base.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+ 
+<span style="color:#75715e">// Définit la classe de base des données.
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DonneeBase</span>
+{
+<span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> Numero;   <span style="color:#75715e">// Les données sont numérotées.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> Valeur;   <span style="color:#75715e">// et sont constituées d&#39;une valeur entière
+</span><span style="color:#75715e"></span>                  <span style="color:#75715e">// pour les données de base.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">void</span> Entre(<span style="color:#66d9ef">void</span>);       <span style="color:#75715e">// Entre une donnée.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">MiseAJour</span>(<span style="color:#66d9ef">void</span>);   <span style="color:#75715e">// Met à jour la donnée.
+</span><span style="color:#75715e"></span>};
+ 
+<span style="color:#66d9ef">void</span> DonneeBase<span style="color:#f92672">::</span>Entre(<span style="color:#66d9ef">void</span>)
+{
+    cin <span style="color:#f92672">&gt;&gt;</span> Numero;          <span style="color:#75715e">// Entre le numéro de la donnée.
+</span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> endl;
+    cin <span style="color:#f92672">&gt;&gt;</span> Valeur;          <span style="color:#75715e">// Entre sa valeur.
+</span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> endl;
+    <span style="color:#66d9ef">return</span>;
+}
+ 
+<span style="color:#66d9ef">void</span> DonneeBase<span style="color:#f92672">::</span>MiseAJour(<span style="color:#66d9ef">void</span>)
+{
+    Entre();                <span style="color:#75715e">// Entre une nouvelle donnée
+</span><span style="color:#75715e"></span>                            <span style="color:#75715e">// à la place de la donnée en cours.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span>;
+}
+ 
+<span style="color:#75715e">/* Définit la classe des données détaillées. */</span>
+ 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DonneeDetaillee</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">private</span> DonneeBase
+{
+    <span style="color:#66d9ef">int</span> ValeurEtendue;      <span style="color:#75715e">// Les données détaillées ont en plus
+</span><span style="color:#75715e"></span>                            <span style="color:#75715e">// une valeur étendue.
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">void</span> Entre(<span style="color:#66d9ef">void</span>);       <span style="color:#75715e">// Redéfinition de la méthode d&#39;entrée.
+</span><span style="color:#75715e"></span>};
+ 
+<span style="color:#66d9ef">void</span> DonneeDetaillee<span style="color:#f92672">::</span>Entre(<span style="color:#66d9ef">void</span>)
+{
+    DonneeBase<span style="color:#f92672">::</span>Entre();    <span style="color:#75715e">// Appelle la méthode de base.
+</span><span style="color:#75715e"></span>    cin <span style="color:#f92672">&gt;&gt;</span> ValeurEtendue;  <span style="color:#75715e">// Entre la valeur étendue.
+</span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> endl;
+    <span style="color:#66d9ef">return</span>;
+}
+</code></pre></div><p>Si <code>d</code> est un objet de la classe <code>DonneDetaille</code>, l&rsquo;appel de <code>d.Entre</code> ne
+causera pas de problème. En revanche, l&rsquo;appel de <code>d.MiseAJour</code> ne fonctionnera
+par correctement, car la fonction <code>Entre</code> appelée dans <code>MiseAjour</code> est la
+fonction de la classe <code>DonneeBase</code>, et non la fonction redéfinie dans
+<code>DonneeDetaille</code>.</p>
+<p>Il fallait déclarer la fonction <code>Entre</code> comme une fonction virtuelle. Il n&rsquo;est
+nécessaire de le faire que dans la classe de base. Celle-ci doit donc être
+déclarée comme suit</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DonneeBase</span>
+{
+<span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">int</span> Numero;
+    <span style="color:#66d9ef">int</span> Valeur;
+ 
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> Entre(<span style="color:#66d9ef">void</span>);   <span style="color:#75715e">// Fonction virtuelle.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">MiseAJour</span>(<span style="color:#66d9ef">void</span>);
+};
+</code></pre></div><p>Cette fois, la fonction <code>Entre</code> appelée dans <code>MiseAJour</code> est soit la fonction de
+la classe <code>DonneeBase</code>, si <code>MiseAJour</code> est appelée pour un objet de classe
+<code>DonneeBase</code>, soit celle de la classe <code>DonneeDetaille</code> si <code>MiseAJour</code> est
+appelée pour un objet de la classe <code>DonneeDetaillee</code>.</p>
+<p>En résumé, les méthodes virtuelles sont des méthodes qui sont appelées selon la
+vraie classe de l&rsquo;objet qui l&rsquo;appelle. Les objets qui contiennent des méthodes
+virtuelles peuvent être manipulés en tant qu&rsquo;objets des classes de base, tout en
+effectuant les bonnes opérations en fonction de leur type. Ils apparaissent donc
+comme étant des objets de la classe de base et des objets de leur classe
+complète indifféremment, et on peut les considérer soit comme les uns, soit
+comme les autres. Un tel comportement est appelé <strong>polymorphisme</strong> (c&rsquo;est à dire
+qui peut avoir plusieurs aspects différents). Nous verrons une application du
+polymorphisme dans le cas des pointeurs sur les objets.</p>
+<h2 id="dérivation">Dérivation</h2>
+<p>Nous allons voir ici les règles de dérivation. Ces règles permettent de savoir
+ce qui est autorisé et ce qui ne l&rsquo;est pas lorsqu&rsquo;on travaille avec des classes
+de base et leurs classes filles (ou classes dérivées).</p>
+<p>La première règle, qui est aussi la plus simple, indique qu&rsquo;il est possible
+d&rsquo;utiliser un objet d&rsquo;une classe dérivée partout où l&rsquo;on peut utiliser un objet
+de ses classes mères. Les méthodes et données des classes mères appartiennent en
+effet par héritage aux classes filles. Bien entendu, on doit avoir les droit
+d&rsquo;accès sur les membres de la classe de base que l&rsquo;on utilise.</p>
+<p>La deuxième règle indique qu&rsquo;il est possible de faire une affectation d&rsquo;une
+classe dérivée vers une classes mère. Les données qui ne servent pas à
+l&rsquo;initialisation sont perdues, puisque la classe mère ne possède pas les champs
+correspondants. En revanche, l&rsquo;inverse est strictement interdit. En effet, les
+données de la classe fille qui n&rsquo;existent pas dans la classe mère ne pourraient
+pas recevoir de valeur, et l&rsquo;initialisation ne se ferait pas correctement.</p>
+<p>Enfin la troisième règle dit que les pointeurs des classes dérivées sont
+compatibles avec les pointeurs des classes mères. Cela signifie qu&rsquo;il est
+possible d&rsquo;affecter un pointeur de classe dérivée à un pointeur d&rsquo;une de ses
+classes de base. Il faut bien entendu que l&rsquo;on ait en outre le droit d&rsquo;accéder à
+la classe de base, c&rsquo;est à dire qu&rsquo;au moins un de ses membres puisse être
+utilisé. Cette condition n&rsquo;est pas toujours vérifiée, en particulier pour les
+classes de base dont l&rsquo;héritage est <code>private</code>.</p>
+<p>Un objet dérivé pointé par un pointeur d&rsquo;une des classes mères de sa classe est
+considéré comme un objet de la classe du pointeur qui le pointe. Les données
+spécifiques à sa classe ne sont pas supprimées, elles sont seulement
+momentanément inaccessibles. Cependant, le mécanisme des méthodes virtuelles
+continue de fonctionner correctement. En particulier, le destructeur de la
+classe de base doit être déclaré en tant que méthode virtuelle. Cela permet
+d&rsquo;appeler le bon destructeur en cas de destruction de l&rsquo;objet.</p>
+<p>Il est possible de convertir un pointeur de classe de base en un pointeur de
+classe dérivée si la classe de base n&rsquo;est pas virtuelle. Cependant, même lorsque
+la classe de base n&rsquo;est pas virtuelle, cela est dangereux, car la classe dérivée
+peut avoir des membres qui ne sont pas présents dans la classe de base, et
+l&rsquo;utilisation de ce pointeur peut conduire à des erreurs très graves. C&rsquo;est pour
+cette raison qu&rsquo;un transtypage est nécessaire pour ce type de conversion.</p>
+<p>Soient par exemple les deux classes définies comme suit</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+ 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mere</span>
+{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    Mere(<span style="color:#66d9ef">void</span>);
+    <span style="color:#f92672">~</span>Mere(<span style="color:#66d9ef">void</span>);
+};
+ 
+Mere<span style="color:#f92672">::</span>Mere(<span style="color:#66d9ef">void</span>)
+{
+    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Constructeur de la classe mère.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    <span style="color:#66d9ef">return</span>;
+}
+ 
+Mere<span style="color:#f92672">::~</span>Mere(<span style="color:#66d9ef">void</span>)
+{
+    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Destructeur de la classe mère.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    <span style="color:#66d9ef">return</span>;
+}
+ 
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Fille</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Mere
+{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    Fille(<span style="color:#66d9ef">void</span>);
+    <span style="color:#f92672">~</span>Fille(<span style="color:#66d9ef">void</span>);
+};
+ 
+Fille<span style="color:#f92672">::</span>Fille(<span style="color:#66d9ef">void</span>) <span style="color:#f92672">:</span> Mere()
+{
+    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Constructeur de la classe fille.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    <span style="color:#66d9ef">return</span>;
+}
+ 
+Fille<span style="color:#f92672">::~</span>Fille(<span style="color:#66d9ef">void</span>)
+{
+    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Destructeur de la classe fille.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+    <span style="color:#66d9ef">return</span>;
+}
+</code></pre></div><p>Avec ces définitions, seule la première des deux affectations suivantes est
+autorisée</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Mere m;   <span style="color:#75715e">// Instanciation de deux objets.
+</span><span style="color:#75715e"></span>Fille f;
+ 
+m<span style="color:#f92672">=</span>f;      <span style="color:#75715e">// Cela est autorisé, mais l&#39;inverse ne le serait pas :
+</span><span style="color:#75715e"></span>f<span style="color:#f92672">=</span>m;      <span style="color:#75715e">// ERREUR !! (ne compile pas)
+</span></code></pre></div><p>Les mêmes règles sont applicables pour les pointeurs d&rsquo;objets</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Mere <span style="color:#f92672">*</span>pm, m;
+Fille <span style="color:#f92672">*</span>pf, f;
+pf<span style="color:#f92672">=&amp;</span>f;    <span style="color:#75715e">// Autorisé.
+</span><span style="color:#75715e"></span>pm<span style="color:#f92672">=</span>pf;    <span style="color:#75715e">// Autorisé. Les données et les méthodes
+</span><span style="color:#75715e"></span>          <span style="color:#75715e">// de la classe fille ne sont plus accessibles
+</span><span style="color:#75715e"></span>          <span style="color:#75715e">// avec ce pointeur : *pm est un objet
+</span><span style="color:#75715e"></span>          <span style="color:#75715e">// de la classe mère.
+</span><span style="color:#75715e"></span>pf<span style="color:#f92672">=&amp;</span>m;    <span style="color:#75715e">// ILLÉGAL : il faut faire un transtypage :
+</span><span style="color:#75715e"></span>pf<span style="color:#f92672">=</span>(Fille <span style="color:#f92672">*</span>) <span style="color:#f92672">&amp;</span>m;  <span style="color:#75715e">// Cette fois, c&#39;est légal, mais DANGEREUX !
+</span><span style="color:#75715e"></span>          <span style="color:#75715e">// En effet, les méthodes de la classe filles
+</span><span style="color:#75715e"></span>          <span style="color:#75715e">// ne sont pas définies, puisque m est une classe mère.
+</span></code></pre></div><p>L&rsquo;utilisation d&rsquo;un pointeur sur la classe de base pour accéder à une classe
+dérivée nécessite d&rsquo;utiliser des méthodes virtuelles. En particulier, il est
+nécessaire de rendre virtuels les destructeurs. Par exemple, avec la définition
+donnée ci-dessus pour les deux classes, le code suivant est faux :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">Mere <span style="color:#f92672">*</span>pm;
+Fille <span style="color:#f92672">*</span>pf <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Fille;
+pm <span style="color:#f92672">=</span> pf;
+<span style="color:#66d9ef">delete</span> pm; <span style="color:#75715e">// Appel du destructeur de la classe mère !
+</span></code></pre></div><p>Pour résoudre le problème, il faut que le destructeur de la classe mère soit
+virtuel (il est inutile de déclarer virtuel le destructeur des classes filles)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mere</span>
+{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    Mere(<span style="color:#66d9ef">void</span>);
+    <span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>Mere(<span style="color:#66d9ef">void</span>);
+};
+</code></pre></div><p>On notera que bien que l&rsquo;opérateur <code>delete</code> soit une fonction statique, le bon
+destructeur est appelé, car le destructeur est déclaré <code>virtual</code>. En effet
+l&rsquo;opérateur <code>delete</code> recherche le destructeur à appeler dans la classe de
+l&rsquo;objet le plus dérivé. De plus, l&rsquo;opérateur <code>delete</code> restitue la mémoire de
+l&rsquo;objet complet, et pas seulement celle du sous-objet référencé par le pointeur
+utilisé dans l&rsquo;expression <code>delete</code>. Lorsqu&rsquo;on utilise la dérivation, il est donc
+très important de déclarer les destructeurs virtuels pour que l&rsquo;opérateur
+<code>delete</code> utilise le vrai type de l&rsquo;objet à détruire.</p>
+<h2 id="méthodes-virtuelles-pures---classes-abstraites">Méthodes virtuelles pures - Classes abstraites</h2>
+<p>Une méthode virtuelle pure est une méthode qui est déclarée mais non définie
+dans une classe. Elle est définie dans une des classes dérivées de cette classe.</p>
+<p>Une classe abstraite est une classe comportant au moins une méthode virtuelle
+pure.</p>
+<p>Étant donné que les classes abstraites ont des méthodes non définies, il est
+impossible d&rsquo;instancier des objets pour ces classes. En revanche, on pourra les
+référencer avec des pointeurs.</p>
+<p>Le mécanisme des méthodes virtuelles pures et des classes abstraites permet de
+créer des classes de base contenant toutes les caractéristiques d&rsquo;un ensemble de
+classes dérivées, pour pouvoir les manipuler avec un unique type de pointeur. En
+effet, les pointeurs des classes dérivées sont compatibles avec les pointeurs
+des classes de base, on pourra donc référencer les classes dérivées avec des
+pointeurs sur les classes de base, donc avec un unique type sous-jacent : celui
+de la classe de base. Cependant, les méthodes des classes dérivées doivent
+exister dans la classe de base pour pouvoir être accessibles à travers le
+pointeur sur la classe de base. C&rsquo;est ici que les méthodes virtuelles pures
+apparaissent. Elles forment un moule pour les méthodes des classes dérivées, qui
+les définissent. Bien entendu, il faut que ces méthodes soient déclarées
+virtuelles, puisque l&rsquo;accès se fait avec un pointeur de classe de base et qu&rsquo;il
+faut que ce soit la méthode de la classe réelle de l&rsquo;objet (c&rsquo;est à dire la
+classe dérivée) qui soit appelée.</p>
+<p>Pour déclarer une méthode virtuelle pure dans une classe, il suffit de faire
+suivre sa déclaration de <code>=0</code>. Le fonction doit également être déclarée
+virtuelle.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">virtual</span> type <span style="color:#a6e22e">nom</span>(paramètres) <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</code></pre></div><p>Par exemple nous voulons créer une structure de données pouvant contenir
+d&rsquo;autres structures de données, quels que soient leurs types. Cette structure de
+données est appelée un conteneur, parce qu&rsquo;elle contient d&rsquo;autres structures de
+données. Il est possible de définir différents types de conteneurs. Dans cet
+exemple, on ne s&rsquo;intéressera qu&rsquo;au conteneur de type sac.</p>
+<p>Un sac est un conteneur pouvant contenir zéro ou plusieurs objets, chaque objet
+n&rsquo;étant pas forcément unique. Un objet peut donc être placé plusieurs fois dans
+le sac. Un sac dispose de deux fonctions permettant d&rsquo;y mettre et d&rsquo;en retirer
+un objet. Il a aussi une fonction permettant de dire si un objet se trouve dans
+le sac.</p>
+<p>Nous allons déclarer une classe abstraite qui servira de classe de base pour
+tous les objets utilisables. Le sac ne manipulera que des pointeurs sur la
+classe abstraite, ce qui permettra son utilisation pour toute classe dérivant de
+cette classe. Afin de différencier deux objets égaux, un numéro unique devra
+être distribué à chaque objet manipulé. Le choix de ce numéro est à la charge
+des objets, la classe abstraite dont ils dérivent devra donc avoir une méthode
+renvoyant ce numéro. Les objets devront tous pouvoir être affichés dans un
+format qui leur est propre. La fonction à utiliser pour cela sera <code>print</code>. Cette
+fonction sera une méthode virtuelle pure de la classe abstraite, puisqu&rsquo;elle
+devra être définie pour chaque objet.</p>
+<h2 id="pointeurs-sur-les-membres-dune-classe">Pointeurs sur les membres d&rsquo;une classe</h2>
+<p>Nous avons déjà vu les pointeurs sur les objets. Il nous reste à voir les
+pointeurs sur les membres des classes.</p>
+<p>Les classes regroupent les caractéristiques des données et des fonctions des
+objets. Les membres des classes ne peuvent donc pas être manipulés sans passer
+par la classe à laquelle ils appartiennent. Par conséquent, il faut, lorsqu&rsquo;on
+veut faire un pointeur sur un membre, indiquer le nom de sa classe pour cela on
+utilise l&rsquo;opérateur de portée.</p>
+<p>Une fois le pointeur déclaré, on pourra l&rsquo;initialiser en prenant l&rsquo;adresse du
+membre de la classe du type correspondant. Pour cela, il faudra encore spécifier
+le nom de la classe avec l&rsquo;opérateur de résolution de portée.</p>
+<!-- </style> -->
+<!-- L'héritage est un mécanisme permettant de construire un type `T` à partir d'un -->
+<!-- autre type `Base`. Le type `T` se retrouve doté des comportements (méthodes) et -->
+<!-- propriétés (attributs) du type de Base. Une relation de typage relie ces deux -->
+<!-- types : `T` est un sous-type de `Base` (ou classe dérivée de `Base`) tandis que -->
+<!-- `Base` est un super-type de `T`.  -->
+<!-- En C++, les membres hérités et la relation de typage qu'il existe entre `T` et -->
+<!-- `Base` ne sont pas nécessairement visible de l'extérieur. La relation est -->
+<!-- indiquée lors de la déclaration de `T`. voici un exemple classique d'héritage  -->
+<!-- ```cpp -->
+<!-- class Tuyau{ -->
+<!--     double _diametre; -->
+<!--     public :  -->
+<!--         double debit() const; -->
+<!--         double diametre() const; -->
+<!-- }; -->
+<!-- class TuyauPer : public Tuyau{ -->
+<!--     double _densite; -->
+<!--     public :  -->
+<!--         double densite() const; -->
+<!-- }; -->
+<!-- ``` -->
+<!-- ## Pointeurs et référence  -->
+<!-- L'utilisation de la relation de typage ne peut se faire qu'avec les pointeurs ou -->
+<!-- les références. En effet, pour faire jouer la relation de sous-typage on -->
+<!-- souhaite manipuler une même instance à travers différentes variables de types -->
+<!-- différents.  -->
+<!-- ## Héritage : appel de méthodes -->
+<!-- En C++ l'appel de méthode doit être vu comme un appel de fonction avec passage -->
+<!-- d'un premier paramètre caché (this dans la méthode). Lors d'un appel, la méthode -->
+<!-- choisie est celle du type de la variable. Si la méthode n'est pas présente -->
+<!-- directement dans le type, c'est la méthode compatible de son parent le plus -->
+<!-- proche qui est choisie. On utilise l'opérateur de portée pour spécifier la -->
+<!-- méthode à appeler. -->
+<!-- ## Héritage : et mangling -->
+<!-- Le "mangling" désigne la façon de générer un nom de symbole à partir d'une -->
+<!-- fonction ou méthode :  -->
+<!-- ```shell -->
+<!-- g++ -c /tmp/mang.c -->
+<!-- nm mang.o  -->
+<!--          U __gxx_personality_v0 -->
+<!-- 00000000 T _ZN1A1mEv -->
+<!-- 00000006 T _ZN1B1mEv -->
+<!-- ``` -->
+<!-- La première fonction correspond à `A::m()`, la deuxième à `B::m()`. Il faut -->
+<!-- savoir que cette étape d'encodage n'est pas normalisée et est propre à chaque -->
+<!-- compilateur. Ainsi, les objets compilés avec un compilateur ne seront sans doute -->
+<!-- pas exploitable avec un autre compilateur ! En C, il n'y a pas de "mangling", -->
+<!-- une fonction génère un symbole de même nom que cette fonction. Le "mangling" -->
+<!-- permet la mise en oeuvre de la surcharge, des espaces de nom, des méthodes de classes -->
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/2/">Généralités sur les machines tournantes</a></h4>
+        <h5>[Énergie]</h5>
+        <p>La constitution d&rsquo;une machine tournante est …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/energie/1/">Grandeurs éléectriques utiles, définition de l&#39;actionneur, plan mécanique couple-vitesse, transmission mécanique</a></h4>
+        <h5>[Énergie]</h5>
+        <p>Régime des grandeurs électriques rencontrées …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/1/">Mouvements, changements de coordonnées</a></h4>
+        <h5>[Modélisation]</h5>
+        <p>Repère affine $[O_i, R_i = {x_i, y_i z_i}]$ Une …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/">Introduction à la cobotique</a></h4>
+        <h5>[Interactions homme robot]</h5>
+        <p>Introduction Pourquoi fait on de la robotique ? …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/">Introduction</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>Commençons par définir les différents termes que …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/1/">Architecture</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Programmer un microcontrolleur Un microcontrolleur …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>
