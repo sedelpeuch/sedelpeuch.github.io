@@ -33,6 +33,15 @@ Régime sinusoïdal, valeur efficace $X = (\dfrac{1}{T}\int \limits_0^\infty x^2
     </item>
     
     <item>
+      <title>Bases</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/</link>
+      <pubDate>Wed, 20 Oct 2021 14:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/</guid>
+      <description>Cours  MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;]], displayMath: [[&#39;$$&#39;,&#39;$$&#39;]], processEscapes: true, processEnvironments: true, skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;], TeX: { equationNumbers: { autoNumber: &#34;AMS&#34; }, extensions: [&#34;AMSmath.js&#34;, &#34;AMSsymbols.js&#34;] } } }); MathJax.</description>
+    </item>
+    
+    <item>
       <title>Mouvements, changements de coordonnées</title>
       <link>https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/1/</link>
       <pubDate>Fri, 15 Oct 2021 08:00:00 +0600</pubDate>

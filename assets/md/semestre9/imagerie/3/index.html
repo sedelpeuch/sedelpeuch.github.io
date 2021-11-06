@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>Graphe - Exercice Flot Maximal</title>
+  <title>Bases</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -127,12 +127,12 @@
   </div>
 </header>
 
-<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/');">
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/java.jpg');">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>Graphe - Exercice Flot Maximal</h1>
+          <h1>Bases</h1>
           <p></p>
         </div>
       </div>
@@ -146,10 +146,10 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">Graphe - Exercice Flot Maximal</h2>
+					<h2 class="post-title">Bases</h2>
 					<div class="post-meta">
 						<ul>
-              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              <li><i class="ion-calendar"></i> October 20, 2021</li>
               
               
               
@@ -158,6 +158,8 @@
               
               <li><i class="ion-pricetags"></i> 
                 
+                <a href="/tags/outils%20d%27imagerie">Outils d&#39;imagerie</a>
+								
               </li>
             </ul>
 					</div>
@@ -165,23 +167,30 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<blockquote>
-<p>Exercice 36: Ecrire un algorithme décidant si un flot d&rsquo;un réseau est maximal dans ce réseau</p>
-</blockquote>
-<pre><code>fonction is_maximal(G=(V,E,c,s,t):réseau, M:flot):booléen
-    f=FordFulkeson(G=(V,E,c,s,t))
-    si f=M
-        retourne Vrai
-    sinon 
-        retourne Faux
+						<h2 id="cours">Cours</h2>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
 
-</code></pre><blockquote>
-<p>Exercice 37: Démontrer que tout réseau à capacités entières admet un flot maximal qui associe à tout arc une valeur entière.</p>
-</blockquote>
-<p>En entrée, les capacités sont entières et on considère un chemin élémentaire de
-s à t et le flot maximal à travers ce chemin. Ce flot maximal a une valeur
-entière. Quand on construit le graphe résiduel correspondant, les capacités sont
-entières.</p>
+MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for(i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script>
 
 					</div>
 					<div class="post-comments">
