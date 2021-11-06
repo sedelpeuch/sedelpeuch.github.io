@@ -43,6 +43,16 @@ Régime sinusoïdal, valeur efficace $X = (\dfrac{1}{T}\int \limits_0^\infty x^2
     </item>
     
     <item>
+      <title>Introduction</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/2/</link>
+      <pubDate>Wed, 13 Oct 2021 14:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/2/</guid>
+      <description>Cours Traitements classiques couleur $$\{(A,B,C)= M.(R,G,B)\} \rightarrow (A&amp;rsquo;, B&amp;rsquo;, C&amp;rsquo;) \rightarrow \{(R&amp;rsquo;G&amp;rsquo;B&amp;rsquo;) = M^{-1}.(A&amp;rsquo;,B&amp;rsquo;,C&amp;rsquo;)\}$$
+où $M = \begin{pmatrix} a &amp;amp; b &amp;amp; c \\ d &amp;amp; e &amp;amp; f \\ g &amp;amp; h &amp;amp; i \end{pmatrix}$</description>
+    </item>
+    
+    <item>
       <title>Introduction à la cobotique</title>
       <link>https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/</link>
       <pubDate>Wed, 13 Oct 2021 08:00:00 +0600</pubDate>
@@ -57,7 +67,7 @@ Régime sinusoïdal, valeur efficace $X = (\dfrac{1}{T}\int \limits_0^\infty x^2
       <pubDate>Tue, 12 Oct 2021 08:00:00 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/</guid>
-      <description>Commençons par définir les différents termes que nous allons utiliser :
+      <description>Cours Commençons par définir les différents termes que nous allons utiliser :
  Le traitement d&amp;rsquo;images : améliorer, transformer l&amp;rsquo;image L&amp;rsquo;Analyse d&amp;rsquo;image : extraire des informations de l&amp;rsquo;image Interprétation d&amp;rsquo;images : interpréter ces informations, extraire et comprendre le contenu  Ces trois phases constituent la vision par ordinateur, cependant pour un ordinateur cela se complexifie.</description>
     </item>
     
