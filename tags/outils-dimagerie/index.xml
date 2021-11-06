@@ -13,7 +13,7 @@
     
     
     <item>
-      <title>Introduction</title>
+      <title>Bases</title>
       <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/2/</link>
       <pubDate>Wed, 13 Oct 2021 14:00:00 +0600</pubDate>
       
@@ -39,7 +39,7 @@ où $M = \begin{pmatrix} a &amp;amp; b &amp;amp; c \\ d &amp;amp; e &amp;amp; f 
       
       <guid>https://Sdelpeuch.github.io/semestre9/imagerie/</guid>
       <description>Il s&amp;rsquo;agit d&amp;rsquo;une introduction aux différentes méthodes existantes pour traiter les images et les vidéos dans le contexte de la robotique.
- TD 1 TD 2 TD 3 TD 4 TD 5  </description>
+ TD 1 : Introduction TD 2 : Bases TD 3 TD 4 TD 5  </description>
     </item>
     
   </channel>
