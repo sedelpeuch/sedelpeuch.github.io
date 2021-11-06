@@ -280,6 +280,16 @@
 </ul>
 <h3 id="otsu-ims"><code>otsu &lt;ims&gt;</code></h3>
 <p>Écrire le programme <code>otsu.cpp</code></p>
+<ul>
+<li>ce programme permet de charger une image donnée en paramètre <code>&lt;ims&gt;</code>. L&rsquo;image est traitée comme une image en niveaux de gris</li>
+<li>réalise une binarisation en utilisant le calcul d&rsquo;un seuil automatique par la méthode d&rsquo;Otsu</li>
+<li>affiche l&rsquo;image binaire et la sauve dans un fichier nommé <code>otsu-th.png</code></li>
+<li>utilise la fonction <code>threshold</code>avec le paramètre <code>THRESH_BINARY + THRESH_OTSU</code>afin de réaliser la même opération. Afficher l&rsquo;image binaire et al sauver dans un fichier <code>otsu-th-ocv.png</code></li>
+<li>affiche une image de différence entre les deux méthodes</li>
+<li>affiche sur la sortie standard les valeurs de seuil trouvés par votre implémentation et celle d&rsquo;opencv. Comparer les valeurs</li>
+<li>visualiser les images résultats via pvisu</li>
+<li><strong>Remarque importante</strong> : en analysant l&rsquo;algorithme, les équations de la méthode d&rsquo;Otsu et les propriétés suivantes : $p_1 \mu_1 + p_2 \mu_2 = \mu_G$ et $p_1 + p_2 = 1$, une implémentation plus efficace peut être réalisée par rapport à une version naïve de l&rsquo;algorithme. Il est fortement conseillé de produire une telle implémentation.</li>
+</ul>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
