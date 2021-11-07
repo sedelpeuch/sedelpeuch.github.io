@@ -13,9 +13,18 @@
     
     
     <item>
+      <title>Descripteurs, Traitements morphologiques</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/4/</link>
+      <pubDate>Wed, 20 Oct 2021 14:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/4/</guid>
+      <description>Cours Calculs de descripteurs basés régions L&amp;rsquo;humain est capable de décrire les régions grâce à leur propriété, la machine n&amp;rsquo;est pas encore capable de telles descriptions. Par contre, elle est capable de calculer des propriétés mathématiques permettant de classifier les images ou les régions : descripteurs.</description>
+    </item>
+    
+    <item>
       <title>Filtrage et détection de contour</title>
       <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/</link>
-      <pubDate>Wed, 20 Oct 2021 14:00:00 +0600</pubDate>
+      <pubDate>Wed, 13 Oct 2021 14:00:00 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/</guid>
       <description>Cours Filtrage linéaire / non linéaire Filtres linéaires Produit de convolution : $I&amp;rsquo;(i,j) = \sum \limits_{(u,v) \in H} I(i+u, j + v) . H(u,v)$, $H$ centré sur $(i,j)$
@@ -25,7 +34,7 @@
     <item>
       <title>Bases</title>
       <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/2/</link>
-      <pubDate>Wed, 13 Oct 2021 14:00:00 +0600</pubDate>
+      <pubDate>Tue, 12 Oct 2021 08:00:00 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/2/</guid>
       <description>Cours Traitements classiques couleur $$\{(A,B,C)= M.(R,G,B)\} \rightarrow (A&amp;rsquo;, B&amp;rsquo;, C&amp;rsquo;) \rightarrow \{(R&amp;rsquo;G&amp;rsquo;B&amp;rsquo;) = M^{-1}.(A&amp;rsquo;,B&amp;rsquo;,C&amp;rsquo;)\}$$
@@ -35,7 +44,7 @@ où $M = \begin{pmatrix} a &amp;amp; b &amp;amp; c \\ d &amp;amp; e &amp;amp; f 
     <item>
       <title>Introduction</title>
       <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/</link>
-      <pubDate>Tue, 12 Oct 2021 08:00:00 +0600</pubDate>
+      <pubDate>Wed, 06 Oct 2021 14:00:00 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/</guid>
       <description>Cours Commençons par définir les différents termes que nous allons utiliser :
@@ -49,7 +58,7 @@ où $M = \begin{pmatrix} a &amp;amp; b &amp;amp; c \\ d &amp;amp; e &amp;amp; f 
       
       <guid>https://Sdelpeuch.github.io/semestre9/imagerie/</guid>
       <description>Il s&amp;rsquo;agit d&amp;rsquo;une introduction aux différentes méthodes existantes pour traiter les images et les vidéos dans le contexte de la robotique.
- TD 1 : Introduction TD 2 : Bases TD 3 TD 4 TD 5  </description>
+Cours intégrés  TD 1 : Introduction TD 2 : Bases TD 3 : Filtrage TD 4 : Descripteurs, Triatements Morphologiques TD 5  Quelques outils  Cheat sheet Opencv Cours de C++  </description>
     </item>
     
   </channel>

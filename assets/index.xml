@@ -33,13 +33,12 @@ Régime sinusoïdal, valeur efficace $X = (\dfrac{1}{T}\int \limits_0^\infty x^2
     </item>
     
     <item>
-      <title>Filtrage et détection de contour</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/</link>
+      <title>Descripteurs, Traitements morphologiques</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/4/</link>
       <pubDate>Wed, 20 Oct 2021 14:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/</guid>
-      <description>Cours Filtrage linéaire / non linéaire Filtres linéaires Produit de convolution : $I&amp;rsquo;(i,j) = \sum \limits_{(u,v) \in H} I(i+u, j + v) . H(u,v)$, $H$ centré sur $(i,j)$
- H : représente la fonction à appliquer (Box, Gaussienne, Laplacien) Efficacité : utiliser des coefficients entiers + un paramètre de normalisation Filtre Gaussien : influence des voisins plus ou moins proche, $\sigma$ et taille du support: contrôle de filtrage  Filtres non linéaires Filtre médian : $I&amp;rsquo;(i,j) = median\{I(i+u, j+v) \| (u,v) \in H\}$, $H$ : voisinage autour de $(i,j)$.</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/4/</guid>
+      <description>Cours Calculs de descripteurs basés régions L&amp;rsquo;humain est capable de décrire les régions grâce à leur propriété, la machine n&amp;rsquo;est pas encore capable de telles descriptions. Par contre, elle est capable de calculer des propriétés mathématiques permettant de classifier les images ou les régions : descripteurs.</description>
     </item>
     
     <item>
@@ -53,13 +52,13 @@ Régime sinusoïdal, valeur efficace $X = (\dfrac{1}{T}\int \limits_0^\infty x^2
     </item>
     
     <item>
-      <title>Bases</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/2/</link>
+      <title>Filtrage et détection de contour</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/</link>
       <pubDate>Wed, 13 Oct 2021 14:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/2/</guid>
-      <description>Cours Traitements classiques couleur $$\{(A,B,C)= M.(R,G,B)\} \rightarrow (A&amp;rsquo;, B&amp;rsquo;, C&amp;rsquo;) \rightarrow \{(R&amp;rsquo;G&amp;rsquo;B&amp;rsquo;) = M^{-1}.(A&amp;rsquo;,B&amp;rsquo;,C&amp;rsquo;)\}$$
-où $M = \begin{pmatrix} a &amp;amp; b &amp;amp; c \\ d &amp;amp; e &amp;amp; f \\ g &amp;amp; h &amp;amp; i \end{pmatrix}$</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/</guid>
+      <description>Cours Filtrage linéaire / non linéaire Filtres linéaires Produit de convolution : $I&amp;rsquo;(i,j) = \sum \limits_{(u,v) \in H} I(i+u, j + v) . H(u,v)$, $H$ centré sur $(i,j)$
+ H : représente la fonction à appliquer (Box, Gaussienne, Laplacien) Efficacité : utiliser des coefficients entiers + un paramètre de normalisation Filtre Gaussien : influence des voisins plus ou moins proche, $\sigma$ et taille du support: contrôle de filtrage  Filtres non linéaires Filtre médian : $I&amp;rsquo;(i,j) = median\{I(i+u, j+v) \| (u,v) \in H\}$, $H$ : voisinage autour de $(i,j)$.</description>
     </item>
     
     <item>
@@ -72,13 +71,13 @@ où $M = \begin{pmatrix} a &amp;amp; b &amp;amp; c \\ d &amp;amp; e &amp;amp; f 
     </item>
     
     <item>
-      <title>Introduction</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/</link>
+      <title>Bases</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/2/</link>
       <pubDate>Tue, 12 Oct 2021 08:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/</guid>
-      <description>Cours Commençons par définir les différents termes que nous allons utiliser :
- Le traitement d&amp;rsquo;images : améliorer, transformer l&amp;rsquo;image L&amp;rsquo;Analyse d&amp;rsquo;image : extraire des informations de l&amp;rsquo;image Interprétation d&amp;rsquo;images : interpréter ces informations, extraire et comprendre le contenu  Ces trois phases constituent la vision par ordinateur, cependant pour un ordinateur cela se complexifie.</description>
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/2/</guid>
+      <description>Cours Traitements classiques couleur $$\{(A,B,C)= M.(R,G,B)\} \rightarrow (A&amp;rsquo;, B&amp;rsquo;, C&amp;rsquo;) \rightarrow \{(R&amp;rsquo;G&amp;rsquo;B&amp;rsquo;) = M^{-1}.(A&amp;rsquo;,B&amp;rsquo;,C&amp;rsquo;)\}$$
+où $M = \begin{pmatrix} a &amp;amp; b &amp;amp; c \\ d &amp;amp; e &amp;amp; f \\ g &amp;amp; h &amp;amp; i \end{pmatrix}$</description>
     </item>
     
     <item>
@@ -116,6 +115,16 @@ où $M = \begin{pmatrix} a &amp;amp; b &amp;amp; c \\ d &amp;amp; e &amp;amp; f 
       
       <guid>https://Sdelpeuch.github.io/assets/md/semestre9/reachy/1/</guid>
       <description>Résumé rapide d&amp;rsquo;une proposition de plan itératif par l&amp;rsquo;équipe sans notion de temps  V0 + V1 Intégration mécatronique et logicielle V2 + V3 Navigation (ajout de la stack navigation ROS classique puis des &amp;ldquo;astuces&amp;rdquo; pour gérer les problèmes comme les tables) V4 - V8 Interactions avec un humain (mise en place de détection des choses, des humains, de jeux etc)  Le plan semble bien mais (trop) ambitieux, il va être nécessaire de paralléliser des tâches pour avoir un prototype fonctionnel en décembre.</description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/</link>
+      <pubDate>Wed, 06 Oct 2021 14:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/</guid>
+      <description>Cours Commençons par définir les différents termes que nous allons utiliser :
+ Le traitement d&amp;rsquo;images : améliorer, transformer l&amp;rsquo;image L&amp;rsquo;Analyse d&amp;rsquo;image : extraire des informations de l&amp;rsquo;image Interprétation d&amp;rsquo;images : interpréter ces informations, extraire et comprendre le contenu  Ces trois phases constituent la vision par ordinateur, cependant pour un ordinateur cela se complexifie.</description>
     </item>
     
     <item>
