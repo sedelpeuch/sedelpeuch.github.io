@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>Bases</title>
+  <title>Filtrage et détection de contour</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -132,7 +132,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>Bases</h1>
+          <h1>Filtrage et détection de contour</h1>
           <p></p>
         </div>
       </div>
@@ -146,7 +146,7 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">Bases</h2>
+					<h2 class="post-title">Filtrage et détection de contour</h2>
 					<div class="post-meta">
 						<ul>
               <li><i class="ion-calendar"></i> October 20, 2021</li>
@@ -168,6 +168,123 @@
 					
 					<div class="post-content post-excerpt">
 						<h2 id="cours">Cours</h2>
+<h3 id="filtrage-linéaire--non-linéaire">Filtrage linéaire / non linéaire</h3>
+<h4 id="filtres-linéaires">Filtres linéaires</h4>
+<p><strong>Produit de convolution</strong> : $I&rsquo;(i,j) = \sum \limits_{(u,v) \in H} I(i+u, j + v) . H(u,v)$, $H$ centré sur $(i,j)$</p>
+<ul>
+<li><strong>H</strong> : représente la fonction à appliquer (Box, Gaussienne, Laplacien)</li>
+<li><strong>Efficacité</strong> : utiliser des coefficients entiers + un paramètre de normalisation</li>
+<li><strong>Filtre Gaussien</strong> : influence des voisins plus ou moins proche, $\sigma$ et taille du support: contrôle de filtrage</li>
+</ul>
+<h4 id="filtres-non-linéaires">Filtres non linéaires</h4>
+<p><strong>Filtre médian</strong> : $I&rsquo;(i,j) = median\{I(i+u, j+v) \| (u,v) \in H\}$, $H$ : voisinage autour de $(i,j)$. Débruitge et &ldquo;respect&rdquo; des principales structures. Élimination des points isolés et des lignes fines, préservation des contours en &ldquo;marche d&rsquo;escalier&rdquo; et lissage des coins.</p>
+<p><strong>Filtres min/max</strong> : $I&rsquo;(i,j) =  min \/ max \{I(i + u, j + v) \| (u,v) \in H \}$</p>
+<h3 id="filtre-bilatéral">Filtre bilatéral</h3>
+<p>Mélanger l&rsquo;influence sptiale et colorimétrique. Pour un pixel $p = (i,j) \in I$, un pixel $q = (u,v) \in V(p)$ $$I&rsquo;(p) = \dfrac{\sum \limits_{q \in V(p)} G_s(\|p-q\|). G_c(\|I(p) - I(q)\|).I(q)}{\sum \limits_{q \in V(p)} G_S(\|p-q\|).G_c(\|I(p) - I(q)\|)}$$</p>
+<p>$G_*(x) = \exp(-\dfrac{x^2}{2 \sigma^2}) \rightarrow [0,1]$ si, $x \rightarrow + \infty \Rightarrow G_* (x) \rightarrow 0$, si $x \rightarrow 0 \Rightarrow G_*(x) \rightarrow 1$</p>
+<p><strong>Interprétation</strong></p>
+<p>Si $G_S(.) = G_C(.) = 1$ alors $I&rsquo;(p) = \dfrac{\sum \limits_{q \in V(p)  I(q)}}{\sum \limits_{q \in V(p)^1}} = \dfrac{\sum \limits_{q \in V(p)} I(q)}{\#\{V(p)\}}$ c&rsquo;est à dire un filtre moyenneur</p>
+<ul>
+<li>$G_S(\|p-q \|) :$ <strong>pondération spatiale</strong>, un voisin proche spatialement contribue plus qu&rsquo;un éloigné</li>
+<li>$G_C(\|I(p) - I(q)):$ <strong>pondération colorimétrique</strong>, un voisin proche en valeur contribue plus qu&rsquo;un éloigné. La préservation des différentes intensités permet d&rsquo;indentifier les contours</li>
+</ul>
+<h3 id="nl-means">NL Means</h3>
+<p>Détection du contour par le passage à zéro de la dérivée seconde. Utilisation du <strong>laplacien</strong> : $\Delta f(x) = (\nabla^2 f)(x) = \partial^2_x f(x) = \partial_x(\partial_x f(x))$. Approximation discrète du Laplcien $$\Delta \Delta I(i,j) = \partial^2_i I(i,j) + \partial^2_j(i,j)$.</p>
+<h3 id="filtre-passe-bas--haut-2d">Filtre passe bas / haut 2D</h3>
+<p>C&rsquo;est un filtre idéal pour une fréquence de coupure $D$.</p>
+<p>$$ H_L(u,v) = \begin{cases} 1 \; \text{si} \; \sqrt{u^2 + v^2} \leq D \\ 0 \; \text{si} \; \sqrt{u^2 + v^2} &gt; D \end{cases} \quad H_H(u,v) = \begin{cases} 1 \; \text{si} \; \sqrt{u^2 + v^2} \leq D \\ 0 \; \text{si} \; \sqrt{u^2 + v^2} &gt; D \end{cases} $$</p>
+<ul>
+<li>
+<p>Plus $D$ est grand, plus on ne récupère que les contours et le bruit</p>
+</li>
+<li>
+<p>Plus $D$ est petit, plus on perd du signal utile (l&rsquo;image)</p>
+</li>
+<li>
+<p><strong>Filtre de Butterworth</strong> : $H_{LB}(u) = \dfrac{1}{1 + (\dfrac{u}{D})^{2n}} \quad H_{HB}(u) = \dfrac{1}{1 + (\dfrac{D}{u})^{2n}}$</p>
+</li>
+<li>
+<p><strong>Filtre Gaussien</strong> : $H_{LB}(u,v) = \dfrac{1}{2\pi\sigma}\exp(-\dfrac{u^2 + v^2}{2 \sigma^2}) \quad H_{HB}(u,v) = 1 - H_{LG}(u,v)$</p>
+</li>
+<li>
+<p><strong>Filtres rejet / passe bande</strong> : $H_{BR}(u,v) = \dfrac{1}{1+\dfrac{w \sqrt{u^2 + v^2}}{((u^2+v^2)-r^2)^{2n}}} \quad H_{BP}(u,v) = 1 - H_{BR}(u,v)$ avec $r$ le rayon et $w$ la largeur de la bande</p>
+</li>
+</ul>
+<h3 id="dérivées-premières-et-fonctions-discrètes">Dérivées premières et fonctions discrètes</h3>
+<p>Les contours impliquent des grandes valeurs de la dérivée $f&rsquo;(x)=\dfrac{df(x)}{dx}$ (Opérateurs du 1er ordre). L&rsquo;approximation des dérivées (pente) utilise des points de droite et de gauche. Plusieurs approximations sont possibles</p>
+<ul>
+<li>Différence à droite (forward) $\partial^+ f(u) = f(u+1) - f(u)$</li>
+<li>Différence à gauche (backward) $\partial^- f(u) = f(u) - f(u-1)$</li>
+<li>Différence centrée (moyenne) $\partial f(u) = \dfrac{f(u+1) - f(u-1)}{2}$</li>
+</ul>
+<p>Pour une image 2D discrète $I$, le gradient $\nabla I(i,j)$ localisé au point $(i,j)$ est le vecteur :</p>
+<ul>
+<li>$\nabla I(i,j) = [\partial_i I(i,j) \; \partial_j I(i,j)]^T$</li>
+<li>Magnitude du gradient (sa norme) $||\nabla I(i,j)||_2 = \sqrt{(\partial_i I(i,j))^2 + (\partial_j I(i,j))^2}$</li>
+<li>Direction du gradient : $\phi(I(i,j)) = \tan^{-1} (\dfrac{\partial_i I(i,j)}{\partial_j I(i,j)})$</li>
+</ul>
+<h3 id="différences-finies-par-convolution-et-moyenneur">Différences finies par convolution et moyenneur</h3>
+<ul>
+<li><strong>Différence à droite</strong> : $\partial^+ f(u) = f(u+1) - f(u)$ si $H^+ = [0 \; -1 \; 1]$</li>
+<li><strong>Différence centrée</strong> : $\partial f(u) = \dfrac{f(u+1) - f(u-1)}{2} \; H^+ = [ -1 \; 0 \; 1 ] \rightarrow \partial f(u) = f(u) \ast H$. Les différences finies sont <strong>sensibles au bruit</strong>. Le bruit peut être vue comme un point de contour, il faut donc coupler la différentiation avec un filtrage.</li>
+<li><strong>Détecteur de Prewitt</strong> : $H_h^P = \begin{pmatrix} 1 &amp; 0 &amp; -1 \\ 1 &amp; 0 &amp; -1 \\ 1 &amp; 0 &amp; -1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}_ v \otimes \begin{pmatrix} 1 &amp; 0 &amp; -1 \end{pmatrix}_ h \; H_v^P = \begin{pmatrix} 1 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ -1 &amp; -1 &amp; -1 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ -1\end{pmatrix}_v \otimes \begin{pmatrix} 1 &amp; 1 &amp; 1 \end{pmatrix}_h$</li>
+<li><strong>Détecteur de Sobel</strong> : $H_h^S = \begin{pmatrix} 1 &amp; 0 &amp; -1 \\ 2 &amp; 0 &amp; -2 \\ 1 &amp; 0 &amp; -1 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix}_ v \otimes \begin{pmatrix} 1 &amp; 0 &amp; -1 \end{pmatrix}_ h \; H_v^S = \begin{pmatrix} 1 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 0 \\ -1 &amp; -2 &amp; -1 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ -1\end{pmatrix}_v \otimes \begin{pmatrix} 1 &amp; 2 &amp; 1 \end{pmatrix}_h$</li>
+</ul>
+<h3 id="autres-approches--dérivées-secondes">Autres approches : dérivées secondes</h3>
+<p>Détection du contour par le passage à zéro de la dérivée seconde. Pour cela on utilise le laplacien $\Delta f(x) = (\nabla^2 f)(x) = \partial^2_x f(x) = \partial_x(\partial_x f(x))$. Son approximation discrète est $\Delta I(i,j) = \partial^2_i I(i,j) + \partial^2_j I(i,j)$.</p>
+<h3 id="amélioration--filtre-passe-bas">Amélioration : filtre passe bas</h3>
+<p>L&rsquo;idée est de filter l&rsquo;image par une Gaussienne $G_\sigma$ de largeur $\sigma$. Le Laplacien de $I$ filtré par $G_\sigma$. Le Laplacien de $I$ filtré par $G_\sigma$ devient $I \times G_\sigma \times \Delta = I \times (\Delta \times G_\sigma) = I \times \Delta G_\sigma$, cela revient à convoluer directement $I$ avec le Laplacien de $G_\sigma$ (**LoG**). La convolution avec une Gaussienne large rend l&rsquo;image floue et les contours sont perdus.</p>
+<p>** Schéma classique d&rsquo;extraction de contours** :</p>
+<ul>
+<li>calculer le gradient ($\nabla$) ou le Laplacien ($\Delta$)</li>
+<li>localiser les maxima locaux de la norme du gradient ou le passage à zéro du Laplacien</li>
+<li>un seuillage permet d&rsquo;avoir la carte binaire de contour mais il y a un risque de déconnexion des contours (améliorable via des algorithmes de re-chaînage)</li>
+<li>utilisation des contours dans d&rsquo;autres applications</li>
+</ul>
+<h2 id="mise-en-pratique">Mise en pratique</h2>
+<h3 id="median-filter-r-ims-imd"><code>median-filter &lt;r&gt; &lt;ims&gt; &lt;imd&gt;</code></h3>
+<p>Écrire le programme <code>median-filter.cpp</code></p>
+<ul>
+<li>ce programme permet de charger une image donnée en paramètre <code>&lt;ims&gt;</code></li>
+<li>l&rsquo;image source est considérée comme une image en niveaux de gris</li>
+<li>le programme réalise le filtrage médian où la fenêtre de recherche de taille $(2r + 1 \times 2 r +1)$ est déterminée par le paramètre <code>&lt;r&gt;</code></li>
+<li>sauver le résultat dans l&rsquo;image <code>&lt;imd&gt;</code></li>
+<li>comparer avec la fonction <code>medianBlur</code></li>
+<li>visualiser avec pvisu les différents résultats</li>
+</ul>
+<h3 id="bilateral-sigma_s-sigma_g-ims-imd"><code>bilateral &lt;sigma_s&gt; &lt;sigma_g&gt; &lt;ims&gt; &lt;imd&gt;</code></h3>
+<p>Éviter le programme <code>bilateral.cpp</code></p>
+<ul>
+<li>ce programme permet de charger une image donnée en paramètre <code>&lt;ims&gt;</code></li>
+<li>l&rsquo;image source est considérée comme une image en niveaux de gris</li>
+<li>le programme réalise le filtrage bilatéral</li>
+<li>le paramètre <code>&lt;sigma_g&gt;</code> permet de calculer la Gaussienne pour la pondération sur les intensités et ̀&lt;sigma_s&gt;` celle pour la pondération des distances. On pourra pré-calculer ces coefficients et seuiller celle sur les distances afin de déterminer la taille du voisinage : $G_{\sigma_s}(x) = \exp(-x^2 / 2 \sigma^2_s) \leq s$, par exemple $s=0.1$</li>
+<li>le programme sauve l&rsquo;image ̀<imd>`</li>
+<li>comparer les résultats avec la fonction ̀bilateralFilter`</li>
+<li>visualiser avec pvisu les différents résultats</li>
+</ul>
+<h3 id="nl-means-sigma-ims-imd"><code>nl-means &lt;sigma&gt; &lt;ims&gt; &lt;imd&gt;</code></h3>
+<p>Écrire le programme <code>nl-means.cpp</code></p>
+<ul>
+<li>ce programme permet de charger une image donnée en paramètre ̀<ims>̀</li>
+<li>l&rsquo;image source est considérée comme une image en niveaux de gris</li>
+<li>le programme réalise le filtrage par moyenne non locales</li>
+<li>le paramètre ̀<sigma>`permet de calculer les poids associés aux patchs</li>
+<li>les autreus donnent des paramètres empiriques : une fenêtre de recherche de taille $11 \times 11$ et des patchs $7 \times 7$</li>
+<li>le programme sauve l&rsquo;image ̀<imd>`</li>
+<li>visualiser avec pvisu les différents résultats</li>
+</ul>
+<h3 id="fourier-ims-freq"><code>fourier &lt;ims&gt; &lt;freq&gt;</code></h3>
+<p>Écrire le programme <code>fourrier.cpp</code></p>
+<ul>
+<li>ce programme permet de charger une image donnée en paramètre ̀<ims>`</li>
+<li>le programme réalise la transformée de Fourier directe (fonction <code>dft</code>)</li>
+<li>affiche le spectre d&rsquo;amplitude et de phase (centrés) et la sauve dans les fichiers <code>magnitude.png</code> et <code>phase.png</code></li>
+<li>le programme réaliser un filtrage dans le domaine de Foourier et annule (de manière symétrique) la fréquence <code>&lt;freq&gt;</code> donnée en paramètre</li>
+<li>sauve le spectre d&rsquo;amplitude modifié dans un fichier ̀magnitude-modify.png` afin d&rsquo;observer l&rsquo;annulation des fréquences</li>
+<li>le programme réalise la transformée de Fourier inverse et sauve le résultat dans le fichier <code>inverse.png</code></li>
+<li>visualiser avec pvisu les différents résultats</li>
+</ul>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
@@ -274,9 +391,9 @@ MathJax.Hub.Queue(function() {
     
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/">Bases</a></h4>
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/">Filtrage et détection de contour</a></h4>
         <h5>[Outils d&#39;imagerie]</h5>
-        <p>Cours  MathJax.Hub.Config({ tex2jax: { inlineMath: …</p>
+        <p>Cours Filtrage linéaire / non linéaire Filtres …</p>
       </div>
     </div>
     

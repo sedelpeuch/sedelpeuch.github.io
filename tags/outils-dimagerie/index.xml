@@ -13,12 +13,13 @@
     
     
     <item>
-      <title>Bases</title>
+      <title>Filtrage et détection de contour</title>
       <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/</link>
       <pubDate>Wed, 20 Oct 2021 14:00:00 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/</guid>
-      <description>Cours  MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;]], displayMath: [[&#39;$$&#39;,&#39;$$&#39;]], processEscapes: true, processEnvironments: true, skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;], TeX: { equationNumbers: { autoNumber: &#34;AMS&#34; }, extensions: [&#34;AMSmath.js&#34;, &#34;AMSsymbols.js&#34;] } } }); MathJax.</description>
+      <description>Cours Filtrage linéaire / non linéaire Filtres linéaires Produit de convolution : $I&amp;rsquo;(i,j) = \sum \limits_{(u,v) \in H} I(i+u, j + v) . H(u,v)$, $H$ centré sur $(i,j)$
+ H : représente la fonction à appliquer (Box, Gaussienne, Laplacien) Efficacité : utiliser des coefficients entiers + un paramètre de normalisation Filtre Gaussien : influence des voisins plus ou moins proche, $\sigma$ et taille du support: contrôle de filtrage  Filtres non linéaires Filtre médian : $I&amp;rsquo;(i,j) = median\{I(i+u, j+v) \| (u,v) \in H\}$, $H$ : voisinage autour de $(i,j)$.</description>
     </item>
     
     <item>
