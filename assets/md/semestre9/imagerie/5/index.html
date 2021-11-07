@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-Us"><head>
   <meta charset="utf-8">
-  <title>&lt;i class=&#34;fas fa-server fa-2x&#34;&gt;&lt;/i&gt; Introduction aux réseaux - TD1</title>
+  <title>Points d&#39;intérêts</title>
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -127,12 +127,12 @@
   </div>
 </header>
 
-<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/');">
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/java.jpg');">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="block">
-          <h1>&lt;i class=&#34;fas fa-server fa-2x&#34;&gt;&lt;/i&gt; Introduction aux réseaux - TD1</h1>
+          <h1>Points d&#39;intérêts</h1>
           <p></p>
         </div>
       </div>
@@ -146,10 +146,10 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="post post-single">
-					<h2 class="post-title">&lt;i class=&#34;fas fa-server fa-2x&#34;&gt;&lt;/i&gt; Introduction aux réseaux - TD1</h2>
+					<h2 class="post-title">Points d&#39;intérêts</h2>
 					<div class="post-meta">
 						<ul>
-              <li><i class="ion-calendar"></i> January 1, 0001</li>
+              <li><i class="ion-calendar"></i> November 7, 2021</li>
               
               
               
@@ -158,6 +158,8 @@
               
               <li><i class="ion-pricetags"></i> 
                 
+                <a href="/tags/outils%20d%27imagerie">Outils d&#39;imagerie</a>
+								
               </li>
             </ul>
 					</div>
@@ -165,76 +167,109 @@
 					
 					
 					<div class="post-content post-excerpt">
-						<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<h2 id="exercice-1">Exercice 1</h2>
-<p>On considère le transfert d&rsquo;un fichier de 1 Mo entre deux stations</p>
+						<h2 id="cours">Cours</h2>
+<h3 id="comment-décrire-les-points-dintérêts-">Comment décrire les points d&rsquo;intérêts ?</h3>
 <ul>
-<li>Temps de propagation : calculé avec la vitesse de propagation dans le câble
-(le signal se propage et prend un certain temps pour arriver)</li>
-<li>Temps d&rsquo;émission d&rsquo;une trame : en lien avec le débit de transmission et
-proportionnel à la taille de la trame</li>
-<li>Acquittement = accusé de réception, générallement un signal positif</li>
-<li>Débit utile : combien de données réelles ont été transmises pendant un
-intervalle de temps</li>
+<li><strong>Descripteur de type patch</strong> (liste des intensités) autour du point d&rsquo;intérêt. Mais, un patch n&rsquo;est pas robuste à la rotation, au changement d&rsquo;échelle, d&rsquo;illumination ou de point de vue. Sauf si on l&rsquo;impose.</li>
+<li><strong>Rotation</strong> : tourner le patch dans l&rsquo;axe d&rsquo;orientation principale</li>
+<li><strong>Échelle</strong> : trouver la bonne échelle grâce à la pyramide LoG et remettre le patch dans une taille nomralisée</li>
+<li><strong>Illumination</strong> : normaliser le patch</li>
+<li><strong>Point de vue</strong> : considérer que le patch a suffit une transformation affine, trouver les orientations et transformer le patch</li>
 </ul>
-<p>Attention aux unités bits/octes. On note F la taille du fichier</p>
-<ol>
-<li>Réseau en étoile :</li>
-</ol>
+<h3 id="descripteur-à-base-dhistogrammes">Descripteur à base d&rsquo;histogrammes</h3>
+<p>Calculer l&rsquo;histogramme des orientations des gradients d&rsquo;intensités. Le pic dans l&rsquo;histogramme donne l&rsquo;orientation princiaple. Ramener le patch vers l&rsquo;orientation principale, compensation de l&rsquo;orientation.</p>
+<h3 id="appariement-de-points">Appariement de points</h3>
+<p>On a les points d&rsquo;intérêts, les descripteurs associés : comment les matcher ? Nous pouvons utiliser la méthode d&rsquo;appariement des points. Soit un descripteur $f_1$ dans $I_1$, trouver le meilleur correspondant $f_2 \in I_2$.</p>
 <ul>
-<li>propagation $T_p = \text{distance}/\text{vitesse} = D/V = 0.1ms$</li>
-<li>émission : $T_e = \text{longueur trame}/\text{débit} = F/C = 125 s$</li>
-<li>débit : $D_u = \text{taille}/\text{temps}=64 Kbits/s$</li>
+<li>Définir la distance $d(f_1, f_2)$</li>
+<li>Tester tous les $f \in I_2$ (ou dans un voisinage) et sélecttionner celui qui minimisent $d$ ou $d(f_1,f_2) \leq S$, $S$ un seuil.</li>
 </ul>
-<ol start="2">
-<li>Réseau en bus : On divise le fichier global en trames, composées de $O=80
-bits$ d&rsquo;overhead et $L$ bits de données utiles. Une fois la trame reçue,
-l&rsquo;autre machine renvoie une trame d&rsquo;acquittement $(A=88 bits)$.</li>
-</ol>
+<p>Cependant une bonne distance peut donner un mauvais appariement. Une autre approche est de</p>
 <ul>
-<li>émission : $T_e = (L+O)/C$</li>
-<li>propagation : $T_p = D/V$</li>
-<li>acquittement : $T_{ack}=A/C$</li>
-<li>$T_{\text{trame}}=T_e + T_p + T_{ack} + T_p = T_e + T_{ack} + 2T_p$.</li>
-<li>nombre de trames : $n=ceil(F/L)$</li>
-<li>$T_tot = n.T_{\text{trame}}$.</li>
-<li>$D_u = F/T_{tot} = L/T_{\text{trame}}$.</li>
+<li>calculer $r = \dfrac{d(f_1,f_2)}{d(f_1, f_2&rsquo;)}$ où $f_2'$ est le second plus proche</li>
+<li>des valeurs faibles de $r$ signifie des matchs ambiguës donc à rejeter</li>
 </ul>
-<ol start="3">
-<li>Réseau en anneau : Pour l&rsquo;acquittement, on renvoie la trame en modifiant 1
-bit spécifique. Chaque répéteur introduit un retard de 1 temps-bit. Il faudra
-considérer 2 $T_p$ car la trame va de l&rsquo;émetteur au récepteur, puis du
-récepteur à l&rsquo;émetteur</li>
-</ol>
+<h3 id="estimation-dhomographie-avec-ransac">Estimation d&rsquo;homographie avec RANSAC</h3>
+<p>Soit $p_2 \propto H_{p_1}$ avec Ĥ^la matrice de transformation (projective) $$p_1 = \begin{pmatrix} x_1 \\ y_1 \\ 1 \end{pmatrix} \; p_2 = \begin{pmatrix} x_2 \\ y_2 \\ 1 \end{pmatrix} \; H= \begin{pmatrix} H_1 &amp; H_2 &amp; H_3 \\ H_4 &amp; H_5 &amp; H_6 \\ H_7 &amp; H_8 &amp; H_9 \end{pmatrix} $$</p>
+<p>Utiliser RANSAC : choisir $k$ un nombre d&rsquo;itérations tant que $k &gt; 0$ :</p>
 <ul>
-<li>émission : $T_e = L/C$</li>
-<li>propagation : $T_p = D/V$</li>
-<li>retard : $T_{\text{retard}} = N * t_{bit} = N/C$</li>
-<li>$T_{\text{trame}} = T_e + T_p$.</li>
-<li>$T_{\text{aller}}=T_{\text{retour}}= T_e + T_p + T_{\text{retard}}/2$.</li>
-<li>Temps total pour la transmission d&rsquo;une trame
-$T_{\text{tot}_\text{trame}}=2(T_e +T_p)+T_{\text{retard}}$.</li>
-<li>$T_{tot}=ceil(F/(L-O))*T_{\text{tot}_\text{retard}}$.</li>
-<li>$D_u = F/T_{tot}$.</li>
+<li>sélectionner 4 points appariés aléatoirement</li>
+<li>calculer la matrice de transformation $H$ entre ces points</li>
+<li>construire l&rsquo;ensemble de inliers tel que $SSD(p_2, H_{curr}p_1) \leq S$</li>
+<li>si l&rsquo;erreur commise est inférieur aux autres $H$ trouvés $H=H_{textcurr}$</li>
+<li>stocker les inliers</li>
 </ul>
-<h2 id="exercice-2">Exercice 2</h2>
-<ol>
-<li>Il faut que $T_e &gt; RTT$ c&rsquo;est à dire $L/C &gt; 2D/V$ et donc $L &gt; 2 D
-\dfrac{C}{V}=500 bits$</li>
-<li>$L=2C\dfrac{D}{V}$ Soit on divise la distance par 10, soit on multiplie la
-longueur de la trame par 10</li>
-</ol>
-<p></script></p>
+<p>Le max des inliers est la solution du problème.</p>
+<h3 id="la-transformée-de-hough">La transformée de Hough</h3>
+<ul>
+<li>Soit $p = (x,y)$ différentes droites $(y=mx + b)$ peuvent passer par $p$. Ceci est équivalent à avoir différents couples $(m,b)$</li>
+<li>La transformée de Hough permet de trouver les lignes qui intersectent le plus de points possibles.</li>
+</ul>
+<p>L&rsquo;algorithme de Hough est le suivant : initialiser $H$ à zéro</p>
+<ul>
+<li>pour tout point de contour $\rho = (x,y)$ dans $I$
+<ul>
+<li>pour tout $\theta \in [\theta_{min}, \theta_{max}]$, calculer $\rho = x.\cos(\theta) + y.\sin(\theta)$ et $H(\rho, \theta) = H(\rho, \theta) + 1$</li>
+</ul>
+</li>
+<li>Trouver les $(\rho, \theta)$ où $H(\rho, \theta)$ est un maximum local</li>
+<li>La ligne détectée est donnée par $\rho = x.\cos(\theta) + y.\sin(\theta)$</li>
+</ul>
+<h3 id="détecteur-de-harris">Détecteur de Harris</h3>
+<p>$$\sum \limits_{x,y \in P} w(x,y)(u.I_x + v.I_y - u.v.I_y)^2 \equiv \begin{pmatrix} u &amp; v \end{pmatrix} M \begin{pmatrix} u \\ v \end{pmatrix}$$ avec $M = \sum \limits_{x,y \in P} w(x,y) \begin{pmatrix} I_x^2 &amp; I_x I_y \\ I_x I_y &amp; I_y^2 \end{pmatrix}$</p>
+<p>$M$ est symétrique donc décomposable en vecteur / valeur propres</p>
+<p>$$M = \begin{pmatrix} I^2_x &amp; I_x I_y \\ I_x I_y &amp; I^2_y \end{pmatrix} = \begin{pmatrix} A &amp; B \\ B &amp; C \end{pmatrix} \rightarrow \begin{pmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{pmatrix}$$</p>
+<ul>
+<li>Les valeurs propres $\lambda_1$ et $\lambda_2$ donnent des informations sur les courbures principales</li>
+<li>Les vecteurs propres donne des informations sur des directions de courbure principales</li>
+<li>Coefficient $R$ de Harris $R = \lambda_1\lambda_2 - k(\lambda_1 + \lambda_2)^2 = det(M) - k(trace(M))^2; k \in [0.04 0.15]$</li>
+<li>Interprétation de $R$ :
+<ul>
+<li>$R \geq 0$ : au voisinage d&rsquo;un coin</li>
+<li>$R &lt; 0$ : au voisinage d&rsquo;un contour</li>
+<li>$R = 0$ : dans une zone homogène</li>
+</ul>
+</li>
+<li>Harris est robuste à la rotation mais pas à l&rsquo;échelle</li>
+</ul>
+<h2 id="mise-en-pratique">Mise en pratique</h2>
+<h3 id="panorama-ims-name-1-ims-name-2"><code>panorama &lt;ims-name-1&gt; &lt;ims-name-2&gt;</code></h3>
+<p>Écrire le programme <code>panorama.cpp</code></p>
+<ul>
+<li>ce programme permet de charger deux images données en paramètre <code>&lt;ims-name-1&gt;</code> et <code>&lt;ims-name-2&gt;</code></li>
+<li>les images sources sont en couleur mais la plupart des traitements se font en niveaux de gris</li>
+<li>le programme permet de réaliser un panorama à partir des 2 images sources</li>
+<li>le programme affiche les étapes intermédiaires</li>
+<li>les étapes sont les suivantes :
+<ul>
+<li>détecter les points d&rsquo;intérêts avec les descripteurs SURF, afficher les descripteurs</li>
+<li>appariement des points d&rsquo;intérêts, via une méthode &ldquo;brute force&rdquo; et déterminer les good matches via par exemple un seullage. Afficher les appariements</li>
+<li>estimer l&rsquo;homographie $H$ via RANSAC, afficher l&rsquo;image déformée via l&rsquo;estimation</li>
+<li>construire et afficher le panorama final</li>
+</ul>
+</li>
+<li>regarder la documentation d&rsquo;opencv sur les <code>features2D</code></li>
+<li>certaines classes et fonctions peuvent être utiles</li>
+<li>il peut être nécessaire d&rsquo;inclure des éléments du module nonfree d&rsquo;opencv</li>
+</ul>
+<h3 id="hough-lines-ims-name-th-mag"><code>hough-lines &lt;ims-name&gt; &lt;th-mag&gt;</code></h3>
+<p>Écrire le programme <code>hough-lines.cpp</code></p>
+<ul>
+<li>ce programme permet de charger une image donnée en paramètre <code>&lt;ims-name&gt;</code></li>
+<li>l&rsquo;image est considérée en niveaux de gris (représentant les contours d&rsquo;une image)</li>
+<li>le programme permet de mettre en oeuvre la transformée de Hough</li>
+<li>le paramètre <code>&lt;th-mag&gt;</code> permet de seuiller les valeurs de l&rsquo;image en entrée et de ne pas considérer tous les pixels comme étant des pixels de contour dans le calcul de la transformée</li>
+<li>le programme afficher les étapes intermédiaires : l&rsquo;accumulateur de Hough, les lignes détectées, l&rsquo;image finale</li>
+<li>afin de ne pas considérer toutes les lignes détectées, on pourra trouver un moyen de seuiller l&rsquo;accumulateur de Hough afin d&rsquo;obtenir les maxima locaux de l&rsquo;accumulateur</li>
+</ul>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[','\]']],
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
     processEscapes: true,
     processEnvironments: true,
     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
@@ -242,16 +277,12 @@ MathJax.Hub.Config({
          extensions: ["AMSmath.js", "AMSsymbols.js"] }
   }
 });
-</script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    // Fix <code> tags after MathJax finishes running. This is a
-    // hack to overcome a shortcoming of Markdown. Discussion at
-    // https://github.com/mojombo/jekyll/issues/199
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
+
+MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for(i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+  }
 });
 </script>
 
