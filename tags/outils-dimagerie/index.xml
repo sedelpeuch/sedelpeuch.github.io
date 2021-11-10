@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>Classification d&#39;image</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/6/</link>
+      <pubDate>Sun, 07 Nov 2021 08:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/6/</guid>
+      <description>La classification d&amp;rsquo;image consiste à assigner un label (une catégorie) à une image. C&amp;rsquo;est l&amp;rsquo;un des problèmes fondamentaux en vision par ordinateur. La principale difficulté provient du fossé sémantique, c&amp;rsquo;est à dire transformer des données brutes (une matrice de nombres) en une interprétation du sens de l&amp;rsquo;image par l&amp;rsquo;ordinateur.</description>
+    </item>
+    
+    <item>
       <title>Points d&#39;intérêts</title>
       <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/5/</link>
       <pubDate>Sun, 07 Nov 2021 08:00:00 +0600</pubDate>
@@ -68,7 +77,7 @@ où $M = \begin{pmatrix} a &amp;amp; b &amp;amp; c \\ d &amp;amp; e &amp;amp; f 
       <guid>https://Sdelpeuch.github.io/semestre9/imagerie/</guid>
       <description>Il s&amp;rsquo;agit d&amp;rsquo;une introduction aux différentes méthodes existantes pour traiter les images et les vidéos dans le contexte de la robotique.
 Github pour les applications
-Cours intégrés  TD 1 : Introduction TD 2 : Bases TD 3 : Filtrage TD 4 : Descripteurs, Traitements Morphologiques TD 5 : Points d&amp;rsquo;intérêts  Quelques outils  Fichier .</description>
+Cours intégrés  Cours 1 : Introduction Cours 2 : Bases Cours 3 : Filtrage Cours 4 : Descripteurs, Traitements Morphologiques Cours 5 : Points d&amp;rsquo;intérêts  Quelques outils  Fichier .</description>
     </item>
     
   </channel>
