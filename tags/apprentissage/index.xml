@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apprentissage on Semestre 9</title>
+    <link>https://Sdelpeuch.github.io/tags/apprentissage/</link>
+    <description>Recent content in Apprentissage on Semestre 9</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-Us</language>
+    <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
+    <lastBuildDate>Tue, 16 Nov 2021 10:00:00 +0600</lastBuildDate>
+    
+	<atom:link href="https://Sdelpeuch.github.io/tags/apprentissage/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Apprentissage Sensorimoteur</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/autonomous/1/</link>
+      <pubDate>Tue, 16 Nov 2021 10:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/autonomous/1/</guid>
+      <description>Que signifie apprendre à partir des informations sensorielles et des moteurs ? L&amp;rsquo;objectif de cette partie sera d&amp;rsquo;apprendre des catégories, des concepts et des règles permettant d&amp;rsquo;évoluer en autonomie.
+Neurones et modèles de neurones Apprendre c&amp;rsquo;est augmenter l&amp;rsquo;efficacité synaptique.</description>
+    </item>
+    
+    <item>
+      <title>Apprentissage pour une robotique autonomme Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre9/autonomous/</link>
+      <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre9/autonomous/</guid>
+      <description>En informatique, l&amp;rsquo;apprentissage automatique a défini un ensemble de techniques statistiques éprouvées que l&amp;rsquo;on peut dans une certaine mesure rapprocher de formes d&amp;rsquo;apprentissage dans le vivant. Cependant, leur mise en oeuvre en robotique autonome met en lumière un certain nombre de faiblesses pour assurer l&amp;rsquo;autonomie de l&amp;rsquo;agent.</description>
+    </item>
+    
+  </channel>
+</rss>

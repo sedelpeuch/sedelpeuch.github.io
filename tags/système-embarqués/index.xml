@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Mon, 11 Oct 2021 14:00:00 +0600</lastBuildDate>
+    <lastBuildDate>Tue, 16 Nov 2021 14:00:00 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/tags/syst%C3%A8me-embarqu%C3%A9s/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bus de communication</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/se/2/</link>
+      <pubDate>Tue, 16 Nov 2021 14:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/se/2/</guid>
+      <description>Les bus de communication standard sont nés de la nécessité de faire communiquer ensemble MCU et IC, nous allons pendant ce cours en présenter quelques-uns.
+Avant de parler des bus, voyons comment fonctionnent les lignes électroniques physiques.</description>
+    </item>
     
     <item>
       <title>Architecture</title>
@@ -19,15 +29,6 @@
       
       <guid>https://Sdelpeuch.github.io/assets/md/semestre9/se/1/</guid>
       <description>Programmer un microcontrolleur Un microcontrolleur peut posséder plusieurs types de mémoire : la RAM (Volatile, rapide), la flash (ROM persistant, lent) et l&amp;rsquo;EEEPROM. La mémoire est divisé en plusieurs registres permettant de communiquer des ordres avec le processeur.</description>
-    </item>
-    
-    <item>
-      <title>Bus de communication</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/se/2/</link>
-      <pubDate>Mon, 11 Oct 2021 14:00:00 +0600</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/se/2/</guid>
-      <description></description>
     </item>
     
   </channel>

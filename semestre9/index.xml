@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>Apprentissage pour une robotique autonomme Page d&#39;accueil</title>
+      <link>https://Sdelpeuch.github.io/semestre9/autonomous/</link>
+      <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/semestre9/autonomous/</guid>
+      <description>En informatique, l&amp;rsquo;apprentissage automatique a défini un ensemble de techniques statistiques éprouvées que l&amp;rsquo;on peut dans une certaine mesure rapprocher de formes d&amp;rsquo;apprentissage dans le vivant. Cependant, leur mise en oeuvre en robotique autonome met en lumière un certain nombre de faiblesses pour assurer l&amp;rsquo;autonomie de l&amp;rsquo;agent.</description>
+    </item>
+    
+    <item>
       <title>Autonomie Énergétique Page d&#39;accueil</title>
       <link>https://Sdelpeuch.github.io/semestre9/energie/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
@@ -90,7 +99,7 @@ Lien du youtrack</description>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/semestre9/se/</guid>
-      <description></description>
+      <description> Cours 1 Cours 2  </description>
     </item>
     
   </channel>
