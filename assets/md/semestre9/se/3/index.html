@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en-Us"><head>
+  <meta charset="utf-8">
+  <title>Interruptions et ordonnancement</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Semestre 9 de l&#39;ENSEIRB-MATEMECA">
+  <meta name="author" content="Sébastien">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/Ionicons/css/ionicons.min.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/magnific-popup/magnific-popup.css">
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/plugins/slick/slick.css">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://Sdelpeuch.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="https://Sdelpeuch.github.io/images/favicon.png" type="image/x-icon">
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+
+<header class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        
+        <nav class="navbar">
+          
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img src="https://Sdelpeuch.github.io/images/telechargement.png" alt="Semestre 9" width="65px" class="img-responsive">
+            </a>
+          </div>
+          
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+              
+              
+              <li><a href="/">Accueil</a></li>
+              
+              
+              
+              <li><a href="/ronoco">Ronoco (ROS no code)</a></li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Semestre 9 <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre9/autonomous">Apprentissage</a></li>
+                  
+                  <li><a href="/semestre9/controle">Contrôle commande</a></li>
+                  
+                  <li><a href="/semestre9/interaction">IHR</a></li>
+                  
+                  <li><a href="/semestre9/maths">Mathématiques</a></li>
+                  
+                  <li><a href="/semestre9/modelisation">Modélisation</a></li>
+                  
+                  <li><a href="/semestre9/se">Mécatronique</a></li>
+                  
+                  <li><a href="/semestre9/imagerie">Outils d&#39;imagerie</a></li>
+                  
+                  <li><a href="/semestre9/reachy">Reachy</a></li>
+                  
+                  <li><a href="/semestre9/energie">Énergétique</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">ENSEIRB-MATMECA <span class="ion-ios-arrow-down"></span></a>
+                <ul class="dropdown-menu">
+                  
+                  <li><a href="/semestre5/semestre_5">Semestre 5</a></li>
+                  
+                  <li><a href="/semestre6/semestre_6">Semestre 6</a></li>
+                  
+                  <li><a href="/semestre7/semestre_7">Semestre 7</a></li>
+                  
+                  <li><a href="/semestre8/semestre_8">Semestre 8</a></li>
+                  
+                </ul>
+              </li>
+              
+              
+              
+              <li><a href="/cpbx">CPBx</a></li>
+              
+              
+              
+              <li><a href="/contact">Contact</a></li>
+              
+              
+
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-title bg-2" style="background-image: url('https://Sdelpeuch.github.io/images/banner/data.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Interruptions et ordonnancement</h1>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="post post-single">
+					<h2 class="post-title">Interruptions et ordonnancement</h2>
+					<div class="post-meta">
+						<ul>
+              <li><i class="ion-calendar"></i> November 23, 2021</li>
+              
+              
+              
+              
+              
+              
+              <li><i class="ion-pricetags"></i> 
+                
+                <a href="/tags/syst%c3%a8me%20embarqu%c3%a9s">Système embarqués</a>
+								
+              </li>
+            </ul>
+					</div>
+					
+					
+					
+					<div class="post-content post-excerpt">
+						<h2 id="problème">Problème</h2>
+<p>Considérons le code suivant</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">uart_send</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>str) {
+    <span style="color:#66d9ef">while</span> (<span style="color:#f92672">*</span>str <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;\0&#39;</span>) {
+        <span style="color:#75715e">// Waits to be ready to send next byte
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">while</span> (UCSR0A <span style="color:#f92672">&amp;</span> _BV(UDRE0));
+        <span style="color:#75715e">// Sends the next byte
+</span><span style="color:#75715e"></span>        UDRE0 <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(str<span style="color:#f92672">++</span>);
+    }
+}
+</code></pre></div><p>Ce code fonctionne correctement mais il consomme beaucoup de ressources.</p>
+<h2 id="ordonnancement">Ordonnancement</h2>
+<h3 id="comment-réaliser-différents-tâches-simultanéments">Comment réaliser différents tâches simultanéments</h3>
+<p>Le problème peut être résolu en utilisant un ordonnanceur, c&rsquo;est-à-dire un système qui permet de définir l&rsquo;ordre d&rsquo;exécution des tâches. Cependant il est aussi possible de réaliser des tâches simultanément en utilisant de l&rsquo;ordonnancement coopératif.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    setup();
+
+    <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+        usart_tick();
+        leds_tick();
+    }
+}
+</code></pre></div><p>Ici <code>usart_tick()</code> et <code>leds_tick()</code> sont des méthodes coopératives, elles effectueront des calculs et rendront l&rsquo;exécution en retournant rapidement les données. Voici une façon d&rsquo;organiser le code précédent en utilisant l&rsquo;ordonnancement.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> buffer[<span style="color:#ae81ff">128</span>];
+<span style="color:#66d9ef">static</span> size_t position <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">static</span> size_t length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">uart_send</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>str) {
+    position <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    length <span style="color:#f92672">=</span> strlen(str);
+    memcpy(buffer, str, length);
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">uart_tick</span>() {
+    <span style="color:#66d9ef">if</span> (position <span style="color:#f92672">&lt;</span> length) {
+        <span style="color:#66d9ef">if</span> (UCSR0A <span style="color:#f92672">&amp;</span> _BV(UDRE0)) {
+            UDRE0 <span style="color:#f92672">=</span> buffer[position];
+            position <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+        }
+    }
+}
+</code></pre></div><h2 id="polling-et-interuptions">Polling et interuptions</h2>
+<p>Dans le premier exemple, nous attendions activement que le buffer soit disponible avec une boucle, c&rsquo;est ce que nous appelons <code>polling</code></p>
+<p>Ensuite, nous avons introduit le concept simple de l&rsquo;ordonnancement manuel, mais le microcontrôleur passera toujours beaucoup de temps à exécuter des tests qui sont pour la plupart faux.</p>
+<p>Une caractéristique des microcontrôleurs peut nous aider ici : les interruptions. Il s&rsquo;agit simplement de routines exécutées lorsqu&rsquo;un événement quelconque se produit. Il suffit alors au processeur de &ldquo;sauter&rdquo; automatiquement à une méthode donnée.</p>
+<p>Le code binaire que nous téléchargeons commence par une table de vecteurs d&rsquo;interruption. Chaque entrée de cette table correspond à un type d&rsquo;interruption et donne une adresse cible pour la routine à exécuter.</p>
+<center>
+	<img src="/assets/images/semestre9/se/6.png" width="30%">
+</center>
+<h2 id="ring-buffer">Ring buffer</h2>
+<p>Pour gérer l&rsquo;envoi et la réception de données à l&rsquo;aide d&rsquo;un bus comme l&rsquo;UART, nous pouvons utiliser un buffer en anneau, permettant de stocker les données qui ne sont pas encore traitées.</p>
+<p>Il peut s&rsquo;agir soit de données TX qui n&rsquo;ont pas encore été envoyées, soit de données RX qui n&rsquo;ont pas été lues par le code.</p>
+<center>
+	<img src="/assets/images/semestre9/se/7.png" width="30%">
+</center>
+<p>Le principe est de stocker un tableau en mémoire avec deux index, le premier étant le prochain élément à lire, et le second le prochain élément à écrire.</p>
+<p>Lorsque les index sont incrémentés, ils débordent sur la longueur du buffer (en revenant au début lorsqu&rsquo;ils atteignent la fin).</p>
+<p>Nous pouvons vérifier s&rsquo;il y a des données à lire en comparant les index.</p>
+
+					</div>
+					<div class="post-comments">
+						
+					</div>
+				</div>
+			</div>
+      <div class="col-md-4">
+        <aside class="sidebar">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="widget widget-latest-post">
+    <h4 class="widget-title">Derniers cours</h4>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/3/">Interruptions et ordonnancement</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Problème Considérons le code suivant
+void …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/7/">Deep Learning</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>MathJax.Hub.Config({ tex2jax: { inlineMath: …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/2/">Bus de communication</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Les bus de communication standard sont nés de la …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/autonomous/1/">Apprentissage Sensorimoteur</a></h4>
+        <h5>[Apprentissage]</h5>
+        <p>Que signifie apprendre à partir des informations …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/6/">Classification d&#39;image</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>La classification d&rsquo;image consiste à …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/2/">Modèle géométrique</a></h4>
+        <h5>[Modélisation]</h5>
+        <p>Modèle géométrique direct Connaître le modèle …</p>
+      </div>
+    </div>
+    
+  </div>
+</aside>
+
+
+      </div>
+		</div>
+	</div>
+</section>
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+            
+					</ul>
+				</div>
+				<p class="copyright">Copyright © 2020 <a href="https://themefisher.com">Themefisher</a> All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&amp;libraries=places"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://Sdelpeuch.github.io/plugins/google-map/gmap.js"></script>
+
+
+
+
+<script src="https://Sdelpeuch.github.io/js/script.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-main btn-solid-border">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+
+</html>

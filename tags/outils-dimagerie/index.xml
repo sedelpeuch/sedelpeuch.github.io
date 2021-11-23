@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Wed, 10 Nov 2021 14:00:00 +0600</lastBuildDate>
+    <lastBuildDate>Wed, 17 Nov 2021 14:00:00 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/tags/outils-dimagerie/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deep Learning</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/7/</link>
+      <pubDate>Wed, 17 Nov 2021 14:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/7/</guid>
+      <description>MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;]], displayMath: [[&#39;$$&#39;,&#39;$$&#39;]], processEscapes: true, processEnvironments: true, skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;], TeX: { equationNumbers: { autoNumber: &#34;AMS&#34; }, extensions: [&#34;AMSmath.js&#34;, &#34;AMSsymbols.js&#34;] } } }); MathJax.</description>
+    </item>
     
     <item>
       <title>Classification d&#39;image</title>
@@ -18,15 +27,6 @@
       <pubDate>Wed, 10 Nov 2021 14:00:00 +0600</pubDate>
       
       <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/6/</guid>
-      <description>La classification d&amp;rsquo;image consiste à assigner un label (une catégorie) à une image. C&amp;rsquo;est l&amp;rsquo;un des problèmes fondamentaux en vision par ordinateur. La principale difficulté provient du fossé sémantique, c&amp;rsquo;est à dire transformer des données brutes (une matrice de nombres) en une interprétation du sens de l&amp;rsquo;image par l&amp;rsquo;ordinateur.</description>
-    </item>
-    
-    <item>
-      <title>Classification d&#39;image</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/7/</link>
-      <pubDate>Wed, 10 Nov 2021 14:00:00 +0600</pubDate>
-      
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/7/</guid>
       <description>La classification d&amp;rsquo;image consiste à assigner un label (une catégorie) à une image. C&amp;rsquo;est l&amp;rsquo;un des problèmes fondamentaux en vision par ordinateur. La principale difficulté provient du fossé sémantique, c&amp;rsquo;est à dire transformer des données brutes (une matrice de nombres) en une interprétation du sens de l&amp;rsquo;image par l&amp;rsquo;ordinateur.</description>
     </item>
     

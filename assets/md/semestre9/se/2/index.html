@@ -181,6 +181,22 @@
 <p>Lorsqu&rsquo;une ligne est une entrée en haute impédance et que rien n&rsquo;est branché (la ligne est flottante), n&rsquo;importe quelle tension peut être lue à cause de toutes les interférences. Si l&rsquo;on veut imposer un niveau logique par défaut il est nécessaire d&rsquo;utiliser les résistances dites pull-up/down.</p>
 <h2 id="uart">UART</h2>
 <p>UART, souvent appelé &ldquo;série&rdquo; est l&rsquo;un des bus de communication les plus connus, c&rsquo;est une bus asynchrone ce qui implique qu&rsquo;il existe une fréquence de communication appelée baudrate. Les bytes sont transmis bit par bit et sont précédés et suivis de bits de début et des bits de fin ce qui permet de conserver la synchronisation entre les messages.</p>
+<h2 id="i2c--twi">I2C / TWI</h2>
+<p>I2C (Inter-Integrated Circuit), ou TWI (Two Wire Interface) est un type de bus qui utilise deux fils, il est synchrone et semi-duplex. Ces lignes sont portées ) un niveau de tension élévées et pilotées par des drains ouverts.</p>
+<center>
+	<img src="/assets/images/semestre9/se/4.png" width="50%">
+</center>
+<p>I2C est basé sur un protocole avec adresse, arbitrage et accusés de réception. Si plusieurs maîtres commencent une trame simultanément, l&rsquo;arbitrage est mis en œuvre en surveillant le niveau de la ligne (si LOW est lu lorsque le drain ouvert est ouvert, la trame est arrêtée en raison d&rsquo;une collision). Ainsi, les adresses avec le plus de 0 dans la partie haute ont plus de priorité dans l&rsquo;arbitrage.</p>
+<h3 id="spi">SPI</h3>
+<p>SPI (Serial Peripheral Interface) est un bus synchrone et full-duplex. Sur un bus SPI, il y a un maître et plusieurs esclases. Il utilise 4 lignes :</p>
+<ul>
+<li>SCK : l&rsquo;horloge indiquant quand les bis sont transmis</li>
+<li>MOSI et MISO : respectivement sortie maître / entrée esclave et entrée maître / sortie esclave</li>
+<li>CS : indiquant à un esclave s&rsquo;il est activé</li>
+</ul>
+<center>
+	<img src="/assets/images/semestre9/se/5.png" width="50%">
+</center>
 
 					</div>
 					<div class="post-comments">
@@ -250,6 +266,23 @@
     
     <div class="media">
       <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/3/">Interruptions et ordonnancement</a></h4>
+        <h5>[Système embarqués]</h5>
+        <p>Problème Considérons le code suivant
+void …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/7/">Deep Learning</a></h4>
+        <h5>[Outils d&#39;imagerie]</h5>
+        <p>MathJax.Hub.Config({ tex2jax: { inlineMath: …</p>
+      </div>
+    </div>
+    
+    <div class="media">
+      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/se/2/">Bus de communication</a></h4>
         <h5>[Système embarqués]</h5>
         <p>Les bus de communication standard sont nés de la …</p>
@@ -274,25 +307,9 @@
     
     <div class="media">
       <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/7/">Classification d&#39;image</a></h4>
-        <h5>[Outils d&#39;imagerie]</h5>
-        <p>La classification d&rsquo;image consiste à …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
         <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/2/">Modèle géométrique</a></h4>
         <h5>[Modélisation]</h5>
         <p>Modèle géométrique direct Connaître le modèle …</p>
-      </div>
-    </div>
-    
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading"><a href="https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/5/">Points d&#39;intérêts</a></h4>
-        <h5>[Outils d&#39;imagerie]</h5>
-        <p>Cours Comment décrire les points d&rsquo;intérêts …</p>
       </div>
     </div>
     
