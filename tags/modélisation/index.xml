@@ -19,7 +19,7 @@
       
       <guid>https://Sdelpeuch.github.io/assets/md/semestre9/modelisation/2/</guid>
       <description>Modèle géométrique direct Connaître le modèle géométrique direct (MGD) d&amp;rsquo;un robot correspond à pouvoir exprimer :
- à partir des coordonnées d&amp;rsquo;un point vecteur exprimées dans le repère effecteur du robot les coordonnées du même point / vecteur exprimées dans le repère de travail du robot en fonction des coordonnées articulaires  La MGD se ramène donc à la matrice de transformation homogène ${}^0T_f$</description>
+ à partir des coordonnées d&amp;rsquo;un point vecteur exprimées dans le repère effecteur du robot les coordonnées du même point / vecteur exprimées dans le repère de travail du robot en fonction des coordonnées articulaires  La MGD se ramène donc à la matrice de transformation homogène ${}^0T_f$, lors du calcul du MGD sur un robot nous pouvons faire face à des calculs de grande complexité oou très redondants.</description>
     </item>
     
     <item>

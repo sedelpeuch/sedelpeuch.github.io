@@ -176,7 +176,81 @@
 <li>les coordonnées du même point / vecteur <strong>exprimées dans le repère de travail</strong> du robot</li>
 <li>en fonction des coordonnées articulaires</li>
 </ul>
-<p>La MGD se ramène donc à la matrice de transformation homogène ${}^0T_f$</p>
+<p>La MGD se ramène donc à la matrice de transformation homogène ${}^0T_f$, lors du calcul du MGD sur un robot nous pouvons faire face à des calculs de grande complexité oou très redondants. Il est donc nécessaire de choisir un langage commun pour la faire transparaître. Ce langage est la normalisation de <strong>Denavit-Hartenberg</strong>. :</p>
+<ul>
+<li>Règles imposées de choix des axes et origines</li>
+<li>Unicité des transformations homogènes</li>
+<li>Un et un seul repère lié à chaque articulation</li>
+</ul>
+<p>Sur l&rsquo;exemple du robot ABB ci dessous la formalisme de Denavit-Hartenberg est utilisé pour exprimer les transformations homogènes : ${}^iT_{i+1} = Rot_{z, \theta_{i+1}} . Trans_{a_i + 1, 0, d_{i+1}} . Rot_{X, \alpha_{i+1}}$</p>
+<center>
+	<img src="/assets/images/semestre9/modelisation/2.png" width="50%">
+</center>
+<p>Ce formalisme se résume par le tableau de Denavit-Hartenberg</p>
+<table>
+<thead>
+<tr>
+<th align="left">$i,i+1$</th>
+<th align="left">$rot_{z_i}$</th>
+<th align="left">$trans_{x_{i+1}}$</th>
+<th align="left">$trans_{z_i}$</th>
+<th align="left">$rot_{x_{i+1}}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">0,1</td>
+<td align="left">$\theta_1$</td>
+<td align="left"></td>
+<td align="left">$d_1$</td>
+<td align="left">$\alpha_1 = -90°$</td>
+</tr>
+<tr>
+<td align="left">1,2</td>
+<td align="left">$\theta_2$</td>
+<td align="left">$a_2$</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">2,3</td>
+<td align="left">$\theta_3$</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">$\alpha_3 = -90°$</td>
+</tr>
+<tr>
+<td align="left">3,4</td>
+<td align="left">$\theta_4$</td>
+<td align="left"></td>
+<td align="left">$d_4$</td>
+<td align="left">$\alpha_4 = 90°$</td>
+</tr>
+<tr>
+<td align="left">4,5</td>
+<td align="left">$\theta_5$</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">$\alpha_5 = -90°$</td>
+</tr>
+<tr>
+<td align="left">5,6</td>
+<td align="left">$\theta_6$</td>
+<td align="left"></td>
+<td align="left">$d_6$</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="modèle-géométrique-inverse">Modèle géométrique inverse</h3>
+<p>Le MGD permet de déterminer l&rsquo;orientation et la position de l&rsquo;effecteur du robot, en fonction des variables articulaires $\theta_i, d_i$. Le MGI permet de déterminer les variables articulaires $\theta_i, d_i$ en fonction de l&rsquo;orientation et la position de l&rsquo;effecteur du robot. Le MGI n&rsquo;est pas l&rsquo;inversion de la matrice ${}^0T_f$ !</p>
+<p>Le calcul direct est trop complexe, en effet pour obtenir la posture désirée du robot, il suffit d&rsquo;écrire l&rsquo;égalité entre :</p>
+<ul>
+<li>${}^0T_f(q_i)$ exprimée en fonction des coordonnées articulaire ($q_i = \theta_i, d_i$)</li>
+<li>La posture désirée $U_0 = [{}^0T_f]_{\text{désirée}}$</li>
+</ul>
+<h4 id="méthode-de-paul">Méthode de PAUL</h4>
+<p>Nous faisons le constat que l&rsquo;équation $U_0 = {}^0T_f(q_1,q_f)$ est composé d&rsquo;une expression souvent simple à gauche et souvent très complexe à droite. Le but de la méthode de Paul est de simplifier cette expression à droite. Plus particulièrement, il s&rsquo;agit de les exprimer dans un autre repère que 0 pour permettre aux $q_i$ de n&rsquo;appaître qu&rsquo;une seule fois dans l&rsquo;équation. Certaines équations sont caractéristiques et forment 8 types facile à résoudre présent en annexe.</p>
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
