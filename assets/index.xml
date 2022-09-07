@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Assets on Semestre 9</title>
+    <title>Assets on Informatique ENSEIRB-MATMECA</title>
     <link>https://Sdelpeuch.github.io/assets/</link>
-    <description>Recent content in Assets on Semestre 9</description>
+    <description>Recent content in Assets on Informatique ENSEIRB-MATMECA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 26 Nov 2021 08:00:00 +0600</lastBuildDate>
+    <lastBuildDate>Sat, 11 Dec 2021 14:00:00 +0600</lastBuildDate>
     
 	<atom:link href="https://Sdelpeuch.github.io/assets/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Réunion 12 novembre</title>
+      <link>https://Sdelpeuch.github.io/assets/md/semestre9/reachy/2/</link>
+      <pubDate>Sat, 11 Dec 2021 14:00:00 +0600</pubDate>
+      
+      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/reachy/2/</guid>
+      <description>Présentation des outils de développement Tout est disponible sur le lien suivant :
+Avancement de chaque partie Navigation : début de l&amp;rsquo;étude et séparation entre slave / master communication par ros bridge</description>
+    </item>
     
     <item>
       <title>Modèle cinématique</title>
