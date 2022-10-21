@@ -2,58 +2,58 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Semestre9s on Informatique ENSEIRB-MATMECA</title>
-    <link>https://Sdelpeuch.github.io/semestre9/</link>
+    <link>https://sedelpeuch.github.io/semestre9/</link>
     <description>Recent content in Semestre9s on Informatique ENSEIRB-MATMECA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
     <lastBuildDate>Mon, 27 Sep 2021 09:00:00 +0600</lastBuildDate>
     
-	<atom:link href="https://Sdelpeuch.github.io/semestre9/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sedelpeuch.github.io/semestre9/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Apprentissage pour une robotique autonomme Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre9/autonomous/</link>
+      <link>https://sedelpeuch.github.io/semestre9/autonomous/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre9/autonomous/</guid>
+      <guid>https://sedelpeuch.github.io/semestre9/autonomous/</guid>
       <description>En informatique, l&amp;rsquo;apprentissage automatique a défini un ensemble de techniques statistiques éprouvées que l&amp;rsquo;on peut dans une certaine mesure rapprocher de formes d&amp;rsquo;apprentissage dans le vivant. Cependant, leur mise en oeuvre en robotique autonome met en lumière un certain nombre de faiblesses pour assurer l&amp;rsquo;autonomie de l&amp;rsquo;agent.</description>
     </item>
     
     <item>
       <title>Autonomie Énergétique Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre9/energie/</link>
+      <link>https://sedelpeuch.github.io/semestre9/energie/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre9/energie/</guid>
+      <guid>https://sedelpeuch.github.io/semestre9/energie/</guid>
       <description>Ce module traite de la conversion et de la gestion d’énergie électrique pour les deux principaux besoins en robotique que sont l’alimentation électrique d’une part et le contrôle moteur de l’actionneur d’autre part.</description>
     </item>
     
     <item>
       <title>Contrôle commande Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre9/controle/</link>
+      <link>https://sedelpeuch.github.io/semestre9/controle/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre9/controle/</guid>
+      <guid>https://sedelpeuch.github.io/semestre9/controle/</guid>
       <description>L&amp;rsquo;objet du cours est de présenter succinctement la commande des robots. Après un bref rappel des outils de modélisation développés (modèles géométriques, cinématiques et dynamiques) et du principe des régulations d&amp;rsquo;axes de type PID, les principales architecture de commande des systèmes robotisés sont présentés.</description>
     </item>
     
     <item>
       <title>Interactions homme robot Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre9/interaction/</link>
+      <link>https://sedelpeuch.github.io/semestre9/interaction/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre9/interaction/</guid>
+      <guid>https://sedelpeuch.github.io/semestre9/interaction/</guid>
       <description>Ce cours est une initiation à la problématique de l&amp;rsquo;interaction, de la perception à l&amp;rsquo;action en passant par l&amp;rsquo;attention, la communication, la robotique sociale et développementale. Le robot humanoïde NAO sera exploité.</description>
     </item>
     
     <item>
       <title>Mathématiques pour la robotique Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre9/maths/</link>
+      <link>https://sedelpeuch.github.io/semestre9/maths/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre9/maths/</guid>
+      <guid>https://sedelpeuch.github.io/semestre9/maths/</guid>
       <description>Cet enseignement a pour objet de présenter un ensemble de notions mathématiques nécessaires à la modélisation et à la commande de systèmes robotiques.
 Support de cours
 Prise de notes Introduction</description>
@@ -61,19 +61,19 @@ Prise de notes Introduction</description>
     
     <item>
       <title>Modélisation des robots et analyse des performances Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre9/modelisation/</link>
+      <link>https://sedelpeuch.github.io/semestre9/modelisation/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre9/modelisation/</guid>
+      <guid>https://sedelpeuch.github.io/semestre9/modelisation/</guid>
       <description>Ce cours a pour objectif de présenter les concepts de base de la robotique, pour permettre aux étudiants d&amp;rsquo;aborder la lecture de textes plus avancés. Un étudiant ayant suivi cet enseignement doit disposer d&amp;rsquo;une approche rigoureuse et systématique pour décrire un robot manipaleur: modèles géométrique, cinématique et dynamique, forces et moments.</description>
     </item>
     
     <item>
       <title>Outils d&#39;imagerie pour la robotique Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre9/imagerie/</link>
+      <link>https://sedelpeuch.github.io/semestre9/imagerie/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre9/imagerie/</guid>
+      <guid>https://sedelpeuch.github.io/semestre9/imagerie/</guid>
       <description>Il s&amp;rsquo;agit d&amp;rsquo;une introduction aux différentes méthodes existantes pour traiter les images et les vidéos dans le contexte de la robotique.
 Github pour les applications
 Cours intégrés  Cours 1 : Introduction Cours 2 : Bases Cours 3 : Filtrage Cours 4 : Descripteurs, Traitements Morphologiques Cours 5 : Points d&amp;rsquo;intérêts  Quelques outils  Fichier .</description>
@@ -81,10 +81,10 @@ Cours intégrés  Cours 1 : Introduction Cours 2 : Bases Cours 3 : Filtrage Cour
     
     <item>
       <title>Reachy Mobile - Projet de robotique autonome</title>
-      <link>https://Sdelpeuch.github.io/semestre9/reachy/</link>
+      <link>https://sedelpeuch.github.io/semestre9/reachy/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre9/reachy/</guid>
+      <guid>https://sedelpeuch.github.io/semestre9/reachy/</guid>
       <description>Compte rendu de réunion 15 octobre 2021
 22 octobre 2021
 État de l&amp;rsquo;art Lien de consultation de l&amp;rsquo;overleaf
@@ -95,10 +95,10 @@ Lien du youtrack</description>
     
     <item>
       <title>Système embarqué Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre9/se/</link>
+      <link>https://sedelpeuch.github.io/semestre9/se/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre9/se/</guid>
+      <guid>https://sedelpeuch.github.io/semestre9/se/</guid>
       <description> Cours 1 Cours 2 Cours 3  </description>
     </item>
     

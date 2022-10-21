@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Interactions homme robot on Informatique ENSEIRB-MATMECA</title>
-    <link>https://Sdelpeuch.github.io/tags/interactions-homme-robot/</link>
+    <link>https://sedelpeuch.github.io/tags/interactions-homme-robot/</link>
     <description>Recent content in Interactions homme robot on Informatique ENSEIRB-MATMECA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
     <lastBuildDate>Wed, 13 Oct 2021 08:00:00 +0600</lastBuildDate>
     
-	<atom:link href="https://Sdelpeuch.github.io/tags/interactions-homme-robot/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sedelpeuch.github.io/tags/interactions-homme-robot/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Introduction à la cobotique</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre9/interaction/1/</link>
       <pubDate>Wed, 13 Oct 2021 08:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/interaction/1/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre9/interaction/1/</guid>
       <description>Introduction Pourquoi fait on de la robotique ? Car l&amp;rsquo;humain est limité, il est nécessaire qu&amp;rsquo;il évolue dans un environnement sans danger, facile d&amp;rsquo;accès et il possède des limites physiologiques (rapidité, précision, force &amp;hellip;).</description>
     </item>
     
     <item>
       <title>Interactions homme robot Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre9/interaction/</link>
+      <link>https://sedelpeuch.github.io/semestre9/interaction/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre9/interaction/</guid>
+      <guid>https://sedelpeuch.github.io/semestre9/interaction/</guid>
       <description>Ce cours est une initiation à la problématique de l&amp;rsquo;interaction, de la perception à l&amp;rsquo;action en passant par l&amp;rsquo;attention, la communication, la robotique sociale et développementale. Le robot humanoïde NAO sera exploité.</description>
     </item>
     

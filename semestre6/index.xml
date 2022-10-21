@@ -2,58 +2,58 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Semestre6s on Informatique ENSEIRB-MATMECA</title>
-    <link>https://Sdelpeuch.github.io/semestre6/</link>
+    <link>https://sedelpeuch.github.io/semestre6/</link>
     <description>Recent content in Semestre6s on Informatique ENSEIRB-MATMECA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
     
-	<atom:link href="https://Sdelpeuch.github.io/semestre6/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sedelpeuch.github.io/semestre6/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Algorithmique numérique</title>
-      <link>https://Sdelpeuch.github.io/semestre6/algo_num/</link>
+      <link>https://sedelpeuch.github.io/semestre6/algo_num/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre6/algo_num/</guid>
+      <guid>https://sedelpeuch.github.io/semestre6/algo_num/</guid>
       <description>Objectif du cours Le module d&amp;rsquo;Algorithmique Numérique décrit un ensemble de méthodes et d&amp;rsquo;algorithmes adaptés à la modélisation de problèmes numériques.
    Thème Sujet Réalisation     Méthode de calcul numérique / Limite de la machine sujet 1 rapport 1   Résolution de système linéaire / Equation chaleur sujet 2 rapport 2   Compression image par algorithme de décomposition SVD sujet 3 rapport 3   Non-linear systems of equations / Newton-Rasphon Method sujet 4 rapport 4   Interpolation and integration methods / Cubic splines and surface interpolation sujet 5 rapport 5   Résolution approchée d&amp;rsquo;équations différentielles / Modélisation des systèmes dynamiques sujet 6 rapport 6    </description>
     </item>
     
     <item>
       <title>Automates, Applications finies</title>
-      <link>https://Sdelpeuch.github.io/semestre6/automates/</link>
+      <link>https://sedelpeuch.github.io/semestre6/automates/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre6/automates/</guid>
+      <guid>https://sedelpeuch.github.io/semestre6/automates/</guid>
       <description>Objectif du cours Les automates finis permettent de modéliser des programmes informatiques à mémoire finie. Ils permettent de résoudre des problèmes à un niveau d&amp;rsquo;abstraction élevé, sans s&amp;rsquo;encombrer des spécificités d&amp;rsquo;un langage donné, et en se concentrant sur les invariants à maintenir pour parvenir à une solution.</description>
     </item>
     
     <item>
       <title>Graphes</title>
-      <link>https://Sdelpeuch.github.io/semestre6/algo_graph/</link>
+      <link>https://sedelpeuch.github.io/semestre6/algo_graph/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre6/algo_graph/</guid>
+      <guid>https://sedelpeuch.github.io/semestre6/algo_graph/</guid>
       <description>Objectif du cours Après une brève introduction des graphes, ce cours présente des problèmes sur les graphes admettant une solution algorithmique efficace. L&amp;rsquo;étude de ces solutions sera l&amp;rsquo;occasion d&amp;rsquo;exhiber des propriétés classiques en Théorie des Graphes.</description>
     </item>
     
     <item>
       <title>Introduction aux réseaux</title>
-      <link>https://Sdelpeuch.github.io/semestre6/reseau/</link>
+      <link>https://sedelpeuch.github.io/semestre6/reseau/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre6/reseau/</guid>
+      <guid>https://sedelpeuch.github.io/semestre6/reseau/</guid>
       <description>Objectif du cours Cours d’introduction aux réseaux avec présentation des modèles OSI et TCP/IP. Historique des réseaux, les réseaux locaux informatiques (LAN), classification des réseaux, les couches ISO et TCP/IP, technologies pour les LAN, notion de base sur l’Ethernet : adressage, commutation, type ethernet, équipements d’interconnexions réseaux, autres protocoles pour les LAN, travaux pratiques</description>
     </item>
     
     <item>
       <title>Prog fonctionnelle</title>
-      <link>https://Sdelpeuch.github.io/semestre6/prog_fonc/</link>
+      <link>https://sedelpeuch.github.io/semestre6/prog_fonc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre6/prog_fonc/</guid>
+      <guid>https://sedelpeuch.github.io/semestre6/prog_fonc/</guid>
       <description>Objectif du cours Initiation à la programmation fonctionnelle (evaluation, environnements, récursivité, listes, fonctionnelles, macroexpansion).
 Ressources pédagogiques Le support de cours
    Thème Notes     Introduction notes1   Types et constructions de base du langage notes2   Environnements notes3   Récursivité notes4   Les listes notes5   Système de type notes6   Les fonctionnelles notes7   Les formes impératives notes8   Les macroexpansions notes9       Thème Sujet Correction     Expressions, fonctions TD 1 corrigé 1   Fonctions, récursivité TD 2 corrigé 2   Récursivité terminale TD 3 corrigé 3   Listes, paires pointées TD 4 corrigé 4   Listes et récursivité TD 5 corrigé 5   Fonctionnelles TD 6 corrigé 6   Map et reduce TD 7 corrigé 7   Modules, fermetures et macros TD 8 corrigé 8    </description>
@@ -61,28 +61,28 @@ Ressources pédagogiques Le support de cours
     
     <item>
       <title>Programmation impérative</title>
-      <link>https://Sdelpeuch.github.io/semestre6/prog_imp/</link>
+      <link>https://sedelpeuch.github.io/semestre6/prog_imp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre6/prog_imp/</guid>
+      <guid>https://sedelpeuch.github.io/semestre6/prog_imp/</guid>
       <description>Objectif du cours L&amp;rsquo;objectif de ce cours est d&amp;rsquo;approfondir l&amp;rsquo;étude de la programmation en langage C et l&amp;rsquo;usage des outils associés. On y aborde l&amp;rsquo;utilisation de constructions avancées du langage (typage, pointeurs de fonctions) permettant de mettre en application certains principes de génie logiciel, et on y présente plusieurs outils (débogueurs, outils de gestion de sources, de documentation automatique et de mesure de performance) permettant d&amp;rsquo;augmenter l&amp;rsquo;efficacité de la programmation.</description>
     </item>
     
     <item>
       <title>Recherche opérationnelle</title>
-      <link>https://Sdelpeuch.github.io/semestre6/recherche/</link>
+      <link>https://sedelpeuch.github.io/semestre6/recherche/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre6/recherche/</guid>
+      <guid>https://sedelpeuch.github.io/semestre6/recherche/</guid>
       <description>Ressources Pédagogiques    Cours Sujet du TD Notes de cours Notes de TD     PL-1 PL-1 TD notes1 notes-td1   PL-2 PL-2 TD notes2 notes-td2   PL-3 PL-3 TD     PL-4       Devoir Maison ProjetGoogle</description>
     </item>
     
     <item>
       <title>Semestre 6</title>
-      <link>https://Sdelpeuch.github.io/semestre6/semestre_6/</link>
+      <link>https://sedelpeuch.github.io/semestre6/semestre_6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre6/semestre_6/</guid>
+      <guid>https://sedelpeuch.github.io/semestre6/semestre_6/</guid>
       <description>Cette page propose différentes ressources du Semestre 6 de l’ENSEIRB-MATMECA en filière informatique. Il propose notamment les supports de cours lorsqu’ils sont publics, les sujets (et parfois les corrections) des travaux dirigés.</description>
     </item>
     

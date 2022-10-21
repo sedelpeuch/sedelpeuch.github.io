@@ -2,88 +2,88 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Outils d&#39;imagerie on Informatique ENSEIRB-MATMECA</title>
-    <link>https://Sdelpeuch.github.io/tags/outils-dimagerie/</link>
+    <link>https://sedelpeuch.github.io/tags/outils-dimagerie/</link>
     <description>Recent content in Outils d&#39;imagerie on Informatique ENSEIRB-MATMECA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
     <lastBuildDate>Wed, 17 Nov 2021 14:00:00 +0600</lastBuildDate>
     
-	<atom:link href="https://Sdelpeuch.github.io/tags/outils-dimagerie/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sedelpeuch.github.io/tags/outils-dimagerie/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Deep Learning</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/7/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/7/</link>
       <pubDate>Wed, 17 Nov 2021 14:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/7/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/7/</guid>
       <description>MathJax.Hub.Config({ tex2jax: { inlineMath: [[&#39;$&#39;,&#39;$&#39;]], displayMath: [[&#39;$$&#39;,&#39;$$&#39;]], processEscapes: true, processEnvironments: true, skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;], TeX: { equationNumbers: { autoNumber: &#34;AMS&#34; }, extensions: [&#34;AMSmath.js&#34;, &#34;AMSsymbols.js&#34;] } } }); MathJax.</description>
     </item>
     
     <item>
       <title>Classification d&#39;image</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/6/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/6/</link>
       <pubDate>Wed, 10 Nov 2021 14:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/6/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/6/</guid>
       <description>La classification d&amp;rsquo;image consiste à assigner un label (une catégorie) à une image. C&amp;rsquo;est l&amp;rsquo;un des problèmes fondamentaux en vision par ordinateur. La principale difficulté provient du fossé sémantique, c&amp;rsquo;est à dire transformer des données brutes (une matrice de nombres) en une interprétation du sens de l&amp;rsquo;image par l&amp;rsquo;ordinateur.</description>
     </item>
     
     <item>
       <title>Points d&#39;intérêts</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/5/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/5/</link>
       <pubDate>Sun, 07 Nov 2021 08:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/5/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/5/</guid>
       <description>Cours Comment décrire les points d&amp;rsquo;intérêts ?  Descripteur de type patch (liste des intensités) autour du point d&amp;rsquo;intérêt. Mais, un patch n&amp;rsquo;est pas robuste à la rotation, au changement d&amp;rsquo;échelle, d&amp;rsquo;illumination ou de point de vue.</description>
     </item>
     
     <item>
       <title>Descripteurs, Traitements morphologiques</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/4/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/4/</link>
       <pubDate>Wed, 20 Oct 2021 14:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/4/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/4/</guid>
       <description>Cours Calculs de descripteurs basés régions L&amp;rsquo;humain est capable de décrire les régions grâce à leur propriété, la machine n&amp;rsquo;est pas encore capable de telles descriptions. Par contre, elle est capable de calculer des propriétés mathématiques permettant de classifier les images ou les régions : descripteurs.</description>
     </item>
     
     <item>
       <title>Filtrage et détection de contour</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/3/</link>
       <pubDate>Wed, 13 Oct 2021 14:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/3/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/3/</guid>
       <description>Cours Filtrage linéaire / non linéaire Filtres linéaires Produit de convolution : $I&amp;rsquo;(i,j) = \sum \limits_{(u,v) \in H} I(i+u, j + v) . H(u,v)$, $H$ centré sur $(i,j)$
  H : représente la fonction à appliquer (Box, Gaussienne, Laplacien) Efficacité : utiliser des coefficients entiers + un paramètre de normalisation Filtre Gaussien : influence des voisins plus ou moins proche, $\sigma$ et taille du support: contrôle de filtrage  Filtres non linéaires Filtre médian : $I&amp;rsquo;(i,j) = median\{I(i+u, j+v) \| (u,v) \in H\}$, $H$ : voisinage autour de $(i,j)$.</description>
     </item>
     
     <item>
       <title>Bases</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/2/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/2/</link>
       <pubDate>Tue, 12 Oct 2021 08:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/2/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/2/</guid>
       <description>Cours Traitements classiques couleur $$\{(A,B,C)= M.(R,G,B)\} \rightarrow (A&amp;rsquo;, B&amp;rsquo;, C&amp;rsquo;) \rightarrow \{(R&amp;rsquo;G&amp;rsquo;B&amp;rsquo;) = M^{-1}.(A&amp;rsquo;,B&amp;rsquo;,C&amp;rsquo;)\}$$
 où $M = \begin{pmatrix} a &amp;amp; b &amp;amp; c \\ d &amp;amp; e &amp;amp; f \\ g &amp;amp; h &amp;amp; i \end{pmatrix}$</description>
     </item>
     
     <item>
       <title>Introduction</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/1/</link>
       <pubDate>Wed, 06 Oct 2021 14:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre9/imagerie/1/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre9/imagerie/1/</guid>
       <description>Cours Commençons par définir les différents termes que nous allons utiliser :
  Le traitement d&amp;rsquo;images : améliorer, transformer l&amp;rsquo;image L&amp;rsquo;Analyse d&amp;rsquo;image : extraire des informations de l&amp;rsquo;image Interprétation d&amp;rsquo;images : interpréter ces informations, extraire et comprendre le contenu  Ces trois phases constituent la vision par ordinateur, cependant pour un ordinateur cela se complexifie.</description>
     </item>
     
     <item>
       <title>Outils d&#39;imagerie pour la robotique Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre9/imagerie/</link>
+      <link>https://sedelpeuch.github.io/semestre9/imagerie/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre9/imagerie/</guid>
+      <guid>https://sedelpeuch.github.io/semestre9/imagerie/</guid>
       <description>Il s&amp;rsquo;agit d&amp;rsquo;une introduction aux différentes méthodes existantes pour traiter les images et les vidéos dans le contexte de la robotique.
 Github pour les applications
 Cours intégrés  Cours 1 : Introduction Cours 2 : Bases Cours 3 : Filtrage Cours 4 : Descripteurs, Traitements Morphologiques Cours 5 : Points d&amp;rsquo;intérêts  Quelques outils  Fichier .</description>

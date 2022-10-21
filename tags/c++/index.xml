@@ -2,86 +2,86 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C&#43;&#43; on Informatique ENSEIRB-MATMECA</title>
-    <link>https://Sdelpeuch.github.io/tags/c&#43;&#43;/</link>
+    <link>https://sedelpeuch.github.io/tags/c&#43;&#43;/</link>
     <description>Recent content in C&#43;&#43; on Informatique ENSEIRB-MATMECA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
     <lastBuildDate>Mon, 07 Dec 2020 11:07:10 +0600</lastBuildDate>
     
-	<atom:link href="https://Sdelpeuch.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sedelpeuch.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Les templates</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/7/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/cpp/7/</link>
       <pubDate>Mon, 07 Dec 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/7/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/cpp/7/</guid>
       <description>Généralités Nous avons vu précédemment comment réaliser des structures de données relativement indépendantes de la classe de leurs données (c&amp;rsquo;est à dire leur type) avec les classes abstraites. Par ailleurs, il est faisable de faire des fonctions travaillant sur de nombreux types grâce à la surcharge.</description>
     </item>
     
     <item>
       <title>Les espaces de nommage</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/6/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/cpp/6/</link>
       <pubDate>Wed, 02 Dec 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/6/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/cpp/6/</guid>
       <description>Les espaces de nommage sont des zones de déclaration qui permettent de délimiter la recherche des noms des identificateurs par le compilateur. Leur but est essentiellement de regrouper les identificateurs logiquement et d&amp;rsquo;éviter les conflits de noms entre plusieurs parties d&amp;rsquo;un même projet.</description>
     </item>
     
     <item>
       <title>Les exceptions en C&#43;&#43;</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/5/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/cpp/5/</link>
       <pubDate>Wed, 02 Dec 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/5/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/cpp/5/</guid>
       <description>Une exception est l&amp;rsquo;interruption de l&amp;rsquo;exécution du programme à la suite d&amp;rsquo;un événement particulier. Le but des exceptions est de réaliser des traitements spécifiques aux événements qui en sont la cause.</description>
     </item>
     
     <item>
       <title>La couche objet - Partie 4 : Les entrées/sorties, Méthodes virtuelles, Dérivation, Classe abstraites</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/4/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/cpp/4/</link>
       <pubDate>Wed, 25 Nov 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/4/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/cpp/4/</guid>
       <description>Des entrées - sorties simplifiées Les flux d&amp;rsquo;entrée / sortie de la bibliothèque standard C++ constituent sans doute l&amp;rsquo;une des applications les plus intéressantes de la surcharge des opérateurs. Comme nous allons le voir, la surcharge des opérateurs &amp;lt;&amp;lt; et &amp;gt;&amp;gt; permet d&amp;rsquo;écrire et de lire sur ces flux de manière très intuitive.</description>
     </item>
     
     <item>
       <title>La couche Objet - Partie 3 : opérateurs</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/3/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/cpp/3/</link>
       <pubDate>Wed, 18 Nov 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/3/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/cpp/3/</guid>
       <description>Ce cours présente les différents types d&amp;rsquo;opérateurs en C++.
 Opérateurs d&amp;rsquo;affectation Nous avons déjà vu un exemple d&amp;rsquo;opérateur d&amp;rsquo;affectation avec la classe complexe ci-dessus. Cet opérateur était très simple, mais ce n&amp;rsquo;est généralement pas toujours le cas, et l&amp;rsquo;implémentation des opérateurs d&amp;rsquo;affectation peut parfois soulever quelques problèmes.</description>
     </item>
     
     <item>
       <title>La couche objet - Partie 2 : Constructeur, Destructeurs, Pointeur this, Statique, Surcharge</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/2/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/cpp/2/</link>
       <pubDate>Wed, 04 Nov 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/2/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/cpp/2/</guid>
       <description>Constructeurs et destructeurs Le constructeur et le destructeur sont deux méthodes particulières qui sont appelées respectivement à la création et à la destruction d&amp;rsquo;un objet. Toute classe a un constructeur et un destructeur par défaut, fournis par le compilateur.</description>
     </item>
     
     <item>
       <title>La couche objet - Partie 1 : Classe, Héritage, Classe virtuelle, fonction et classes amies</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/1/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/cpp/1/</link>
       <pubDate>Mon, 02 Nov 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/cpp/1/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/cpp/1/</guid>
       <description>La couche objet constitue sans doute la plus grande innovation du C++ par rapport au C. Le but de la programmation objet est de permettre une abstraction entre l&amp;rsquo;implémentation des modules et leur utilisation, apportant ainsi un plus grand confort dans la programmation.</description>
     </item>
     
     <item>
       <title>Programmation C&#43;&#43; Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre7/cpp/</link>
+      <link>https://sedelpeuch.github.io/semestre7/cpp/</link>
       <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre7/cpp/</guid>
+      <guid>https://sedelpeuch.github.io/semestre7/cpp/</guid>
       <description>Support de cours
    Notes personnelles     La Couche Objet - Partie 1 : Classe, Héritage, Classe Virtuelle, Fonction Et Classes Amies   La Couche Objet - Partie 2 : Constructeur, Destructeurs, Pointeur This, Statique, Surcharge   La Couche Objet - Partie 3 : Opérateurs   La Couche Objet - Partie 4 : Les Entrées/Sorties, Méthodes Virtuelles, Dérivation, Classe Abstraites   Les exceptions en C++   Les espaces de nommage   Les template    </description>
     </item>

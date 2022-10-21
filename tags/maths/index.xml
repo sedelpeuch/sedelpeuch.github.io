@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Maths on Informatique ENSEIRB-MATMECA</title>
-    <link>https://Sdelpeuch.github.io/tags/maths/</link>
+    <link>https://sedelpeuch.github.io/tags/maths/</link>
     <description>Recent content in Maths on Informatique ENSEIRB-MATMECA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
     <lastBuildDate>Mon, 27 Sep 2021 09:00:00 +0600</lastBuildDate>
     
-	<atom:link href="https://Sdelpeuch.github.io/tags/maths/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sedelpeuch.github.io/tags/maths/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Mathématiques pour la robotique Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre9/maths/</link>
+      <link>https://sedelpeuch.github.io/semestre9/maths/</link>
       <pubDate>Mon, 27 Sep 2021 09:00:00 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre9/maths/</guid>
+      <guid>https://sedelpeuch.github.io/semestre9/maths/</guid>
       <description>Cet enseignement a pour objet de présenter un ensemble de notions mathématiques nécessaires à la modélisation et à la commande de systèmes robotiques.
 Support de cours
 Prise de notes Introduction</description>
