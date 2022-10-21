@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TCP-IP on Informatique ENSEIRB-MATMECA</title>
-    <link>https://Sdelpeuch.github.io/tags/tcp-ip/</link>
+    <link>https://sedelpeuch.github.io/tags/tcp-ip/</link>
     <description>Recent content in TCP-IP on Informatique ENSEIRB-MATMECA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
     <lastBuildDate>Tue, 01 Sep 2020 11:07:10 +0600</lastBuildDate>
     
-	<atom:link href="https://Sdelpeuch.github.io/tags/tcp-ip/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sedelpeuch.github.io/tags/tcp-ip/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Architecture des réseaux TCP/IP Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre7/tcp/</link>
+      <link>https://sedelpeuch.github.io/semestre7/tcp/</link>
       <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre7/tcp/</guid>
+      <guid>https://sedelpeuch.github.io/semestre7/tcp/</guid>
       <description>Cours : Interaction entre la famille de protocoles tcp/IP et les supports de transmission
 Exercice</description>
     </item>

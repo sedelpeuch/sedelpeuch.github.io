@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Compilation on Informatique ENSEIRB-MATMECA</title>
-    <link>https://Sdelpeuch.github.io/tags/compilation/</link>
+    <link>https://sedelpeuch.github.io/tags/compilation/</link>
     <description>Recent content in Compilation on Informatique ENSEIRB-MATMECA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
     <lastBuildDate>Tue, 13 Oct 2020 11:07:10 +0600</lastBuildDate>
     
-	<atom:link href="https://Sdelpeuch.github.io/tags/compilation/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sedelpeuch.github.io/tags/compilation/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Vidéo 7.2</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours7/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours7/</link>
       <pubDate>Tue, 13 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours7/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours7/</guid>
       <description>Production pour les appels de fonction. Production pour les sous-bloc (variables locales) Question : où et comment stocker / adresser les variables locales à un sous bloc ?
 Première solution, renommer les variables locales pour les traiter &amp;ldquo;comme&amp;rdquo; des variables globales.</description>
     </item>
     
     <item>
       <title>TD - Feuille 2</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/td2/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/compilation/td2/</link>
       <pubDate>Sat, 10 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/td2/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/compilation/td2/</guid>
       <description>Notes inspirées du cours de JANIN David et du TD2 de Myriam Desainte-Catherine
 Grammaires Étant donné une grammaire $G$ de non terminal initial $S$ (start symbol) et d&amp;rsquo;alphabet terminal $T$, on appelle langage défini par $S$ le langage</description>
     </item>
     
     <item>
       <title>Vidéo 7.1</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours6/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours6/</link>
       <pubDate>Tue, 06 Oct 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours6/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours6/</guid>
       <description>Notes inspirées du cours de JANIN David
 Outils et astuces pour l&amp;rsquo;analyse sémantique et la production de code Comme vu en TD, avec un analyseur de décalage / réduction on construit / parcours les Arbres de Dérivation des feuilles vers la racine, de gauche à droite.</description>
     </item>
     
     <item>
       <title>Vidéo 6.2</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours5/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours5/</link>
       <pubDate>Tue, 29 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours5/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours5/</guid>
       <description>Notes inspirées du cours de JANIN David
 Par exemple la grammaire
 1. exp -&amp;gt; exp + exp 2. exp -&amp;gt; exp * exp 3. exp -&amp;gt; id 4. exp -&amp;gt; cte 5.</description>
@@ -55,10 +55,10 @@ Par exemple la grammaire
     
     <item>
       <title>Vidéo 5</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours4/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours4/</link>
       <pubDate>Tue, 22 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours4/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours4/</guid>
       <description>Question du jour : Que faire avec les arbres de dérivation ?
 Sur un exemple : les expressions arithmétiques
    Comment évaluer cette expression ? Il suffit d&amp;rsquo;effectuer une évaluation des feuilles vers la racine</description>
@@ -66,20 +66,20 @@ Sur un exemple : les expressions arithmétiques
     
     <item>
       <title>TD - Feuille 1</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/td1/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/compilation/td1/</link>
       <pubDate>Sun, 20 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/td1/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/compilation/td1/</guid>
       <description>Notes inspirées du cours de JANIN David et du TD de Myriam Desainte-Catherine
 Compilation des expressions Exercice 1 Donner une majoration du nombre d&amp;rsquo;adresses nécessaire à l&amp;rsquo;évaluation des instructions C suivantes :</description>
     </item>
     
     <item>
       <title>Vidéo 4</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours3/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours3/</link>
       <pubDate>Tue, 15 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours3/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours3/</guid>
       <description>Notes inspirées du cours de JANIN David
 Exemple des expressions arithmétiques. Une grammaire reconnaissant les expressions arithmétiques se reconnaît avec les expressions suivantes
  exp -&amp;gt; ID exp -&amp;gt; Cste exp -&amp;gt; exp + exp exp -&amp;gt; exp * exp exp -&amp;gt; (exp)  Ces 5 règles sont appelées les règle de grammaire ou règle de production.</description>
@@ -87,30 +87,30 @@ Exemple des expressions arithmétiques. Une grammaire reconnaissant les expressi
     
     <item>
       <title>Cours - Analyse lexicale</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours2/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours2/</link>
       <pubDate>Thu, 10 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours2/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours2/</guid>
       <description>Notes inspirées du cours de JANIN David
 L&amp;rsquo;objectif de l&amp;rsquo;analyse lexicale est de lire le programme d&amp;rsquo;entrée et de reconnaître des lexèmes (tokens). Ce sont des éléments constitutifs du langage, mots clés, noms de variable, symboles de ponctuation &amp;hellip;</description>
     </item>
     
     <item>
       <title>Introduction</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours1/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours1/</link>
       <pubDate>Wed, 09 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre7/compilation/cours1/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre7/compilation/cours1/</guid>
       <description>Notes inspirées du cours de JANIN David
  Introduction Intérêt de la compilation  Outil incontournable, quelque soit le langage informatique Meilleure connaissance des compilateurs implique une meilleure programmation Techniques de compilation réutilisables dans nombreux contextes (notamment analyse de code) Définition : Un compilateur est un programme qui prend en entrée un programme et le transforme en un autre programme.</description>
     </item>
     
     <item>
       <title>Compilation Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre7/compilation/</link>
+      <link>https://sedelpeuch.github.io/semestre7/compilation/</link>
       <pubDate>Tue, 01 Sep 2020 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre7/compilation/</guid>
+      <guid>https://sedelpeuch.github.io/semestre7/compilation/</guid>
       <description>Cours    Notes personnelles Basé sur     cours 1 Introduction   cours 2 Analyse lexicale   cours 3 Analyse syntaxique   cours 4 Vidéo 4   cours 5 Vidéo 5   cours 6.</description>
     </item>
     

@@ -2,114 +2,114 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Semestre8s on Informatique ENSEIRB-MATMECA</title>
-    <link>https://Sdelpeuch.github.io/semestre8/</link>
+    <link>https://sedelpeuch.github.io/semestre8/</link>
     <description>Recent content in Semestre8s on Informatique ENSEIRB-MATMECA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
     <lastBuildDate>Mon, 18 Jan 2021 11:07:10 +0600</lastBuildDate>
     
-	<atom:link href="https://Sdelpeuch.github.io/semestre8/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sedelpeuch.github.io/semestre8/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Applications TCP-IP Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre8/apptcp-ip/</link>
+      <link>https://sedelpeuch.github.io/semestre8/apptcp-ip/</link>
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre8/apptcp-ip/</guid>
+      <guid>https://sedelpeuch.github.io/semestre8/apptcp-ip/</guid>
       <description>Ressources pédagogiques Slides de cours
  Introduction aux couches hautes Etudes DNS, HTPP, SMTP, POP Routage dans IP Programmation socket  Projet  Rapport de mi parcours Archive  </description>
     </item>
     
     <item>
       <title>Calculabilité et complexité Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre8/complex/</link>
+      <link>https://sedelpeuch.github.io/semestre8/complex/</link>
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre8/complex/</guid>
+      <guid>https://sedelpeuch.github.io/semestre8/complex/</guid>
       <description>Ressources pédagoqiues  Slides du cours Sujet de TD  Devoirs maison  DM1 DM2 DM3  </description>
     </item>
     
     <item>
       <title>Cryptologie Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre8/crypto/</link>
+      <link>https://sedelpeuch.github.io/semestre8/crypto/</link>
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre8/crypto/</guid>
+      <guid>https://sedelpeuch.github.io/semestre8/crypto/</guid>
       <description>Ressources pédagogiques  Slides 1 Slides 2 TD1 TD2  Devoirs maisons  DM1 TP Noté  </description>
     </item>
     
     <item>
       <title>Initiation à la robotique Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre8/robotique/</link>
+      <link>https://sedelpeuch.github.io/semestre8/robotique/</link>
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre8/robotique/</guid>
+      <guid>https://sedelpeuch.github.io/semestre8/robotique/</guid>
       <description> Modélisation du problème Projet  </description>
     </item>
     
     <item>
       <title>Intelligence Artificielle Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre8/ia/</link>
+      <link>https://sedelpeuch.github.io/semestre8/ia/</link>
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre8/ia/</guid>
+      <guid>https://sedelpeuch.github.io/semestre8/ia/</guid>
       <description>Théorie  Introduction Jeux de plateau 1 Jeux de plateau 2 Problème SAT  Travaux Dirigés  TD1 TD2 Archive  Projet  Sujet Archive  </description>
     </item>
     
     <item>
       <title>Maker Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre8/maker/</link>
+      <link>https://sedelpeuch.github.io/semestre8/maker/</link>
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre8/maker/</guid>
+      <guid>https://sedelpeuch.github.io/semestre8/maker/</guid>
       <description>1. Présentation du projet Un plotter est un mécanisme d&amp;rsquo;impression permettant d&amp;rsquo;effectuer des tracés sur un support à partir d&amp;rsquo;un fichier (.svg par exemple). L&amp;rsquo;objectif de ce projet est de réaliser un plotter vertical sur l&amp;rsquo;un des tableaux blancs d&amp;rsquo;EirLab permettant de dessiner et d&amp;rsquo;effacer ses dessins en boucle.</description>
     </item>
     
     <item>
       <title>Système d&#39;exploitation Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre8/se/</link>
+      <link>https://sedelpeuch.github.io/semestre8/se/</link>
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre8/se/</guid>
+      <guid>https://sedelpeuch.github.io/semestre8/se/</guid>
       <description>Ressources de cours    Slides du cours Notes de cours     Introduction et Concepts Généraux 1   Processus et Exécution 2   Gestion mémoire 3   Concurrence et synchronisation 4   Gestion du temps 5   Virtualisation 6    Ressources de TD    Sujets de TD Notes de TD     TD1 - Ordonnancement des processus TD1   TD2 - Sommeil et réveil des processus TD2   TD3 - Mémoire virtuelle TD3    Projet  Rapport de mi parcours Rapport final Archive  </description>
     </item>
     
     <item>
       <title>Théorie des jeux pour la modélisation informatique Page d&#39;accueil</title>
-      <link>https://Sdelpeuch.github.io/semestre8/jeux/</link>
+      <link>https://sedelpeuch.github.io/semestre8/jeux/</link>
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre8/jeux/</guid>
+      <guid>https://sedelpeuch.github.io/semestre8/jeux/</guid>
       <description>Ressources pédagogiques Le site du cours
  Cours 1 Cours 2 Cours 3 Cours 4 Cours 5 Cours 6 Cours 7 Cours 8 Cours 9 Cours 10 Cours 11 Cours 12  Devoir maison</description>
     </item>
     
     <item>
       <title>Évaluation des projets et maîtrise des coûts</title>
-      <link>https://Sdelpeuch.github.io/semestre8/projet/</link>
+      <link>https://sedelpeuch.github.io/semestre8/projet/</link>
       <pubDate>Mon, 18 Jan 2021 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre8/projet/</guid>
+      <guid>https://sedelpeuch.github.io/semestre8/projet/</guid>
       <description>Ressources pédagogiques Cours 1 : Le système d&amp;rsquo;organisation comptable  Diaporama du cours Applications du cours Correction du cas 2 Correction du cas 3  Cours 2 : Faire le choix de valider le démarage d&amp;rsquo;un projet  Diaporama du cours Applications du cours Correction du cas 1-7, 9, 11, 12 Correction du cas 7  Cours 3 : La rentabilité d&amp;rsquo;exploitation des projets  Diaporama du cours Applications du cours Correction du cas 2 Correction du cas 6 Correction du cas 8  Cours 4 : Prise de décision et contrôle  Diaporama du cours Applications du cours Correction du cas 2 Correction du cas 3 Correction du cas 5 Correction du cas 6  VAN = 0 -- 0 en avance, --  -- --</description>
     </item>
     
     <item>
       <title>Management de la qualité</title>
-      <link>https://Sdelpeuch.github.io/semestre8/qualite/</link>
+      <link>https://sedelpeuch.github.io/semestre8/qualite/</link>
       <pubDate>Sun, 17 Jan 2021 11:07:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre8/qualite/</guid>
+      <guid>https://sedelpeuch.github.io/semestre8/qualite/</guid>
       <description>Définition de la qualité La qualité est une notion vaste et floue, quel que soit le domaine abordé, la qualité est une notion subjective et relative. La qualité exprime le degré de satisfaction du client lié à une transaction.</description>
     </item>
     
     <item>
       <title>Semestre 8</title>
-      <link>https://Sdelpeuch.github.io/semestre8/semestre_8/</link>
+      <link>https://sedelpeuch.github.io/semestre8/semestre_8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/semestre8/semestre_8/</guid>
+      <guid>https://sedelpeuch.github.io/semestre8/semestre_8/</guid>
       <description>Cette page propose différentes ressources du Semestre 7 de l’ENSEIRB-MATMECA en filière informatique. Il propose notamment les supports de cours lorsqu’ils sont publics, les sujets (et parfois les corrections) des travaux dirigés.</description>
     </item>
     

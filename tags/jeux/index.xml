@@ -2,62 +2,62 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jeux on Informatique ENSEIRB-MATMECA</title>
-    <link>https://Sdelpeuch.github.io/tags/jeux/</link>
+    <link>https://sedelpeuch.github.io/tags/jeux/</link>
     <description>Recent content in Jeux on Informatique ENSEIRB-MATMECA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-Us</language>
     <copyright>Copyright &amp;copy; 2020 [Themefisher](https://themefisher.com) All Rights Reserved</copyright>
     <lastBuildDate>Wed, 03 Mar 2021 10:20:10 +0600</lastBuildDate>
     
-	<atom:link href="https://Sdelpeuch.github.io/tags/jeux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sedelpeuch.github.io/tags/jeux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Cours 5</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre8/jeux/5/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre8/jeux/5/</link>
       <pubDate>Wed, 03 Mar 2021 10:20:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre8/jeux/5/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre8/jeux/5/</guid>
       <description>Réalisation d&amp;rsquo;un algorithme de complexité en temps linéaire pour le calcul de l&amp;rsquo;attracteur $\verb|Attr|_0(F), F \subseteq V$. Soit les éléments suivants
  Une file $Q$ de sommets un tableau $R$ répertoriant les sommets traités ($\verb|done|$) un tableau $C$ (counter) : $0 \leq C(v) \leq | \verb|Post|(v) |$  On supposera que $\verb|Pre|$ et $\verb|Post|$ sont disponibles sous forme de tableau de liste, in fine $R$ sera $\verb|Attr|_0(F)$, $\verb|done|$ est l&amp;rsquo;ensemble des sommets déjà traités, $Q$ est l&amp;rsquo;ensemble des sommets en cours de traitement et $C$ est utilisé uniquement pour $V_1$</description>
     </item>
     
     <item>
       <title>Cours 4</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre8/jeux/4/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre8/jeux/4/</link>
       <pubDate>Wed, 24 Feb 2021 10:20:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre8/jeux/4/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre8/jeux/4/</guid>
       <description>Nous avons vu la dernière fois qu&amp;rsquo;un jeu est défini par une arène de jeu (un graphe $V$) et une condition de victoire.
 Jeux de Gale Soit un alphabet $A$, deux joueurs $P_0$ et $P_1$ qui jouent de façon alternée.</description>
     </item>
     
     <item>
       <title>Cours 3</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre8/jeux/3/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre8/jeux/3/</link>
       <pubDate>Wed, 10 Feb 2021 10:20:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre8/jeux/3/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre8/jeux/3/</guid>
       <description>Comment modélise t on un jeu ? une arène ? etc
 Arène Nous définissons une arène comme un graphe orienté $(V,E)$ où $V$ est l&amp;rsquo;ensemble des sommets et $E$ l&amp;rsquo;ensemble des arêtes.</description>
     </item>
     
     <item>
       <title>Cours 2 - Jeux de Hex</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre8/jeux/2/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre8/jeux/2/</link>
       <pubDate>Wed, 03 Feb 2021 10:20:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre8/jeux/2/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre8/jeux/2/</guid>
       <description>$R$ et $B$ alternent, $R$ doit former un chemin rouge N-S et B un chemin bleu O-E.
 Lemme : Il n&amp;rsquo;y a pas de partie indécise dans Hex (c&amp;rsquo;est à dire : si l&amp;rsquo;arène est remplie de jetons rouges et bleus, alors il existe soit un chemin N-S rouge, soit un chemin E-O bleu).</description>
     </item>
     
     <item>
       <title>Cours 1 - Jeux combinatoires</title>
-      <link>https://Sdelpeuch.github.io/assets/md/semestre8/jeux/1/</link>
+      <link>https://sedelpeuch.github.io/assets/md/semestre8/jeux/1/</link>
       <pubDate>Wed, 27 Jan 2021 10:20:10 +0600</pubDate>
       
-      <guid>https://Sdelpeuch.github.io/assets/md/semestre8/jeux/1/</guid>
+      <guid>https://sedelpeuch.github.io/assets/md/semestre8/jeux/1/</guid>
       <description>$ -- $ -- $ si -- On commence par quelques exemples : l&amp;rsquo;exemple du jeu chomp
 Étant donnée une tablette de chocolat (rectangle $m \times n$) avec le carré (1,1) empoisonné, 2 joueurs P1 et P2 jouent de façon alternée, avec P1 qui commence.</description>
     </item>
