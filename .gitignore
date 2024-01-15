@@ -1,0 +1,9 @@
+### Docusaurus template
+# Docusaurus cache and generated files
+.docusaurus
+
+# Docusaurus Build Directory
+/build/
+.idea
+node_modules
+yarn.lock
