@@ -160,8 +160,8 @@ article {
 }
 
 .navbar {
-  box-shadow: none;
-  background-color: transparent;
+
+  background-color: transparentize(#18181b, 0);
 
   // background-image: radial-gradient(transparent 1px, #fff 1px);
   // background-size: 3px 3px;

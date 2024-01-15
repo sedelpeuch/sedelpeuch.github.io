@@ -1,6 +1,5 @@
 ---
 id: introduction
-slug: /skill
 title: 技术笔记
 keywords:
   - 前端

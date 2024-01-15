@@ -11,30 +11,23 @@ const config: Config = {
     favicon: 'img/favicon.ico',
     organizationName: 'sedelpeuch',
     projectName: 'sedelpeuch.net',
-    customFields: {
-        bio: 'Ingénieur en robotique',
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae nisi eget nunc ultricies aliquam. Donec euismod, nisl eget tempor aliquam, nunc nisl ultricies nunc, vitae',
-    },
     themeConfig: {
-        docs: {
-            sidebar: {
-                hideable: true,
-            },
-        },
         navbar: {
             logo: {
                 alt: 'navbar',
                 src: 'img/logo.webp',
-                srcDark: 'img/logo.webp',
             },
-            hideOnScroll: true,
             items: [
                 {
                     label: 'Project',
-                    position: 'right',
+                    position: 'left',
                     to: 'project',
                 },
+                {
+                    label: 'ENSEIRB-MATMECA',
+                    position: 'left',
+                    to: 'docs/enseirb',
+                }
             ],
         },
         footer: {
@@ -75,10 +68,6 @@ const config: Config = {
                 },
             ],
         },
-        tableOfContents: {
-            minHeadingLevel: 2,
-            maxHeadingLevel: 4,
-        },
         liveCodeBlock: {playgroundPosition: 'top'},
         zoom: {
             selector: '.markdown :not(em) > img',
@@ -99,7 +88,7 @@ const config: Config = {
             {
                 docs: {
                     path: 'docs',
-                    sidebarPath: 'sidebars.ts',
+                    sidebarPath: 'sidebars.json',
                 },
                 theme: {
                     customCss: ['./src/css/custom.scss'],
