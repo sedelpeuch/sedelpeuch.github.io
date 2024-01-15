@@ -87,6 +87,11 @@ const config: Config = {
                 dark: 'rgb(50, 50, 50)',
             },
         },
+        colorMode: {
+            defaultMode: "dark",
+            disableSwitch: true,
+            respectPrefersColorScheme: false,
+        },
     } satisfies Preset.ThemeConfig,
     presets: [
         [
