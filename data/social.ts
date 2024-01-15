@@ -1,14 +1,6 @@
 export type Social = {
     github?: string
-    twitter?: string
-    juejin?: string
-    csdn?: string
-    qq?: string
-    wx?: string
-    cloudmusic?: string
-    zhihu?: string
     email?: string
-    discord?: string
 }
 
 type SocialValue = {
