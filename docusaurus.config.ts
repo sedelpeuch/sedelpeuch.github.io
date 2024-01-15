@@ -19,14 +19,64 @@ const config: Config = {
             },
             items: [
                 {
-                    label: 'Project',
+                    label: 'Projets',
                     position: 'left',
                     to: 'project',
                 },
                 {
+                    label: 'Associatif',
+                    position: 'left',
+                    to: 'associatif',
+                },
+                {
+                    type: 'dropdown',
                     label: 'ENSEIRB-MATMECA',
                     position: 'left',
-                    to: 'docs/enseirb',
+                    items: [
+                        {
+                            label: 'Semestre 9',
+                            to: 'docs/enseirb/s9',
+                        },
+                        {
+                            label: 'Semestre 8',
+                            to: 'docs/enseirb/s8',
+                        },
+                        {
+                            label: 'Semestre 7',
+                            to: 'docs/enseirb/s7',
+                        },
+                        {
+                            label: 'Semestre 6',
+                            to: 'docs/enseirb/s6',
+                        },
+                        {
+                            label: 'Semestre 5',
+                            to: 'docs/enseirb/s5',
+                        },
+                    ],
+                },
+                {
+                    type: 'dropdown',
+                    label: 'CPBx',
+                    position: 'left',
+                    items: [
+                        {
+                            label: 'Semestre 4',
+                            to: 'docs/enseirb/s4',
+                        },
+                        {
+                            label: 'Semestre 3',
+                            to: 'docs/enseirb/s3',
+                        },
+                        {
+                            label: 'Semestre 2',
+                            to: 'docs/enseirb/s2',
+                        },
+                        {
+                            label: 'Semestre 1',
+                            to: 'docs/enseirb/s1',
+                        }
+                    ]
                 }
             ],
         },
