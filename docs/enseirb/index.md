@@ -1,28 +1,7 @@
 ---
-id: introduction
-title: 技术笔记
-keywords:
-  - 前端
-  - 后端
-  - Vue
-  - React
-  - JavaScript
-  - Typescript
-  - 逆向
-  - HTTP
-  - 算法
+title: ENSEIRB-MATMECA
 ---
 
-本页面为个人学习中所涉及相关技术栈的笔记汇总，包含但不限于
+import DocCardList from '@theme/DocCardList';
 
-- Web
-- 前端
-- 后端
-- Vue
-- React
-- JavaScript & TypeScript
-- Node
-- 安卓
-- 逆向
-- HTTP
-- 算法
+<DocCardList />
