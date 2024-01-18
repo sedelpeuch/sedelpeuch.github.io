@@ -15,9 +15,10 @@ import DocCardList from '@theme/DocCardList';
 ## Quelques outils
 
 + [Cheat sheet Opencv](./img/opencv.pdf)
-+ [Cours de C++](/semestre7/cpp)
++ [Cours de C++](/docs/enseirb/s7/cpp)
 
 ## Tentaive de correction
+
 + [TD 1 : Introduction](./img/TD1.zip)
 + [TD 2 : Bases](./img/TD2.zip)
 + [TD 3 : Filtrage](./img/TD3.zip)

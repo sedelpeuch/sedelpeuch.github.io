@@ -164,4 +164,3 @@ Le script permet de simplifier la vie de l'utilisateur (il a juste à remplir un
 
 * Delpeuch Sébastien
 * Pringalle Antoine
-* [FormationsEirlab](/FormationsEirlab.pdf)

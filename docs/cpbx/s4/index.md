@@ -70,30 +70,22 @@ faut respecter.
 
 ### L'utilisation des Interfaces Cerveau-Machine dans la communication écrite
 
-|         Thème          |       Ressources       |                            |             |             |
-|:----------------------:|:----------------------:|:--------------------------:|:-----------:|:-----------:|
-|      Avant Projet      |     [Avant projet]     |  [Avant projet diaporama]  |             |             |
-|  Synthèse culturelle   |    [Avant synthèse]    | [Avant synthèse diaporama] |  [Corpus]   | [Rédaction] |
-|  Article scientifique  | [Article Scientifique] |                            |             |             |
-|   Projet artistique    |     Non référencé      |                            |             |             |
-| Mémoire et soutenances |       [Mémoire]        |        [Soutenance]        | [Questions] |             |
+[Article Scientifique](projet/article.pdf)
 
-[Article Scientifique]:projet/article.pdf
+[Avant projet diaporama](projet/article-diap.pdf)
 
-[Avant projet diaporama]:projet/article-diap.pdf
+[Avant projet](projet/avant-projet.pdf)
 
-[Avant projet]:projet/avant-projet.pdf
+[Avant synthèse](projet/avant-synthese.pdf)
 
-[Avant synthèse]:projet/avant-synthese.pdf
+[Avant synthèse diaporama](projet/avant-synthese-diap.pdf)
 
-[Avant synthèse diaporama]:projet/avant-synthese-diap.pdf
+[Corpus](projet/corpus.pdf)
 
-[Corpus]:projet/corpus.pdf
+[Rédaction](projet/redac.pdf)
 
-[Rédaction]:projet/redac.pdf
+[Mémoire](projet/memoire.pdf)
 
-[Mémoire]:projet/memoire.pdf
+[Soutenance](projet/soutenance.pdf)
 
-[Soutenance]:projet/soutenance.pdf
-
-[Questions]:projet/questions.pdf
+[Questions](projet/questions.pdf)

@@ -69,7 +69,7 @@ algorithmes.
   condition), terminaison, invariant de boucle, calcul de Hoare
 
 Le support de [cours](./img/poly-if107-etd.pdf) ainsi que les TD,
-[introduction](./img/td-introduction.etd.pdf), [logique des
+[introduction](./img/td-induction.etd.pdf), [logique des
 prédicats](./img/td-logique-predicats.etd.pdf), [logique
 propositionnelle](./img/td-logique-propositionnelle.etd.pdf), [preuve
 formelle](./img/td-preuve-formelle.etd.pdf), [preuve
@@ -86,27 +86,19 @@ informatique de l'ENSEIRB-MATMECA: éditeur de texte, compilateur, composeur de
 documents. Ce cours aborde également la programmation shell permettant
 d'automatiser des tâches d'administration système.
 
-| Thème        | Cours | Ressources diverses |
-|:-------------|:------|:--------------------|
-| Introduction | [00]  |                     |
-| Unix         | [01]  |                     |
-| Emacs        | [02]  |                     |
-| Latex        | [03]  | [LaTeX]             |
-| Scripts      | [04]  | [bash]              |
+[00](http://mfaverge.vvv.enseirb-matmeca.fr/wordpress/wp-content/cours/IF104/00-introduction.pdf)
 
-[00]:http://mfaverge.vvv.enseirb-matmeca.fr/wordpress/wp-content/cours/IF104/00-introduction.pdf
+[01](./img/01.pdf)
 
-[01]:./img/01.pdf
+[02](./img/02.pdf)
 
-[02]:./img/02.pdf
+[03](./img/03.pdf)
 
-[03]:./img/03.pdf
+[04](./img/04.pdf)
 
-[04]:./img/04.pdf
+[bash](./img/Bash.tar.xz)
 
-[bash]:./img/Bash.tar.xz
-
-[LaTeX]:./img/LaTeX.tar.xz
+[LaTeX](./img/LaTeX.tar.xz)
 
 ### Structure des ordinateurs
 
@@ -133,17 +125,6 @@ par l'étude de la syntaxe et la sémantique du langage C.
 Lien vers le [cours](https://www.labri.fr/perso/fmoranda/slides/pg101.html#/) et
 la [plateforme d'exercice](https://thor.enseirb-matmeca.fr:4443/)
 
-| Thème                                              | Sujet        | Element de correction |
-|:---------------------------------------------------|:-------------|:----------------------|
-| Manipulation de tableaux d'entiers                 | [feuille1]   | [correction1]         |
-| Manipulation de chaînes de caractères              | [feuille2]   | [correction2]         |
-| Manipulation des nombres et de leur représentation | [feuille3]   | [correction3]         |
-| Manipulation de pointeurs                          | [feuille4]   | [correction4]         |
-| Manipulation des flottant et des types structurés  | [feuille5]   | [correction5]         |
-| Pointeurs et voitures                              | [feuille5.1] | [correction5.1]       |
-| Tournois                                           | [feuille5.2] | [correction5.2]       |
-| Structures et pointeurs                            | [feuille6]   | [correction6]         |
-
 [feuille1]:https://www.labri.fr/perso/fmoranda/pg101/pg101-1/
 
 [feuille2]:https://www.labri.fr/perso/fmoranda/pg101/pg101-2/
@@ -160,21 +141,21 @@ la [plateforme d'exercice](https://thor.enseirb-matmeca.fr:4443/)
 
 [feuille6]:https://www.labri.fr/perso/fmoranda/pg101/pg101-5/
 
-[correction1]:./img/feuille1.tar.xz
+[correction1](./img/feuille1.tar.xz)
 
-[correction2]:./img/feuille2.tar.xz
+[correction2](./img/feuille2.tar.xz)
 
-[correction3]:./img/feuille3.tar.xz
+[correction3](./img/feuille3.tar.xz)
 
-[correction4]:./img/feuille4.tar.xz
+[correction4](./img/feuille4.tar.xz)
 
-[correction5]:./img/feuille5.tar.xz
+[correction5](./img/feuille5.tar.xz)
 
-[correction5.1]:./img/feuille5-1.tar.xz
+[correction5.1](./img/feuille5-1.tar.xz)
 
-[correction5.2]:./img/feuille5-2.tar.xz
+[correction5.2](./img/feuille5-2.tar.xz)
 
-[correction6]:./img/feuille6.tar.xz
+[correction6](./img/feuille6.tar.xz)
 
 
 ---

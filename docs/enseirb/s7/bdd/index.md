@@ -16,21 +16,21 @@ import DocCardList from '@theme/DocCardList';
 
 ### Les travaux dirigés
 
-| Sujet de TD | Correction des TD |
-|:------------|:------------------|
-| [Sujet 1]   |                   |
-| [Sujet 2]   | [Correction 2]    |
-| [Sujet 3]   | [Correction 3]    |
-| [Sujet 4]   | [Correction 4]    |
-| [Sujet 5]   | [Correction 5]    |
+| Sujet de TD |
+|:------------|
+| [Sujet 1]   |
+| [Sujet 2]   |
+| [Sujet 3]   |
+| [Sujet 4]   |
+| [Sujet 5]   |
 
 ### Les travaux pratique
 
-| Sujet de TP | Correction des TP |
-|:------------|:------------------|
-| [TP 1]      | [Correction 1]    |
-| [TP 2]      | [Correction 2]    |
-| [TP 3]      |                   |
+| Sujet de TP |
+|:------------|
+| [TP 1]      |
+| [TP 2]      |
+| [TP 3]      |
 
 [Conception d'une base de donnée]: https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=47001
 
@@ -52,13 +52,13 @@ import DocCardList from '@theme/DocCardList';
 
 [Sujet 5]:https://moodle.bordeaux-inp.fr/pluginfile.php/49012/mod_resource/content/2/td5.pdf
 
-[Correction 2]:./img/td2.pdf
+[Correction 2](./img/td2.pdf)
 
-[Correction 3]:./img/td3.pdf
+[Correction 3](./img/td3.pdf)
 
-[Correction 4]:./img/td4.pdf
+[Correction 4](./img/td4.pdf)
 
-[Correction 5]:./img/td5.pdf
+[Correction 5](./img/td5.pdf)
 
 [TP 1]:https://moodle.bordeaux-inp.fr/mod/page/view.php?id=9985
 
