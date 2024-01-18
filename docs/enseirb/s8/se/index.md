@@ -8,9 +8,8 @@ import DocCardList from '@theme/DocCardList';
 
 <DocCardList />
 
+## Projet
 
-## Projet 
-
-+ [Rapport de mi parcours](/./img/OS-Rapport-mid.pdf)
++ [Rapport de mi parcours](./img/OS-Rapport-mid.pdf)
 + [Rapport final](./img/OSRapportFinal.pdf)
 + [Archive](./img/projetSys.zip)
