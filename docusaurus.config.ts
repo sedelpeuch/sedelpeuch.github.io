@@ -32,6 +32,29 @@ const config: Config = {
                 },
                 {
                     type: 'dropdown',
+                    label: 'CPBx',
+                    position: 'left',
+                    items: [
+                        {
+                            label: 'Semestre 4',
+                            to: 'docs/cpbx/s4',
+                        },
+                        {
+                            label: 'Semestre 3',
+                            to: 'docs/cpbx/s3',
+                        },
+                        {
+                            label: 'Semestre 2',
+                            to: 'docs/cpbx/s2',
+                        },
+                        {
+                            label: 'Semestre 1',
+                            to: 'docs/cpbx/s1',
+                        },
+                    ],
+                },
+                {
+                    type: 'dropdown',
                     label: 'ENSEIRB-MATMECA',
                     position: 'left',
                     items: [
