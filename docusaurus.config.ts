@@ -9,7 +9,7 @@ import rehypeKatex from 'rehype-katex';
 const config: Config = {
     title: 'Sébastien Delpeuch',
     url: 'https://delpeuch.net',
-    baseUrl: '/',
+    baseUrl: process.env.BASE_URL || '/',
     favicon: 'img/favicon.ico',
     organizationName: 'sedelpeuch',
     projectName: 'sedelpeuch.net',
@@ -29,29 +29,6 @@ const config: Config = {
                     label: 'Associatif',
                     position: 'left',
                     to: 'associatif',
-                },
-                {
-                    type: 'dropdown',
-                    label: 'CPBx',
-                    position: 'left',
-                    items: [
-                        {
-                            label: 'Semestre 4',
-                            to: 'docs/cpbx/s4',
-                        },
-                        {
-                            label: 'Semestre 3',
-                            to: 'docs/cpbx/s3',
-                        },
-                        {
-                            label: 'Semestre 2',
-                            to: 'docs/cpbx/s2',
-                        },
-                        {
-                            label: 'Semestre 1',
-                            to: 'docs/cpbx/s1',
-                        },
-                    ],
                 },
                 {
                     type: 'dropdown',
@@ -87,22 +64,22 @@ const config: Config = {
                     items: [
                         {
                             label: 'Semestre 4',
-                            to: 'docs/enseirb/s4',
+                            to: 'docs/cpbx/s4',
                         },
                         {
                             label: 'Semestre 3',
-                            to: 'docs/enseirb/s3',
+                            to: 'docs/cpbx/s3',
                         },
                         {
                             label: 'Semestre 2',
-                            to: 'docs/enseirb/s2',
+                            to: 'docs/cpbx/s2',
                         },
                         {
                             label: 'Semestre 1',
-                            to: 'docs/enseirb/s1',
-                        }
-                    ]
-                }
+                            to: 'docs/cpbx/s1',
+                        },
+                    ],
+                },
             ],
         },
         footer: {

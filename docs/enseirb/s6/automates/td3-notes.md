@@ -12,7 +12,7 @@ Il suffit de montrer qu'il existe un automate fini qui accepte le langage $L$.
 
 ## Exercice 3
 
-Voir la contraposée sur les [notes du cours 3](/assets/md/cours3), il faut ensuite saisir que la contraposé du Lemme implique une non régularité
+Voir la contraposée sur les [notes du cours 3](cours3), il faut ensuite saisir que la contraposé du Lemme implique une non régularité
 
 ## Exercice 4
 
