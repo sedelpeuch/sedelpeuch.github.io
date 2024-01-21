@@ -13,7 +13,9 @@ function Feature({title, Svg, text}: FeatureItem) {
             </div>
             <div className="text--left padding-horiz--md">
                 <h3>{title}</h3>
-                <p>{text}</p>
+                <div style={{width: '100%'}}>
+                    {text}
+                </div>
             </div>
         </div>
     )
