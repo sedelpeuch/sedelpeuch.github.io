@@ -21,6 +21,11 @@ const config: Config = {
             },
             items: [
                 {
+                    label: 'Résumé',
+                    position: 'left',
+                    to: 'about',
+                },
+                {
                     label: 'Projets',
                     position: 'left',
                     to: 'project',
