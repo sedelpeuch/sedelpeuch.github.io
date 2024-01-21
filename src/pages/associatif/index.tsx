@@ -1,103 +1,115 @@
-import React from 'react'
-import clsx from 'clsx'
-import {translate} from '@docusaurus/Translate'
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
-import ShowcaseCard from './_components/ShowcaseCard'
-import {groupByProjects, projects, projectTypeMap} from '@site/data/projects'
+import React from 'react';
+import Layout from '@theme/Layout';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import styles from './styles.module.css';
+import {motion, Variants} from 'framer-motion' // Import motion from framer-motion
 
-import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment'
 
-import styles from './styles.module.css'
-import MyLayout from '@site/src/theme/MyLayout'
-import {upperFirst} from '@site/src/utils/jsUtils'
-
-const TITLE = translate({
-    id: 'theme.project.title',
-    message: 'Projets',
-})
-const DESCRIPTION = translate({
-    id: 'theme.project.description',
-    message: "",
-})
-
-// const GITHUB_URL = 'https://github.com/kuizuo'
-
-type ProjectState = {
-    scrollTopPosition: number
-    focusedElementId: string | undefined
+const variants: Variants = {
+    visible: i => ({
+        opacity: 1,
+        y: 0,
+        transition: {
+            type: 'spring',
+            damping: 25,
+            stiffness: 100,
+            duration: 0.3,
+            delay: i * 0.3,
+        },
+    }),
+    hidden: {opacity: 0, y: 30},
 }
 
-export function prepareUserState(): ProjectState | undefined {
-    if (ExecutionEnvironment.canUseDOM) {
-        return {
-            scrollTopPosition: window.scrollY,
-            focusedElementId: document.activeElement?.id,
-        }
-    }
-
-    return undefined
-}
-
-function ShowcaseHeader() {
-    return (
-        <section className="text--center">
-            <h2>{TITLE}</h2>
-            <p>{DESCRIPTION}</p>
-            {/* <a
-      </a> */}
-        </section>
-    )
-}
-
-function ShowcaseCards() {
-    const {i18n} = useDocusaurusContext()
-    const lang = i18n.currentLocale
-
-    if (projects.length === 0) {
-        return (
-            <section className="margin-top--lg margin-bottom--xl">
-                <div className="container padding-vert--md text--center">
-                    <h2>No result</h2>
-                </div>
-            </section>
-        )
-    }
+export default function Home() {
+    const {
+        siteConfig: {tagline},
+    } = useDocusaurusContext();
 
     return (
-        <section className="margin-top--lg margin-bottom--xl">
-            <>
-                <div className="container margin-top--lg">
-                    <div className={clsx('margin-bottom--md', styles.showcaseFavoriteHeader)}></div>
-
-                    {Object.entries(groupByProjects).map(([key, value]) => {
-                        return (
-                            <div key={key}>
-                                <div className={clsx('margin-bottom--md', styles.showcaseFavoriteHeader)}>
-                                    <h3>{upperFirst(lang === 'en' ? key : projectTypeMap[key])}</h3>
-                                </div>
-                                <ul className={styles.showcaseList}>
-                                    {value.map(project => (
-                                        <ShowcaseCard key={project.title} project={project}/>
-                                    ))}
-                                </ul>
-                            </div>
-                        )
-                    })}
-                </div>
-            </>
-        </section>
-    )
-}
-
-function Showcase(): JSX.Element {
-    return (
-        <MyLayout title={TITLE} description={DESCRIPTION} maxWidth={1280}>
-            <main className="margin-vert--lg">
-                <ShowcaseHeader/>
-                <ShowcaseCards/>
+        <Layout title={tagline}>
+            <main>
+                <Association
+                    name="EirLab Community"
+                    description="EirLab est un atelier de fabrication numérique (FabLab) proposant à ses membres des outils de prototypage rapide comme l’impression 3D, la découpe et gravure laser (indisponible pour le moment) ou la gravure de circuits électroniques. Des formations pour utiliser ces outils et une communauté pluridisciplinaire pour transformer une idée en prototype concret."
+                    backgroundImage="/img/eirlab.jpg"
+                    positions={[
+                        {
+                            title: "Fabmanager",
+                            year: "2020 - 2021",
+                            description: "Maintenance du parc machine"
+                        },
+                        {
+                            title: "Président",
+                            year: "2021 - 2022",
+                            description: "Président du conseil d'administration"
+                        },
+                        {
+                            title: "Vice Président",
+                            year: "2022 - 2023",
+                            description: "Responsable des Fabmanagers"
+                        },
+                        {
+                            title: "Administrateur",
+                            year: "2023 - 2024",
+                            description: "Pôle partenariats & marketing"
+                        }
+                    ]}
+                />
+                <Association
+                    name="Eirbot"
+                    description="EIRBOT est l’association de Robotique de l’ENSEIRB-MATMECA. Chaque année, nous participons à la coupe de france de robotique en concevant et réalisant un ou plusieurs robots."
+                    backgroundImage="/img/CDR2020-off-20.webp"
+                    positions={[
+                        {
+                            title: "Membre",
+                            year: "2019 - 2020",
+                            description: ""
+                        },
+                        {
+                            title: "Président",
+                            year: "2020 - 2021",
+                            description: ""
+                        }
+                    ]}
+                />
             </main>
-        </MyLayout>
-    )
+        </Layout>
+    );
 }
 
-export default Showcase
+function Association({name, description, backgroundImage, positions}) {
+    return (
+        <div>
+            <div className={styles.associationBanner}
+                 style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${backgroundImage})`}}>
+                <div className={styles.overlay}></div>
+                <h1 style={{fontSize: "50px"}}>{name}</h1>
+                <p style={{fontSize: "20px"}}>{description}</p>
+            </div>
+            <div className={styles.positions}>
+                {positions.map((position, index) => <PositionCard key={index} position={position} index={index}/>)}
+            </div>
+        </div>
+    );
+}
+
+function PositionCard({position, index}) {
+    return (
+        <motion.div
+            className={styles.positionCard}
+            custom={index}
+            initial="hidden"
+            animate="visible"
+            variants={variants}
+        >
+            <div className={styles.outer}>
+                <div className={styles.gradient}/>
+                <div className={styles.button}>
+                    <h2 className={styles.title}>{position.title}</h2>
+                    <span className={styles.year}>{position.year}</span>
+                    <p className={styles.description}>{position.description}</p>
+                </div>
+            </div>
+        </motion.div>
+    );
+}

@@ -1,95 +1,125 @@
-.filterCheckbox {
-  justify-content: space-between;
+.associationBanner {
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40vh; /* Hauteur mise à jour */
+    background-size: cover;
+    text-align: center;
+    padding: 2rem;
+    border-radius: var(--ifm-card-border-radius);
+    position: relative;
+    background-color: var(--ifm-background-color);
 }
 
-.filterCheckbox,
-.checkboxList {
-  display: flex;
-  align-items: center;
+h1, p {
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.filterCheckbox > div:first-child {
-  display: flex;
-  flex: 1 1 auto;
-  align-items: center;
+.positions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0.5rem 0;
+    position: relative;
+    background-color: var(--ifm-background-color);
+    height: 40vh;
+    overflow: auto;
 }
 
-.filterCheckbox > div > * {
-  margin-bottom: 0;
-  margin-right: 8px;
+.outer {
+    position: relative;
+    overflow: hidden;
+    padding: 2px;
+    width: max-content;
+    border-radius: 16px;
+
+    transform: translateZ(0);
 }
 
-.checkboxList {
-  flex-wrap: wrap;
+@keyframes surround {
+    0% {
+        transform: translateY(-25%) translateX(40%) rotate(0deg);
+    }
+
+    30% {
+        transform: translateY(0) translateX(0) rotate(90deg) scaleX(0.7);
+    }
+
+    50% {
+        transform: translateY(-25%) translateX(-40%) rotate(180deg);
+    }
+
+    70% {
+        transform: translateY(0) translateX(0) rotate(270deg) scaleX(0.7);
+    }
+
+    100% {
+        transform: translateY(-25%) translateX(40%) rotate(1turn);
+    }
 }
 
-.checkboxList,
-.showcaseList {
-  padding: 0;
-  list-style: none;
+
+.gradient {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    border-radius: 16px;
+    animation: surround -0.64s linear 8s infinite;
+    background: conic-gradient(
+            transparent 50deg,
+            var(--ifm-color-primary-light) 80deg,
+            transparent 100deg
+    );
 }
 
-.checkboxListItem {
-  user-select: none;
-  white-space: nowrap;
-  height: 32px;
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-  margin-right: 0.5rem;
+.button {
+    position: relative;
+    z-index: 1;
+    align-items: center;
+
+    text-align: center;
+    display: inline-block;
+    padding: 20px;
+    font-weight: 600;
+    border: 1px solid var(--ifm-color-primary); /* border color */
+
+    background-color: var(--ifm-background-color); /* background color */
+    border-radius: 16px;
+
 }
 
-.checkboxListItem:last-child {
-  margin-right: 0;
+.positions > * {
+    margin: 1rem;
 }
 
-.searchContainer {
-  margin-left: auto;
+.positionCardBody {
+    text-align: center;
+    color: var(--ifm-color-primary);
 }
 
-.searchContainer input {
-  height: 30px;
-  border-radius: 15px;
-  padding: 10px;
-  border: 1px solid gray;
+.title {
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 2rem;
+    margin: 0;
 }
 
-.showcaseList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+.description {
+    white-space: nowrap;
+    margin: 0;
 }
 
-.showcaseFavorite {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  background-color: var(--site-color-favorite-background);
-}
-
-.showcaseFavoriteHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.showcaseFavoriteHeader > h2 {
-  margin-bottom: 0;
-}
-
-.showcaseFavoriteHeader > svg {
-  width: 30px;
-  height: 30px;
-}
-
-.svgIconFavoriteXs,
-.svgIconFavorite {
-  color: var(--site-color-svg-icon-favorite);
-}
-
-.svgIconFavoriteXs {
-  margin-left: 0.625rem;
-  font-size: 1rem;
-}
-
-.svgIconFavorite {
-  margin-left: 1rem;
+.year {
+    font-size: 1.2rem; /* Taille du texte, ajustez selon vos préférences */
+    color: var(--ifm-color-primary); /* Couleur du texte, ajustez selon vos préférences */
+    font-weight: bold; /* Met le texte en gras, vous pouvez le supprimer si vous ne le voulez pas */
+    margin-top: 1rem; /* Espace au-dessus de l'année, ajustez selon vos préférences */
 }
