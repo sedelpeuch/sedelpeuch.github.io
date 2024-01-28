@@ -17,14 +17,12 @@ import {motion} from 'framer-motion'
     <p>:trophy: 3e à la Robocup @Home OPL 2023, Bordeaux</p>
 </div>
 
-<div style={{display: 'flex', justifyContent: 'space-around', marginBottom: '20px'}}>
+<div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', margin: '20px'}}>
     <motion.div className={styles.buttonGroup} custom={4} initial="hidden" animate="visible">
-        <a className={styles.button} href={"https://github.com/sedelpeuch"} style={{height: "5vh", width: "10vw"}}>
+        <a className={styles.button} href={"https://github.com/sedelpeuch"} style={{height: "50px", width: "170px", marginBottom: "10px"}}>
             GitHub
         </a>
-    </motion.div>
-    <motion.div className={styles.buttonGroup} custom={4} initial="hidden" animate="visible">
-        <a className={styles.button} href={"mailto:sebastien@delpeuch.net"} style={{height: "5vh", width: "10vw"}}>
+        <a className={styles.button} href={"mailto:sebastien@delpeuch.net"} style={{height: "50px", width: "170px"}}>
             Mail
         </a>
     </motion.div>
