@@ -25,10 +25,10 @@ export default function UserCard({isNavbar = false}: { isNavbar?: boolean }) {
     const {bio} = customFields as { bio: string }
 
     const {
-        navbar: {title, logo = {src: ''}},
+        navbar: {title, logo = {src: '/img/logo.png'}},
     } = useThemeConfig()
 
-    const logoLink = useBaseUrl(logo.src || '/')
+    const logoLink = '/img/sde.jpg'
 
     const blogData = usePluginData('docusaurus-plugin-content-blog') as {
         posts: BlogPost[]
@@ -55,16 +55,6 @@ export default function UserCard({isNavbar = false}: { isNavbar?: boolean }) {
                 </Link>
             </div>
             <div className={styles.bio}>{bio}</div>
-            <div className={styles.num}>
-                <Link className={styles.numItem} href="/docs/skill">
-                    <Icon icon="carbon:notebook" width="20" height="20"/>
-                    {count.doc}
-                </Link>
-                <Link className={styles.numItem} href="/project" data-tips="project count">
-                    <Icon icon="ph:projector-screen" width="20" height="20"/>
-                    {count.project}
-                </Link>
-            </div>
             <SocialLinks
                 style={{
                     maxWidth: '100%',
