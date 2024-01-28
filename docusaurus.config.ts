@@ -125,7 +125,7 @@ const config: Config = {
                 },
             ],
         },
-        liveCodeBlock: {playgroundPosition: 'top'},
+liveCodeBlock: {playgroundPosition: 'top'},
         zoom: {
             selector: '.markdown :not(em) > img',
             background: {
@@ -168,7 +168,6 @@ const config: Config = {
                 offlineModeActivationStrategies: ['appInstalled', 'standalone', 'queryString'],
                 pwaHead: [
                     {tagName: 'link', rel: 'icon', href: '/img/logo.png'},
-                    {tagName: 'link', rel: 'manifest', href: '/manifest.json'},
                     {tagName: 'meta', name: 'theme-color', content: '#12affa'},
                 ],
             },
