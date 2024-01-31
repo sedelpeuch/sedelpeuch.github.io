@@ -4,19 +4,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 40vh; /* Hauteur mise à jour */
+    min-height: 60vh;
+    height: 100%;
     background-size: cover;
     text-align: center;
     padding: 2rem;
     border-radius: var(--ifm-card-border-radius);
     position: relative;
     background-color: var(--ifm-background-color);
-}
-
-h1, p {
-    max-width: 50%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .positions {
@@ -28,7 +23,7 @@ h1, p {
     padding: 0.5rem 0;
     position: relative;
     background-color: var(--ifm-background-color);
-    height: 40vh;
+    height: 100%;
     overflow: auto;
 }
 
