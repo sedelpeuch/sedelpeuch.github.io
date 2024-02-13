@@ -193,6 +193,10 @@ const config: Config = {
       crossorigin: "anonymous",
     },
   ],
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
 };
 
 export default config;
