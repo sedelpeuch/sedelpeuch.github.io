@@ -19,15 +19,15 @@ function TechStack() {
         {name: 'C++', logo: 'logos:c-plusplus'},
         {name: 'ROS', logo: 'skill-icons:ros-light'},
         {name: 'ROS2', logo: 'skill-icons:ros-light'},
-        {name: 'Flask', logo: 'skill-icons:flask-light'},
-        {name: 'OpenCV', logo: 'skill-icons:opencv-light'},
-        {name: 'GitHub', logo: 'skill-icons:github-light'},
-        {name: 'Github Actions', logo: 'skill-icons:githubactions-light'},
-        {name: 'JetBrains', logo: 'logos:jetbrains'},
+        {name: 'VS Code', logo: 'skill-icons:vscode-light'},
+        {name: 'Linux', logo: 'skill-icons:linux-light'},
         {name: 'Oh My Zsh', logo: 'devicon:ohmyzsh'},
         {name: 'Git', logo: 'skill-icons:git'},
+        {name: 'GitHub', logo: 'skill-icons:github-light'},
+        {name: 'Github Actions', logo: 'skill-icons:githubactions-light'},
+        {name: 'Nginx', logo: 'skill-icons:nginx'},
         {name: 'Docker', logo: 'skill-icons:docker'},
-        {name: 'Linux', logo: 'skill-icons:linux-light'},
+        {name: 'Kubernetes', logo: 'skill-icons:kubernetes'},
     ];
 
     return (

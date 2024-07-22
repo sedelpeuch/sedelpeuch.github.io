@@ -136,6 +136,23 @@ export const projects: Project[] = [
         website: 'https://www.eirlab.net/fraiseuse-cnc-bois/',
         tags: ['formation'],
         type: 'Maker',
+    },
+    {
+        title: "delpeuch.net",
+        description: "Portfolio de Sébastien Delpeuch",
+        preview: '/img/project/delpeuch.png',
+        website: 'https://delpeuch.net',
+        source: 'https://github.com/sedelpeuch/sedelpeuch.github.io',
+        tags: ['opensource'],
+        type: 'Développement',
+    },
+    {
+        title: "Robocup @Home 2023 (CATIE)",
+        description: "Team Leader de l'équipe CATIE pour la Robocup @Home 2023",
+        preview: '/img/project/robocup.png',
+        website: 'https://robotics.catie.fr/',
+        tags: ['ROS'],
+        type: 'Robotique',
     }
 ]
 

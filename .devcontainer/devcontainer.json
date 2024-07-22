@@ -1,0 +1,15 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "forwardPorts": [
+    3000
+  ],
+  "postStartCommand": "yarn install && pre-commit install",
+  "features": {
+    "node": {
+      "version": "18"
+    },
+    "github-cli": {},
+    "ghcr.io/devcontainers-contrib/features/pipx-package:1": {},
+    "ghcr.io/prulloac/devcontainer-features/pre-commit:1": {}
+  }
+}
