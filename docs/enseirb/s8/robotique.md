@@ -11,7 +11,7 @@ de $(\theta_0, \theta_1, \theta_2)$ (modèle direct) puis l'expression de $(\the
 \theta_2)$ en fonction de $(x,y,z)$ (modèle inverse). Nous définissons le repère
 $\mathcal{R}$ centré sur la première articulation de la patte (repère 0).
 
-#### Rappel sur la matrice de rotation.
+#### Rappel sur la matrice de rotation
 
 En 2D autour de 0 : $rot_{(0,\theta)} = \begin{pmatrix} \cos{\theta} & - \sin{\theta} \\\\
 \sin{\theta} & \cos{\theta} \end{pmatrix}$

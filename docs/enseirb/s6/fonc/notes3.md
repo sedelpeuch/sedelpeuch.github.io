@@ -73,4 +73,3 @@ La forme `let` équivaut à l'application d'une fonction construite avec la form
     (* x j)
 )
 ```
-

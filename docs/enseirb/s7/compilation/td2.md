@@ -73,7 +73,7 @@ avec les non-terminaux $I$ (instructions), $C$ (instructions
 conditionnelles), $B$ (booléens) et les terminaux `id, true, false, nop, if,
 then` et `else`.
 
-### Exercice 3.
+### Exercice 3
 
 *Quel est le langage défini par cette grammaire ? Construire un arbre de
 dérivation pour `if id then if id then nop else nop`. En existe-t-il un autre ?
@@ -86,7 +86,7 @@ arbres de dérivations possibles
 
 ![](./img/arbre5.jpg)
 
-### Exercice 4.
+### Exercice 4
 
 *Proposer une grammaire non ambigüe permettant de définir le même langage. Votre grammaire
 devra, comme dans le langage C, “forcer” l’association du “else” avec le “if-then” qui précède le plus proche qui
@@ -107,7 +107,7 @@ C1 -> nop
 A -> id = E
 E -> T
 E -> E + T
-T -> F 
+T -> F
 T -> T * F
 F -> id
 F -> cst

@@ -26,12 +26,12 @@ algorithme est double
 ```c
 fonction Bellman-Ford(G : graphe à arcs pondérés, s : sommet de G) : (booléen, tableau V_G -> R, tableau V_G -> V_G)
     (d,pere) = relacherInit(G,s)
-    
+
     faire |V_G| - 1 fois
         pour chaque arc (u,v) de G
             relacher(u,v,G,d,pere)
     retourner (d,pere)
-    
+
 procédure relacher(u:sommet, v:sommet, G:graphe à arcs pondérés, d: tableau, V_G -> R, père : tableau V_G -> V_G)
     si d(v) > d(u) + poids(u,v)
         d[v] = d(u) + poids(u,v)
@@ -52,7 +52,7 @@ procédure relacher(u:sommet, v:sommet, G:graphe à arcs pondérés, d: tableau,
 fonction Dijkstra(G: graphe à arcs pondérés, s: sommet):(fonction V_G -> R, fonction V_G -> V_G)
     (d,père) = relacherInit(G,s)
     Y = V_G
-    
+
     tant que Y n'est pas l'ensemble vide faire
         extraire un élément u de Y de valeur d minimale
         pour chaque successeur v de u faire

@@ -15,7 +15,7 @@ feuilles vers la racine
 d'un noeud interne dépendant des valeurs (tout ou partie) portées par ses
 enfants (Dans l'analyse syntaxique).
 
-#### Remarques.
+#### Remarques
 
 Les règles de calcul a utiliser ne dépendent que des règles de grammaires
 utilisés. Les calculs sont **locaux** et uniformément défini par la règle
@@ -58,8 +58,8 @@ En Yacc, trois choses sont
 1. Pour désigner les attributs dans une règle de la forme $X \rightarrow x_1,
    x_2, ..., x_n$ avec $x \in N$ et $x_1, x_2, ..., x_n \in N \cup T$. On
    désignera par
-    - `$` la valeur d'attribut de $X$
-    - `$1, $2,..., $n` les valeurs d'attributs de $x_1,...,x_n$ dans cet ordre
+    + `$` la valeur d'attribut de $X$
+    + `$1, $2,..., $n` les valeurs d'attributs de $x_1,...,x_n$ dans cet ordre
       (de gauche à droite)
 2. La règle de calcul de l'attribut de $x$ en fonction des attributs, des
    terminaux et non terminaux du membre droit, sera écrite en $C$, à la suite
@@ -86,7 +86,7 @@ Mise en oeuvre sur notre exemple des expressions arithmétiques.
 exp -> CST
 exp -> ID
 exp -> exp + exp
-exp -> exp * exp 
+exp -> exp * exp
 exp -> (exp)
 ```
 

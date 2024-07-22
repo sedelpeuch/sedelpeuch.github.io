@@ -1,103 +1,112 @@
-import React from 'react'
-import clsx from 'clsx'
-import {translate} from '@docusaurus/Translate'
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
-import ShowcaseCard from './_components/ShowcaseCard'
-import {groupByProjects, projects, projectTypeMap} from '@site/data/projects'
+import React from "react";
+import clsx from "clsx";
+import { translate } from "@docusaurus/Translate";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import ShowcaseCard from "./_components/ShowcaseCard";
+import { groupByProjects, projects, projectTypeMap } from "@site/data/projects";
 
-import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment'
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
-import styles from './styles.module.css'
-import MyLayout from '@site/src/theme/MyLayout'
-import {upperFirst} from '@site/src/utils/jsUtils'
+import styles from "./styles.module.css";
+import MyLayout from "@site/src/theme/MyLayout";
+import { upperFirst } from "@site/src/utils/jsUtils";
 
 const TITLE = translate({
-    id: 'theme.project.title',
-    message: 'Projets',
-})
+  id: "theme.project.title",
+  message: "Projets",
+});
 const DESCRIPTION = translate({
-    id: 'theme.project.description',
-    message: "",
-})
+  id: "theme.project.description",
+  message: "",
+});
 
 // const GITHUB_URL = 'https://github.com/kuizuo'
 
 type ProjectState = {
-    scrollTopPosition: number
-    focusedElementId: string | undefined
-}
+  scrollTopPosition: number;
+  focusedElementId: string | undefined;
+};
 
 export function prepareUserState(): ProjectState | undefined {
-    if (ExecutionEnvironment.canUseDOM) {
-        return {
-            scrollTopPosition: window.scrollY,
-            focusedElementId: document.activeElement?.id,
-        }
-    }
+  if (ExecutionEnvironment.canUseDOM) {
+    return {
+      scrollTopPosition: window.scrollY,
+      focusedElementId: document.activeElement?.id,
+    };
+  }
 
-    return undefined
+  return undefined;
 }
 
 function ShowcaseHeader() {
-    return (
-        <section className="text--center">
-            <h2>{TITLE}</h2>
-            <p>{DESCRIPTION}</p>
-            {/* <a
+  return (
+    <section className="text--center">
+      <h2>{TITLE}</h2>
+      <p>{DESCRIPTION}</p>
+      {/* <a
       </a> */}
-        </section>
-    )
+    </section>
+  );
 }
 
 function ShowcaseCards() {
-    const {i18n} = useDocusaurusContext()
-    const lang = i18n.currentLocale
+  const { i18n } = useDocusaurusContext();
+  const lang = i18n.currentLocale;
 
-    if (projects.length === 0) {
-        return (
-            <section className="margin-top--lg margin-bottom--xl">
-                <div className="container padding-vert--md text--center">
-                    <h2>No result</h2>
-                </div>
-            </section>
-        )
-    }
-
+  if (projects.length === 0) {
     return (
-        <section className="margin-top--lg margin-bottom--xl">
-            <>
-                <div className="container margin-top--lg">
-                    <div className={clsx('margin-bottom--md', styles.showcaseFavoriteHeader)}></div>
+      <section className="margin-top--lg margin-bottom--xl">
+        <div className="container padding-vert--md text--center">
+          <h2>No result</h2>
+        </div>
+      </section>
+    );
+  }
 
-                    {Object.entries(groupByProjects).map(([key, value]) => {
-                        return (
-                            <div key={key}>
-                                <div className={clsx('margin-bottom--md', styles.showcaseFavoriteHeader)}>
-                                    <h3>{upperFirst(lang === 'en' ? key : projectTypeMap[key])}</h3>
-                                </div>
-                                <ul className={styles.showcaseList}>
-                                    {value.map(project => (
-                                        <ShowcaseCard key={project.title} project={project}/>
-                                    ))}
-                                </ul>
-                            </div>
-                        )
-                    })}
+  return (
+    <section className="margin-top--lg margin-bottom--xl">
+      <>
+        <div className="container margin-top--lg">
+          <div
+            className={clsx("margin-bottom--md", styles.showcaseFavoriteHeader)}
+          ></div>
+
+          {Object.entries(groupByProjects).map(([key, value]) => {
+            return (
+              <div key={key}>
+                <div
+                  className={clsx(
+                    "margin-bottom--md",
+                    styles.showcaseFavoriteHeader,
+                  )}
+                >
+                  <h3>
+                    {upperFirst(lang === "en" ? key : projectTypeMap[key])}
+                  </h3>
                 </div>
-            </>
-        </section>
-    )
+                <ul className={styles.showcaseList}>
+                  {value.map((project) => (
+                    <ShowcaseCard key={project.title} project={project} />
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </>
+    </section>
+  );
 }
 
 function Showcase(): JSX.Element {
-    return (
-        <MyLayout title={TITLE} description={DESCRIPTION} maxWidth={1280}>
-            <main className="margin-vert--lg">
-                <ShowcaseHeader/>
-                <ShowcaseCards/>
-            </main>
-        </MyLayout>
-    )
+  return (
+    <MyLayout title={TITLE} description={DESCRIPTION} maxWidth={1280}>
+      <main className="margin-vert--lg">
+        <ShowcaseHeader />
+        <ShowcaseCards />
+      </main>
+    </MyLayout>
+  );
 }
 
-export default Showcase
+export default Showcase;

@@ -35,17 +35,17 @@ donc $Σ*$ est bien solution de l'équation $X = A.X U B$
   l'unicité (ce qu'on va faire en montrant qu'elle est la plus petit et la plus
   grande)
 
-+ Montrons d'abord que $A*.B$ est une solution de $X = A.X U B$
+* Montrons d'abord que $A*.B$ est une solution de $X = A.X U B$
 
 $A*.B = (eps U A.A*).B = B U A.A*.B$
 or le produit de langages est associatif, donc
 $A*.B = A(A*.B U B)$
 
-+ Dans la cas où $A$ ne contient pas le mot vide Soit $S$ une solution, et
+* Dans la cas où $A$ ne contient pas le mot vide Soit $S$ une solution, et
   $w$ un mot de $S$ Supposons que $w$ est le plus court possible tel que
   $w$ n'est pas dans $A*.B$ $w$ est dans $S = A.S U B$ donc $w$ est soit :
-    - dans $B$ (impossible)
-    - soit dans $AS$
+  * dans $B$ (impossible)
+  * soit dans $AS$
 
 donc $w = u.v$ avec $u$ dans $A$ et $v$ dans $S v$ est aussi dans $A*.B$ (car $|v| < |w|$)
 donc $w$ est dans $A.A*.B$, donc dans $A*.B$
@@ -61,7 +61,7 @@ or $S = AS U B$, donc $x.yz$ est dans $S$ -> contradiction
 
 * On construit l'automate en créant un état par variable + un état final et on crée les transitions pour chaque règle (cf. cours)
 
-## Exercice 2 :
+## Exercice 2
 
 L'intuition naïve qu'on pourrait avoir serait "d'inverser" les résultats de
 chaque règle. Cependant, cette méthode génère en fait le miroir du langage de la
@@ -123,7 +123,7 @@ En remplaçant le deuxième, on trouve l'arbre suivant :
    x     S +  S
          |    |
          x    x
-``` 
+```
 
 ## Exercice 3
 

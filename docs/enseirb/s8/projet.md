@@ -143,8 +143,6 @@ title: "Évaluation des projets et maîtrise des coûts"
 <!-- moins lointain (capital, emprints, dettes fournisseurs, etc). Ces ressources -->
 <!-- sont également dénommées "passifs" -->
 
-
-
 <!-- ### Cours 1 : le système d'organisation comptable -->
 
 <!-- #### Les obligations comptables et fiscales de l'entreprise  -->
@@ -204,7 +202,6 @@ title: "Évaluation des projets et maîtrise des coûts"
 <!-- investissement (prix d'achat + frais accessoires + besoin en fonds de roulement -->
 <!-- (ie somme nécessaire que l'entreprise doit posséder pour payer ses charges -->
 <!-- courantes en attendant de recevoir le paiement dû par ses clients)). -->
-
 
 <!-- **TIR*** est le taux interne de rentabilité c'est à dire le taux pour lequel la -->
 <!-- VAN du projet est égale à zéro (on choisi le projet qui a le TIR le plus élevé). -->

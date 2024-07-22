@@ -100,4 +100,3 @@ ans. Voici une [proposition](physique/TP.pdf) de solution. Faites attention à l
 mécanique, la théorie est juste mais la pratique possède plusieurs défaut.
 
 En plus une proposition du [compte rendu](physique/optique.pdf) à faire sur le deuxième TP d'optique
-

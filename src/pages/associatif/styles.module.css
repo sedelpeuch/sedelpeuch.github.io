@@ -1,120 +1,120 @@
 .associationBanner {
-    background-attachment: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 60vh;
-    height: 100%;
-    background-size: cover;
-    text-align: center;
-    padding: 2rem;
-    border-radius: var(--ifm-card-border-radius);
-    position: relative;
-    background-color: var(--ifm-background-color);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  height: 100%;
+  background-size: cover;
+  text-align: center;
+  padding: 2rem;
+  border-radius: var(--ifm-card-border-radius);
+  position: relative;
+  background-color: var(--ifm-background-color);
 }
 
 .positions {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 0.5rem 0;
-    position: relative;
-    background-color: var(--ifm-background-color);
-    height: 100%;
-    overflow: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0.5rem 0;
+  position: relative;
+  background-color: var(--ifm-background-color);
+  height: 100%;
+  overflow: auto;
 }
 
 .outer {
-    position: relative;
-    overflow: hidden;
-    padding: 2px;
-    width: max-content;
-    border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  padding: 2px;
+  width: max-content;
+  border-radius: 16px;
 
-    transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 @keyframes surround {
-    0% {
-        transform: translateY(-25%) translateX(40%) rotate(0deg);
-    }
+  0% {
+    transform: translateY(-25%) translateX(40%) rotate(0deg);
+  }
 
-    30% {
-        transform: translateY(0) translateX(0) rotate(90deg) scaleX(0.7);
-    }
+  30% {
+    transform: translateY(0) translateX(0) rotate(90deg) scaleX(0.7);
+  }
 
-    50% {
-        transform: translateY(-25%) translateX(-40%) rotate(180deg);
-    }
+  50% {
+    transform: translateY(-25%) translateX(-40%) rotate(180deg);
+  }
 
-    70% {
-        transform: translateY(0) translateX(0) rotate(270deg) scaleX(0.7);
-    }
+  70% {
+    transform: translateY(0) translateX(0) rotate(270deg) scaleX(0.7);
+  }
 
-    100% {
-        transform: translateY(-25%) translateX(40%) rotate(1turn);
-    }
+  100% {
+    transform: translateY(-25%) translateX(40%) rotate(1turn);
+  }
 }
 
-
 .gradient {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    border-radius: 16px;
-    animation: surround -0.64s linear 8s infinite;
-    background: conic-gradient(
-            transparent 50deg,
-            var(--ifm-color-primary-light) 80deg,
-            transparent 100deg
-    );
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  border-radius: 16px;
+  animation: surround -0.64s linear 8s infinite;
+  background: conic-gradient(
+    transparent 50deg,
+    var(--ifm-color-primary-light) 80deg,
+    transparent 100deg
+  );
 }
 
 .button {
-    position: relative;
-    z-index: 1;
-    align-items: center;
+  position: relative;
+  z-index: 1;
+  align-items: center;
 
-    text-align: center;
-    display: inline-block;
-    padding: 20px;
-    font-weight: 600;
-    border: 1px solid var(--ifm-color-primary); /* border color */
+  text-align: center;
+  display: inline-block;
+  padding: 20px;
+  font-weight: 600;
+  border: 1px solid var(--ifm-color-primary); /* border color */
 
-    background-color: var(--ifm-background-color); /* background color */
-    border-radius: 16px;
-
+  background-color: var(--ifm-background-color); /* background color */
+  border-radius: 16px;
 }
 
 .positions > * {
-    margin: 1rem;
+  margin: 1rem;
 }
 
 .positionCardBody {
-    text-align: center;
-    color: var(--ifm-color-primary);
+  text-align: center;
+  color: var(--ifm-color-primary);
 }
 
 .title {
-    font-weight: 400;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 2rem;
-    margin: 0;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 2rem;
+  margin: 0;
 }
 
 .description {
-    white-space: nowrap;
-    margin: 0;
+  white-space: nowrap;
+  margin: 0;
 }
 
 .year {
-    font-size: 1.2rem; /* Taille du texte, ajustez selon vos préférences */
-    color: var(--ifm-color-primary); /* Couleur du texte, ajustez selon vos préférences */
-    font-weight: bold; /* Met le texte en gras, vous pouvez le supprimer si vous ne le voulez pas */
-    margin-top: 1rem; /* Espace au-dessus de l'année, ajustez selon vos préférences */
+  font-size: 1.2rem; /* Taille du texte, ajustez selon vos préférences */
+  color: var(
+    --ifm-color-primary
+  ); /* Couleur du texte, ajustez selon vos préférences */
+  font-weight: bold; /* Met le texte en gras, vous pouvez le supprimer si vous ne le voulez pas */
+  margin-top: 1rem; /* Espace au-dessus de l'année, ajustez selon vos préférences */
 }

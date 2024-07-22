@@ -1,9 +1,9 @@
-import React from 'react'
-import clsx from 'clsx'
-import Link from '@docusaurus/Link'
-import type { Props } from '@theme/Tag'
+import React from "react";
+import clsx from "clsx";
+import Link from "@docusaurus/Link";
+import type { Props } from "@theme/Tag";
 
-import styles from './styles.module.scss'
+import styles from "./styles.module.scss";
 
 export default function Tag({
   permalink,
@@ -14,10 +14,14 @@ export default function Tag({
   return (
     <Link
       href={permalink}
-      className={clsx(styles.tag, count ? styles.tagWithCount : styles.tagRegular, className)}
+      className={clsx(
+        styles.tag,
+        count ? styles.tagWithCount : styles.tagRegular,
+        className,
+      )}
     >
       {label}
       {count && <span>{count}</span>}
     </Link>
-  )
+  );
 }

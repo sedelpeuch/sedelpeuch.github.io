@@ -41,4 +41,3 @@ Le raisonnement est correct on le montre par la contraposée. Pour passer de (iv
 2. $L_7 \cup a^\ast b^\ast = a^n b^n$ donc comme pour l'exercice 6, $L_7$ n'est pas régulier
 3. On considère un automate qui accepte $L_8$ et on transforme les états pour lesquels il existe un chemin menant à un état accepteur en états accepteurs
 4. Oui si $|\Sigma|=1$. Sinon on utilise encore la contraposée du lemme de l'étoile en choisissant bien le mot. On prend $\omega=a^N bb a^N$ qui permet d'obtenir une décomposition pour laquelle les $bb$ ne sont plus au milieu et c'est gagné
-

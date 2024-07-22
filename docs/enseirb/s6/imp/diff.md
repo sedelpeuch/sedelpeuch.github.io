@@ -90,4 +90,3 @@ Cependant pour initialiser le dossier il faut réalilser les commandes suivantes
 Puis dans le répertoire de travail
 
     svn checkout file://$HOME/.depots/pg106
-

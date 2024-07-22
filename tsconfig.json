@@ -1,10 +1,12 @@
 {
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "lib": ["DOM", "ESNext"],
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
     "baseUrl": ".",
     "resolveJsonModule": true,
-
     "allowUnreachableCode": false,
     "exactOptionalPropertyTypes": false,
     "noFallthroughCasesInSwitch": true,
@@ -24,11 +26,13 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "importsNotUsedAsValues": "remove",
-
     "moduleResolution": "NodeNext",
-
     "skipLibCheck": false,
-    "types": ["jest"]
+    "types": [
+      "jest"
+    ]
   },
-  "exclude": ["src/sw.js"]
+  "exclude": [
+    "src/sw.js"
+  ]
 }

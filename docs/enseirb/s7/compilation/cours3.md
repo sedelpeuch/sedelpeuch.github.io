@@ -4,7 +4,7 @@ title: "Vidéo 4"
 
 Notes inspirées du cours de JANIN David
 
-## Exemple des expressions arithmétiques.
+## Exemple des expressions arithmétiques
 
 Une grammaire reconnaissant les expressions arithmétiques se reconnaît avec les
 expressions suivantes
@@ -57,14 +57,14 @@ la grammaire.
 
 ### Suite de dérivations (gauche) de $exp \rightarrow cste \times ID + ID$
 
-#### Remarques.
+#### Remarques
 
 + Dés qu'un terminal est généré ou engendré par une règle, on ne peut plus
   l'effacer
 + il coupe implicitement l'entrée en ce qui se trouve à gauche et ce qui se
   trouve à droite.
 
---- 
+---
 
 En pendant compilation, on peut avoir l'impression que cette suite de dérivation
 induit syntaxiquement une "priorité" sur les opérateurs binaires + et *
@@ -100,7 +100,7 @@ Autrement, un arbre de dérivations c'est un arbre dont :
 + les feuilles étiquetées sur T
 + la racine étiquetée par le start symbol
 
-#### Remarque.
+#### Remarque
 
 Il y a bijection entre arbre de dérivation et suites de dérivations gauches. Les
 suites de dérivations gauches sont exactement les parcours en profondeur, à

@@ -114,13 +114,13 @@ parenthèse, on a $( \langle u \vert L ) \vert v \rangle u (L(V))$, cela
 signifie la forme $\langle u \vert L$ appliquée à l'argument $\vert v
 \rangle$. Le résultat étant le même, indépendamment des parenthèses choisit.
 
-#### Applications linéaires.
+#### Applications linéaires
 
 $\vert v \rangle \langle u |$ est un opérateur :
 $ \vert w \rangle \rightarrow \vert v \rangle \langle u | w \rangle = \langle u
 \vert w \rangle \vert v \rangle$
 
-#### Décomposition d'opérateurs.
+#### Décomposition d'opérateurs
 
 Si $\vert u_1 \rangle, ..., \vert u_n \rangle$ une base orthonormée de
 vecteurs propres de l'opérateur $L$. $L \vert u_k \rangle = \lambda_k \vert
@@ -128,12 +128,12 @@ u_k \rangle, k=1,...,n$ alors
 
 $ L = \sum \limits_{k=1}^n \lambda_k \vert u_k \rangle \langle u_k \vert$
 
-#### Produit tensoriel $\otimes$.
+#### Produit tensoriel $\otimes$
 
 La forme associée au vecteur $| u \rangle \otime | v \rangle$ est $\langle u
 \vert \hat{\otimes} \langle v |$
 
-### Exercice :
+### Exercice
 
 Soit $E$ un espace vectoriel et soit $e_1,e_2$ une base de $E$ ($dim E =
 2$) et soit les vecteurs $x = 2 e_1 + 4 e_2 , y = 5 e_1 + 3 e_2$.
@@ -219,9 +219,9 @@ réalise la mesure finale du qubit permet d'extraire l'information recherchée.
 
 On considère deux niveaux de l'atome :
 
-+ le niveau fondamental : c'est celui de plus basse énergie, l'état quantique de
+- le niveau fondamental : c'est celui de plus basse énergie, l'état quantique de
   l'atome est $\vert g \rangle$ (ground state) et son énergie $E_g$.
-+ le premier niveau excité : l'état atomique est noté $\vert e \rangle$ et son
+- le premier niveau excité : l'état atomique est noté $\vert e \rangle$ et son
   énergie $E_e$.
 
 Si on envoit sur l'atome dans son état fondamental un photon d'énergie

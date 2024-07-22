@@ -27,7 +27,7 @@ $(\lambda x.u) v \rightarrow u[x:=v]$
   ux[x:=y] \rightarrow uy$
 * Soit $(\lambda f.f0)(\lambda x.(*2 x))$, on a la suite de réductions
   suivante : $f0[f:=\lambda x.(* 2x)]\rightarrow (\lambda x .(*2 x)) 0
-  \rightarrow (* 2 x)[x:=0] \rightarrow (* 2 0) \rightarrow 0$
+  \rightarrow [* 2 x](x:=0) \rightarrow (* 2 0) \rightarrow 0$
 * En scheme : $((lambda(f) (f 0)) (lambda (x) (* 2 x)))$, on a la suite de
   réduction suivante
 
@@ -83,7 +83,7 @@ mécanisme est utile pour l'écriture de fonctions à nombre d'arguments variabl
 
 avec `<I>=(<e1> <e2> ... <en>)`
 
-## <i class="fas fa-code-branch"></i> Fonctions en retour de fonctions :
+## <i class="fas fa-code-branch"></i> Fonctions en retour de fonctions
 
 curryfication
 
@@ -102,5 +102,4 @@ dans $C$ et telle que $\forall x \in A, f(x,y) = (f^c(x))(y)$
   leur environnement de définition contenant des références éventuelles (ce
   n'est pas le cas par exemple du langage emacs-lisp)
 * Les fermetures peuvent être utiliées pour représenter des états, par
-  modification de l'environnement 
-  
+  modification de l'environnement

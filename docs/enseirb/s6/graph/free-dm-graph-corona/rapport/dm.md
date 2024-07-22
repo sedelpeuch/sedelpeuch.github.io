@@ -436,7 +436,7 @@ Ce sujet nous invite à mettre en place un moyen d'effectuer une recherche de
 chemin, pour ce faire nous allons utiliser un algorithme de recherche de chemin
 rapide, l'algorithme A*.
 
-#### Présentation et principe de l'algorithme.
+#### Présentation et principe de l'algorithme
 
 L'algorithme A* est un algorithme basé sur un principe très simple. A chaque
 itération nous allons tenter de nous rapprocher de la destionation, nous allons
@@ -506,5 +506,3 @@ regardant 2 modèles différents le modèle SIR et l'utilisation de l'A* pour fa
 notre modèle. La répartition des tâches est disponible tout au long du rapport, nous l'avons résumé via gitinspector dans l'image suivante
 
 ![14](img/git.png)
-
-	

@@ -125,21 +125,13 @@ par l'étude de la syntaxe et la sémantique du langage C.
 Lien vers le [cours](https://www.labri.fr/perso/fmoranda/slides/pg101.html#/) et
 la [plateforme d'exercice](https://thor.enseirb-matmeca.fr:4443/)
 
-[feuille1]:https://www.labri.fr/perso/fmoranda/pg101/pg101-1/
 
-[feuille2]:https://www.labri.fr/perso/fmoranda/pg101/pg101-2/
 
-[feuille3]:https://www.labri.fr/perso/fmoranda/pg101/pg101-3/
 
-[feuille4]:https://www.labri.fr/perso/fmoranda/pg101/pg101-4bis/
 
-[feuille5]:https://www.labri.fr/perso/fmoranda/pg101/pg101-4/
 
-[feuille5.1]:https://www.labri.fr/perso/fmoranda/pg101/pg101-5bis/
 
-[feuille5.2]:https://www.labri.fr/perso/fmoranda/pg101/pg101-9/
 
-[feuille6]:https://www.labri.fr/perso/fmoranda/pg101/pg101-5/
 
 [correction1](./img/feuille1.tar.xz)
 
@@ -156,7 +148,6 @@ la [plateforme d'exercice](https://thor.enseirb-matmeca.fr:4443/)
 [correction5.2](./img/feuille5-2.tar.xz)
 
 [correction6](./img/feuille6.tar.xz)
-
 
 ---
 

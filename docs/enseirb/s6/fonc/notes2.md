@@ -16,7 +16,7 @@ Résumé des opérations numériques
 
 * Caractère : ̀#\a`
 * Chaîne : "de caracteres"
-* Type : ̀char?` `string?`
+* Type : ̀char?``string?`
 * Comparaisons `char=?, char<?, char>?, string=?, string<?, string>?`
 * Constructeurs : `make-string, string`
 * Accesseurs : `string-ref`

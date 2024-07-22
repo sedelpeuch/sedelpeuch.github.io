@@ -65,14 +65,14 @@ Une fois les pièces imprimées et découpées, nous avons fait l'assemblage et 
 
 Voici une liste des différents avantages et inconvénients de ce nouveau modèle :
 
-### Avantages:
+### Avantages
 
-- Pas de bascule à cause d'un poids trop important
-- Plus esthétique avec un cœur en forme du logo d'Eirlab
+* Pas de bascule à cause d'un poids trop important
+* Plus esthétique avec un cœur en forme du logo d'Eirlab
 
-### Inconvénients :
+### Inconvénients
 
-- Une partie de l'élec se trouve hors du cœur, il y a donc des câbles qui vont se balader.
+* Une partie de l'élec se trouve hors du cœur, il y a donc des câbles qui vont se balader.
 
 Nous avons ensuite rajouté un petit boîtier pour intégrer la carte Arduino.
 
@@ -90,10 +90,10 @@ Concernant l'alimentatslion de l'ensemble se fera via le shield grâce à un tra
 
 ![](./img/elec.jpg)
 
-
-
 ---
+
 ### __===NE JAMAIS BRANCHER LE PORT USB ET L'ALIMENTATION VIA LE SHIELD EN MÊME TEMPS===__
+
 ---
 Lorsque l'on alimente une Arduino par l'extérieur (utilisation du pin Vin) le régulateur de tension s'assure que l'arduino n'est pas alimentée en plus de 5V. Cela nous permet d'alimenter en 10V l'ensemble tout en sachant que l'arduino sera alimentée en 5V. Si l'arduino est alimentée à la fois via son port USB type B et par son pin Vin le régulateur de tension assure le fonctionnement.
 
@@ -125,7 +125,7 @@ __ a été mise en place pour simplifier les manipulations mathématiques sur le
 ![](./img/PlotterClasse.png)
 
 La classe __board__ définit physiquement un tableau principalement par sa taille et la position initiale du module sur le tableau (classiquement au centre). Les champs ___a__ et ___b
-__ sont des artéfacts de la première version mécanique, il convient de les mettre à 0 dorénavant. Les tableaux d'eirlab sont préprogrammés, il suffit d'utiliser la méthode __generateBoard(Little)
+__sont des artéfacts de la première version mécanique, il convient de les mettre à 0 dorénavant. Les tableaux d'eirlab sont préprogrammés, il suffit d'utiliser la méthode__generateBoard(Little)
 __ pour obtenir un objet de classe tableau correspondant l'un des petits tableaux d'Eirlab.
 
 La classe __control__ met en œuvre les équations mathématiques vues en 4.1 elle est composée de deux fonctions principales : __simpleMove(Position objective)
@@ -153,7 +153,7 @@ Le script permet de simplifier la vie de l'utilisateur (il a juste à remplir un
 
 0. Récupérer les sources de notre projet disponible [ici](https://github.com/Sdelpeuch/MakerPlotter)
 1. Commencer par choisir une image au format svg, les meilleurs résultats sont obtenus avec des images polygonales (low poly)
-2. Téléverser l'image sur [ce site](https://shinao.github.io/PathToPoints/|ce site) choisissez "Point every x length" et cliquez sur "Apply" : le nombre de path est illimité mais chaque path doit avoir moins de 50 points
+2. Téléverser l'image sur [ce site](<https://shinao.github.io/PathToPoints/|ce> site) choisissez "Point every x length" et cliquez sur "Apply" : le nombre de path est illimité mais chaque path doit avoir moins de 50 points
 3. Le site génère alors un tableau de point, récupérer le tableau qui s'affiche dans "AllPath"
 4. Copier ce tableau dans le fichier "drawing.txt" disponible dans le dossier src/ de notre projet
 5. Lancer la commande python3 coordinate_to_cpp.py

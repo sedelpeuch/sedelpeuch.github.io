@@ -1,7 +1,7 @@
 ---
 layout: page
 hide: true
-title: PL - Cours 1 
+title: PL - Cours 1
 ---
 
 ## <i class="fas fa-search"></i> Introduction par l'exemple

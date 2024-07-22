@@ -1,5 +1,5 @@
 ---
-title: <i class="fas fa-server fa-2x"></i> Introduction aux réseaux - TD1 
+title: <i class="fas fa-server fa-2x"></i> Introduction aux réseaux - TD1
 ---
 
 ## Exercice 1

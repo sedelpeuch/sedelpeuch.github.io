@@ -1,7 +1,7 @@
 ---
 layout: page
 hide: true
-title: PL - Cours 2 
+title: PL - Cours 2
 ---
 
 On dispose d'un formalisme pour modéliser des problèmes réels : la programmation
@@ -293,8 +293,8 @@ Après l'ajout de la variable d'écart et écriture sous forme de dictionnaire, 
 
 A la fin de cette résolution
 
-* S'il existe au moins un $i$ tel que $x'_{n+i} > 0$, alors les variables artificielles sont nécessaire pour avoir une solution réalisable. Alors, le problème initial est irréalisable
-* Si $x'_{n+1}=0$ pour tout $i$ tel que $b_i<0$, toutes les variables artificielles sont hors-base. On a une solution de base réalisable pour le problème initial donnée par la base optimale de la Phase I
++ S'il existe au moins un $i$ tel que $x'_{n+i} > 0$, alors les variables artificielles sont nécessaire pour avoir une solution réalisable. Alors, le problème initial est irréalisable
++ Si $x'_{n+1}=0$ pour tout $i$ tel que $b_i<0$, toutes les variables artificielles sont hors-base. On a une solution de base réalisable pour le problème initial donnée par la base optimale de la Phase I
 
 1. Supprimer les variables artificielles
 2. Reprendre l'objectif initial
@@ -312,5 +312,5 @@ Il peut arriver que dans le dictionnaire optimal, des variables hors-bases poss�
 
 En cas de dégénérescence, l'algorithme peut revenir sur une solution de base déjà visitée (cycle). En pratique néanmoins, cela se passe rarement. Il existe des règles de pivotage limitant les risques de cycle.
 
-* règle de plus petit indice
-* perturbation des données : ajouter aux membres de droite des contraintes des $\varepsilon$ suffisamment petits.
++ règle de plus petit indice
++ perturbation des données : ajouter aux membres de droite des contraintes des $\varepsilon$ suffisamment petits.

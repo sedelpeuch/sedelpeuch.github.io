@@ -10,7 +10,6 @@ Ingénieur en informatique au [CATIE](http://catie.fr/) spécialisé en Robotiqu
 
 Voici un résumé de ma roadmap DevOps personnelle pour 2024. Cette roadmap est basée sur mes expériences et mes objectifs personnels. Elle est sujette à des changements et des mises à jour régulières. N'hésitez pas à me contacter si vous avez des suggestions ou des commentaires.
 
-
 # DevOps Roadmap
 
 import IconTitle from '@site/src/components/IconTitle';

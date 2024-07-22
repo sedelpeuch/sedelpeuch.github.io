@@ -50,5 +50,3 @@ Lorsqu'un bug est détecté, il est possible de créer une nouvelle `issue` dans
 ## Licence 📄
 
 Ce projet est sous licence GPL-3.0. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
-
-

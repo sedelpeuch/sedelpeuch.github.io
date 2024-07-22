@@ -1,5 +1,5 @@
 ---
-title: Introduction aux réseaux - Historique et notion de bases 
+title: Introduction aux réseaux - Historique et notion de bases
 ---
 
 ## <i class="fas fa-server"></i> Qu'est ce qu'un réseau de communication ?
@@ -11,12 +11,12 @@ title: Introduction aux réseaux - Historique et notion de bases
   transmises, les réseaux ont l'objet d'un certain nombre de spécifications et
   normes.
 + Les réseaux de communications peuvent être classés en fonction :
-    + du type d'informations transportées
-    + de la nature des entités impliquées
+  + du type d'informations transportées
+  + de la nature des entités impliquées
 + On distingue trois principals catégories de réseaux
-    + Les réseaux de télécommunications
-    + Les réseaux téléinformatiques
-    + Les réseaux de télédiffusion
+  + Les réseaux de télécommunications
+  + Les réseaux téléinformatiques
+  + Les réseaux de télédiffusion
 
 ## <i class="fas fa-server"></i> Les réseaux de télécommunications
 
@@ -74,8 +74,8 @@ une technologie internet.
 + Topologie logique : décrit comment l'information est transmise d'un noeud à
   l'autre
 + On distingue 2 classes de réseaux
-    + Utilisant le mode de diffusion
-    + Utilisant des liaisons point à point
+  + Utilisant le mode de diffusion
+  + Utilisant des liaisons point à point
 
 #### Mode de connexion : connecté
 

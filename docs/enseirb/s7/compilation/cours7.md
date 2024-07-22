@@ -29,7 +29,7 @@ Entrée dans le bloc :
 ```c
 empiler g (sp = sp - 4)
 empiler x (sp = sp - 4)
-fp = sp 
+fp = sp
 ```
 
 Cependant cela provoque un problème, on perd la valeur précédente du fp. Pour
@@ -39,7 +39,7 @@ pallier ce problème il faut sauvegarder le fp dans la pile
 empiler g (sp = sp - 4)
 empiler x (sp = sp - 4)
 empiler fp (*sp = fp, sp = sp -4)
-fp = sp 
+fp = sp
 ```
 
 À la sortie du bloc
@@ -72,11 +72,11 @@ Le contexte contient, a minima, une sauvegarde du fp lors de l'appel.
 L'adressage des variables, locales, des arguments, et de la valeur de retour se
 fait relativement au fp courant.
 
-### Appel d'une fonction :
+### Appel d'une fonction
 
 ```
 Sauvegarde du contexte courant fp
-Empilement des arguments 
+Empilement des arguments
 Réserver la place du résultat
 Positionner le fp
 Empilement des variables locales
@@ -93,4 +93,3 @@ ne fera pas des goto mais on utilisera une paire d'instruction particulière
 
 + des branchements
 + de la sauvegarde / restauration du fp et du co.
-

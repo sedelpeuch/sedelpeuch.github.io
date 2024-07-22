@@ -90,7 +90,7 @@ $n$-uplets des différents relations du schéma relationnel.
 
 ### Passage du modèle entités-associations au modèle relationnel
 
-#### Règles de passage.
+#### Règles de passage
 
 Pour traduire un schéma du modèle entités-associations vers le modèle
 relationnel, on peut appliquer les règles suivantes :
@@ -114,7 +114,7 @@ relationnel, on peut appliquer les règles suivantes :
    comme attribut (et donc comme clé étrangère l'identifant de l'autre type
    entité).
 
-#### Cas particulier d'un type association du type 1 vers 1.
+#### Cas particulier d'un type association du type 1 vers 1
 
 ![Figure 3.1](./img/fig3_1.png)
 
@@ -122,8 +122,8 @@ Dans l'exemple ci dessus toutes les cardinalités maximales du type association
 *Etre* sont de 1. L'application des règles de passage du modèle
 entités-associations au modèle relationnel énoncées ci dessus nous donnerait :
 
-+ Citoyen(_Num-citoyen_, Num-candidat, Nom, Prénom, Adresse)
-+ Candidat(_Num-candidat_, Num-citoyen, Parti)
++ Citoyen(*Num-citoyen*, Num-candidat, Nom, Prénom, Adresse)
++ Candidat(*Num-candidat*, Num-citoyen, Parti)
 
 L'attribut *Num-candidat* dans la relation Citoyen est une clé étrangère de la
 relation *Candidat*. L'attribut *Num-citoyen* dans la relation *Candidat* est
@@ -143,7 +143,7 @@ Le schéma relationnel adéquat correspondant au mmodèle ci dessus devient donc
 où *Num-Citoyen*, en plus d'être la clé de la relation Candidat, est une clé
 étrangère de la relation Citoyen.
 
-#### Cas partiulier d'un type entité sans attribut autre que sa clé.
+#### Cas partiulier d'un type entité sans attribut autre que sa clé
 
 Lorsqu'un type entité ne possède pas d'attribut en dehors de sa clé, il ne faut
 pas nécessairement en faire une relation.
@@ -158,7 +158,7 @@ entités-associations de la figure est donc
 + Personne(Num-Personne, nom, prénom, adresse) ;
 + Emprunter(Num-Exemplaire, Num-Personne, Date, date-retour).
 
-#### Exemple complet.
+#### Exemple complet
 
 ![Figure 3.3](./img/fig3_3.png)
 
@@ -260,7 +260,7 @@ peut pas être obtenue par transitivité.
 
 ### Première et deuxième forme normale
 
-#### Première forme normale.
+#### Première forme normale
 
 `Première forme normale (1FN) :` Une relation est en première forme normale si,
 et seulement si, tout attribut contient une valeur atomique (non multiples, non
@@ -272,7 +272,7 @@ normale. Il faut le décomposer en
 + Prénoms-enfants(num-personne, num-prénom)
 + Prénoms(num-prénom, prénom)
 
-#### Remarque sur la première forme normale.
+#### Remarque sur la première forme normale
 
 La première forme normale impose que chaque ligne d'une relation ait une seule
 valeur pour chaque colonne (ie attribut), ce qui est justement la définition
@@ -281,7 +281,7 @@ sens du modèle relationnel. Cependant, il faut noter que le modèle relationnel
 peut être étendu de manière à permettre des colonnes à valeur complexe. On parle
 alors de modèle relationnel étendu (NF2 pour Non First Normal Form en anglais).
 
-#### Deuxième forme normale.
+#### Deuxième forme normale
 
 `Deuxième forme normale (2FN) :` Une relation est en deuxième forme normale si,
 et seulement si, elle est en première forme normale et si toutes les
@@ -316,9 +316,9 @@ normale de Boyce Codd. Les quatrième et cinquième formes normales traitent
 envore d'autres cas de redondance, mais qui ne sont pas expliqués par des
 dépendances fonctionnelles.
 
-### Quatrième et cinquième forme normale.
+### Quatrième et cinquième forme normale
 
-#### Dépendance multivaluée (DM).
+#### Dépendance multivaluée (DM)
 
 `Dépendance multivaluée (DM) :` Soit $R(A_1,A_2,..,A_n)$ un schéma de relation
 contenant $n$ propriétés, soit $X,Y$ et $Z$ des sous-ensembles de

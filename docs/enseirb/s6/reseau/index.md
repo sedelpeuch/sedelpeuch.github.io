@@ -1,5 +1,5 @@
 ---
-title: Introduction aux réseaux 
+title: Introduction aux réseaux
 icon: fa-server
 order: 9
 hide: true
@@ -11,9 +11,9 @@ Cours d’introduction aux réseaux avec présentation des modèles OSI et TCP/I
 Historique des réseaux, les réseaux locaux informatiques (LAN), classification
 des réseaux, les couches ISO et TCP/IP, technologies pour les LAN, notion de
 base sur l’Ethernet : adressage, commutation, type ethernet, équipements
-d’interconnexions réseaux, autres protocoles pour les LAN, travaux pratiques 
+d’interconnexions réseaux, autres protocoles pour les LAN, travaux pratiques
 
-### Resources pédagogiques 
+### Resources pédagogiques
 
 Le
 [cours](https://moodle.bordeaux-inp.fr/pluginfile.php/111539/mod_resource/content/1/Cours%20RE100.pdf),
@@ -24,4 +24,3 @@ et le [td2](https://moodle.bordeaux-inp.fr/pluginfile.php/111542/mod_resource/co
 import DocCardList from '@theme/DocCardList';
 
 <DocCardList />
-
