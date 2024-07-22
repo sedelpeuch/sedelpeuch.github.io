@@ -31,6 +31,11 @@ const config: Config = {
           to: "project",
         },
         {
+          label: "Blog",
+          position: "left",
+          to: "blog",
+        },
+        {
           label: "Associatif",
           position: "left",
           to: "associatif",
@@ -146,6 +151,15 @@ const config: Config = {
           sidebarPath: "sidebars.json",
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
+        },
+        blog: {
+          showReadingTime: true,
+          feedOptions: {
+            type: "all",
+            title: "Sébastien Delpeuch's Blog",
+          },
+          blogSidebarTitle: 'Tous les articles',
+          blogSidebarCount: 'ALL',
         },
         theme: {
           customCss: ["./src/css/custom.scss"],

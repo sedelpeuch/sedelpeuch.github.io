@@ -112,6 +112,12 @@ export default function Hero() {
                             Résumé
                         </a>
                     </div>
+                    <div className={styles.outer}>
+                        <div className={styles.gradient}/>
+                        <a className={styles.button} href={'./blog'}>
+                            Blog
+                        </a>
+                    </div>
                 </motion.div>
             </div>
             <motion.div className={styles.background}>
