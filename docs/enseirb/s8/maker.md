@@ -153,7 +153,7 @@ Le script permet de simplifier la vie de l'utilisateur (il a juste à remplir un
 
 0. Récupérer les sources de notre projet disponible [ici](https://github.com/Sdelpeuch/MakerPlotter)
 1. Commencer par choisir une image au format svg, les meilleurs résultats sont obtenus avec des images polygonales (low poly)
-2. Téléverser l'image sur [ce site](<https://shinao.github.io/PathToPoints/|ce> site) choisissez "Point every x length" et cliquez sur "Apply" : le nombre de path est illimité mais chaque path doit avoir moins de 50 points
+2. Téléverser l'image sur [ce site](https://shinao.github.io/PathToPoints/) choisissez "Point every x length" et cliquez sur "Apply" : le nombre de path est illimité mais chaque path doit avoir moins de 50 points
 3. Le site génère alors un tableau de point, récupérer le tableau qui s'affiche dans "AllPath"
 4. Copier ce tableau dans le fichier "drawing.txt" disponible dans le dossier src/ de notre projet
 5. Lancer la commande python3 coordinate_to_cpp.py
