@@ -125,14 +125,6 @@ par l'étude de la syntaxe et la sémantique du langage C.
 Lien vers le [cours](https://www.labri.fr/perso/fmoranda/slides/pg101.html#/) et
 la [plateforme d'exercice](https://thor.enseirb-matmeca.fr:4443/)
 
-
-
-
-
-
-
-
-
 [correction1](./img/feuille1.tar.xz)
 
 [correction2](./img/feuille2.tar.xz)

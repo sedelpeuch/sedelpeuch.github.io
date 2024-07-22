@@ -34,11 +34,9 @@ import DocCardList from '@theme/DocCardList';
 
 [Analyse syntaxique]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=9540
 
-
 [Vidéo 4]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=66702
 
 [Vidéo 5]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=67449
-
 
 [Vidéo 6.2]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=68045
 
