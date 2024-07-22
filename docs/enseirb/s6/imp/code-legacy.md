@@ -4,7 +4,7 @@ hide: true
 title:  Impératif - code-legacy-sujet
 ---
 
-## Code Legacy 
+## Code Legacy
 
 ### Transformation du Makefile en Cmake
 
@@ -46,4 +46,5 @@ add_executable(
 target_link_libraries(project m)
 target_link_libraries(test m)
 ```
+
 ### Mise en place de la documentation

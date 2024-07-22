@@ -54,4 +54,3 @@ Les [notes de cours](physique/Electromagnétisme-cours.pdf) et les [notes de TD]
 Pour l'instant les travaux pratiques du semestre 3 n'ont pas changés depuis 10
 ans. Voici une [proposition](physique/TP-S3.pdf) de
 solution. Normalement tous les TPs sont correct.
-

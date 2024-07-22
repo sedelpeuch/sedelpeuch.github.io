@@ -18,13 +18,14 @@
 
 .checkboxLabel:hover {
   opacity: 1;
-  box-shadow: var(--ifm-global-shadow-md),
+  box-shadow:
+    var(--ifm-global-shadow-md),
     0 0 2px 1px var(--ifm-color-primary-dark);
 }
 
 .checkboxLabel::after {
   position: absolute;
-  content: '';
+  content: "";
   inset: 0;
   width: calc(var(--width) / 2);
   height: 100%;

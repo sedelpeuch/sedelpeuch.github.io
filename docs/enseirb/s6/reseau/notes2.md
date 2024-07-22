@@ -1,5 +1,5 @@
 ---
-title: Introduction aux réseaux - Le modèle de référence OSI 
+title: Introduction aux réseaux - Le modèle de référence OSI
 ---
 
 Le principe de base est la représentation des réseaux sous la forme de couche de
@@ -25,7 +25,7 @@ Les 7 couches du modèle ISO/OSI sont à connaitre par coeur.
 | Liaison          | Quelles sont les caractérisation du réseau ? |
 | Physique         | Quel est le support physique ?               |
 
-#### Couche Physique.
+#### Couche Physique
 
 La couche pysique fournit les moyens (logiciels, matériels, électroniques,
 mécaniques ...) nécessaire à la transmission des données binaires (train
@@ -33,7 +33,7 @@ binaire). Elle implémente des fonctionnalités telles que codage, modulation ou
 multiplexage. La conception de la couche physique relève du domaine d'ingénieur
 en électronique.
 
-#### Couche Liaison.
+#### Couche Liaison
 
 La couche liaison fournit les moyens nécessaires à l'établissement, le maintient
 et la libération des connexions de liaison de données entre les entités
@@ -50,7 +50,7 @@ couche physique. Les fonctions essentielles de la couche de liaison sont
 + Sous-couche LLC : gère la détection des erreurs et la gestion de trames et
   liaison logique
 
-#### Couche réseau.
+#### Couche réseau
 
 La couche réseau assure les fonctionnalité
 
@@ -64,7 +64,7 @@ La couche réseau assure les fonctionnalité
   sous-jacent
 + Deux modes de fonctionnement : connecté / non-connecté
 
-#### Couche transport.
+#### Couche transport
 
 La couche transport assure les fonctionnalités
 
@@ -75,7 +75,7 @@ La couche transport assure les fonctionnalités
 + Fiabilité par acquittement et retransmission des données
 + Multiplexage des messages (appelés segments de donnée)
 
-#### Couche session.
+#### Couche session
 
 La couche session assure les fonctionnalités
 
@@ -84,13 +84,13 @@ La couche session assure les fonctionnalités
 + Synchronisation : sauvegarde de contexte et reprise après échec
 + Orchestration des communication
 
-#### Couche présentation.
+#### Couche présentation
 
 La couche présentation assure les fonctionnalités
 
 + Structuration des donnés pour assurer leurs vérifications
 
-#### Couche application.
+#### Couche application
 
 La couche application assure les fonctionnalité de communications à travers
 l'environnement OI en offrant des applications (ou des services) de Web,
@@ -180,7 +180,6 @@ façon à faciliter sa transmission sur le support physique.
 + Exemple : Transmission de données numériques sur un canal téléphonique
 + Exemple : modulation d'amplitude (ASK), de fréquence (FSK) et de phase (PSK).
 
-
 4. Données analogiques, signaux analogiques
 
 + Comment représenter un voltage
@@ -254,7 +253,7 @@ sont tressées entre elles. Ce type de câble repose uniquement sur l'effet
 d'annulation produit par les paires torsadées pour limiter la dégradation du
 signal due aux interférences électromagnétiques et radio.
 
-## <i class="fas fa-server"></i> Explication de la couche liaison de données et notion d'Ethernet.
+## <i class="fas fa-server"></i> Explication de la couche liaison de données et notion d'Ethernet
 
 ### Protocoles d'accès au support
 
@@ -364,22 +363,22 @@ Le succès d'Ethernet est dû aux facteurs suivants :
 
 ### CSMA/CD
 
-* Toute station d'un réseau Ethernet qui souhaite transmettre un message "écoute" d'abord pour s'assurer qu'aucune autre station n'est en cours de transmission
-* Si le câble est silencieux, elle entame immédiatement la transmission
-* Le signal électrique met un certain temps à parcourir le câble, et chaque répéteur introduit un bref temps de latence lors de la transmission de la trame entre deux ports
-* En raison du délai et du temps de latence, il est possible pour plusieurs stations de commencer la transmission au même moment ou quasiment au même moment, ce qui engendre une collision
++ Toute station d'un réseau Ethernet qui souhaite transmettre un message "écoute" d'abord pour s'assurer qu'aucune autre station n'est en cours de transmission
++ Si le câble est silencieux, elle entame immédiatement la transmission
++ Le signal électrique met un certain temps à parcourir le câble, et chaque répéteur introduit un bref temps de latence lors de la transmission de la trame entre deux ports
++ En raison du délai et du temps de latence, il est possible pour plusieurs stations de commencer la transmission au même moment ou quasiment au même moment, ce qui engendre une collision
 
 ### Fonctionnement
 
-* La station émettrice transmet 64 bits d'informations de synchronisation appelées ppréambule. LA station émettrice transmet alors les informations suivant
++ La station émettrice transmet 64 bits d'informations de synchronisation appelées ppréambule. LA station émettrice transmet alors les informations suivant
 
 1. Informations sur les adresses MAC destination et source
 1. Certainnes autres informations d'en tête
 1. Charge utile réelle de données
 1. Somme de contrôle : FCS(CRC) utilisée pour s'assurer que le message n'ap as été corrompu en cours de route
 
-* Les stations qui reçoivent la trame recalculent le CRC pour déterminer si les messages entrant est valide, puis transmettent les messages valides à la couche supérieure suivante de la pile de protocoles.
-* Remarque : La taille maximale d'une trame de niveau liaison de données (niveau 2) est appelée MTU (Maximum Transmission Unit)
++ Les stations qui reçoivent la trame recalculent le CRC pour déterminer si les messages entrant est valide, puis transmettent les messages valides à la couche supérieure suivante de la pile de protocoles.
++ Remarque : La taille maximale d'une trame de niveau liaison de données (niveau 2) est appelée MTU (Maximum Transmission Unit)
 
 ### Détection et prévention de collision sur un réseau CSMA/CD
 
@@ -387,15 +386,15 @@ Le succès d'Ethernet est dû aux facteurs suivants :
 
 ![](./img/principe_collision.png)
 
-#### Principe.
+#### Principe
 
 ![principe]
 
 ```
-Emetteur 
+Emetteur
 - Ecoute du canal
-- Si le canal est libre alors 
-  transmission de l'information et écoute simultanée du canal pour détecter une éventuelle collision 
+- Si le canal est libre alors
+  transmission de l'information et écoute simultanée du canal pour détecter une éventuelle collision
   si collision détectée
       arrête immédiat de la transmission et notification de la collision à toutes les stations
       gestion de la collision (procédure du Backoff)
@@ -410,14 +409,14 @@ La procédure Backoff utilise 3 fonctions
 + ̀int()` rend la partie entière d'un réel
 + `délai()` calcul le délai d'attente multiple d'un slot_time (51.2 microsec) et est compris entre $$[0,2^k[$$. Avec $$k=\min(n,10)$$, où $$n$$ est le nombre de ré-émission déjà faites
 
-``` 
+```
 procédure BACKOFF(no_tentative:entier, VAR maxbackoff:entier)
 Const : slot_time=51.2 (microsecondes); limite_tentative=16
 var : delai : entier
 BEGIN
     Si (no_tentative=1)
     Alors maxbackoff=2 (borne de temps d'attente maximale)
-    Sinon 
+    Sinon
         Si (tentative < limite_tentative)
         Alors maxbackoff=2 maxbackoff
         Sinon maxbackoff=2^10 (au dela de 10 essais la borne devient constante)
@@ -432,10 +431,10 @@ Pour tous les débits de transmission Ethernet égales ou inférieures à 1000Mb
 
 ## <i class="fas fa-server"></i> Equipements d'interconnexion
 
-* Interconnexion de niveau 1 : répéteur, concentrateur : amplification du signal
-* Interconnexion de niveau 2 : pont, commutateur : amplificateur de signal et traitement de niveau 2
-* Interconnexion de niveau 3 : routeur
-* Interconnexion de niveau 4 à 7 : passerelle
++ Interconnexion de niveau 1 : répéteur, concentrateur : amplification du signal
++ Interconnexion de niveau 2 : pont, commutateur : amplificateur de signal et traitement de niveau 2
++ Interconnexion de niveau 3 : routeur
++ Interconnexion de niveau 4 à 7 : passerelle
 
 ![quelques-symboles](./img/symboles.png)
 
@@ -461,11 +460,11 @@ Lorsqu'un pont vient d'être installé, sa table est vide. Le pont attend le tra
 
 En règle générale, un pont comprend deux ports et subdivise un domaine de collision en deux segments. Les décisions prises par un pont dépendent uniquement des adresses MAC et n'affectent pas les adresses de la couche 3. Un commutateur est en fait un pont multiport très rapide qui peut contenir des douzaines de ports. Chaque port crée son propre domaine de collision. Lorsqu'un réseau comporte 20 noeuds, 20 domaines de collision doivent exister si chaque noeud est connecté à son propre port de commutation. Un commutateur crée et gère de façon dynamique une table de mémoire associative, qui contient toutes les informations MAC nécessaires aux ports
 
-#### Principe d'un commutateur Ethernet.
+#### Principe d'un commutateur Ethernet
 
-* Réduire les collisions pour accroître les débits
-* Remplacer le noeud central passif par un commutateur
-* Mettre à peu de frais des réseaux virtuels
++ Réduire les collisions pour accroître les débits
++ Remplacer le noeud central passif par un commutateur
++ Mettre à peu de frais des réseaux virtuels
 
 ### Modes de commutation
 
@@ -477,32 +476,32 @@ Une solution intermédiaire de commutation des paquets est le mode "Fragment-Fre
 
 ### Les équipements de couche 2
 
-* Les équipements de couche 2 segmentent ou divisent les domaines
++ Les équipements de couche 2 segmentent ou divisent les domaines
   de collision.
-* Ils utilisent les adresses MAC affectées à chaque équipement
++ Ils utilisent les adresses MAC affectées à chaque équipement
   Ethernet pour effectuer le contrôle de propagation de la trame.
-* Les équipements de couche 2 sont des ponts et des commutateurs
++ Les équipements de couche 2 sont des ponts et des commutateurs
   qui permettent d'effectuer le suivi des adresses MAC et de leurs
   segments.
-* Les équipements peuvent contrôler le flux de trafic au niveau de la
++ Les équipements peuvent contrôler le flux de trafic au niveau de la
   couche 2.
-* Grâce à cette caractéristique, les réseaux s'avèrent plus efficaces.
-* Cela permet au réseau de transporter des données simultanément
++ Grâce à cette caractéristique, les réseaux s'avèrent plus efficaces.
++ Cela permet au réseau de transporter des données simultanément
   sur différents segments sans collisions.
-* Les ponts et les commutateurs subdivisent les domaines de collision
++ Les ponts et les commutateurs subdivisent les domaines de collision
   en éléments plus petits.
-* Chaque élément devient alors son propre domaine de collision.
++ Chaque élément devient alors son propre domaine de collision.
 
 ### Boucles de commutation
 
 En cas de présence de boucles entre équipements de couche 2, les trames risquent de boucler avant d'atteindre leur destination
 
-* Perte d'efficacité
-* Congestion sur le support
-* Retard de transmission
++ Perte d'efficacité
++ Congestion sur le support
++ Retard de transmission
 
 Plusieurs solution possible
 
-* Elimination logique des boucles en désactivant certains ports
-* Trouver un arbre couvrant : Spanning Tree Protocole
-* Idée du STP : les équipements d'interconnexion communiquent entre eux pour déterminer un arbre couvrant, et ainsi supprimer les boucles de commutation
++ Elimination logique des boucles en désactivant certains ports
++ Trouver un arbre couvrant : Spanning Tree Protocole
++ Idée du STP : les équipements d'interconnexion communiquent entre eux pour déterminer un arbre couvrant, et ainsi supprimer les boucles de commutation

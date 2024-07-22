@@ -4,21 +4,21 @@ title: "Mathématiques pour la robotique"
 
 À partir d'une position initiale, le robot tourne de $\theta$ puis avance de $t$ puis tourne de $\alpha$ puis avance de $d$. Donner son positionnement dans le repère $(x,y,\theta)$.
 
-- Le robot tourne de $\theta$ puis avance de $t$. Dans le repère $\Omega_O = (O, \vec{i}, \vec{j})$ : 
+- Le robot tourne de $\theta$ puis avance de $t$. Dans le repère $\Omega_O = (O, \vec{i}, \vec{j})$ :
 
-$$ 
+$$
 \vec{T}_{\Omega_O} = \begin{pmatrix} u\\ v \end{pmatrix} = t. \begin{pmatrix} \cos{\theta} \\ \sin{\theta} \end{pmatrix}
 $$
 
-- Puis, le robot tourne de $\alpha$ puis avance de $d$. Dans le repère $\Omega_C = (C, \vec{x}, \vec{y})$ : 
+- Puis, le robot tourne de $\alpha$ puis avance de $d$. Dans le repère $\Omega_C = (C, \vec{x}, \vec{y})$ :
 
-$$ 
+$$
 \vec{D}_{\Omega_C} = \begin{pmatrix} p\\ q \end{pmatrix} = d. \begin{pmatrix} \cos{\alpha} \\ \sin{\alpha} \end{pmatrix}
 $$
 
 ## Modèles directe / inverse
 
-	<img src="/assets/images/semestre9/maths/1.png" width="50%"></img>
+ <img src="/assets/images/semestre9/maths/1.png" width="50%"></img>
 
 - **Dans quel espace ?** : Le mécanisme à 3 degrés de liberté
 - **Quels sont les variables ?** : Les entrées vont être le tuple de $\theta$ ainsi que les longueurs des 3 paramètres $t$

@@ -1,5 +1,5 @@
 ---
-title: Automates finis et application - TD2 
+title: Automates finis et application - TD2
 ---
 
 ## <i class="fas fa-robot"></i> Expression régulières

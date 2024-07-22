@@ -29,18 +29,18 @@ Au lieu d'explorer cet arbre, on stocke seulement à chaque "étage" les états 
 fonction appartient(A = (Q, Σ, d, I, F), w=w1...wk) : booléen
 
     X[0] = I
-    
+
     pour i de 1 à k
         X[i] = {}
-        
+
         pour tout p dans X[i-1]
             pour toute transition p -- wi --> q
                 insérer q dans X[i]
-                
+
         pour tout p dans X[k]:
             si p est un état acceptant
                 retourner Vrai
-                
+
     retourner Faux
 ```
 

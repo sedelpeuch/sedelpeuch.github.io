@@ -52,7 +52,7 @@ Le **co-langage de l'état** $q \in Q$ est défini par
 $ co\mathcal{L}(A,q)=\{w \in \Sigma^\ast | \exists q_0 \in I, q_0
 \stackrel{w}{\rightarrow} q\}$
 
-#### Théorème (Congruence droite et régularité).
+#### Théorème (Congruence droite et régularité)
 
 Un langage $L$ est régulier si et seulement si la congruence $\sim_L$ est
 d'index fini.
@@ -77,7 +77,7 @@ minimal** $afmin(L)=(Q,\Sigma,\delta,q_0,F)$ qui accepte $L$ est défini par
 
 Notons que $afmin(L)$ est un automate déterministe et complet
 
-#### Théorème.
+#### Théorème
 
 Pour tout langage régulier $L$, $afmin(L)$ est le plus petit automate fini
 déterministe et complet tel que $\mathcal{L}(afmin(L))=L$
@@ -145,7 +145,7 @@ langage accepté par celui-ci. Cela vient du fait que, par définition, aucun é
 inaccessible ne peut être rencontré sur une exécution (acceptante) de
 l'automate.
 
-#### Théorème.
+#### Théorème
 
 Pour tout automate fini $A$,$\mathcal{L}(eqacc(A))=\mathcal{L}(A)$
 
@@ -169,16 +169,16 @@ Entrée : Un automate fini A=(Q,Σ,δ,I,F)
 Sortie : access(A) l'ensemble des états accessibles de A
 
 EtatsAccessibles(A):
-debut 
+debut
     Acc  <- I
     Acc' <- ∅
     tant que (Acc != Acc') faire
         Acc' <- Acc
         Acc  <- Acc' u {q' ∈ Q | ∃ q ∈ Acc'.∃ s ∈ Σ .(q,s,q') ∈ δ}
-    fin tant que 
-    
+    fin tant que
+
     retourner Acc
-fin 
+fin
 ```
 
 #### Théorème
@@ -215,7 +215,7 @@ Nous montrons maintenant que l'automate minimal équivalent à $A$ correspond à
 $afmin(\mathcal{L}(A))$, l'automate minimal qui accepte le langage accepté par
 $A$.
 
-#### Théorème.
+#### Théorème
 
 Pour tout automate fini $A=(Q,\Sigma,\delta,q_0,F)$ déterministe complet et
 sans états inaccessibles, $eqmin(A)=afmin(\mathcal{L}(A))$.
@@ -234,26 +234,26 @@ un ensemble $P$ de couples d'états $(q,q')$ tels que
 * et si $(q,q') \in P$, on fait l'hypothèse que $p \equiv_Q q'$
 
 ```
-Entree: A=(Q,Sigma,delta,q_0,F) AFD complet sans états inacssibles 
+Entree: A=(Q,Sigma,delta,q_0,F) AFD complet sans états inacssibles
 Sortie: P telle que (q,q') dans P si et seulement si q equiv q'
 
 Partition(A)
 debut
-    P' <- Q . Q 
+    P' <- Q . Q
     P  <- Q . Q
-    pour tout q dans F et q' pas dans F faire 
-        retirer (q,q') et (q',q) de P 
+    pour tout q dans F et q' pas dans F faire
+        retirer (q,q') et (q',q) de P
     tant que (P différent P') faire
         P' <- P
         pour tout (q,q') dans P faire
-            pour tout s dans Sigma faire 
+            pour tout s dans Sigma faire
                 si (succ(q,s),succ(q',s)) pas dans P' alors
-                    retirer (q,q') et (q',q) de P 
+                    retirer (q,q') et (q',q) de P
                 fin si
             fin pour
-        fin pour 
-    fin tant que 
-    retourner P 
+        fin pour
+    fin tant que
+    retourner P
 fin
 ```
 
@@ -279,9 +279,8 @@ Le point fixe est atteint lorsque $P=P'$, $P'$ conservant la valeur de $P$
 au raffinement précédent, donc lorsque $O$ ne contient plus que des couples
 $(q,q')$ tels que $q \equiv_Q q'$
 
-#### Théorème.
+#### Théorème
 
 Pour tout AFD complet sans états inaccessibles $A=(Q,\Sigma,\delta,q_0,F)$,
 l'algorithme précédant calcule $\equiv_Q$ en temps $\mathcal{O}(Card(\Sigma)
 \times Card(Q)^4)$
-

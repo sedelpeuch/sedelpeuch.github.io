@@ -146,7 +146,7 @@ d'occurrences de $R_1$ multiplié par le nombre d'occurrences de $R_2$.
 
 ## Jointure, théta-jointure, équijointure, jointure naturelle
 
-### Jointure.
+### Jointure
 
 `Jointure :` La jointure est une opération portant sur deux relations $R_1$ et
 $R_2$ qui construit une troisième relation regroupant-exclusivement toutes les
@@ -163,21 +163,21 @@ cartésien suivi d'une sélection
 
 $R_1 \rhd \lhd E R_2 = \sigma E (R_1 \times R_2)$
 
-### Théta-jointure.
+### Théta-jointure
 
 `Théta-jointure :` Une thêta-jointure est une jointure dans laquelle l'expression
 logique $E$ est une simple comparaison entre un attribut $A_1$ de la
 relation $R_1$ et un attribut $A_2$ de la relation $R_2$. La
 thêta-jointure est notée $R_1 \rhd \lhd E R_2$.
 
-### Équijointure.
+### Équijointure
 
 `Équijointure :` Une équijointure est une thêta-jointure dans laquelle
 l'expression logique $E$ est un test d'égalité entre un attribut $A_1$ de la
 relation $R_1$ et un attribut $A_2$ de la relation $R_2$. L'équijointure
 est notée $R_1 \rhd \lhd A_1 A_2 R_2$.
 
-### Jointure naturelle.
+### Jointure naturelle
 
 `Jointure naturelle :` Une jointure naturelle est une jointure dans laquelle
 l'expression logique E est un test d'égalité entre les attributs qui portent le
@@ -197,7 +197,7 @@ une jointure naturelle sur l'attribut A1, mais R1 ▷◁ R2 est une jointure
 naturelle sur le couple d'attributs A1, A2, ce qui produit un résultat très
 différent !
 
-### Division.
+### Division
 
 `Division :` La division est une opération portant sur deux relations $R_1$ et
 $R_2$ telles que le schéma de $R_2$ est strictement inclus dans celui de

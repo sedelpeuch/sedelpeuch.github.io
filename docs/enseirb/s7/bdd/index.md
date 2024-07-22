@@ -66,6 +66,4 @@ import DocCardList from '@theme/DocCardList';
 
 [TP 3]:http://slombardy.vvv.enseirb-matmeca.fr/ens/sgbd/tdsqlav.php#sec1
 
-[Correction 1]:http://slombardy.vvv.enseirb-matmeca.fr/ens/sgbd/tdsql.php?corr=yes
 
-[Correction 2]:http://slombardy.vvv.enseirb-matmeca.fr/ens/sgbd/tdsqlav.php?corrav=yes

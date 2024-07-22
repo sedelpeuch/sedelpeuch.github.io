@@ -48,7 +48,7 @@ Cette construction définit en même temps les fonctions suivantes
 La reconnaissance de motif ou `pattern-matching` s'effectue avec la forme `match`
 
 ```
-(match t 
+(match t
     [<pat1> res1]
     [<pat2> res2]
     ...

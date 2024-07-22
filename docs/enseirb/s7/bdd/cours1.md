@@ -33,14 +33,14 @@ fonctionnalités suivantes :
 + Distribution (données stockées sur différents sites)
 + Optimisation
 + Contrôle de concurrence : propriétés ACID , transactions
-    - Atomicité (soit toutes les opérations de la transaction sont validées, soit
+  + Atomicité (soit toutes les opérations de la transaction sont validées, soit
       aucune ne l'est)
-    - Cohérence (préservation de la cohérence de la base)
-    - Isolation (quelle que soit la manière dont les transactions concurrentes
+  + Cohérence (préservation de la cohérence de la base)
+  + Isolation (quelle que soit la manière dont les transactions concurrentes
       sont exécutées, on doit pouvoir les ordonner de sorte à ce que l'état final
       de la base soti le même qu'après une exécution séquentielle des différentes
       transactions)
-    - Durabilité (Si une transaction est validée, tous les changements qu'elle a
+  + Durabilité (Si une transaction est validée, tous les changements qu'elle a
       effectués sur la base sont persistants)
 
 ### Architecture fonctionnelle d'une SGBD
@@ -50,16 +50,16 @@ fonctionnalités suivantes :
 ### Utilisateurs d'un SGBD
 
 1. Administrateur
-    - Définition du schéma logique
-    - définition des structures de stockage et des méthodes d'accès
-    - Gestion des autorisations
-    - Spécification des contraintes
-    - Maintenance de la performance
+    + Définition du schéma logique
+    + définition des structures de stockage et des méthodes d'accès
+    + Gestion des autorisations
+    + Spécification des contraintes
+    + Maintenance de la performance
 2. Concepteur et programmeur
-    - Est informaticien
-    - Connaît au moins le LMD
-    - Connaît bien le SGBD
-    - Connaît un ou plusieurs langages de programmation
+    + Est informaticien
+    + Connaît au moins le LMD
+    + Connaît bien le SGBD
+    + Connaît un ou plusieurs langages de programmation
 3. Utilisateurs
 
 ### Niveau d'abstraction des données
@@ -150,7 +150,6 @@ Ainsi, chaque type entité possède au moins un attribut qui, s'il est seul, est
 
 ![Figure 2.4](./img/fig2_04.png)
 
-
 Une `association` (ou une relation) est un lien entre plusieurs entités, les
 associations ne sont généralement pas représentées graphiquement.
 
@@ -200,7 +199,6 @@ ne soit qu'un moyen d'exprimer plus simplement cette concaténation.
 
 ![Figure 2.5](./img/fig2_05.png)
 
-
 La `cardinalité` d'une patte reliant un type association et un type entité
 précise le nombre de fois minimal et maximal d'interventions d'une entité du
 type entité dans une association du type association. La cardinalité minimale
@@ -224,11 +222,11 @@ association inutile.
 
 ## Compléments sur les associations
 
-### Associations plurielles.
+### Associations plurielles
 
 ![Figure 2.6](./img/fig2_06.png)
 
-### Association réflexive.
+### Association réflexive
 
 ![Figure 2.7](./img/fig2_07.png)
 
@@ -280,7 +278,6 @@ modélisation inchevée. À terme, ces deux type enttié doivent être fusionné
 un unique type entité Personne.
 
 ![Figure 2.16](./img/fig2_16.png)
-
 
 Ici, les attributs Adresse de facturation sont redondants. Cette situation doit
 être évitée à tout prix, car elle entraîne un gaspillage d'espace mémoire, mais
@@ -457,7 +454,7 @@ un type association Régler.
 
 ### Normalisation des types entité et type association
 
-#### Introduction.
+#### Introduction
 
 Les formes normales sont différents sont différents stades de qualité qui
 permettent d'éviter la redondance, source d'anomalies. La normalisation peut
@@ -484,7 +481,7 @@ Nous avons décidé de présenter deux fois cette théorie de la normalisation
   fonctionnelle, multivaluée et de jointure. Nous irons alors jusqu'à la
   cinquième forme normale.
 
-#### Première forme normale (1FN).
+#### Première forme normale (1FN)
 
 ![Figure 2.30](./img/fig2_30.png)
 
@@ -505,7 +502,7 @@ Adresse en Adresse (au sens numéro d'appartement, numéro et nom de rue), Code
 postal et Ville. En cas de doute, il est préférable (car plus général) d'éclater
 une propriété que d'effectuer un regroupement.
 
-#### Deuxième forme normale (2FN).
+#### Deuxième forme normale (2FN)
 
 ![Figure 2.31](./img/fig2_31.png)
 
@@ -528,7 +525,7 @@ pour une nouvelle clé arbitraire à un seul attribut N° article permet d'obten
 un type entité Article en deuxième forme normale. On va voir dans ce qui suit
 que cette solution n'a fait que déplacer le problème.
 
-#### Troisième forme normale (3FN).
+#### Troisième forme normale (3FN)
 
 ![Figure 2.32](./img/fig2_32.png)
 
@@ -543,7 +540,7 @@ Un type entité ou un type association en deuxième forme normale avec au plus u
 attribut qui n'appartient pas à la clé est, par définition, forcément en
 troisième forme normale.
 
-#### Forme normale de Boyce-Codd (BCNF).
+#### Forme normale de Boyce-Codd (BCNF)
 
 ![Figure 2.33](./img/fig2_33.png)
 
@@ -581,13 +578,13 @@ entités-associations est un travail non linéaire. Vous devrez régulièrement
 revenir à une étape précédente et vous n'avez pas besoin d'en avoir terminé avec
 une étape pour commencer l'étape suivante.
 
-#### Recueil des besoins.
+#### Recueil des besoins
 
 C'est une étape primordiale. Inventoriez l'ensemble des données à partir des
 documents de l'entreprise d'un éventuel cahier des charges et plus généralement
 de tous les supports de l'information. N'hésitez pas à poser des questions.
 
-#### Tri de l'information.
+#### Tri de l'information
 
 Faites le tri dans les données recueillies. Il faut faire attention, à ce
 niveau, aux problèmes de synonymie / polysémie. En effet, les attributs ne
@@ -610,7 +607,7 @@ contrainte imposée par le modèle, obligeant alors l'entreprise de production �
 revoir son système le jour où elle décidera de réaliser une marge (prix de
 production inférieure au prix de vente).
 
-#### Identification des types entité.
+#### Identification des types entité
 
 Le repérage d'attributs pouvant servir d'identifiant permet souvent de repérer
 un type entité. Les attributs de ce type entité sont alors les attributs qui
@@ -619,7 +616,7 @@ dépendant des attributs pouvant servir d'identifiant. Lorsqu'on ne parvient pas
 pas en fait d'un type association. Si ce n'est pas le cas, un identifiant
 arbitraire numérique entier peut faire l'affaire.
 
-#### Identification des types association.
+#### Identification des types association
 
 Identifiez les types association reliant les types entité du modèle. Le cas
 échéant, leur affecter les attributs correspondants.
@@ -635,10 +632,9 @@ les pattes d'un type association portent la cardinalité 1,1, il faut se demande
 si ce type association et les types entités liés ne décrivent pas en fait un
 seul type entité.
 
-#### Vérification du modèle.
+#### Vérification du modèle
 
 Vérifiez que le modèle respecte bien les règles que nous avons énoncées et les
 définitions concernant la normalisation des types entité et des types
 association. Le cas échéant, opérez les modifications nécessaires pour que le
 modèle soit bien formé.
-

@@ -1,5 +1,5 @@
 ---
-title: Automates finis et application - TD1 
+title: Automates finis et application - TD1
 ---
 
 ## <i class="fas fa-robot"></i> Langages et automates finis

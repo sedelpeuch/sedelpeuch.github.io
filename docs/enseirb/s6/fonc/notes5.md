@@ -47,4 +47,3 @@ C'est une liste de paires pointées. Le `car` de chaque paire est également une
 La fonction `assoc` admet deux paramètres : une clef et une a-liste. Elle parcourt la liste et renvoie la première paire pointée dont le `car` est égal au sens de ̀equal?` à la clef, et `#f` sinon.
 
 La fonction `assq` réalise le même travail avec `eq?` (`assv` pour eqv)
-

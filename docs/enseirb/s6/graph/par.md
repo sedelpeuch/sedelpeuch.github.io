@@ -41,7 +41,7 @@ procédure parcoursLargeur(G: graphe, s: sommet)
     GRIS = fileVide()
     couleur[s] = gris
     enfiler(s,GRIS)
-    
+
     tant que non(estVide(GRIS)) faire
         u = défiler(GRIS)
         pour tout arc e sortant de u faire
@@ -75,7 +75,7 @@ procédure parcoursProfondeur(G:graphe)
     pere = constructTableau(n,0)
     d = constructTableau(n,0)
     f = constructTableau(n,0)
-    
+
     pour chaque sommet u faire
         si couleur(u) = 'blanc' alors
             explorer(G,u)
@@ -83,7 +83,7 @@ procédure parcoursProfondeur(G:graphe)
 procédure explorer(G: graphe,u: sommet)
     couleur[u] = gris
     d[u] = ++ temps
-    
+
     pour chaque arc e sortant de u faire
         v = 2ndeExtrémité(e)
         si couleur[v]='blanc' alors

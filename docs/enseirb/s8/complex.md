@@ -2,9 +2,9 @@
 title: "Calculabilité et complexité "
 ---
 
-## Ressources pédagoqiues 
+## Ressources pédagoqiues
 
-+ [Slides du cours](http://ctravers.vvv.enseirb-matmeca.fr/IF228/cc-tout.pdf) 
++ [Slides du cours](http://ctravers.vvv.enseirb-matmeca.fr/IF228/cc-tout.pdf)
 + [Sujet de TD](https://moodle.bordeaux-inp.fr/pluginfile.php/61837/course/section/27311/newtd.pdf?time=1611651433228)
 
 ## Devoirs maison

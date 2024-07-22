@@ -1,15 +1,15 @@
 module.exports = function (context, options) {
   return {
-    name: 'docusaurus-plugin-baidu-push',
+    name: "docusaurus-plugin-baidu-push",
     injectHtmlTags() {
-      if (process.env.NODE_ENV === 'development') {
-        return {}
+      if (process.env.NODE_ENV === "development") {
+        return {};
       }
 
       return {
         headTags: [
           {
-            tagName: 'script',
+            tagName: "script",
             innerHTML: `
             (function(){
               var bp = document.createElement('script');
@@ -27,7 +27,7 @@ module.exports = function (context, options) {
           `,
           },
         ],
-      }
+      };
     },
-  }
-}
+  };
+};

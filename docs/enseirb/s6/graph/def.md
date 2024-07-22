@@ -80,4 +80,4 @@ H$ égal à $(U \cup V, E \cup F)$
 Soit un graphe $G=(V,E)$. Soit $P$ une partition de $V=P_1 \cup P_2 \cup
 ... \cup P_k$. Le graphe quotient de $G$ par $P$ est le graphe $(P,E')$
 où $E'=\{(u,v), u \in P_i, v \in P_j, \text{tel qu'il existe une arête entre le sommet
-} \; P_i \; \text{et le sommet de} \; P_j \; \text{dans} \; G\}$ 
+} \; P_i \; \text{et le sommet de} \; P_j \; \text{dans} \; G\}$

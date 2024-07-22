@@ -24,11 +24,9 @@ import DocCardList from '@theme/DocCardList';
 
 [Projet](./img/Compilprojet.zip)
 
-
 [Sujet 1]:https://moodle.bordeaux-inp.fr/pluginfile.php/149561/mod_resource/content/1/td1.pdf
 
 [Sujet 2]:https://moodle.bordeaux-inp.fr/pluginfile.php/151721/mod_resource/content/1/td2.pdf
-
 
 [Introduction]:https://moodle.bordeaux-inp.fr/pluginfile.php/20379/mod_resource/content/2/courscompilation-1.pdf
 
@@ -36,13 +34,11 @@ import DocCardList from '@theme/DocCardList';
 
 [Analyse syntaxique]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=9540
 
-[Analyse sémantique]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=9541
 
 [Vidéo 4]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=66702
 
 [Vidéo 5]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=67449
 
-[Vidéo 6.1]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=68042
 
 [Vidéo 6.2]:https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=68045
 

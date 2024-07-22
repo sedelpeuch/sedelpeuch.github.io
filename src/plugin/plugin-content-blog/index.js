@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const blogPluginExports = require('@docusaurus/plugin-content-blog');
+const blogPluginExports = require("@docusaurus/plugin-content-blog");
 const { default: blogPlugin } = blogPluginExports;
 
 async function blogPluginEnhanced(context, options) {
@@ -24,4 +24,6 @@ async function blogPluginEnhanced(context, options) {
   };
 }
 
-module.exports = Object.assign({}, blogPluginExports, { default: blogPluginEnhanced });
+module.exports = Object.assign({}, blogPluginExports, {
+  default: blogPluginEnhanced,
+});

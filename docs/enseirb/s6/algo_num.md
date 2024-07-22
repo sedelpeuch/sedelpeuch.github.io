@@ -1,5 +1,5 @@
 ---
-title: Algorithmique numérique 
+title: Algorithmique numérique
 ---
 
 ### Objectif du cours

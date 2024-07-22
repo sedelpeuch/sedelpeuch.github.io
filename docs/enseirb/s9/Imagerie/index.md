@@ -23,4 +23,3 @@ import DocCardList from '@theme/DocCardList';
 + [TD 2 : Bases](./img/TD2.zip)
 + [TD 3 : Filtrage](./img/TD3.zip)
 + [TD 4 : Descripteurs, Traitements Morphologiques](./img/TD4.zip)
-

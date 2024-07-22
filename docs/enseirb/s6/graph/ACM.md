@@ -28,7 +28,7 @@ D$ ne traverse la coupure.
 ```c
 fonction Acm(G:graphe):ensemble d'aretes
     retourner AcmRecursif(G,0)
-    
+
 fonction AcmRecurif(G:graphe, D:ensemble d'aretes): ensemble d'aretes
     si D est un arbre courvrant de G
         retourner D
@@ -50,7 +50,7 @@ solution courante.
 fonction Acm-Krustal(G:graphe):ensemble d'arêtes
     trier l'ensemble des arêtes E_G par poids croissant
     D = 0
-    
+
     pour chaque arête e pris par poids croissant
         si D u {e} est acyclique alors
             D = D u {e}
@@ -80,7 +80,7 @@ fonction Acm-Prim(G:graphe pondéré): fonction V_G -> V_G
     P = V_G
     choisir un sommet r dans V_G
     clé[r] = 0
-    
+
     tant que non(estVide(P)) faire
         extraire de P un élément x de clé minimale
         pour chaque voisin y de x faire
@@ -89,4 +89,3 @@ fonction Acm-Prim(G:graphe pondéré): fonction V_G -> V_G
                 père[y] = x
     retourner père
 ```
-

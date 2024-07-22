@@ -48,7 +48,7 @@ $f(X,Y)=\sum \limits_{x \in X}\sum \limits_{y \in Y}f(x,y)$
 
 LA propriété qui suit implique que tout flot de valeur non nulle est, si il n'est pas maximal, un début de réponse. En effet nous pouvons définir à partir de ce flot $f$ défini sur un réseau $G$ un nouveau réseau $G'$ "plus simple" pour lequel tout flot maximal $f'$ permettra de définir le flot maximal $f'+f$ sur $G$.
 
-#### Définition.
+#### Définition
 
 La capacité résiduelle d'un réseau $(V,E,c,s,t)$ induit par un flot $f$ est la fonction notée $c_f$ qui associe à tout arc $(u,v) \in E$ le réel positif ou nul $c(u,v)-f(u,v)$. Le réseau résiduel d'un réseau $(V,E,c,s,t)$ induit par un flot $f$ est le réseau $(V,E,c_f,s,t)$.
 
@@ -56,7 +56,7 @@ La capacité résiduelle d'un réseau $(V,E,c,s,t)$ induit par un flot $f$ est l
 
 Définir un flot peut se réaliser simplement en choisissant dans le réseau un chemin de $s$ à $t$ et en prenant pour valeur la capacité minimale des arcs de ce chemin.
 
-#### Définition.
+#### Définition
 
 Soit $G=(V,E,c,s,t)$ un réseau et $p$ un chemin élémentaire dans $G$ de $s$ à $t$. La capacité de $p$ est le minimum des capacités des arcs que possède $p$ et est noté $c(p)$. Le flot induit par $p$ est la fonction notée $f_P$ qui associe à tout arc $(u,v) \in V^2$ la quantité définie par
 
@@ -66,7 +66,7 @@ Soit $G=(V,E,c,s,t)$ un réseau et $p$ un chemin élémentaire dans $G$ de $s$ �
 
 Un chemin $p$ allant de $s$ à $t$ améliore un flot $f$ de $G$ si la capacité de $p$ dans le réseau résiduel de $G$ induit par $f$ est positive.
 
-#### Lemme.
+#### Lemme
 
 La fonction $f_P$ induit par un chemin élémentaire $p$ de la source au puits dans un réseau est un flot de valeur $c(p)$.
 
@@ -74,17 +74,17 @@ La fonction $f_P$ induit par un chemin élémentaire $p$ de la source au puits d
 
 Nous allons établir le théorème `minimax` qui caractérise un entier maximal à vérifier une certaine propriété comme étant minimal à en vérifier une seconde. Ce genre de résultat est à remarquer car il augure souvent favorablement la possibilité de calculer efficacement un tel entier.
 
-#### Définition.
+#### Définition
 
 Une `coupe` dans un réseau $G=(V,E,c,s,t)$ est un couple d'ensembles de sommets de la forme $(X,V-X)$ avec $X\subseteq V$ tel que $s \in X$ et $t \in Y$. Sa `capacité`, notéée $c(X,Y)$, est la somme $\sum \limits_{x \in X, y \in Y} c(x,y)$. Une coupe est minimale si sa capacité est au plus égale à la capacité de toute coupe de ce réseau. Le flot d'une coupe $(X,Y)$ relativement à un flot $f$ est la quantité $f(X,Y)$.
 
-#### Lemme.
+#### Lemme
 
 Tout flot $f$ et toute coupe $(X,Y)$ d'un même réseau de capacité $c$ vérifient
 
 $|f|=f(X,Y) \leq c(X,Y)$
 
-#### Théorème.
+#### Théorème
 
 Soit $f$ un flot dans un réseau $G$. Les quatre assertions suivantes sont équivalentes
 
@@ -110,7 +110,7 @@ Pour tout réseau, la valeur maximale des flots est égale à la capacité minim
 fonction FordFulkerson(G=(V,E,c,s,t):réseau):flot
     fmax = 0
     tant qu'il existe un chemin de s à t de capacité positive faire
-        calculer un chemmin p élémentaire de s à t de capacité positive 
+        calculer un chemmin p élémentaire de s à t de capacité positive
         f = flotInduit(G,p)
         G = réseauRésiduel(G,f)
         fmax = fmax + f
@@ -131,9 +131,9 @@ Cette grande faiblesse de `FordFulkerson` peut être facilement corrigée : en e
 
 ```
 fonction EdmondKarpsRec(G=(V,E,c,s,t):réseau):flot
-    si il n'existe aucun chemin de s à t de capacité positive faire 
+    si il n'existe aucun chemin de s à t de capacité positive faire
         retourner 0
-    sinon 
+    sinon
         calculer un plus court chemin p de s à t de capacité positive
         f = flotInduit(G,p)
         H = réseauRésiduel(G,f)

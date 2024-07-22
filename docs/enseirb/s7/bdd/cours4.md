@@ -8,7 +8,7 @@ Notes inspirées du [cours](https://moodle.bordeaux-inp.fr/pluginfile.php/96806/
 
 ### Présentation générale
 
-#### Introduction.
+#### Introduction
 
 Le langage SQL (Structured Query Language) peut être considér comme le langage
 d'accès normalisé aux bases de données. Il est aujourd'hui supporté par la
@@ -135,7 +135,7 @@ constitué :
 
 ## Définir une base ? Langage de définition de données (LDD)
 
-### Soit le schéma relationnel minimaliste suivant :
+### Soit le schéma relationnel minimaliste suivant
 
 + Acteur(Num-Act, Nom, Prénom)
 + Jouer(Num-Act,Num-Film)
@@ -192,14 +192,14 @@ envisageables :
 
 ### Créer une table : CREATE TABLE
 
-#### Introduction.
+#### Introduction
 
 Une table est un ensemble de lignes et de colonnes. La création conssite à
 définir (en fonction de l'analyse) le nom de ces colonnes, leur format (type),
 la valeur par défaut à la création de la ligne (DEFAULT) et les règles de
 gestion s'appliquant à la colonne (CONSTRAINT).
 
-#### Création simple.
+#### Création simple
 
 La commande de création de tables la plus simple ne comportera que le nom et le
 type de chaque colonne de la table. A la création, la table sera vide, mais un
@@ -212,7 +212,7 @@ CREATE TABLE nom_table(nom_col1 TYPE1, nom_col2 TYPE2,...)
 Quand on crée une table, il faut définir les contraintes d'intégrité que devront
 respecter les données que l'on mettra dans la table.
 
-#### Les types de données.
+#### Les types de données
 
 Les types de données peuvent être
 
@@ -249,5 +249,5 @@ suivante
 ```
 CREATE TABLE nom_table [(nom_col1, nom_col2, ...)] AS SELECT ...
 
-On peut ainsi, en un seul ordre SQL créer une table et la remplir avec des données provenant du résultat d'un SELECt. Si les types des colonnes ne sont pas spécifiés, ils correspondront à ceux du SELECT. Il en va de même pour les noms des colonnes. Le SELECT peut contenir des fonctions de groupes, mais pas d'ORDER BY, car 
+On peut ainsi, en un seul ordre SQL créer une table et la remplir avec des données provenant du résultat d'un SELECt. Si les types des colonnes ne sont pas spécifiés, ils correspondront à ceux du SELECT. Il en va de même pour les noms des colonnes. Le SELECT peut contenir des fonctions de groupes, mais pas d'ORDER BY, car
 ```

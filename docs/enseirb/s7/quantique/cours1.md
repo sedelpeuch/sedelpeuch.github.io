@@ -62,13 +62,13 @@ $\vert \Psi \rangle = \cos{\dfrac{\theta}{2}} \vert 0 \rangle + \exp{i \varphi}
 
 ### Exemples d'objets quantiques
 
-#### L'électron.
+#### L'électron
 
 Il possède une propriété quantique : le **spin**. Pour l'électron, il y a 2
 possibilitéés, spin up et spin down. Le spin fait que l'électron peut faire
 office de qubit. On est dans une superposition de ces 2 étant.
 
-#### Registres.
+#### Registres
 
 Pour un ordinateur classique on utilise des registres, par exemple un registre à
 4 bits permet de faire 16 états possibles.
@@ -98,7 +98,7 @@ la matrice transposée conjuguée)
 
 $U.U^+ = 1 = U^+.U$
 
-### Exemple de problème à résoudre :
+### Exemple de problème à résoudre
 
 Soit $F : \mathbb{N} \rightarrow \mathbb{N}$, trouver $x$ tel que
 $f(x)=42$, $f$ est donnée sous la forme d'un tableau. Un algorithme

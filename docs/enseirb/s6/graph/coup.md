@@ -50,21 +50,21 @@ La solution algorithmique requiert la définition de ce qu'est un arbre alterné
 
 Un `arbre alterné` selon un graphe $G=(V,E)$ et un couplage $K$ de $G$ est un triplet $(U,D,r)$ tel que
 
-* $(U,D)$ est un arbre qui est sous-graphe de $G$
-* $r$ est un sommet de $U$ appelé sa racine et est insaturé selon $K$
-* toute feuille de $T$ est paire c'est à dire est à distance paire de $r$
-* tout sommet pair de $T$ autre que la racine est adjacent à son père (impair) selon une arête de $D \cap K$
+- $(U,D)$ est un arbre qui est sous-graphe de $G$
+- $r$ est un sommet de $U$ appelé sa racine et est insaturé selon $K$
+- toute feuille de $T$ est paire c'est à dire est à distance paire de $r$
+- tout sommet pair de $T$ autre que la racine est adjacent à son père (impair) selon une arête de $D \cap K$
 
 Afin de simplifier les énoncés, un graphe $(G,K)$ muni d'un de ses couplages sera appelé un graphe couplé, un graphe $(G,K,T)$ muni d'un de ses couplages et d'un arbre alterné sera appelé un arbre couplé arboré
 
 Pour résoudre le problème Couplage maximum, on utilise deux fonctions auxiliaires CMC et CMCA résolvant les deux problèmes suivants
 
 ```
-Couplage Maximum d'un graphe couplé 
+Couplage Maximum d'un graphe couplé
 Entrée : un graphe couplé (G,J)
 Sortie : un couplage maximum K de G tel que K != J => |K| > |J|
 
-Couplage Maximum d'un graphe couplé arboré 
+Couplage Maximum d'un graphe couplé arboré
 Entrée : un graphe couplé arboré (G,J,T)
 Sortie : un couplage maximum K de G tel que K != J => |K| > |J|
 ```
@@ -96,8 +96,8 @@ Le graphe obtenu à partir d'un graphe $G$ en fusionnant une partie de sommets $
 
 LE sous graphe d'un graphe $G$ induit par un ensemble de sommets $U \subseteq V_G$ est noté $G|U$. L'expression $G-U$ dénote le sous-graphe $G|(V-U)$
 
-Une ` orbite` d'un graphe couplé arboré $(G,K,T)$ est une arête $e$ incidente à deux sommets pairs de $T$. Nous noterons
+Une `orbite` d'un graphe couplé arboré $(G,K,T)$ est une arête $e$ incidente à deux sommets pairs de $T$. Nous noterons
 
-* $G^e$ le graphe obtenu à partir de $G$ en fusionnant tous les sommets de $C$ (c'est à dire $G \dot C$)
-* $K^e$ le couplage obtneu à partir de $K$ en supprimant toutes les arêtes dont les deux extrémités appartiennent à $C$. Clairement $K^e$ est un couplage de $G^e$
-* $T^e$ l'arbre obtenu à partir de $T$ en fusionnant tous les sommets de $C$ (c'est à dire $T \dot C$). Clairement $T^e$ est un arbre alterné de $(G^e,K^e)$ où $C$ désigne l'ensemble des sommets de l'unique circuit élementaire du graphe $T$ augmenté de l'arête $e$.
+- $G^e$ le graphe obtenu à partir de $G$ en fusionnant tous les sommets de $C$ (c'est à dire $G \dot C$)
+- $K^e$ le couplage obtneu à partir de $K$ en supprimant toutes les arêtes dont les deux extrémités appartiennent à $C$. Clairement $K^e$ est un couplage de $G^e$
+- $T^e$ l'arbre obtenu à partir de $T$ en fusionnant tous les sommets de $C$ (c'est à dire $T \dot C$). Clairement $T^e$ est un arbre alterné de $(G^e,K^e)$ où $C$ désigne l'ensemble des sommets de l'unique circuit élementaire du graphe $T$ augmenté de l'arête $e$.

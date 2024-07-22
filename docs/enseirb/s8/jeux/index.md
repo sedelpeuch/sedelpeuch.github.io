@@ -2,7 +2,7 @@
 title: "Théorie des jeux pour la modélisation informatique "
 ---
 
-## Ressources pédagogiques 
+## Ressources pédagogiques
 
 [Le site du cours](https://www.labri.fr/perso/anca/Games.html)
 
@@ -20,5 +20,3 @@ title: "Théorie des jeux pour la modélisation informatique "
 + [Cours 12](./img/12.pdf)
 
 [Devoir maison](./img/DMJeux.pdf)
-
-

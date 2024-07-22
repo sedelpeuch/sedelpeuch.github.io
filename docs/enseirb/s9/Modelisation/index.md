@@ -19,22 +19,20 @@ import DocCardList from '@theme/DocCardList';
 
 + [**Slides** - Introduction](./img/1.pdf)
 
-
-
 ## Mouvements, changements de coordonnées
 
 + [**Slides** - Mouvements, changements de coordonnées](./img/2.pdf)
 + [**Sujet** - Application des transformations homogènes au modèle géométrique inverse](./img/exo1.pdf)
 + [**Application** - Mouvements, changements de coordonées](./img/exo1_application.pdf)
 
-
-
 ## Modèle géométrique
+
 + [**Slides** - Modèle géométrique](./img/3.pdf)
 + [**Sujet** - Modèle géométrique inverse d'un robot Scara](./img/exo2.1.pdf)
 + [**Sujet** - Modèle géométrique inverse d'un robot ABB](./img/exo2.2.pdf)
 + [**Annexe** - Équations de paul](./img/paul.pdf)
 
 ## Modèle cinématique
+
 + [**Slides** - Modèle cinématique](./img/4.pdf)
 + [**Sujet** - Modèle cinématique inverse d'un robot UR10](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=93385)

@@ -1,4 +1,1 @@
-var searchData=
-[
-  ['corona',['corona',['../namespacecorona.html',1,'']]]
-];
+var searchData = [["corona", ["corona", ["../namespacecorona.html", 1, ""]]]];

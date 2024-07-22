@@ -1,5 +1,5 @@
 ---
-title: Les formes impératives 
+title: Les formes impératives
 ---
 
 ## <i class="fas fa-code-branch"></i> Références
@@ -70,4 +70,3 @@ $\texttt{(begin <e_1> <e_2> ... <e_n>)}$
 * Les valeurs des évaluations des expressions précédentes sont perdues
 * Il existe une forme $begin0$ qui renvoie le résultat de la première
   expression de la séquence
-

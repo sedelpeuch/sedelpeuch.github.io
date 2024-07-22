@@ -9,7 +9,7 @@ title: "Cryptologie "
 - [TD1](./img/crypto-td-part1.pdf)
 - [TD2](./img/crypto-td-part2.pdf)
 
-## Devoirs maisons 
+## Devoirs maisons
 
 - [DM1](./img/crypto-dm.pdf)
 - [TP Noté](./img/projectCrypto.zip)

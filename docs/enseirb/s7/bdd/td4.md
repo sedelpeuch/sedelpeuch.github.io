@@ -29,10 +29,10 @@ relation fournit un ensemble initial $E$ de dépendances fonctionnelles :*
 
 ```
 occupant -> adresse
-occupant -> num_appartement 
+occupant -> num_appartement
 occupant -> nbr_personnes
 [adresse, num_appartement] -> propriétaire
-[adresse, num_appartement] -> occupant 
+[adresse, num_appartement] -> occupant
 [adresse, num_appartement] -> nbr_pièces
 ```
 

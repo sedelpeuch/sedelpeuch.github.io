@@ -776,7 +776,7 @@ tikz\libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
 (C:\Users\Utilisateur\AppData\Roaming\MiKTeX\2.9\tex\latex\tkz-tab\tkz-tab.sty
-Package: tkz-tab 2011/04/17 v1.4c variations (ctan version) 
+Package: tkz-tab 2011/04/17 v1.4c variations (ctan version)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\etex-pkg\etex.sty"
 Package: etex 2016/08/01 v2.7 eTeX basic definition package (PEB,DPC)
@@ -952,7 +952,7 @@ LaTeX Info: Redefining \nameref on input line 33.
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
+* modes:
 * h-part:(L,W,R)=(56.9055pt, 483.69687pt, 56.9055pt)
 * v-part:(T,H,B)=(56.9055pt, 731.23584pt, 56.9055pt)
 * \paperwidth=597.50787pt
@@ -1020,7 +1020,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 95.
 Package rerunfilecheck Info: File `synthèse.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
- ) 
+ )
 Here is how much of TeX's memory you used:
  19991 strings out of 493312
  369786 string characters out of 3138880
@@ -1045,4 +1045,3 @@ PDF statistics:
  270 PDF objects out of 1000 (max. 8388607)
  11 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
-

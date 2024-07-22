@@ -1,15 +1,15 @@
 module.exports = function (context, options) {
   return {
-    name: 'docusaurus-plugin-baidu-tongji',
+    name: "docusaurus-plugin-baidu-tongji",
     injectHtmlTags() {
-      if (process.env.NODE_ENV === 'development') {
-        return {}
+      if (process.env.NODE_ENV === "development") {
+        return {};
       }
 
       return {
         headTags: [
           {
-            tagName: 'script',
+            tagName: "script",
             innerHTML: `
             var _hmt = _hmt || [];
             (function() {
@@ -22,14 +22,14 @@ module.exports = function (context, options) {
           `,
           },
           {
-            tagName: 'meta',
+            tagName: "meta",
             attributes: {
-              name: 'baidu-site-verification',
-              content: 'code-rqLUw5reVS',
+              name: "baidu-site-verification",
+              content: "code-rqLUw5reVS",
             },
           },
         ],
-      }
+      };
     },
-  }
-}
+  };
+};

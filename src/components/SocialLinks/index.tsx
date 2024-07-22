@@ -1,49 +1,54 @@
-import React from 'react'
-import Tooltip from '@site/src/components/Tooltip'
-import {Icon} from '@iconify/react'
-import social from '@site/data/social'
-import styles from './styles.module.scss'
+import React from "react";
+import Tooltip from "@site/src/components/Tooltip";
+import { Icon } from "@iconify/react";
+import social from "@site/data/social";
+import styles from "./styles.module.scss";
 
 export type Social = {
-    github?: string
-    email?: string
-}
+  github?: string;
+  email?: string;
+};
 
 interface Props {
-    href: string
-    title: string
-    color?: string
-    icon: string | JSX.Element
+  href: string;
+  title: string;
+  color?: string;
+  icon: string | JSX.Element;
 
-    [key: string]: unknown
+  [key: string]: unknown;
 }
 
-function SocialLink({href, icon, title, color, ...prop}: Props) {
-    return (
-        <Tooltip key={title} text={title} anchorEl="#__docusaurus" id={`tooltip-${title}`}>
-            <a href={href} target="_blank" {...prop} title={title}>
-                {typeof icon === 'string' ? <Icon icon={icon}/> : icon}
-            </a>
-        </Tooltip>
-    )
+function SocialLink({ href, icon, title, color, ...prop }: Props) {
+  return (
+    <Tooltip
+      key={title}
+      text={title}
+      anchorEl="#__docusaurus"
+      id={`tooltip-${title}`}
+    >
+      <a href={href} target="_blank" {...prop} title={title}>
+        {typeof icon === "string" ? <Icon icon={icon} /> : icon}
+      </a>
+    </Tooltip>
+  );
 }
 
-export default function SocialLinks({...prop}) {
-    return (
-        <div className={styles.socialLinks} {...prop}>
-            {Object.entries(social).map(([key, {href, icon, title, color}]) => {
-                if (!href) return <></>
+export default function SocialLinks({ ...prop }) {
+  return (
+    <div className={styles.socialLinks} {...prop}>
+      {Object.entries(social).map(([key, { href, icon, title, color }]) => {
+        if (!href) return <></>;
 
-                return (
-                    <SocialLink
-                        key={key}
-                        href={href}
-                        title={title}
-                        icon={icon}
-                        style={{'--color': color}}
-                    ></SocialLink>
-                )
-            })}
-        </div>
-    )
+        return (
+          <SocialLink
+            key={key}
+            href={href}
+            title={title}
+            icon={icon}
+            style={{ "--color": color }}
+          ></SocialLink>
+        );
+      })}
+    </div>
+  );
 }

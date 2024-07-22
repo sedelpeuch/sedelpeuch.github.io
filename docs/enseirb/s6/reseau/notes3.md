@@ -1,5 +1,5 @@
 ---
-title: Introduction aux réseaux - Le modèle TCP/IP 
+title: Introduction aux réseaux - Le modèle TCP/IP
 ---
 
 TCP/IP est considérée comme une simplification de OSI. Il y a deux visions différentes
@@ -17,19 +17,19 @@ TCP/IP est considérée comme une simplification de OSI. Il y a deux visions dif
 
 ### Les rôles des 4 couches
 
-* Couche accès au réseau (MAC)
-    + Délimitation des trames
-    + Accès au canal
-* Couche réseau
-    + Adressage
-    + Routage
-    + Fragmentation et réassemblage
-* Couche transport
-    + Multiplexage démultiplexage
-    + Transfert de bout en bout
-* Couche application
-    + Interface avec l'utilisateur
-    + Applications
+- Couche accès au réseau (MAC)
+  - Délimitation des trames
+  - Accès au canal
+- Couche réseau
+  - Adressage
+  - Routage
+  - Fragmentation et réassemblage
+- Couche transport
+  - Multiplexage démultiplexage
+  - Transfert de bout en bout
+- Couche application
+  - Interface avec l'utilisateur
+  - Applications
 
 ## <i class="fas fa-server"></i> Adressage TCP/IPtv
 
@@ -47,26 +47,26 @@ L'adresse IP est l'adresse logique choisie par l'administrateur du réseau.
 
 ### Adressage IPv4
 
-* Adressage : pour l'identification d'un équipement réseau, pour le routage
-* Plant d'adressage homogène : format : 4 octets => 4.3 milliards d'adresses, notation décimale pointée
-* Adresse globalement unique et hiérarchique
-* Format : `<réseau><machine>`
+- Adressage : pour l'identification d'un équipement réseau, pour le routage
+- Plant d'adressage homogène : format : 4 octets => 4.3 milliards d'adresses, notation décimale pointée
+- Adresse globalement unique et hiérarchique
+- Format : `<réseau><machine>`
 
 ### Classes d'adresses
 
 ![Classes](./img/classe.png)
 
-* Classe A = 0.0.0.0 à 127.255.255.255
-* Classe B = 128.0.0.0 à 191.255.255.255
-* Classe C = 192.0.0.0 à 223.255.255.255
-* Classe D = 224.0.0.0 à 239.255.255.255
-* Classe E = 240.0.0.0 à 255.255.255.255
+- Classe A = 0.0.0.0 à 127.255.255.255
+- Classe B = 128.0.0.0 à 191.255.255.255
+- Classe C = 192.0.0.0 à 223.255.255.255
+- Classe D = 224.0.0.0 à 239.255.255.255
+- Classe E = 240.0.0.0 à 255.255.255.255
 
 ![particulière](./img/particuliere.png)
 
 ### Adresses publiques et privées
 
-* Parmi les adresses IP disponibles, certaines ne peuvent être utilisées que
+- Parmi les adresses IP disponibles, certaines ne peuvent être utilisées que
   pour un usage local
-* Ces adresses ne permettent pas un accès à Internet
-* Utile pour mettre en place les réseaux 
+- Ces adresses ne permettent pas un accès à Internet
+- Utile pour mettre en place les réseaux

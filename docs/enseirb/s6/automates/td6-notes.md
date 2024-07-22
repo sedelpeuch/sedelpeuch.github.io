@@ -16,7 +16,7 @@ On obtient finalement le plus petit automate déterministe et complet qui accept
 ![Automate
 1](https://codimd.s3.shivering-isles.com/demo/uploads/upload_789bb638136195fdd78e9a2686b80c5a.png)
 
-### Calcul de la partie accessible :
+### Calcul de la partie accessible
 
 | Itération |                   Acc                   |
 |:---------:|:---------------------------------------:|
@@ -28,7 +28,7 @@ On obtient finalement le plus petit automate déterministe et complet qui accept
 
 $q_3$ est un état inacessible.
 
-### Calcul des classes d'équivalence $\equiv_Q$ :
+### Calcul des classes d'équivalence $\equiv_Q$
 
 On considère au départ que tous les états sont équivalents, puis on enlève ceux qui ne le sont pas. On commence par retirer les couples contenant un état final et un état non-final
 
@@ -70,7 +70,7 @@ final](https://codimd.s3.shivering-isles.com/demo/uploads/upload_5a701645f6587b0
 ![Automate
 2](https://codimd.s3.shivering-isles.com/demo/uploads/upload_aef73aa3e8ba9191ad0f686470507b64.png)
 
-### Calcul de la partie accessible :
+### Calcul de la partie accessible
 
 | Itération |                     Acc                      |
 |:---------:|:--------------------------------------------:|
@@ -80,7 +80,7 @@ final](https://codimd.s3.shivering-isles.com/demo/uploads/upload_5a701645f6587b0
 |     3     |   $\{q_0, q_1, q_4, q_5, q_2, q_3, q_6\}$    |
 |     4     | $\{q_0, q_1, q_4, q_5, q_2, q_3, q_6, q_7\}$ |
 
-### Calcul des classes d'équivalence $\equiv_Q$ :
+### Calcul des classes d'équivalence $\equiv_Q$
 
 On commence par retirer les couples contenant un état final et un état non-final
 
@@ -109,4 +109,3 @@ On fait ensuite la deuxième étape (pour chaque couple, s'il existe une transit
 | $q_6$ |       |   x   |       |       |       |       |       |       |
 | $q_7$ |       |       |   x   |       |       |       |       |       |
 |       | $q_0$ | $q_1$ | $q_2$ | $q_3$ | $q_4$ | $q_5$ | $q_6$ | $q_7$ |
-

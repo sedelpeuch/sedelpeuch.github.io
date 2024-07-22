@@ -64,14 +64,14 @@ la couche 4 (UDP, TCP, etc)
 
 ### Commutation de paquets vs Commutation de circuits
 
-#### Commutation de paquets.
+#### Commutation de paquets
 
 Un message à transmettre est découpé en paquets comportant, outre la portion du
 message découpé, des informations d'adresses (source et destination) et autre
 informations de contrôle. Chaque paquet est ensuite envoyé vers sa destination
 en utilisant une route d'acheminement
 
-#### commutation de circuits.
+#### commutation de circuits
 
 La commutation de circuits est fondée sur la négociation et la construction d'un
 chemin unique exclusif d'une machine A à une machine B, lors de
@@ -99,7 +99,7 @@ En commutation de paquets, on parle aussi des deux modes :
 
 ![](./img/ethernet.jpg)
 
-### Adressage IP :
+### Adressage IP
 
 + Identification d'une entité sur un réseau TCP/IP (unique sur le rseau
   considéré, indépendante des couches inférieures, une adresse par point d'accès
@@ -142,9 +142,9 @@ La problématique est la suivante : nous avons des adresses internet (32 bits
 affectées par l'InterNic pour l'internet) et une adresse Ethernet (48 bits,
 affectées par l'IEEE et, souvent associés aux cartes d'interfaces).
 
-- pas de fonction de résolution simple
-- table de résolution statique extrêmement contraignante
-- utilisation d'un mécanisme de découverte, ARP, associé à une table dynamique
++ pas de fonction de résolution simple
++ table de résolution statique extrêmement contraignante
++ utilisation d'un mécanisme de découverte, ARP, associé à une table dynamique
 
 Principe de la résolution d'adresses par ARP :
 
@@ -163,6 +163,4 @@ Gestion de la table dynamique de résolution :
 + conserver les correspondances acquises suffisamment longtemps pour éviter de
   surcharger le réseau
 + ne pas conserver les correspondances acquises trop longtemps pour limiter la
-  taille de la table et éviter les entrées obsolètes 
-  
-  
+  taille de la table et éviter les entrées obsolètes

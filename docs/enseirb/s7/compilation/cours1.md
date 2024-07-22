@@ -28,9 +28,9 @@ Notes inspirées du cours de JANIN David
 Obtenir un code avec la meilleure performance ou le plus petit binaire est
 difficile.
 
-- Évolution constante de la complexité des compilateurs
-- En général, code compilé meilleur que code généré à la main
-- Possible de guider le compilateur avec des options / paramètres / pragmas
++ Évolution constante de la complexité des compilateurs
++ En général, code compilé meilleur que code généré à la main
++ Possible de guider le compilateur avec des options / paramètres / pragmas
 
 ## <i class="fas fa-laptop"></i> Structure du compilateur
 

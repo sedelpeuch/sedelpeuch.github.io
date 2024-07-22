@@ -1,5 +1,5 @@
 ---
-title: Graphe - Chemins et arbres 
+title: Graphe - Chemins et arbres
 ---
 
 ## <i class="fas fa-project-diagram"></i> Chemins

@@ -143,4 +143,3 @@ calculer une expression régulière $\alpha$ telle que $\mathcal{L}(A) =
 \mathcal{L}(\alpha)$
 
 La preuve est disponible dans le polycopié page 26
-

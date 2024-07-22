@@ -1,7 +1,7 @@
 ---
 layout: page
 hide: true
-title: Les macroexpensions 
+title: Les macroexpensions
 ---
 
 ## <i class="fas fa-code-branch"></i> Rappels sur l'évaluation et l'application
@@ -15,11 +15,11 @@ $(C,Java)$. Soit $env$ l'environnement courant
 
 * Si l'objet $o$ est autoévaluant, renvoyer $o$
 * Si $o$ est un symbole, alors
-    + Rechercher une liaison définissant $o$ dans $env$, renvoyer la référence
+  * Rechercher une liaison définissant $o$ dans $env$, renvoyer la référence
       associée
 * Si $o$ est une liste
-    + Calculer $\texttt{(eval (car o) env)}$. Soit $f$ la fermeture résultat
-    + Calculer $\texttt{(eval a env)}$, pour tout élément $a$ de $\texttt{(cdr o)}$. soit
+  * Calculer $\texttt{(eval (car o) env)}$. Soit $f$ la fermeture résultat
+  * Calculer $\texttt{(eval a env)}$, pour tout élément $a$ de $\texttt{(cdr o)}$. soit
       $v$ la liste des résultats
 * Calculer $\texttt{(apply f v)}$
 
@@ -71,4 +71,3 @@ $\texttt{(define-syntax-rule <pattern> <template>)}$
 * Replacement des variables dans le template
 * Le résultat est une forme
 * Évaluation de la forme dans l'environnement d'appel
-

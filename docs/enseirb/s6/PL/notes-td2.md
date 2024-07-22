@@ -1,7 +1,7 @@
 ---
 layout: page
 hide: true
-title: PL - Notes TD 2 
+title: PL - Notes TD 2
 ---
 
 ## <i class="fas fa-search"></i> Exercice 1

@@ -72,11 +72,11 @@ qu'on ne peut pas toujours représenter par un opérateur unitaire. Pour associe
 un opérateur unitaire à l'évaluation d'une fonction, on introduit une fonction
 et on définit
 
-- un registre de données $\vert x \rangle $ à $ n $ qubits, $x \in
++ un registre de données $\vert x \rangle $ à $ n $ qubits, $x \in
   Z_{2^n}$ contiendra la valeur de la varible
-- un registre de résultats $\vert y \rangle$ à $n$ qubits, $y\in
++ un registre de résultats $\vert y \rangle$ à $n$ qubits, $y\in
   Z_{2^m}$ contiendra le résultat
-- un opérateur unitaire
++ un opérateur unitaire
   $ U_f \vert x \rangle \vert y \rangle = \vert x \rangle \vert y \oplus f(x)
   \rangle$
 
@@ -141,4 +141,3 @@ cette fonction est soit constante (la sortie est 0 ou 1 pour toutes les entrées
 soit équilibrée (la sortie est 0 dans la moitié des cas, 1 dans les autres). Le
 but du problème est de savoir si la fonction est constante ou équilibrée à
 l'aide de l'oracle.
-

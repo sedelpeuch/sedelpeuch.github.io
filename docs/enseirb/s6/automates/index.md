@@ -49,4 +49,3 @@ Le support de
 [td6-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/19960/mod_resource/content/6/td5.etd.pdf
 
 [td7-sujet]:https://moodle.bordeaux-inp.fr/pluginfile.php/31825/mod_resource/content/6/td6.etd.pdf
-

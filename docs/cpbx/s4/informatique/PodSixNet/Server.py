@@ -4,9 +4,10 @@ import socket
 from PodSixNet.asyncwrapper import poll, asyncore
 from PodSixNet.Channel import Channel
 
+
 class Server(asyncore.dispatcher):
     channelClass = Channel
-    
+
     def __init__(self, channelClass=None, localaddr=("127.0.0.1", 5071), listeners=5):
         if channelClass:
             self.channelClass = channelClass
@@ -18,23 +19,22 @@ class Server(asyncore.dispatcher):
         self.set_reuse_addr()
         self.bind(localaddr)
         self.listen(listeners)
-    
+
     def handle_accept(self):
         try:
             conn, addr = self.accept()
         except socket.error:
-            print('warning: server accept() threw an exception')
+            print("warning: server accept() threw an exception")
             return
         except TypeError:
-            print('warning: server accept() threw EWOULDBLOCK')
+            print("warning: server accept() threw EWOULDBLOCK")
             return
-        #print("connection")
+        # print("connection")
         self.channels.append(self.channelClass(conn, addr, self, self._map))
         self.channels[-1].Send({"action": "connected"})
         if hasattr(self, "Connected"):
             self.Connected(self.channels[-1], addr)
-    
+
     def Pump(self):
         [c.Pump() for c in self.channels]
         poll(map=self._map)
-

@@ -87,6 +87,3 @@ programmation.
 [TD 7]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-svn-tests-sujet.pdf
 
 [TD 8]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-code-legacy-sujet.pdf
-
-
-

@@ -92,7 +92,7 @@ l'informatique quantique.
 **Important :** dans ces états, l'état individuel d'un qubit n'est pas défini,
 c'est le système qui est dans un état défini.
 
-### Les états intriqué - 1er état de Bell :
+### Les états intriqué - 1er état de Bell
 
 $ \vert \beta_{00} = \dfrac{1}{\sqrt{2}}(\vert 00 \rangle + \vert 1 1 \rangle)
 $
@@ -127,7 +127,7 @@ l'état de 2 qubits, le système est projeté dans l'un des états de base $\ver
 00 \rangle, \vert 01 \rangle, \vert 10 \rangle$ ou $\vert 11 \rangle$ avec
 une probabilité $| \alpha_{ij} |^2$.
 
-#### Mesure partielle.
+#### Mesure partielle
 
 On mesure uniquement un des 2 qubits, la mesure va fixer l'état du qubit mesure.
 L'état du système sera une superposition des états de base compatibles, et dans
@@ -152,11 +152,11 @@ Comment transmettre d'un point $A$ à un point $B$ le contenu inconnu d'un
 qubit (ie d'un état quantique) ? (le système physique porteur du qubit n'est pas
 transporté !).
 
-- A et B se sont offert antérieurement un des 2 qubits d'un état intriqué de
++ A et B se sont offert antérieurement un des 2 qubits d'un état intriqué de
   Bell $\vert \beta_{00} \rangle$
-- A veut transmettre à B le contenu d'un qubit dans un état $\vert \Psi \rangle
++ A veut transmettre à B le contenu d'un qubit dans un état $\vert \Psi \rangle
   = \alpha \vert 0 \rangle + \beta \vert 1 \rangle$ que A ne connait pas.
-- système à 3 qubits : $\vert \Psi_0 \rangle = \vert \Psi \rangle \vert
++ système à 3 qubits : $\vert \Psi_0 \rangle = \vert \Psi \rangle \vert
   \beta_{00} \rangle = \dfrac{1}{\sqrt{2}}(\alpha \vert 0 \rangle + \beta \vert
   1 \rangle) (\vert 00 \rangle + \vert 11 \rangle) =
   \dfrac{1}{\sqrt{2}}(\alpha(\vert 000 \rangle) + \vert 011 \rangle) + \beta
@@ -242,8 +242,8 @@ irreversibles en algorithme réversibles.
 
 Cependant cela a un cout
 
-- Augmentation du volume d'information traitée
-- Introduction d'un nouvelle porte à 3 bits, TOF (porte de Toffoli)
++ Augmentation du volume d'information traitée
++ Introduction d'un nouvelle porte à 3 bits, TOF (porte de Toffoli)
 
 $(x,y,z) \longrigtharrow (x,y, z \oplus x y)$
 
@@ -298,4 +298,3 @@ $ \{NOT, SWAP, TOF\} \cup \{\Lambda (u) \vert \cup \text{de taille} z\}$
 Les portes reversibles de bases (traduits en transformations unitaires) ainsi
 que toutes les portes à 1 qubit, contrôlés par un autre qubit, suffisant pour
 calculer n'importe qu'elle transformation unitaire sur $N$ qubits
-

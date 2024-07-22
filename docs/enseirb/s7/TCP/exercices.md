@@ -60,10 +60,10 @@ effectue un who has `192.168.2.1`. Finalement `192.168.2.1` répond un is-at.
 #### Énoncé
 
 + Soit un datagramme IP :
-    - Data = 4000 octets
-    - Options copiées = 9 octets
-    - Options non copiées = 26 octets
-    - MTU = 512 octets
+  + Data = 4000 octets
+  + Options copiées = 9 octets
+  + Options non copiées = 26 octets
+  + MTU = 512 octets
 
 + Étudier la fragmentation du datagramme IP
 + Écrire un algorithme (pseudo - code) permettant de fragmenter un datagramme IP
@@ -155,8 +155,8 @@ Une entrée dans la table de routage est de la forme :
 
 | Réseau destinataire | Passerelle = ip d'un routeur |
 | 10.0.0.0 | 20.0.0.10(B)                 |
-| 20.0.0.0 | * (C)                        |
-| 30.0.0.0 | * (C)                        |
+| 20.0.0.0 | *(C)                        |
+| 30.0.0.0 |* (C)                        |
 | 40.0.0.0 | 30.0.0.10 (D)                |
 
 ### Exercice 6

@@ -50,4 +50,3 @@ Le support de [cours]
 [corrigé 7](./img/7.rkt)
 
 [corrigé 8](./img/8.rkt)
-
