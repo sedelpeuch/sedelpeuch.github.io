@@ -18,11 +18,11 @@ const FEATURES: FeatureItem[] = [
         text: (
             <ul>
                 <li>Ingénieur en robotique au CATIE au sein de l’unité Système Cyber-Physique.</li>
-                <li>Spécialisé en ROS et coordinateur de l’équipe CATIE Robotics participant à la Robocup dans la ligue
-                    @home.
+                <li>Spécialisé en ROS, coordinateur de l’équipe CATIE Robotics participant à la Robocup dans la ligue
+                    @home et coordinateur de la R&D en robotique.
                 </li>
-                <li>🥉 Robocup @Home OPL 2023 Bordeaux.</li>
-                <li>Sujets de travail : navigation autonome et sociale, préhension, intégration.</li>
+                <li>Pro-actif sur la mise en place des infrastrucres et des technologies DevOps </li>
+                <li>Sujets de travail : navigation autonome et sociale, préhension, CI/CD , self-hosting, infrastrucre</li>
             </ul>
         ),
         Svg: WebDeveloperSvg,
@@ -51,9 +51,10 @@ const FEATURES: FeatureItem[] = [
         }),
         text: (
             <ul>
-                <li>Impression 3D, Découpe laser, CNC, Tournage</li>
                 <li>Open Source enthusiast</li>
+                <li>Self-hosting fan</li>
                 <li>Fablab lover</li>
+                <li>DIY addict</li>
             </ul>
         ),
         Svg: OpenSourceSvg,
