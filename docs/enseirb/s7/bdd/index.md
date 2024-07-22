@@ -65,5 +65,3 @@ import DocCardList from '@theme/DocCardList';
 [TP 2]:http://slombardy.vvv.enseirb-matmeca.fr/ens/sgbd/jdbc.php
 
 [TP 3]:http://slombardy.vvv.enseirb-matmeca.fr/ens/sgbd/tdsqlav.php#sec1
-
-
