@@ -177,6 +177,7 @@ management et ne pas être réservée au seul but de la certification !
 
 Sous ce terme générique, la démarche qualité englobe l'ensmelbe des actions qui
 permettent le progrès du management et des performances, principalement :
+
 - le traitement des Non Conformités
 - le traitement des réclamations clients
 - les actions correctives et les actions préventives
@@ -218,6 +219,7 @@ Direction, de gestion documentaire, de mise à disposition des ressources et de
 traitement des actions d'amélioration au sein de ces 3 normes .
 
 Seule la finalité du système de management diffère :
+
 - ISO 9001 management de la qualité
 - ISO 14001 management de l'environnement ISO 18001 management de la sécurité au
   travail
