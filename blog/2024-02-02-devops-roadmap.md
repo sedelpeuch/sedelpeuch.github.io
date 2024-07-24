@@ -68,7 +68,7 @@ Les conteneurs et les machines virtuelles ont des avantages similaires en termes
 
 ## <IconTitle logo="skill-icons:githubactions-light" name="CI/CD Pipeline"/>
 
-[CI/CD Pipelines](ci_cd_pipelines/)
+CI/CD Pipelines
 
 CI/CD est en quelque sorte le cœur de DevOps. En DevOps, toutes les modifications de code, comme les nouvelles fonctionnalités ou les corrections de bugs, doivent être intégrées dans l'application existante et déployées pour l'utilisateur final de manière continue et automatisée. D'où le terme :
 Intégration Continue et Déploiement Continu (CI/CD)
