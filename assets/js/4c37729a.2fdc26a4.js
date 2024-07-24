@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksedelpeuch_net=self.webpackChunksedelpeuch_net||[]).push([[2155],{4347:e=>{e.exports=JSON.parse('{"label":"Devops","permalink":"/blog/tags/devops","allTagsPath":"/blog/tags","count":4,"unlisted":false}')}}]);
