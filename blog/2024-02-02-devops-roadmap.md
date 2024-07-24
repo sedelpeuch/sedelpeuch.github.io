@@ -1,8 +1,7 @@
 ---
 title: DevOps Roadmap
 description: Présentation de ma roadmap DevOps personnelle 2024
-authors: sedelpeuch
-tags: [DevOps, Roadmap]
+tags: [Devops, Roadmap]
 ---
 Ingénieur en informatique au [CATIE](http://catie.fr/) spécialisé en Robotique je suis amené à travailler sur des projets de développement logiciel et d'intégration sur différentes plateformes. Intrigué et passioné par l'intégration et l'automatisation des tâches, j'ai décidé d'approfondir mes connaissances en DevOps.
 
@@ -69,7 +68,7 @@ Les conteneurs et les machines virtuelles ont des avantages similaires en termes
 
 ## <IconTitle logo="skill-icons:githubactions-light" name="CI/CD Pipeline"/>
 
-CI/CD Pipelines
+[CI/CD Pipelines](ci_cd_pipelines/)
 
 CI/CD est en quelque sorte le cœur de DevOps. En DevOps, toutes les modifications de code, comme les nouvelles fonctionnalités ou les corrections de bugs, doivent être intégrées dans l'application existante et déployées pour l'utilisateur final de manière continue et automatisée. D'où le terme :
 Intégration Continue et Déploiement Continu (CI/CD)
