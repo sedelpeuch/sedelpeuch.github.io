@@ -210,7 +210,19 @@ const config: Config = {
   markdown: {
     mermaid: true,
   },
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        indexBlog: true,
+        indexDocs: true,
+        docsRouteBasePath: "/",
+        hashed: true,
+        searchBarPosition: "right",
+      },
+    ],
+  ],
 };
 
 export default config;
