@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksedelpeuch_net=self.webpackChunksedelpeuch_net||[]).push([[9267],{28289:e=>{e.exports=JSON.parse('[{"label":"CI/CD","permalink":"/blog/tags/ci-cd","count":3},{"label":"GitHub","permalink":"/blog/tags/git-hub","count":3},{"label":"Devops","permalink":"/blog/tags/devops","count":4},{"label":"Roadmap","permalink":"/blog/tags/roadmap","count":1}]')}}]);
