@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksedelpeuch_net=self.webpackChunksedelpeuch_net||[]).push([[3578],{14605:e=>{e.exports=JSON.parse('{"label":"Conteneur","permalink":"/blog/tags/conteneur","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);
