@@ -17,7 +17,7 @@ Nous avons à notre dispositions les outils suivants :
 
 - [La création de workflows](/blog/2024-02-04-ci-cd-workflow.md)
 - [La création d'actions](/blog/2024-02-04-ci-cd-action.md)
-- [La réutilisation d'actions et de workflows](/blog/2024-02-04-ci-cd-workflow.md#réutiliser-les-workflows-et-actions)
+- [La réutilisation d'actions et de workflows](/blog/2024-02-04-ci-cd-workflow.md)
 
 ## Création d'une architecture CI/CD
 
