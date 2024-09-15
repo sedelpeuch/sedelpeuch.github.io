@@ -1,6 +1,6 @@
 ---
-title: Introduction à Docker Compose
-description: "Explication de Docker Compose, ses cas d'utilisation, des exemples de code, et des schémas explicatifs."
+title: Docker Compose
+description: "Explication de Docker Compose"
 tags: [Docker, Docker Compose, Devops, Containerization]
 ---
 
