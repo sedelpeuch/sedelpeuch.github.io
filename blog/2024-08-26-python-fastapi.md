@@ -8,12 +8,6 @@ FastAPI est un framework web moderne et rapide (hautes performances) pour la cr�
 
 <!--truncate-->
 
-# FastAPI
-
-| Date       | Auteur            | Description      |
-| ---------- | ------------------ | ---------------- |
-| 2024-08-26 | Delpeuch Sébastien | Version initiale |
-
 ## Aperçu
 
 FastAPI est un framework web moderne et rapide (hautes performances) pour la création d'API avec Python, basé sur les annotations de types standard de Python. Il offre des performances élevées, comparables à celles de NodeJS et Go, grâce à Starlette et Pydantic, ce qui en fait l'un des frameworks Python les plus rapides disponibles. FastAPI permet d'augmenter la vitesse de développement des fonctionnalités de 200% à 300%, de réduire d'environ 40% les erreurs humaines des développeurs, et propose un excellent support des éditeurs avec des complétions.

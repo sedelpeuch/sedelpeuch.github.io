@@ -10,6 +10,7 @@
     },
     "github-cli": {},
     "ghcr.io/devcontainers-contrib/features/pipx-package:1": {},
-    "ghcr.io/prulloac/devcontainer-features/pre-commit:1": {}
+    "ghcr.io/prulloac/devcontainer-features/pre-commit:1": {},
+    "ghcr.io/joshuanianji/devcontainer-features/github-cli-persistence:1": {}
   }
 }
