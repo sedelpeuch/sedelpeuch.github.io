@@ -449,111 +449,105 @@ Par exemple</p>
 <p>Voici un résumé de ma roadmap DevOps personnelle pour 2024. Cette roadmap est basée sur mes expériences et mes objectifs personnels. Elle est sujette à des changements et des mises à jour régulières. N'hésitez pas à me contacter si vous avez des suggestions ou des commentaires.</p>
 <!-- -->
 <p><img decoding="async" loading="lazy" alt="DevOps" src="https://delpeuch.net/assets/images/devops-7e8caa7376b7c423945a1df3b7a1fa48.png" width="446" height="212" class="img_ev3q"></p>
-<p>Légende :</p>
-<ul class="contains-task-list containsTaskList_mC6p">
-<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->À apprendre</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->En cours d'apprentissage</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Maîtrisé</del></li>
-</ul>
-<h2><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>Concepts du développement logiciel</h2></div></div></h2>
+<h2><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>01 Concepts du développement logiciel</h2></div></div></h2>
 <p>En tant qu'ingénieur DevOps, vous ne programmerez pas l'application, mais comme vous travaillez en étroite collaboration avec l'équipe de développement pour améliorer et automatiser les tâches pour eux, vous devez comprendre les concepts de :</p>
-<ul class="contains-task-list containsTaskList_mC6p">
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Collaboration des développeurs (Agile, Jira)</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Utilisation de Git</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Configuration des applications (Outils de build)</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Compréhension du cycle de vie du développement logiciel</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Tests automatisés</li>
+<ul>
+<li>Collaboration des développeurs (Agile, Jira)</li>
+<li>Utilisation de Git</li>
+<li>Configuration des applications (Outils de build)</li>
+<li>Compréhension du cycle de vie du développement logiciel</li>
+<li>Tests automatisés</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-1"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>OS &amp; Linux</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-1" class="hash-link" aria-label="Direct link to -1" title="Direct link to -1">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-1"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>02 OS &amp; Linux</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-1" class="hash-link" aria-label="Direct link to -1" title="Direct link to -1">​</a></h2>
 <p>En tant qu'ingénieur DevOps, vous êtes responsable de la préparation et de la maintenance de l'infrastructure (serveurs) sur laquelle l'application est déployée. Vous devez donc connaître les bases de l'administration d'un serveur et de l'installation de différents outils sur celui-ci. Voici les concepts de base des systèmes d'exploitation que vous devez comprendre :</p>
-<ul class="contains-task-list containsTaskList_mC6p">
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Commandes Shell</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Système de fichiers Linux &amp; Permissions</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Gestion des clés SSH</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Notions de base de la mise en réseau et de la sécurité</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Configuration des pare-feu pour sécuriser l'accès</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Comprendre comment fonctionnent les adresses IP, les ports et le DNS</del></li>
-<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Équilibreurs de charge</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Proxies</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>HTTP/HTTPS</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Virtualisation</li>
+<ul>
+<li>Commandes Shell</li>
+<li>Système de fichiers Linux &amp; Permissions</li>
+<li>Gestion des clés SSH</li>
+<li>Notions de base de la mise en réseau et de la sécurité</li>
+<li>Configuration des pare-feu pour sécuriser l'accès</li>
+<li>Comprendre comment fonctionnent les adresses IP, les ports et le DNS</li>
+<li>Équilibreurs de charge</li>
+<li>Proxies</li>
+<li>HTTP/HTTPS</li>
+<li>Virtualisation</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-2"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>Contenérisation - Docker</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-2" class="hash-link" aria-label="Direct link to -2" title="Direct link to -2">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-2"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>03 Contenérisation - Docker</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-2" class="hash-link" aria-label="Direct link to -2" title="Direct link to -2">​</a></h2>
 <p>Les conteneurs sont devenus le nouveau standard de l'emballage logiciel, vous exécuterez probablement votre application en tant que conteneur. Cela signifie que vous devez généralement comprendre :</p>
-<ul class="contains-task-list containsTaskList_mC6p">
-<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Concepts de virtualisation</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Concepts de conteneurisation</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Comment gérer les applications conteneurisées sur un serveur.</li>
+<ul>
+<li>Concepts de virtualisation</li>
+<li>Concepts de conteneurisation</li>
+<li>Comment gérer les applications conteneurisées sur un serveur.</li>
 </ul>
 <p>Docker est de loin la technologie de conteneur la plus populaire ! Voici quelques points que vous devriez connaître :</p>
-<ul class="contains-task-list containsTaskList_mC6p">
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Exécuter des conteneurs</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Inspecter les conteneurs actifs</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Réseau Docker</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Persister les données avec les volumes Docker</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Dockeriser les applications en utilisant Dockerfiles</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Exécuter plusieurs conteneurs en utilisant Docker-Compose</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Travailler avec le dépôt Docker</del></li>
+<ul>
+<li>Exécuter des conteneurs</li>
+<li>Inspecter les conteneurs actifs</li>
+<li>Réseau Docker</li>
+<li>Persister les données avec les volumes Docker</li>
+<li>Dockeriser les applications en utilisant Dockerfiles</li>
+<li>Exécuter plusieurs conteneurs en utilisant Docker-Compose</li>
+<li>Travailler avec le dépôt Docker</li>
 </ul>
 <p>Les conteneurs et les machines virtuelles ont des avantages similaires en termes d'isolation et d'allocation des ressources, mais fonctionnent différemment. Les VMs virtualisent tout le système d'exploitation. Les conteneurs virtualisent uniquement le niveau d'application du système d'exploitation. Par conséquent, les conteneurs sont plus légers et plus rapides.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-3"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>CI/CD Pipeline</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-3" class="hash-link" aria-label="Direct link to -3" title="Direct link to -3">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-3"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>04 CI/CD Pipeline</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-3" class="hash-link" aria-label="Direct link to -3" title="Direct link to -3">​</a></h2>
 <p>CI/CD Pipelines</p>
 <p>CI/CD est en quelque sorte le cœur de DevOps. En DevOps, toutes les modifications de code, comme les nouvelles fonctionnalités ou les corrections de bugs, doivent être intégrées dans l'application existante et déployées pour l'utilisateur final de manière continue et automatisée. D'où le terme :
 Intégration Continue et Déploiement Continu (CI/CD)</p>
 <p>Compétences que vous devez apprendre ici :</p>
-<ul class="contains-task-list containsTaskList_mC6p">
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Configuration du serveur CI/CD</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Intégration du dépôt de code pour déclencher le pipeline automatiquement</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Outils de construction et de gestion de packages pour exécuter les tests et emballer l'application</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Configuration des dépôts d'artefacts (comme Nexus) et intégration avec le pipeline</li>
+<ul>
+<li>Configuration du serveur CI/CD</li>
+<li>Intégration du dépôt de code pour déclencher le pipeline automatiquement</li>
+<li>Outils de construction et de gestion de packages pour exécuter les tests et emballer l'application</li>
+<li>Configuration des dépôts d'artefacts (comme Nexus) et intégration avec le pipeline</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-4"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>Apprendre un fournisseur de Cloud</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-4" class="hash-link" aria-label="Direct link to -4" title="Direct link to -4">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-4"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>05 Apprendre un fournisseur de Cloud</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-4" class="hash-link" aria-label="Direct link to -4" title="Direct link to -4">​</a></h2>
 <p>De nos jours, de nombreuses entreprises utilisent une infrastructure virtuelle sur le cloud, au lieu de gérer leur propre infrastructure. Ce sont des plateformes Infrastructure as a Service (IaaS), qui offrent une gamme de services supplémentaires, comme la sauvegarde, la sécurité, l'équilibrage de charge, etc.</p>
 <p>AWS est la plateforme IaaS la plus puissante et la plus largement utilisée, mais aussi une des plus difficiles. D'autres populaires : Microsoft Azure, Google Cloud.</p>
 <p>Ces services sont spécifiques à la plateforme. Vous devez donc apprendre les services de cette plateforme spécifique et apprendre à gérer toute l'infrastructure de déploiement sur celle-ci. Par exemple, pour AWS, vous devez connaître les bases de :</p>
-<ul class="contains-task-list containsTaskList_mC6p">
-<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Service IAM - gestion des utilisateurs et des permissions</li>
-<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Service VPC - votre réseau privé</li>
-<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Service EC2 - serveurs virtuels</li>
+<ul>
+<li>Service IAM - gestion des utilisateurs et des permissions</li>
+<li>Service VPC - votre réseau privé</li>
+<li>Service EC2 - serveurs virtuels</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-5"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>Orchestration de conteneurs - Kubernetes &amp; Docker Swarm</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-5" class="hash-link" aria-label="Direct link to -5" title="Direct link to -5">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-5"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>06 Orchestration de conteneurs - Kubernetes &amp; Docker Swarm</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-5" class="hash-link" aria-label="Direct link to -5" title="Direct link to -5">​</a></h2>
 <p>Comme les conteneurs sont populaires et faciles à utiliser, de nombreuses entreprises exécutent des centaines ou des milliers de conteneurs sur plusieurs serveurs. Cela signifie que ces conteneurs doivent être gérés d'une manière ou d'une autre.</p>
 <p>À cette fin, il existe des outils d'orchestration de conteneurs. Kubernetes (également connu sous le nom de K8s) est l'outil d'orchestration de conteneurs le plus populaire.</p>
 <p>Vous devez donc apprendre :</p>
-<ul class="contains-task-list containsTaskList_mC6p">
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Apprendre les composants de base comme, Deployment, Service, ConfigMap, Secret, StatefulSet,</del> Ingress</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->CLI Kubernetes (Kubectl)</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Persistance des données avec les volumes K8s</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Namespaces</li>
-<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Docker Swarm</li>
+<ul>
+<li>Apprendre les composants de base comme, Deployment, Service, ConfigMap, Secret, StatefulSet, Ingress</li>
+<li>CLI Kubernetes (Kubectl)</li>
+<li>Persistance des données avec les volumes K8s</li>
+<li>Namespaces</li>
+<li>Docker Swarm</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-6"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>Monitoring &amp; Observabilité</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-6" class="hash-link" aria-label="Direct link to -6" title="Direct link to -6">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-6"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>07 Monitoring &amp; Observabilité</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-6" class="hash-link" aria-label="Direct link to -6" title="Direct link to -6">​</a></h2>
 <p>Une fois que le logiciel est en production, il est important de le surveiller pour suivre les performances, découvrir les problèmes dans votre infrastructure et l'application. Donc, l'une de vos responsabilités en tant qu'ingénieur DevOps est de :</p>
-<ul class="contains-task-list containsTaskList_mC6p">
-<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Prometheus : Un outil de surveillance et d'alerte populaire</li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <!-- -->Grafana : Outil d'analyse et de visualisation interactive</li>
-<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->ELK Stack : Une pile de gestion de logs populaire</li>
+<ul>
+<li>Prometheus : Un outil de surveillance et d'alerte populaire</li>
+<li>Grafana : Outil d'analyse et de visualisation interactive</li>
+<li>ELK Stack : Une pile de gestion de logs populaire</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-7"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>Infrastructure as Code</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-7" class="hash-link" aria-label="Direct link to -7" title="Direct link to -7">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-7"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>08 Infrastructure as Code</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-7" class="hash-link" aria-label="Direct link to -7" title="Direct link to -7">​</a></h2>
 <p>Créer et maintenir manuellement une infrastructure est chronophage et sujet à erreurs. Surtout lorsque vous devez répliquer l'infrastructure, par exemple pour un environnement de développement, de test et de production.</p>
 <p>En DevOps, nous voulons automatiser autant que possible et c'est là qu'intervient l'Infrastructure as Code.</p>
-<ul class="contains-task-list containsTaskList_mC6p">
-<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Terraform est l'outil de provisionnement d'infrastructure le plus populaire</li>
-<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Ansible est l'outil de gestion de configuration le plus populaire</li>
+<ul>
+<li>Terraform est l'outil de provisionnement d'infrastructure le plus populaire</li>
+<li>Ansible est l'outil de gestion de configuration le plus populaire</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-8"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>Langages de script - Python</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-8" class="hash-link" aria-label="Direct link to -8" title="Direct link to -8">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-8"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>09 Langages de script - Python</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-8" class="hash-link" aria-label="Direct link to -8" title="Direct link to -8">​</a></h2>
 <p>En travaillant étroitement avec les développeurs et les administrateurs système pour automatiser les tâches de développement et d'opérations, vous aurez besoin d'écrire des scripts et de petites applications. Pour cela, vous aurez besoin de compétences en scripting ou en programmation de base. Python est un langage largement utilisé, facile à apprendre et utilisé pour de nombreux cas d'utilisation différents, en particulier en DevOps.</p>
-<ul class="contains-task-list containsTaskList_mC6p">
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Apprendre les bases de Python</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Écrire des scripts utilitaires, par exemple pour vider le cache, démarrer les builds et les déploiements</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Comprendre les concepts de programmation de base</del></li>
+<ul>
+<li>Apprendre les bases de Python</li>
+<li>Écrire des scripts utilitaires, par exemple pour vider le cache, démarrer les builds et les déploiements</li>
+<li>Comprendre les concepts de programmation de base</li>
 </ul>
-<div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>Contrôle de version - Git</h2></div></div>
+<div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>10 Contrôle de version - Git</h2></div></div>
 <p>Toute la logique d'automatisation est écrite sous forme de code. Tout comme le code d'application, le code d'automatisation doit également être géré et hébergé sur un outil de contrôle de version, comme Git. Git est l'outil de contrôle de version le plus populaire et le plus largement utilisé. Vos fichiers sont stockés de manière centralisée dans un dépôt Git distant sur le web. Les dépôts Git les plus populaires sont GitHub et GitLab. Git est un outil CLI, que vous installez localement. Il permet de suivre les modifications du code source et facilite la collaboration sur le code.</p>
-<ul class="contains-task-list containsTaskList_mC6p">
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Apprendre à utiliser un dépôt Git</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Maîtriser les commandes de base de Git, comme git clone, git branch, git pull/push, git merge, etc.</del></li>
-<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <del>Apprendre à collaborer sur un projet, comme créer des pull requests, faire des revues de code, gérer les branches</del></li>
+<ul>
+<li>Apprendre à utiliser un dépôt Git</li>
+<li>Maîtriser les commandes de base de Git, comme git clone, git branch, git pull/push, git merge, etc.</li>
+<li>Apprendre à collaborer sur un projet, comme créer des pull requests, faire des revues de code, gérer les branches</li>
 </ul>]]></content>
         <category label="Devops" term="Devops"/>
         <category label="Roadmap" term="Roadmap"/>
