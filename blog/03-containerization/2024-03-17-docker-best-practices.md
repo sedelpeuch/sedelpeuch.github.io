@@ -1,7 +1,7 @@
 ---
 title: Docker pratiques de production
 description: "L'adoption de Docker augmente constamment et beaucoup le connaissent, mais tout le monde n'utilise pas Docker selon les meilleures pratiques."
-tags: [Conteneur, Docker, Devops]
+tags: [Containerization, Docker, Devops]
 ---
 
 <!--truncate-->
