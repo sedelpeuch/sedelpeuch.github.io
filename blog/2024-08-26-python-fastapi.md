@@ -1,5 +1,5 @@
 ---
-titre: FastAPI
+title: FastAPI
 description: FastAPI est un framework web moderne et rapide (hautes performances) pour la création d'API avec Python, basé sur les annotations de types standard de Python.
 tags: [Devops, Python]
 ---
