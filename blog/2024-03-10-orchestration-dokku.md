@@ -1,5 +1,5 @@
 ---
-titre: Dokku
+title: Dokku
 description: Dokku est une plateforme open-source permettant le déploiement, la gestion et la mise à l'échelle des applications sur un serveur.
 tags: [Devops, Orchestration, Alternatives]
 ---
