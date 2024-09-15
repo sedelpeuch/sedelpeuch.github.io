@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksedelpeuch_net=self.webpackChunksedelpeuch_net||[]).push([[1633],{73044:e=>{e.exports=JSON.parse('{"tags":[{"label":"Compilation","permalink":"/pr-preview/pr-8/docs/tags/compilation","count":2},{"label":"Mod\xe9lisation","permalink":"/pr-preview/pr-8/docs/tags/modelisation","count":1}]}')}}]);
