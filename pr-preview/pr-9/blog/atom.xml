@@ -201,7 +201,7 @@
 <p>Enfin, comment s'assurer et valider que l'image que vous construisez a peu ou pas de vulnérabilités de sécurité ?</p>
 <p>La meilleure pratique est, une fois que vous avez construit l'image, la scannez pour des vulnérabilités de sécurité à l'aide de la commande docker scan.</p>
 <p>En arrière-plan, Docker utilise en fait un service appelé SNYK pour faire la numérisation de la vulnérabilité des images. Le scan utilise une base de données de vulnérabilités, qui est constamment mise à jour.</p>]]></content>
-        <category label="Conteneur" term="Conteneur"/>
+        <category label="Containerization" term="Containerization"/>
         <category label="Docker" term="Docker"/>
         <category label="Devops" term="Devops"/>
     </entry>
@@ -368,7 +368,7 @@ Modifiez le fichier de configuration de Nginx pour votre site :</p>
 <p><img decoding="async" loading="lazy" alt="Texte alt" src="https://delpeuch.net/pr-preview/pr-9/assets/images/image-2-5c8a4648962758e750606cd1ae476ebd.png" width="529" height="256" class="img_ev3q"></p>
 <p>Cela signifie que si vous utilisez un conteneur Docker, vous n'avez pas besoin de configurer quoi que ce soit directement sur le serveur, car tout est déjà encapsulé dans le conteneur. Au lieu de cela, il vous suffit d'exécuter une commande docker qui récupère le conteneur que vous avez stocké dans le registre, puis l'exécute.</p>
 <p>C'est donc beaucoup plus simple et aucune configuration environnementale n'est nécessaire sur le serveur. La seule chose bien sûr est que vous devez installer et configurer le runtime docker sur le serveur avant de pouvoir y exécuter des conteneurs. Mais ce n'est qu'un effort unique.</p>]]></content>
-        <category label="Conteneur" term="Conteneur"/>
+        <category label="Containerization" term="Containerization"/>
         <category label="Docker" term="Docker"/>
         <category label="Devops" term="Devops"/>
     </entry>

@@ -51,7 +51,7 @@
             "summary": "L'adoption de Docker augmente constamment et beaucoup le connaissent, mais tout le monde n'utilise pas Docker selon les meilleures pratiques.",
             "date_modified": "2024-03-17T00:00:00.000Z",
             "tags": [
-                "Conteneur",
+                "Containerization",
                 "Docker",
                 "Devops"
             ]
@@ -103,7 +103,7 @@
             "summary": "Docker est un outil open source qui permet aux développeurs de créer, déployer, exécuter, mettre à jour et gérer les conteneurs.",
             "date_modified": "2024-02-18T00:00:00.000Z",
             "tags": [
-                "Conteneur",
+                "Containerization",
                 "Docker",
                 "Devops"
             ]
