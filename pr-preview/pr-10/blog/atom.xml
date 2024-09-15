@@ -46,11 +46,11 @@
         <category label="Python" term="Python"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Introduction à Docker Compose]]></title>
+        <title type="html"><![CDATA[Docker Compose]]></title>
         <id>https://delpeuch.net/pr-preview/pr-10/blog/2024/04/07/03-containerization/docker-compose</id>
         <link href="https://delpeuch.net/pr-preview/pr-10/blog/2024/04/07/03-containerization/docker-compose"/>
         <updated>2024-04-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Explication de Docker Compose, ses cas d'utilisation, des exemples de code, et des schémas explicatifs.]]></summary>
+        <summary type="html"><![CDATA[Explication de Docker Compose]]></summary>
         <content type="html"><![CDATA[<p>Docker Compose est un outil puissant qui permet de définir et de gérer des applications multi-conteneurs Docker. Il utilise un fichier YAML pour configurer les services de l'application. Ensuite, avec une seule commande, vous pouvez créer et démarrer tous les services à partir de votre configuration.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="quest-ce-que-docker-compose-">Qu'est-ce que Docker Compose ?<a href="https://delpeuch.net/pr-preview/pr-10/blog/2024/04/07/03-containerization/docker-compose#quest-ce-que-docker-compose-" class="hash-link" aria-label="Direct link to Qu'est-ce que Docker Compose ?" title="Direct link to Qu'est-ce que Docker Compose ?">​</a></h2>
 <p>Docker Compose est un outil qui permet de définir et de gérer des applications multi-conteneurs Docker. Il utilise un fichier YAML pour configurer les services de l'application. Ensuite, avec une seule commande, vous pouvez créer et démarrer tous les services à partir de votre configuration.</p>
