@@ -46,6 +46,80 @@
         <category label="Python" term="Python"/>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Différence entre un proxy et un reverse proxy]]></title>
+        <id>https://delpeuch.net/blog/2024/03/31/02-network/proxy-vs-reverse-proxy</id>
+        <link href="https://delpeuch.net/blog/2024/03/31/02-network/proxy-vs-reverse-proxy"/>
+        <updated>2024-03-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Explication de la différence entre un proxy et un reverse proxy, inspirée du transcript de la vidéo 'Proxy vs Reverse Proxy vs Load Balancer | Simply Explained'.]]></summary>
+        <content type="html"><![CDATA[<p>Dans cet article, nous allons explorer la différence entre un proxy et un reverse proxy.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="quest-ce-quun-proxy-">Qu'est-ce qu'un proxy ?<a href="https://delpeuch.net/blog/2024/03/31/02-network/proxy-vs-reverse-proxy#quest-ce-quun-proxy-" class="hash-link" aria-label="Direct link to Qu'est-ce qu'un proxy ?" title="Direct link to Qu'est-ce qu'un proxy ?">​</a></h2>
+<p>Un proxy, également connu sous le nom de proxy direct ou proxy de transfert, est un serveur qui agit comme un intermédiaire entre un client (par exemple, un utilisateur ou un appareil) et un serveur de destination sur Internet. Voici un aperçu détaillé de son fonctionnement :</p>
+<ol>
+<li>
+<p><strong>Interception des requêtes</strong> : Lorsqu'un client souhaite accéder à une ressource sur Internet, il envoie une requête au proxy au lieu de se connecter directement au serveur de destination. Le proxy intercepte cette requête.</p>
+</li>
+<li>
+<p><strong>Filtrage et sécurité</strong> : Le proxy examine la requête pour s'assurer qu'elle respecte les politiques de sécurité et de filtrage définies par l'administrateur réseau. Il peut bloquer l'accès à certains sites web, filtrer les contenus inappropriés ou malveillants, et appliquer des règles de sécurité.</p>
+</li>
+<li>
+<p><strong>Anonymisation</strong> : Le proxy peut masquer l'adresse IP du client en utilisant sa propre adresse IP pour se connecter au serveur de destination. Cela permet de protéger l'identité et la confidentialité du client.</p>
+</li>
+<li>
+<p><strong>Mise en cache</strong> : Le proxy peut mettre en cache les réponses des serveurs de destination. Si un autre client demande la même ressource, le proxy peut fournir la réponse mise en cache, ce qui réduit la charge sur le serveur de destination et améliore les temps de réponse.</p>
+</li>
+<li>
+<p><strong>Transmission de la requête</strong> : Si la requête est autorisée, le proxy la transmet au serveur de destination en utilisant sa propre adresse IP. Le serveur de destination répond alors au proxy.</p>
+</li>
+<li>
+<p><strong>Retour de la réponse</strong> : Le proxy reçoit la réponse du serveur de destination, la filtre à nouveau si nécessaire, et la renvoie au client. Le client reçoit ainsi la réponse comme s'il avait directement communiqué avec le serveur de destination.</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="exemple-dutilisation-dun-proxy">Exemple d'utilisation d'un proxy<a href="https://delpeuch.net/blog/2024/03/31/02-network/proxy-vs-reverse-proxy#exemple-dutilisation-dun-proxy" class="hash-link" aria-label="Direct link to Exemple d'utilisation d'un proxy" title="Direct link to Exemple d'utilisation d'un proxy">​</a></h3>
+<p>Imaginez que vous planifiez un dîner dans un restaurant populaire, mais que vous ne voulez pas interagir directement avec le personnel. Vous avez donc un assistant personnel qui fait la réservation pour vous. Le personnel du restaurant ne communique qu'avec votre assistant, pas directement avec vous. Dans ce scénario, votre assistant personnel est un proxy.</p>
+<p>Dans un contexte d'entreprise, un administrateur peut configurer tout le trafic Internet des ordinateurs des employés pour qu'il passe par un proxy. Cela permet de protéger le réseau interne de l'entreprise en bloquant les sites web malveillants et en filtrant le trafic.</p>
+<p>Un proxy peut également mettre en cache les réponses des serveurs backend pour réduire la charge et améliorer les temps de réponse. Par exemple, si un employé regarde une vidéo YouTube, le proxy peut mettre en cache cette vidéo pour que les autres employés puissent la regarder sans consommer de bande passante supplémentaire.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="quest-ce-quun-reverse-proxy-">Qu'est-ce qu'un reverse proxy ?<a href="https://delpeuch.net/blog/2024/03/31/02-network/proxy-vs-reverse-proxy#quest-ce-quun-reverse-proxy-" class="hash-link" aria-label="Direct link to Qu'est-ce qu'un reverse proxy ?" title="Direct link to Qu'est-ce qu'un reverse proxy ?">​</a></h2>
+<p>Un reverse proxy, également connu sous le nom de proxy inverse, est un serveur qui se trouve devant les serveurs internes d'une entreprise et gère les requêtes entrantes des clients. Voici un aperçu détaillé de son fonctionnement :</p>
+<ol>
+<li>
+<p><strong>Réception des requêtes</strong> : Lorsqu'un client envoie une requête pour accéder à une ressource sur un serveur interne, la requête est d'abord reçue par le reverse proxy au lieu d'être directement envoyée au serveur interne.</p>
+</li>
+<li>
+<p><strong>Distribution des requêtes</strong> : Le reverse proxy examine la requête et la distribue au serveur interne approprié en fonction de la capacité, de la charge et des règles de routage définies. Cela permet de répartir la charge de manière équilibrée entre les serveurs internes.</p>
+</li>
+<li>
+<p><strong>Sécurité et filtrage</strong> : Le reverse proxy peut appliquer des politiques de sécurité pour filtrer les requêtes malveillantes, bloquer les attaques DDoS, et assurer le chiffrement SSL/TLS pour sécuriser les communications entre les clients et les serveurs internes.</p>
+</li>
+<li>
+<p><strong>Mise en cache</strong> : Le reverse proxy peut mettre en cache les réponses des serveurs internes. Si un autre client demande la même ressource, le reverse proxy peut fournir la réponse mise en cache, ce qui réduit la charge sur les serveurs internes et améliore les temps de réponse.</p>
+</li>
+<li>
+<p><strong>Retour de la réponse</strong> : Le serveur interne répond au reverse proxy, qui filtre à nouveau la réponse si nécessaire, et la renvoie au client. Le client reçoit ainsi la réponse comme s'il avait directement communiqué avec le serveur interne.</p>
+</li>
+<li>
+<p><strong>Surveillance et journalisation</strong> : Le reverse proxy peut surveiller et journaliser les requêtes et les réponses pour des raisons de sécurité, de dépannage et d'analyse des performances.</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="exemple-dutilisation-dun-reverse-proxy">Exemple d'utilisation d'un reverse proxy<a href="https://delpeuch.net/blog/2024/03/31/02-network/proxy-vs-reverse-proxy#exemple-dutilisation-dun-reverse-proxy" class="hash-link" aria-label="Direct link to Exemple d'utilisation d'un reverse proxy" title="Direct link to Exemple d'utilisation d'un reverse proxy">​</a></h3>
+<p>Reprenons l'analogie du restaurant. Lorsque vous arrivez au restaurant, au lieu de chercher une table vous-même, vous vous enregistrez à la réception. Le réceptionniste vous montre la table appropriée. Ici, le réceptionniste est un reverse proxy.</p>
+<p>Un reverse proxy peut également agir comme un bouclier pour protéger les serveurs internes en filtrant les requêtes et en assurant le chiffrement SSL. Il peut également mettre en cache les réponses pour accélérer les temps de réponse aux clients.</p>
+<p>Un reverse proxy peut également fournir des fonctionnalités d'équilibrage de charge. Par exemple, si un serveur est surchargé, le reverse proxy peut rediriger les requêtes vers un autre serveur moins occupé. Cela permet d'assurer une répartition équilibrée de la charge et d'améliorer les performances globales du système.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="différences-clés-entre-un-proxy-et-un-reverse-proxy">Différences clés entre un proxy et un reverse proxy<a href="https://delpeuch.net/blog/2024/03/31/02-network/proxy-vs-reverse-proxy#diff%C3%A9rences-cl%C3%A9s-entre-un-proxy-et-un-reverse-proxy" class="hash-link" aria-label="Direct link to Différences clés entre un proxy et un reverse proxy" title="Direct link to Différences clés entre un proxy et un reverse proxy">​</a></h2>
+<ul>
+<li><strong>Fonctionnalité</strong> : Un proxy agit comme un intermédiaire pour les requêtes sortantes, tandis qu'un reverse proxy gère les requêtes entrantes.</li>
+<li><strong>Sécurité</strong> : Les deux types de proxy offrent des fonctionnalités de sécurité, mais un reverse proxy protège les serveurs internes en filtrant les requêtes entrantes.</li>
+<li><strong>Caching</strong> : Les deux types de proxy peuvent mettre en cache les réponses, mais un reverse proxy le fait pour accélérer les temps de réponse aux clients.</li>
+</ul>
+<p>En résumé, un proxy et un reverse proxy ont des rôles différents mais complémentaires dans la gestion du trafic réseau. Un proxy protège les utilisateurs en filtrant le trafic sortant, tandis qu'un reverse proxy protège les serveurs en gérant les requêtes entrantes.</p>
+<p>Pour en savoir plus sur Nginx, vous pouvez consulter l'article que j'ai écrit sur <a href="https://delpeuch.net/blog/2024/03/24/02-network/nginx">Nginx</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="schéma-récapitulatif">Schéma récapitulatif<a href="https://delpeuch.net/blog/2024/03/31/02-network/proxy-vs-reverse-proxy#sch%C3%A9ma-r%C3%A9capitulatif" class="hash-link" aria-label="Direct link to Schéma récapitulatif" title="Direct link to Schéma récapitulatif">​</a></h2>
+<p><img decoding="async" loading="lazy" src="https://media.dev.to/cdn-cgi/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fwqces5nwe4hb4bydyd13.png" alt="Schéma récapitulatif" class="img_ev3q"></p>]]></content>
+        <category label="Proxy" term="Proxy"/>
+        <category label="Reverse Proxy" term="Reverse Proxy"/>
+        <category label="Network" term="Network"/>
+        <category label="Devops" term="Devops"/>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Présentation de Nginx]]></title>
         <id>https://delpeuch.net/blog/2024/03/24/02-network/nginx</id>
         <link href="https://delpeuch.net/blog/2024/03/24/02-network/nginx"/>
@@ -375,7 +449,7 @@ Lorsqu’une action est créé en <code>self-hosted</code> il est fortement cons
 <p>La création d'actions personnalisées offre la possibilité de concevoir du code spécifique qui interagit avec le dépôt selon les besoins. Ces actions peuvent s'intégrer aux API de GitHub ou à toute API tierce accessible publiquement. Par exemple, une action pourrait être configurée pour publier des modules npm, envoyer des alertes par SMS en cas de création de problèmes urgents, ou encore déployer du code prêt pour la production.
 Ce guide expose les éléments fondamentaux requis pour la création et l'utilisation d'une action composite empaquetée.</p>
 <div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>warning</div><div class="admonitionContent_BuS1"><p>Lors de la création de flux de travail et d'actions, il est impératif d'évaluer constamment la possibilité d'exécution d'une entrée non fiable provenant de sources potentiellement malveillantes. Certains contextes doivent être traités comme des entrées non fiables, car un attaquant pourrait insérer son propre contenu malveillant. Pour de plus amples informations, veuillez consulter la section « <a href="https://docs.github.com/fr/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections" target="_blank" rel="noopener noreferrer">Durcissement de la sécurité pour GitHub Actions</a> ».</p></div></div>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="création-dune-action">Création d’une action<a href="https://delpeuch.net/blog/2024/02/04/04-ci-cd/action#cr%C3%A9ation-dune-action" class="hash-link" aria-label="Direct link to Création d’une action" title="Direct link to Création d’une action">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="création-dune-action">Création d’une action<a href="https://delpeuch.net/blog/2024/02/04/04-ci-cd/action#cr%C3%A9ation-dune-action" class="hash-link" aria-label="Direct link to Création d’une action" title="Direct link to Création d��’une action">​</a></h2>
 <p>Un dépôt doit être créé sur <a href="http://github.com/" target="_blank" rel="noopener noreferrer">GitHub.com</a>.</p>
 <ul>
 <li>Créez un nouveau dépôt sur <a href="http://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>, en choisissant n'importe quel nom de dépôt ou en utilisant l'exemple suivant : <code>hello-world-composite-action</code>. Les fichiers peuvent être ajoutés une fois que le projet est poussé sur GitHub. Pour plus d'informations, veuillez vous référer à la section <a href="https://docs.github.com/fr/repositories/creating-and-managing-repositories/creating-a-new-repository" target="_blank" rel="noopener noreferrer">Création d'un dépôt</a>.</li>
