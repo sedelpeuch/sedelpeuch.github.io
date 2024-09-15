@@ -47,7 +47,7 @@
             <category>Python</category>
         </item>
         <item>
-            <title><![CDATA[Pratiques de production]]></title>
+            <title><![CDATA[Docker pratiques de production]]></title>
             <link>https://delpeuch.net/blog/2024/03/17/contenerisation-docker-best-practices</link>
             <guid>https://delpeuch.net/blog/2024/03/17/contenerisation-docker-best-practices</guid>
             <pubDate>Sun, 17 Mar 2024 00:00:00 GMT</pubDate>
@@ -103,7 +103,7 @@
             <category>Devops</category>
         </item>
         <item>
-            <title><![CDATA[orchestration-dokku]]></title>
+            <title><![CDATA[Dokku]]></title>
             <link>https://delpeuch.net/blog/2024/03/10/orchestration-dokku</link>
             <guid>https://delpeuch.net/blog/2024/03/10/orchestration-dokku</guid>
             <pubDate>Sun, 10 Mar 2024 00:00:00 GMT</pubDate>
