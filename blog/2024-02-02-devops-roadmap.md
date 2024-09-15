@@ -13,7 +13,7 @@ Voici un résumé de ma roadmap DevOps personnelle pour 2024. Cette roadmap est 
 
 import IconTitle from '@site/src/components/IconTitle';
 
-![DevOps](./img/devops.png)
+![DevOps](/img/devops.png)
 
 Légende :
 

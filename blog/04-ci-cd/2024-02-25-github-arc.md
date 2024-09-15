@@ -14,7 +14,7 @@ Le diagramme suivant illustre l'architecture du mode Scaleset Runner Autoscaling
 
 [Documentation complète](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/quickstart-for-actions-runner-controller)
 
-![alt text](./img/arc.png)
+![alt text](/img/arc.png)
 
 :::danger
 Sur GitHub les ARC sont identifiés par leur nom d'installation. Il est important de choisir un nom unique pour chaque installation. De plus pour simplifier l'écriture des workflows il est consillé de gérer les runners par des groupes de runners. La clé `runs-on` des jobs des workflows doit être égale à un groupe de runners.
