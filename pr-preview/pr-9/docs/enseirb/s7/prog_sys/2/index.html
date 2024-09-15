@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-enseirb/s7/prog_sys/2" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.5.2">
+<title data-rh="true">Système de Gestion de Fichiers | Sébastien Delpeuch</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://delpeuch.net/pr-preview/pr-9/docs/enseirb/s7/prog_sys/2"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Système de Gestion de Fichiers | Sébastien Delpeuch"><meta data-rh="true" name="description" content="Le système de gestion de fichiers est un outil de manipulation des fichiers et"><meta data-rh="true" property="og:description" content="Le système de gestion de fichiers est un outil de manipulation des fichiers et"><link data-rh="true" rel="icon" href="/pr-preview/pr-9/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://delpeuch.net/pr-preview/pr-9/docs/enseirb/s7/prog_sys/2"><link data-rh="true" rel="alternate" href="https://delpeuch.net/pr-preview/pr-9/docs/enseirb/s7/prog_sys/2" hreflang="en"><link data-rh="true" rel="alternate" href="https://delpeuch.net/pr-preview/pr-9/docs/enseirb/s7/prog_sys/2" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/pr-preview/pr-9/blog/rss.xml" title="Sébastien Delpeuch&#39;s Blog RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/pr-preview/pr-9/blog/atom.xml" title="Sébastien Delpeuch&#39;s Blog Atom Feed">
+<link rel="alternate" type="application/json" href="/pr-preview/pr-9/blog/feed.json" title="Sébastien Delpeuch&#39;s Blog JSON Feed">
+
+
+
+
+
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?c9a3849aa75f9c4a4e65f846cd1a5155",e.defer=!0;var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<meta name="baidu-site-verification" content="code-rqLUw5reVS">
+<script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js",t.defer=!0;var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script>
+
+<link rel="icon" href="/pr-preview/pr-9/img/logo.png">
+<meta name="theme-color" content="#12affa">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous">
+<script src="https://plausible.io/js/script.js" defer="defer" data-domain="delpeuch.net"></script><link rel="stylesheet" href="/pr-preview/pr-9/assets/css/styles.e1a8ff51.css">
+<script src="/pr-preview/pr-9/assets/js/runtime~main.3a8324d8.js" defer="defer"></script>
+<script src="/pr-preview/pr-9/assets/js/main.3bb930c1.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"dark")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/pr-preview/pr-9/"><div class="navbar__logo"><img src="/pr-preview/pr-9/img/logo.webp" alt="navbar" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/pr-preview/pr-9/img/logo.webp" alt="navbar" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div></a><a class="navbar__item navbar__link" href="/pr-preview/pr-9/about">Résumé</a><a class="navbar__item navbar__link" href="/pr-preview/pr-9/project">Projets</a><a class="navbar__item navbar__link" href="/pr-preview/pr-9/blog">Blog</a><a class="navbar__item navbar__link" href="/pr-preview/pr-9/associatif">Associatif</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">ENSEIRB-MATMECA</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/pr-preview/pr-9/docs/enseirb/s9">Semestre 9</a></li><li><a class="dropdown__link" href="/pr-preview/pr-9/docs/enseirb/s8">Semestre 8</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/pr-preview/pr-9/docs/enseirb/s7">Semestre 7</a></li><li><a class="dropdown__link" href="/pr-preview/pr-9/docs/enseirb/s6">Semestre 6</a></li><li><a class="dropdown__link" href="/pr-preview/pr-9/docs/enseirb/s5">Semestre 5</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">CPBx</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/pr-preview/pr-9/docs/cpbx/s4">Semestre 4</a></li><li><a class="dropdown__link" href="/pr-preview/pr-9/docs/cpbx/s3">Semestre 3</a></li><li><a class="dropdown__link" href="/pr-preview/pr-9/docs/cpbx/s2">Semestre 2</a></li><li><a class="dropdown__link" href="/pr-preview/pr-9/docs/cpbx/s1">Semestre 1</a></li></ul></div></div><div class="navbar__items navbar__items--right"><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input"><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/pr-preview/pr-9/docs/cpbx/">CPBx</a><button aria-label="Expand sidebar category &#x27;CPBx&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/pr-preview/pr-9/docs/enseirb/">ENSEIRB-MATMECA</a><button aria-label="Collapse sidebar category &#x27;ENSEIRB-MATMECA&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s5/">Semestre 5</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s6/">Semestre 6</a><button aria-label="Expand sidebar category &#x27;Semestre 6&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/">Semestre 7</a><button aria-label="Collapse sidebar category &#x27;Semestre 7&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/GL">Génie Logiciel </a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/TCP/">Architecture des réseaux TCP/IP</a><button aria-label="Expand sidebar category &#x27;Architecture des réseaux TCP/IP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/bdd/">SGBD</a><button aria-label="Expand sidebar category &#x27;SGBD&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/compilation/">Compilation</a><button aria-label="Expand sidebar category &#x27;Compilation&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/cpp/">Programmation C++</a><button aria-label="Expand sidebar category &#x27;Programmation C++&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/poo/">Programmation Orientée Objets</a><button aria-label="Expand sidebar category &#x27;Programmation Orientée Objets&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/">Programmation Système</a><button aria-label="Collapse sidebar category &#x27;Programmation Système&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/1">Introduction</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/10">Les signaux</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/11">Les verous de fichiers</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/12">Algorithmes Distribués &amp; Interblocages</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/13">Multiplexer des entrées-sorties</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/14">Les threads POSIX</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/2">Système de Gestion de Fichiers</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/3">Le Buffer Cache</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/4">La bibliothèque standard</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/5">Appels système du Système de Gestion de Fichier</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/6">Les processus</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/7">La mémoire</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/8">La mémoire virtuelle</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/9">Tubes et tubes nommés</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s7/quantique/">Introduction à l&#x27;informatique quantique</a><button aria-label="Expand sidebar category &#x27;Introduction à l&#x27;informatique quantique&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s8/">Semestre 8</a><button aria-label="Expand sidebar category &#x27;Semestre 8&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-9/docs/enseirb/s9/">Semestre 9</a><button aria-label="Expand sidebar category &#x27;Semestre 9&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/pr-preview/pr-9/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/pr-preview/pr-9/docs/enseirb/"><span itemprop="name">ENSEIRB-MATMECA</span></a><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/pr-preview/pr-9/docs/enseirb/s7/"><span itemprop="name">Semestre 7</span></a><meta itemprop="position" content="2"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/"><span itemprop="name">Programmation Système</span></a><meta itemprop="position" content="3"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Système de Gestion de Fichiers</span><meta itemprop="position" content="4"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Système de Gestion de Fichiers</h1></header><p>Le système de gestion de fichiers est un outil de manipulation des fichiers et
+de la structure d&#x27;arborescence des fichiers sur disque et a aussi le rôle sous
+UNIX de conserver toutes les informations dont la pérennité est importante pour
+le système (et pour les utilisateurs biensur). Ainsi tous les objets importants
+du système sont référencés dans le système de fichiers (mémoire, terminaux,
+périphériques variés etc). Le système de gestion de fichier permet une
+manipulation simple des fichiers et gère de façon transparente les différents
+problèmes d&#x27;accès aux supports de masse</p>
+<ul>
+<li>partage : utilisation d&#x27;un même fichier / disque par plusieurs utilisateurs</li>
+<li>efficacité : utilisation de cache, uniformisation des accès</li>
+<li>droits : protection des éléments important du système et protection
+interutilisateurs</li>
+<li>alignement : transtypage entre la mémoire et les supports magnétiques</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="le-concept-de-fichier">Le concept de fichier<a href="#le-concept-de-fichier" class="hash-link" aria-label="Direct link to Le concept de fichier" title="Direct link to Le concept de fichier">​</a></h2>
+<p>L&#x27;unité logique de base de l&#x27;interface du Système de Gestion de Fichiers : <code>le fichier</code>. Un fichier UNIX est une suite finie de bytes matérialisée par des
+blocs disques, et une inode qui contient les propriétés du fichier. Le contenu
+est entièrement défini par le créateur, la gestion de l&#x27;allocation des
+ressources nécessaires est a la seule responsabilité du système. Sur UNIX les
+fichiers ne sont pas typés du point de vue utilisateur, le concept de fichier
+permet de proposer un type générique (polymorphe) aux programmeurs le système
+gérant la multiplicité des formats effectifs (différentes marques et conceptions
+de disques dur par exemple). L&#x27;inode définit le fichier, soit principalement les
+information :</p>
+<ul>
+<li>la localisation sur disque</li>
+<li>le propriétaire et le groupe propriétaire</li>
+<li>les droits d&#x27;accès des différents utilisateurs</li>
+<li>la taille</li>
+<li>la date de création</li>
+</ul>
+<p>On trouvera sur d&#x27;autre systèmes d&#x27;autres structures d&#x27;information pour décrire
+les fichiers, par exemple NT utiliser des &quot;objets files records&quot;.
+<em>Un nom est lié à un fichier (une référence indique un fichier) mais un fichier
+n&#x27;est pas lié à une référence, un fichier peut exister sans avoir le nom dans
+l&#x27;arborescence.</em></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="fichiers-ordinaires--fichiers-spéciaux">Fichiers ordinaires / Fichiers spéciaux<a href="#fichiers-ordinaires--fichiers-spéciaux" class="hash-link" aria-label="Direct link to Fichiers ordinaires / Fichiers spéciaux" title="Direct link to Fichiers ordinaires / Fichiers spéciaux">​</a></h2>
+<p>Le système est un utilisateur du système de gestion de fichier et en temps que
+créateur il définit quelques contenus structurés ces fichiers auront de ce fait
+des accès réglementés. Pour le système les fichiers sont donc organisés en deux
+grandes familles :</p>
+<ul>
+<li>
+<p><strong>les fichiers standars</strong> que sont par exemple les fichiers texte, les
+exécutables, etc. C&#x27;est à dire tout ce qui est manipulé et structuré par les
+utilisateurs.</p>
+</li>
+<li>
+<p><strong>les fichiers spéciaux</strong> périphériques, mémoire, et autre fichiers &quot;physique&quot;
+ou logique. Ces fichiers ont une structure interne définie (par les
+développeurs du système) qui doit être respecté c&#x27;est pourquoi leur
+manipulation n&#x27;est pas possible que par l&#x27;intermédiaire du système</p>
+<p>Les fichiers physiques sont dans le répertoire <code>/dev</code>.</p>
+<p>Cette distinction entre fichier ordinaire et spéciaux et tout simplement le
+fait que le système est un utilisateur comme les autres des fichiers. Pour
+certains fichier le système utilise une structure interne spéciale (d&#x27;où le
+nom) qui ne doit pas être modifié sous peine de comportement indéfini. Pour se
+protéger le système ne permet pas l&#x27;accès direct aux informations c&#x27;est lui
+qui fait toutes les entrées sortie sur les fichiers spéciaux de façon a en
+assurer l&#x27;intégrité. Ceci est indépendant du système de droits d&#x27;accès, la
+structure du code du noyau ne permet pas d&#x27;autres accès que les accès
+&quot;spéciaux&quot;.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="organisation-utilisateur-des-disques">Organisation utilisateur des Disques<a href="#organisation-utilisateur-des-disques" class="hash-link" aria-label="Direct link to Organisation utilisateur des Disques" title="Direct link to Organisation utilisateur des Disques">​</a></h2>
+<p>Comment permettre aux utilisateurs d&#x27;identifier les données sur les supports de
+masse ? Le système le plus répandu aujourd&#x27;hui est un système arborescent avec
+des fichiers utilisés comme noeud de l&#x27;arbre qui permet de lister les fichiers
+et les sous arbres qu&#x27;il coïtent, d&#x27;autres organisations &quot;plates&quot; existe ou l&#x27;on
+organise les fichiers en utilisant des types et des extensions de nom de fichier
+pour &quot;organiser&quot;. Les arborescences de fichiers et de catalogues, organisés
+comme un graphe acyclique, apparaissent avec le projet MULTICS. Cette
+organisation logique du disque a les avantages suivants : Une racine, un accès
+absolu aisé, une structure dynamique, une grande puissance d&#x27;expression et un
+graphe acyclique.</p>
+<p>L&#x27;organisation est arborescente avec quelques connections supplémentaires (liens
+multiples sur un même fichier) qui en font un graphe. Mais ce graphe doit rester
+acyclique, pour les raisons suivantes.</p>
+<ol>
+<li>L&#x27;ensemble des algorithmes simples utilisables sur des graphes acycliques
+comme le parcours, la vérification des fichiers libres, etc. Deviennent
+beaucoup plus difficile à écrire pour les graphes admettant des cycles</li>
+<li>Des algorithmes de ramasse-miettes doivent être utilisés pour savoir si
+certains objets sont utilisés ou non et pour récupérer les inodes ou blocs
+perdus après un crash.</li>
+<li>Tous les algorithmes de détection dans un graphe quelconque ont une
+complexité beaucoup plus grande que ceux qui peuvent profiter de l&#x27;acyclité
+du graphe</li>
+<li>Sous unix nous comme assurés que le graphe est acyclique car il est interdit
+d&#x27;avoir plusieurs références pour un même catalogue</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="les-inodes">Les inodes<a href="#les-inodes" class="hash-link" aria-label="Direct link to Les inodes" title="Direct link to Les inodes">​</a></h2>
+<p>L&#x27;inode est le passage obligé de tous les échanges entre les systèmes de fichier
+et la mémoire. L&#x27;inode est la structure qui contient toutes les informations sur
+un fichier donné à l&#x27;exception de sa référence dans l&#x27;arborescence (son nom),
+l&#x27;arborescence n&#x27;étant qu&#x27;un outil de référencèrent des fichiers. Les
+informations stockées dans une inode disque sont :</p>
+<ul>
+<li>utilisateur propriétaire</li>
+<li>groupe propriétaire</li>
+<li>type de fichier</li>
+<li>droit d&#x27;accès</li>
+<li>date de dernier accès</li>
+<li>date de dernière modification</li>
+<li>date de dernière modification de l&#x27;inode</li>
+<li>taille du fichier</li>
+<li>adresses des blocs-disque contenant le fichier</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="organisation-des-disques-system-v">Organisation des disques System V<a href="#organisation-des-disques-system-v" class="hash-link" aria-label="Direct link to Organisation des disques System V" title="Direct link to Organisation des disques System V">​</a></h2>
+<p>L&#x27;organisation disque décrite sur la figure ci dessous est la plus simple que
+l&#x27;on peut trouver de nos jours sous UNIX, il en exite d&#x27;autre où l&#x27;on peut en
+particulier placer un même disque logique sur plusieurs disques physiques,
+certaines où les blocs sont fragmentables etc</p>
+<ul>
+<li><strong>Boot bloc</strong> utilisé au chargement du système</li>
+<li><strong>Super Bloc</strong> il contient toutes les informations générales sur le disque
+logique</li>
+<li><strong>Inode list</strong> table des inodes</li>
+<li><strong>blocs</strong> mes blocs de données chaines à la création du disque (mkfs)</li>
+</ul>
+<center><p><img decoding="async" loading="lazy" src="/pr-preview/pr-9/assets/images/SYS4-596f99042420acbe54905e592d9f1b46.png" width="542" height="470" class="img_ev3q"></p></center>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="adressage-des-blocs-dans-les-inodes">Adressage des blocs dans les inodes<a href="#adressage-des-blocs-dans-les-inodes" class="hash-link" aria-label="Direct link to Adressage des blocs dans les inodes" title="Direct link to Adressage des blocs dans les inodes">​</a></h2>
+<p>Le système d&#x27;adressage des blocs dans les inodes (système V) consiste en 13
+adresses de blocs. Les dix premières adresses sont des adresses qui pointent
+directement sur les blocs de données du fichier. Les autres sont des adresses
+indirectes vers des blocs de données contenant des adresses. L&#x27;intérêt de cette
+représentation est d&#x27;économiser sur la taille des inodes tout en permettant un
+accès rapide au petits fichiers (la majorité des fichiers sont petits). Mais en
+laissant la possibilité de créer de très gros fichiers.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="allocation-des-inodes-dun-disque">Allocation des inodes d&#x27;un disque<a href="#allocation-des-inodes-dun-disque" class="hash-link" aria-label="Direct link to Allocation des inodes d&#x27;un disque" title="Direct link to Allocation des inodes d&#x27;un disque">​</a></h2>
+<p>L’allocation des inodes est réalisée en recherchant dans la zone des inodes du disque une inode
+libre. Pour accélérer cette recherche : un tampon d’inodes libres est géré dans le SuperBloc, de
+plus l’indice de la première inode libre est gardé en référence dans le SuperBloc afin de redémarrer
+la recherche qu’à partir de la première inode réellement libre.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="allocation-des-blocs-disques">Allocation des blocs disques<a href="#allocation-des-blocs-disques" class="hash-link" aria-label="Direct link to Allocation des blocs disques" title="Direct link to Allocation des blocs disques">​</a></h2>
+<p>L’algorithme utilisé pour gérer l’allocation des inodes s’appuie sur le fait que l’on peut tester si
+une inode est libre ou non en regardant son contenu. Ceci n’est plus vrai pour les blocs. La solution
+est de chaı̂ner les blocs. Ce chaı̂nage est réalisé par blocs d’adresses pour accélérer les accès et
+profiter au maximum du buffer cache. Il existe donc un bloc d’adresses dans le super bloc qui sert
+de zone de travail pour l’allocateur de blocs.</p></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/14"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Les threads POSIX</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/pr-preview/pr-9/docs/enseirb/s7/prog_sys/3"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Le Buffer Cache</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop" style="opacity:0;transform:translateX(100px) translateZ(0)"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#le-concept-de-fichier" class="table-of-contents__link toc-highlight">Le concept de fichier</a></li><li><a href="#fichiers-ordinaires--fichiers-spéciaux" class="table-of-contents__link toc-highlight">Fichiers ordinaires / Fichiers spéciaux</a></li><li><a href="#organisation-utilisateur-des-disques" class="table-of-contents__link toc-highlight">Organisation utilisateur des Disques</a></li><li><a href="#les-inodes" class="table-of-contents__link toc-highlight">Les inodes</a></li><li><a href="#organisation-des-disques-system-v" class="table-of-contents__link toc-highlight">Organisation des disques System V</a></li><li><a href="#adressage-des-blocs-dans-les-inodes" class="table-of-contents__link toc-highlight">Adressage des blocs dans les inodes</a></li><li><a href="#allocation-des-inodes-dun-disque" class="table-of-contents__link toc-highlight">Allocation des inodes d&#39;un disque</a></li><li><a href="#allocation-des-blocs-disques" class="table-of-contents__link toc-highlight">Allocation des blocs disques</a></li></ul><hr class="hr_UhE0"><span class="percent_H6RK">0%<!-- --> </span></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Social</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/sedelpeuch" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div></div></footer></div>
+</body>
+</html>
