@@ -423,6 +423,26 @@ L’utilisation (sous n’importe quelle forme) de GHCR sur des dépôts <strong
             <category>Devops</category>
         </item>
         <item>
+            <title><![CDATA[Présentation des conteneurs Docker]]></title>
+            <link>https://delpeuch.net/blog/2024/03/05/03-containerization/docker-containers</link>
+            <guid>https://delpeuch.net/blog/2024/03/05/03-containerization/docker-containers</guid>
+            <pubDate>Tue, 05 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Présentation des conteneurs Docker, leur fonctionnement et des exemples d'utilisation.]]></description>
+            <content:encoded><![CDATA[<p>Les conteneurs Docker sont des unités logicielles légères et portables qui encapsulent une application et ses dépendances dans une image. Ces images sont composées de plusieurs couches, souvent basées sur une distribution Linux légère comme Alpine, pour minimiser la taille. Les conteneurs permettent de maintenir des applications isolées et cohérentes, indépendamment de l'environnement d'exécution.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="quest-ce-quun-conteneur-docker-">Qu'est-ce qu'un conteneur Docker ?<a href="https://delpeuch.net/blog/2024/03/05/03-containerization/docker-containers#quest-ce-quun-conteneur-docker-" class="hash-link" aria-label="Direct link to Qu'est-ce qu'un conteneur Docker ?" title="Direct link to Qu'est-ce qu'un conteneur Docker ?">​</a></h2>
+<p>Un conteneur Docker est une unité logicielle légère et portable qui encapsule une application et ses dépendances dans une image. Ces images sont composées de plusieurs couches, souvent basées sur une distribution Linux légère comme Alpine, pour minimiser la taille. Les conteneurs permettent de maintenir des applications isolées et cohérentes, indépendamment de l'environnement d'exécution.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="structure-dun-conteneur-docker">Structure d'un conteneur Docker<a href="https://delpeuch.net/blog/2024/03/05/03-containerization/docker-containers#structure-dun-conteneur-docker" class="hash-link" aria-label="Direct link to Structure d'un conteneur Docker" title="Direct link to Structure d'un conteneur Docker">​</a></h3>
+<p>Un conteneur Docker est composé de plusieurs couches d'images empilées les unes sur les autres. À la base de la plupart des conteneurs, on trouve une image Linux, souvent Alpine en raison de sa petite taille. Les couches supérieures contiennent les dépendances et l'application elle-même. Cette structure en couches permet de réutiliser les couches communes entre plusieurs conteneurs, réduisant ainsi la taille et le temps de téléchargement.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="exemple-pratique--utilisation-de-postgresql-avec-docker">Exemple pratique : Utilisation de PostgreSQL avec Docker<a href="https://delpeuch.net/blog/2024/03/05/03-containerization/docker-containers#exemple-pratique--utilisation-de-postgresql-avec-docker" class="hash-link" aria-label="Direct link to Exemple pratique : Utilisation de PostgreSQL avec Docker" title="Direct link to Exemple pratique : Utilisation de PostgreSQL avec Docker">​</a></h2>
+<p>Pour illustrer l'utilisation des conteneurs Docker, prenons l'exemple de PostgreSQL. En utilisant Docker Hub, un dépôt public d'images Docker, on peut rechercher et télécharger une version spécifique de PostgreSQL. Par exemple, pour obtenir la version 9.6, il suffit d'exécuter la commande <code>docker pull</code> suivie de <code>docker run</code> pour démarrer le conteneur. Docker télécharge les couches nécessaires et démarre l'application automatiquement.</p>
+<div class="language-bash codeBlockContainer_APcc theme-code-block" style="--prism-background-color:hsl(220, 13%, 18%);--prism-color:hsl(220, 14%, 71%)"><div class="codeBlockContent_m3Ux"><pre tabindex="0" class="prism-code language-bash codeBlock_qGQc thin-scrollbar" style="background-color:hsl(220, 13%, 18%);color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><code class="codeBlockLines_p187"><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token comment" style="color:hsl(220, 10%, 40%)"># Rechercher l'image officielle de PostgreSQL sur Docker Hub</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain"></span><span class="token function" style="color:hsl(207, 82%, 66%)">docker</span><span class="token plain"> search postgres</span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain"></span><span class="token comment" style="color:hsl(220, 10%, 40%)"># Télécharger l'image de PostgreSQL version 9.6</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain"></span><span class="token function" style="color:hsl(207, 82%, 66%)">docker</span><span class="token plain"> pull postgres:9.6</span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain"></span><span class="token comment" style="color:hsl(220, 10%, 40%)"># Démarrer un conteneur PostgreSQL avec la version 9.6</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain"></span><span class="token function" style="color:hsl(207, 82%, 66%)">docker</span><span class="token plain"> run </span><span class="token parameter variable" style="color:hsl(207, 82%, 66%)">--name</span><span class="token plain"> my-postgres </span><span class="token parameter variable" style="color:hsl(207, 82%, 66%)">-e</span><span class="token plain"> </span><span class="token assign-left variable" style="color:hsl(207, 82%, 66%)">POSTGRES_PASSWORD</span><span class="token operator" style="color:hsl(207, 82%, 66%)">=</span><span class="token plain">mysecretpassword </span><span class="token parameter variable" style="color:hsl(207, 82%, 66%)">-d</span><span class="token plain"> postgres:9.6</span><br></span></code></pre><div class="buttonGroup_6DOT"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_FhaS" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_phi_"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_FfTR"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="différence-entre-une-image-docker-et-un-conteneur-docker">Différence entre une image Docker et un conteneur Docker<a href="https://delpeuch.net/blog/2024/03/05/03-containerization/docker-containers#diff%C3%A9rence-entre-une-image-docker-et-un-conteneur-docker" class="hash-link" aria-label="Direct link to Différence entre une image Docker et un conteneur Docker" title="Direct link to Différence entre une image Docker et un conteneur Docker">​</a></h3>
+<p>Une image Docker est un package statique qui contient tout ce dont une application a besoin pour fonctionner : le code, les bibliothèques, les dépendances et les configurations. C'est un modèle prêt à être exécuté. En revanche, un conteneur Docker est une instance en cours d'exécution de cette image. Lorsque vous démarrez un conteneur, Docker utilise l'image pour créer un environnement isolé où l'application peut s'exécuter. En d'autres termes, une image est un modèle, tandis qu'un conteneur est une instance active de ce modèle.</p>]]></content:encoded>
+            <category>Docker</category>
+            <category>Containerization</category>
+            <category>Devops</category>
+        </item>
+        <item>
             <title><![CDATA[Le concept de conteneur Docker]]></title>
             <link>https://delpeuch.net/blog/2024/03/03/03-containerization/docker</link>
             <guid>https://delpeuch.net/blog/2024/03/03/03-containerization/docker</guid>
@@ -691,119 +711,6 @@ Par exemple</p>
             <category>Devops</category>
         </item>
         <item>
-            <title><![CDATA[DevOps Roadmap]]></title>
-            <link>https://delpeuch.net/blog/2024/02/02/devops-roadmap</link>
-            <guid>https://delpeuch.net/blog/2024/02/02/devops-roadmap</guid>
-            <pubDate>Fri, 02 Feb 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[Présentation de ma roadmap DevOps personnelle 2024]]></description>
-            <content:encoded><![CDATA[<p>Ingénieur en informatique au <a href="http://catie.fr/" target="_blank" rel="noopener noreferrer">CATIE</a> spécialisé en Robotique je suis amené à travailler sur des projets de développement logiciel et d'intégration sur différentes plateformes. Intrigué et passioné par l'intégration et l'automatisation des tâches, j'ai décidé d'approfondir mes connaissances en DevOps.</p>
-<p>Voici un résumé de ma roadmap DevOps personnelle pour 2024. Cette roadmap est basée sur mes expériences et mes objectifs personnels. Elle est sujette à des changements et des mises à jour régulières. N'hésitez pas à me contacter si vous avez des suggestions ou des commentaires.</p>
-<!-- -->
-<p><img decoding="async" loading="lazy" alt="DevOps" src="https://delpeuch.net/assets/images/devops-7e8caa7376b7c423945a1df3b7a1fa48.png" width="446" height="212" class="img_ev3q"></p>
-<h2><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>01 Concepts du développement logiciel</h2></div></div></h2>
-<p>En tant qu'ingénieur DevOps, vous ne programmerez pas l'application, mais comme vous travaillez en étroite collaboration avec l'équipe de développement pour améliorer et automatiser les tâches pour eux, vous devez comprendre les concepts de :</p>
-<ul>
-<li>Collaboration des développeurs (Agile, Jira)</li>
-<li>Utilisation de Git</li>
-<li>Configuration des applications (Outils de build)</li>
-<li>Compréhension du cycle de vie du développement logiciel</li>
-<li>Tests automatisés</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-1"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>02 OS &amp; Linux</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-1" class="hash-link" aria-label="Direct link to -1" title="Direct link to -1">​</a></h2>
-<p>En tant qu'ingénieur DevOps, vous êtes responsable de la préparation et de la maintenance de l'infrastructure (serveurs) sur laquelle l'application est déployée. Vous devez donc connaître les bases de l'administration d'un serveur et de l'installation de différents outils sur celui-ci. Voici les concepts de base des systèmes d'exploitation que vous devez comprendre :</p>
-<ul>
-<li>Commandes Shell</li>
-<li>Système de fichiers Linux &amp; Permissions</li>
-<li>Gestion des clés SSH</li>
-<li>Notions de base de la mise en réseau et de la sécurité</li>
-<li>Configuration des pare-feu pour sécuriser l'accès</li>
-<li>Comprendre comment fonctionnent les adresses IP, les ports et le DNS</li>
-<li>Équilibreurs de charge</li>
-<li>Proxies</li>
-<li>HTTP/HTTPS</li>
-<li>Virtualisation</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-2"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>03 Contenérisation - Docker</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-2" class="hash-link" aria-label="Direct link to -2" title="Direct link to -2">​</a></h2>
-<p>Les conteneurs sont devenus le nouveau standard de l'emballage logiciel, vous exécuterez probablement votre application en tant que conteneur. Cela signifie que vous devez généralement comprendre :</p>
-<ul>
-<li>Concepts de virtualisation</li>
-<li>Concepts de conteneurisation</li>
-<li>Comment gérer les applications conteneurisées sur un serveur.</li>
-</ul>
-<p>Docker est de loin la technologie de conteneur la plus populaire ! Voici quelques points que vous devriez connaître :</p>
-<ul>
-<li>Exécuter des conteneurs</li>
-<li>Inspecter les conteneurs actifs</li>
-<li>Réseau Docker</li>
-<li>Persister les données avec les volumes Docker</li>
-<li>Dockeriser les applications en utilisant Dockerfiles</li>
-<li>Exécuter plusieurs conteneurs en utilisant Docker-Compose</li>
-<li>Travailler avec le dépôt Docker</li>
-</ul>
-<p>Les conteneurs et les machines virtuelles ont des avantages similaires en termes d'isolation et d'allocation des ressources, mais fonctionnent différemment. Les VMs virtualisent tout le système d'exploitation. Les conteneurs virtualisent uniquement le niveau d'application du système d'exploitation. Par conséquent, les conteneurs sont plus légers et plus rapides.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-3"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>04 CI/CD Pipeline</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-3" class="hash-link" aria-label="Direct link to -3" title="Direct link to -3">​</a></h2>
-<p>CI/CD Pipelines</p>
-<p>CI/CD est en quelque sorte le cœur de DevOps. En DevOps, toutes les modifications de code, comme les nouvelles fonctionnalités ou les corrections de bugs, doivent être intégrées dans l'application existante et déployées pour l'utilisateur final de manière continue et automatisée. D'où le terme :
-Intégration Continue et Déploiement Continu (CI/CD)</p>
-<p>Compétences que vous devez apprendre ici :</p>
-<ul>
-<li>Configuration du serveur CI/CD</li>
-<li>Intégration du dépôt de code pour déclencher le pipeline automatiquement</li>
-<li>Outils de construction et de gestion de packages pour exécuter les tests et emballer l'application</li>
-<li>Configuration des dépôts d'artefacts (comme Nexus) et intégration avec le pipeline</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-4"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>05 Apprendre un fournisseur de Cloud</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-4" class="hash-link" aria-label="Direct link to -4" title="Direct link to -4">​</a></h2>
-<p>De nos jours, de nombreuses entreprises utilisent une infrastructure virtuelle sur le cloud, au lieu de gérer leur propre infrastructure. Ce sont des plateformes Infrastructure as a Service (IaaS), qui offrent une gamme de services supplémentaires, comme la sauvegarde, la sécurité, l'équilibrage de charge, etc.</p>
-<p>AWS est la plateforme IaaS la plus puissante et la plus largement utilisée, mais aussi une des plus difficiles. D'autres populaires : Microsoft Azure, Google Cloud.</p>
-<p>Ces services sont spécifiques à la plateforme. Vous devez donc apprendre les services de cette plateforme spécifique et apprendre à gérer toute l'infrastructure de déploiement sur celle-ci. Par exemple, pour AWS, vous devez connaître les bases de :</p>
-<ul>
-<li>Service IAM - gestion des utilisateurs et des permissions</li>
-<li>Service VPC - votre réseau privé</li>
-<li>Service EC2 - serveurs virtuels</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-5"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>06 Orchestration de conteneurs - Kubernetes &amp; Docker Swarm</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-5" class="hash-link" aria-label="Direct link to -5" title="Direct link to -5">​</a></h2>
-<p>Comme les conteneurs sont populaires et faciles à utiliser, de nombreuses entreprises exécutent des centaines ou des milliers de conteneurs sur plusieurs serveurs. Cela signifie que ces conteneurs doivent être gérés d'une manière ou d'une autre.</p>
-<p>À cette fin, il existe des outils d'orchestration de conteneurs. Kubernetes (également connu sous le nom de K8s) est l'outil d'orchestration de conteneurs le plus populaire.</p>
-<p>Vous devez donc apprendre :</p>
-<ul>
-<li>Apprendre les composants de base comme, Deployment, Service, ConfigMap, Secret, StatefulSet, Ingress</li>
-<li>CLI Kubernetes (Kubectl)</li>
-<li>Persistance des données avec les volumes K8s</li>
-<li>Namespaces</li>
-<li>Docker Swarm</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-6"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>07 Monitoring &amp; Observabilité</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-6" class="hash-link" aria-label="Direct link to -6" title="Direct link to -6">​</a></h2>
-<p>Une fois que le logiciel est en production, il est important de le surveiller pour suivre les performances, découvrir les problèmes dans votre infrastructure et l'application. Donc, l'une de vos responsabilités en tant qu'ingénieur DevOps est de :</p>
-<ul>
-<li>Prometheus : Un outil de surveillance et d'alerte populaire</li>
-<li>Grafana : Outil d'analyse et de visualisation interactive</li>
-<li>ELK Stack : Une pile de gestion de logs populaire</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-7"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>08 Infrastructure as Code</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-7" class="hash-link" aria-label="Direct link to -7" title="Direct link to -7">​</a></h2>
-<p>Créer et maintenir manuellement une infrastructure est chronophage et sujet à erreurs. Surtout lorsque vous devez répliquer l'infrastructure, par exemple pour un environnement de développement, de test et de production.</p>
-<p>En DevOps, nous voulons automatiser autant que possible et c'est là qu'intervient l'Infrastructure as Code.</p>
-<ul>
-<li>Terraform est l'outil de provisionnement d'infrastructure le plus populaire</li>
-<li>Ansible est l'outil de gestion de configuration le plus populaire</li>
-</ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-8"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>09 Langages de script - Python</h2></div></div><a href="https://delpeuch.net/blog/2024/02/02/devops-roadmap#-8" class="hash-link" aria-label="Direct link to -8" title="Direct link to -8">​</a></h2>
-<p>En travaillant étroitement avec les développeurs et les administrateurs système pour automatiser les tâches de développement et d'opérations, vous aurez besoin d'écrire des scripts et de petites applications. Pour cela, vous aurez besoin de compétences en scripting ou en programmation de base. Python est un langage largement utilisé, facile à apprendre et utilisé pour de nombreux cas d'utilisation différents, en particulier en DevOps.</p>
-<ul>
-<li>Apprendre les bases de Python</li>
-<li>Écrire des scripts utilitaires, par exemple pour vider le cache, démarrer les builds et les déploiements</li>
-<li>Comprendre les concepts de programmation de base</li>
-</ul>
-<div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>10 Contrôle de version - Git</h2></div></div>
-<p>Toute la logique d'automatisation est écrite sous forme de code. Tout comme le code d'application, le code d'automatisation doit également être géré et hébergé sur un outil de contrôle de version, comme Git. Git est l'outil de contrôle de version le plus populaire et le plus largement utilisé. Vos fichiers sont stockés de manière centralisée dans un dépôt Git distant sur le web. Les dépôts Git les plus populaires sont GitHub et GitLab. Git est un outil CLI, que vous installez localement. Il permet de suivre les modifications du code source et facilite la collaboration sur le code.</p>
-<ul>
-<li>Apprendre à utiliser un dépôt Git</li>
-<li>Maîtriser les commandes de base de Git, comme git clone, git branch, git pull/push, git merge, etc.</li>
-<li>Apprendre à collaborer sur un projet, comme créer des pull requests, faire des revues de code, gérer les branches</li>
-</ul>]]></content:encoded>
-            <category>Devops</category>
-            <category>Roadmap</category>
-        </item>
-        <item>
             <title><![CDATA[Introduction à GitHub Actions]]></title>
             <link>https://delpeuch.net/blog/2024/02/02/04-ci-cd/github-actions</link>
             <guid>https://delpeuch.net/blog/2024/02/02/04-ci-cd/github-actions</guid>
@@ -841,6 +748,119 @@ Intégration Continue et Déploiement Continu (CI/CD)</p>
             <category>CI/CD</category>
             <category>GitHub</category>
             <category>Devops</category>
+        </item>
+        <item>
+            <title><![CDATA[DevOps Roadmap]]></title>
+            <link>https://delpeuch.net/blog/2024/01/01/devops-roadmap</link>
+            <guid>https://delpeuch.net/blog/2024/01/01/devops-roadmap</guid>
+            <pubDate>Mon, 01 Jan 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Présentation de ma roadmap DevOps personnelle 2024]]></description>
+            <content:encoded><![CDATA[<p>Ingénieur en informatique au <a href="http://catie.fr/" target="_blank" rel="noopener noreferrer">CATIE</a> spécialisé en Robotique je suis amené à travailler sur des projets de développement logiciel et d'intégration sur différentes plateformes. Intrigué et passioné par l'intégration et l'automatisation des tâches, j'ai décidé d'approfondir mes connaissances en DevOps.</p>
+<p>Voici un résumé de ma roadmap DevOps personnelle pour 2024. Cette roadmap est basée sur mes expériences et mes objectifs personnels. Elle est sujette à des changements et des mises à jour régulières. N'hésitez pas à me contacter si vous avez des suggestions ou des commentaires.</p>
+<!-- -->
+<p><img decoding="async" loading="lazy" alt="DevOps" src="https://delpeuch.net/assets/images/devops-7e8caa7376b7c423945a1df3b7a1fa48.png" width="446" height="212" class="img_ev3q"></p>
+<h2><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>01 Concepts du développement logiciel</h2></div></div></h2>
+<p>En tant qu'ingénieur DevOps, vous ne programmerez pas l'application, mais comme vous travaillez en étroite collaboration avec l'équipe de développement pour améliorer et automatiser les tâches pour eux, vous devez comprendre les concepts de :</p>
+<ul>
+<li>Collaboration des développeurs (Agile, Jira)</li>
+<li>Utilisation de Git</li>
+<li>Configuration des applications (Outils de build)</li>
+<li>Compréhension du cycle de vie du développement logiciel</li>
+<li>Tests automatisés</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-1"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>02 OS &amp; Linux</h2></div></div><a href="https://delpeuch.net/blog/2024/01/01/devops-roadmap#-1" class="hash-link" aria-label="Direct link to -1" title="Direct link to -1">​</a></h2>
+<p>En tant qu'ingénieur DevOps, vous êtes responsable de la préparation et de la maintenance de l'infrastructure (serveurs) sur laquelle l'application est déployée. Vous devez donc connaître les bases de l'administration d'un serveur et de l'installation de différents outils sur celui-ci. Voici les concepts de base des systèmes d'exploitation que vous devez comprendre :</p>
+<ul>
+<li>Commandes Shell</li>
+<li>Système de fichiers Linux &amp; Permissions</li>
+<li>Gestion des clés SSH</li>
+<li>Notions de base de la mise en réseau et de la sécurité</li>
+<li>Configuration des pare-feu pour sécuriser l'accès</li>
+<li>Comprendre comment fonctionnent les adresses IP, les ports et le DNS</li>
+<li>Équilibreurs de charge</li>
+<li>Proxies</li>
+<li>HTTP/HTTPS</li>
+<li>Virtualisation</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-2"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>03 Contenérisation - Docker</h2></div></div><a href="https://delpeuch.net/blog/2024/01/01/devops-roadmap#-2" class="hash-link" aria-label="Direct link to -2" title="Direct link to -2">​</a></h2>
+<p>Les conteneurs sont devenus le nouveau standard de l'emballage logiciel, vous exécuterez probablement votre application en tant que conteneur. Cela signifie que vous devez généralement comprendre :</p>
+<ul>
+<li>Concepts de virtualisation</li>
+<li>Concepts de conteneurisation</li>
+<li>Comment gérer les applications conteneurisées sur un serveur.</li>
+</ul>
+<p>Docker est de loin la technologie de conteneur la plus populaire ! Voici quelques points que vous devriez connaître :</p>
+<ul>
+<li>Exécuter des conteneurs</li>
+<li>Inspecter les conteneurs actifs</li>
+<li>Réseau Docker</li>
+<li>Persister les données avec les volumes Docker</li>
+<li>Dockeriser les applications en utilisant Dockerfiles</li>
+<li>Exécuter plusieurs conteneurs en utilisant Docker-Compose</li>
+<li>Travailler avec le dépôt Docker</li>
+</ul>
+<p>Les conteneurs et les machines virtuelles ont des avantages similaires en termes d'isolation et d'allocation des ressources, mais fonctionnent différemment. Les VMs virtualisent tout le système d'exploitation. Les conteneurs virtualisent uniquement le niveau d'application du système d'exploitation. Par conséquent, les conteneurs sont plus légers et plus rapides.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-3"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>04 CI/CD Pipeline</h2></div></div><a href="https://delpeuch.net/blog/2024/01/01/devops-roadmap#-3" class="hash-link" aria-label="Direct link to -3" title="Direct link to -3">​</a></h2>
+<p>CI/CD Pipelines</p>
+<p>CI/CD est en quelque sorte le cœur de DevOps. En DevOps, toutes les modifications de code, comme les nouvelles fonctionnalités ou les corrections de bugs, doivent être intégrées dans l'application existante et déployées pour l'utilisateur final de manière continue et automatisée. D'où le terme :
+Intégration Continue et Déploiement Continu (CI/CD)</p>
+<p>Compétences que vous devez apprendre ici :</p>
+<ul>
+<li>Configuration du serveur CI/CD</li>
+<li>Intégration du dépôt de code pour déclencher le pipeline automatiquement</li>
+<li>Outils de construction et de gestion de packages pour exécuter les tests et emballer l'application</li>
+<li>Configuration des dépôts d'artefacts (comme Nexus) et intégration avec le pipeline</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-4"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>05 Apprendre un fournisseur de Cloud</h2></div></div><a href="https://delpeuch.net/blog/2024/01/01/devops-roadmap#-4" class="hash-link" aria-label="Direct link to -4" title="Direct link to -4">​</a></h2>
+<p>De nos jours, de nombreuses entreprises utilisent une infrastructure virtuelle sur le cloud, au lieu de gérer leur propre infrastructure. Ce sont des plateformes Infrastructure as a Service (IaaS), qui offrent une gamme de services supplémentaires, comme la sauvegarde, la sécurité, l'équilibrage de charge, etc.</p>
+<p>AWS est la plateforme IaaS la plus puissante et la plus largement utilisée, mais aussi une des plus difficiles. D'autres populaires : Microsoft Azure, Google Cloud.</p>
+<p>Ces services sont spécifiques à la plateforme. Vous devez donc apprendre les services de cette plateforme spécifique et apprendre à gérer toute l'infrastructure de déploiement sur celle-ci. Par exemple, pour AWS, vous devez connaître les bases de :</p>
+<ul>
+<li>Service IAM - gestion des utilisateurs et des permissions</li>
+<li>Service VPC - votre réseau privé</li>
+<li>Service EC2 - serveurs virtuels</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-5"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>06 Orchestration de conteneurs - Kubernetes &amp; Docker Swarm</h2></div></div><a href="https://delpeuch.net/blog/2024/01/01/devops-roadmap#-5" class="hash-link" aria-label="Direct link to -5" title="Direct link to -5">​</a></h2>
+<p>Comme les conteneurs sont populaires et faciles à utiliser, de nombreuses entreprises exécutent des centaines ou des milliers de conteneurs sur plusieurs serveurs. Cela signifie que ces conteneurs doivent être gérés d'une manière ou d'une autre.</p>
+<p>À cette fin, il existe des outils d'orchestration de conteneurs. Kubernetes (également connu sous le nom de K8s) est l'outil d'orchestration de conteneurs le plus populaire.</p>
+<p>Vous devez donc apprendre :</p>
+<ul>
+<li>Apprendre les composants de base comme, Deployment, Service, ConfigMap, Secret, StatefulSet, Ingress</li>
+<li>CLI Kubernetes (Kubectl)</li>
+<li>Persistance des données avec les volumes K8s</li>
+<li>Namespaces</li>
+<li>Docker Swarm</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-6"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>07 Monitoring &amp; Observabilité</h2></div></div><a href="https://delpeuch.net/blog/2024/01/01/devops-roadmap#-6" class="hash-link" aria-label="Direct link to -6" title="Direct link to -6">​</a></h2>
+<p>Une fois que le logiciel est en production, il est important de le surveiller pour suivre les performances, découvrir les problèmes dans votre infrastructure et l'application. Donc, l'une de vos responsabilités en tant qu'ingénieur DevOps est de :</p>
+<ul>
+<li>Prometheus : Un outil de surveillance et d'alerte populaire</li>
+<li>Grafana : Outil d'analyse et de visualisation interactive</li>
+<li>ELK Stack : Une pile de gestion de logs populaire</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-7"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>08 Infrastructure as Code</h2></div></div><a href="https://delpeuch.net/blog/2024/01/01/devops-roadmap#-7" class="hash-link" aria-label="Direct link to -7" title="Direct link to -7">​</a></h2>
+<p>Créer et maintenir manuellement une infrastructure est chronophage et sujet à erreurs. Surtout lorsque vous devez répliquer l'infrastructure, par exemple pour un environnement de développement, de test et de production.</p>
+<p>En DevOps, nous voulons automatiser autant que possible et c'est là qu'intervient l'Infrastructure as Code.</p>
+<ul>
+<li>Terraform est l'outil de provisionnement d'infrastructure le plus populaire</li>
+<li>Ansible est l'outil de gestion de configuration le plus populaire</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-8"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>09 Langages de script - Python</h2></div></div><a href="https://delpeuch.net/blog/2024/01/01/devops-roadmap#-8" class="hash-link" aria-label="Direct link to -8" title="Direct link to -8">​</a></h2>
+<p>En travaillant étroitement avec les développeurs et les administrateurs système pour automatiser les tâches de développement et d'opérations, vous aurez besoin d'écrire des scripts et de petites applications. Pour cela, vous aurez besoin de compétences en scripting ou en programmation de base. Python est un langage largement utilisé, facile à apprendre et utilisé pour de nombreux cas d'utilisation différents, en particulier en DevOps.</p>
+<ul>
+<li>Apprendre les bases de Python</li>
+<li>Écrire des scripts utilitaires, par exemple pour vider le cache, démarrer les builds et les déploiements</li>
+<li>Comprendre les concepts de programmation de base</li>
+</ul>
+<div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>10 Contrôle de version - Git</h2></div></div>
+<p>Toute la logique d'automatisation est écrite sous forme de code. Tout comme le code d'application, le code d'automatisation doit également être géré et hébergé sur un outil de contrôle de version, comme Git. Git est l'outil de contrôle de version le plus populaire et le plus largement utilisé. Vos fichiers sont stockés de manière centralisée dans un dépôt Git distant sur le web. Les dépôts Git les plus populaires sont GitHub et GitLab. Git est un outil CLI, que vous installez localement. Il permet de suivre les modifications du code source et facilite la collaboration sur le code.</p>
+<ul>
+<li>Apprendre à utiliser un dépôt Git</li>
+<li>Maîtriser les commandes de base de Git, comme git clone, git branch, git pull/push, git merge, etc.</li>
+<li>Apprendre à collaborer sur un projet, comme créer des pull requests, faire des revues de code, gérer les branches</li>
+</ul>]]></content:encoded>
+            <category>Devops</category>
+            <category>Roadmap</category>
         </item>
     </channel>
 </rss>
