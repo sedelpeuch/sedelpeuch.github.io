@@ -1,7 +1,7 @@
 ---
 title: Docker Compose
 description: "Explication de Docker Compose"
-tags: [Docker, Docker Compose, Devops, Containerization]
+tags: [Docker Compose, Devops, Orchestration]
 ---
 
 Docker Compose est un outil puissant qui permet de définir et de gérer des applications multi-conteneurs Docker. Il utilise un fichier YAML pour configurer les services de l'application. Ensuite, avec une seule commande, vous pouvez créer et démarrer tous les services à partir de votre configuration.

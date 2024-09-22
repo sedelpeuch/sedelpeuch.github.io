@@ -1,5 +1,5 @@
 ---
-title: Différence entre la conteneurisation et la virtualisation
+title: Containerization vs Virtualization
 description: "Comparaison entre Docker et les machines virtuelles (VM) en termes de taille d'image, de vitesse et de compatibilité."
 tags: [Containerization, Virtualization, Docker, VM, Devops]
 ---
