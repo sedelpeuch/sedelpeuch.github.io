@@ -4,9 +4,9 @@ description: "Découvrez comment GitHub Actions peut automatiser vos workflows d
 tags: [CI/CD, GitHub, Devops]
 ---
 
-## Introduction
-
 Dans le monde du développement logiciel, l'automatisation est devenue une nécessité pour améliorer l'efficacité et réduire les erreurs humaines. GitHub Actions est une plateforme puissante qui permet d'automatiser les workflows de développement et de déploiement. Dans cet article, nous allons explorer les concepts de base de GitHub Actions, ses avantages, et fournir des exemples concrets pour vous aider à démarrer.
+
+<!--truncate-->
 
 ### Qu'est-ce que GitHub Actions ?
 
