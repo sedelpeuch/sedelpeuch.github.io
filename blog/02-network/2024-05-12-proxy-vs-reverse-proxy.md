@@ -65,8 +65,6 @@ Un reverse proxy peut également fournir des fonctionnalités d'équilibrage de 
 
 En résumé, un proxy et un reverse proxy ont des rôles différents mais complémentaires dans la gestion du trafic réseau. Un proxy protège les utilisateurs en filtrant le trafic sortant, tandis qu'un reverse proxy protège les serveurs en gérant les requêtes entrantes.
 
-Pour en savoir plus sur Nginx, vous pouvez consulter l'article que j'ai écrit sur [Nginx](/blog/02-network/2024-03-24-nginx.md).
-
 ## Schéma récapitulatif
 
 ![Schéma récapitulatif](https://media.dev.to/cdn-cgi/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fwqces5nwe4hb4bydyd13.png)
