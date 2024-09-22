@@ -14,7 +14,7 @@
         <updated>2024-08-26T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[FastAPI est un framework web moderne et rapide (hautes performances) pour la création d'API avec Python, basé sur les annotations de types standard de Python.]]></summary>
         <content type="html"><![CDATA[<p>FastAPI est un framework web moderne et rapide (hautes performances) pour la création d'API avec Python, basé sur les annotations de types standard de Python.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="aperçu">Aperçu<a href="https://delpeuch.net/blog/2024/08/26/09-scripting/fastapi#aper%C3%A7u" class="hash-link" aria-label="Direct link to Aperçu" title="Direct link to Aperçu">​</a></h2>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="aperçu">Aperçu<a href="https://delpeuch.net/blog/2024/08/26/09-scripting/fastapi#aper%EF%BF%BD%C3%A7u" class="hash-link" aria-label="Direct link to Aperçu" title="Direct link to Aperçu">​</a></h2>
 <p>FastAPI est un framework web moderne et rapide (hautes performances) pour la création d'API avec Python, basé sur les annotations de types standard de Python. Il offre des performances élevées, comparables à celles de NodeJS et Go, grâce à Starlette et Pydantic, ce qui en fait l'un des frameworks Python les plus rapides disponibles. FastAPI permet d'augmenter la vitesse de développement des fonctionnalités de 200% à 300%, de réduire d'environ 40% les erreurs humaines des développeurs, et propose un excellent support des éditeurs avec des complétions.</p>
 <table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>Site Web</td><td><a href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener noreferrer">https://fastapi.tiangolo.com/</a></td></tr><tr><td>GitHub Stars</td><td>&gt; 75k ⭐</td></tr><tr><td>Nombre de contributeurs</td><td>700</td></tr><tr><td>Licence</td><td>MIT</td></tr></tbody></table>
 <ul>
@@ -197,6 +197,24 @@ Modifiez le fichier de configuration de Nginx pour votre site :</p>
         <category label="Devops" term="Devops"/>
         <category label="Orchestration" term="Orchestration"/>
         <category label="Alternatives" term="Alternatives"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Différence entre la conteneurisation et la virtualisation]]></title>
+        <id>https://delpeuch.net/blog/2024/03/31/03-containerization/difference-conteneurisation-virtualisation</id>
+        <link href="https://delpeuch.net/blog/2024/03/31/03-containerization/difference-conteneurisation-virtualisation"/>
+        <updated>2024-03-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Comparaison entre Docker et les machines virtuelles (VM) en termes de taille d'image, de vitesse et de compatibilité.]]></summary>
+        <content type="html"><![CDATA[<p>Docker et les machines virtuelles (VM) sont des outils de virtualisation, mais ils fonctionnent différemment. Docker virtualise la couche des applications du système d'exploitation, utilisant le noyau de l'hôte, tandis qu'une VM virtualise l'ensemble du système d'exploitation, incluant son propre noyau et sa couche d'applications. Cette différence entraîne plusieurs distinctions majeures.</p>
+<p>Docker et les machines virtuelles (VM) sont des outils de virtualisation, mais ils fonctionnent différemment. Docker virtualise la couche des applications du système d'exploitation, utilisant le noyau de l'hôte, tandis qu'une VM virtualise l'ensemble du système d'exploitation, incluant son propre noyau et sa couche d'applications. Cette différence entraîne plusieurs distinctions majeures.</p>
+<p>Les images Docker sont beaucoup plus petites et rapides à télécharger que les images de VM, car elles n'ont qu'une seule couche à implémenter. Les images Docker sont généralement de quelques mégaoctets, tandis que les images de VM peuvent atteindre plusieurs gigaoctets.</p>
+<p>Les conteneurs Docker démarrent beaucoup plus rapidement que les VM, car ils n'ont besoin de démarrer que la couche des applications, contrairement aux VM qui doivent démarrer l'ensemble du système d'exploitation.</p>
+<p>Docker présente des problèmes de compatibilité. Une image de VM de n'importe quel système d'exploitation peut être exécutée sur n'importe quel hôte, mais ce n'est pas le cas pour Docker. Par exemple, une image Docker basée sur Linux ne peut pas utiliser le noyau Windows directement. Cependant, Docker Desktop permet de contourner ce problème en utilisant une couche hyperviseur avec une distribution Linux légère pour fournir le noyau nécessaire.</p>
+<p>En résumé, Docker est plus léger et rapide, mais moins compatible que les VM. Docker Desktop permet de développer localement sur Windows ou Mac en exécutant des conteneurs basés sur Linux.</p>]]></content>
+        <category label="Containerization" term="Containerization"/>
+        <category label="Virtualization" term="Virtualization"/>
+        <category label="Docker" term="Docker"/>
+        <category label="VM" term="VM"/>
+        <category label="Devops" term="Devops"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[GitHub GHCR]]></title>
