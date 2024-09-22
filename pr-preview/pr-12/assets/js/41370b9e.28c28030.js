@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksedelpeuch_net=self.webpackChunksedelpeuch_net||[]).push([[1584],{26035:e=>{e.exports=JSON.parse('{"authors":[{"name":"S\xe9bastien Delpeuch","url":"https://github.com/sedelpeuch","email":"jimarcey@gmail.com","imageURL":"https://github.com/sedelpeuch.png","key":"sedelpeuch","page":null,"count":0}]}')}}]);
