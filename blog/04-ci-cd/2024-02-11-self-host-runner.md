@@ -8,6 +8,17 @@ Un `runner` est une machine virtuelle ou physique qui exécute des `jobs` dans u
 
 <!--truncate-->
 
+
+## Comparaison entre les runners auto-hébergés et les runners cloud-hébergés de GitHub
+
+Les runners auto-hébergés offrent un contrôle total sur l'environnement d'exécution, ce qui permet de personnaliser les configurations et d'optimiser les performances selon les besoins spécifiques. Ils sont également plus rentables à long terme, car ils n'entraînent pas de coûts supplémentaires liés à l'utilisation des ressources de GitHub. Cependant, ils nécessitent une maintenance régulière et une gestion de la sécurité pour garantir leur bon fonctionnement et leur protection contre les menaces potentielles.
+
+Les runners cloud-hébergés de GitHub sont gérés par GitHub, ce qui signifie que les utilisateurs n'ont pas à se soucier de la maintenance, de la sécurité ou de la mise à jour des runners. Ils sont également facilement évolutifs, car GitHub peut ajouter des ressources supplémentaires en fonction des besoins. Cependant, les runners cloud-hébergés peuvent entraîner des coûts supplémentaires pour les utilisateurs, en particulier pour les projets de grande envergure ou les charges de travail intensives.
+
+En résumé, les runners auto-hébergés sont idéaux pour les équipes ou les projets avec des besoins spécifiques en matière de configuration et de performances, tandis que les runners cloud-hébergés de GitHub sont mieux adaptés aux utilisateurs qui préfèrent une solution gérée et évolutive sans avoir à se soucier de la maintenance et de la sécurité. Le choix entre les deux dépend des besoins spécifiques de l'équipe et des ressources disponibles.
+
+## Créér un runner auto-hébergés
+
 Pour télécharger un nouveau `runner`, exécutez les lignes suivantes
 
 ```shell

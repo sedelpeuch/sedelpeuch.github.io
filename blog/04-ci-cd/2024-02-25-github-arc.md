@@ -4,9 +4,15 @@ description: "Explication de l'installation et de l'utilisation de l'Action Runn
 tags: [CI/CD, GitHub, Devops]
 ---
 
+
+
 Actions Runner Controller (ARC) est un opérateur de Kubernetes qui orchestre et gère les runners auto-hébergés pour les actions GitHub.
 
 <!--truncate-->
+
+## GitHub ARC
+
+Les runners auto-hébergés offrent un contrôle total sur l'environnement d'exécution, permettant de personnaliser les configurations et d'optimiser les performances selon les besoins spécifiques. Ils sont également plus rentables à long terme, car ils n'entraînent pas de coûts supplémentaires liés à l'utilisation des ressources de GitHub. Cependant, ils nécessitent une maintenance régulière et une gestion de la sécurité pour garantir leur bon fonctionnement et leur protection contre les menaces potentielles. En revanche, GitHub Actions Runner Controller (ARC) est une solution évolutive gérée par GitHub, qui permet de gérer automatiquement les runners dans un environnement Kubernetes. ARC offre une gestion simplifiée et une mise à l'échelle automatique des runners en fonction des besoins, ce qui est idéal pour les grandes organisations avec des charges de travail variables. Cependant, l'utilisation de GitHub ARC peut entraîner des coûts plus élevés pour les déploiements à grande échelle, et les utilisateurs ont moins de contrôle sur l'environnement d'exécution par rapport aux runners auto-hébergés.
 
 Avec ARC, il est possible de créer des ensembles de runners qui évoluent automatiquement en fonction du nombre de workflows exécutés dans votre dépôt, organisation ou entreprise.
 
