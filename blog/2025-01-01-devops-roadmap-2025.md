@@ -6,7 +6,7 @@ tags: [Devops, Roadmap]
 
 Voici un résumé de ma roadmap DevOps personnelle pour 2025. Cette roadmap est basée sur mes expériences et mes objectifs personnels. Elle est sujette à des changements et des mises à jour régulières. N'hésitez pas à me contacter si vous avez des suggestions ou des commentaires.
 
-< !--truncate-->
+<!--truncate-->
 
 # DevOps Roadmap
 
