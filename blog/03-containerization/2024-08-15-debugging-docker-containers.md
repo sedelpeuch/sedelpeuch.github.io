@@ -4,9 +4,9 @@ description: "Guide pour déboguer les conteneurs Docker en utilisant des comman
 tags: [Docker, Debugging, Containers, Devops]
 ---
 
-## Introduction
-
 Le débogage des conteneurs Docker est une compétence essentielle pour tout développeur ou administrateur système travaillant avec des environnements conteneurisés. Docker offre une variété de commandes et d'options pour aider à identifier et résoudre les problèmes qui peuvent survenir dans les conteneurs. Dans cet article, nous allons explorer certaines des commandes de base et des techniques avancées pour déboguer les conteneurs Docker.
+
+< !--truncate-->
 
 ## Commandes de base pour le débogage
 
