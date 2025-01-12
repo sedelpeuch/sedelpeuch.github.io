@@ -18,17 +18,17 @@
 <p><img decoding="async" loading="lazy" alt="DevOps" src="https://delpeuch.net/assets/images/devops-7e8caa7376b7c423945a1df3b7a1fa48.png" width="446" height="212" class="img_ev3q"></p>
 <h2><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>06 Orchestration de conteneurs - Kubernetes &amp; Docker Swarm</h2></div></div></h2>
 <ul>
-<li>Apprendre les composants de base comme, Deployment, Service, ConfigMap, Secret, StatefulSet, Ingress</li>
+<li>Apprendre les composants de base comme, Deployment, Service, ConfigMap, Secret, StatefulSet</li>
 <li>CLI Kubernetes (Kubectl)</li>
 <li>Persistance des données avec les volumes K8s</li>
-<li>Namespaces</li>
-<li>Docker Swarm</li>
+<li>Externalisation des configurations avec ConfigMap et Secret</li>
+<li>Accès aux applications avec les composants Ingress (Nginx)</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-1"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>07 Monitoring &amp; Observabilité</h2></div></div><a href="https://delpeuch.net/blog/2025/01/01/devops-roadmap-2025#-1" class="hash-link" aria-label="Direct link to -1" title="Direct link to -1">​</a></h2>
 <ul>
-<li>Prometheus : Un outil de surveillance et d'alerte populaire</li>
 <li>Grafana : Outil d'analyse et de visualisation interactive</li>
-<li>ELK Stack : Une pile de gestion de logs populaire</li>
+<li>Prometheus : Un outil de surveillance et d'alerte populaire</li>
+<li>Loki : Une pile de gestion de logs populaire</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="-2"><div style="text-align:center"><span></span><div style="padding:2px 16px"><h2>08 Infrastructure as Code</h2></div></div><a href="https://delpeuch.net/blog/2025/01/01/devops-roadmap-2025#-2" class="hash-link" aria-label="Direct link to -2" title="Direct link to -2">​</a></h2>
 <ul>
