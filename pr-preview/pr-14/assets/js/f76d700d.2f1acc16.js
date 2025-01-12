@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksedelpeuch_net=self.webpackChunksedelpeuch_net||[]).push([[4081],{889:e=>{e.exports=JSON.parse('{"metadata":{"permalink":"/pr-preview/pr-14/blog/page/2","page":2,"postsPerPage":10,"totalPages":3,"totalCount":22,"previousPage":"/pr-preview/pr-14/blog","nextPage":"/pr-preview/pr-14/blog/page/3","blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
