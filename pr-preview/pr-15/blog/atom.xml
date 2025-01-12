@@ -108,7 +108,7 @@
 <li><strong>Master Node</strong> : Le nœud maître est responsable de la gestion du cluster. Il orchestre les tâches telles que le déploiement des applications, la maintenance de l'état souhaité des applications, la mise à l'échelle des applications et la mise à jour des applications.</li>
 <li><strong>Worker Nodes</strong> : Les nœuds de travail exécutent les applications conteneurisées. Chaque nœud de travail contient les services nécessaires pour exécuter les conteneurs et est géré par le nœud maître.</li>
 </ul>
-<p><img decoding="async" loading="lazy" src="https://d33wubrfki0l68.cloudfront.net/5c8b1a3b7b0e4a0007f7b1a3/screenshot_2020-03-10-14-00-00.png" alt="Architecture de Kubernetes" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Architecture de Kubernetes" src="https://delpeuch.net/pr-preview/pr-15/assets/images/k8s-architecture-b792fb99c20256118ec91e912eac62c7.png" width="1403" height="1066" class="img_ev3q"></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="composants-principaux-de-kubernetes">Composants principaux de Kubernetes<a href="https://delpeuch.net/pr-preview/pr-15/blog/2025/02/01/06-orchestration/k8s-introduction#composants-principaux-de-kubernetes" class="hash-link" aria-label="Direct link to Composants principaux de Kubernetes" title="Direct link to Composants principaux de Kubernetes">​</a></h3>
 <ul>
 <li><strong>API Server</strong> : L'API Server est le point d'entrée pour toutes les commandes Kubernetes. Il expose l'API Kubernetes.</li>
