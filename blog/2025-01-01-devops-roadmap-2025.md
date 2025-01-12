@@ -16,17 +16,17 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ## <IconTitle logo="skill-icons:kubernetes" name="06 Orchestration de conteneurs - Kubernetes & Docker Swarm"/>
 
-- Apprendre les composants de base comme, Deployment, Service, ConfigMap, Secret, StatefulSet, Ingress
+- Apprendre les composants de base comme, Deployment, Service, ConfigMap, Secret, StatefulSet
 - CLI Kubernetes (Kubectl)
 - Persistance des données avec les volumes K8s
-- Namespaces
-- Docker Swarm
+- Externalisation des configurations avec ConfigMap et Secret
+- Accès aux applications avec les composants Ingress (Nginx)
 
 ## <IconTitle logo="skill-icons:prometheus" name="07 Monitoring & Observabilité"/>
 
-- Prometheus : Un outil de surveillance et d'alerte populaire
 - Grafana : Outil d'analyse et de visualisation interactive
-- ELK Stack : Une pile de gestion de logs populaire
+- Prometheus : Un outil de surveillance et d'alerte populaire
+- Loki : Une pile de gestion de logs populaire
 
 ## <IconTitle logo="skill-icons:terraform-light" name="08 Infrastructure as Code"/>
 
