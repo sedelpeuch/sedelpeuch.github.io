@@ -19,7 +19,7 @@ L'architecture de Kubernetes est composée de plusieurs composants clés :
 - **Master Node** : Le nœud maître est responsable de la gestion du cluster. Il orchestre les tâches telles que le déploiement des applications, la maintenance de l'état souhaité des applications, la mise à l'échelle des applications et la mise à jour des applications.
 - **Worker Nodes** : Les nœuds de travail exécutent les applications conteneurisées. Chaque nœud de travail contient les services nécessaires pour exécuter les conteneurs et est géré par le nœud maître.
 
-![Architecture de Kubernetes](https://d33wubrfki0l68.cloudfront.net/5c8b1a3b7b0e4a0007f7b1a3/screenshot_2020-03-10-14-00-00.png)
+![Architecture de Kubernetes](/img/k8s-architecture.png)
 
 ### Composants principaux de Kubernetes
 
