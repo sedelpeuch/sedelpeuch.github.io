@@ -4,7 +4,7 @@ description: "Présentation de Nginx Proxy Manager, ses fonctionnalités et ses 
 tags: [nginx-proxy-manager, Docker, Network, Devops]
 ---
 
-Nginx Proxy Manager est une interface utilisateur graphique (GUI) pour gérer les proxys inverses Nginx. Il simplifie la gestion des proxys inverses, des certificats SSL et des redirections de trafic. Dans cet article, nous allons présenter Nginx Proxy Manager, expliquer ses fonctionnalités et avantages, et fournir une démonstration d'utilisation avec Docker.
+Nginx Proxy Manager est une interface utilisateur graphique (GUI) pour gérer les proxys inverses Nginx. Il simplifie la gestion des proxys inverses, des certificats SSL et des redirections de trafic. Cet article présente Nginx Proxy Manager, explique ses fonctionnalités et avantages, et fournit une démonstration d'utilisation avec Docker.
 
 <!--truncate-->
 
@@ -48,11 +48,11 @@ Un proxy, également connu sous le nom de proxy direct ou proxy de transfert, es
 
 ## Utilisation de Nginx Proxy Manager avec Docker
 
-Dans cette section, nous allons démontrer comment utiliser Nginx Proxy Manager avec Docker. Nous allons créer un conteneur Docker pour Nginx Proxy Manager et configurer un proxy inverse pour une application web.
+Dans cette section, une démonstration est fournie pour montrer comment utiliser Nginx Proxy Manager avec Docker. Un conteneur Docker pour Nginx Proxy Manager sera créé et un proxy inverse pour une application web sera configuré.
 
 ### Prérequis
 
-- Docker installé sur votre machine
+- Docker installé sur la machine
 - Une application web à proxyfier
 
 ### Étapes
@@ -91,18 +91,18 @@ Dans cette section, nous allons démontrer comment utiliser Nginx Proxy Manager 
 
 3. **Accéder à l'interface utilisateur de Nginx Proxy Manager**
 
-   Ouvrez votre navigateur et accédez à `http://localhost:81`. Connectez-vous avec les informations d'identification par défaut (`admin@example.com` / `changeme`) et changez le mot de passe.
+   Ouvrir le navigateur et accéder à `http://localhost:81`. Se connecter avec les informations d'identification par défaut (`admin@example.com` / `changeme`) et changer le mot de passe.
 
 4. **Configurer un proxy inverse**
 
-   Dans l'interface utilisateur de Nginx Proxy Manager, ajoutez un nouveau proxy hôte avec les paramètres suivants :
+   Dans l'interface utilisateur de Nginx Proxy Manager, ajouter un nouveau proxy hôte avec les paramètres suivants :
 
-   - **Domain Names** : Entrez le nom de domaine ou l'adresse IP de votre application web.
-   - **Forward Hostname / IP** : Entrez `app`.
-   - **Forward Port** : Entrez `80`.
+   - **Domain Names** : Entrer le nom de domaine ou l'adresse IP de l'application web.
+   - **Forward Hostname / IP** : Entrer `app`.
+   - **Forward Port** : Entrer `80`.
 
-   Enregistrez la configuration et accédez à votre application web via le nom de domaine ou l'adresse IP configurée.
+   Enregistrer la configuration et accéder à l'application web via le nom de domaine ou l'adresse IP configurée.
 
 ## Conclusion
 
-Nginx Proxy Manager est un outil puissant et facile à utiliser pour gérer les proxys inverses Nginx, les certificats SSL et les redirections de trafic. En utilisant Docker, vous pouvez rapidement déployer et configurer Nginx Proxy Manager pour vos applications web. Essayez Nginx Proxy Manager dès aujourd'hui pour simplifier la gestion de vos proxys inverses et améliorer la sécurité de vos sites web.
+Nginx Proxy Manager est un outil puissant et facile à utiliser pour gérer les proxys inverses Nginx, les certificats SSL et les redirections de trafic. En utilisant Docker, il est possible de déployer et configurer rapidement Nginx Proxy Manager pour les applications web. Essayer Nginx Proxy Manager dès aujourd'hui pour simplifier la gestion des proxys inverses et améliorer la sécurité des sites web.
