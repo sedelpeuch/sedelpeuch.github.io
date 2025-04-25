@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-enseirb/s7/prog_sys/8" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">La mémoire virtuelle | Sébastien Delpeuch</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://delpeuch.net/pr-preview/pr-17/docs/enseirb/s7/prog_sys/8"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="La mémoire virtuelle | Sébastien Delpeuch"><meta data-rh="true" name="description" content="Les méthodes de gestion mémoire que nous venons de voir ont toutes un défaut"><meta data-rh="true" property="og:description" content="Les méthodes de gestion mémoire que nous venons de voir ont toutes un défaut"><link data-rh="true" rel="icon" href="/pr-preview/pr-17/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://delpeuch.net/pr-preview/pr-17/docs/enseirb/s7/prog_sys/8"><link data-rh="true" rel="alternate" href="https://delpeuch.net/pr-preview/pr-17/docs/enseirb/s7/prog_sys/8" hreflang="en"><link data-rh="true" rel="alternate" href="https://delpeuch.net/pr-preview/pr-17/docs/enseirb/s7/prog_sys/8" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/pr-preview/pr-17/blog/rss.xml" title="Sébastien Delpeuch&#39;s Blog RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/pr-preview/pr-17/blog/atom.xml" title="Sébastien Delpeuch&#39;s Blog Atom Feed">
+<link rel="alternate" type="application/json" href="/pr-preview/pr-17/blog/feed.json" title="Sébastien Delpeuch&#39;s Blog JSON Feed">
+
+
+
+
+
+
+<script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?c9a3849aa75f9c4a4e65f846cd1a5155",e.defer=!0;var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script>
+<meta name="baidu-site-verification" content="code-rqLUw5reVS">
+<script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js",t.defer=!0;var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script>
+
+<link rel="icon" href="/pr-preview/pr-17/img/logo.png">
+<meta name="theme-color" content="#12affa">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous">
+<script src="https://plausible.io/js/script.js" defer="defer" data-domain="delpeuch.net"></script><link rel="stylesheet" href="/pr-preview/pr-17/assets/css/styles.2cd261cb.css">
+<script src="/pr-preview/pr-17/assets/js/runtime~main.dc2c986f.js" defer="defer"></script>
+<script src="/pr-preview/pr-17/assets/js/main.a5c7f552.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"dark")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/pr-preview/pr-17/"><div class="navbar__logo"><img src="/pr-preview/pr-17/img/logo.webp" alt="navbar" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/pr-preview/pr-17/img/logo.webp" alt="navbar" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div></a><a class="navbar__item navbar__link" href="/pr-preview/pr-17/about">Résumé</a><a class="navbar__item navbar__link" href="/pr-preview/pr-17/project">Projets</a><a class="navbar__item navbar__link" href="/pr-preview/pr-17/blog">Blog</a><a class="navbar__item navbar__link" href="/pr-preview/pr-17/associatif">Associatif</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">ENSEIRB-MATMECA</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/pr-preview/pr-17/docs/enseirb/s9">Semestre 9</a></li><li><a class="dropdown__link" href="/pr-preview/pr-17/docs/enseirb/s8">Semestre 8</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/pr-preview/pr-17/docs/enseirb/s7">Semestre 7</a></li><li><a class="dropdown__link" href="/pr-preview/pr-17/docs/enseirb/s6">Semestre 6</a></li><li><a class="dropdown__link" href="/pr-preview/pr-17/docs/enseirb/s5">Semestre 5</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">CPBx</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/pr-preview/pr-17/docs/cpbx/s4">Semestre 4</a></li><li><a class="dropdown__link" href="/pr-preview/pr-17/docs/cpbx/s3">Semestre 3</a></li><li><a class="dropdown__link" href="/pr-preview/pr-17/docs/cpbx/s2">Semestre 2</a></li><li><a class="dropdown__link" href="/pr-preview/pr-17/docs/cpbx/s1">Semestre 1</a></li></ul></div></div><div class="navbar__items navbar__items--right"><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/pr-preview/pr-17/docs/cpbx/">CPBx</a><button aria-label="Expand sidebar category &#x27;CPBx&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/pr-preview/pr-17/docs/enseirb/">ENSEIRB-MATMECA</a><button aria-label="Collapse sidebar category &#x27;ENSEIRB-MATMECA&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s5/">Semestre 5</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s6/">Semestre 6</a><button aria-label="Expand sidebar category &#x27;Semestre 6&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/">Semestre 7</a><button aria-label="Collapse sidebar category &#x27;Semestre 7&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/GL">Génie Logiciel </a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/TCP/">Architecture des réseaux TCP/IP</a><button aria-label="Expand sidebar category &#x27;Architecture des réseaux TCP/IP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/bdd/">SGBD</a><button aria-label="Expand sidebar category &#x27;SGBD&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/compilation/">Compilation</a><button aria-label="Expand sidebar category &#x27;Compilation&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/cpp/">Programmation C++</a><button aria-label="Expand sidebar category &#x27;Programmation C++&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/poo/">Programmation Orientée Objets</a><button aria-label="Expand sidebar category &#x27;Programmation Orientée Objets&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/">Programmation Système</a><button aria-label="Collapse sidebar category &#x27;Programmation Système&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/1">Introduction</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/10">Les signaux</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/11">Les verous de fichiers</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/12">Algorithmes Distribués &amp; Interblocages</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/13">Multiplexer des entrées-sorties</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/14">Les threads POSIX</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/2">Système de Gestion de Fichiers</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/3">Le Buffer Cache</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/4">La bibliothèque standard</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/5">Appels système du Système de Gestion de Fichier</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/6">Les processus</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/7">La mémoire</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/8">La mémoire virtuelle</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/9">Tubes et tubes nommés</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s7/quantique/">Introduction à l&#x27;informatique quantique</a><button aria-label="Expand sidebar category &#x27;Introduction à l&#x27;informatique quantique&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s8/">Semestre 8</a><button aria-label="Expand sidebar category &#x27;Semestre 8&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-17/docs/enseirb/s9/">Semestre 9</a><button aria-label="Expand sidebar category &#x27;Semestre 9&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/pr-preview/pr-17/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/pr-preview/pr-17/docs/enseirb/"><span itemprop="name">ENSEIRB-MATMECA</span></a><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/pr-preview/pr-17/docs/enseirb/s7/"><span itemprop="name">Semestre 7</span></a><meta itemprop="position" content="2"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/"><span itemprop="name">Programmation Système</span></a><meta itemprop="position" content="3"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">La mémoire virtuelle</span><meta itemprop="position" content="4"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>La mémoire virtuelle</h1></header><p>Les méthodes de gestion mémoire que nous venons de voir ont toutes un défaut
+majeur qui est de garder l&#x27;ensemble du processus en mémoire, ce qui donne :</p>
+<ul>
+<li>un coût en swap important</li>
+<li>impossibilité de créer de très gros processus</li>
+</ul>
+<p>Les méthodes de mémoire virtuelle permettent d&#x27;exécuter un programme qui ne
+tient pas entièrement en mémoire centrale ! Nous avons commencé par présenter
+des algorithmes de gestion de la mémoire qui utilisent le concept de base
+suivante : l&#x27;ensemble de l&#x27;espace logique adressable d&#x27;un processus doit être en
+mémoire pour pouvoir exécuter le processus.</p>
+<p>Cette restriction semble à la fois raisonnable et nécessaire, mais aussi très
+dommageable car cela limite la taille des processus à la taille de la mémoire
+physique.</p>
+<p>Or si l&#x27;on regarde des programmes très standards, on voit que :</p>
+<ul>
+<li>il y a des portions de code qui gèrent des cas très inhabituels qui ont lieu
+très rarement (si ils ont lieu)</li>
+<li>les tableaux, les listes et autre tables sont en général initialisés à des
+tailles beaucoup plus grandes que ce qui est réellement utile</li>
+<li>Certaines options d&#x27;application sont très rarement utilisées</li>
+</ul>
+<p>Même dans le cas où le programme en entier doit résider en mémoire, tout n&#x27;est
+peut-être pas absolument nécessaire en même temps. Avec la mémoire virtuelle, la
+mémoire logique devient beaucoup plus grande que la mémoire physique.</p>
+<p>Cela implique de nombreux avantages : comme les utilisateurs consomment
+individuellement moins de mémoire, plus d&#x27;utilisateurs peuvent travailler en
+même temps. Avec l&#x27;augmentation de l&#x27;utilisation du CPU et de débit que cela
+implique (mais pas d&#x27;augmentation de la vitesse). Moins d&#x27;entrées-sorties sont
+effectuées pour l&#x27;exécution d&#x27;un processus, ce qui fait que le processus
+s&#x27;exécute (temps réel) plus rapidement.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="les-overlays">Les overlays<a href="#les-overlays" class="hash-link" aria-label="Direct link to Les overlays" title="Direct link to Les overlays">​</a></h3>
+<p>Une des premières versions d&#x27;exécutable partiellement en mémoire est celle des
+&quot;overlay&quot; qui est l&#x27;idée de charger successivement des portions disjointes et
+différentes de code en mémoire, exécutées l&#x27;une après l&#x27;autre. Les différentes
+passes d&#x27;un compilateur sont souvent réalisées en utilisant un overlay. Les
+overlay nécessitent quelques adaptations de l&#x27;éditeur de liens et des mécanismes
+de relocation.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="le-chargement-dynamique">Le chargement dynamique<a href="#le-chargement-dynamique" class="hash-link" aria-label="Direct link to Le chargement dynamique" title="Direct link to Le chargement dynamique">​</a></h3>
+<p>Un autre système couramment utilisé dans les logiciels du marché des micros est
+le chargement dynamique. Avec le chargement dynamique, une fonction n&#x27;est chargé
+en mémoire qu&#x27;au moment de son appel. Le chargement dynamique demande que toutes
+les fonctions soient repositionnables en mémoire de façon indépendante. A chaque
+appel de fonction on regarde si la fonction est en mémoire sinon un éditeur de
+liens dynamique est appelé pour la charger. Dans les deux cas (overlay et
+chargement dynamique), le système joue un rôle très restreint, il suffit en
+effet d&#x27;avoir un bon système de gestion de fichiers. Malheureusement, le travail
+que doit réaliser le programmeur pour choisir les overlays et/ou installer un
+mécanisme de chargement dynamique efficace est non trivial et requiert que le
+programmeur ait une parfaite connaissance du programme. Ceci nous amène aux
+techniques automatiques.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="demande-paging">Demande Paging<a href="#demande-paging" class="hash-link" aria-label="Direct link to Demande Paging" title="Direct link to Demande Paging">​</a></h2>
+<p>La méthode de Demand Paging est la plus répandue des implémentations de mémoire
+virtuelle, elle demande de nombreuse capcités matérielles.</p>
+<p>Nous partons d&#x27;un système de swap où la mémoire est découpée en pages. Comme
+pour le swap, quand un programme doit être exécuté nous le chargeons en mémoire
+(swap in) mais au lieu de faire un swap complet, on utilise un &quot;swappeur paresseur&quot;
+(lazy swapper). Un swappeur paresseux charge une page uniquement si elle est nécessaire.</p>
+<p>Que ce passe-t-il quand le programme essaie d&#x27;accéder à une page qui est hors
+mémoire ?</p>
+<ul>
+<li>le matériel va traduire l&#x27;adresse logique en une adresse physique grâce à la
+table des pages</li>
+<li>tant que les pages demandées sont en mémoire, le programme tourne normalement,
+sinon la page est contenue dans l&#x27;espace des adresses logiques mais n&#x27;est pas
+chargée, il y a une <strong>page fault</strong>.</li>
+</ul>
+<p>En général, une erreur d&#x27;adresse est dûe à une tentative d&#x27;accès à une adresse
+extérieure (invalide). Dans ce cas, le programme doit être interrompu, c&#x27;est le
+comportement normal d&#x27;un système de swap. Mais il est possible avec un swappeur
+paresseux que la page existe mais ne soit pas en mémoire centrale, d&#x27;où les
+étapes suivantes dans ce cas : On peut faire démarrer un processus sans aucune
+page en mémoire. La première <strong>Page fault</strong> aurait lieu à la lecture de la
+première instruction (l&#x27;instruction n&#x27;étant pas en mémoire). Il faut réaliser
+une forme spéciale de sauvegarde de contexte, il faut garder une image de l&#x27;état
+du processus qui vient d&#x27;effectuer une <strong>Page Fault</strong> mais de plus il faudra
+redémarrer (réexécuter) l&#x27;instruction qui a plac é le processus dans cet état, en
+effet il est possible que l&#x27;instruction ne soit pas terminé par manque de
+données. Le système d&#x27;exploitation a ici un rôle important, c&#x27;est lui qui va
+réaliser le chargement de la page manquante puis relancer le processus et
+l&#x27;instruction. Les circuits nécessaires à la méthode de Demande Paging sont les
+mêmes que ceux que l&#x27;on utilise pour un système de swap paginé, c&#x27;est à dire une
+mémoire secondaire et un gestionnaire de pages (table des pages). Par contre, la
+partie logicielle est beaucoup plus importante. Enfin il faut que les
+<strong>instructions soient interruptibles</strong>, ce qui n&#x27;est pas toujours le cas sur
+tous les processeurs et ce qui est fondamental.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="efficacité">Efficacité<a href="#efficacité" class="hash-link" aria-label="Direct link to Efficacité" title="Direct link to Efficacité">​</a></h3>
+<p>Efficacité des performances de Demande Paging : Soit ma = 500 nanosecondes, le
+temps moyen d&#x27;accès a une mémoire. Le temps effectif d&#x27;accès avec le Demand
+Paging est : temps effectif = (1-p)*ma + p* &quot;temps de gestion de l&#x27;erreur de
+page&quot; où p est la probabilité d&#x27;occurrence d&#x27;une erreur de page (page fault).
+Une erreur de page nécessite de réaliser les opérations suivantes</p>
+<ol>
+<li>lever une interruption pour le système</li>
+<li>sauvegarder le contexte du processus</li>
+<li>déterminer que l&#x27;interruption est une erreur de page</li>
+<li>vérifier que la page en question est une page légale de l&#x27;espace logique,
+déterminer où se trouve la page dans la mémoire secondaire</li>
+<li>exécuter une lecture de la page sur une mémoire libre (libérer éventuellement
+une page cf. algorithme de remplacement de page)<!-- -->
+<ul>
+<li>attendre que le périphérique soit libre</li>
+<li>temps de latence du périphérique</li>
+<li>commencer le transfert</li>
+</ul>
+</li>
+<li>allouer pendant ce temps là le cpu à un autre utilisateur</li>
+<li>interruption du périphérique</li>
+<li>sauvegarde du contexte du processus courant</li>
+<li>déterminer que l&#x27;interruption était la bonne interruption (venant du
+périphérique)</li>
+<li>mise à jour de la table des pages et d&#x27;autres pages pour indiquer que la
+page demandée est en mémoire maintenant.</li>
+<li>attendre que le processus soit sélectionné de nouveau pour utiliser l&#x27;unité
+centrale (cpu)</li>
+<li>charger le contexte du processus</li>
+</ol>
+<p>Toutes ces instructions ne sont pas toujours réalisées (on peut en particulier
+supposer que l&#x27;on ne peut pas préempter l&#x27;unité centrale, mais alors quelle
+perte de temps pour l&#x27;ensemble du système). Dans tous les cas, nous devons au
+moins réaliser les 3 actions suivantes :</p>
+<ul>
+<li>gérer l&#x27;interruption</li>
+<li>swapper la page demandée</li>
+<li>relance le processus</li>
+</ul>
+<p>Ce qui coûte le plus cher est la recherche de la page sur le disque et son
+transfert en mémoire, ce qui prend de l&#x27;ordre de 1 à 10 millisecondes.</p>
+<p>Ce qui nous donne en prenant une vitesse d&#x27;accès mémoire de 1 microseconde et un
+temps de gestion de page de 5 millisecondes un</p>
+<p>temps effectif = (1-p)+p * 5000 microsecondes</p>
+<p>Une erreur de page toutes les mille pages nous donne un temps effectif onze fois
+plus long que l&#x27;accès standard.</p>
+<p>Il faut réduire à moins d&#x27;une erreur de page tout les 100 000 accès pour obtenir
+une dégradation inférieur à 10. On comprend bien que les choix à faire sur des
+pages qu&#x27;il faut placer en mémoire sont donc très importants.</p>
+<p>Ces choix deviennent encore plus importants quand l&#x27;on a de nombreux
+utilisateurs et qu&#x27;il y a sur-allocation de la mémoire, exécution concurrente de
+6 processus de la taille supérieure ou égale à la mémoire physique !</p>
+<p>Si l&#x27;on suppose de plus que nos 6 programmes utilisent dans une petite séquence
+d&#x27;instructions toutes les pages de leur mémoire logique, nous nous trouvons
+alors dans une situation de pénurie de pages libres. Le système d&#x27;exploitation
+peut avoir recours à plusieurs solution dans ce cas-là</p>
+<ol>
+<li>tuer le processus fautif</li>
+<li>utiliser un algorithme de remplacement de page</li>
+</ol>
+<p>Cet algorithme de remplacement est introduit dans notre séquence de gestion
+d&#x27;erreur de page là où l&#x27;on s&#x27;attribuait une page libre de la mémoire centrale.</p>
+<p>Maintenant il nous faut sélectionne une victime, c&#x27;est à dire, une des pages
+occupées de la mémoire centrale qui sera swappée sur disque et remplacée par la
+page demandée. Remarquons que dans ce cas-là notre temps de transfert est
+doublé, comme i faut à la fois lire une page et sauvegarder une page sur disque
+(le temps de transfert disque est ce qui est le plus coûteux dans la gestion
+d&#x27;une erreur de page). Il est possible de réaliser des systèmes de <strong>demande
+segments</strong>, mais le lecteur avisé remarquera rapidement les problèmes posés par
+la taille variable des segments.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="allocation-de-pages-aux-processus">Allocation de pages aux processus<a href="#allocation-de-pages-aux-processus" class="hash-link" aria-label="Direct link to Allocation de pages aux processus" title="Direct link to Allocation de pages aux processus">​</a></h2>
+<p>Comment répartir les pages sur les différents processus et le système ?</p>
+<ul>
+<li>
+<p><strong>remplacement local</strong> le processus se voit affecté un certain nombre de pages
+qu&#x27;il va utiliser de façon autonome, son temps d&#x27;exécution ne dépend que de
+son propre comportement</p>
+</li>
+<li>
+<p><strong>remplacement global</strong> le comportement d&#x27;allocation de pages aux processus
+dépend de la charge du système et du comportement des différents processus.</p>
+<p>Le remplacement local demande que l&#x27;on réalise un partage entre les différents
+processus.</p>
+</li>
+</ul>
+<p>Le partage &quot;équitable&quot; : <code>m</code> pages de mémoire physique, <code>n</code> processus, <code>m/n</code>
+pages par processus ! O nretrouve ici un problème proche de la fragmentation
+interne, un grand nombre de pages est donné à un processus qui en utilise
+effectivement peu.</p>
+<p>Si la mémoire est libre et assez grande, les deux processus sont grossièrement
+aussi rapides, par contre si on lance dix exemplaires du premier, le temps
+d&#x27;attente est juste multiplié par 10. Pour le deuxième, le temps d&#x27;attente est
+au moins multiplié par 100.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lappel-fork-et-la-mémoire-virtuelle">L&#x27;appel fork et la mémoire virtuelle<a href="#lappel-fork-et-la-mémoire-virtuelle" class="hash-link" aria-label="Direct link to L&#x27;appel fork et la mémoire virtuelle" title="Direct link to L&#x27;appel fork et la mémoire virtuelle">​</a></h2>
+<p>Nous avons vu que la primitive <code>fork()</code> réalise une copie de l&#x27;image mémoire du
+processus père pour créer le processus fils. Cette copie n&#x27;est pas intégrale car
+les deux processus peuvent partager des pages marquées en lecture seule, en
+particulier le segment du code est partagé par les deux processus (réentrance
+standard des processus unix).</p>
+<p>Mais avec le système de demand-paging, on peut introduire une nouvelle notion
+qui est la &quot;copie sur écriture&quot; (copy on write). On ajoute à la structure de
+page de la table des pages des indicateurs de &quot;copie sur écriture&quot;. L&#x27;idée est
+de réaliser la copie de la page uniquement dans le cas où l&#x27;un des processus qui
+peuvent y accéder réaliser une écriture. Dans ce cas-là, la page est recopiée
+avant l&#x27;écriture et le processus écrivain possède alors sa propre page.
+L&#x27;intérêt de ce mécanisme est srutout visible dans le cas très fréquent où le
+<code>fork</code> est immédiatement suivi par un <code>exec</code>. En effet ce dernier va réaliser
+une libération de toutes les pages, il est donc inutile de les recopier juste
+avant cette libération.</p>
+<p>Le système BSD a introduit la première version de cette idée en partant de
+l&#x27;appel système <code>vfork()</code> qui lui permet le partage total de toutes les pages
+entre le processus père et le processus fils sans aucune copie. L&#x27;intérêt est de
+pouvoir réaliser rapidement un <code>execve</code> sans avoir à recopier l&#x27;espace
+d&#x27;adressage du processus père.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="projection-de-fichiers-en-mémoire">Projection de fichiers en mémoire<a href="#projection-de-fichiers-en-mémoire" class="hash-link" aria-label="Direct link to Projection de fichiers en mémoire" title="Direct link to Projection de fichiers en mémoire">​</a></h2>
+<p>La fonction <code>mmap</code> permet la projection de fichiers en mémoire. LE segment du
+fichier indique est placé en mémoire à partir de l&#x27;adresse indiquée. Le segment
+de fichier peut aisni être parcouru par des accès par adresse sans utiliser de
+commande de lecture ou d&#x27;écriture.</p>
+<div class="language-c codeBlockContainer_APcc theme-code-block" style="--prism-background-color:hsl(220, 13%, 18%);--prism-color:hsl(220, 14%, 71%)"><div class="codeBlockContent_m3Ux"><pre tabindex="0" class="prism-code language-c codeBlock_qGQc thin-scrollbar" style="background-color:hsl(220, 13%, 18%);color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><code class="codeBlockLines_p187"><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token macro property directive-hash" style="color:hsl(355, 65%, 65%)">#</span><span class="token macro property directive keyword" style="color:hsl(286, 60%, 67%)">include</span><span class="token macro property" style="color:hsl(355, 65%, 65%)"> </span><span class="token macro property string" style="color:hsl(95, 38%, 62%)">&lt;sys/mman.h&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain"></span><span class="token macro property directive-hash" style="color:hsl(355, 65%, 65%)">#</span><span class="token macro property directive keyword" style="color:hsl(286, 60%, 67%)">include</span><span class="token macro property" style="color:hsl(355, 65%, 65%)"> </span><span class="token macro property string" style="color:hsl(95, 38%, 62%)">&lt;sys/types.h&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain"></span><span class="token keyword" style="color:hsl(286, 60%, 67%)">void</span><span class="token plain"> </span><span class="token operator" style="color:hsl(207, 82%, 66%)">*</span><span class="token function" style="color:hsl(207, 82%, 66%)">mmap</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">(</span><span class="token keyword" style="color:hsl(286, 60%, 67%)">void</span><span class="token plain"> </span><span class="token operator" style="color:hsl(207, 82%, 66%)">*</span><span class="token plain">adr</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">,</span><span class="token plain"> </span><span class="token keyword" style="color:hsl(286, 60%, 67%)">int</span><span class="token plain"> len</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">,</span><span class="token plain"> </span><span class="token keyword" style="color:hsl(286, 60%, 67%)">int</span><span class="token plain"> prot</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">,</span><span class="token plain"> </span><span class="token keyword" style="color:hsl(286, 60%, 67%)">int</span><span class="token plain"> options</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">,</span><span class="token plain"> </span><span class="token keyword" style="color:hsl(286, 60%, 67%)">int</span><span class="token plain"> desc</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">,</span><span class="token plain"> </span><span class="token keyword" style="color:hsl(286, 60%, 67%)">int</span><span class="token plain"> offset</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">)</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain"></span><span class="token keyword" style="color:hsl(286, 60%, 67%)">int</span><span class="token plain"> </span><span class="token function" style="color:hsl(207, 82%, 66%)">munmap</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">(</span><span class="token keyword" style="color:hsl(286, 60%, 67%)">void</span><span class="token plain"> </span><span class="token operator" style="color:hsl(207, 82%, 66%)">*</span><span class="token plain">adr</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">,</span><span class="token plain"> </span><span class="token keyword" style="color:hsl(286, 60%, 67%)">int</span><span class="token plain"> len</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">)</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">;</span><br></span></code></pre><div class="buttonGroup_6DOT"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_FhaS" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_phi_"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_FfTR"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>L&#x27;adresse <code>adr</code> indique où doit être placé le fichier, cette adresse doit être
+une adresse de début de page (un multiple de <code>sysconf(_SC_PAGE_SIZE)</code>, si le
+paramètre est <code>NULL</code> alors le système sélectionne l&#x27;adresse de placement qui est
+retournée par la fonction. L&#x27;intervalle de position <code>[offset, offset+len]</code> du
+fichier <code>desc</code> est placé en mémoire). <code>prot</code> indique les protections d&#x27;accès
+sous <code>HP-UX</code> les protections suivantes sont disponibles : <code>PROT_NONE, PROT_READ, PROT_READ|PROT_EXECUTE, PROT_READ|PROT_WRITE, PROT_READ|PROT_WRITE|PROT_EXECUTE</code>
+<code>options</code> indique si l&#x27;on veut que les écritures réalisées dans les pages
+contenant la projection soient partagées (<code>MAP_SHARED</code>), ou au contraire qu&#x27;une
+copie sur écriture soit réalisée (<code>MAP_PRIVATE</code>). La fonction <code>munmap</code> permet de
+libérer la zone mémoire d&#x27;adresse <code>adr</code> et de longueur <code>len</code>. Pour une autre
+forme de mémoire partagée.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="les-conseils-et-politiques-de-chargement-des-zonnes-mmapés">Les conseils et politiques de chargement des zonnes mmapés<a href="#les-conseils-et-politiques-de-chargement-des-zonnes-mmapés" class="hash-link" aria-label="Direct link to Les conseils et politiques de chargement des zonnes mmapés" title="Direct link to Les conseils et politiques de chargement des zonnes mmapés">​</a></h2>
+<p>Une fois que l&#x27;on a décidé de faire des projections en mémoire avec <code>mmap</code> il
+peut être opportun de faire appel à la fonction <code>madvise</code> qui permet de donner
+un conseil au système en le prévenant par avance de la façon dont vous allez
+utiliser le segment de mémoire. En particulier allez vous lire le fichier
+sequentiellement ou de façon aléaatoire. Avez vous encore besoin du fichier
+après lecture etc. Biensur la fonction <code>madvise</code> ne se limite pas aux pages
+mappés mais c&#x27;est sur celle ci q&#x27;il est le plus facile de prendre des décisions,
+les autres pages étant gérées dans la pile, le tas et le code dans des zone plus
+délicates et moins bien cartographiées en général (sic).</p>
+<div class="language-c codeBlockContainer_APcc theme-code-block" style="--prism-background-color:hsl(220, 13%, 18%);--prism-color:hsl(220, 14%, 71%)"><div class="codeBlockContent_m3Ux"><pre tabindex="0" class="prism-code language-c codeBlock_qGQc thin-scrollbar" style="background-color:hsl(220, 13%, 18%);color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><code class="codeBlockLines_p187"><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token macro property directive-hash" style="color:hsl(355, 65%, 65%)">#</span><span class="token macro property directive keyword" style="color:hsl(286, 60%, 67%)">include</span><span class="token macro property" style="color:hsl(355, 65%, 65%)"> </span><span class="token macro property string" style="color:hsl(95, 38%, 62%)">&lt;sys/mman.h&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(220, 14%, 71%);text-shadow:0 1px rgba(0, 0, 0, 0.3)"><span class="token plain"></span><span class="token keyword" style="color:hsl(286, 60%, 67%)">int</span><span class="token plain"> </span><span class="token function" style="color:hsl(207, 82%, 66%)">madvise</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">(</span><span class="token keyword" style="color:hsl(286, 60%, 67%)">void</span><span class="token plain"> </span><span class="token operator" style="color:hsl(207, 82%, 66%)">*</span><span class="token plain">start</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">,</span><span class="token plain"> </span><span class="token class-name" style="color:hsl(29, 54%, 61%)">size_t</span><span class="token plain"> length</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">,</span><span class="token plain"> </span><span class="token keyword" style="color:hsl(286, 60%, 67%)">int</span><span class="token plain"> advise</span><span class="token operator" style="color:hsl(207, 82%, 66%)">*</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">)</span><span class="token punctuation" style="color:hsl(220, 14%, 71%)">;</span><br></span></code></pre><div class="buttonGroup_6DOT"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_FhaS" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_phi_"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_FfTR"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>La valeur du conseil <code>advice</code> :</p>
+<ul>
+<li>MADV_NORMAL : Comportement par défaut</li>
+<li>MADV_RANDOM : prévoit des accès aux pages dans un ordre aléatoire</li>
+<li>MADV_SEQUENTIAL : prévoit des accès aux pages dans un ordre séquentiel</li>
+<li>MADV_WILINEED : prévoit un accès dans un futur proche</li>
+<li>MADV_DONTNEED : ne prévoit pas d&#x27;accès dans un futur proche</li>
+</ul>
+<p>Biensur ce ne sont que des conseils le système les utilisera si il en a la
+possibilité, soit parce qu&#x27;il a du temps idle soit parce qu&#x27;il profitera des
+lectures groupées sur disque en réalisant des lectures en avance dans le cas
+séquentiel. Il peut aussi profiter de l&#x27;indication <code>DONTNEED</code> pour prendre des
+décisions dans le code de remplacement de page.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="chargement-dynamique">Chargement dynamique<a href="#chargement-dynamique" class="hash-link" aria-label="Direct link to Chargement dynamique" title="Direct link to Chargement dynamique">​</a></h2>
+<p>Indépendemment de l&#x27;existence de la mémoire virtuelle il est possible de gérer
+&quot;à la main&quot; le code accessible en utilisant le chargement direct (non
+automatique) de librairies.</p></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/7"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">La mémoire</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/pr-preview/pr-17/docs/enseirb/s7/prog_sys/9"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Tubes et tubes nommés</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop" style="opacity:0;transform:translateX(100px) translateZ(0)"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#les-overlays" class="table-of-contents__link toc-highlight">Les overlays</a></li><li><a href="#le-chargement-dynamique" class="table-of-contents__link toc-highlight">Le chargement dynamique</a></li><li><a href="#demande-paging" class="table-of-contents__link toc-highlight">Demande Paging</a><ul><li><a href="#efficacité" class="table-of-contents__link toc-highlight">Efficacité</a></li></ul></li><li><a href="#allocation-de-pages-aux-processus" class="table-of-contents__link toc-highlight">Allocation de pages aux processus</a></li><li><a href="#lappel-fork-et-la-mémoire-virtuelle" class="table-of-contents__link toc-highlight">L&#39;appel fork et la mémoire virtuelle</a></li><li><a href="#projection-de-fichiers-en-mémoire" class="table-of-contents__link toc-highlight">Projection de fichiers en mémoire</a></li><li><a href="#les-conseils-et-politiques-de-chargement-des-zonnes-mmapés" class="table-of-contents__link toc-highlight">Les conseils et politiques de chargement des zonnes mmapés</a></li><li><a href="#chargement-dynamique" class="table-of-contents__link toc-highlight">Chargement dynamique</a></li></ul><hr class="hr_UhE0"><span class="percent_H6RK">0%<!-- --> </span></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Social</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/sedelpeuch" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div></div></footer></div>
+</body>
+</html>
