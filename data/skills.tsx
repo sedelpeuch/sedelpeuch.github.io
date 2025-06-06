@@ -1,62 +1,31 @@
 import { IconProps } from "@iconify/react";
 
 const SKILLS: IconProps[] = [
-  {
-    icon: "skill-icons:python-light",
-    style: { left: "15%", top: "15%" },
-  },
-  {
-    icon: "skill-icons:cpp",
-    style: { left: "24%", top: "20%" },
-  },
-  {
-    icon: "skill-icons:c",
-    style: { left: "21%", top: "5%" },
-  },
-  {
-    icon: "skill-icons:github-light",
-    style: { right: "15%", top: "12%" },
-  },
-  {
-    icon: "skill-icons:vscode-light",
-    style: { right: "22%", top: "20%" },
-  },
-  {
-    icon: "skill-icons:gitlab-light",
-    style: { right: "15%", top: "28%" },
-  },
-  {
-    icon: "skill-icons:git",
-    style: { right: "8%", top: "20%" },
-  },
-  {
-    icon: "skill-icons:docker",
-    style: { top: "58%", right: "20%" },
-  },
-  {
-    icon: "skill-icons:linux-light",
-    style: { top: "65%", right: "14%" },
-  },
+  // Colonne gauche
+  { icon: "skill-icons:python-light", style: { left: "12%", top: "20%" } },
+  { icon: "skill-icons:docker", style: { left: "18%", top: "35%" } },
+  { icon: "skill-icons:ansible", style: { left: "14%", top: "55%" } },
+
+  // Colonne centre-gauche
+  { icon: "skill-icons:kubernetes", style: { left: "32%", top: "18%" } },
+  { icon: "skill-icons:grafana-light", style: { left: "36%", top: "35%" } },
+  { icon: "skill-icons:ros-light", style: { left: "32%", top: "55%" } },
+
+  // Colonne centre
+  { icon: "skill-icons:git", style: { left: "48%", top: "20%" } },
+  { icon: "skill-icons:github-light", style: { left: "52%", top: "35%" } },
   {
     icon: "skill-icons:githubactions-light",
-    style: { top: "65%", right: "26%" },
+    style: { left: "48%", top: "55%" },
   },
-  {
-    icon: "skill-icons:kubernetes",
-    style: { top: "72%", right: "20%" },
-  },
-  {
-    icon: "skill-icons:ros-light",
-    style: { top: "65%", left: "26%" },
-  },
-  {
-    icon: "skill-icons:flask-light",
-    style: { top: "65%", left: "14%" },
-  },
-  {
-    icon: "devicon:ohmyzsh",
-    style: { top: "72%", left: "20%" },
-  },
+
+  // Colonne centre-droite
+  { icon: "skill-icons:linux-light", style: { left: "64%", top: "18%" } },
+  { icon: "devicon:ohmyzsh", style: { left: "68%", top: "35%" } },
+  { icon: "skill-icons:vscode-light", style: { left: "64%", top: "55%" } },
+
+  // Colonne droite
+  { icon: "skill-icons:prometheus", style: { left: "82%", top: "20%" } },
 ];
 
 export default SKILLS;

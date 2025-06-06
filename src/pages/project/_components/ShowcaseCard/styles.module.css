@@ -107,3 +107,25 @@ html[data-theme="dark"] .showcaseCardSrcBtn:hover {
   margin-left: 6px;
   margin-right: 6px;
 }
+
+.yearTag {
+  font-size: 0.675rem;
+  border: 1px solid var(--ifm-color-secondary-darkest);
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 6px;
+  margin-bottom: 6px !important;
+  padding: 0 10px;
+  background: var(--ifm-background-surface-color, #f7f7f7);
+  color: var(--ifm-color-emphasis-700);
+  height: 24px;
+}
+
+.yearText {
+  font-size: 0.675rem;
+  margin-left: 0;
+  margin-right: 0;
+
+  letter-spacing: 0.5px;
+}

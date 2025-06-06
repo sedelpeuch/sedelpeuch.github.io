@@ -3,7 +3,12 @@ import clsx from "clsx";
 import { translate } from "@docusaurus/Translate";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import ShowcaseCard from "./_components/ShowcaseCard";
-import { groupByProjects, projects, projectTypeMap } from "@site/data/projects";
+import {
+  groupByProjects,
+  projects,
+  projectTypeMap,
+  Project,
+} from "../../../data/projects";
 
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
@@ -72,6 +77,12 @@ function ShowcaseCards() {
           ></div>
 
           {Object.entries(groupByProjects).map(([key, value]) => {
+            // Tri par année décroissante
+            const sortedProjects = [...(value as Project[])].sort((a, b) => {
+              const yearA = a.year ? parseInt(a.year, 10) : 0;
+              const yearB = b.year ? parseInt(b.year, 10) : 0;
+              return yearB - yearA;
+            });
             return (
               <div key={key}>
                 <div
@@ -85,7 +96,7 @@ function ShowcaseCards() {
                   </h3>
                 </div>
                 <ul className={styles.showcaseList}>
-                  {value.map((project) => (
+                  {sortedProjects.map((project) => (
                     <ShowcaseCard key={project.title} project={project} />
                   ))}
                 </ul>
