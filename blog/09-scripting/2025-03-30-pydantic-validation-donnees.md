@@ -31,7 +31,7 @@ pip install pydantic
 pip install "pydantic>=2.0.0"
 ```
 
-Si vous utilisez Poetry (comme nous l'avons vu dans [notre article précédent](/blog/2025/03/01/poetry-python-dependency)) :
+Si vous utilisez Poetry (comme nous l'avons vu dans [notre article précédent](/blog/2025/03/01/09-scripting/poetry-python-dependency)) :
 
 ```bash
 poetry add pydantic
@@ -232,6 +232,7 @@ async def read_item(
 ```
 
 Avec cette configuration, FastAPI :
+
 - Valide automatiquement les requêtes entrantes
 - Convertit les données en objets Python typés
 - Génère une documentation OpenAPI interactive
@@ -293,6 +294,7 @@ class UserV2(BaseModel):
 1. **Utilisez des types précis**: Les types comme `EmailStr`, `HttpUrl`, `conint`, etc. améliorent la validation
 
 2. **Créez une hiérarchie de modèles**: Utilisez l'héritage pour les structures complexes
+
    ```python
    class BaseUser(BaseModel):
        id: int
@@ -306,6 +308,7 @@ class UserV2(BaseModel):
    ```
 
 3. **Exploitez les validators pour les règles métier complexes**:
+
    ```python
    @field_validator("reservation_date")
    @classmethod
@@ -316,6 +319,7 @@ class UserV2(BaseModel):
    ```
 
 4. **Utilisez FrozenModel pour l'immutabilité**:
+
    ```python
    from pydantic import BaseModel, ConfigDict
 
@@ -326,6 +330,7 @@ class UserV2(BaseModel):
    ```
 
 5. **Ajoutez des exemples pour améliorer la documentation**:
+
    ```python
    class Item(BaseModel):
        name: str
