@@ -36,56 +36,48 @@ const config: Config = {
           to: "blog",
         },
         {
-          label: "Associatif",
-          position: "left",
-          to: "associatif",
-        },
-        {
           type: "dropdown",
-          label: "ENSEIRB-MATMECA",
+          label: "Scolarité",
           position: "left",
           items: [
             {
-              label: "Semestre 9",
+              label: "Associations",
+              to: "associatif",
+            },
+            {
+              label: "ENSEIRB-MATMECA : Semestre 9",
               to: "docs/enseirb/s9",
             },
             {
-              label: "Semestre 8",
+              label: "ENSEIRB-MATMECA : Semestre 8",
               to: "docs/enseirb/s8",
             },
             {
-              label: "Semestre 7",
+              label: "ENSEIRB-MATMECA : Semestre 7",
               to: "docs/enseirb/s7",
             },
             {
-              label: "Semestre 6",
+              label: "ENSEIRB-MATMECA : Semestre 6",
               to: "docs/enseirb/s6",
             },
             {
-              label: "Semestre 5",
+              label: "ENSEIRB-MATMECA : Semestre 5",
               to: "docs/enseirb/s5",
             },
-          ],
-        },
-        {
-          type: "dropdown",
-          label: "CPBx",
-          position: "left",
-          items: [
             {
-              label: "Semestre 4",
+              label: "CPBx : Semestre 4",
               to: "docs/cpbx/s4",
             },
             {
-              label: "Semestre 3",
+              label: "CPBx : Semestre 3",
               to: "docs/cpbx/s3",
             },
             {
-              label: "Semestre 2",
+              label: "CPBx : Semestre 2",
               to: "docs/cpbx/s2",
             },
             {
-              label: "Semestre 1",
+              label: "CPBx : Semestre 1",
               to: "docs/cpbx/s1",
             },
           ],

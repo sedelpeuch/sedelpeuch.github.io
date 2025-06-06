@@ -154,13 +154,13 @@ class Product(BaseModel):
 class Order(BaseModel):
     order_id: str
     # Une liste avec au moins 1 élément
-    products: conlist(Product, min_length=1) 
+    products: conlist(Product, min_length=1)
     # Une chaîne avec contrainte de longueur
-    customer_id: constr(min_length=5, max_length=20)  
+    customer_id: constr(min_length=5, max_length=20)
     # Union de types possibles
-    payment_method: Union[str, Dict[str, str]]  
+    payment_method: Union[str, Dict[str, str]]
     # URL valide
-    store_url: HttpUrl  
+    store_url: HttpUrl
 ```
 
 ### Configuration des modèles
@@ -171,18 +171,18 @@ Pydantic offre de nombreuses options de configuration pour contrôler le comport
 class Settings(BaseModel):
     model_config = {
         # Permettre les champs supplémentaires
-        "extra": "forbid",  
+        "extra": "forbid",
         # Valider également les attributs lors de l'assignation
-        "validate_assignment": True,  
+        "validate_assignment": True,
         # Aliases pour les noms de champs JSON
-        "populate_by_name": True,  
+        "populate_by_name": True,
         # Noms JSON en format camelCase
         "alias_generator": lambda s: ''.join(
             word.capitalize() if i else word
             for i, word in enumerate(s.split('_'))
         ),
     }
-    
+
     database_url: str
     api_key: str
     debug_mode: bool = False
@@ -258,13 +258,13 @@ from pydantic import BaseModel, validator
 class UserV1(BaseModel):
     name: str
     age: int
-    
+
     @validator('age')
     def check_age(cls, v):
         if v < 18:
             raise ValueError('Doit être majeur')
         return v
-    
+
     # Conversion en dict/json
     data = user.dict()
     json_data = user.json()
@@ -275,14 +275,14 @@ from pydantic import BaseModel, field_validator
 class UserV2(BaseModel):
     name: str
     age: int
-    
+
     @field_validator('age')
     @classmethod  # Maintenant obligatoire
     def check_age(cls, v):
         if v < 18:
             raise ValueError('Doit être majeur')
         return v
-    
+
     # Conversion en dict/json
     data = user.model_dump()
     json_data = user.model_dump_json()
@@ -297,10 +297,10 @@ class UserV2(BaseModel):
    class BaseUser(BaseModel):
        id: int
        name: str
-   
+
    class UserIn(BaseUser):
        password: str
-   
+
    class UserOut(BaseUser):
        is_active: bool
    ```
@@ -318,7 +318,7 @@ class UserV2(BaseModel):
 4. **Utilisez FrozenModel pour l'immutabilité**:
    ```python
    from pydantic import BaseModel, ConfigDict
-    
+
    class Config(BaseModel):
        model_config = ConfigDict(frozen=True)
        api_key: str
@@ -330,7 +330,7 @@ class UserV2(BaseModel):
    class Item(BaseModel):
        name: str
        price: float
-       
+
        model_config = {
            "json_schema_extra": {"examples": [{"name": "Foo", "price": 35.4}]}
        }
@@ -401,16 +401,16 @@ async def fetch_articles():
     async with httpx.AsyncClient() as client:
         response = await client.get("https://api.example.com/articles")
         data = response.json()
-        
+
         # Valider et convertir les données en objets Python
         articles = [Article.model_validate(item) for item in data]
-        
+
         # Maintenant on peut travailler avec des objets Python typés
         for article in articles:
             print(f"Article: {article.title}, Publié le: {article.published.strftime('%d/%m/%Y')}")
             print(f"Auteur: {article.author.name}")
             print("-" * 50)
-        
+
         return articles
 ```
 
