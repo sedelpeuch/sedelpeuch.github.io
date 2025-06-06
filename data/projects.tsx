@@ -1,5 +1,23 @@
 export const projects: Project[] = [
   {
+    title: "FervantFactory",
+    description: "Mise en place d'un docker swarm pour du self-hosting",
+    preview: "https://www.syloe.com/wp-content/uploads/2019/11/logo-docker-swarm-300x296.png",
+    website: "https://github.com/sedelpeuch/swarm_fervantfactory",
+    source: "https://github.com/sedelpeuch/swarm_fervantfactory",
+    tags: ["opensource", "selfhost"],
+    type: "Développement",
+  },
+  {
+    title: "GitHub ARC Kubeadm",
+    description: "GitHub Action Runner Container Kubeadm",
+    preview: "https://docs.github.com/assets/cb-497738/images/help/actions/arc-diagram.png",
+    website: "https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/autoscaling-with-self-hosted-runners",
+    source: "https://github.com/actions/actions-runner-controller",
+    tags: ["opensource", "selfhost"],
+    type: "Développement",
+  },
+  {
     title: "Ronoco",
     description: "ROS No Code",
     preview: "/img/project/ronoco.png",
@@ -53,7 +71,7 @@ export const projects: Project[] = [
     website: "https://github.com/sedelpeuch/template_latex",
     source: "https://github.com/sedelpeuch/template_latex",
     tags: ["opensource"],
-    type: "Autre",
+    type: "Développement",
   },
   {
     title: "Easy Booked @EirLab",
@@ -174,7 +192,7 @@ export type Tag = {
   color: string;
 };
 
-export type TagType = "opensource" | "formation" | "ROS" | "cpp" | "python";
+export type TagType = "opensource" | "formation" | "ROS" | "cpp" | "python" | "selfhost";
 
 export type ProjectType = "Robotique" | "Développement" | "Autre" | "Maker";
 
@@ -210,6 +228,11 @@ export const Tags: Record<TagType, Tag> = {
     label: "ROS",
     description: "ROS project",
     color: "#1225fa",
+  },
+  selfhost: {
+    label: "Self-Hosting",
+    description: "Self-Hosting project",
+    color: "#fa1225",
   },
   cpp: {
     label: "C++",
