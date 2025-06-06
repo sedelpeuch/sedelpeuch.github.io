@@ -30,7 +30,8 @@
     "skipLibCheck": false,
     "types": [
       "jest"
-    ]
+    ],
+    "jsx": "react-jsx"
   },
   "exclude": [
     "src/sw.js"

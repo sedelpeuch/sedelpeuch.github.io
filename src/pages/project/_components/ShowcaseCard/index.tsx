@@ -85,6 +85,11 @@ const ShowcaseCard = memo(({ project }: { project: Project }) => {
         <p className={styles.showcaseCardBody}>{project.description}</p>
       </div>
       <ul className={clsx("card__footer", styles.cardFooter)}>
+        {project.year && (
+          <li className={styles.yearTag} title="Année">
+            <span className={styles.yearText}>{project.year}</span>
+          </li>
+        )}
         <ShowcaseCardTag tags={project.tags} />
       </ul>
     </div>
