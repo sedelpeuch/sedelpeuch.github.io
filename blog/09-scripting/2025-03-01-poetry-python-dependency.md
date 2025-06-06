@@ -235,5 +235,3 @@ poetry publish --repository mon-repo
 Poetry a transformé la façon dont les développeurs Python gèrent leurs projets en offrant une solution tout-en-un pour la gestion des dépendances, les environnements virtuels et le packaging. Son approche déclarative et sa simplicité d'utilisation en font un outil incontournable pour tout projet Python moderne.
 
 Au-delà d'être un simple gestionnaire de dépendances, Poetry représente une évolution significative dans l'écosystème Python, rendant le développement plus reproductible, plus fiable et plus agréable.
-
-Avez-vous déjà adopté Poetry dans vos projets Python? Quelles sont vos expériences? Partagez-les dans les commentaires!
