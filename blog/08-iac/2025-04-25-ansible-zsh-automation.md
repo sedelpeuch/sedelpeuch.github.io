@@ -222,7 +222,7 @@ Ce playbook principal importe simplement les trois autres playbooks spécifiques
         repo: https://github.com/zsh-users/zsh-autosuggestions
         dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
       when: not zsh_autosuggestions_installed.stat.exists
-    
+
     # Autres plugins...
 ```
 
