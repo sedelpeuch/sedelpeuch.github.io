@@ -9,7 +9,7 @@
   "postStartCommand": "yarn install && pre-commit install",
   "features": {
     "node": {
-      "version": "18"
+      "version": "20"
     },
     "github-cli": {},
     "ghcr.io/devcontainers-contrib/features/pipx-package:1": {},
