@@ -14,8 +14,7 @@
             <guid>https://delpeuch.net/blog/2025/07/15/09-scripting/strawberry</guid>
             <pubDate>Tue, 15 Jul 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[Étapes pratiques pour concevoir, coder et tester une API GraphQL en Python.]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="introduction">Introduction<a href="https://delpeuch.net/blog/2025/07/15/09-scripting/strawberry#introduction" class="hash-link" aria-label="Direct link to Introduction" title="Direct link to Introduction">​</a></h2>
-<p>Ce guide présente, étape par étape, la création d’une API GraphQL en Python avec FastAPI et Strawberry, en expliquant les choix d’outils et les bonnes pratiques à chaque étape.</p>
+            <content:encoded><![CDATA[<p>Ce guide présente, étape par étape, la création d’une API GraphQL en Python avec FastAPI et Strawberry, en expliquant les choix d’outils et les bonnes pratiques à chaque étape.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="outils-utilisés">Outils utilisés<a href="https://delpeuch.net/blog/2025/07/15/09-scripting/strawberry#outils-utilis%C3%A9s" class="hash-link" aria-label="Direct link to Outils utilisés" title="Direct link to Outils utilisés">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="fastapi">FastAPI<a href="https://delpeuch.net/blog/2025/07/15/09-scripting/strawberry#fastapi" class="hash-link" aria-label="Direct link to FastAPI" title="Direct link to FastAPI">​</a></h3>
 <p>FastAPI est un framework web moderne pour Python, conçu pour créer des APIs performantes, robustes et faciles à maintenir. Il offre :</p>
