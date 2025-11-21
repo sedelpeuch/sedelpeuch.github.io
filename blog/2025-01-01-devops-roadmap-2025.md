@@ -30,5 +30,4 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ## <IconTitle logo="skill-icons:terraform-light" name="08 Infrastructure as Code"/>
 
-- Terraform est l'outil de provisionnement d'infrastructure le plus populaire
 - Ansible est l'outil de gestion de configuration le plus populaire
