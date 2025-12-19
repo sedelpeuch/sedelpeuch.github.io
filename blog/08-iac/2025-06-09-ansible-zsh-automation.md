@@ -4,7 +4,7 @@ description: "Découvrez comment automatiser et versionner votre environnement s
 tags: [Ansible, zsh, oh-my-zsh, DevOps, IaC]
 ---
 
-Dans l'[article précédent](/blog/2025/04/05/08-iac/ansible-introduction), nous avons découvert les bases d'Ansible et ses avantages pour l'automatisation d'infrastructure. Aujourd'hui, nous allons explorer un cas pratique concret : l'automatisation de la configuration de votre shell zsh avec le projet [zsh_ansible](https://github.com/sedelpeuch/zsh_ansible). 🐚
+Dans l'[article précédent](/blog/2025/06/09/08-iac/ansible-introduction), nous avons découvert les bases d'Ansible et ses avantages pour l'automatisation d'infrastructure. Aujourd'hui, nous allons explorer un cas pratique concret : l'automatisation de la configuration de votre shell zsh avec le projet [zsh_ansible](https://github.com/sedelpeuch/zsh_ansible). 🐚
 
 <!--truncate-->
 

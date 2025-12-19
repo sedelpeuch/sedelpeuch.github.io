@@ -31,7 +31,7 @@ pip install pydantic
 pip install "pydantic>=2.0.0"
 ```
 
-Si vous utilisez Poetry (comme nous l'avons vu dans [notre article précédent](/blog/2025/03/01/09-scripting/poetry-python-dependency)) :
+Si vous utilisez Poetry (comme nous l'avons vu dans [notre article précédent](/blog/2025/06/06/09-scripting/poetry-python-dependency)) :
 
 ```bash
 poetry add pydantic
