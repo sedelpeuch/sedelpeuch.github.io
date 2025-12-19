@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useScroll, useTransform, Variants } from "framer-motion"; // Import motion from framer-motion
-import HeroMain from "./img/Robotics-rafiki.svg";
+import HeroMain from "./img/background.svg";
 
 import styles from "./styles.module.scss";
 import SocialLinks from "@site/src/components/SocialLinks";
