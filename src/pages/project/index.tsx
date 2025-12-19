@@ -55,56 +55,21 @@ function ShowcaseHeader() {
 }
 
 function ShowcaseCards() {
-  const { i18n } = useDocusaurusContext();
-  const lang = i18n.currentLocale;
-
-  if (projects.length === 0) {
-    return (
-      <section className="margin-top--lg margin-bottom--xl">
-        <div className="container padding-vert--md text--center">
-          <h2>No result</h2>
-        </div>
-      </section>
-    );
-  }
-
+  // Tri décroissant par année
+  const sortedProjects = [...projects].sort((a, b) => {
+    const yearA = a.year ? parseInt(a.year, 10) : 0;
+    const yearB = b.year ? parseInt(b.year, 10) : 0;
+    return yearB - yearA;
+  });
   return (
     <section className="margin-top--lg margin-bottom--xl">
-      <>
-        <div className="container margin-top--lg">
-          <div
-            className={clsx("margin-bottom--md", styles.showcaseFavoriteHeader)}
-          ></div>
-
-          {Object.entries(groupByProjects).map(([key, value]) => {
-            // Tri par année décroissante
-            const sortedProjects = [...(value as Project[])].sort((a, b) => {
-              const yearA = a.year ? parseInt(a.year, 10) : 0;
-              const yearB = b.year ? parseInt(b.year, 10) : 0;
-              return yearB - yearA;
-            });
-            return (
-              <div key={key}>
-                <div
-                  className={clsx(
-                    "margin-bottom--md",
-                    styles.showcaseFavoriteHeader,
-                  )}
-                >
-                  <h3>
-                    {upperFirst(lang === "en" ? key : projectTypeMap[key])}
-                  </h3>
-                </div>
-                <ul className={styles.showcaseList}>
-                  {sortedProjects.map((project) => (
-                    <ShowcaseCard key={project.title} project={project} />
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
-      </>
+      <div className="container margin-top--lg">
+        <ul className={styles.showcaseList}>
+          {sortedProjects.map((project) => (
+            <ShowcaseCard key={project.title} project={project} />
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
