@@ -137,14 +137,14 @@ nginx_worker_connections: 1024
 server {
     listen {{ server_port }};
     server_name {{ server_name }};
-    
+
     root {{ document_root }};
     index index.html;
-    
+
     location / {
         try_files $uri $uri/ =404;
     }
-    
+
     access_log /var/log/nginx/{{ site_name }}_access.log;
     error_log /var/log/nginx/{{ site_name }}_error.log;
 }
@@ -161,7 +161,7 @@ galaxy_info:
   company: Votre Entreprise
   license: MIT
   min_ansible_version: 2.9
-  
+
   platforms:
     - name: Ubuntu
       versions:
@@ -171,7 +171,7 @@ galaxy_info:
       versions:
         - bullseye
         - bookworm
-  
+
   galaxy_tags:
     - nginx
     - webserver
@@ -187,7 +187,7 @@ dependencies: []
 - name: Configurer les serveurs web
   hosts: webservers
   become: yes
-  
+
   roles:
     - role: webserver
       vars:
@@ -198,7 +198,7 @@ dependencies: []
 - name: Configurer avec des conditions
   hosts: webservers
   become: yes
-  
+
   roles:
     - role: webserver
       when: ansible_os_family == "Debian"
@@ -232,12 +232,12 @@ collections:
   # Depuis Ansible Galaxy
   - name: community.general
     version: ">=5.0.0"
-  
+
   - name: ansible.posix
     version: "1.5.1"
-  
+
   - name: community.docker
-  
+
   # Depuis un dépôt Git
   - name: https://github.com/organisation/ma-collection.git
     type: git
@@ -250,14 +250,14 @@ collections:
 ---
 - name: Utiliser des modules de collections
   hosts: all
-  
+
   tasks:
     # Méthode 1 : FQCN (Fully Qualified Collection Name)
     - name: Installer un paquet avec community.general
       community.general.npm:
         name: express
         global: yes
-    
+
     # Méthode 2 : Importer la collection
     - name: Docker tasks
       block:
@@ -310,9 +310,6 @@ ansible-vault create secrets.yml
 db_password: "SuperSecretPassword123!"
 api_key: "abc123def456ghi789"
 ssl_certificate_key: |
-  -----BEGIN PRIVATE KEY-----
-  MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC...
-  -----END PRIVATE KEY-----
 ```
 
 ### Chiffrer un fichier existant
@@ -354,7 +351,7 @@ ansible-vault rekey secrets.yml
   vars_files:
     - vars/common.yml
     - secrets.yml  # Fichier chiffré avec Vault
-  
+
   tasks:
     - name: Configurer la base de données
       mysql_user:
@@ -362,7 +359,7 @@ ansible-vault rekey secrets.yml
         password: "{{ db_password }}"  # Depuis secrets.yml
         priv: "appdb.*:ALL"
         state: present
-    
+
     - name: Configurer l'API
       template:
         src: api_config.j2
@@ -489,7 +486,7 @@ ansible-project/
 ---
 - name: Configuration complète
   hosts: webservers
-  
+
   tasks:
     - name: Installer les paquets
       apt:
@@ -501,7 +498,7 @@ ansible-project/
       tags:
         - install
         - packages
-    
+
     - name: Configurer Nginx
       template:
         src: nginx.conf.j2
@@ -509,7 +506,7 @@ ansible-project/
       tags:
         - config
         - nginx
-    
+
     - name: Déployer l'application
       copy:
         src: app/
@@ -529,13 +526,13 @@ ansible-project/
 ---
 - name: Gestion d'erreurs avancée
   hosts: all
-  
+
   tasks:
     - name: Tâche qui peut échouer
       command: /opt/script.sh
       register: script_result
       ignore_errors: yes
-    
+
     - name: Traiter le résultat
       block:
         - debug:
