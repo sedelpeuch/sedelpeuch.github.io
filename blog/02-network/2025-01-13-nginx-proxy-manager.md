@@ -1,5 +1,5 @@
 ---
-title: Nginx Proxy Manager
+title: "Proxy : Nginx Proxy Manager"
 description: "Présentation de Nginx Proxy Manager, ses fonctionnalités et ses avantages, ainsi qu'une démonstration d'utilisation avec Docker."
 tags: [nginx-proxy-manager, Docker, Network, Devops]
 ---

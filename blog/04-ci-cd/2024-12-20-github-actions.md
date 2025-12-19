@@ -1,5 +1,5 @@
 ---
-title: Introduction à GitHub Actions
+title: "GitHub Actions"
 description: "Découvrez comment GitHub Actions peut automatiser vos workflows de développement et de déploiement."
 tags: [CI/CD, GitHub, Devops]
 ---

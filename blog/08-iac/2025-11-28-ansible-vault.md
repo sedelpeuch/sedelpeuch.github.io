@@ -1,5 +1,5 @@
 ---
-title: Sécuriser ses secrets avec Ansible Vault
+title: "Ansible : Vault"
 description: Introduction à Ansible Vault pour la gestion sécurisée des secrets dans les playbooks Ansible.
 tags: [Ansible, Vault, IaC, Sécurité]
 date: 2025-06-05

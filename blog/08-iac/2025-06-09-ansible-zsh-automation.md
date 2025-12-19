@@ -1,5 +1,5 @@
 ---
-title: "Automatiser votre configuration zsh avec Ansible : cas pratique avec zsh_ansible"
+title: "Ansible : cas pratique zsh"
 description: "Découvrez comment automatiser et versionner votre environnement shell avec Ansible grâce au projet zsh_ansible."
 tags: [Ansible, zsh, oh-my-zsh, DevOps, IaC]
 ---

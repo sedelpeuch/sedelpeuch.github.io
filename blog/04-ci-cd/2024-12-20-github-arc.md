@@ -1,5 +1,5 @@
 ---
-title: Action Runner Controller GitHub
+title: "GitHub Actions : ARC"
 description: "Explication de l'installation et de l'utilisation de l'Action Runner Controller GitHub"
 tags: [CI/CD, GitHub, Devops]
 ---

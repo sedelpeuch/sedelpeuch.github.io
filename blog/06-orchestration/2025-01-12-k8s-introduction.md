@@ -1,5 +1,5 @@
 ---
-title: Introduction à Kubernetes
+title: "Kubernetes"
 description: "Découvrez les concepts de base de Kubernetes, une plateforme d'orchestration de conteneurs."
 tags: [Kubernetes, Orchestration, Devops]
 ---

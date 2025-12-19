@@ -1,5 +1,5 @@
 ---
-title: Kubectl - Les commandes essentielles pour maîtriser Kubernetes
+title: "Kubernetes : kubectl"
 description: "Les commandes kubectl indispensables pour gérer efficacement des clusters Kubernetes au quotidien."
 tags: [Kubernetes, Orchestration, Devops, kubectl]
 ---

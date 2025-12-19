@@ -1,5 +1,5 @@
 ---
-title: "Pydantic: Validation de données robuste pour Python"
+title: "Python : Pydantic"
 description: "Comment utiliser Pydantic pour valider, sérialiser et documenter vos modèles de données en Python."
 tags: [Python, Data Validation, API, FastAPI, Scripting]
 ---

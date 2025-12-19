@@ -1,5 +1,5 @@
 ---
-title: Composants de base de Kubernetes
+title: "Kubernetes : composants de base"
 description: "Découvrez les composants de base de Kubernetes, tels que les Services, Pods, Deployments et StatefulSets."
 tags: [Kubernetes, Orchestration, Devops]
 ---

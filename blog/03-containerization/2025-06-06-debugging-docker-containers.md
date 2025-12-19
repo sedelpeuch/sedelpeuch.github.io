@@ -1,5 +1,5 @@
 ---
-title: Débogage des conteneurs Docker
+title: "Docker : débogage"
 description: "Guide pour déboguer les conteneurs Docker en utilisant des commandes de base et des options avancées."
 tags: [Docker, Debugging, Containers, Devops]
 ---

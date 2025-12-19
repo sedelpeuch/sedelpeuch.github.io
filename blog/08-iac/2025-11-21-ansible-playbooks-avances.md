@@ -1,5 +1,5 @@
 ---
-title: "Ansible avancé : Rôles, Ansible Vault et intégration CI/CD"
+title: "Ansible : avancé"
 description: "Fonctionnalités avancées d'Ansible pour créer des playbooks modulaires, sécuriser les secrets et automatiser les déploiements."
 tags: [Ansible, IaC, DevOps, CI/CD, Automation]
 ---

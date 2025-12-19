@@ -1,5 +1,5 @@
 ---
-title: Secrets et ConfigMaps dans Kubernetes
+title: "Kubernetes : Secrets et ConfigMaps"
 description: "Découvrez les concepts de Secrets et ConfigMaps dans Kubernetes, et comment les utiliser pour gérer les configurations et les informations sensibles."
 tags: [Kubernetes, Orchestration, Devops]
 ---
