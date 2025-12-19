@@ -14,11 +14,11 @@ const ShowcaseCard = memo(({ project }) => {
   return (
     <Link
       href={slug}
-      className={clsx("card", styles.showcaseCard)}
+      className={styles.modernCard}
       style={{ textDecoration: "none" }}
     >
       {project.preview && (
-        <div className={clsx("card__image", styles.showcaseCardImage)}>
+        <div className={styles.showcaseCardImageModern}>
           <Image
             src={project.preview}
             alt={project.title}
@@ -26,16 +26,14 @@ const ShowcaseCard = memo(({ project }) => {
           />
         </div>
       )}
-      <div className="card__body">
-        <div className={clsx(styles.showcaseCardHeader)}>
-          <h4 className={styles.showcaseCardTitle}>{project.title}</h4>
+      <div className={styles.cardBodyModern}>
+        <div className={styles.showcaseCardHeaderModern}>
+          <h4 className={styles.showcaseCardTitleModern}>{project.title}</h4>
+          {project.year && (
+            <span className={styles.yearBadge}>{project.year}</span>
+          )}
         </div>
-        <p className={styles.showcaseCardBody}>{project.description}</p>
-      </div>
-      <div className={styles.cardFooterSimple}>
-        {project.year && (
-          <span className={styles.yearText}>{project.year}</span>
-        )}
+        <p className={styles.showcaseCardBodyModern}>{project.description}</p>
       </div>
     </Link>
   );
