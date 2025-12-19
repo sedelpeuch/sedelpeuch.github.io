@@ -1,6 +1,6 @@
 ---
 id: haricot
-slug: /projects/haricot
+slug: /projects/haricot-apringalle
 title: Haricot 🌱 (@apringalle)
 ---
 
