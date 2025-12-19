@@ -3,6 +3,7 @@ title: Robocup @Home 2023 (CATIE)
 tags: [robotique, robocup, ros, autonome, ia]
 ---
 
+<img src="/img/project/robocup.png" alt="Aperçu Robocup @Home 2023" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 Participation à la RoboCup @Home 2023 en tant que Team Leader de l’équipe CATIE Robotics. La RoboCup @Home est une compétition internationale de robotique de service, où des équipes du monde entier confrontent leurs robots à des scénarios domestiques complexes : navigation autonome, manipulation d’objets, interaction vocale, reconnaissance de personnes, etc.
 

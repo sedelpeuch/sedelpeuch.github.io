@@ -3,6 +3,7 @@ title: Haricot 🌱 (@apringalle)
 tags: [opensource, timelapse, raspberry-pi, jardinage]
 ---
 
+<img src="/img/project/haricot.png" alt="Aperçu Haricot" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 Haricot est un prototype de boîtier open source, imaginé et conçu par @apringalle, qui automatise la création de vidéos timelapse de la pousse d’une plante. Le projet est né d’une envie de documenter la croissance végétale de façon simple et accessible, en s’appuyant sur une Raspberry Pi et une caméra dédiée.
 
