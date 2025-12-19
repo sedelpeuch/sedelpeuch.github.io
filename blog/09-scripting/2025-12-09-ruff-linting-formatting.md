@@ -10,10 +10,6 @@ Ruff est un **linter et formatter Python ultra-rapide** écrit en Rust. Il rempl
 
 # Ruff : Linting et Formatting Python
 
-import IconTitle from '@site/src/components/IconTitle';
-
-<IconTitle logo="skill-icons:python-light" name="Ruff"/>
-
 ## Qu'est-ce que Ruff ?
 
 Ruff est un outil tout-en-un pour la qualité du code Python :
