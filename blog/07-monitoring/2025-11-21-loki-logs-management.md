@@ -221,23 +221,23 @@ scrape_configs:
         labels:
           job: nginx
           __path__: /var/log/nginx/access.log
-    
+
     pipeline_stages:
       # Parser le format de log nginx
       - regex:
           expression: '^(?P<ip>\S+) \S+ \S+ \[(?P<time>[^\]]+)\] "(?P<method>\S+) (?P<path>\S+) \S+" (?P<status>\d+) (?P<size>\d+)'
-      
+
       # Extraire des labels depuis les champs parsés
       - labels:
           method:
           status:
           path:
-      
+
       # Ajouter un timestamp
       - timestamp:
           source: time
           format: '02/Jan/2006:15:04:05 -0700'
-      
+
       # Filtrer certains logs (optionnel)
       - match:
           selector: '{status="200"}'
@@ -253,28 +253,28 @@ scrape_configs:
   - job_name: kubernetes-pods
     kubernetes_sd_configs:
       - role: pod
-    
+
     relabel_configs:
       # Extraire les métadonnées Kubernetes
       - source_labels:
           - __meta_kubernetes_pod_node_name
         target_label: __host__
-      
+
       - action: labelmap
         regex: __meta_kubernetes_pod_label_(.+)
-      
+
       - source_labels:
           - __meta_kubernetes_namespace
         target_label: namespace
-      
+
       - source_labels:
           - __meta_kubernetes_pod_name
         target_label: pod
-      
+
       - source_labels:
           - __meta_kubernetes_pod_container_name
         target_label: container
-      
+
       - replacement: /var/log/pods/*$1/*.log
         separator: /
         source_labels:

@@ -122,10 +122,10 @@ async def main():
 async def main():
     # Démarre la tâche immédiatement en arrière-plan
     task = asyncio.create_task(tache("A", 1))
-    
+
     # Fait autre chose...
     print("La tâche tourne en arrière-plan")
-    
+
     # Attend le résultat quand nécessaire
     resultat = await task
 ```
@@ -281,10 +281,10 @@ async def get_user_cached(user_id: int):
     cached = await redis.get(f"user:{user_id}")
     if cached:
         return json.loads(cached)
-    
+
     # Récupère depuis la DB si pas en cache
     user = await fetch_user_from_db(user_id)
-    
+
     # Met en cache pour 1h
     await redis.setex(f"user:{user_id}", 3600, json.dumps(user))
     return user
@@ -353,7 +353,7 @@ class AsyncResource:
         # Initialisation (ex: ouvrir connexion DB)
         await self.connect()
         return self
-    
+
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         # Nettoyage automatique (ex: fermer connexion)
         await self.disconnect()

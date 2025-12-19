@@ -358,8 +358,8 @@ bottomk(3, rate(cpu_usage[5m])) # Bottom 3 des taux CPU
 rate(http_requests_total[5m])
 
 # Taux d'erreur HTTP (5xx)
-sum(rate(http_requests_total{status=~"5.."}[5m])) 
-/ 
+sum(rate(http_requests_total{status=~"5.."}[5m]))
+/
 sum(rate(http_requests_total[5m]))
 
 # Utilisation mémoire en pourcentage
