@@ -1,6 +1,4 @@
 ---
-id: fervantfactory
-slug: /projects/fervantfactory
 title: FervantFactory
 ---
 

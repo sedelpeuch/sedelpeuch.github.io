@@ -1,6 +1,4 @@
 ---
-id: luciole
-slug: /projects/luciole
 title: Luciole ✨ 🐝
 ---
 

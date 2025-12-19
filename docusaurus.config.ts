@@ -13,6 +13,7 @@ const config: Config = {
   favicon: "img/logo.svg",
   organizationName: "sedelpeuch",
   projectName: "sedelpeuch.net",
+  onBrokenLinks: "warn",
   themeConfig: {
     navbar: {
       logo: {
