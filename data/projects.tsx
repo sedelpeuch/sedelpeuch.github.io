@@ -71,31 +71,6 @@ export const projects: Project[] = [
     year: "2021",
   },
   {
-    title: "Gérez vos codes sources avec Git",
-    description: "",
-    preview: "/img/project/git.png",
-    year: "2021",
-  },
-  {
-    title: "GNU Make",
-    description: "",
-    preview: "/img/project/gnu.png",
-    year: "2021",
-  },
-  {
-    title: "Recherche de chemin à travers l'algorithme A* en C++",
-    description: "",
-    preview: "/img/project/astar.png",
-    year: "2021",
-  },
-  {
-    title:
-      "Traitement d’image pour la détection de tag Aruco avec Opencv en python",
-    description: "",
-    preview: "/img/project/aruco.png",
-    year: "2022",
-  },
-  {
     title: "Haricot 🌱 (@apringalle)",
     description:
       "Haricot est un prototype d’un boitier basé sur une Raspberry Pi permettant de réaliser automatiquement la vidéo de la pousse d’une plante.",
@@ -108,20 +83,6 @@ export const projects: Project[] = [
       "Haricot est un prototype d’un boitier basé sur une Raspberry Pi permettant de réaliser automatiquement la vidéo de la pousse d’une plante.",
     preview: "/img/project/luciole.jpg",
     year: "2022",
-  },
-  {
-    title: "Imprimantes 3D (SLA)",
-    description:
-      "Eirlab Community met à disposition une imprimante 3D SLA (résine) en libre-service. Pour pouvoir les utiliser en libre-service, il est nécessaire d’avoir suivi une formation dispensée par un FabManager de l’association.",
-    preview: "/img/project/sla.jpg",
-    year: "2023",
-  },
-  {
-    title: "Fraiseuse CNC (Bois)",
-    description:
-      "Ce guide a pour objectif de servir de complément à la formation FAO, il permet de reprendre les différentes étapes nécessaires à la création d’un objet en utilisant une fraiseuse numérique permettant d’usiner du bois ou de l’aluminium. ",
-    preview: "/img/project/fao.jpg",
-    year: "2023",
   },
   {
     title: "delpeuch.net",

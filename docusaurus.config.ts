@@ -32,6 +32,11 @@ const config: Config = {
           to: "project",
         },
         {
+          label: "Enseignement",
+          position: "left",
+          to: "docs/learning",
+        },
+        {
           label: "Blog",
           position: "left",
           to: "blog",
