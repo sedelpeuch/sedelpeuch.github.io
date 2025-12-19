@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksedelpeuch_net=self.webpackChunksedelpeuch_net||[]).push([[2201],{1739(e){e.exports=JSON.parse('{"tag":{"label":"gestion","permalink":"/docs/tags/gestion","allTagsPath":"/docs/tags","count":1,"items":[{"id":"projects/wolf","title":"Wolf","description":"Pr\xe9sentation","permalink":"/docs/projects/wolf"}],"unlisted":false}}')}}]);
