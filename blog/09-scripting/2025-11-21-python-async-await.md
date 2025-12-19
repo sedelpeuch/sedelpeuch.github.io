@@ -1,5 +1,5 @@
 ---
-title: "Programmation asynchrone en Python : async/await et asyncio"
+title: "Python : async/await"
 description: "Maîtrisez la programmation asynchrone en Python pour créer des applications performantes et réactives."
 tags: [Python, Async, Asyncio, Performance, FastAPI, DevOps]
 ---

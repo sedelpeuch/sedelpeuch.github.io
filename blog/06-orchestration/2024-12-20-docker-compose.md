@@ -1,5 +1,5 @@
 ---
-title: Docker Compose
+title: "Docker Compose"
 description: "Explication de Docker Compose"
 tags: [Docker Compose, Devops, Orchestration]
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Ansible : Automatisation d'infrastructure sans agent"
+title: "Ansible"
 description: "Découvrez Ansible, l'outil d'automatisation simple mais puissant qui révolutionne la gestion de l'infrastructure as code."
 tags: [Ansible, IaC, DevOps]
 ---

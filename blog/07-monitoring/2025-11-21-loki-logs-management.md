@@ -1,5 +1,5 @@
 ---
-title: "Loki : Gestion moderne des logs pour Kubernetes et au-delà"
+title: "Loki"
 description: "Loki, le système de gestion de logs inspiré de Prometheus, conçu pour être simple, efficace et économique."
 tags: [Loki, Logs, Monitoring, Observabilité, DevOps, Kubernetes]
 ---

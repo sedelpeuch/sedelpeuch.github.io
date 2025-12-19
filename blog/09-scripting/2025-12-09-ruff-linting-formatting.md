@@ -1,5 +1,5 @@
 ---
-title: Ruff - Linting et Formatting Python ultra-rapide
+title: "Python : Ruff"
 description: Découvrir Ruff, l'outil Python ultra-rapide écrit en Rust pour remplacer flake8, black et isort.
 tags: [Python, Ruff, Linting, Formatting, Tooling]
 date: 2025-07-20

@@ -1,5 +1,5 @@
 ---
-title: "Poetry: Gérer efficacement vos dépendances Python"
+title: "Python : Poetry"
 description: "Un guide complet sur Poetry, l'outil moderne de gestion de dépendances et de packaging pour Python."
 tags: [Python, DevOps, Scripting]
 ---

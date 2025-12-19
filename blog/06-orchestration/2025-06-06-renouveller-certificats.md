@@ -1,5 +1,5 @@
 ---
-title: Renouvellement des certificats Kubernetes sur kubeadm
+title: "Kubernetes : certificats"
 description: "Guide pratique pour renouveler les certificats expirants dans un cluster Kubernetes déployé avec kubeadm."
 tags: [Kubernetes, Orchestration, Devops]
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Prometheus : Le système de monitoring moderne pour les infrastructures"
+title: "Prometheus"
 description: "Prometheus, l'outil de monitoring et d'alerting open-source devenu incontournable dans l'écosystème Cloud Native."
 tags: [Prometheus, Monitoring, Observabilité, DevOps]
 ---
