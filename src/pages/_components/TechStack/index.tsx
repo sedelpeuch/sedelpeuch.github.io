@@ -21,33 +21,30 @@ function Card({ logo, techName }) {
   );
 }
 
-// Composant de liste de Card
-function TechStack() {
-  const majors = [
-    // Coeur de métier
-    { name: "Python", logo: "skill-icons:python-light" },
-    { name: "Linux", logo: "skill-icons:linux-light" },
-    { name: "Docker", logo: "skill-icons:docker" },
-    { name: "Git", logo: "skill-icons:git" },
-    { name: "ROS", logo: "skill-icons:ros-light" },
-    { name: "Kubernetes", logo: "skill-icons:kubernetes" },
-    { name: "GitHub", logo: "skill-icons:github-light" },
-    { name: "GitHub Actions", logo: "skill-icons:githubactions-light" },
-    { name: "Ansible", logo: "skill-icons:ansible" },
-    { name: "Grafana", logo: "skill-icons:grafana-light" },
-    { name: "VS Code", logo: "skill-icons:vscode-light" },
-    { name: "Oh My Zsh", logo: "devicon:ohmyzsh" },
-  ];
-  const minors = [
-    { name: "Prometheus", logo: "skill-icons:prometheus" },
-    { name: "Nginx", logo: "skill-icons:nginx" },
-    { name: "FastAPI", logo: "skill-icons:fastapi" },
-    { name: "C", logo: "skill-icons:c" },
-    { name: "C++", logo: "skill-icons:cpp" },
-    { name: "React", logo: "skill-icons:react-light" },
-    { name: "TypeScript", logo: "skill-icons:typescript" },
-  ];
+export const majors = [
+  { name: "Python", logo: "skill-icons:python-light" },
+  { name: "Linux", logo: "skill-icons:linux-light" },
+  { name: "Docker", logo: "skill-icons:docker" },
+  { name: "Git", logo: "skill-icons:git" },
+  { name: "ROS", logo: "skill-icons:ros-light" },
+  { name: "Kubernetes", logo: "skill-icons:kubernetes" },
+  { name: "GitHub", logo: "skill-icons:github-light" },
+  { name: "GitHub Actions", logo: "skill-icons:githubactions-light" },
+  { name: "Ansible", logo: "skill-icons:ansible" },
+  { name: "Grafana", logo: "skill-icons:grafana-light" },
+  { name: "VS Code", logo: "skill-icons:vscode-light" },
+];
+export const minors = [
+  { name: "Prometheus", logo: "skill-icons:prometheus" },
+  { name: "Nginx", logo: "skill-icons:nginx" },
+  { name: "FastAPI", logo: "skill-icons:fastapi" },
+  { name: "C", logo: "skill-icons:c" },
+  { name: "C++", logo: "skill-icons:cpp" },
+  { name: "React", logo: "skill-icons:react-light" },
+  { name: "TypeScript", logo: "skill-icons:typescript" },
+];
 
+function TechStack() {
   return (
     <div>
       <h3 style={{ textAlign: "center", marginBottom: 0 }}>Au quotidien</h3>
