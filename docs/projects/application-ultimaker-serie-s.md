@@ -1,6 +1,6 @@
 ---
-id: application-ultimaker-serie-s
-slug: /projects/application-ultimaker-serie-s
+id: application-de-suivi-ultimaker-serie-s
+slug: /projects/application-de-suivi-ultimaker-s-rie-s
 title: Application de suivi - Ultimaker série S
 ---
 
