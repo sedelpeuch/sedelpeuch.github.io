@@ -1,6 +1,4 @@
 ---
-id: github-arc-kubeadm
-slug: /projects/github-arc-kubeadm
 title: GitHub ARC Kubeadm
 ---
 
