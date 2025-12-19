@@ -10,14 +10,14 @@ const config: Config = {
   title: "Sébastien Delpeuch",
   url: "https://delpeuch.net",
   baseUrl: process.env.BASE_URL || "/",
-  favicon: "img/favicon.ico",
+  favicon: "img/logo.svg",
   organizationName: "sedelpeuch",
   projectName: "sedelpeuch.net",
   themeConfig: {
     navbar: {
       logo: {
         alt: "navbar",
-        src: "img/logo.webp",
+        src: "img/logo.svg",
       },
       items: [
         {
