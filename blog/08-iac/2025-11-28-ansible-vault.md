@@ -10,10 +10,6 @@ Ansible Vault est un outil intégré à Ansible permettant de chiffrer et de gé
 
 # Ansible Vault : Sécurisation des secrets
 
-import IconTitle from '@site/src/components/IconTitle';
-
-<IconTitle logo="simple-icons:ansible" name="Ansible Vault"/>
-
 ## Pourquoi utiliser Ansible Vault ?
 
 - Protéger les mots de passe, clés API et autres secrets dans les fichiers de configuration
