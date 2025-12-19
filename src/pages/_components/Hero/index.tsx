@@ -1,12 +1,8 @@
-import React from "react";
 import { motion, useScroll, useTransform, Variants } from "framer-motion"; // Import motion from framer-motion
 import HeroMain from "./img/background.svg";
 
 import styles from "./styles.module.scss";
 import SocialLinks from "@site/src/components/SocialLinks";
-import skills from "@site/data/skills";
-
-import { Icon } from "@iconify/react";
 
 const variants: Variants = {
   visible: (i) => ({
@@ -22,41 +18,6 @@ const variants: Variants = {
   }),
   hidden: { opacity: 0, y: 30 },
 };
-
-function Skills() {
-  const { scrollYProgress } = useScroll();
-  const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "-500%"], {
-    clamp: false,
-  });
-  const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "500%"], {
-    clamp: false,
-  });
-  return (
-    <>
-      {skills.map((skill, index) => {
-        const yValue = index % 2 === 0 ? y1 : y2;
-        return (
-          <motion.div
-            className={styles.box}
-            initial={{ opacity: 0.01, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: Math.random() * 2 + 0.5,
-              delay: 0.5,
-            }}
-            style={{
-              ...skill.style,
-              y: yValue,
-            }}
-            key={index}
-          >
-            <Icon icon={skill.icon}></Icon>
-          </motion.div>
-        );
-      })}
-    </>
-  );
-}
 
 function Circle() {
   return <div className={styles.circle} />;
@@ -99,7 +60,7 @@ export default function Hero() {
           animate="visible"
           variants={variants}
         >
-          Ingénieur en robotique au CATIE
+          Ingénieur en informatique au CATIE
         </motion.p>
         <motion.div
           custom={3}
@@ -132,7 +93,6 @@ export default function Hero() {
         </motion.div>
       </div>
       <motion.div className={styles.background}>
-        <Skills />
         <HeroMain />
         <Circle />
       </motion.div>
