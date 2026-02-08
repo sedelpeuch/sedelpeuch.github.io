@@ -6,8 +6,8 @@ tags: [led, arduino, fablab, eirlab, électronique, mécanique, informatique]
 <img src="https://www.eirlab.net/wp-content/uploads/2022/07/20220702_164047.jpg" alt="Panneau Luciole Eirlab" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
-  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">📅 2022</div>
+  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">👨‍💻 Sébastien Delpeuch</div>
 </div>
 

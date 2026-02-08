@@ -6,8 +6,8 @@ tags: [iot, dashboard, eirlab, caméra, python, flask, opencv]
 <img src="https://www.eirlab.net/wp-content/uploads/2022/03/image-1.png" alt="Aperçu Caméléon" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
-  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">📅 2022</div>
+  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">👨‍💻 Auteur, contributeur</div>
 </div>
 
