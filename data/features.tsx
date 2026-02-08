@@ -18,17 +18,17 @@ const FEATURES: FeatureItem[] = [
     text: (
       <ul>
         <li>
-          Ingénieur en robotique au CATIE au sein de l’unité Système
+          Ingénieur en informatique au CATIE au sein de l’unité Système
           Cyber-Physique.
         </li>
+
         <li>
-          Spécialisé en ROS, coordinateur de l’équipe CATIE Robotics participant
-          à la Robocup dans la ligue @home et coordinateur de la R&D en
-          robotique.
+          Coordinateur de l’équipe CATIE Robotics participant à la Robocup dans
+          la ligue @home et coordinateur de la R&D en robotique.
         </li>
         <li>
-          Pro-actif sur la mise en place des infrastrucres et des technologies
-          DevOps{" "}
+          Spécialisé en DevOps, pro-actif sur la mise en place des infrastrucres
+          et des technologies DevOps{" "}
         </li>
         <li>
           Sujets de travail : navigation autonome et sociale, préhension, CI/CD
