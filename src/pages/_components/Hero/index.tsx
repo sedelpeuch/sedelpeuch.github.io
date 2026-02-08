@@ -86,6 +86,12 @@ export default function Hero() {
           </div>
           <div className={styles.outer}>
             <div className={styles.gradient} />
+            <a className={styles.button} href={"./docs/projects"}>
+              Projets
+            </a>
+          </div>
+          <div className={styles.outer}>
+            <div className={styles.gradient} />
             <a className={styles.button} href={"./blog"}>
               Blog
             </a>
