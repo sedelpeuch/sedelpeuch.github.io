@@ -2,7 +2,6 @@ import React from "react";
 import Layout from "@theme/Layout";
 import Hero from "./_components/Hero";
 import FeaturesSection from "./_components/FeaturesSection";
-import HomepageProject from "./_components/ProjectSection";
 import { Icon } from "@iconify/react";
 import SectionTitle from "./_components/SectionTitle";
 import { majors } from "./_components/TechStack";
@@ -19,7 +18,6 @@ export default function Home(): JSX.Element {
       <main>
         <Hero />
         <div className="container-wrapper">
-          <HomepageProject />
           <section
             style={{
               width: "100vw",
