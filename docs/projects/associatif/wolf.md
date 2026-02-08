@@ -1,54 +1,47 @@
 ---
-title: Wolf
-tags: [opensource, automatisation, gestion]
+title: Wolf 🦊
+tags: [gestion, flask, dolibarr, association, python, eirlab]
 ---
 
-<img src="/img/project/wolf.png" alt="Aperçu Wolf" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<img src="https://www.eirlab.net/wp-content/uploads/2022/10/image-4.png" alt="Aperçu Wolf" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
+<div className="project-meta-grid">
+  <div className="project-meta-item">🛑 Terminé</div>
+  <div className="project-meta-item">📅 2022</div>
+  <div className="project-meta-item">👨‍💻 Auteur, contributeur</div>
+</div>
 
 ## Présentation
 
-🦊 Wolf est un projet open-source né en 2022 d’un constat vécu sur le terrain : la gestion d’une association ou d’un projet implique souvent de jongler entre de nombreux outils (Notion, Dolibarr, GitHub…) et de répéter les mêmes actions fastidieuses. L’idée de Wolf est alors apparue : créer un orchestrateur qui centralise, automatise et relie tous ces outils pour libérer du temps et fiabiliser la gestion.
+Wolf est une application Flask développée en 2022 pour faciliter la gestion interne de l’association Eirlab Community. Elle fait le lien entre les adhérents et Dolibarr, le logiciel de gestion de l’association, et propose une interface web pour automatiser et centraliser les tâches courantes.
 
-L’aventure Wolf a commencé par des échanges avec d’autres responsables associatifs, des ateliers pour cartographier les besoins, puis des sessions de prototypage pour imaginer une architecture modulaire. Le projet a évolué au fil des retours utilisateurs, des tests sur des cas réels (gestion de membres, synchronisation de documents, automatisation de tâches récurrentes), et de l’intégration de nouveaux services au fil des années.
+## Fonctionnalités principales
 
-Wolf, c’est aussi une expérience collective : documentation, retours d’expérience, contributions open source, et la volonté de rendre l’automatisation accessible à toutes les structures, même sans équipe technique dédiée.
+- Gestion des adhérents : fiche, liaison profil, carte étudiante
+- Gestion des formations : attribution de formations aux membres
+- Gestion du stock : recherche, ajout d’articles, scan de codes-barres
 
 ## Démarche et réalisations 🚀
 
-- **Analyse des besoins** : recueil des usages et identification des points de friction dans la gestion multi-outils.
-- **Architecture modulaire** 🧩 : séparation entre Wolf (orchestrateur) et Wolf-Core (cœur métier et interfaces génériques).
-
-<Tabs>
- <TabItem value="wolf" label="Wolf">
-  Orchestrateur principal, configuration par tokens pour chaque service (Notion, Dolibarr, GitHub…).
- </TabItem>
- <TabItem value="wolf-core" label="Wolf-Core">
-  Cœur du système, définit les interfaces et la logique de planification des applications à exécuter.
- </TabItem>
-</Tabs>
-
-- **Automatisation** 🤖 : synchronisation de données, déclenchement d’actions automatiques, gestion des accès et des droits.
-- **Expérience utilisateur** 🎨 : configuration simple via fichiers, documentation claire, logs détaillés.
-- **Tests et CI** 🧪 : intégration de tests automatisés et d’une pipeline CI pour garantir la robustesse du projet.
+- Développement collaboratif (Bonnet Lilian, Sébastien Delpeuch, Antoine Pringalle)
+- Architecture modulaire, API REST
+- Intégration avec Dolibarr
+- Interface web documentée
+- Tests et remontée de bugs
 
 ## Technologies et outils 🛠️
 
-- Python 3, Poetry, virtualenv
-- API REST, gestion de tokens
-- GitHub Actions pour CI
-
-## Impact et retours 🌍
-
-Wolf a permis à plusieurs associations et groupes projets de gagner du temps, d’éviter les erreurs humaines et de fluidifier la gestion quotidienne. Le projet est pensé pour être facilement extensible à de nouveaux outils ou API.
+- Python (Flask)
+- Dolibarr (gestion associative)
+- API REST
+- Scan RFID et codes-barres
 
 ## Liens et ressources 🔗
 
-- 📖 Présentation détaillée : [wolf](https://github.com/sedelpeuch/wolf)
-- 💻 Code source Wolf-Core : [GitHub](https://github.com/sedelpeuch/wolf-core)
+- 📝 Article de présentation : [Eirlab.net](https://www.eirlab.net/2022/10/21/wolf-application-de-gestion-interne/)
+- 💻 Code source : [GitHub](https://github.com/Eirlab/wolf)
+- 📚 Documentation : [ReadTheDocs](https://wolf-eirlab-community.readthedocs.io/fr/latest/index.html)
 
 ---
 
-> Wolf, c’est l’automatisation au service de la gestion associative et collaborative. ✨
+> Wolf automatise la gestion associative et centralise les tâches pour Eirlab Community.

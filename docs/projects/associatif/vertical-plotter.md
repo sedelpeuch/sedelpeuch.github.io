@@ -3,8 +3,13 @@ title: Vertical Plotter
 tags: [maker, robotique, arduino, python, dessin, open-source]
 ---
 
-<img src="/img/project/makerplotter.jpg" alt="Aperçu Vertical Plotter" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
-Dessinateur sur tableau blanc.
+<img src="https://www.eirlab.net/wp-content/uploads/2021/10/PlotterV1Meca.jpg" alt="Aperçu Vertical Plotter" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
+
+<div className="project-meta-grid">
+  <div className="project-meta-item">🛑 Terminé</div>
+  <div className="project-meta-item">📅 2021 – 2022</div>
+  <div className="project-meta-item">👨‍💻 Auteur, contributeur</div>
+</div>
 
 ## Présentation
 
@@ -16,11 +21,11 @@ L’objectif n’était pas seulement technique : il s’agissait aussi de par
 
 ## Démarche et réalisations 🚀
 
-- **Conception mécanique** : réflexion sur la géométrie du système, choix des matériaux accessibles (bois, impression 3D), modélisation et assemblage de la structure pour garantir stabilité et précision.
-- **Électronique** : sélection et câblage des moteurs pas-à-pas, drivers A4988, alimentation adaptée, intégration d’un microcontrôleur Arduino pour piloter l’ensemble.
-- **Programmation embarquée** : écriture du firmware Arduino pour gérer les déplacements du feutre, interpréter les commandes de dessin et assurer la sécurité du système.
-- **Logiciel PC** : développement d’un script Python permettant de convertir des images ou des fichiers SVG en instructions de dessin (G-code simplifié), avec gestion des vitesses, des accélérations et des pauses.
-- **Tests, calibrage et itérations** : nombreux essais pour ajuster la tension des câbles, la précision des tracés, la robustesse du système, et partage des résultats avec la communauté.
+- Conception mécanique : réflexion sur la géométrie du système, choix des matériaux accessibles (bois, impression 3D), modélisation et assemblage de la structure pour garantir stabilité et précision.
+- Électronique : sélection et câblage des moteurs pas-à-pas, drivers A4988, alimentation adaptée, intégration d’un microcontrôleur Arduino pour piloter l’ensemble.
+- Programmation embarquée : écriture du firmware Arduino pour gérer les déplacements du feutre, interpréter les commandes de dessin et assurer la sécurité du système.
+- Logiciel PC : développement d’un script Python permettant de convertir des images ou des fichiers SVG en instructions de dessin (G-code simplifié), avec gestion des vitesses, des accélérations et des pauses.
+- Tests, calibrage et itérations : nombreux essais pour ajuster la tension des câbles, la précision des tracés, la robustesse du système, et partage des résultats avec la communauté.
 
 ## Technologies et outils 🛠️
 
@@ -32,7 +37,4 @@ L’objectif n’était pas seulement technique : il s’agissait aussi de par
 ## Liens et ressources 🔗
 
 - 💻 Code source et documentation : [GitHub](https://github.com/sedelpeuch/MakerPlotter)
-
----
-
-> Un projet maker collectif, pour explorer la robotique DIY, l’art génératif et le plaisir d’apprendre en faisant. ✨
+- 📝 Article de présentation : [Eirlab.net](https://www.eirlab.net/2021/09/19/vertical-plotter/)
