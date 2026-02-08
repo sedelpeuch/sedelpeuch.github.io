@@ -169,8 +169,6 @@ const config: Config = {
   plugins: [
     "docusaurus-plugin-image-zoom",
     "docusaurus-plugin-sass",
-    path.resolve(__dirname, "./src/plugin/plugin-baidu-tongji"),
-    path.resolve(__dirname, "./src/plugin/plugin-baidu-push"),
     ["@docusaurus/plugin-ideal-image", { disableInDev: false }],
     [
       "@docusaurus/plugin-pwa",
