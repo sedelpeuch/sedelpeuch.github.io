@@ -1,5 +1,5 @@
 ---
-title: Formations données
+title: Scolarité
 ---
 
 import DocCardList from '@theme/DocCardList';
