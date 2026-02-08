@@ -32,7 +32,6 @@ export const majors = [
   { name: "GitHub Actions", logo: "skill-icons:githubactions-light" },
   { name: "Ansible", logo: "skill-icons:ansible" },
   { name: "Grafana", logo: "skill-icons:grafana-light" },
-  { name: "VS Code", logo: "skill-icons:vscode-light" },
 ];
 export const minors = [
   { name: "Prometheus", logo: "skill-icons:prometheus" },
@@ -40,14 +39,13 @@ export const minors = [
   { name: "FastAPI", logo: "skill-icons:fastapi" },
   { name: "C", logo: "skill-icons:c" },
   { name: "C++", logo: "skill-icons:cpp" },
-  { name: "React", logo: "skill-icons:react-light" },
-  { name: "TypeScript", logo: "skill-icons:typescript" },
+  { name: "VS Code", logo: "skill-icons:vscode-light" },
 ];
 
 function TechStack() {
   return (
     <div>
-      <h3 style={{ textAlign: "center", marginBottom: 0 }}>Au quotidien</h3>
+      <h3 style={{ textAlign: "center", marginBottom: 0 }}>Majeures</h3>
       <div
         style={{
           display: "flex",
@@ -74,7 +72,7 @@ function TechStack() {
           marginTop: 0,
         }}
       >
-        Sur mon temps libre / Dans le passé
+        Mineures
       </h4>
       <div
         style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}

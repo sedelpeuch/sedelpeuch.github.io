@@ -1,9 +1,7 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import Hero from "./_components/Hero";
-import FeaturesSection from "./_components/FeaturesSection";
 import { Icon } from "@iconify/react";
-import SectionTitle from "./_components/SectionTitle";
 import { majors } from "./_components/TechStack";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
@@ -16,33 +14,154 @@ export default function Home(): JSX.Element {
   return (
     <Layout title={tagline} description={description}>
       <main>
-        <Hero />
-        <div className="container-wrapper">
-          <section
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <Hero />
+          <div
             style={{
-              width: "100vw",
-              position: "relative",
-              left: "50%",
-              right: "50%",
-              marginLeft: "-50vw",
-              marginRight: "-50vw",
-              padding: "2.5rem 0 0 0",
-              background: "none",
+              display: "flex",
+              flexDirection: "row",
+              gap: "2.5rem",
+              marginTop: "2.5rem",
+              alignItems: "stretch", // clé pour que les colonnes aient la même hauteur
+              minHeight: 0,
             }}
           >
-            <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-              <SectionTitle icon="ph:stack" href={undefined}>
-                Tech Stack
-              </SectionTitle>
+            {/* Colonne gauche : Timeline (40%) */}
+            <div
+              style={{
+                flexBasis: "40%",
+                flexShrink: 0,
+                minWidth: 0,
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "stretch",
+              }}
+            >
               <div
                 style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "2.2rem",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: "1.8rem",
+                  position: "absolute",
+                  top: 0,
+                  bottom: 0,
+                  left: 36,
+                  width: 0,
+                  zIndex: 0,
+                  pointerEvents: "none",
+                }}
+              >
+                <div
+                  style={{
+                    width: 2,
+                    height: "100%",
+                    marginLeft: -1,
+                    background:
+                      "linear-gradient(to bottom, #12affa 20%, rgba(18,175,250,0) 100%)",
+                  }}
+                />
+              </div>
+              <div
+                style={{
+                  marginLeft: 0,
+                  paddingLeft: 0,
+                  position: "relative",
+                  zIndex: 1,
+                }}
+              >
+                {[
+                  { year: "2024", description: "Spécialisation DevOps" },
+                  {
+                    year: "2023",
+                    description: "CATIE : 3e à la Robocup @Home Bordeaux",
+                  },
+                  {
+                    year: "2022",
+                    description: "CATIE : Ingénieur en informatique",
+                  },
+                  {
+                    year: "2021",
+                    description:
+                      "ENSEIRB-MATMECA : spécialisation Robotique et Apprentissage",
+                  },
+                  {
+                    year: "2019",
+                    description: "ENSEIRB-MATMECA : filière informatique",
+                  },
+                  {
+                    year: "2017",
+                    description:
+                      "Cycle Préparatoire de Bordeaux (CPBx) : spécialité MP",
+                  },
+                ].map((item, index, arr) => (
+                  <div
+                    key={index}
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      minHeight: 80,
+                      position: "relative",
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "relative",
+                        width: 72,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        zIndex: 2,
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: 18,
+                          height: 18,
+                          background: "#232b3b",
+                          border: "3px solid #12affa",
+                          borderRadius: "50%",
+                          marginTop: 0,
+                          marginBottom: 0,
+                          boxSizing: "border-box",
+                          zIndex: 3,
+                        }}
+                      />
+                    </div>
+                    <div
+                      style={{
+                        flex: 1,
+                        background: "rgba(30,40,60,0.07)",
+                        borderRadius: "1rem",
+                        padding: "1rem 1.2rem",
+                        color: "#bfc7d5",
+                        fontSize: "1em",
+                        fontWeight: 500,
+                        marginBottom: "1.5rem",
+                      }}
+                    >
+                      <div
+                        style={{ fontWeight: "bold", marginBottom: "0.5rem" }}
+                      >
+                        {item.year}
+                      </div>
+                      <div>{item.description}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Colonne droite : Tech Stack + Activités (60%) */}
+            <div style={{ flexBasis: "60%", flexGrow: 1, minWidth: 0 }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
+                  gap: "2.2rem 2.2rem",
+                  justifyItems: "center",
+                  alignItems: "end",
                   width: "100%",
+                  background: "none",
+                  borderRadius: 0,
+                  boxShadow: "none",
+                  padding: 0,
                 }}
               >
                 {majors.map((tech) => (
@@ -50,35 +169,36 @@ export default function Home(): JSX.Element {
                     key={tech.name}
                     title={tech.name}
                     style={{
-                      display: "inline-flex",
+                      display: "flex",
                       flexDirection: "column",
                       alignItems: "center",
-                      gap: "0.35rem",
-                      transition: "transform 0.18s, box-shadow 0.18s",
-                      borderRadius: "12px",
+                      gap: "0.5rem",
+                      transition: "box-shadow 0.18s, filter 0.18s",
+                      borderRadius: "16px",
                       padding: "0.2em 0.2em",
                       cursor: "pointer",
-                      minWidth: 70,
-                      flex: "0 0 auto",
+                      minWidth: 80,
+                      background: "none",
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform =
-                        "scale(1.16) translateY(-6px)";
                       e.currentTarget.style.boxShadow =
-                        "0 6px 24px 0 rgba(18,175,250,0.22)";
+                        "0 4px 18px 0 rgba(18,175,250,0.13)";
+                      e.currentTarget.style.filter = "brightness(1.12)";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "";
                       e.currentTarget.style.boxShadow = "";
+                      e.currentTarget.style.filter = "";
                     }}
                   >
-                    <Icon icon={tech.logo} style={{ fontSize: 52 }} />
+                    <Icon icon={tech.logo} style={{ fontSize: 64 }} />
                     <span
                       style={{
-                        fontSize: "0.93em",
+                        fontSize: "1em",
                         color: "#bfc7d5",
                         marginTop: 2,
                         whiteSpace: "nowrap",
+                        fontWeight: 500,
+                        letterSpacing: "0.01em",
                       }}
                     >
                       {tech.name}
@@ -86,9 +206,194 @@ export default function Home(): JSX.Element {
                   </span>
                 ))}
               </div>
+              <div style={{ marginTop: "2.5rem", marginBottom: "3.5rem" }}>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, 1fr)",
+                    gap: "2rem",
+                    width: "100%",
+                  }}
+                >
+                  <div
+                    style={{
+                      background: "none",
+                      borderRadius: "1rem",
+                      padding: "1.7rem 1.2rem 1.3rem 1.2rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      minHeight: 170,
+                      minWidth: 0,
+                      border: "1px solid #232b3b",
+                      boxShadow: "none",
+                    }}
+                  >
+                    <Icon
+                      icon="mdi:docker"
+                      style={{
+                        fontSize: 38,
+                        marginBottom: 12,
+                        color: "#12affa",
+                      }}
+                    />
+                    <div
+                      style={{
+                        fontWeight: 600,
+                        fontSize: "1.05em",
+                        marginBottom: 6,
+                        textAlign: "center",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      DevOps
+                    </div>
+                    <div
+                      style={{
+                        color: "#bfc7d5",
+                        fontSize: "0.98em",
+                        textAlign: "center",
+                      }}
+                    >
+                      Automatisation, CI/CD, conteneurisation, infrastructure as
+                      code.
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      background: "none",
+                      borderRadius: "1rem",
+                      padding: "1.7rem 1.2rem 1.3rem 1.2rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      minHeight: 170,
+                      minWidth: 0,
+                      border: "1px solid #232b3b",
+                      boxShadow: "none",
+                    }}
+                  >
+                    <Icon
+                      icon="mdi:language-python"
+                      style={{
+                        fontSize: 38,
+                        marginBottom: 12,
+                        color: "#12affa",
+                      }}
+                    />
+                    <div
+                      style={{
+                        fontWeight: 600,
+                        fontSize: "1.05em",
+                        marginBottom: 6,
+                        textAlign: "center",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      Informatique Python
+                    </div>
+                    <div
+                      style={{
+                        color: "#bfc7d5",
+                        fontSize: "0.98em",
+                        textAlign: "center",
+                      }}
+                    >
+                      Développement Python quotidien : scripts, outils, API,
+                      data.
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      background: "none",
+                      borderRadius: "1rem",
+                      padding: "1.7rem 1.2rem 1.3rem 1.2rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      minHeight: 170,
+                      minWidth: 0,
+                      border: "1px solid #232b3b",
+                      boxShadow: "none",
+                    }}
+                  >
+                    <Icon
+                      icon="mdi:clipboard-check"
+                      style={{
+                        fontSize: 38,
+                        marginBottom: 12,
+                        color: "#12affa",
+                      }}
+                    />
+                    <div
+                      style={{
+                        fontWeight: 600,
+                        fontSize: "1.05em",
+                        marginBottom: 6,
+                        textAlign: "center",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      Coordination Projets
+                    </div>
+                    <div
+                      style={{
+                        color: "#bfc7d5",
+                        fontSize: "0.98em",
+                        textAlign: "center",
+                      }}
+                    >
+                      Gestion et pilotage de projets pour des clients variés
+                      (TPE, PME, startups).
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      background: "none",
+                      borderRadius: "1rem",
+                      padding: "1.7rem 1.2rem 1.3rem 1.2rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      minHeight: 170,
+                      minWidth: 0,
+                      border: "1px solid #232b3b",
+                      boxShadow: "none",
+                    }}
+                  >
+                    <Icon
+                      icon="mdi:robot"
+                      style={{
+                        fontSize: 38,
+                        marginBottom: 12,
+                        color: "#12affa",
+                      }}
+                    />
+                    <div
+                      style={{
+                        fontWeight: 600,
+                        fontSize: "1.05em",
+                        marginBottom: 6,
+                        textAlign: "center",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      Coordination R&D robotique
+                    </div>
+                    <div
+                      style={{
+                        color: "#bfc7d5",
+                        fontSize: "0.98em",
+                        textAlign: "center",
+                      }}
+                    >
+                      Organisation et suivi de la roadmap en robotique.
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </section>
-          <FeaturesSection />
+          </div>
         </div>
       </main>
     </Layout>
