@@ -2,19 +2,19 @@
 title: GitHub ARC Kubeadm
 ---
 
-<img src="/img/project/github-arc-kubeadm.png" alt="Aperçu GitHub ARC Kubeadm" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
+<img src="/img/arc.png" alt="Aperçu GitHub ARC Kubeadm" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
-  <div className="project-meta-item">📅 2024-2025</div>
-  <div className="project-meta-item">📖 CI/CD, Kubernetes, GitHub Actions</div>
-  <div className="project-meta-item">🔎 Expérimenter l’auto-hébergement de runners GitHub Actions sur un cluster Kubeadm</div>
+  <div className="project-meta-item">📅 Date : 2024-2025</div>
+  <div className="project-meta-item">👤 Rôle : DevOps / Architecte CI/CD</div>
+  <div className="project-meta-item">🛠️ Techno : Kubernetes (kubeadm), GitHub Actions, Helm, CI/CD</div>
 </div>
 
-## Contexte
+## Description du projet
 
-Ce projet vise à déployer et maintenir des GitHub Actions Runners auto-hébergés (ARC) sur un cluster Kubernetes provisionné avec kubeadm. L’objectif est de gagner en maîtrise, en flexibilité et en sécurité pour l’exécution de pipelines CI/CD, tout en optimisant les coûts et la scalabilité par rapport aux runners GitHub hébergés.
+Déploiement et gestion de GitHub Actions Runners auto-hébergés (ARC) sur un cluster Kubernetes provisionné avec kubeadm. Objectif : maîtriser l’exécution des pipelines CI/CD, renforcer la sécurité, optimiser les coûts et la scalabilité par rapport aux runners GitHub hébergés.
 
-## Démarche et apprentissages 🚀
+## Réalisations principales
 
 - Installation et configuration d’un cluster Kubernetes avec kubeadm (VMs, bare metal)
 - Déploiement des runners GitHub ARC via Helm charts ou manifests YAML
@@ -22,18 +22,14 @@ Ce projet vise à déployer et maintenir des GitHub Actions Runners auto-héberg
 - Automatisation du cycle de vie des runners (scaling, mise à jour, monitoring)
 - Documentation des choix techniques, des problèmes rencontrés et des solutions apportées
 
-## Résultats et suites possibles
+## Stack technique
 
-- Plateforme CI/CD flexible, maîtrisée et évolutive pour les projets personnels et associatifs
-- Réduction des coûts d’exécution des pipelines, meilleure intégration avec l’infrastructure existante
-- Base d’expérimentation pour d’autres orchestrateurs ou solutions de runners (Nomad, OpenTofu…)
-- Poursuite de la documentation et partage de la démarche
+- Kubernetes (kubeadm)
+- GitHub Actions Runners (ARC)
+- Helm
+- CI/CD, monitoring, sécurité
 
 ## Liens et ressources 🔗
 
-- 📖 Documentation Kubeadm : [https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/)
-- 📖 GitHub ARC : [https://docs.github.com/fr/actions/hosting-your-own-runners/about-self-hosted-runners](https://docs.github.com/fr/actions/hosting-your-own-runners/about-self-hosted-runners)
-
----
-
-> Un projet pour maîtriser l’exécution CI/CD, optimiser les coûts et explorer l’auto-hébergement sur Kubernetes.
+- [Documentation Kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/)
+- [GitHub ARC](https://docs.github.com/fr/actions/hosting-your-own-runners/about-self-hosted-runners)
