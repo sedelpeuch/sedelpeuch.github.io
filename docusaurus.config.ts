@@ -49,7 +49,7 @@ const config: Config = {
           items: [
             {
               label: "Associations",
-              to: "associatif",
+              to: "docs/scolarite/associatif",
             },
             {
               label: "ENSEIRB-MATMECA : Semestre 9",
