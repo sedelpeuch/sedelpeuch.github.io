@@ -1,7 +1,5 @@
 ---
 title: Reachy Mobile
-status: Terminé
-period: 2020-2022
 tags: [robotique, reachy, mobile, eirlab, python, jupyter]
 ---
 

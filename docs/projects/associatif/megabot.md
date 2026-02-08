@@ -1,7 +1,5 @@
 ---
 title: MegaBot
-status: Terminé
-period: 2019-2023
 tags: [robotique, quadrupède, eirlab, stm32, pybullet, open-source]
 ---
 

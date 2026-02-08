@@ -38,3 +38,4 @@ jobs:
         with:
           source-dir: ./build/
           token: ${{ secrets.GITHUB_TOKEN }}
+          wait-for-pages-deployment: true
