@@ -3,24 +3,32 @@ title: Application de suivi - Ultimaker série S
 tags: [ultimaker, monitoring, fabrication, python, js]
 ---
 
-<img src="/img/project/ultimaker.png" alt="Aperçu Application Ultimaker" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
+<img src="https://www.eirlab.net/wp-content/uploads/2021/11/20211104_143102-1024x576.jpg" alt="Aperçu Application Ultimaker" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
+
+<div className="project-meta-grid">
+  <div className="project-meta-item">🛑 Terminé</div>
+  <div className="project-meta-item">📅 2021 – 2022</div>
+  <div className="project-meta-item">👨‍💻 Co-auteur, développeur</div>
+</div>
 
 
 ## Présentation
 
-L’application de suivi Ultimaker série S est née d’un besoin quotidien dans le fablab : savoir d’un coup d’œil si une imprimante est libre, en cours ou en panne, sans avoir à se déplacer. L’équipe a d’abord développé **ultimaker-screen** (JavaScript), une interface web affichée sur une TV du lab, connectée en temps réel à l’API des imprimantes.
+Depuis septembre 2021, Eirlab Community utilise deux imprimantes Ultimaker série S, équipées d’une API permettant de suivre à distance l’état des machines. L’application de suivi a été développée pour répondre au besoin de visualiser en temps réel la disponibilité, l’état et l’activité des imprimantes depuis l’open space, sans avoir à se déplacer.
 
-Face à de nouveaux usages, une version Python/Flask (**Ultiwatcher**) a vu le jour pour permettre un monitoring local, plus léger et personnalisable. Le projet a été rythmé par des phases de tests sur le réseau interne, des ajustements pour fiabiliser la connexion (reboot auto du Raspberry Pi), et des échanges avec les utilisateurs pour améliorer l’ergonomie.
+Le projet a débuté avec le développement d’un client JavaScript affiché sur une télévision du fablab, puis a évolué vers une version Python/Flask pour un monitoring local et personnalisable. L’application est utilisée quotidiennement pour optimiser l’utilisation des machines et améliorer l’expérience des membres.
 
-Ce travail collectif a permis d’optimiser l’utilisation des machines, de réduire les pertes de temps et d’offrir une meilleure expérience à la communauté Eirlab.
+## Contexte associatif
+
+Projet réalisé au sein du fablab associatif Eirlab, pour faciliter la gestion partagée des ressources d’impression 3D. L’outil s’adresse à l’ensemble de la communauté Eirlab (membres, bénévoles, encadrants) et favorise l’autonomie et la fluidité des usages.
 
 ## Démarche et réalisations 🚀
 
 - Analyse de l’API Ultimaker, tests sur le réseau local
-- Développement d’une interface web (ultimaker-screen) adaptée à l’affichage TV
+- Développement d’une interface web (ultimaker-screen) pour affichage TV
 - Déploiement sur Raspberry Pi, gestion de la robustesse (reboot auto)
 - Développement d’une version Python/Flask (Ultiwatcher) pour usage local
-- Documentation et support pour la communauté Eirlab
+- Documentation, support et évolutions selon les retours utilisateurs
 
 ## Technologies et outils 🛠️
 
@@ -33,7 +41,4 @@ Ce travail collectif a permis d’optimiser l’utilisation des machines, de ré
 
 - 💻 Code source Ultimaker-screen : [GitHub](https://github.com/Eirlab/ultimaker-screen)
 - 💻 Code source Ultiwatcher : [GitHub](https://github.com/Eirlab/Ultiwatcher)
-
----
-
-> Un outil pratique pour le suivi des impressions 3D en fablab, pensé pour l’usage quotidien et l’intégration dans l’espace de travail.
+- 📝 Article de présentation : [Eirlab.net](https://www.eirlab.net/2021/11/04/application-de-suivi-ultimaker-serie-s/)

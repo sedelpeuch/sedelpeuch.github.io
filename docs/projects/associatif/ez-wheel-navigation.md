@@ -1,19 +1,23 @@
 ---
-title: EZ Wheel (Reachy Mobile)
-tags: [robotique, ezwheel, reachy, eirlab]
+title: EZ Wheel Navigation
+status: Terminé
+period: 2020-2022
+tags: [robotique, ezwheel, reachy, eirlab, cmake, python]
 ---
 
 <img src="/img/project/ezwheel.png" alt="Aperçu EZ Wheel" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
+<div className="project-meta-grid">
+  <div className="project-meta-item">🛑 Terminé</div>
+  <div className="project-meta-item">📅 2020-2022</div>
+  <div className="project-meta-item">👨‍💻 Contributeur</div>
+</div>
 
 ## Présentation
 
-Le projet EZ Wheel s’inscrit dans le cadre de Reachy Mobile chez Eirlab, avec l’ambition de doter le robot Reachy d’une véritable mobilité sur une base motorisée. L’équipe a dû relever plusieurs défis : adapter le code de pilotage à la base EZ Wheel, assurer la compatibilité avec les commandes de Reachy, et expérimenter la navigation sur une plateforme ouverte.
+Le projet EZ Wheel Navigation s’inscrit dans le cadre de Reachy Mobile chez Eirlab, avec l’ambition de doter le robot Reachy d’une véritable mobilité sur une base motorisée EZ Wheel. L’équipe a adapté le code de pilotage, assuré la compatibilité avec les commandes de Reachy, et expérimenté la navigation sur une plateforme ouverte.
 
-Au fil du projet, de nombreux tests ont été menés pour valider la robustesse de la base, la précision des déplacements et l’intégration des capteurs. Les séances de téléopération et de navigation autonome ont permis d’identifier les points d’amélioration, d’optimiser les algorithmes et de documenter les résultats pour la communauté.
-
-Ce travail collectif a permis de mieux comprendre les enjeux de la mobilité robotique, de la gestion des moteurs à l’intégration logicielle, tout en favorisant le partage d’expérience au sein du fablab.
-
+Des tests ont permis de valider la robustesse de la base, la précision des déplacements et l’intégration des capteurs. Les séances de téléopération et de navigation autonome ont permis d’optimiser les algorithmes et de documenter les résultats pour la communauté.
 
 ## Démarche et réalisations 🚀
 
@@ -25,6 +29,7 @@ Ce travail collectif a permis de mieux comprendre les enjeux de la mobilité rob
 ## Technologies et outils 🛠️
 
 - CMake, C++
+- Python
 - Contrôleurs moteurs
 - Intégration robotique
 
