@@ -29,12 +29,12 @@ const config: Config = {
         {
           label: "Projets",
           position: "left",
-          to: "project",
+          to: "docs/projects",
         },
         {
           label: "Enseignement",
           position: "left",
-          to: "docs/learning",
+          to: "docs/enseignement",
         },
         {
           label: "Blog",
@@ -45,6 +45,7 @@ const config: Config = {
           type: "dropdown",
           label: "Scolarité",
           position: "left",
+          to: "docs/scolarite",
           items: [
             {
               label: "Associations",
@@ -52,39 +53,39 @@ const config: Config = {
             },
             {
               label: "ENSEIRB-MATMECA : Semestre 9",
-              to: "docs/enseirb/s9",
+              to: "docs/scolarite/enseirb/s9",
             },
             {
               label: "ENSEIRB-MATMECA : Semestre 8",
-              to: "docs/enseirb/s8",
+              to: "docs/scolarite/enseirb/s8",
             },
             {
               label: "ENSEIRB-MATMECA : Semestre 7",
-              to: "docs/enseirb/s7",
+              to: "docs/scolarite/enseirb/s7",
             },
             {
               label: "ENSEIRB-MATMECA : Semestre 6",
-              to: "docs/enseirb/s6",
+              to: "docs/scolarite/enseirb/s6",
             },
             {
               label: "ENSEIRB-MATMECA : Semestre 5",
-              to: "docs/enseirb/s5",
+              to: "docs/scolarite/enseirb/s5",
             },
             {
               label: "CPBx : Semestre 4",
-              to: "docs/cpbx/s4",
+              to: "docs/scolarite/cpbx/s4",
             },
             {
               label: "CPBx : Semestre 3",
-              to: "docs/cpbx/s3",
+              to: "docs/scolarite/cpbx/s3",
             },
             {
               label: "CPBx : Semestre 2",
-              to: "docs/cpbx/s2",
+              to: "docs/scolarite/cpbx/s2",
             },
             {
               label: "CPBx : Semestre 1",
-              to: "docs/cpbx/s1",
+              to: "docs/scolarite/cpbx/s1",
             },
           ],
         },

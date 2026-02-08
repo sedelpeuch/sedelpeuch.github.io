@@ -9,8 +9,6 @@ import { useThemeConfig } from "@docusaurus/theme-common";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import { projects } from "@site/data/projects";
-
 import styles from "./styles.module.scss";
 
 type Count = {
@@ -43,7 +41,7 @@ export default function UserCard({ isNavbar = false }: { isNavbar?: boolean }) {
 
   const count: Count = {
     doc: docData?.length ?? 0,
-    project: projects?.length ?? 0,
+    project: 0,
   };
 
   return (
