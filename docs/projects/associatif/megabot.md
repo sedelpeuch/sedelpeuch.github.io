@@ -6,8 +6,8 @@ tags: [robotique, quadrupède, eirlab, stm32, pybullet, open-source]
 <img src="https://www.eirlab.net/wp-content/uploads/2021/10/20210913_162609-scaled-e1632074627206-1024x575.jpg" alt="Aperçu MegaBot" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
-  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">📅 2019-2023</div>
+  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">👨‍💻 Contributeur</div>
 </div>
 
