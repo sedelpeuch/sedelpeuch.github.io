@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "@theme/Layout";
 import Hero from "./_components/Hero";
 import { Icon } from "@iconify/react";
 import { majors } from "./_components/TechStack";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { motion } from "framer-motion";
 
 export default function Home(): JSX.Element {
   const {
@@ -60,27 +61,47 @@ export default function Home(): JSX.Element {
                   justifyContent: "stretch",
                 }}
               >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    bottom: 0,
-                    left: 36,
-                    width: 0,
-                    zIndex: 0,
-                    pointerEvents: "none",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 2,
-                      height: "100%",
-                      marginLeft: -1,
-                      background:
-                        "linear-gradient(to bottom, #12affa 20%, rgba(18,175,250,0) 100%)",
-                    }}
-                  />
-                </div>
+                {/* Animation de la barre verticale synchronisée */}
+                {(() => {
+                  const timelineLength = 6; // nombre d'événements
+                  const [barVisible, setBarVisible] = useState(false);
+                  useEffect(() => {
+                    // Barre animée juste avant la fin, au moment où le dernier point commence
+                    const delay = 0.6 * (timelineLength - 4);
+                    const timer = setTimeout(
+                      () => setBarVisible(true),
+                      delay * 1000,
+                    );
+                    return () => clearTimeout(timer);
+                  }, []);
+                  return (
+                    <motion.div
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        bottom: 0,
+                        left: 36,
+                        width: 0,
+                        zIndex: 0,
+                        pointerEvents: "none",
+                      }}
+                      initial={{ scaleY: 0 }}
+                      animate={barVisible ? { scaleY: 1 } : { scaleY: 0 }}
+                      transition={{ duration: 0.7, ease: "easeOut" }}
+                    >
+                      <div
+                        style={{
+                          width: 2,
+                          height: "100%",
+                          marginLeft: -1,
+                          background:
+                            "linear-gradient(to bottom, #12affa 20%, rgba(18,175,250,0) 100%)",
+                          transformOrigin: "top",
+                        }}
+                      />
+                    </motion.div>
+                  );
+                })()}
                 <div
                   style={{
                     marginLeft: 0,
@@ -114,8 +135,11 @@ export default function Home(): JSX.Element {
                         "Cycle Préparatoire de Bordeaux (CPBx) : spécialité MP",
                     },
                   ].map((item, index, arr) => (
-                    <div
+                    <motion.div
                       key={index}
+                      initial={{ opacity: 0, x: -60 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.15 }}
                       style={{
                         display: "flex",
                         alignItems: "flex-start",
@@ -165,7 +189,7 @@ export default function Home(): JSX.Element {
                         </div>
                         <div>{item.description}</div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
