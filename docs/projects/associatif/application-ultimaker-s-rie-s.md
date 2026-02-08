@@ -6,8 +6,8 @@ tags: [ultimaker, monitoring, fabrication, python, js]
 <img src="https://www.eirlab.net/wp-content/uploads/2021/11/20211104_143102-1024x576.jpg" alt="Aperçu Application Ultimaker" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
-  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">📅 2021 – 2022</div>
+  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">👨‍💻 Co-auteur, développeur</div>
 </div>
 

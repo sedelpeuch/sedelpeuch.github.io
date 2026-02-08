@@ -6,8 +6,8 @@ tags: [maker, robotique, arduino, python, dessin, open-source]
 <img src="https://www.eirlab.net/wp-content/uploads/2021/10/PlotterV1Meca.jpg" alt="Aperçu Vertical Plotter" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
-  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">📅 2021 – 2022</div>
+  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">👨‍💻 Auteur, contributeur</div>
 </div>
 

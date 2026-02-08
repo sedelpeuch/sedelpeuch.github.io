@@ -6,8 +6,8 @@ tags: [gestion, flask, dolibarr, association, python, eirlab]
 <img src="https://www.eirlab.net/wp-content/uploads/2022/10/image-4.png" alt="Aperçu Wolf" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
-  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">📅 2022</div>
+  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">👨‍💻 Auteur, contributeur</div>
 </div>
 

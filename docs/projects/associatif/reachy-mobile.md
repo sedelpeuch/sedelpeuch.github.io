@@ -6,8 +6,8 @@ tags: [robotique, reachy, mobile, eirlab, python, jupyter]
 <img src="/img/project/reachy_mobile.png" alt="Aperçu Reachy Mobile" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
-  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">📅 2020-2022</div>
+  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">👨‍💻 Contributeur</div>
 </div>
 

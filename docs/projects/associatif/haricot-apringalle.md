@@ -6,8 +6,8 @@ tags: [iot, dashboard, eirlab, capteur, python, flask]
 <img src="https://www.eirlab.net/wp-content/uploads/2022/01/haricot-dashboard.png" alt="Aperçu Haricot Dashboard" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
-  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">📅 2021 – 2022</div>
+  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">👨‍💻 Contributeur</div>
 </div>
 

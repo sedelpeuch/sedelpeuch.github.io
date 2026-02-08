@@ -6,8 +6,8 @@ tags: [wordpress, plugin, inscription, eirlab]
 <img src="https://www.eirlab.net/wp-content/uploads/2021/11/Capture-decran-de-2021-11-03-16-14-34-1-750x609.png" alt="Aperçu Easy Booked Eirlab" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
-  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">📅 2021 – 2022</div>
+  <div className="project-meta-item">🛑 Terminé</div>
   <div className="project-meta-item">👨‍💻 Auteur, mainteneur</div>
 </div>
 
