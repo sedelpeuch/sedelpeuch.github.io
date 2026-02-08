@@ -1,28 +1,39 @@
 ---
 title: Template LaTeX
-tags: [latex, template, rapport, memoire]
 ---
 
-Template LaTeX pour la rédaction de rapports techniques, mémoires ou documents scientifiques, pensé pour offrir une base claire, élégante et facilement personnalisable. Le dépôt propose une structure complète : fichier principal `report.tex`, classe personnalisée `rapportECL.cls`, Makefile pour la compilation, et dossiers pour les sections, la bibliographie, les logos et la configuration.
+<img src="/img/project/template-latex.png" alt="Aperçu Template LaTeX" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
-## Présentation
+<div className="project-meta-grid">
+  <div className="project-meta-item">📅 Depuis 2019</div>
+  <div className="project-meta-item">📖 Rédaction technique, rapports, LaTeX</div>
+  <div className="project-meta-item">🔎 Fournir une base fiable et élégante pour la rédaction de documents scientifiques et techniques</div>
+</div>
 
-Ce template a été conçu pour répondre aux besoins récurrents des étudiants et ingénieurs souhaitant produire des documents professionnels avec LaTeX, sans repartir de zéro à chaque nouveau projet. Il propose une structure de base : page de garde, sommaire, gestion des annexes, bibliographie, et mise en page adaptée aux standards académiques.
+## Contexte
 
-## Démarche et usages
+Template LaTeX est un projet personnel open source, conçu pour répondre aux besoins récurrents de rédaction de rapports, mémoires ou documents scientifiques. L’objectif est d’offrir une structure claire, professionnelle et facilement personnalisable, évitant de repartir de zéro à chaque nouveau projet.
 
-L’objectif est de fournir un point de départ fiable, avec des exemples de sections courantes (introduction, méthodologie, résultats, conclusion), une gestion simple des figures et tableaux, et des options de personnalisation (couleurs, logos, entêtes/pieds de page). Le template est régulièrement utilisé pour des rapports de stage, projets de fin d’études, ou publications internes.
+## Démarche et usages 🚀
 
-## Technologies
+- Création d’une structure complète : fichier principal `report.tex`, classe personnalisée `rapportECL.cls`, Makefile, dossiers pour sections, bibliographie, logos et configuration
+- Compatibilité avec TeX Live et MikTeX, gestion de la bibliographie avec BibTeX
+- Exemples de sections courantes (introduction, méthodologie, résultats, conclusion), gestion simple des figures, tableaux, annexes
+- Personnalisation aisée (couleurs, logos, entêtes/pieds de page)
+- Utilisation régulière pour des rapports de stage, projets de fin d’études, publications internes
 
-- **LaTeX** (compatible TeX Live, MikTeX)
-- **BibTeX** pour la gestion des références
-- Fichiers `.cls` et `.sty` pour la personnalisation
+## Résultats et évolutions
 
-## Liens
+- Base fiable et réutilisable pour la rédaction de documents académiques ou professionnels
+- Adoption par d’autres étudiants et ingénieurs, retours d’expérience intégrés
+- Amélioration continue du template et de la documentation
+- Possibilité d’ajouter des exemples avancés (présentations Beamer, intégration CI/CD pour la compilation…)
 
-- [Code source GitHub](https://github.com/sedelpeuch/template_latex)
+## Liens et ressources 🔗
 
-## Citation
+- 💻 Code source : [GitHub](https://github.com/sedelpeuch/template_latex)
+- Licence : GPL-3.0
+
+---
 
 > « Un bon template, c’est la moitié d’un bon rapport. »

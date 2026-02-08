@@ -1,7 +1,5 @@
 ---
 title: EZ Wheel Navigation
-status: Terminé
-period: 2020-2022
 tags: [robotique, ezwheel, reachy, eirlab, cmake, python]
 ---
 
