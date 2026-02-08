@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksedelpeuch_net=self.webpackChunksedelpeuch_net||[]).push([[6467],{45982(e){e.exports=JSON.parse('{"tag":{"label":"automatisation","permalink":"/docs/tags/automatisation","allTagsPath":"/docs/tags","count":1,"items":[{"id":"projects/wolf","title":"Wolf","description":"Pr\xe9sentation","permalink":"/docs/projects/wolf"}],"unlisted":false}}')}}]);

@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-scolarite/enseirb/s8/se/3" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Gestion mémoire | Sébastien Delpeuch</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://delpeuch.net/docs/scolarite/enseirb/s8/se/3"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Gestion mémoire | Sébastien Delpeuch"><meta data-rh="true" name="description" content="Programmation modulaire"><meta data-rh="true" property="og:description" content="Programmation modulaire"><link data-rh="true" rel="icon" href="/img/logo.svg"><link data-rh="true" rel="canonical" href="https://delpeuch.net/docs/scolarite/enseirb/s8/se/3"><link data-rh="true" rel="alternate" href="https://delpeuch.net/docs/scolarite/enseirb/s8/se/3" hreflang="en"><link data-rh="true" rel="alternate" href="https://delpeuch.net/docs/scolarite/enseirb/s8/se/3" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scolarité","item":"https://delpeuch.net/docs/scolarite/"},{"@type":"ListItem","position":2,"name":"ENSEIRB-MATMECA","item":"https://delpeuch.net/docs/scolarite/enseirb/"},{"@type":"ListItem","position":3,"name":"Semestre 8","item":"https://delpeuch.net/docs/scolarite/enseirb/s8/"},{"@type":"ListItem","position":4,"name":"Système d'exploitation ","item":"https://delpeuch.net/docs/scolarite/enseirb/s8/se/"},{"@type":"ListItem","position":5,"name":"Gestion mémoire","item":"https://delpeuch.net/docs/scolarite/enseirb/s8/se/3"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Sébastien Delpeuch&#39;s Blog RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Sébastien Delpeuch&#39;s Blog Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="Sébastien Delpeuch&#39;s Blog JSON Feed">
+
+
+
+
+
+
+
+<link rel="icon" href="/img/logo.png">
+<meta name="theme-color" content="#12affa">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous">
+<script src="https://plausible.io/js/script.js" defer="defer" data-domain="delpeuch.net"></script><link rel="stylesheet" href="/assets/css/styles.c68f8b02.css">
+<script src="/assets/js/runtime~main.746f412d.js" defer="defer"></script>
+<script src="/assets/js/main.7e1dbf2e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>document.documentElement.setAttribute("data-theme","dark"),document.documentElement.setAttribute("data-theme-choice","dark"),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="navbar" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="navbar" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div></a><a class="navbar__item navbar__link" href="/about">Résumé</a><a class="navbar__item navbar__link" href="/docs/projects">Projets</a><a class="navbar__item navbar__link" href="/docs/enseignement">Enseignement</a><a class="navbar__item navbar__link" href="/blog">Blog</a><div class="navbar__item dropdown dropdown--hoverable"><a aria-current="page" class="navbar__link active" aria-haspopup="true" aria-expanded="false" role="button" href="/docs/scolarite">Scolarité</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/associatif">Associations</a></li><li><a class="dropdown__link" href="/docs/scolarite/enseirb/s9">ENSEIRB-MATMECA : Semestre 9</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/docs/scolarite/enseirb/s8">ENSEIRB-MATMECA : Semestre 8</a></li><li><a class="dropdown__link" href="/docs/scolarite/enseirb/s7">ENSEIRB-MATMECA : Semestre 7</a></li><li><a class="dropdown__link" href="/docs/scolarite/enseirb/s6">ENSEIRB-MATMECA : Semestre 6</a></li><li><a class="dropdown__link" href="/docs/scolarite/enseirb/s5">ENSEIRB-MATMECA : Semestre 5</a></li><li><a class="dropdown__link" href="/docs/scolarite/cpbx/s4">CPBx : Semestre 4</a></li><li><a class="dropdown__link" href="/docs/scolarite/cpbx/s3">CPBx : Semestre 3</a></li><li><a class="dropdown__link" href="/docs/scolarite/cpbx/s2">CPBx : Semestre 2</a></li><li><a class="dropdown__link" href="/docs/scolarite/cpbx/s1">CPBx : Semestre 1</a></li></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/enseignement/"><span title="Enseignement" class="categoryLinkLabel_W154">Enseignement</span></a><button aria-label="Expand sidebar category &#x27;Enseignement&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/projects/"><span title="Projets" class="categoryLinkLabel_W154">Projets</span></a><button aria-label="Expand sidebar category &#x27;Projets&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/docs/scolarite/"><span title="Scolarité" class="categoryLinkLabel_W154">Scolarité</span></a><button aria-label="Collapse sidebar category &#x27;Scolarité&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/scolarite/cpbx/"><span title="CPBx" class="categoryLinkLabel_W154">CPBx</span></a><button aria-label="Expand sidebar category &#x27;CPBx&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/docs/scolarite/enseirb/"><span title="ENSEIRB-MATMECA" class="categoryLinkLabel_W154">ENSEIRB-MATMECA</span></a><button aria-label="Collapse sidebar category &#x27;ENSEIRB-MATMECA&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s5/"><span title="Semestre 5" class="linkLabel_WmDU">Semestre 5</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/scolarite/enseirb/s6/"><span title="Semestre 6" class="categoryLinkLabel_W154">Semestre 6</span></a><button aria-label="Expand sidebar category &#x27;Semestre 6&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/scolarite/enseirb/s7/"><span title="Semestre 7" class="categoryLinkLabel_W154">Semestre 7</span></a><button aria-label="Expand sidebar category &#x27;Semestre 7&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/docs/scolarite/enseirb/s8/"><span title="Semestre 8" class="categoryLinkLabel_W154">Semestre 8</span></a><button aria-label="Collapse sidebar category &#x27;Semestre 8&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/scolarite/enseirb/s8/apptcp/"><span title="Applications TCP-IP " class="categoryLinkLabel_W154">Applications TCP-IP </span></a><button aria-label="Expand sidebar category &#x27;Applications TCP-IP &#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/complex"><span title="Calculabilité et complexité " class="linkLabel_WmDU">Calculabilité et complexité </span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/crypto"><span title="Cryptologie " class="linkLabel_WmDU">Cryptologie </span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/ia"><span title="Intelligence Artificielle " class="linkLabel_WmDU">Intelligence Artificielle </span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/jeux/"><span title="Théorie des jeux pour la modélisation informatique " class="linkLabel_WmDU">Théorie des jeux pour la modélisation informatique </span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/maker"><span title="Maker " class="linkLabel_WmDU">Maker </span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/projet"><span title="Évaluation des projets et maîtrise des coûts" class="linkLabel_WmDU">Évaluation des projets et maîtrise des coûts</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/qualite"><span title="Management de la qualité" class="linkLabel_WmDU">Management de la qualité</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/robotique"><span title="Initiation à la robotique " class="linkLabel_WmDU">Initiation à la robotique </span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/docs/scolarite/enseirb/s8/se/"><span title="Système d&#x27;exploitation " class="categoryLinkLabel_W154">Système d&#x27;exploitation </span></a><button aria-label="Collapse sidebar category &#x27;Système d&#x27;exploitation &#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/se/1"><span title="Introduction et Concepts Généraux" class="linkLabel_WmDU">Introduction et Concepts Généraux</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/se/2"><span title="Processus et exécution" class="linkLabel_WmDU">Processus et exécution</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/scolarite/enseirb/s8/se/3"><span title="Gestion mémoire" class="linkLabel_WmDU">Gestion mémoire</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/se/4"><span title="Concurrence et synchronisation" class="linkLabel_WmDU">Concurrence et synchronisation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/se/5"><span title="Gestion du temps" class="linkLabel_WmDU">Gestion du temps</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/scolarite/enseirb/s8/se/6"><span title="Virtualisation" class="linkLabel_WmDU">Virtualisation</span></a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/scolarite/enseirb/s9/"><span title="Semestre 9" class="categoryLinkLabel_W154">Semestre 9</span></a><button aria-label="Expand sidebar category &#x27;Semestre 9&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/scolarite/"><span>Scolarité</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/scolarite/enseirb/"><span>ENSEIRB-MATMECA</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/scolarite/enseirb/s8/"><span>Semestre 8</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/scolarite/enseirb/s8/se/"><span>Système d&#x27;exploitation </span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Gestion mémoire</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Gestion mémoire</h1></header><h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="programmation-modulaire">Programmation modulaire<a href="#programmation-modulaire" class="hash-link" aria-label="Direct link to Programmation modulaire" title="Direct link to Programmation modulaire" translate="no">​</a></h2>
+<p>Le chargement des programmes est l&#x27;assemblage de modules (programme,
+bibliothèques). Le calcul des adresses mémoires se fait via deux moyens :</p>
+<ul>
+<li class="">le chargement absolu par le programmeur, le compilateur ou l&#x27;assembleur</li>
+<li class="">le chargement dynamique qui sont des adresses relatives calculées à l&#x27;exécution</li>
+</ul>
+<p>Pour cela on utilse de l&#x27;édition de liens , c&#x27;est à dire l&#x27;utilisation de
+&quot;symboles&quot; pour référencer des adresses inconnues. Les références non-résolues
+provoquent des chargement d&#x27;autres modules. Cela permet de mettre à jour des
+modules sans recompiler</p>
+<p>Comment stocker les adresses si on peut charger à différents endroits ?
+Les adresses absolues sont simples à gérer mais imposent un emplacement du code
+en mémoire et impose un seul programme ou mémoire virtuelle. Les adresses
+relatives sont ajustées plus tard, au chargement ou à l&#x27;exécution (édition de
+liens entre modules, fixer les adresses à l&#x27;intérieur des modules).</p>
+<p>Le code est indépendant de la position, on utilise uniquement des adresses
+relatives (facile à charger, pas besoin de modifier le code, peu coûteux en
+temps)</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="mémoire-virtuelle">Mémoire virtuelle<a href="#mémoire-virtuelle" class="hash-link" aria-label="Direct link to Mémoire virtuelle" title="Direct link to Mémoire virtuelle" translate="no">​</a></h2>
+<p>Nous souhaitons que chaque processus voit un espace linéaire. Cependant il n&#x27;est
+pas forcément linéaire physiquement et n&#x27;est pas forcément utilisé
+intégralement. Nous souhaitons aussi que la taille ne soit pas limité par la
+mémoire physique ainsi que pouvoir protéger et partager la mémoire.</p>
+<p>L&#x27;intérêt de la mémoire virtuelle est de nous offrir plus de mémoire que de
+mémoire physique disponible. Les codes et données non-utilisées peuvent donc
+rester sur le disque (chargés par l&#x27;OS quand ils deviennent nécessaires). Elle
+permet aussi de faire cohabiter de nombreux processsus mais surtout d&#x27;isoler des
+processus puisque l&#x27;espace virtuel des autres processsus est inaccessible.</p>
+<p>Cette abstraction n&#x27;entraine pas de contraintes pour le programmeur puisque
+l&#x27;abstraction est linéaire et uniforme du stockage physique.</p>
+<p>En revanche la mémoire virtuelle possède des inconvénients, en effet le premier
+est un inconvénient de performance puisque l&#x27;on consomme de l&#x27;espace mémoire
+pour stocker des tables de pages mais aussi de la consommation en temps pour
+consulter la table des pages.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pagination">Pagination<a href="#pagination" class="hash-link" aria-label="Direct link to Pagination" title="Direct link to Pagination" translate="no">​</a></h3>
+<p>Permet une forte non-contiguité de l&#x27;espace virtuel en mémoire physique. Il y a
+une division de la mémoire physique en bloc de taille fixe et la division de
+l&#x27;espace virtuel en blocs de tailles fixes. Chaque cadre virtuel nécessite
+l&#x27;allocation d&#x27;une page physique.</p>
+<p>L&#x27;association entre les pages et les cadres est gérée par l&#x27;OS (table de pages),
+il n&#x27;y a pas de contrainte sur le choix des pages (les espaces virtuels
+dispersés dans l&#x27;espace physique). Aucune adresse virtuelle ne pointe sur les
+pages de autres processus.</p>
+<p>La traduction des adresses virtuelles équivaut au numéro du cadre virtuel plus
+le décalage. Ce numéro est l&#x27;index dans le table de page et permet de récupérer
+le numéro de page physique. L&#x27;adresse physique est alors égale au PFN (page
+frame number) plus le décalage.</p>
+<p>Chaque cadre virtuel dispose de bits de protections, un bit permet de dire si la
+page est valide ou non (seg fault), un bit permet de dire si la page est
+présente ou non (défauts de page, swap ...). En fonction de l&#x27;architecture il
+peut y avoir des bits de read-only, read-write etc</p>
+<p>Les avantages de la pagination sont multiples, l&#x27;allocation de pages est
+faciles, le swap de morceaux de programmes aussi (tous les cadres virtuels ont
+la même taille, un bit de présence est utilisé pour savoir si swappé ou non). Le
+partage et la protection des pages est facile.</p>
+<p>En revanche cela implique une fragmentation interne (de l&#x27;ordre de la taille
+d&#x27;une page), cela est coûteux (2 références par accès mémoire) et implique une
+consommation de mémoire importante.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="segmentation">Segmentation<a href="#segmentation" class="hash-link" aria-label="Direct link to Segmentation" title="Direct link to Segmentation" translate="no">​</a></h3>
+<p>Cela consiste à partitionner la mémoire en unités logiques (code, tas, pile).
+L&#x27;espace d&#x27;adressage est alors défini par l&#x27;ensemble des segments indépendants.
+Les adresses virtuelles sont alors composé du sélecteur de segment plus du
+décalage dans ce segment. Cela permet de mettre en place une protection par
+segment et un partage à forte granularité. Cependant l&#x27;allocation est difficile et le swap est
+plus lourd que lors de la pagination.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="approches-hybrides--segments-paginés">Approches hybrides : Segments paginés<a href="#approches-hybrides--segments-paginés" class="hash-link" aria-label="Direct link to Approches hybrides : Segments paginés" title="Direct link to Approches hybrides : Segments paginés" translate="no">​</a></h3>
+<p>Nous utilisons des segments pour distinguer des unités logiques (code, tas,
+pile) et une pagination interne à chaque segment (allocation, swap à granularité
+fine). La traduction d&#x27;une adresse virtuelle en adresse physique est en deux
+temps</p>
+<ul>
+<li class="">Décalage d&#x27;index dans la table de pages via la table des segments : adresse linéaire</li>
+<li class="">Traduction de l&#x27;adresse linéaire en adresse physique via la table des pages.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="partage-mémoire">Partage mémoire<a href="#partage-mémoire" class="hash-link" aria-label="Direct link to Partage mémoire" title="Direct link to Partage mémoire" translate="no">​</a></h3>
+<p>Plusieurs zones virtuelles peuvent pointer sur les mêmes pages physiques avec
+des protections différentes. Il existe un compteur de références dans les pages,
+la page est libre quand la dernière référence est relâchée. On peut alors la
+réutiliser.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="tables-de-pages">Tables de pages<a href="#tables-de-pages" class="hash-link" aria-label="Direct link to Tables de pages" title="Direct link to Tables de pages" translate="no">​</a></h2>
+<p>La table de page est défini par l&#x27;ensemble des associations entre les cadres
+virtuels et la validité, la localisation et la protection. Elle est accédé
+quasiquement uniquement par adresse virtuelle. La table des pages complète prend
+beaucoup de place en mémoire (4MB pour un espace 32 bits avec pages de 4Ko).</p>
+<p>Une grande part de l&#x27;espace d&#x27;adressage n&#x27;est pas utilisé car il n&#x27;est pas
+valide ou valide mais inutilisé actuellement. Ainsi doit on vraiment décrire
+toutes ces pages virtuelles inutiles individuellement ?</p>
+<p>L&#x27;idée est d&#x27;utiliser des tables hiérarchiques à plusieurs niveaux, chaque
+niveau est un tableau d&#x27;indirection vers des sous-tableaux. Cela permet de
+supprimer les tableaux inutiles (au lieu d&#x27;allouer un tableau d&#x27;entrées
+invalides, on marque le pointeur du père comme invalide)</p>
+<p>Si un processus n&#x27;utilise qu&#x27;un seul cadre virtuel alors on alloue une seule
+page par niveau. Si un processus utilise toute la mémoire virtuelle alors le
+dernier niveau fait exactement la même taille qu&#x27;une table linéaire à 1 seul
+niveau (surcoût des niveaux supérieurs est négligeable de l&#x27;ordre de 1/ nombre
+de pointeurs par niveau).</p>
+<p>Les processeurs supportent 2 à 4 niveaux et l&#x27;OS les utilise comme il veut.</p>
+<p>Les adresses virtuelles sont égales à l&#x27;agréagation d&#x27;index pour chaque niveau.
+(premiers bits est l&#x27;entrée dans la table du premier niveau etc). L&#x27;os choisit
+le nombre de bits en faisant tenir la table et chaque sous-table dans une page
+exactement. La traduction des adresses virtuelles en adresses physique se fait
+via le parcours de la table de haut en bas.</p>
+<p>Concernant les tables de pages hachées, on réalise l&#x27;hachage de l&#x27;adresse
+virtuelle puis un parcours d&#x27;une liste pour localise la PTE. Cela est efficace
+pour les espaces d&#x27;adressage très dispersés, lent pour les espaces remplis.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="bilan">Bilan<a href="#bilan" class="hash-link" aria-label="Direct link to Bilan" title="Direct link to Bilan" translate="no">​</a></h3>
+<ul>
+<li class="">Table linéaire originale : très simple, bon temps d&#x27;accès, très mauvais en
+espace mémoire</li>
+<li class="">Table hiérarchique : assez simple, bon temps d&#x27;accès, très bon en espace
+mémoire</li>
+<li class="">Table hachée : relativement simple, temps d&#x27;accès bon en moyenne, très très
+bon en espace mémoire</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="pagination-à-la-demande-et-défauts-de-page">Pagination à la demande et défauts de page<a href="#pagination-à-la-demande-et-défauts-de-page" class="hash-link" aria-label="Direct link to Pagination à la demande et défauts de page" title="Direct link to Pagination à la demande et défauts de page" translate="no">​</a></h2>
+<p>L&#x27;OS peut souvent être fainéant (ne pas charger une page en mémoire tant qu&#x27;elle
+n&#x27;est pas accédée), cela implique un défaut de page lors du premier accès qui
+entraîne l&#x27;allocation et le remplissage de la page (reprise sur erreur)</p>
+<p>On utilise aussi la pagination à la demande (<em>demand paging</em>) puisque la mémoire
+n&#x27;est qu&#x27;un cache des données manipulées par le processus. Initialement tout est
+sur le disque, entre temps, on charge ce qui est accédé quand c&#x27;est nécessaire.</p>
+<p>Un <strong>défaut de page</strong> est un accès qui ne peut être réalisé par le matériel (le
+processeur ne peut pas le faire) et demande l&#x27;aide de l&#x27;OS (adresse virtuelle
+invalide, adresse valide mais page absente en mémoire physique, adresse valide
+mais écriture interdite)</p>
+<p>L&#x27;OS a défini un traitant pour l&#x27;exception &quot;défaut de page&quot;. Le traitant va
+alors identifier le problème, le réparer si cela est possible (chargement d&#x27;une
+page depuis le disque) sinon le processus ne peut pas continuer.</p>
+<p>L&#x27;allocation de pages se fait via l&#x27;OS, il dispose d&#x27;une liste de pages libres.
+Si la liste est vide, il faut libérer une page (sinon il y a une erreur).</p>
+<p>Pour charger une page lors d&#x27;un défaut nous allons d&#x27;une part récupérer une page
+libre et d&#x27;autre par localiser les données à charger. Il suffit ensuite de
+soumettre l&#x27;I/O de lecture depuis le disque. Lorsque l&#x27;I/O termine il suffit
+d&#x27;adapter le statut de la page et reprendre le processus.</p>
+<p>La pagination à la demande possède les avantages suivants :</p>
+<ul>
+<li class="">Localité temporelle : une page accédée récemment le sera sûrement à nouveau
+dans le futur proche</li>
+<li class="">Localité spatiale : les zones mémoire voisines seront sûrement accédées dans
+le futur proche</li>
+<li class="">Une page chargée va être réutilisée plusieurs fois</li>
+<li class="">En moyenne, on utilise beaucoup les choses déjà chargées</li>
+<li class="">Ne pas charger trop de choses inutilement</li>
+</ul>
+<p>En revanche certaines applications ne respectent pas vraiment la localité
+spatiale ou temporelle, les politiques de chargement et remplacement doivent
+être bonnes.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="projection-de-fichiers">Projection de fichiers<a href="#projection-de-fichiers" class="hash-link" aria-label="Direct link to Projection de fichiers" title="Direct link to Projection de fichiers" translate="no">​</a></h3>
+<p>Dans un OS tout est fichier. L&#x27;OS ne fait que manipuler des pages de fichiers.
+Nous pouvons réaliser une projection publique où les modifications effectuées en
+mémoire sont répercutées dans le fichier. Ou une projection privée où les
+modifications sont sauvées dans le swap et sont perdues à la fin du processus.</p>
+<p>La projection anonyme est une projection sans fichier de support. Il utilise la
+pile ou le tas et est utilisé par malloc pour les allocations en dehors du tas.
+Il peut être privé ou public.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="copy-on-write">Copy-on-Write<a href="#copy-on-write" class="hash-link" aria-label="Direct link to Copy-on-Write" title="Direct link to Copy-on-Write" translate="no">​</a></h3>
+<p>Les copies mémoire coûtent cher, il faut éviter de dupliquer inutilement et
+retarder la duplication au maximum jusqu&#x27;à la première modification concurrente.
+Pour détecter une modification concurrent la page est mise en lecture seule dans
+le matériel et provoquer un défaut de page. Le traitant alloue une page, copie
+le contenu dedans et la donne au processus.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="le-swap">Le swap<a href="#le-swap" class="hash-link" aria-label="Direct link to Le swap" title="Direct link to Le swap" translate="no">​</a></h3>
+<p>Le swap est une extension de la mémoire physique. Elle est plus lente et n&#x27;a pas
+besoin d&#x27;être déréférencable par le processeur et est entièrement géré par l&#x27;OS.</p>
+<p>Historiquement on swappait des processus entiers ce qui provoque la suspension
+complète de l&#x27;exécution. La pagination permet la granularité de la page. Un
+processus gigantesque peut continuer à s&#x27;exécuter en résidant essentiellement
+dans le swap.</p>
+<p>Les PTE valides mais non-présentes peuvent pointer vers un bloc du swap. Un
+accès provoque un défaut de page et le chargement du bloc en mémoire. L&#x27;OS
+décide de quelles pages envoyer sur le disque (selon le principe de localité).</p>
+<p>Le swap sert uniquement quand il faut libérer de la mémoire physique. Seules les
+pages privées et/ou anonymes vont dans le swap (la libérations des pages de
+mappings publics les renvoit sur le disque contenant le fichier correspondant)</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="heuristiques-de-gestion-mémoire">Heuristiques de gestion mémoire<a href="#heuristiques-de-gestion-mémoire" class="hash-link" aria-label="Direct link to Heuristiques de gestion mémoire" title="Direct link to Heuristiques de gestion mémoire" translate="no">​</a></h2>
+<p>Le chargement des pages se fait quand elles sont accédées lors du défaut de
+page. Le prepaging et prefaulting permet de charger à l&#x27;avance des pages
+suivantes (principe de localité). Le chargement s&#x27;effectue généralement dans
+n&#x27;importe quelle page physique. Lorsque l&#x27;on utilise une architecture NUMA on
+privilégie généralement l&#x27;utilisation de mémoire proche.</p>
+<p>Les modifications sont sauvées sur les pages modifiées dans des fichiers
+correspondants ou dans le swap. Les pages mappées sont difficiles à gérer, il
+n&#x27;y a pas dappel explicite à l&#x27;OS lors des modifications. Le matériel ajoute
+alors un bit <em>Dirty</em> et l&#x27;on sauve uniquement les pages <em>Dirty</em>.</p>
+<p>Concernant le swap nous allons swaper les pages non-utilisées à l&#x27;avenir
+(algorithme de Belady) en utilisant la politique LRU (Least Recentyle Used) ou
+LFU (Least Frequently Used). Le swap se produit soit au dernier moment, soit
+quand la mémoire disponible passe en dessous d&#x27;un seuil.</p>
+<p>On conserve en mémoire le plus de choses possibles car elle est rapide au cas où
+cela serve plus tard. On effectue des sauvegardes régulière des modifications
+sans forcément libérer les pages. En régime permanent, un OS utilise toute la
+mémoire, au cas où. Les pages publiques sont gardées en mémoire si un processus
+les réutilise et les pages privées jusqu&#x27;à la fin du processus courant.</p>
+<p>Si une allocation mémoire échoue le système doit tout de même survivre.
+L&#x27;utilisateur doit pouvoir continuer à utiliser le système (tuer un processus
+pour libérer de la mémoire). Pour déterminer qui tuer plusieurs politiques
+existent, tuer ceux qui essaie d&#x27;allouer, ceux qui allouent beaucoup ou les
+processus les moins importants.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="support-matériel">Support matériel<a href="#support-matériel" class="hash-link" aria-label="Direct link to Support matériel" title="Direct link to Support matériel" translate="no">​</a></h2>
+<p>Le code manipule uniquement des adresses virtuelles mais le processeur doit les
+traduire en adresse physique. Il faut que la table des pages soit accessible au
+matériel (soit directement par une MMU, soit indirectement par l&#x27;OS via une exception)</p>
+<p>La MMU (memory management unit) est un cricuit dédié du processeur pour traduire
+les adresses virtuelles. Cependant la traduction des adresses virtuelles peut
+être lente. Il est de plus nécessaire de cacher les traductions (Translation
+Lookaside Buffer). Si le TLB cache miss :</p>
+<ul>
+<li class="">Si MMU, la MMU parcourt la table des pages</li>
+<li class="">Si pas de MMU, exception gérée par l&#x27;OS.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="mémoire-du-noyau">Mémoire du noyau<a href="#mémoire-du-noyau" class="hash-link" aria-label="Direct link to Mémoire du noyau" title="Direct link to Mémoire du noyau" translate="no">​</a></h2>
+<p>L&#x27;espace d&#x27;adressage utilisé par le noyau se divise en deux partie. D&#x27;une part il existe un espace virtuel spécifique au noyau accessible uniquement en mode
+privilégié. Et un espace virtuel utilisateur du processus courant utilisé
+pendant un appel système ou une interruption.</p>
+<p>Le noyau est un contexte d&#x27;exécution et à potentiellement le droit d&#x27;accéder à
+tout ce qui possède une adresse virtuelle. Cependant il est réellement besoin de
+son propre code et de ses données propres pour fonctionner (10-100 Mo). Le noyau
+ne mappe rien par défaut à part le strict minimum.</p></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/scolarite/enseirb/s8/se/2"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Processus et exécution</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/scolarite/enseirb/s8/se/4"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Concurrence et synchronisation</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop" style="opacity:0;transform:translateX(100px) translateZ(0)"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#programmation-modulaire" class="table-of-contents__link toc-highlight">Programmation modulaire</a></li><li><a href="#mémoire-virtuelle" class="table-of-contents__link toc-highlight">Mémoire virtuelle</a><ul><li><a href="#pagination" class="table-of-contents__link toc-highlight">Pagination</a></li><li><a href="#segmentation" class="table-of-contents__link toc-highlight">Segmentation</a></li><li><a href="#approches-hybrides--segments-paginés" class="table-of-contents__link toc-highlight">Approches hybrides : Segments paginés</a></li><li><a href="#partage-mémoire" class="table-of-contents__link toc-highlight">Partage mémoire</a></li></ul></li><li><a href="#tables-de-pages" class="table-of-contents__link toc-highlight">Tables de pages</a><ul><li><a href="#bilan" class="table-of-contents__link toc-highlight">Bilan</a></li></ul></li><li><a href="#pagination-à-la-demande-et-défauts-de-page" class="table-of-contents__link toc-highlight">Pagination à la demande et défauts de page</a><ul><li><a href="#projection-de-fichiers" class="table-of-contents__link toc-highlight">Projection de fichiers</a></li><li><a href="#copy-on-write" class="table-of-contents__link toc-highlight">Copy-on-Write</a></li><li><a href="#le-swap" class="table-of-contents__link toc-highlight">Le swap</a></li></ul></li><li><a href="#heuristiques-de-gestion-mémoire" class="table-of-contents__link toc-highlight">Heuristiques de gestion mémoire</a></li><li><a href="#support-matériel" class="table-of-contents__link toc-highlight">Support matériel</a></li><li><a href="#mémoire-du-noyau" class="table-of-contents__link toc-highlight">Mémoire du noyau</a></li></ul><hr class="hr_UhE0"><span class="percent_H6RK">0%<!-- --> </span></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Social</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/sedelpeuch" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div></div></footer></div>
+</body>
+</html>
