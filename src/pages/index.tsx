@@ -97,22 +97,18 @@ export default function Home() {
                 ))}
               </div>
               {/* Colonne droite : Tech Stack + Activités (60%) */}
-              <div className={styles.techStackColumn}>
+              <motion.div
+                className={styles.techStackColumn}
+                initial={{ opacity: 0, x: 60 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1.0, ease: "easeOut", delay: 0.5 }}
+              >
                 <div className={styles.techStackGrid}>
                   {majors.map((tech) => (
                     <span
                       key={tech.name}
                       title={tech.name}
                       className={styles.techStackItem}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow =
-                          "0 4px 18px 0 rgba(18,175,250,0.13)";
-                        e.currentTarget.style.filter = "brightness(1.12)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow = "";
-                        e.currentTarget.style.filter = "";
-                      }}
                     >
                       <Icon icon={tech.logo} className={styles.techStackIcon} />
                       <span className={styles.techStackName}>{tech.name}</span>
@@ -172,7 +168,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </main>
