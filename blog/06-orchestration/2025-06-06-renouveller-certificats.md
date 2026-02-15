@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes : certificats"
 description: "Guide pratique pour renouveler les certificats expirants dans un cluster Kubernetes déployé avec kubeadm."
-tags: [Kubernetes, Orchestration, Devops]
+tags: [orchestration, devops]
 ---
 
 Les certificats jouent un rôle crucial dans la sécurité de Kubernetes. Ils assurent l'authentification et le chiffrement des communications entre les différents composants du cluster. Cependant, ces certificats ont une durée de vie limitée et doivent être renouvelés avant leur expiration pour maintenir le bon fonctionnement du cluster. 🔐

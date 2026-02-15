@@ -1,7 +1,7 @@
 ---
 title: "Ansible : cas pratique zsh"
 description: "Découvrez comment automatiser et versionner votre environnement shell avec Ansible grâce au projet zsh_ansible."
-tags: [Ansible, zsh, oh-my-zsh, DevOps, IaC]
+tags: [iac, devops]
 ---
 
 Dans l'[article précédent](/blog/2025/06/09/08-iac/ansible-introduction), nous avons découvert les bases d'Ansible et ses avantages pour l'automatisation d'infrastructure. Aujourd'hui, nous allons explorer un cas pratique concret : l'automatisation de la configuration de votre shell zsh avec le projet [zsh_ansible](https://github.com/sedelpeuch/zsh_ansible). 🐚

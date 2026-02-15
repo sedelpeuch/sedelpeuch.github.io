@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes : composants de base"
 description: "Découvrez les composants de base de Kubernetes, tels que les Services, Pods, Deployments et StatefulSets."
-tags: [Kubernetes, Orchestration, Devops]
+tags: [orchestration, devops]
 ---
 
 Kubernetes est une plateforme d'orchestration de conteneurs qui permet de gérer des clusters de machines exécutant des conteneurs. Dans cet article, les composants de base de Kubernetes, notamment les Services, Pods, Deployments et StatefulSets, seront explorés. 🚀

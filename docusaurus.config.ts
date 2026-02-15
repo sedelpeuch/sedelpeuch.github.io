@@ -40,6 +40,41 @@ const config: Config = {
           label: "Blog",
           position: "left",
           to: "blog",
+          type: "dropdown",
+          items: [
+            {
+              label: "Réseau",
+              to: "blog/tags/network",
+            },
+            {
+              label: "Conteneurisation",
+              to: "blog/tags/containerization",
+            },
+            {
+              label: "CI/CD",
+              to: "blog/tags/cicd",
+            },
+            {
+              label: "Cloud",
+              to: "blog/tags/cloud",
+            },
+            {
+              label: "Orchestration",
+              to: "blog/tags/orchestration",
+            },
+            {
+              label: "Observabilité",
+              to: "blog/tags/monitoring",
+            },
+            {
+              label: "Infrastructure as Code",
+              to: "blog/tags/iac",
+            },
+            {
+              label: "Scripting",
+              to: "blog/tags/scripting",
+            },
+          ],
         },
         {
           type: "dropdown",
@@ -157,8 +192,9 @@ const config: Config = {
             type: "all",
             title: "Sébastien Delpeuch's Blog",
           },
-          blogSidebarTitle: 'Tous les articles',
-          blogSidebarCount: 'ALL',
+          blogSidebarTitle: "Tous les articles",
+          blogSidebarCount: "ALL",
+          tags: "tags.yaml",
         },
         theme: {
           customCss: ["./src/css/custom.scss"],
@@ -208,7 +244,7 @@ const config: Config = {
     mermaid: true,
   },
   themes: [
-    '@docusaurus/theme-mermaid',
+    "@docusaurus/theme-mermaid",
     [
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {

@@ -1,7 +1,7 @@
 ---
 title: "Ansible : avancé"
 description: "Fonctionnalités avancées d'Ansible pour créer des playbooks modulaires, sécuriser les secrets et automatiser les déploiements."
-tags: [Ansible, IaC, DevOps, CI/CD, Automation]
+tags: [iac, devops]
 ---
 
 L'[article précédent sur Ansible](/blog/2025/06/09/08-iac/ansible-introduction) couvrait les bases de cet outil d'automatisation puissant. Cet article explore des concepts avancés qui permettent de créer des infrastructures complexes de manière modulaire, sécurisée et automatisée. 🚀

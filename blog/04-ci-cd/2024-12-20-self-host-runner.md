@@ -1,7 +1,7 @@
 ---
 title: "GitHub Actions : Self-Host Runner"
 description: "Explication de la création et de l'installation d'un nouveau runner au niveau de l'organisation"
-tags: [CI/CD, GitHub, Devops]
+tags: [cicd, devops]
 ---
 
 Un `runner` est une machine virtuelle ou physique qui exécute des `jobs` dans un `workflow`. Les `runners` peuvent être hébergés par GitHub ou auto-hébergés. Les `runners` hébergés par GitHub sont exécutés dans un environnement de cloud partagé et sont gérés par GitHub et peuvent entrainer des surcouts. Les `runners` auto-hébergés sont exécutés sur une machine que vous possédez et gérez.
