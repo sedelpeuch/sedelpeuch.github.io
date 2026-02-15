@@ -1,7 +1,7 @@
 ---
 title: "Python : Pydantic"
 description: "Comment utiliser Pydantic pour valider, sérialiser et documenter vos modèles de données en Python."
-tags: [Python, Data Validation, API, FastAPI, Scripting]
+tags: [scripting, devops]
 ---
 
 Dans un monde où les APIs et les microservices se multiplient, la validation des données est devenue une préoccupation majeure. Pydantic s'impose comme la solution de référence en Python pour définir et valider des structures de données. Découvrons ensemble cette bibliothèque puissante qui révolutionne la façon dont nous manipulons les données. 🔍
