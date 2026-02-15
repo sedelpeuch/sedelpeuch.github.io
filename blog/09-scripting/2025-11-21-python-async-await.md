@@ -1,7 +1,7 @@
 ---
 title: "Python : async/await"
 description: "Maîtrisez la programmation asynchrone en Python pour créer des applications performantes et réactives."
-tags: [Python, Async, Asyncio, Performance, FastAPI, DevOps]
+tags: [scripting]
 ---
 
 La programmation asynchrone est devenue essentielle pour créer des applications Python performantes, notamment pour les APIs, les web scrapers, ou les applications traitant de nombreuses opérations I/O. Dans cet article, nous explorerons en profondeur `async`/`await` et `asyncio`, avec des cas d'usage pratiques notamment avec FastAPI. 🚀

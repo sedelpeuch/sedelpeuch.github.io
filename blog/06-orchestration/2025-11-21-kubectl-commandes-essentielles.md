@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes : kubectl"
 description: "Les commandes kubectl indispensables pour gérer efficacement des clusters Kubernetes au quotidien."
-tags: [Kubernetes, Orchestration, Devops, kubectl]
+tags: [orchestration]
 ---
 
 Kubectl est l'outil en ligne de commande officiel pour interagir avec les clusters Kubernetes. La maîtrise de kubectl est essentielle pour tout DevOps ou développeur travaillant avec Kubernetes. Cet article explore les commandes de base et avancées, ainsi que des astuces pour améliorer la productivité. 🚀

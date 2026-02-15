@@ -1,10 +1,10 @@
 ---
 title: DevOps Roadmap 2026
 description: Présentation de ma roadmap DevOps personnelle 2026
-tags: [Devops, Roadmap]
+tags: [devops]
 ---
 
-Voici un résumé de ma roadmap DevOps personnelle pour 2026. Cette roadmap est basée sur mes expériences et mes objectifs personnels. Elle est sujette à des changements et des mises à jour régulières. N'hésitez pas à me contacter si vous avez des suggestions ou des commentaires.
+Voici un résumé de ma roadmap DevOps personnelle pour 2026. Cette roadmap s’appuie sur les réalisations de l’année précédente et vise à approfondir le cloud et l’Infrastructure as Code. Elle évolue au fil des projets, des expérimentations et des apprentissages partagés sur le blog.
 
 <!--truncate-->
 
@@ -14,16 +14,26 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ![DevOps](/img/devops.png)
 
-## <IconTitle logo="skill-icons:aws-light" name="05 Apprendre un fournisseur de Cloud"/>
+## Roadmap 2026
 
-De nombreuses entreprises utilisent aujourd'hui une infrastructure virtuelle sur le cloud, plutôt que de gérer leur propre infrastructure. Les plateformes Infrastructure as a Service (IaaS) offrent une gamme de services supplémentaires, tels que la sauvegarde, la sécurité et l'équilibrage de charge. AWS est la plateforme IaaS la plus puissante et la plus largement utilisée, bien qu'elle soit également l'une des plus complexes. D'autres plateformes populaires incluent Microsoft Azure et Google Cloud. Ces services sont spécifiques à chaque plateforme, il est donc nécessaire d'apprendre les services de la plateforme choisie et de savoir gérer toute l'infrastructure de déploiement sur celle-ci. Par exemple, pour AWS, il est important de connaître les bases des services IAM, VPC et EC2.
+### <IconTitle logo="skill-icons:aws-light" name="05 Apprendre un fournisseur de Cloud"/>
 
-- Service IAM - gestion des utilisateurs et des permissions
-- Service VPC - votre réseau privé
-- Service EC2 - serveurs virtuels
+[Cloud](/blog/tags/cloud) Maîtrise des plateformes cloud (AWS, Azure, Google Cloud), gestion des utilisateurs et des permissions (IAM), administration des réseaux privés (VPC) et des serveurs virtuels (EC2). Objectif : automatiser le déploiement, renforcer la sécurité et optimiser la scalabilité des infrastructures.
 
-## <IconTitle logo="skill-icons:terraform-light" name="08 Infrastructure as Code - Terraform"/>
+### <IconTitle logo="skill-icons:terraform-light" name="08 Infrastructure as Code - Terraform"/>
 
-Créer et maintenir manuellement une infrastructure est une tâche chronophage et sujette à erreurs, notamment lorsqu'il s'agit de répliquer l'infrastructure pour différents environnements tels que le développement, les tests et la production. En DevOps, l'objectif est d'automatiser autant que possible, et c'est là qu'intervient l'Infrastructure as Code.
+[Infrastructure as Code](/blog/tags/iac) Automatisation avancée du provisionnement d’infrastructure avec Terraform, gestion multi-environnements (dev, test, prod), documentation des workflows et partage des bonnes pratiques.
 
-- Terraform est l'outil de provisionnement d'infrastructure le plus populaire
+## Bilan 2025
+
+### <IconTitle logo="skill-icons:kubernetes" name="06 Orchestration de conteneurs - Kubernetes & Docker Swarm"/>
+
+[Orchestration](/blog/tags/orchestration) Maîtrise des composants de base, utilisation avancée de la CLI Kubernetes, persistance des données, externalisation des configurations, gestion des accès via Ingress. Voir [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm).
+
+### <IconTitle logo="skill-icons:prometheus" name="07 Monitoring & Observabilité"/>
+
+[Observabilité](/blog/tags/monitoring) Intégration de Grafana, Prometheus et Loki pour la supervision, la visualisation et la gestion des logs. Mise en place de dashboards, alertes et supervision multi-environnements. Voir [FervantFactory](/docs/projects/personnel/fervantfactory).
+
+### <IconTitle logo="skill-icons:terraform-light" name="08 Infrastructure as Code"/>
+
+[Infrastructure as Code](/blog/tags/iac) Automatisation de la configuration et du déploiement avec Ansible, exploration de Terraform, documentation des workflows et partage des bonnes pratiques. Voir [CI/CD GitHub Actions](/docs/projects/professionnel/cicd).
