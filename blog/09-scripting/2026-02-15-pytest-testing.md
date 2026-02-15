@@ -1,6 +1,6 @@
 ---
-title: "Python : pytest"
-description: "Maîtrisez pytest, le framework de testing le plus populaire en Python. Fixtures, parametrization, mocking et bonnes pratiques."
+title: "Python : Pytest"
+description: "Maîtrisez Pytest, le framework de testing le plus populaire en Python. Fixtures, parametrization, mocking et bonnes pratiques."
 tags: [scripting, devops]
 ---
 
