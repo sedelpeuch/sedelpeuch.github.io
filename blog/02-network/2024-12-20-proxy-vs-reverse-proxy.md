@@ -1,7 +1,7 @@
 ---
 title: "Proxy : Proxy vs Reverse Proxy"
 description: "Explication de la différence entre un proxy et un reverse proxy, inspirée du transcript de la vidéo 'Proxy vs Reverse Proxy vs Load Balancer | Simply Explained'."
-tags: [Proxy, Reverse Proxy, Network, Devops]
+tags: [network, devops]
 ---
 
 Dans cet article, nous allons explorer la différence entre un proxy et un reverse proxy.

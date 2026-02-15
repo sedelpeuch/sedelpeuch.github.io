@@ -1,7 +1,7 @@
 ---
 title: "Prometheus"
 description: "Prometheus, l'outil de monitoring et d'alerting open-source devenu incontournable dans l'écosystème Cloud Native."
-tags: [Prometheus, Monitoring, Observabilité, DevOps]
+tags: [monitoring, devops]
 ---
 
 Prometheus est un système de monitoring et d'alerting open-source qui s'est imposé comme la référence dans l'écosystème Cloud Native. Conçu initialement chez SoundCloud en 2012, Prometheus est aujourd'hui un projet gradué de la Cloud Native Computing Foundation (CNCF). Cet article explore l'installation, le fonctionnement et les bases du langage de requête PromQL. 📊

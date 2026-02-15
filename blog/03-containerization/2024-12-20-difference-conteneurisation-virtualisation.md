@@ -1,7 +1,7 @@
 ---
 title: Containerization vs Virtualization
 description: "Comparaison entre Docker et les machines virtuelles (VM) en termes de taille d'image, de vitesse et de compatibilité."
-tags: [Containerization, Virtualization, Docker, VM, Devops]
+tags: [containerization, devops]
 ---
 
 Docker et les machines virtuelles (VM) sont des outils de virtualisation, mais ils fonctionnent différemment. Docker virtualise la couche des applications du système d'exploitation, utilisant le noyau de l'hôte, tandis qu'une VM virtualise l'ensemble du système d'exploitation, incluant son propre noyau et sa couche d'applications. Cette différence entraîne plusieurs distinctions majeures.

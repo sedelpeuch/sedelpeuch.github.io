@@ -1,7 +1,7 @@
 ---
 title: "Docker : conteneurs"
 description: "Présentation des conteneurs Docker, leur fonctionnement et des exemples d'utilisation."
-tags: [Docker, Containerization, Devops]
+tags: [containerization, devops]
 ---
 
 Les conteneurs Docker sont des unités logicielles légères et portables qui encapsulent une application et ses dépendances dans une image. Ces images sont composées de plusieurs couches, souvent basées sur une distribution Linux légère comme Alpine, pour minimiser la taille. Les conteneurs permettent de maintenir des applications isolées et cohérentes, indépendamment de l'environnement d'exécution.

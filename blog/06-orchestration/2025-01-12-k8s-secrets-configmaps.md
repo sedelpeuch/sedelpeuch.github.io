@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes : Secrets et ConfigMaps"
 description: "Découvrez les concepts de Secrets et ConfigMaps dans Kubernetes, et comment les utiliser pour gérer les configurations et les informations sensibles."
-tags: [Kubernetes, Orchestration, Devops]
+tags: [orchestration, devops]
 ---
 
 Kubernetes offre des mécanismes pour gérer les configurations et les informations sensibles de manière sécurisée et efficace. Dans cet article, les concepts de Secrets et ConfigMaps dans Kubernetes seront explorés, ainsi que leur utilisation pour gérer les configurations et les informations sensibles. 🔒

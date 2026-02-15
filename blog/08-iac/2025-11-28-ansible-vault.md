@@ -1,7 +1,7 @@
 ---
 title: "Ansible : Vault"
 description: Introduction à Ansible Vault pour la gestion sécurisée des secrets dans les playbooks Ansible.
-tags: [Ansible, Vault, IaC, Sécurité]
+tags: [iac, devops]
 ---
 
 Ansible Vault est un outil intégré à Ansible permettant de chiffrer et de gérer les secrets (mots de passe, clés, variables sensibles) dans les fichiers de configuration et les playbooks. Cette fonctionnalité est essentielle pour garantir la sécurité des données confidentielles lors de l'automatisation de l'infrastructure.

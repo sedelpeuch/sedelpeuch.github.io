@@ -1,7 +1,7 @@
 ---
 title: "Loki"
 description: "Loki, le système de gestion de logs inspiré de Prometheus, conçu pour être simple, efficace et économique."
-tags: [Loki, Logs, Monitoring, Observabilité, DevOps, Kubernetes]
+tags: [monitoring, devops]
 ---
 
 Loki est un système d'agrégation de logs horizontalement scalable, hautement disponible et multi-tenant, inspiré par Prometheus. Créé par Grafana Labs, Loki se distingue par son approche minimaliste : plutôt que d'indexer le contenu des logs, il n'indexe que les métadonnées (labels), ce qui le rend extrêmement efficace et économique. 📝

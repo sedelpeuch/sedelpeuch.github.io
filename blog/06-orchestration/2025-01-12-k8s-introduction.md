@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes"
 description: "Découvrez les concepts de base de Kubernetes, une plateforme d'orchestration de conteneurs."
-tags: [Kubernetes, Orchestration, Devops]
+tags: [orchestration, devops]
 ---
 
 Kubernetes est une plateforme open-source conçue pour automatiser le déploiement, la mise à l'échelle et la gestion des applications conteneurisées. Il permet de regrouper des conteneurs qui composent une application en unités logiques pour une gestion et une découverte plus faciles. 🚀

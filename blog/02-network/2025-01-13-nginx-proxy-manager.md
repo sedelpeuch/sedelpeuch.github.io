@@ -1,7 +1,7 @@
 ---
 title: "Proxy : Nginx Proxy Manager"
 description: "Présentation de Nginx Proxy Manager, ses fonctionnalités et ses avantages, ainsi qu'une démonstration d'utilisation avec Docker."
-tags: [nginx-proxy-manager, Docker, Network, Devops]
+tags: [network, devops]
 ---
 
 Nginx Proxy Manager est une interface utilisateur graphique (GUI) pour gérer les proxys inverses Nginx. Il simplifie la gestion des proxys inverses, des certificats SSL et des redirections de trafic. Cet article présente Nginx Proxy Manager, explique ses fonctionnalités et avantages, et fournit une démonstration d'utilisation avec Docker.

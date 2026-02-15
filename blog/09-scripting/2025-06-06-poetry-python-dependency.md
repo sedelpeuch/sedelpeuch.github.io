@@ -1,7 +1,7 @@
 ---
 title: "Python : Poetry"
 description: "Un guide complet sur Poetry, l'outil moderne de gestion de dépendances et de packaging pour Python."
-tags: [Python, DevOps, Scripting]
+tags: [scripting]
 ---
 
 Poetry est devenu un outil essentiel dans l'écosystème Python pour gérer les dépendances et le packaging de projets. Dans cet article, nous explorerons comment Poetry simplifie la gestion des dépendances Python, offrant une alternative élégante et robuste à pip et virtualenv. 🐍

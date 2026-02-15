@@ -1,7 +1,7 @@
 ---
 title: "Ansible"
 description: "Découvrez Ansible, l'outil d'automatisation simple mais puissant qui révolutionne la gestion de l'infrastructure as code."
-tags: [Ansible, IaC, DevOps]
+tags: [iac, devops]
 ---
 
 Ansible est devenu un outil incontournable dans le monde DevOps pour l'automatisation des infrastructures. Sa simplicité d'utilisation et sa puissance en font une solution privilégiée pour déployer des configurations, orchestrer des systèmes et gérer l'infrastructure as code. 🚀

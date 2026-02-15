@@ -1,7 +1,7 @@
 ---
 title: "GraphQL : FastAPI & Strawberry"
 description: "Étapes pratiques pour concevoir, coder et tester une API GraphQL en Python."
-tags: [Devops, Python, API]
+tags: [scripting]
 ---
 
 Ce guide présente, étape par étape, la création d’une API GraphQL en Python avec FastAPI et Strawberry, en expliquant les choix d’outils et les bonnes pratiques à chaque étape.

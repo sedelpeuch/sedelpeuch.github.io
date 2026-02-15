@@ -1,0 +1,26 @@
+devops:
+  label: DevOps
+
+network:
+  label: Réseau
+
+containerization:
+  label: Conteneurisation
+
+cicd:
+  label: CI/CD
+
+cloud:
+  label: Cloud
+
+orchestration:
+  label: Orchestration
+
+monitoring:
+  label: Observabilité
+
+iac:
+  label: Infrastructure as Code
+
+scripting:
+  label: Scripting
