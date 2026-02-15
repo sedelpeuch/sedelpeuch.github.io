@@ -195,6 +195,7 @@ const config: Config = {
           blogSidebarTitle: "Tous les articles",
           blogSidebarCount: "ALL",
           tags: "tags.yaml",
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: ["./src/css/custom.scss"],
