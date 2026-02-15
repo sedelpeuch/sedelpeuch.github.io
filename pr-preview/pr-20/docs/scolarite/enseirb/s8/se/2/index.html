@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-scolarite/enseirb/s8/se/2" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Processus et exécution | Sébastien Delpeuch</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://delpeuch.net/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/2"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Processus et exécution | Sébastien Delpeuch"><meta data-rh="true" name="description" content="Description des processus"><meta data-rh="true" property="og:description" content="Description des processus"><link data-rh="true" rel="icon" href="/pr-preview/pr-20/img/logo.svg"><link data-rh="true" rel="canonical" href="https://delpeuch.net/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/2"><link data-rh="true" rel="alternate" href="https://delpeuch.net/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/2" hreflang="en"><link data-rh="true" rel="alternate" href="https://delpeuch.net/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/2" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scolarité","item":"https://delpeuch.net/pr-preview/pr-20/docs/scolarite/"},{"@type":"ListItem","position":2,"name":"ENSEIRB-MATMECA","item":"https://delpeuch.net/pr-preview/pr-20/docs/scolarite/enseirb/"},{"@type":"ListItem","position":3,"name":"Semestre 8","item":"https://delpeuch.net/pr-preview/pr-20/docs/scolarite/enseirb/s8/"},{"@type":"ListItem","position":4,"name":"Système d'exploitation ","item":"https://delpeuch.net/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/"},{"@type":"ListItem","position":5,"name":"Processus et exécution","item":"https://delpeuch.net/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/2"}]}</script><link rel="alternate" type="application/rss+xml" href="/pr-preview/pr-20/blog/rss.xml" title="Sébastien Delpeuch&#39;s Blog RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/pr-preview/pr-20/blog/atom.xml" title="Sébastien Delpeuch&#39;s Blog Atom Feed">
+<link rel="alternate" type="application/json" href="/pr-preview/pr-20/blog/feed.json" title="Sébastien Delpeuch&#39;s Blog JSON Feed">
+
+
+
+
+
+
+
+<link rel="icon" href="/pr-preview/pr-20/img/logo.png">
+<meta name="theme-color" content="#12affa">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous">
+<script src="https://plausible.io/js/script.js" defer="defer" data-domain="delpeuch.net"></script><link rel="stylesheet" href="/pr-preview/pr-20/assets/css/styles.0b62042b.css">
+<script src="/pr-preview/pr-20/assets/js/runtime~main.d5b8ec81.js" defer="defer"></script>
+<script src="/pr-preview/pr-20/assets/js/main.a3fd75b6.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>document.documentElement.setAttribute("data-theme","dark"),document.documentElement.setAttribute("data-theme-choice","dark"),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/pr-preview/pr-20/"><div class="navbar__logo"><img src="/pr-preview/pr-20/img/logo.svg" alt="navbar" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/pr-preview/pr-20/img/logo.svg" alt="navbar" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div></a><a class="navbar__item navbar__link" href="/pr-preview/pr-20/about">Résumé</a><a class="navbar__item navbar__link" href="/pr-preview/pr-20/docs/projects">Projets</a><a class="navbar__item navbar__link" href="/pr-preview/pr-20/docs/enseignement">Enseignement</a><div class="navbar__item dropdown dropdown--hoverable"><a class="navbar__link" aria-haspopup="true" aria-expanded="false" role="button" href="/pr-preview/pr-20/blog">Blog</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/pr-preview/pr-20/blog/tags/network">Réseau</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/blog/tags/containerization">Conteneurisation</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/blog/tags/cicd">CI/CD</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/blog/tags/cloud">Cloud</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/blog/tags/orchestration">Orchestration</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/blog/tags/monitoring">Observabilité</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/blog/tags/iac">Infrastructure as Code</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/blog/tags/scripting">Scripting</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a aria-current="page" class="navbar__link active" aria-haspopup="true" aria-expanded="false" role="button" href="/pr-preview/pr-20/docs/scolarite">Scolarité</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/pr-preview/pr-20/docs/scolarite/associatif">Associations</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/docs/scolarite/enseirb/s9">ENSEIRB-MATMECA : Semestre 9</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8">ENSEIRB-MATMECA : Semestre 8</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/docs/scolarite/enseirb/s7">ENSEIRB-MATMECA : Semestre 7</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/docs/scolarite/enseirb/s6">ENSEIRB-MATMECA : Semestre 6</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/docs/scolarite/enseirb/s5">ENSEIRB-MATMECA : Semestre 5</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/docs/scolarite/cpbx/s4">CPBx : Semestre 4</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/docs/scolarite/cpbx/s3">CPBx : Semestre 3</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/docs/scolarite/cpbx/s2">CPBx : Semestre 2</a></li><li><a class="dropdown__link" href="/pr-preview/pr-20/docs/scolarite/cpbx/s1">CPBx : Semestre 1</a></li></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/pr-preview/pr-20/docs/enseignement/"><span title="Enseignement" class="categoryLinkLabel_W154">Enseignement</span></a><button aria-label="Expand sidebar category &#x27;Enseignement&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/pr-preview/pr-20/docs/projects/"><span title="Projets" class="categoryLinkLabel_W154">Projets</span></a><button aria-label="Expand sidebar category &#x27;Projets&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/pr-preview/pr-20/docs/scolarite/"><span title="Scolarité" class="categoryLinkLabel_W154">Scolarité</span></a><button aria-label="Collapse sidebar category &#x27;Scolarité&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/associatif"><span title="Associatif" class="linkLabel_WmDU">Associatif</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/cpbx/"><span title="CPBx" class="categoryLinkLabel_W154">CPBx</span></a><button aria-label="Expand sidebar category &#x27;CPBx&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/"><span title="ENSEIRB-MATMECA" class="categoryLinkLabel_W154">ENSEIRB-MATMECA</span></a><button aria-label="Collapse sidebar category &#x27;ENSEIRB-MATMECA&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s5/"><span title="Semestre 5" class="linkLabel_WmDU">Semestre 5</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s6/"><span title="Semestre 6" class="categoryLinkLabel_W154">Semestre 6</span></a><button aria-label="Expand sidebar category &#x27;Semestre 6&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s7/"><span title="Semestre 7" class="categoryLinkLabel_W154">Semestre 7</span></a><button aria-label="Expand sidebar category &#x27;Semestre 7&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/"><span title="Semestre 8" class="categoryLinkLabel_W154">Semestre 8</span></a><button aria-label="Collapse sidebar category &#x27;Semestre 8&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/apptcp/"><span title="Applications TCP-IP " class="categoryLinkLabel_W154">Applications TCP-IP </span></a><button aria-label="Expand sidebar category &#x27;Applications TCP-IP &#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/complex"><span title="Calculabilité et complexité " class="linkLabel_WmDU">Calculabilité et complexité </span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/crypto"><span title="Cryptologie " class="linkLabel_WmDU">Cryptologie </span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/ia"><span title="Intelligence Artificielle " class="linkLabel_WmDU">Intelligence Artificielle </span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/jeux/"><span title="Théorie des jeux pour la modélisation informatique " class="linkLabel_WmDU">Théorie des jeux pour la modélisation informatique </span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/maker"><span title="Maker " class="linkLabel_WmDU">Maker </span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/projet"><span title="Évaluation des projets et maîtrise des coûts" class="linkLabel_WmDU">Évaluation des projets et maîtrise des coûts</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/qualite"><span title="Management de la qualité" class="linkLabel_WmDU">Management de la qualité</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-4 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/robotique"><span title="Initiation à la robotique " class="linkLabel_WmDU">Initiation à la robotique </span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-4 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/"><span title="Système d&#x27;exploitation " class="categoryLinkLabel_W154">Système d&#x27;exploitation </span></a><button aria-label="Collapse sidebar category &#x27;Système d&#x27;exploitation &#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/1"><span title="Introduction et Concepts Généraux" class="linkLabel_WmDU">Introduction et Concepts Généraux</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/2"><span title="Processus et exécution" class="linkLabel_WmDU">Processus et exécution</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/3"><span title="Gestion mémoire" class="linkLabel_WmDU">Gestion mémoire</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/4"><span title="Concurrence et synchronisation" class="linkLabel_WmDU">Concurrence et synchronisation</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/5"><span title="Gestion du temps" class="linkLabel_WmDU">Gestion du temps</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-5 menu__list-item"><a class="menu__link" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/6"><span title="Virtualisation" class="linkLabel_WmDU">Virtualisation</span></a></li></ul></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/pr-preview/pr-20/docs/scolarite/enseirb/s9/"><span title="Semestre 9" class="categoryLinkLabel_W154">Semestre 9</span></a><button aria-label="Expand sidebar category &#x27;Semestre 9&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li></ul></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/pr-preview/pr-20/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/pr-preview/pr-20/docs/scolarite/"><span>Scolarité</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/pr-preview/pr-20/docs/scolarite/enseirb/"><span>ENSEIRB-MATMECA</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/"><span>Semestre 8</span></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/"><span>Système d&#x27;exploitation </span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Processus et exécution</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Processus et exécution</h1></header><h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="description-des-processus">Description des processus<a href="#description-des-processus" class="hash-link" aria-label="Direct link to Description des processus" title="Direct link to Description des processus" translate="no">​</a></h2>
+<p>Les processus permettent à toutes les applications de progresser simultanément,
+les processeurs physiques les exécutent en alternance et chaque application a
+l&#x27;illusion d&#x27;être seule sur la machine. Les processus ont pour objectif de
+partager les ressources disponibles entre de multiples applications pour
+utiliser les ressources efficacement.</p>
+<p><strong>Définition :</strong> Un processus est un programme en exécution, une instance d&#x27;un
+programme s&#x27;exécutant sur un ordinateur, une entité pouvant être assignée et
+exécutée sur un processeur ou une unité d&#x27;activité caractérisée par l&#x27;exécution
+d&#x27;une suite d&#x27;instructions, un étant courant et un ensemble de ressources
+système.</p>
+<p>Les processus sont caractérisés par leur initialisation (code du programme,
+ensemble de donnée en entrée), leur phase durant l&#x27;exécution (bloc de contrôle)
+et un identifiant (pid)</p>
+<p>Le <strong>bloc de contrôle</strong> d&#x27;un processus est composé par</p>
+<ul>
+<li class="">un identifiant</li>
+<li class="">des adresses mémoires</li>
+<li class="">program counter</li>
+<li class="">état d&#x27;ordonnancement</li>
+<li class="">état des entrées / sorties</li>
+<li class="">privilèges</li>
+<li class="">statistiques</li>
+</ul>
+<p>Chaque processus a une généalogie c&#x27;est à dire un processus père et
+potentiellement des processus fils. Le père de chaque processus est notifié de
+la mort des fils, peut l&#x27;attendre et savoir si il a réussi. Un processus peut
+être orphelin (et donc adopté par le processus init pid=1)</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exécution-des-processus">Exécution des processus<a href="#exécution-des-processus" class="hash-link" aria-label="Direct link to Exécution des processus" title="Direct link to Exécution des processus" translate="no">​</a></h2>
+<p>Les procesuss sont ordonnancés par cycle (par pipeline), la durée du cycle est
+fixe et est reliée à la fréquence. L&#x27;horloge interrompt régulièrement pour
+redonner la main au système régulièrement (environ 1 fois par milliseconde sous
+linux). Chaque processus possède un mode d&#x27;exécution avec différents privilèges.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="modes-dexécution">Modes d&#x27;exécution<a href="#modes-dexécution" class="hash-link" aria-label="Direct link to Modes d&#x27;exécution" title="Direct link to Modes d&#x27;exécution" translate="no">​</a></h3>
+<p>Il existe plusieurs niveaux de privilèges qui sont mis en place matériellement
+par le processus (accès aux registres de contrôle, instructions d&#x27;entrées /
+sorties de bas niveau, gestion mémoire). Les différents niveaux de privilèges
+définissent un jeu d&#x27;instructions. Le noyau peut tout faire sauf en cas de
+virtualisation matérielle. Seul l&#x27;hyperviseur peut tout faire.</p>
+<p>Quant à lui l&#x27;utilisateur est très limité (protection ring 3 sur x86) et n&#x27;a pas
+accès à la mémoire du noyau.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="exceptions-et-interruptions">Exceptions et interruptions<a href="#exceptions-et-interruptions" class="hash-link" aria-label="Direct link to Exceptions et interruptions" title="Direct link to Exceptions et interruptions" translate="no">​</a></h3>
+<p>Ce sont des événements inattendus qui interrompent temporairement l&#x27;exécution en
+cours. Le processeur saute automatiquement et immédiatement à un traitant
+(fonction dont l&#x27;adresse a été définie par le système d&#x27;exploitation au
+démarrage). Le traitant dépend du type d&#x27;exception ou d&#x27;interruption.</p>
+<p>Un <strong>exception</strong> est une interruption par le processeur lui-même en cas d&#x27;erreur
+et ne sait pas comment continuer, il demande alors à l&#x27;OS de l&#x27;aider puis
+reprend ensuite l&#x27;exécution au même endroit. Au final l&#x27;application ne se rend
+compte de rien.</p>
+<p>Cependant les exceptions ne sont possible que quand le processeur travaille. Les
+reprise de l&#x27;exécution sont possible uniquement si le traitant a réparé l&#x27;erreur
+avec succès.</p>
+<p>Les <strong>interruptions</strong> sont des messages d&#x27;un périphérique (signal électrique sur
+une broche dédiée du processeur ou écriture à une adresse mémoire spéciale).
+C&#x27;est un événement asynchrone, le processeur pourrait continuer à tourner en
+l&#x27;ignorant pendant un certain temps.</p>
+<p>Les interruptions ont l&#x27;avantage d&#x27;être possible n&#x27;importe quand, même si le
+processeur ne fait rien de plus il n&#x27;y a pas d&#x27;influence directe sur la tâche
+qui s&#x27;exécutait (l&#x27;application ne se rend compte de rien).</p>
+<p>Les <strong>appels-système</strong> sont des exception forcée par une application pour
+effectuer une opération privilégie. Elle se produit uniquement depuis l&#x27;espace
+utilisateur à la demande des applications.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="appels-système">Appels-système<a href="#appels-système" class="hash-link" aria-label="Direct link to Appels-système" title="Direct link to Appels-système" translate="no">​</a></h3>
+<p>Le traitement de l&#x27;appel système est effectué dans le traitant de l&#x27;instruction
+spéciale, l&#x27;adresse du traitant défine par le noyau au boot, le processeur y
+saute immédiatement lors de l&#x27;appel système. En suit une exécution temporaire en
+mode privilégie (le processus n&#x27;est pas encore, son exécution est déroutée).</p>
+<p>L&#x27;appel de l&#x27;appel système se fait en passant les paramètres au traitant. Convention de passage des paramètres : numéro dans %eax et arguments dans %ebx
+%ecx %edx %esi et %edi.</p>
+<p>Une fois terminé, il y a une restauration des registres utilisateurs et retour
+concret en espace utilisateur par instruction spéciale (iret, sysexit).</p>
+<p>Les <strong>appels système virtuels</strong> sont des appels système chers et parfois
+inutiles (le retour de <code>getpid()</code> varie peu) on cherche donc à optimiser
+certains appels en espace utilisateur.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="processus-et-threads">Processus et threads<a href="#processus-et-threads" class="hash-link" aria-label="Direct link to Processus et threads" title="Direct link to Processus et threads" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="vie-et-mort-des-processus">Vie et mort des processus<a href="#vie-et-mort-des-processus" class="hash-link" aria-label="Direct link to Vie et mort des processus" title="Direct link to Vie et mort des processus" translate="no">​</a></h3>
+<p>Sous Unix la création de processus se fait via la création d&#x27;un nouveau
+processus puis l&#x27;exécution d&#x27;une commande (<code>fork() + exec()</code>). Le <code>fork()</code>
+permet de dupliquer l&#x27;espace d&#x27;adressage, de créer une nouvelle file d&#x27;exécution
+dans cet espace. Le fils créé est identique au père, sauf pour son PID.</p>
+<p>La création d&#x27;un threads est équivalent à rajouter une file d&#x27;exécution dans
+l&#x27;espace d&#x27;adressage courant via les commandes <code>pthread_create()</code> ou <code>clone()</code>.
+Pour lancer une tâche le noyau créé un contexte utilisateur. Ce contexte pointe
+vers une fonction à exécuter, possède une nouvelle pile. Lors de la terminaison
+d&#x27;une tâche il faut passer en mode noyaux. Pour cela il faut un moyen d&#x27;entrer
+(appel système <code>exit</code> ou <code>exception</code>). La file d&#x27;exécution est alors détruite et
+relâche les ressources qu&#x27;elle utilisait. Lorsqu&#x27;une tâche se termine elle
+renvoie un code de retour destiné au père. Le père peut attendre la terminaison
+d&#x27;un ou n&#x27;importe quel fils (<code>wait()</code> et <code>waitpid()</code>). C&#x27;est une tâche zombie
+tant que le père ne s&#x27;en occupe pas.</p>
+<p>Les processus prêts à s&#x27;exécuter sont dans une file d&#x27;attente spéciale appelée
+<strong>runqueue</strong>. Cette liste est utilisée uniquement pour les processus pret, les
+processus non prêts sont dans des files spéciales avec un moyen de les
+retrouver. Il ne sert à rien de parcourir une liste de 1000 processus pour
+trouver le seul prêt à s&#x27;exécuter.</p>
+<p>Les <strong>attente active</strong> sont des boucle infinie qui attendent un événement, elles
+monopolisent le processeur jusqu&#x27;à l&#x27;événement. Ils possèdent une très bonne
+réactivité mais gaspillent des cycles processus. L&#x27;<strong>attente semi-active</strong> est
+une attente active en renadant la main. L&#x27;opération <code>yield()</code> à chaque itération
+d&#x27;une boucle while est effectuée et la réactivité est imprévisible (pas de
+garantie de reprise de main rapide). Cela peut gaspiller autant de temps CPU
+(dépend de l&#x27;activité des autres tâches). L&#x27;attente semi active n&#x27;est à utiliser
+que quand une attente passive est totalement impossible.</p>
+<p>L&#x27;<strong>attente passive</strong> d&#x27;un événement est une mécanisme de réveil lors d&#x27;un
+événement. La tâches est placée sur une file d&#x27;attente et elle n&#x27;est plus dans
+la runqueue (ignorée par l&#x27;ordonnanceur). Lors de l&#x27;événement, celui qui produit
+l&#x27;événement déplace la tâche de la file d&#x27;attente vers la runqueue. En revanche
+l&#x27;endormissement et le réveil d&#x27;un processus coûte assez cher puisqu&#x27;il est
+nécessaire d&#x27;effectuer un changements de contexte. Il est donc rentable de
+mettre en sommeil si processus uniquement si le délai d&#x27;attente n&#x27;est pas très court.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ordonnancement">Ordonnancement<a href="#ordonnancement" class="hash-link" aria-label="Direct link to Ordonnancement" title="Direct link to Ordonnancement" translate="no">​</a></h3>
+<p>Les états des processus sont représentés par un automate de transition entre les
+états</p>
+<ul>
+<li class="">Running</li>
+<li class="">Ready (prêt mais pas en train de s&#x27;exécuter)</li>
+<li class="">Blocked (non-prêt, en attente d&#x27;un événement)</li>
+<li class="">New (en cours de création)</li>
+<li class="">Exit (en cours de destruction, zombie)</li>
+<li class="">Suspend (suspendu par l&#x27;utilisateur)</li>
+</ul>
+<p>L&#x27;exécution de l&#x27;ordonnanceur nécessite l&#x27;existence du noyau, si le noyau
+n&#x27;existe pas il n&#x27;y a pas d&#x27;homme en noir pour ordonnancer les tâches en arrière
+plan. L&#x27;ordonnancement nécessite l&#x27;exécution du code de l&#x27;ordonnanceur.
+L&#x27;ordonnancement peut être activé <strong>explicitement</strong> par les applications (processus
+qui rend la main <code>_yield</code> ou processus qui attend <code>sleep()</code>) ou
+<strong>implicitement</strong> par des appel système bloquant (<code>read()</code>, <code>poll()</code>). Cependant
+nous n&#x27;avons aucune garantie d&#x27;un ordonnancement régulier, cela dépend du bon
+vouloir des applications. Il y a aussi un problème d&#x27;équité et de réactivité, un
+processus peut conserver le processeur indéfiniment. Les tâches doivent donc
+<strong>coopérer</strong>.</p>
+<p>Il faut donc qu&#x27;une tâche s&#x27;exécutant en mode noyau, sur le bon processeur qui
+doit appeler le code de l&#x27;ordonnanceur. Il faut donc trouver un moyen d&#x27;appeler
+l&#x27;ordonnanceur même si l&#x27;application ne fait pas d&#x27;ordonnancement explicite ou
+implicite. Il faut donc utiliser le mécanisme de <strong>préemption</strong>.</p>
+<p>La préemption est le mécanisme qui permet de désordonnancer une tâche de force
+si une tâche s&#x27;exécute depuis trop longtemps ou si une autre tâche est
+prioritaire. La préemption engrange un léger surcoût puisque l&#x27;on doit vérifier
+de temps en temps s&#x27;il faut désordonnancer de force mais c&#x27;est un gain énorme en
+équité et réactivité. Il n&#x27;y a plus besoin de coopération des processus.</p>
+<p>Sous Linux l&#x27;ordonnanceur vérifie s&#x27;il faut passer la main à une autre tâche
+lors du retour en espace utilisateur sur le code utilisateur (le code du noyau
+peut être long et nuire à la réactivité du système). Il n&#x27;y a pas de préemption
+directe en espace utilisateur (il faut être dans le noyau pour exécuter le code
+de l&#x27;ordonnancement), les processus sont préemptés dans le noyau de la même
+façon (par exemple juste avant leur retour en espace utilisateur). Les
+interruptions peuvent préempter n&#x27;importe quand.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="processus-et-threads-1">Processus et threads<a href="#processus-et-threads-1" class="hash-link" aria-label="Direct link to Processus et threads" title="Direct link to Processus et threads" translate="no">​</a></h2>
+<p>L&#x27;intérêt des threads est le partage de ressources entre les tâches permettant
+une meilleur exploitation des processeurs, un seul programme peut tourner sur
+plusieurs processus (critique depuis l&#x27;avènement des multicores).</p>
+<p>Un <strong>thread</strong> est une file d&#x27;exécution interne à un processus. Le processus
+devient un conteneur (au moins un thread et des ressources partagées). Certaines
+données ne peuvent pas être partagées (piles registres) alors que d&#x27;autre le
+peuvent (espace d&#x27;adressage mémoire, fichiers ouverts, signaux, identifiant des
+processus ...)</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="modèle-1-on-1">Modèle 1 on 1<a href="#modèle-1-on-1" class="hash-link" aria-label="Direct link to Modèle 1 on 1" title="Direct link to Modèle 1 on 1" translate="no">​</a></h3>
+<p>Un thread noyau est actif pour chaque thread, la création / destruction /
+changement de contexte sont aussi coûteux que les processus, les processus
+multi-threads sont avantagés.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="threads-en-espace-utilisateur">Threads en espace utilisateur<a href="#threads-en-espace-utilisateur" class="hash-link" aria-label="Direct link to Threads en espace utilisateur" title="Direct link to Threads en espace utilisateur" translate="no">​</a></h3>
+<p>Un seul thread noyau propulse plusieurs threads utilisateurs, le coût
+d&#x27;ordonnancement est très réduit (on reste en espace utilisateur), le
+multithreads est ignoré par le système</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="modèle-m-on-n">Modèle M on N<a href="#modèle-m-on-n" class="hash-link" aria-label="Direct link to Modèle M on N" title="Direct link to Modèle M on N" translate="no">​</a></h3>
+<p>Dans ce modèle il y a plusieurs threads utilisateurs sur plusieurs threads
+noyau. Si un thread bloque une tâche, les autres tâches peuvent continuer à
+travailler, l&#x27;ajout de threads noyau se fait à la volée.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="algorithmes-dordonnancement">Algorithmes d&#x27;ordonnancement<a href="#algorithmes-dordonnancement" class="hash-link" aria-label="Direct link to Algorithmes d&#x27;ordonnancement" title="Direct link to Algorithmes d&#x27;ordonnancement" translate="no">​</a></h2>
+<p>Actuellement nous devons résoudre le problème suivant, nous avons besoin d&#x27;une
+équité et de l&#x27;interactivité de progression de toutes les tâches sans que cela
+ne dépende de la bonne volonté des tâches (préemption). Il est donc nécessaire
+de déterminer la durée d&#x27;ordonnancement (choix de la durée des Timesclices). Il
+nous faut un temps pas trop court sinon le coût d&#x27;ordonnancement devient
+prohibitif. Ni trop long sinon les processus n&#x27;avancent pas assez régulièrement.</p>
+<p>En revanche il faut noter qu&#x27;il est difficile de savoir précisément si un
+processus est gourmand en temps processeur, l&#x27;ordonnancement est essentiellement
+basé sur les ticks d&#x27;holorge (peu précis).</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="critères-dordonnancement">Critères d&#x27;ordonnancement<a href="#critères-dordonnancement" class="hash-link" aria-label="Direct link to Critères d&#x27;ordonnancement" title="Direct link to Critères d&#x27;ordonnancement" translate="no">​</a></h3>
+<ol>
+<li class="">Pour l&#x27;utilisateur : il est nécessaire d&#x27;avoir des performances (rapidité
+d&#x27;exécution ou de terminaison, réactivité, deadlines ...), d&#x27;équité et de
+prédictabilité</li>
+<li class="">Pour le système : performance (quantité de travail, utilisation du
+processus), équité et respect des priorités</li>
+</ol>
+<p>Nous avons donc quelques idées pour l&#x27;ordonnancement :</p>
+<ul>
+<li class="">FIFO</li>
+<li class="">Round-Robin</li>
+<li class="">Short First ou Short Remaining Next</li>
+<li class="">Feedback</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="liste-triée-par-priorités">Liste triée par priorités<a href="#liste-triée-par-priorités" class="hash-link" aria-label="Direct link to Liste triée par priorités" title="Direct link to Liste triée par priorités" translate="no">​</a></h3>
+<p>Trier par priorité la liste des tâches s&#x27;effectue en complexité linéaire en
+fonction du nombre de tâches. Chaque opération d&#x27;ordonnancement coûtera cher. Il
+faut aussi faire attention aux famines, les processus non-prioritaires ne
+doivent pas rester indéfiniment en fin de liste.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="listes-par-priorités">Listes par priorités<a href="#listes-par-priorités" class="hash-link" aria-label="Direct link to Listes par priorités" title="Direct link to Listes par priorités" translate="no">​</a></h3>
+<p>Nous pouvons aussi effectuer plusieurs listes de tâches possédant toutes les
+mêmes priorités, la manipulation se fait alors en temps constant. Les listes
+sont alors parcourues plus ou moins souvent selon la priorité.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ajuster-la-timeslice-aux-priorités">Ajuster la timeslice aux priorités<a href="#ajuster-la-timeslice-aux-priorités" class="hash-link" aria-label="Direct link to Ajuster la timeslice aux priorités" title="Direct link to Ajuster la timeslice aux priorités" translate="no">​</a></h3>
+<p>Cela implique de définir un quantum de temps d&#x27;exécution variable (Timeslice)
+selon la priorité. Cela est éventuellement dynamique et calculable en temps
+constant.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="le-multicoeurs-et-multiprocesseur">Le multicoeurs et multiprocesseur<a href="#le-multicoeurs-et-multiprocesseur" class="hash-link" aria-label="Direct link to Le multicoeurs et multiprocesseur" title="Direct link to Le multicoeurs et multiprocesseur" translate="no">​</a></h3>
+<p>Nous rappelons que la préemption est la concurrence entre tâches sur un seul
+processeur. Le multiprocesseur implique une concurrence réelle entre les tâches.
+La question se pose sur quel processeur / coeur exécuter quelles tâches.</p>
+<p>Il y a donc deux modes de fonctionnement</p>
+<ol>
+<li class="">Une seule runqueue (load sharing) où tous les processeurs piochent</li>
+<li class="">Une runqueue par processeur, qu&#x27;il faudra équilibre (load balancing)</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ordonnancement-dans-linux">Ordonnancement dans Linux<a href="#ordonnancement-dans-linux" class="hash-link" aria-label="Direct link to Ordonnancement dans Linux" title="Direct link to Ordonnancement dans Linux" translate="no">​</a></h3>
+<p>L&#x27;ordonnanceur dans Linux est assez classique possédant une bonne interactivité
+et équité. Il possède une priorité effective avec un bonus ou pénalité.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="exécution-du-système">Exécution du système<a href="#exécution-du-système" class="hash-link" aria-label="Direct link to Exécution du système" title="Direct link to Exécution du système" translate="no">​</a></h2>
+<p>En réalité il n&#x27;y a pas de processus noyau qui surveille tout le monde, le
+système s&#x27;exécute essentiellement dans le contexte des processus lorsqu&#x27;ils sont
+en mode noyau. Il peut seulement exister éventuellement des démons dédiés à des
+tâches périodiques.</p>
+<p>Le noyau s&#x27;exécute à travers des hooks un peu partout dans le code qui n&#x27;a rien
+à voir (pendant les appels systèmes, dans le cas d&#x27;interruptions / exceptions).</p>
+<p>L&#x27;exécution en mode noyau est possible grâce à un changement de contexte (qui
+implique un changement des privilèges) et l&#x27;utilisation d&#x27;une pile spéciale
+(éviter de stocker des informations critiques en espace utilisateur). Le
+contexte utilisateur est sauvegardé puis restauré.</p>
+<p>Dans le cas des micro-noyaux on réalise les appels systèmes minimaux, la gestion
+effective du système d&#x27;exploitation est réalisé en dehors du noyau (dans les
+processus serveurs dédiés).</p>
+<p>Nous pouvons noter que les noyaux monolithiques ont besoin de traitement annexes
+(appels systèmes imprévisibles, traitants d&#x27;interruption dans contexte trop
+limité). Nous mettons donc en place l&#x27;utilisation de threads dédiés, qui
+tournent toujours en mode noyau (pas d&#x27;espace d&#x27;utilisateur). Les threads noyau
+sont partout, tout processus est propulsé par un thread noyau, il passe en mode
+utilisateur juste après sa création. Il revient en mode noyau de temps en temps.</p></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/1"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Introduction et Concepts Généraux</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/pr-preview/pr-20/docs/scolarite/enseirb/s8/se/3"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Gestion mémoire</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop" style="opacity:0;transform:translateX(100px) translateZ(0)"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#description-des-processus" class="table-of-contents__link toc-highlight">Description des processus</a></li><li><a href="#exécution-des-processus" class="table-of-contents__link toc-highlight">Exécution des processus</a><ul><li><a href="#modes-dexécution" class="table-of-contents__link toc-highlight">Modes d&#39;exécution</a></li><li><a href="#exceptions-et-interruptions" class="table-of-contents__link toc-highlight">Exceptions et interruptions</a></li><li><a href="#appels-système" class="table-of-contents__link toc-highlight">Appels-système</a></li></ul></li><li><a href="#processus-et-threads" class="table-of-contents__link toc-highlight">Processus et threads</a><ul><li><a href="#vie-et-mort-des-processus" class="table-of-contents__link toc-highlight">Vie et mort des processus</a></li><li><a href="#ordonnancement" class="table-of-contents__link toc-highlight">Ordonnancement</a></li></ul></li><li><a href="#processus-et-threads-1" class="table-of-contents__link toc-highlight">Processus et threads</a><ul><li><a href="#modèle-1-on-1" class="table-of-contents__link toc-highlight">Modèle 1 on 1</a></li><li><a href="#threads-en-espace-utilisateur" class="table-of-contents__link toc-highlight">Threads en espace utilisateur</a></li><li><a href="#modèle-m-on-n" class="table-of-contents__link toc-highlight">Modèle M on N</a></li></ul></li><li><a href="#algorithmes-dordonnancement" class="table-of-contents__link toc-highlight">Algorithmes d&#39;ordonnancement</a><ul><li><a href="#critères-dordonnancement" class="table-of-contents__link toc-highlight">Critères d&#39;ordonnancement</a></li><li><a href="#liste-triée-par-priorités" class="table-of-contents__link toc-highlight">Liste triée par priorités</a></li><li><a href="#listes-par-priorités" class="table-of-contents__link toc-highlight">Listes par priorités</a></li><li><a href="#ajuster-la-timeslice-aux-priorités" class="table-of-contents__link toc-highlight">Ajuster la timeslice aux priorités</a></li><li><a href="#le-multicoeurs-et-multiprocesseur" class="table-of-contents__link toc-highlight">Le multicoeurs et multiprocesseur</a></li><li><a href="#ordonnancement-dans-linux" class="table-of-contents__link toc-highlight">Ordonnancement dans Linux</a></li></ul></li><li><a href="#exécution-du-système" class="table-of-contents__link toc-highlight">Exécution du système</a></li></ul><hr class="hr_UhE0"><span class="percent_H6RK">0%<!-- --> </span></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Social</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/sedelpeuch" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div></div></footer></div>
+</body>
+</html>

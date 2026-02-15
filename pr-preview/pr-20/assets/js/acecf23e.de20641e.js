@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksedelpeuch_net=self.webpackChunksedelpeuch_net||[]).push([[1903],{1912(e){e.exports=JSON.parse('{"blogBasePath":"/pr-preview/pr-20/blog","blogTitle":"Blog","authorsListPath":"/pr-preview/pr-20/blog/authors"}')}}]);
