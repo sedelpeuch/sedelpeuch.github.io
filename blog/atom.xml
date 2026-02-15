@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://delpeuch.net/blog</id>
     <title>Sébastien Delpeuch's Blog</title>
-    <updated>2026-02-15T19:44:11.249Z</updated>
+    <updated>2026-02-15T19:57:12.719Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://delpeuch.net/blog"/>
     <subtitle>Sébastien Delpeuch Blog</subtitle>
@@ -11,7 +11,7 @@
         <title type="html"><![CDATA[Idées de posts]]></title>
         <id>https://delpeuch.net/blog/idea</id>
         <link href="https://delpeuch.net/blog/idea"/>
-        <updated>2026-02-15T19:44:11.249Z</updated>
+        <updated>2026-02-15T19:57:12.719Z</updated>
         <summary type="html"><![CDATA[Liste d'idées de posts pour le blog. Ces idées couvrent divers sujets liés au développement, à l'orchestration, au scripting et à d'autres domaines pertinents.]]></summary>
         <content type="html"><![CDATA[<p>Voici une liste d'idées de posts pour le blog, couvrant divers sujets liés au développement, à l'orchestration, au scripting et à d'autres domaines pertinents :</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="réseau">Réseau<a href="https://delpeuch.net/blog/idea#r%C3%A9seau" class="hash-link" aria-label="Direct link to Réseau" title="Direct link to Réseau" translate="no">​</a></h2>
