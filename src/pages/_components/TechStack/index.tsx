@@ -23,14 +23,14 @@ function Card({ logo, techName }) {
 
 export const majors = [
   { name: "Python", logo: "skill-icons:python-light" },
-  { name: "Linux", logo: "skill-icons:linux-light" },
-  { name: "Docker", logo: "skill-icons:docker" },
-  { name: "Git", logo: "skill-icons:git" },
   { name: "ROS", logo: "skill-icons:ros-light" },
+  { name: "Docker", logo: "skill-icons:docker" },
   { name: "Kubernetes", logo: "skill-icons:kubernetes" },
+  { name: "Ansible", logo: "skill-icons:ansible" },
+  { name: "Linux", logo: "skill-icons:linux-light" },
+  { name: "Git", logo: "skill-icons:git" },
   { name: "GitHub", logo: "skill-icons:github-light" },
   { name: "GitHub Actions", logo: "skill-icons:githubactions-light" },
-  { name: "Ansible", logo: "skill-icons:ansible" },
   { name: "Grafana", logo: "skill-icons:grafana-light" },
 ];
 export const minors = [
