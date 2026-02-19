@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  schedule:
+    # 18:00 lundi-vendredi (pour attraper les pushes des heures de travail)
+    - cron: "0 18 * * 1-5"
   workflow_dispatch:
 
 permissions:
@@ -16,7 +19,65 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  check-schedule:
+    runs-on: ubuntu-latest
+    outputs:
+      should-deploy: ${{ steps.check.outputs.should-deploy }}
+    steps:
+      - name: Check if outside work hours
+        id: check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const now = new Date();
+            const day = now.getDay();     // 0 = dimanche, 6 = samedi
+            const hour = now.getHours();
+
+            // Est en dehors des heures de travail si:
+            // - C'est le weekend (samedi=6 ou dimanche=0)
+            // - OU c'est un jour de semaine (1-5) mais après 18h ou avant 8h
+            const isWeekend = day === 0 || day === 6;
+            const isOutsideWorkHours = hour >= 18 || hour < 8;
+
+            // Pour un push, on déploie si c'est en dehors des heures de travail
+            if (github.event_name === 'push') {
+              const shouldDeploy = isWeekend || isOutsideWorkHours;
+              core.setOutput('should-deploy', shouldDeploy ? 'true' : 'false');
+              if (!shouldDeploy) {
+                core.notice(`Déploiement en attente. Exécution prévue à 18:00 aujourd'hui.`);
+              }
+              return;
+            }
+
+            // Pour un schedule, on ne déploie que s'il y a eu un push récent (dernières 24h)
+            if (github.event_name === 'schedule') {
+              const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+              const { data: commits } = await github.rest.repos.listCommits({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                sha: 'master',
+                since: since,
+                per_page: 1
+              });
+
+              if (commits.length === 0) {
+                core.setOutput('should-deploy', 'false');
+                core.notice('Aucun commit dans les dernières 24h, déploiement annulé');
+                return;
+              }
+
+              core.setOutput('should-deploy', 'true');
+              return;
+            }
+
+            // Pour workflow_dispatch, toujours déployer
+            core.setOutput('should-deploy', 'true');
+
   deploy:
+    needs: check-schedule
+    if: |
+      github.event_name != 'push' ||
+      needs.check-schedule.outputs.should-deploy == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
