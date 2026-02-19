@@ -40,17 +40,21 @@ jobs:
             const isOutsideWorkHours = hour >= 18 || hour < 8;
 
             // Pour un push, on déploie si c'est en dehors des heures de travail
-            if (github.event_name === 'push') {
+            if (context.eventName === 'push') {
               const shouldDeploy = isWeekend || isOutsideWorkHours;
+              console.log(`PUSH - shouldDeploy = ${shouldDeploy}`);
               core.setOutput('should-deploy', shouldDeploy ? 'true' : 'false');
+              console.log(`OUTPUT SET TO: ${shouldDeploy ? 'true' : 'false'}`);
               if (!shouldDeploy) {
-                core.notice(`Déploiement en attente. Exécution prévue à 18:00 aujourd'hui.`);
+                core.notice(`⏸️ Déploiement en attente. Exécution prévue à 18:00 aujourd'hui.`);
+              } else {
+                core.notice(`✅ Déploiement immédiat (en dehors des heures de travail)`);
               }
               return;
             }
 
             // Pour un schedule, on ne déploie que s'il y a eu un push récent (dernières 24h)
-            if (github.event_name === 'schedule') {
+            if (context.eventName === 'schedule') {
               const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
               const { data: commits } = await github.rest.repos.listCommits({
                 owner: context.repo.owner,
@@ -61,23 +65,29 @@ jobs:
               });
 
               if (commits.length === 0) {
+                console.log(`SCHEDULE - No commits in last 24h`);
                 core.setOutput('should-deploy', 'false');
-                core.notice('Aucun commit dans les dernières 24h, déploiement annulé');
+                console.log(`OUTPUT SET TO: false`);
+                core.notice('⏸️ Aucun commit dans les dernières 24h, déploiement annulé');
                 return;
               }
 
+              console.log(`SCHEDULE - Recent commit found, deploying`);
               core.setOutput('should-deploy', 'true');
+              console.log(`OUTPUT SET TO: true`);
+              core.notice(`✅ Commit récent détecté, déploiement`);
               return;
             }
 
             // Pour workflow_dispatch, toujours déployer
+            console.log(`WORKFLOW_DISPATCH - Always deploy`);
             core.setOutput('should-deploy', 'true');
+            console.log(`OUTPUT SET TO: true`);
+            core.notice(`✅ Déploiement manuel`);
 
   deploy:
     needs: check-schedule
-    if: |
-      github.event_name != 'push' ||
-      needs.check-schedule.outputs.should-deploy == 'true'
+    if: needs.check-schedule.outputs.should-deploy == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
