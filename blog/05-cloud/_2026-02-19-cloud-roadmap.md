@@ -8,19 +8,6 @@ Roadmap prévisionnelle pour apprendre les bases du cloud avec AWS.
 
 <!--truncate-->
 
-## Bases AWS & EC2
-
-La première étape est consacrée à la découverte des bases d'AWS et à la gestion d'une instance EC2. Voici les étapes à suivre :
-
-- **Créer un compte AWS Free Tier** : Inscrivez-vous pour bénéficier de l'offre gratuite d'AWS.
-- **Comprendre le modèle IAM** : Familiarisez-vous avec les concepts d'IAM (Users, Groups, Policies, Roles) pour sécuriser vos ressources.
-- **Lancer une instance EC2 Linux** : Utilisez une instance t2.micro incluse dans le Free Tier.
-- **Se connecter en SSH sur l’instance** : Apprenez à accéder à votre serveur via SSH.
-- **Installer une application simple** : Par exemple, déployez un serveur web Nginx.
-- **Gérer l’instance** : Apprenez à stopper, démarrer et terminer une instance manuellement.
-
-**Objectif :** Savoir gérer un serveur cloud basique et comprendre les bases de la sécurité avec IAM.
-
 ## Réseau Cloud avec VPC
 
 Dans cette étape, vous allez explorer les bases du réseau dans AWS en utilisant les Virtual Private Clouds (VPC) :
@@ -33,17 +20,6 @@ Dans cette étape, vous allez explorer les bases du réseau dans AWS en utilisan
 - **Découvrir les Security Groups et Network ACLs** : Comprenez comment sécuriser vos ressources.
 
 **Objectif :** Comprendre le réseau AWS et sécuriser les accès.
-
-## Stockage & Services complémentaires
-
-Le stockage est un élément clé du cloud. Cette étape, vous allez explorer les services de stockage AWS :
-
-- **Découvrir S3** : Créez un bucket, uploadez et téléchargez des fichiers.
-- **Explorer EBS** : Créez un volume, attachez-le à une instance EC2 et montez-le.
-- **Introduction à RDS** : Découvrez les bases de données managées.
-- **Expérimenter les snapshots EBS** : Apprenez à sauvegarder vos données.
-
-**Objectif :** Savoir gérer le stockage et les bases de données dans AWS.
 
 ## Docker & déploiement manuel
 

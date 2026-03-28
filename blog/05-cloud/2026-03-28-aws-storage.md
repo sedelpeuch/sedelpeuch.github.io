@@ -1,13 +1,13 @@
 ---
-title: "AWS : RDS et S3"
-description: "RDS pour les données relationnelles et S3 pour les objets. Connexion, opérations et différences."
+title: "AWS : RDS, S3 et EBS"
+description: "RDS pour les données relationnelles, S3 pour les objets et EBS pour le stockage en bloc. Connexion, opérations et différences."
 tags: [cloud, devops]
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Le stockage est un élément critique de toute infrastructure cloud. AWS propose deux services de stockage avec des caractéristiques radicalement différentes : Amazon RDS pour les bases de données relationnelles managées, et Amazon S3 pour le stockage d'objets hautement scalable. Ce document présente la création, la connexion et les cas d'usage de ces deux services.
+Le stockage est un élément critique de toute infrastructure cloud. AWS propose trois services de stockage avec des caractéristiques radicalement différentes : Amazon RDS pour les bases de données relationnelles managées, Amazon S3 pour le stockage d'objets hautement scalable, et Amazon EBS pour le stockage en bloc persistant.
 
 <!--truncate-->
 
@@ -382,6 +382,133 @@ S3 propose plusieurs classes optimisées pour différents cas d'usage :
 - **Free Tier** : 5 GB stocké + 20 000 GET + 2000 PUT pour 12 mois
 
 **Astuce** : Utilisez les policies de cycle de vie pour migrer automatiquement les vieux objets vers Glacier (beaucoup moins cher).
+
+---
+
+## EBS — Stockage bloc attaché aux instances
+
+### Qu'est-ce que EBS ?
+
+Amazon Elastic Block Store (EBS) est un service de stockage par bloc hautement disponible et performant. Contrairement à S3 qui est un service indépendant, EBS se **rattache directement à une instance EC2**, fonctionnant comme un disque dur externe.
+
+**Caractéristiques clés :**
+
+- **Attaché à une instance** : Un volume EBS ne peut être attaché qu'à une seule EC2 à la fois
+- **Persistant** : Les données survivent à l'arrêt/redémarrage de l'instance
+- **Performance élevée** : Latence basse, haute IOPS (entrées/sorties par seconde)
+- **Volumes multiples** : Une instance peut avoir plusieurs volumes EBS
+- **Snapshots** : Sauvegardes incrémentielles des données
+- **Chiffrement** : Chiffrement natif au repos avec KMS
+
+### Volumes EBS et types
+
+Chaque instance EC2 a un **volume root** (le disque système). Des volumes supplémentaires peuvent être attachés.
+
+**SSD (haute performance) :**
+
+- **gp3** (General Purpose) : équilibre coût/performance pour la plupart des workloads. ~$0.10/GB/mois.
+- **gp2** : version antérieure, moins performante. ~$0.10/GB/mois.
+- **io1/io2** : haute IOPS pour BD exigeantes. ~$0.125/GB/mois + coûts IOPS.
+
+**HDD (stockage économique) :**
+
+- **st1** : débit élevé pour big data. ~$0.045/GB/mois.
+- **sc1** : archives économiques. ~$0.015/GB/mois.
+
+Le type **gp3** est recommandé pour débuter (le meilleur rapport coût/performance).
+
+### Attacher un volume EBS
+
+Depuis la console EC2 :
+
+1. **Créer un volume** : EC2 → **Elastic Block Store** → **Volumes** → **Create volume**
+   - Sélectionner la zone (même que l'instance)
+   - Taille (ex: 100 GB)
+   - Type (gp3 recommandé)
+   - Chiffrement : activer (recommandé)
+
+2. **Attacher l'instance** : Clic droit sur le volume → **Attach volume** → sélectionner l'instance et le device (ex: `/dev/sdf`)
+
+3. **Monter dans l'instance** (depuis SSH) :
+
+```bash
+# Lister les disques
+lsblk
+
+# Formater le volume (première fois uniquement)
+sudo mkfs.ext4 /dev/nvme1n1
+
+# Créer un point de montage
+sudo mkdir /mnt/data
+
+# Monter le volume
+sudo mount /dev/nvme1n1 /mnt/data
+
+# Vérifier
+df -h
+```
+
+4. **Rendre permanent** : Ajouter une ligne à `/etc/fstab` pour que le montage survive aux redémarrages.
+
+### Snapshots et sauvegardes
+
+Un snapshot EBS est une **sauvegarde incrémentiellele** du volume (seules les modifications depuis le dernier snapshot sont copiées).
+
+```bash
+# Créer un snapshot depuis la console
+# EC2 → Elastic Block Store → Snapshots → Create snapshot
+```
+
+Cas d'usage :
+- **Sauvegarde** : protéger les données critiques
+- **Clonage** : créer un nouveau volume à partir d'un snapshot
+- **Migration** : copier un volume vers une autre région (via snapshots)
+- **Restauration** : récupérer un point-dans-le-temps
+
+Prix : ~$0.05 par GB/mois pour le stockage du snapshot.
+
+### Cas d'usage EBS
+
+**Disque système d'EC2** : Partitionnement / OS / applications système — Le volume root pour chaque instance.
+
+**Bases de données locales** : Installer PostgreSQL, MySQL directement sur l'EC2 avec EBS comme stockage (au lieu de RDS managé).
+
+**Application avec données temporaires** : Cache, sessions, fichiers temporaires nécessitant un accès rapide.
+
+**Haute performance** : Traitement de données intensif, machine learning, analytics où la latence est critique.
+
+### EBS vs S3 vs RDS : Comparaison rapide
+
+| Aspect | EBS | S3 | RDS |
+|--------|-----|-----|-----|
+| **Attachement** | Instance EC2 unique | Indépendant | Indépendant |
+| **Accès** | Disque système | API HTTP | Connexion BD |
+| **Performance** | Très rapide (msec) | Réseau (sec) | Requêtes SQL (msec) |
+| **Scalabilité** | Limitée à instance | Infinie | Instance-dépendante |
+| **Persistance** | Survit arrêt EC2 | Permanent | Permanent |
+| **Prix** | ~$0.10/GB/mois | ~$0.025/GB/mois | Instance-heure + stockage |
+| **Données** | Non structurées (fichiers) | Non structurées (objets) | Relationnelles (tables) |
+
+**Résumé :**
+- **EBS** = disque attaché pour une instance (performance)
+- **S3** = stockage d'objets indépendant (scalabilité)
+- **RDS** = base de données managée (structure)
+
+### Facturation EBS
+
+- **Volume** : ~$0.10/GB/mois pour gp3
+- **Snapshots** : ~$0.05 par GB/mois
+- **IOPS surprovisionnés** : coûts additionnels pour io1/io2
+- **Free Tier** : 30 GB de stockage EBS combiné (gp2 & io1) pour 12 mois
+
+### Bonnes pratiques EBS
+
+- Utiliser **gp3** pour la plupart des cas (meilleur coût/performance)
+- Créer des **snapshots réguliers** des données critiques
+- Activer le **chiffrement** sur tous les volumes
+- Monitorer l'**utilisation disque** pour éviter les saturation
+- Supprimer les volumes **inutilisés** pour réduire les coûts
+- Utiliser **EBS Auto Scaling** si la charge varie dynamiquement
 
 ---
 
