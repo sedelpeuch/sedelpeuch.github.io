@@ -75,3 +75,8 @@ docker run --name my_container <image_name>
 ## Conclusion
 
 Le débogage des conteneurs Docker peut sembler complexe au début, mais en utilisant les commandes et techniques appropriées, vous pouvez rapidement identifier et résoudre les problèmes. Les commandes de base comme `docker ps`, `docker logs`, `docker exec` et `docker inspect` sont essentielles pour tout développeur ou administrateur système travaillant avec Docker. En combinant ces commandes avec des techniques avancées comme l'utilisation de `docker run` avec des options et le redémarrage des conteneurs, vous pouvez améliorer considérablement votre efficacité dans le débogage des conteneurs Docker.
+
+## Application / Projet lié
+
+### [dolibarr_project_dashboard](/docs/projects/personnel/dolibarr_project_dashboard)
+**Utilisation** : Debugging des conteneurs Docker lors du développement local et en production avec FastAPI et React.

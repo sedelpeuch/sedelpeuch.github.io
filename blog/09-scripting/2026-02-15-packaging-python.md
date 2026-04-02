@@ -612,3 +612,8 @@ Remplace pip pour des workflows rapides. Toujours utilise pyproject.toml/setup.p
 Le packaging Python s'appuie sur des concepts simples : modules, packages, distributions (wheel/sdist), métadonnées, et PyPI. Une fois qu'on comprend ça, publier son code devient facile. setuptools + twine suffisent pour la plupart des cas. Les alternatives modernes comme Poetry offrent plus de confort mais reposent toujours sur les mêmes fondations.
 
 À vos pipelines! 🚀
+
+## Application / Projet lié
+
+### [standards-python](/docs/projects/professionnel/standards-python)
+**Utilisation** : Templates et bonnes pratiques pour le packaging et la publication de packages Python.
