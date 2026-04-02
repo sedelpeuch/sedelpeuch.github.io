@@ -493,6 +493,14 @@ def test_create_user_missing_email(service):
         service.create_user("alice", "")
 ```
 
+## Application / Projet lié
+
+### [standards-python](/docs/projects/professionnel/standards-python)
+**Utilisation** : Framework de test principal avec configuration pytest.ini et intégration CI/CD.
+
+### [CI/CD](/docs/projects/professionnel/cicd)
+**Utilisation** : Exécution automatisée des tests pytest lors des push et pull requests.
+
 ## Conclusion
 
 Pytest est un outil puissant pour écrire des tests maintenables et fiables. Avec les fixtures, parametrization et mocking, vous pouvez couvrir n'importe quel scénario. Investir dans une bonne suite de tests paie rapidement en termes de confiance et de refactoring sécurisé !

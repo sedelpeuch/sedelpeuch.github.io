@@ -46,12 +46,14 @@ asyncio.run(main())
 L'asynchrone est efficace uniquement pour les opérations **I/O-bound** (limitées par les entrées/sorties), pas pour les calculs **CPU-bound**.
 
 ✅ **Bon pour (I/O-bound) :**
+
 - Requêtes HTTP/API : attente réseau
 - Opérations de base de données : attente disque/réseau
 - Lecture/écriture de fichiers : attente disque
 - WebSockets : attente de messages
 
 ❌ **Pas adapté pour (CPU-bound) :**
+
 - Calculs mathématiques complexes
 - Traitement d'images/vidéos
 - Compression de données

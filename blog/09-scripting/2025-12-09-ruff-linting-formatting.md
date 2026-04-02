@@ -208,6 +208,14 @@ Ruff a automatiquement :
 - Ajouté les espaces autour des opérateurs (black)
 - Supprimé la variable non utilisée (avec `--fix`)
 
+## Application / Projet lié
+
+### [standards-python](/docs/projects/professionnel/standards-python)
+**Utilisation** : Ruff configuré comme linter et formatter standard pour l'ensemble du projet Python.
+
+### [CI/CD](/docs/projects/professionnel/cicd)
+**Utilisation** : Vérifications Ruff intégrées dans les pipelines CI/CD pour la qualité du code.
+
 ## Ressources
 
 - [Documentation officielle Ruff](https://docs.astral.sh/ruff/)

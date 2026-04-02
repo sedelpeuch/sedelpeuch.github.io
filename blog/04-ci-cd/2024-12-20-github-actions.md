@@ -91,6 +91,9 @@ Les runners sont des machines virtuelles ou physiques qui exécutent les jobs d�
 ### [delpeuch.net - Blog](/docs/projects/personnel/delpeuch-net-blog) & [6TRON Backend](/docs/projects/professionnel/6tron-backend)
 **Utilisation** : Déploiement automatique du blog et du backend lors des commits.
 
+### [standards-python](/docs/projects/professionnel/standards-python)
+**Utilisation** : Workflows CI/CD complets (lint, tests, build, release, deploy) via GitHub Actions.
+
 ## Conclusion
 
 GitHub Actions est un outil puissant pour automatiser les workflows de développement et de déploiement. En utilisant des fichiers de configuration YAML, les développeurs peuvent créer des workflows personnalisés pour répondre aux besoins spécifiques de leurs projets. Avec GitHub Actions, les équipes DevOps peuvent améliorer l'efficacité, réduire les erreurs humaines et accélérer le cycle de développement.
