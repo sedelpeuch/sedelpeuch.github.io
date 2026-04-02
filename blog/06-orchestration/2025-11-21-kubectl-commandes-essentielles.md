@@ -254,6 +254,11 @@ kubectl get deployments -o custom-columns=NAME:.metadata.name,DESIRED:.spec.repl
 - [Kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 - [JSONPath dans Kubernetes](https://kubernetes.io/docs/reference/kubectl/jsonpath/)
 
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster) & [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
+**Utilisation** : Gestion quotidienne du cluster Kubernetes - déploiements, débogage, monitoring et opérations.
+
 ## Conclusion 🎯
 
 Kubectl est un outil puissant et flexible pour gérer des clusters Kubernetes. La maîtrise de ces commandes et astuces permet de gagner en productivité et en efficacité au quotidien. La pratique régulière est la clé pour devenir expert avec kubectl.

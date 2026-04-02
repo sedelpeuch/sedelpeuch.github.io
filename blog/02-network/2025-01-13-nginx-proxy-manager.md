@@ -103,6 +103,11 @@ Dans cette section, une démonstration est fournie pour montrer comment utiliser
 
    Enregistrer la configuration et accéder à l'application web via le nom de domaine ou l'adresse IP configurée.
 
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : Gestion simplifiée des proxys inverses et renouvellement automatique des certificats SSL pour les services hébergés (Grafana, Portainer, etc.).
+
 ## Conclusion
 
 Nginx Proxy Manager est un outil puissant et facile à utiliser pour gérer les proxys inverses Nginx, les certificats SSL et les redirections de trafic. En utilisant Docker, il est possible de déployer et configurer rapidement Nginx Proxy Manager pour les applications web. Essayer Nginx Proxy Manager dès aujourd'hui pour simplifier la gestion des proxys inverses et améliorer la sécurité des sites web.

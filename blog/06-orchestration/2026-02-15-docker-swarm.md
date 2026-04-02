@@ -230,6 +230,11 @@ docker service create \
 - **Équipes** préférant la simplicité à la puissance
 - **Prototypage rapide** et POC
 
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : Comparaison architecturale : le cluster utilise Kubernetes (kubeadm) plutôt que Swarm pour plus de fonctionnalités et scalabilité.
+
 ## Conclusion
 
 Docker Swarm reste une excellente option pour l'orchestration de conteneurs quand on privilégie la simplicité. Pour des déploiements plus complexes et à grande échelle, Kubernetes reste le choix de référence. Le choix entre les deux dépend vraiment des besoins spécifiques du projet.

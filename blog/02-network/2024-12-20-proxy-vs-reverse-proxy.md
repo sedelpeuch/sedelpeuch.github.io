@@ -68,3 +68,8 @@ En résumé, un proxy et un reverse proxy ont des rôles différents mais compl�
 ## Schéma récapitulatif
 
 ![Schéma récapitulatif](https://media.dev.to/cdn-cgi/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fwqces5nwe4hb4bydyd13.png)
+
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : Comprendre les patterns de reverse proxy pour exposer les services en environnement Kubernetes et sécuriser les communications internes.

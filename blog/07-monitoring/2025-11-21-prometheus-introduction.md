@@ -471,6 +471,11 @@ Fichier `targets/web-servers.json` :
    - Éviter les alertes redondantes
    - Prévoir des périodes de silence (for: 5m)
 
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : Prometheus comme backend métrique du cluster pour monitorer tous les services hébergés (Grafana, Portainer, nodes Kubernetes).
+
 ## Conclusion 🎯
 
 Prometheus est devenu l'outil de monitoring de référence dans l'écosystème Cloud Native. Sa simplicité d'installation, son modèle de données flexible et son langage de requête puissant en font un choix excellent pour monitorer les infrastructures modernes.

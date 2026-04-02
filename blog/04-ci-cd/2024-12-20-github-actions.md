@@ -80,6 +80,17 @@ jobs:
 
 Les runners sont des machines virtuelles ou physiques qui exécutent les jobs définis dans les workflows. GitHub propose des runners hébergés, mais vous pouvez également configurer vos propres runners auto-hébergés pour répondre à des besoins spécifiques. Les runners auto-hébergés offrent plus de contrôle sur l'environnement d'exécution et peuvent être utilisés pour des tâches nécessitant des ressources spécifiques.
 
+## Application / Projet lié
+
+### [CI/CD](/docs/projects/professionnel/cicd)
+**Utilisation** : Architecture et patterns pour automatiser les workflows de build, test et déploiement.
+
+### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
+**Utilisation** : Runners auto-hébergés pour exécuter les workflows avec contrôle complet.
+
+### [delpeuch.net - Blog](/docs/projects/personnel/delpeuch-net-blog) & [6TRON Backend](/docs/projects/professionnel/6tron-backend)
+**Utilisation** : Déploiement automatique du blog et du backend lors des commits.
+
 ## Conclusion
 
 GitHub Actions est un outil puissant pour automatiser les workflows de développement et de déploiement. En utilisant des fichiers de configuration YAML, les développeurs peuvent créer des workflows personnalisés pour répondre aux besoins spécifiques de leurs projets. Avec GitHub Actions, les équipes DevOps peuvent améliorer l'efficacité, réduire les erreurs humaines et accélérer le cycle de développement.

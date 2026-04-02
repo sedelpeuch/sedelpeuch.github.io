@@ -593,6 +593,14 @@ Utiliser le trace ID dans les logs pour corréler les logs entre microservices :
 ) > 2
 ```
 
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : Loki comme système d'agrégation de logs pour tous les services hébergés dans le cluster.
+
+### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
+**Utilisation** : Collecte centralisée des logs des runners ARC pour le débogage et l'audit.
+
 ## Conclusion 🎯
 
 Loki révolutionne la gestion des logs en adoptant une approche minimaliste et efficace. Son intégration native avec Grafana et sa compatibilité avec l'écosystème Prometheus en font un choix excellent pour les infrastructures cloud-native.

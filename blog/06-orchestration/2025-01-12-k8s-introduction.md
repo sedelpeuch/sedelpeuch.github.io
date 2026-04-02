@@ -38,6 +38,14 @@ L'architecture de Kubernetes est composée de plusieurs composants clés :
 - **Résilience** : Kubernetes assure la haute disponibilité des applications en redémarrant automatiquement les conteneurs défaillants, en répliquant les conteneurs et en équilibrant la charge du trafic réseau.
 - **Gestion simplifiée** : Kubernetes automatise de nombreuses tâches de gestion des conteneurs, y compris le déploiement, la mise à jour et la mise à l'échelle des applications.
 
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : Orchestration complète d'un cluster Kubernetes en production (kubeadm) pour héberger services internes.
+
+### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
+**Utilisation** : Cluster Kubernetes pour orchestrer les runners GitHub Actions avec kubeadm.
+
 ## Conclusion 🎯
 
 Kubernetes est une plateforme puissante et flexible pour l'orchestration des conteneurs. En automatisant de nombreuses tâches de gestion des conteneurs, Kubernetes permet aux équipes de développement et d'exploitation de se concentrer sur la création et la maintenance des applications, plutôt que sur la gestion de l'infrastructure sous-jacente.

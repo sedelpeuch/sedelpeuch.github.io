@@ -447,6 +447,11 @@ db_password: !vault |
 ansible-vault encrypt_string 'SuperSecretPassword' --name 'db_password'
 ```
 
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : Playbooks avancés et structures de rôles pour la gestion complexe du cluster Kubernetes, configurations persistantes et secrets sécurisés.
+
 ## Bonnes pratiques avancées 🏆
 
 ### 1. Structure de projet recommandée

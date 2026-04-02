@@ -128,6 +128,14 @@ Les StatefulSets sont utilisés pour gérer le déploiement et la mise à l'éch
 
 Les composants de base de Kubernetes interagissent entre eux pour assurer le déploiement, la mise à l'échelle et la gestion des applications conteneurisées. Par exemple, un Deployment peut créer plusieurs Pods, qui sont ensuite exposés en tant que service réseau par un Service. Les StatefulSets garantissent l'ordre et l'unicité des Pods, ce qui est essentiel pour les applications nécessitant un stockage persistant. Les Services permettent de distribuer le trafic réseau entre les Pods et de garantir la haute disponibilité des applications.
 
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : Pods et Services pour héberger les microservices internes (Grafana, Portainer, etc.).
+
+### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
+**Utilisation** : Pods et Services pour les runners ARC et composants de CI/CD.
+
 ## Conclusion
 
 Les composants de base de Kubernetes, tels que les Pods, Services, Deployments et StatefulSets, permettent de déployer, gérer et mettre à l'échelle des applications conteneurisées de manière efficace. En comprenant ces composants et leurs interactions, il est possible de tirer parti de la puissance de Kubernetes pour gérer les applications.
