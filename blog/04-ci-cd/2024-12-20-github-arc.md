@@ -100,3 +100,11 @@ Nous avons rencontré un problème de lenteur lors de la construction des images
     hostPath:
     path: /var/lib/docker/image/overlay2
 ```
+
+## Application / Projet lié
+
+### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
+**Utilisation** : Déploiement et gestion compète des runners ARC sur Kubernetes avec kubeadm.
+
+### [CI/CD](/docs/projects/professionnel/cicd)
+**Utilisation** : Infrastructure de runners pour exécuter les workflows CI/CD avec scalabilité automatique.

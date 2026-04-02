@@ -76,3 +76,14 @@ Enfin, comment s'assurer et valider que l'image que vous construisez a peu ou pa
 La meilleure pratique est, une fois que vous avez construit l'image, la scannez pour des vulnérabilités de sécurité à l'aide de la commande docker scan.
 
 En arrière-plan, Docker utilise en fait un service appelé SNYK pour faire la numérisation de la vulnérabilité des images. Le scan utilise une base de données de vulnérabilités, qui est constamment mise à jour.
+
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : Optimisation des images Docker pour l'efficacité du cluster (taille, sécurité, performance).
+
+### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
+**Utilisation** : Images optimisées et sécurisées pour les conteneurs runners.
+
+### [CI/CD](/docs/projects/professionnel/cicd)
+**Utilisation** : Construction d'images Docker conformes aux bonnes pratiques de sécurité dans les pipelines.

@@ -263,6 +263,11 @@ L'utilisation d'Ansible pour configurer votre environnement zsh offre plusieurs 
 - **Maintien** : mise à jour facile de la configuration
 - **Documentation** : le code Ansible documente votre setup
 
+## Application / Projet lié
+
+### [zsh_ansible](/docs/projects/personnel/zsh_ansible)
+**Utilisation** : Ce blog article documente exactement le projet zsh_ansible - une automatisation complète de la configuration du shell de développement.
+
 ## Conclusion 🎯
 
 Le projet zsh_ansible démontre parfaitement comment Ansible peut être utilisé au-delà de la configuration de serveurs, pour automatiser même vos environnements de développement. Cette approche "infrastructure as code" appliquée à votre environnement de travail personnel vous fait gagner un temps précieux et assure une cohérence entre vos différentes machines.

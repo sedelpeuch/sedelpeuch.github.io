@@ -78,6 +78,14 @@ ansible-playbook playbook.yml --vault-id prod@prompt --vault-id dev@prompt
 - Changer régulièrement le mot de passe Vault
 - Limiter l'accès aux fichiers Vault aux personnes autorisées
 
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : Gestion sécurisée des secrets d'infrastructure (mots de passe, tokens, clés SSH) dans les playbooks Ansible.
+
+### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
+**Utilisation** : Stockage chiffré des tokens GitHub et crédentiels lors du provisionning d'ARC via Ansible.
+
 ## Pour aller plus loin
 
 - Rotation des secrets

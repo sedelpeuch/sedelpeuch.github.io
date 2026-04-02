@@ -89,6 +89,14 @@ spec:
               key: password
 ```
 
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : ConfigMaps et Secrets pour la gestion sécurisée de configuration et crédentiels des services hébergés.
+
+### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
+**Utilisation** : Secrets pour les tokens GitHub et configuration sécurisée des runners.
+
 ## Conclusion
 
 Les Secrets et ConfigMaps dans Kubernetes permettent de gérer les configurations et les informations sensibles de manière sécurisée et efficace. En utilisant ces ressources, il est possible de séparer les configurations des conteneurs, de faciliter la gestion des configurations et de protéger les informations sensibles. 🔐

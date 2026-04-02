@@ -43,3 +43,11 @@ docker pull postgres:9.6
 # Démarrer un conteneur PostgreSQL avec la version 9.6
 docker run --name my-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres:9.6
 ```
+
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : Comprendre les concepts de conteneurs et images pour gérer les pods Kubernetes et les services hébergés.
+
+### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
+**Utilisation** : Les runners GitHub Actions fonctionnent comme des conteneurs Docker éphémères sur Kubernetes.

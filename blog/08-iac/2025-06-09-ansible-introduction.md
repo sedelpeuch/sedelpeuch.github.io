@@ -169,6 +169,17 @@ ansible -i inventory localhost -m ping
 5. **Tester avec `--check`** avant d'exécuter réellement les changements
 6. **Structurer logiquement l'inventaire** en groupes et sous-groupes
 
+## Application / Projet lié
+
+### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
+**Utilisation** : Automatisation complète du configuration et maintenance des nodes Kubernetes avec Ansible.
+
+### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
+**Utilisation** : Provisionning automatique du cluster Kubernetes et installation d'ARC via Ansible playbooks.
+
+### [zsh_ansible](/docs/projects/personnel/zsh_ansible)
+**Utilisation** : Cas pratique d'automatisation shell avec Ansible pour la gestion d'infrastructure personnelle.
+
 ## Conclusion 🎯
 
 Ansible est un outil puissant mais accessible qui peut considérablement améliorer l'efficacité des équipes DevOps et des administrateurs système. Sa simplicité, son absence d'agents et sa grande communauté en font un choix de prédilection pour l'automatisation d'infrastructure.

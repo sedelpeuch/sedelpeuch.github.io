@@ -37,3 +37,8 @@ import IconTitle from '@site/src/components/IconTitle';
 ### <IconTitle logo="skill-icons:terraform-light" name="08 Infrastructure as Code"/>
 
 [Infrastructure as Code](/blog/tags/iac) Automatisation de la configuration et du déploiement avec Ansible, exploration de Terraform, documentation des workflows et partage des bonnes pratiques. Voir [CI/CD GitHub Actions](/docs/projects/professionnel/cicd).
+
+## Application / Projet lié
+
+### [delpeuch.net - Blog](/docs/projects/personnel/delpeuch-net-blog) & [delpeuch.net - Portfolio](/docs/projects/personnel/delpeuch-net)
+**Utilisation** : Ce blog article synthétise la roadmap DevOps personnelle et capitalise sur les apprentissages pour partager la progression DevOps de 2025-2026.
