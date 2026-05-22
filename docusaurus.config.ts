@@ -224,9 +224,9 @@ const config: Config = {
   ],
   scripts: [
     {
-      src: "https://plausible.io/js/script.js",
+      src: "https://cloud.umami.is/script.js",
       defer: true,
-      "data-domain": "delpeuch.net",
+      "data-website-id": "a249df0c-9eb1-4242-adf8-084b8163ae7d",
     },
   ],
   stylesheets: [
