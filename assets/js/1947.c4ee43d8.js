@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksedelpeuch_net=self.webpackChunksedelpeuch_net||[]).push([[1947],{1947(e,s,c){c.d(s,{createWardleyServices:()=>u.J});var u=c(22295);c(72519)}}]);
