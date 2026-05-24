@@ -8,12 +8,21 @@ import rehypeKatex from "rehype-katex";
 
 const config: Config = {
   title: "Sébastien Delpeuch",
+  tagline: "Ingénieur DevOps & Robotique · CATIE Bordeaux",
   url: "https://delpeuch.net",
   baseUrl: process.env.BASE_URL || "/",
   favicon: "img/logo.svg",
   organizationName: "sedelpeuch",
   projectName: "sedelpeuch.net",
   onBrokenLinks: "warn",
+  customFields: {
+    description:
+      "Portfolio de Sébastien Delpeuch, ingénieur en robotique et DevOps au CATIE (Bordeaux). Articles techniques sur Kubernetes, Python, CI/CD, ROS2 et projets professionnels.",
+  },
+  i18n: {
+    defaultLocale: "fr",
+    locales: ["fr"],
+  },
   themeConfig: {
     navbar: {
       logo: {
@@ -175,6 +184,18 @@ const config: Config = {
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },
+    metadata: [
+      {
+        name: "keywords",
+        content:
+          "DevOps, Kubernetes, robotique, Python, CATIE, Bordeaux, ingénieur, ROS2, Docker, CI/CD, GitHub Actions",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://delpeuch.net/img/sde.jpg" },
+      { property: "og:site_name", content: "Sébastien Delpeuch" },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:image", content: "https://delpeuch.net/img/sde.jpg" },
+    ],
   } satisfies Preset.ThemeConfig,
   presets: [
     [
@@ -186,11 +207,18 @@ const config: Config = {
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
         },
+        sitemap: {
+          changefreq: "weekly",
+          priority: 0.5,
+          ignorePatterns: ["/tags/**"],
+        },
         blog: {
           showReadingTime: true,
           feedOptions: {
             type: "all",
             title: "Sébastien Delpeuch's Blog",
+            description:
+              "Articles techniques sur le DevOps, Kubernetes, Python, CI/CD et la robotique.",
           },
           blogSidebarTitle: "Tous les articles",
           blogSidebarCount: "ALL",

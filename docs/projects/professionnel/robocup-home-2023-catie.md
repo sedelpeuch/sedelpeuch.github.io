@@ -1,6 +1,7 @@
 ---
 title: RoboCup @Home 2023 - CATIE Robotics
 tags: [robotique, robocup]
+description: "3ème place mondiale à la RoboCup @Home 2023 à Bordeaux. Contribution sur l'architecture logicielle ROS2 et la navigation autonome du robot Reachy."
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,5 +1,6 @@
 ---
 title: GitHub ARC - Runners CI/CD auto-hébergés sur Kubernetes
+description: Déploiement de GitHub Actions Runner Controller (ARC) sur un cluster Kubernetes kubeadm. Runners éphémères dans des pods isolés, secrets chiffrés, accès registre privé.
 ---
 
 import Tabs from '@theme/Tabs';
