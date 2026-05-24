@@ -27,16 +27,6 @@ const config: Config = {
           to: "about",
         },
         {
-          label: "Projets",
-          position: "left",
-          to: "docs/projects",
-        },
-        {
-          label: "Enseignement",
-          position: "left",
-          to: "docs/enseignement",
-        },
-        {
           label: "Blog",
           position: "left",
           to: "blog",
@@ -77,9 +67,19 @@ const config: Config = {
           ],
         },
         {
+          label: "Projets",
+          position: "left",
+          to: "docs/projects",
+        },
+        {
+          label: "Enseignement",
+          position: "right",
+          to: "docs/enseignement",
+        },
+        {
           type: "dropdown",
           label: "Scolarité",
-          position: "left",
+          position: "right",
           to: "docs/scolarite",
           items: [
             {
