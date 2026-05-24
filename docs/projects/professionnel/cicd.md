@@ -1,6 +1,7 @@
 ---
 title: CI/CD - Workflows GitHub Actions mutualisés
 tags: [ci-cd, github-actions]
+description: Bibliothèque de workflows GitHub Actions réutilisables pour Python, Docker et Helm. Déploiement standardisé sur cluster Kubernetes pour toute l’organisation CATIE.
 ---
 
 import Tabs from '@theme/Tabs';

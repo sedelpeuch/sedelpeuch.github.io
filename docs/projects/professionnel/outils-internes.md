@@ -1,5 +1,6 @@
 ---
 title: Automatisation du quotidien — outils internes SONU
+description: "Bots Slack, dashboard Jira, alertes ERP et site de documentation interne. Outils développés et déployés sur Kubernetes pour automatiser les tâches répétitives de l'équipe SONU au CATIE."
 ---
 
 <div className="project-meta-grid">

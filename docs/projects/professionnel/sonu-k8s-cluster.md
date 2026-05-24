@@ -1,6 +1,7 @@
 ---
 title: Cluster Kubernetes interne SONU
 tags: [kubernetes, devops, infrastructure]
+description: Cluster Kubernetes bare-metal monté avec kubeadm sur 7 nœuds. GitOps via Helm, exposition Tailscale, chaîne d’observabilité Prometheus/Grafana/Loki. Infrastructure interne de l’équipe SONU au CATIE.
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,5 +1,6 @@
 ---
 title: BlueNav - Jumeau numérique bateau autonome
+description: "Jumeau numérique pour un bateau autonome de mesure hydrographique. Simulation ROS2, visualisation temps réel et CI/CD embarqué pour le projet BlueNav au CATIE."
 ---
 
 import Tabs from '@theme/Tabs';

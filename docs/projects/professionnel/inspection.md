@@ -1,5 +1,6 @@
 ---
 title: Inspection visuelle automatisée de véhicules
+description: Pipeline edge de vision par ordinateur pour la détection automatique de dommages sur véhicules neufs en parcs portuaires. Inférence sur NPU embarqué, traitement RAW en temps réel.
 ---
 
 import Tabs from '@theme/Tabs';

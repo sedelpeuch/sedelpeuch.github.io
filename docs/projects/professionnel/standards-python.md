@@ -1,6 +1,7 @@
 ---
 title: Standards Python - Template Cookiecutter
 tags: [python, standards]
+description: "Template Cookiecutter Python normalisé pour l'organisation CATIE. Poetry, pre-commit, pytest, CI GitHub Actions et documentation automatique."
 ---
 
 import Tabs from '@theme/Tabs';
