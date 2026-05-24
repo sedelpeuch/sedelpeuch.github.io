@@ -8,31 +8,6 @@ Roadmap prévisionnelle pour apprendre les bases du cloud avec AWS.
 
 <!--truncate-->
 
-## Réseau Cloud avec VPC
-
-Dans cette étape, vous allez explorer les bases du réseau dans AWS en utilisant les Virtual Private Clouds (VPC) :
-
-- **Comprendre les concepts de réseau** : VPC, subnets, Internet Gateway (IGW), NAT Gateway.
-- **Créer un VPC personnalisé** : Configurez un VPC avec deux subnets (public et privé).
-- **Configurer les tables de routage** : Définissez les règles de routage pour vos subnets.
-- **Lancer une instance EC2 dans un subnet privé** : Apprenez à isoler vos ressources.
-- **Accéder à une instance privée via un bastion** : Configurez un jump host dans le subnet public.
-- **Découvrir les Security Groups et Network ACLs** : Comprenez comment sécuriser vos ressources.
-
-**Objectif :** Comprendre le réseau AWS et sécuriser les accès.
-
-## Docker & déploiement manuel
-
-Docker est un outil essentiel pour le déploiement d'applications modernes. Cette étape, vous allez apprendre à utiliser Docker sur AWS :
-
-- **Installer Docker sur une instance EC2** : Configurez Docker sur votre serveur.
-- **Construire et lancer un conteneur Docker** : Par exemple, déployez un conteneur Nginx.
-- **Pousser une image sur AWS ECR** : Apprenez à utiliser Elastic Container Registry.
-- **Puller une image depuis ECR** : Lancez un conteneur à partir d'une image stockée.
-- **Comprendre l’orchestration manuelle** : Explorez les bases de la gestion des conteneurs sans Kubernetes.
-
-**Objectif :** Déployer des conteneurs sans Kubernetes et comprendre le cycle complet.
-
 ## Kubernetes managé avec EKS (pas à pas)
 
 Kubernetes est une technologie clé pour l'orchestration des conteneurs. Cette étape, vous allez découvrir EKS, le service Kubernetes managé d'AWS :
