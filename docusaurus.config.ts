@@ -195,6 +195,7 @@ const config: Config = {
       { property: "og:site_name", content: "Sébastien Delpeuch" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:image", content: "https://delpeuch.net/img/sde.jpg" },
+      { name: "google-site-verification", content: "uqWo4pfjrT_gmqh5o5ABrp3XB37t-Pfq5FwP_eXAwKI" },
     ],
   } satisfies Preset.ThemeConfig,
   presets: [
