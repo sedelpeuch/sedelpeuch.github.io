@@ -1,110 +1,154 @@
 ---
 title: "GitHub Actions : ARC"
-description: "Explication de l'installation et de l'utilisation de l'Action Runner Controller GitHub"
+description: "Déployer Actions Runner Controller (ARC) sur Kubernetes pour des runners GitHub Actions auto-hébergés et autoscalables."
 tags: [cicd, devops]
 ---
 
-
-
-Actions Runner Controller (ARC) est un opérateur de Kubernetes qui orchestre et gère les runners auto-hébergés pour les actions GitHub.
+Un runner auto-hébergé classique est une machine fixe qui exécute les jobs séquentiellement. Si dix workflows se déclenchent simultanément, neuf attendent. Actions Runner Controller (ARC) est un opérateur Kubernetes qui provisonne des pods runner à la demande — un pod par job — et les supprime à la fin de l'exécution. La capacité s'adapte automatiquement à la charge.
 
 <!--truncate-->
 
-## GitHub ARC
+## Architecture
 
-Les runners auto-hébergés offrent un contrôle total sur l'environnement d'exécution, permettant de personnaliser les configurations et d'optimiser les performances selon les besoins spécifiques. Ils sont également plus rentables à long terme, car ils n'entraînent pas de coûts supplémentaires liés à l'utilisation des ressources de GitHub. Cependant, ils nécessitent une maintenance régulière et une gestion de la sécurité pour garantir leur bon fonctionnement et leur protection contre les menaces potentielles. En revanche, GitHub Actions Runner Controller (ARC) est une solution évolutive gérée par GitHub, qui permet de gérer automatiquement les runners dans un environnement Kubernetes. ARC offre une gestion simplifiée et une mise à l'échelle automatique des runners en fonction des besoins, ce qui est idéal pour les grandes organisations avec des charges de travail variables. Cependant, l'utilisation de GitHub ARC peut entraîner des coûts plus élevés pour les déploiements à grande échelle, et les utilisateurs ont moins de contrôle sur l'environnement d'exécution par rapport aux runners auto-hébergés.
+ARC repose sur deux composants déployés dans le cluster :
 
-Avec ARC, il est possible de créer des ensembles de runners qui évoluent automatiquement en fonction du nombre de workflows exécutés dans votre dépôt, organisation ou entreprise.
+- **Le controller** (`arc-systems`) — surveille l'API GitHub, détecte les jobs en attente, et pilote la création et la suppression des pods runner.
+- **Les runner scale sets** (`arc-runners`) — ensembles de pods éphémères, un par job en cours d'exécution. Chaque pod contient le binaire runner GitHub Actions et, optionnellement, un sidecar Docker-in-Docker pour les jobs qui construisent des images.
 
-Le diagramme suivant illustre l'architecture du mode Scaleset Runner Autoscaling d'Arc.
-
-[Documentation complète](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/quickstart-for-actions-runner-controller)
-
-![alt text](/img/arc.png)
-
-:::danger
-Sur GitHub les ARC sont identifiés par leur nom d'installation. Il est important de choisir un nom unique pour chaque installation. De plus pour simplifier l'écriture des workflows il est consillé de gérer les runners par des groupes de runners. La clé `runs-on` des jobs des workflows doit être égale à un groupe de runners.
-:::
+```
+GitHub Actions
+      ↓ job en attente
+ARC Controller (arc-systems)
+      ↓ crée un pod
+Runner Pod (arc-runners)
+  ├── container: runner (exécute le job)
+  └── container: dind (Docker-in-Docker, optionnel)
+      ↓ job terminé → pod supprimé
+```
 
 ## Prérequis
 
-Pour utiliser l'ARC, il est nécessaire de disposer des éléments suivants :
+- Cluster Kubernetes opérationnel
+- Helm 3.x installé
+- Application GitHub enregistrée au niveau de l'organisation (pour l'authentification)
 
-- Un cluster Kubernetes
-- Helm 3.0 ou version ultérieure
+## Installation
 
-## Installation rapide
+**1. Déployer le controller :**
 
-:::warning
-La suite du guide permet de rapidement installer ARC. Les différents concepts et la configuration avancée ne sont pas abordés. Pour une installation plus complète, regarder la [documentation officielle](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/quickstart-for-actions-runner-controller).
-:::
-
-- Le pod de contrôle est en charge de la gestion des pods de runner. Il s'occupe de la création, de la mise à l'échelle et de la suppression des pods de runner.
-- Le pod de runner est dédié à l'exécution des workflows GitHub Actions. Il se compose de deux conteneurs : un conteneur DinD et un conteneur runner. Le conteneur DinD fournit un environnement d'exécution Docker pour le conteneur runner. Le conteneur runner est utilisé pour exécuter les workflows GitHub Actions.
-
-## Usage
-
-Pour lancer le pod de contrôle :
-
-```shell
-NAMESPACE="arc-systems"
+```bash
 helm install arc \
-    --namespace "${NAMESPACE}" \
-    --create-namespace \
-    oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
+  --namespace arc-systems \
+  --create-namespace \
+  oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set-controller
 ```
 
-Pour lancer le pod de runner :
+**2. Créer le secret d'authentification :**
 
-```shell
-INSTALLATION_NAME="elegantencoder"
-NAMESPACE="arc-runners"
-helm install "${INSTALLATION_NAME}" \
-    --namespace "${NAMESPACE}" \
-    --create-namespace \
-    -f value.yaml \
-    oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set;
+ARC s'authentifie auprès de l'API GitHub via une GitHub App. Les identifiants se récupèrent depuis *Settings → Developer settings → GitHub Apps* de l'organisation :
+
+```bash
+kubectl create secret generic arc-github-app-secret \
+  --namespace arc-runners \
+  --from-literal=github_app_id=APP_ID \
+  --from-literal=github_app_installation_id=INSTALLATION_ID \
+  --from-literal=github_app_private_key='PRIVATE_KEY_PEM'
 ```
 
-## Authentification
-
-Pour que le pod de contrôle puisse créer des pods de runner, il faut lui donner les droits nécessaires. Pour cela, il faut créer un secret contenant un token d'authentification. Les différents éléments proviennent de l'enregistrement d'une application GitHub au niveau de l'organisation concernée.
-
-```shell
-kubectl create secret generic pre-defined-secret \
-   --namespace=arc-runners \
-   --from-literal=github_app_id=xxx \
-   --from-literal=github_app_installation_id=xxx \
-   --from-literal=github_app_private_key='xxx'
-```
-
-## Monitoring
-
-Dashboard Helm
-
-```shell
-helm dashboard --bind 0.0.0.0
-```
-
-Portainer
-
-## Docker cache
-
-Nous avons rencontré un problème de lenteur lors de la construction des images Docker. Pour y remédier, nous avons mis en place la mutualisation des couches des images Docker entre les différents pods et l'hôte. Cela implique la création d'un volume partagé entre les différents pods et l'hôte. Ces volumes sont montés dans le conteneur DinD du pod qui les utilise pour fournir les images Docker au conteneur du runner. Chaque pod de runner contient un conteneur DinD qui est utilisé pour construire les images Docker.
+**3. Déployer un runner scale set :**
 
 ```yaml
-- name: overlay2
-    hostPath:
-    path: /var/lib/docker/overlay2
-- name: image-overlay2
-    hostPath:
-    path: /var/lib/docker/image/overlay2
+# values.yaml
+githubConfigUrl: "https://github.com/ORG"
+githubConfigSecret: arc-github-app-secret
+
+minRunners: 0
+maxRunners: 10
+
+runnerGroup: "default"
+
+template:
+  spec:
+    containers:
+      - name: runner
+        image: ghcr.io/actions/actions-runner:latest
+        resources:
+          requests:
+            cpu: 500m
+            memory: 512Mi
+          limits:
+            cpu: 2
+            memory: 2Gi
 ```
 
-## Application / Projet lié
+```bash
+helm install arc-runners \
+  --namespace arc-runners \
+  --create-namespace \
+  -f values.yaml \
+  oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
+```
 
-### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
-**Utilisation** : Déploiement et gestion compète des runners ARC sur Kubernetes avec kubeadm.
+:::warning Nommage
+Le nom d'installation Helm (`arc-runners` ici) devient l'identifiant du runner dans GitHub. C'est la valeur à utiliser dans `runs-on` des workflows. Choisir un nom stable — le renommer casse tous les workflows qui le référencent.
+:::
 
-### [CI/CD](/docs/projects/professionnel/cicd)
-**Utilisation** : Infrastructure de runners pour exécuter les workflows CI/CD avec scalabilité automatique.
+## Utilisation dans un workflow
+
+```yaml
+jobs:
+  build:
+    runs-on: arc-runners    # nom du scale set installé
+    steps:
+      - uses: actions/checkout@v4
+      - run: make build
+```
+
+ARC crée un pod runner pour ce job au moment où il est déclenché, et le supprime à la fin.
+
+## Cache Docker partagé
+
+Par défaut, chaque pod runner démarre avec un daemon Docker vide — les layers Docker sont téléchargés à chaque job. Pour partager le cache entre pods, monter les répertoires overlay2 de l'hôte dans le container DinD :
+
+```yaml
+template:
+  spec:
+    containers:
+      - name: dind
+        image: docker:dind
+        volumeMounts:
+          - name: docker-overlay2
+            mountPath: /var/lib/docker/overlay2
+          - name: docker-image-overlay2
+            mountPath: /var/lib/docker/image/overlay2
+    volumes:
+      - name: docker-overlay2
+        hostPath:
+          path: /var/lib/docker/overlay2
+      - name: docker-image-overlay2
+        hostPath:
+          path: /var/lib/docker/image/overlay2
+```
+
+Les builds ultérieurs réutilisent les layers déjà présents sur le nœud, réduisant significativement le temps de build.
+
+## Vérification du déploiement
+
+```bash
+# État du controller
+kubectl get pods -n arc-systems
+
+# État des runner scale sets
+kubectl get pods -n arc-runners
+
+# Runners enregistrés sur GitHub
+# Settings → Actions → Runners de l'organisation
+```
+
+Déclencher un workflow et observer la création du pod :
+
+```bash
+watch kubectl get pods -n arc-runners
+```
+
+Un pod apparaît au moment où le job démarre et disparaît quelques secondes après sa fin.

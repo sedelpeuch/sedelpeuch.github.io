@@ -1,91 +1,113 @@
 ---
 title: "GitHub Actions : Self-Host Runner"
-description: "Explication de la création et de l'installation d'un nouveau runner au niveau de l'organisation"
+description: "Installer et configurer un runner GitHub Actions auto-hébergé sur une machine Linux."
 tags: [cicd, devops]
 ---
 
-Un `runner` est une machine virtuelle ou physique qui exécute des `jobs` dans un `workflow`. Les `runners` peuvent être hébergés par GitHub ou auto-hébergés. Les `runners` hébergés par GitHub sont exécutés dans un environnement de cloud partagé et sont gérés par GitHub et peuvent entrainer des surcouts. Les `runners` auto-hébergés sont exécutés sur une machine que vous possédez et gérez.
+Les runners hébergés par GitHub (`ubuntu-latest`) sont éphémères, gérés par GitHub, et consomment le quota de minutes de l'organisation. Les runners auto-hébergés tournent sur des machines contrôlées — serveur on-premise, VM cloud, Raspberry Pi — et n'ont pas de quota. Ils donnent accès à des ressources locales : réseau privé, GPU, caches persistants, outils propriétaires.
 
 <!--truncate-->
 
-## Comparaison entre les runners auto-hébergés et les runners cloud-hébergés de GitHub
+## Runners GitHub vs auto-hébergés
 
-Les runners auto-hébergés offrent un contrôle total sur l'environnement d'exécution, ce qui permet de personnaliser les configurations et d'optimiser les performances selon les besoins spécifiques. Ils sont également plus rentables à long terme, car ils n'entraînent pas de coûts supplémentaires liés à l'utilisation des ressources de GitHub. Cependant, ils nécessitent une maintenance régulière et une gestion de la sécurité pour garantir leur bon fonctionnement et leur protection contre les menaces potentielles.
+| | GitHub-hosted | Self-hosted |
+|---|---|---|
+| Maintenance | GitHub | Soi-même |
+| Quota | 2 000 min/mois (privé) | Illimité |
+| Environnement | Standardisé | Personnalisable |
+| Accès réseau privé | Non | Oui |
+| Coût à grande échelle | Élevé | Infrastructure propre |
 
-Les runners cloud-hébergés de GitHub sont gérés par GitHub, ce qui signifie que les utilisateurs n'ont pas à se soucier de la maintenance, de la sécurité ou de la mise à jour des runners. Ils sont également facilement évolutifs, car GitHub peut ajouter des ressources supplémentaires en fonction des besoins. Cependant, les runners cloud-hébergés peuvent entraîner des coûts supplémentaires pour les utilisateurs, en particulier pour les projets de grande envergure ou les charges de travail intensives.
+## Installation d'un runner
 
-En résumé, les runners auto-hébergés sont idéaux pour les équipes ou les projets avec des besoins spécifiques en matière de configuration et de performances, tandis que les runners cloud-hébergés de GitHub sont mieux adaptés aux utilisateurs qui préfèrent une solution gérée et évolutive sans avoir à se soucier de la maintenance et de la sécurité. Le choix entre les deux dépend des besoins spécifiques de l'équipe et des ressources disponibles.
+L'installation se fait depuis *Settings → Actions → Runners → New self-hosted runner* du dépôt ou de l'organisation. GitHub génère un token d'enregistrement valable 1 heure.
 
-## Créér un runner auto-hébergés
-
-Pour télécharger un nouveau `runner`, exécutez les lignes suivantes
-
-```shell
-# Create a folder
+```bash
 mkdir actions-runner && cd actions-runner
-# Download the latest runner package
-curl -o actions-runner-linux-x64-2.312.0.tar.gz -L <https://github.com/actions/runner/releases/download/v2.312.0/actions-runner-linux-x64-2.312.0.tar.gz> # ! update this documentation with the latest release
-# Optional: Validate the hash
-echo "85c1bbd104d539f666a89edef70a18db2596df374a1b51670f2af1578ecbe031  actions-runner-linux-x64-2.312.0.tar.gz" | shasum -a 256 -c
-# Extract the installer
-tar xzf ./actions-runner-linux-x64-2.312.0.tar.gz
+
+# Télécharger le runner (vérifier la dernière version sur la page GitHub)
+curl -o actions-runner-linux-x64-2.317.0.tar.gz -L \
+  https://github.com/actions/runner/releases/download/v2.317.0/actions-runner-linux-x64-2.317.0.tar.gz
+
+# Vérifier l'intégrité
+echo "SHA256SUM  actions-runner-linux-x64-2.317.0.tar.gz" | shasum -a 256 -c
+
+tar xzf ./actions-runner-linux-x64-2.317.0.tar.gz
 ```
 
-Il est ensuite nécessaire de configurer votre `runner`
+Configuration et enregistrement :
 
-```shell
-# Create the runner and start the configuration experience
-./config.sh --url <https://github.com/><org>/<repo> --token <token># Last step, run it!
-./run.sh
+```bash
+./config.sh --url https://github.com/ORG/REPO --token TOKEN
 ```
 
-:::info
-Le token est à obtenir au près d’un `owner` de l’organisation accessible sur le lien suivant [https://github.com/organizations/](https://github.com/organizations/org/settings/actions/runners/new?arch=x64&os=linux)
-:::
+L'assistant interactif demande le nom du runner et ses labels. Les labels permettent de cibler ce runner spécifiquement dans les workflows (`runs-on: [self-hosted, gpu]`).
 
-➡️ Lors de la configuration, il est possible d'ajouter des **labels** pour identifier la machine (par exemple `GPU`).
+## Exécution en tant que service
 
-## Créer une action `self-hosted`
+Lancer le runner en processus de premier plan (`./run.sh`) n'est pas adapté à la production — il s'arrête à la déconnexion de la session. L'installer comme service systemd le démarre automatiquement au boot :
 
-Il n’est pas possible de créer une action visant une machine `self-hosted` particulière (à confirmer). Chaque `repository` d’une organisation peut accéder à :
-
-- Toutes les machines dans le groupe `Défaut` qui sont automatiquement partagées à tous les dépôts.
-- Toutes les machines dans un groupe `Name` qui sont manuellement partagées au dépôt concerné (l’affectation manuelle des dépôts à des groupes de machines nous encourage à ne pas utiliser ceci sauf cas particulier)
-
-Parmi les machines disponibles le `repository` peut demander d’utiliser une machine en fonction de son `label` par exemple l’action ci-dessous, permettant de vérifier que le dépôt est compilable sous ROS, réquisitionne une machine ayant le label `Robotics`. Ceci est modifiable à la ligne `runs-on: Robotics`.
-
-```yaml
-name: CI
-
-on: [pull_request]
-
-jobs:
-  industrial_ci:
-    strategy:
-      matrix:
-        env:
-          - {ROS_DISTRO: melodic, ROS_REPO: main}
-    runs-on: Robotics
-    steps:
-      - uses: actions/checkout@v3
-      - uses: 'ros-industrial/industrial_ci@master'
-        env: ${{matrix.env}}
-```
-
-Lors de la première utilisation, si vous rencontrez un erreur `docker` spécifiant un manque de permission, il est nécessaire de taper la commande suivante sur la machine distance `sudo setfacl --modify user:<user>:rw /var/run/docker.sock`
-Lorsqu’une action est créé en `self-hosted` il est fortement conseillé de mettre les actions dans un `container`. Lorsque c’est impossible (comme `tailscale`) il est nécessaire d’ajouer un clean de l’environnement à la fin de l’action en ajoutant cette `step`
-
-```yaml
-- name: Clean runner
-  if: always()
-  run: rm -rf ${{ github.workspace }}/*
-```
-
-## Mettre en place le runner sous forme de service
-
-Dans le dossier de votre `runnner` sur la machine, transformer le `./run.sh` en service, tapez simplement les lignes ci-dessous pour que le `runner` s’active au démarrage de la machine.
-
-```shell
+```bash
 sudo ./svc.sh install
 sudo ./svc.sh start
+
+# Vérifier le statut
+sudo ./svc.sh status
+```
+
+## Labels et groupes
+
+Tous les runners auto-hébergés partagent le label `self-hosted`. Des labels supplémentaires permettent de cibler des machines spécifiques :
+
+```yaml
+jobs:
+  build:
+    runs-on: [self-hosted, linux]        # n'importe quel runner Linux
+
+  gpu-training:
+    runs-on: [self-hosted, linux, gpu]   # uniquement les runners avec label "gpu"
+```
+
+Au niveau organisation, les runners se regroupent en **runner groups**. Un group peut être partagé avec tous les dépôts ou avec une sélection. Le label `runs-on` doit correspondre à un group ou aux labels individuels du runner.
+
+## Utilisation dans un container
+
+Sur un runner auto-hébergé, spécifier un `container` isole le job du système hôte et garantit un environnement reproductible :
+
+```yaml
+jobs:
+  test:
+    runs-on: self-hosted
+    container:
+      image: python:3.12-slim
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pytest && pytest
+```
+
+Sans `container`, les steps s'exécutent directement sur la machine hôte et dépendent des outils qui y sont installés.
+
+## Nettoyage du workspace
+
+Sur un runner auto-hébergé, le workspace persiste entre les jobs — contrairement aux runners GitHub qui démarrent sur une machine propre. Pour les actions qui ne tournent pas dans un container, ajouter une step de nettoyage en fin de job :
+
+```yaml
+    steps:
+      # ... steps du job ...
+
+      - name: Clean workspace
+        if: always()
+        run: rm -rf ${{ github.workspace }}/*
+```
+
+`if: always()` garantit l'exécution même si le job a échoué.
+
+## Permissions Docker
+
+Si le runner a besoin d'exécuter des commandes Docker sans `sudo`, ajouter l'utilisateur du service au groupe docker :
+
+```bash
+sudo usermod -aG docker $USER
+# ou, si le socket Docker a des permissions restrictives :
+sudo setfacl --modify user:runner-user:rw /var/run/docker.sock
 ```
