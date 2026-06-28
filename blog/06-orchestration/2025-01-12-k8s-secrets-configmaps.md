@@ -1,104 +1,136 @@
 ---
 title: "Kubernetes : Secrets et ConfigMaps"
-description: "Découvrez les concepts de Secrets et ConfigMaps dans Kubernetes, et comment les utiliser pour gérer les configurations et les informations sensibles."
+description: "Gérer la configuration et les credentials dans Kubernetes : ConfigMap, Secret, injection en variables d'environnement ou en volume."
 tags: [orchestration, devops]
 ---
 
-Kubernetes offre des mécanismes pour gérer les configurations et les informations sensibles de manière sécurisée et efficace. Dans cet article, les concepts de Secrets et ConfigMaps dans Kubernetes seront explorés, ainsi que leur utilisation pour gérer les configurations et les informations sensibles. 🔒
+Une image Docker doit être identique entre les environnements — dev, staging, prod. Ce qui change entre environnements, c'est la configuration : URL de base de données, niveau de log, clés API. Kubernetes fournit deux ressources pour externaliser cette configuration : ConfigMap pour les données non sensibles, Secret pour les credentials.
 
 <!--truncate-->
 
 ## ConfigMap
 
-Un ConfigMap est une ressource Kubernetes utilisée pour stocker des paires clé-valeur de configuration. Les ConfigMaps permettent de séparer les configurations des conteneurs, ce qui facilite la gestion et la mise à jour des configurations sans avoir à reconstruire les images des conteneurs.
-
-### Exemple de ConfigMap
+Un ConfigMap stocke des paires clé-valeur de configuration sous forme de texte brut. Il découple la configuration de l'image — une même image peut se comporter différemment selon le ConfigMap injecté.
 
 ```yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: my-config
+  name: api-config
 data:
-  database_url: "postgres://user:password@hostname:5432/dbname"
-  log_level: "debug"
+  LOG_LEVEL: "info"
+  API_PORT: "8080"
+  DATABASE_NAME: "myapp"
 ```
 
-### Utilisation d'un ConfigMap dans un Pod
+### Injection en variables d'environnement
 
 ```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: my-pod
 spec:
   containers:
-    - name: my-container
-      image: nginx:alpine
+    - name: api
+      image: myapp:1.0
       env:
-        - name: DATABASE_URL
-          valueFrom:
-            configMapKeyRef:
-              name: my-config
-              key: database_url
         - name: LOG_LEVEL
           valueFrom:
             configMapKeyRef:
-              name: my-config
-              key: log_level
+              name: api-config
+              key: LOG_LEVEL
 ```
+
+Ou en une seule directive pour injecter toutes les clés :
+
+```yaml
+      envFrom:
+        - configMapRef:
+            name: api-config
+```
+
+### Injection en volume
+
+Monter un ConfigMap en volume crée un fichier par clé dans le répertoire cible. Utile pour les fichiers de configuration (nginx.conf, prometheus.yml) :
+
+```yaml
+      volumeMounts:
+        - name: config
+          mountPath: /etc/app
+  volumes:
+    - name: config
+      configMap:
+        name: api-config
+```
+
+La différence entre les deux modes d'injection est importante : les variables d'environnement sont figées au démarrage du pod. Si le ConfigMap est modifié, le pod doit être redémarré pour voir les nouvelles valeurs. Un volume ConfigMap est mis à jour dynamiquement — le fichier monté reflète les changements sans redémarrage (avec un délai de quelques secondes).
 
 ## Secret
 
-Un Secret est une ressource Kubernetes utilisée pour stocker des informations sensibles, telles que des mots de passe, des clés API et des certificats. Les Secrets permettent de gérer les informations sensibles de manière sécurisée et de les injecter dans les conteneurs sans les exposer dans les fichiers de configuration.
-
-### Exemple de Secret
+Un Secret stocke des données sensibles : mots de passe, tokens, clés TLS. Sa syntaxe est proche du ConfigMap, avec une différence fondamentale : les valeurs sont encodées en base64.
 
 ```yaml
 apiVersion: v1
 kind: Secret
 metadata:
-  name: my-secret
+  name: db-credentials
 type: Opaque
 data:
-  username: dXNlcm5hbWU=
-  password: cGFzc3dvcmQ=
+  username: cG9zdGdyZXM=      # "postgres" en base64
+  password: c2VjcmV0MTIz      # "secret123" en base64
 ```
 
-### Utilisation d'un Secret dans un Pod
+:::warning Base64 n'est pas du chiffrement
+L'encodage base64 est réversible en une commande : `echo "cG9zdGdyZXM=" | base64 -d`. Les Secrets Kubernetes ne sont pas chiffrés par défaut — ils sont stockés en clair dans etcd. La sécurité réelle repose sur les contrôles d'accès RBAC qui limitent qui peut lire les Secrets, et sur le chiffrement at-rest d'etcd (à activer explicitement en production).
+:::
+
+Pour créer un Secret sans manipuler le base64 manuellement :
+
+```bash
+kubectl create secret generic db-credentials \
+  --from-literal=username=postgres \
+  --from-literal=password=secret123
+```
+
+### Injection dans un pod
 
 ```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: my-pod
 spec:
   containers:
-    - name: my-container
-      image: nginx:alpine
+    - name: api
+      image: myapp:1.0
       env:
-        - name: USERNAME
+        - name: DB_USER
           valueFrom:
             secretKeyRef:
-              name: my-secret
+              name: db-credentials
               key: username
-        - name: PASSWORD
+        - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: my-secret
+              name: db-credentials
               key: password
 ```
 
-## Application / Projet lié
+### Injection en volume
 
-### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
-**Utilisation** : ConfigMaps et Secrets pour la gestion sécurisée de configuration et crédentiels des services hébergés.
+Monter un Secret en volume est préférable pour les certificats TLS ou les fichiers de clés — cela évite que la valeur apparaisse dans les variables d'environnement du processus (visibles via `/proc/<pid>/environ`) :
 
-### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
-**Utilisation** : Secrets pour les tokens GitHub et configuration sécurisée des runners.
+```yaml
+      volumeMounts:
+        - name: certs
+          mountPath: /etc/ssl/app
+          readOnly: true
+  volumes:
+    - name: certs
+      secret:
+        secretName: tls-cert
+```
 
-## Conclusion
+## ConfigMap vs Secret
 
-Les Secrets et ConfigMaps dans Kubernetes permettent de gérer les configurations et les informations sensibles de manière sécurisée et efficace. En utilisant ces ressources, il est possible de séparer les configurations des conteneurs, de faciliter la gestion des configurations et de protéger les informations sensibles. 🔐
+| | ConfigMap | Secret |
+|---|---|---|
+| Données | Texte brut | Base64 |
+| Usage | Configuration non sensible | Credentials, clés, certificats |
+| Stockage etcd | Clair | Clair (chiffrement optionnel) |
+| Visibilité | `kubectl get configmap -o yaml` | `kubectl get secret -o yaml` (base64) |
 
-Pour en savoir plus sur Kubernetes, consulter la [documentation officielle](https://kubernetes.io/fr/docs/concepts/).
+La règle est simple : tout ce qui ne doit pas apparaître dans un log ou un diff Git va dans un Secret. Le reste dans un ConfigMap.

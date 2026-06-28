@@ -1,143 +1,143 @@
 ---
 title: "Kubernetes : composants de base"
-description: "Découvrez les composants de base de Kubernetes, tels que les Services, Pods, Deployments et StatefulSets."
+description: "Pod, Deployment, StatefulSet, Service — les ressources fondamentales de Kubernetes et quand utiliser chacune."
 tags: [orchestration, devops]
 ---
 
-Kubernetes est une plateforme d'orchestration de conteneurs qui permet de gérer des clusters de machines exécutant des conteneurs. Dans cet article, les composants de base de Kubernetes, notamment les Services, Pods, Deployments et StatefulSets, seront explorés. 🚀
+Kubernetes expose une API déclarative : on décrit l'état souhaité via des ressources YAML, et le cluster converge vers cet état. Quatre ressources couvrent la majorité des besoins : Pod, Deployment, StatefulSet, Service. Comprendre pourquoi chacune existe — et pas seulement comment l'écrire — évite les mauvais choix d'architecture.
 
 <!--truncate-->
 
 ## Pod
 
-Un Pod est l'unité de base de déploiement dans Kubernetes. Il représente un ou plusieurs conteneurs qui partagent le même réseau et le même espace de stockage. Les Pods sont éphémères et peuvent être recréés en cas de défaillance.
-
-### Exemple de Pod
+Un Pod est l'unité atomique de déploiement dans Kubernetes. Il encapsule un ou plusieurs conteneurs qui partagent le même réseau (même IP, même namespace réseau) et les mêmes volumes. Les conteneurs d'un même pod communiquent via `localhost`.
 
 ```yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: my-pod
+  name: api
 spec:
   containers:
-    - name: my-container
+    - name: api
       image: nginx:alpine
       ports:
         - containerPort: 80
 ```
 
-Les Pods sont utilisés pour exécuter des applications conteneurisées sur des nœuds de travail. Ils peuvent contenir un ou plusieurs conteneurs, qui partagent le même réseau et le même espace de stockage. Les Pods sont éphémères, ce qui signifie qu'ils peuvent être recréés en cas de défaillance. Les Pods sont également utilisés pour regrouper des conteneurs qui doivent être exécutés ensemble, par exemple, un conteneur d'application et un conteneur de base de données.
-
-## Service
-
-Un Service est une abstraction qui permet d'exposer une application exécutée sur un ensemble de Pods en tant que service réseau. Les Services permettent de distribuer le trafic réseau entre les Pods et de garantir la haute disponibilité des applications.
-
-### Exemple de Service
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-service
-spec:
-  selector:
-    app: my-app
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: LoadBalancer
-```
-
-Les Services sont utilisés pour exposer des applications exécutées sur des Pods en tant que services réseau. Ils permettent de distribuer le trafic réseau entre les Pods et de garantir la haute disponibilité des applications. Les Services peuvent être de différents types, tels que ClusterIP, NodePort et LoadBalancer, en fonction des besoins de l'application.
+En pratique, on ne crée presque jamais de Pod directement. Un Pod seul n'est pas recréé s'il crashe ou si son nœud tombe — c'est le rôle des contrôleurs (Deployment, StatefulSet) de maintenir un ensemble de pods en vie.
 
 ## Deployment
 
-Un Deployment est un objet Kubernetes qui gère le déploiement et la mise à l'échelle des applications conteneurisées. Il définit l'état souhaité de l'application et Kubernetes s'occupe de créer et de gérer les instances (Pods) pour atteindre cet état.
-
-### Exemple de Deployment
+Un Deployment gère un ensemble de pods identiques et sans état. Il garantit qu'un nombre défini de réplicas tournent en permanence, orchestre les mises à jour progressives et permet le rollback.
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-deployment
+  name: api
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: my-app
+      app: api
   template:
     metadata:
       labels:
-        app: my-app
+        app: api
     spec:
       containers:
-        - name: my-container
-          image: nginx:alpine
+        - name: api
+          image: myapp:1.0
           ports:
-            - containerPort: 80
+            - containerPort: 8080
 ```
 
-Les Deployments sont utilisés pour gérer le déploiement et la mise à l'échelle des applications conteneurisées. Ils définissent l'état souhaité de l'application, y compris le nombre de réplicas, l'image du conteneur à utiliser, les ports exposés et les volumes. Kubernetes s'occupe de créer et de gérer les instances (Pods) pour atteindre cet état. Les Deployments permettent également de mettre à jour les applications de manière transparente en effectuant des déploiements progressifs.
+Le `selector` est le lien entre le Deployment et ses pods : Kubernetes identifie les pods qu'il contrôle via ces labels. Si les labels ne correspondent pas, le Deployment et les pods coexistent sans relation — erreur silencieuse fréquente.
+
+Un Deployment convient à tout ce qui est **stateless** : APIs, frontends, workers. Les pods sont interchangeables — peu importe lequel répond à une requête.
 
 ## StatefulSet
 
-Un StatefulSet est un objet Kubernetes qui gère le déploiement et la mise à l'échelle des applications avec état. Contrairement aux Deployments, les StatefulSets garantissent l'ordre et l'unicité des Pods, ce qui est essentiel pour les applications nécessitant un stockage persistant.
-
-### Exemple de StatefulSet
+Un StatefulSet gère des pods avec une identité stable et persistante. Contrairement au Deployment où les pods sont anonymes, chaque pod d'un StatefulSet a un nom ordonné et prévisible (`postgres-0`, `postgres-1`), un volume dédié et un ordre de démarrage garanti.
 
 ```yaml
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: my-statefulset
+  name: postgres
 spec:
-  serviceName: "my-service"
-  replicas: 3
+  serviceName: postgres
+  replicas: 1
   selector:
     matchLabels:
-      app: my-app
+      app: postgres
   template:
     metadata:
       labels:
-        app: my-app
+        app: postgres
     spec:
       containers:
-        - name: my-container
-          image: nginx:alpine
-          ports:
-            - containerPort: 80
+        - name: postgres
+          image: postgres:16-alpine
           volumeMounts:
-            - name: my-volume
-              mountPath: /usr/share/nginx/html
+            - name: data
+              mountPath: /var/lib/postgresql/data
   volumeClaimTemplates:
     - metadata:
-        name: my-volume
+        name: data
       spec:
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: ["ReadWriteOnce"]
         resources:
           requests:
-            storage: 1Gi
+            storage: 10Gi
 ```
 
-Les StatefulSets sont utilisés pour gérer le déploiement et la mise à l'échelle des applications avec état. Contrairement aux Deployments, les StatefulSets garantissent l'ordre et l'unicité des Pods, ce qui est essentiel pour les applications nécessitant un stockage persistant. Les StatefulSets sont souvent utilisés pour des applications telles que les bases de données, qui nécessitent un stockage persistant et une gestion de l'état.
+`volumeClaimTemplates` est la différence clé : chaque pod reçoit son propre PersistentVolumeClaim, créé automatiquement. Si `postgres-0` est supprimé et recréé, il retrouve exactement le même volume — les données sont préservées.
 
-## Interactions entre les composants
+Un StatefulSet convient aux bases de données, aux systèmes de messagerie, à tout workload où l'**identité du pod compte**.
 
-Les composants de base de Kubernetes interagissent entre eux pour assurer le déploiement, la mise à l'échelle et la gestion des applications conteneurisées. Par exemple, un Deployment peut créer plusieurs Pods, qui sont ensuite exposés en tant que service réseau par un Service. Les StatefulSets garantissent l'ordre et l'unicité des Pods, ce qui est essentiel pour les applications nécessitant un stockage persistant. Les Services permettent de distribuer le trafic réseau entre les Pods et de garantir la haute disponibilité des applications.
+## Service
 
-## Application / Projet lié
+Un Pod a une IP éphémère — elle change à chaque recréation. Un Service est une abstraction réseau stable qui pointe vers un ensemble de pods via un sélecteur de labels, quelle que soit leur IP ou leur nombre.
 
-### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
-**Utilisation** : Pods et Services pour héberger les microservices internes (Grafana, Portainer, etc.).
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+spec:
+  selector:
+    app: api
+  ports:
+    - port: 80
+      targetPort: 8080
+```
 
-### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
-**Utilisation** : Pods et Services pour les runners ARC et composants de CI/CD.
+Le Service `api` reçoit du trafic sur le port 80 et le distribue vers tous les pods portant le label `app: api` sur le port 8080. Si un pod redémarre et change d'IP, le Service s'ajuste automatiquement.
 
-## Conclusion
+Trois types couvrent les besoins principaux :
 
-Les composants de base de Kubernetes, tels que les Pods, Services, Deployments et StatefulSets, permettent de déployer, gérer et mettre à l'échelle des applications conteneurisées de manière efficace. En comprenant ces composants et leurs interactions, il est possible de tirer parti de la puissance de Kubernetes pour gérer les applications.
+| Type | Accès | Usage |
+|------|-------|-------|
+| `ClusterIP` | Interne au cluster uniquement | Communication inter-services |
+| `NodePort` | Externe via port du nœud (30000-32767) | Dev/test, sans load balancer |
+| `LoadBalancer` | Externe via IP dédiée (cloud) | Exposition en production |
 
-Pour en savoir plus sur Kubernetes, consulter la [documentation officielle](https://kubernetes.io/fr/docs/concepts/).
+## Interactions
+
+Le schéma typique d'une application Kubernetes : un Deployment maintient N pods, un Service expose ces pods de manière stable, et si l'application a besoin de persistance, un StatefulSet gère la base de données avec ses volumes dédiés.
+
+```
+Internet → Service (LoadBalancer)
+               ↓
+         Deployment (3 pods API)
+               ↓
+         Service (ClusterIP)
+               ↓
+         StatefulSet (postgres-0)
+               ↓
+         PersistentVolume
+```
+
+Chaque couche est indépendante : on peut scaler le Deployment sans toucher le Service, mettre à jour l'image sans recréer le StatefulSet.
