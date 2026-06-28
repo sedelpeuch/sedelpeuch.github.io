@@ -1,89 +1,156 @@
 ---
-title: "Docker : meilleures pratiques"
-description: "L'adoption de Docker augmente constamment et beaucoup le connaissent, mais tout le monde n'utilise pas Docker selon les meilleures pratiques."
+title: "Docker : bonnes pratiques"
+description: "Bonnes pratiques Dockerfile pour des images légères, reproductibles et sécurisées : images de base, multi-stage builds, cache des couches, utilisateur non-root."
 tags: [containerization, devops]
 ---
 
+Une image Docker mal construite peut peser plusieurs gigaoctets, exposer des secrets dans ses couches, ou s'exécuter en root sans raison valable. Ces problèmes sont évitables avec quelques principes de construction appliqués systématiquement.
+
 <!--truncate-->
 
-## Utilisez une image Docker officielle et vérifiée comme image de base, chaque fois disponible
+## Choisir la bonne image de base
 
-Disons que vous développez une application Node.js et que vous souhaitez la créer et l'exécuter en tant qu'image Docker.
+Les images officielles proposent plusieurs variantes. La taille impacte le temps de pull, l'espace disque, et surtout la surface d'attaque.
 
-Au lieu de prendre une image du système d'exploitation de base et d'installer Node.js, NPM et tous les autres outils dont vous avez besoin pour votre application, utilisez l'image de node officiel pour votre application.
+```dockerfile
+# À éviter : image complète avec des centaines de paquets inutiles
+FROM python:3.12
 
-## Utilisez des versions d'image docker spécifiques
+# Préférer : Slim (Debian sans paquets non-essentiels) — bon compromis compatibilité/taille
+FROM python:3.12-slim
 
-D'accord, nous avons donc sélectionné l'image de base, mais maintenant lorsque nous construisons notre image d'applications à partir de ce Dockerfile, il utilisera toujours la dernière balise de l'image de nœud.
+# Ou : Alpine (musl libc) — minimal, mais parfois incompatible avec des libs C
+FROM python:3.12-alpine
+```
 
-Ainsi, au lieu d'une étiquette d'image aléatoire, vous souhaitez fixer la version, et tout comme vous déployez votre propre application avec une version spécifique, vous souhaitez utiliser l'image officielle avec une version spécifique.
+| Base | Taille (~) | Compatibilité | Usage typique |
+|------|-----------|---------------|---------------|
+| `python:3.12` | ~1 Go | Maximale | Débogage, dev |
+| `python:3.12-slim` | ~130 Mo | Bonne | Production |
+| `python:3.12-alpine` | ~50 Mo | Limitée (musl) | Production si compatible |
 
-## Utiliser des images officielles de petite taille
+## Ordonner les instructions pour maximiser le cache
 
-Lors du choix d'une image Node.js, vous verrez qu'il y a en fait plusieurs images officielles. Non seulement avec différents numéros de version mais aussi avec différentes distributions de systèmes d'exploitation:
+Docker invalide le cache à partir de la première couche modifiée. Les fichiers qui changent souvent doivent être copiés le plus tard possible.
 
-1) Taille de l'image : si l'image est basée sur une distribution de système d'exploitation à part entière comme Ubuntu ou Centos, vous aurez un tas d'outils déjà emballés dans l'image. Ainsi, la taille de l'image sera plus grande, mais vous n'avez pas besoin de la plupart de ces outils dans vos images d'application.
+```dockerfile
+# Mauvais ordre : le cache des dépendances est invalidé à chaque changement de code
+FROM python:3.12-slim
+COPY . /app
+RUN pip install -r /app/requirements.txt
 
-2) Problème de sécurité : avec de nombreux outils installés à l'intérieur, vous devez considérer l'aspect de sécurité. Parce que ces images de base contiennent généralement [des centaines de vulnérabilités connues](https://snyk.io/blog/openSourcesEcurity-2020Survey/) et créent essentiellement une plus grande surface d'attaque à votre image d'application.
+# Bon ordre : requirements.txt change rarement, le cache est réutilisé
+FROM python:3.12-slim
+COPY requirements.txt /app/
+RUN pip install -r /app/requirements.txt
+COPY . /app
+```
 
-Ainsi, la meilleure pratique ici serait de sélectionner une image avec une version spécifique basée sur une distribution plus maigre comme Alpine.
+La règle : copier d'abord ce qui change rarement (fichiers de dépendances), puis ce qui change souvent (code source).
 
-## Optimiser la mise en cache pour les couches d'image lors de la construction d'une image
+## Multi-stage build
 
-1) Que sont les layer d'image? Une image Docker est construite sur la base d'un dockerfile.
+Le multi-stage build sépare l'environnement de compilation de l'environnement d'exécution. L'image finale ne contient que le strict nécessaire pour faire tourner l'application.
 
-Et dans un dockerfile, chaque commande ou instruction crée un layer d'image.
+```dockerfile
+# Stage 1 : compilation
+FROM golang:1.22 AS builder
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 go build -o /app/server .
 
-Ainsi, lorsque nous utilisons une image de base d'alpine, il a déjà des layers, car il a déjà été construit en utilisant son propre dockerfile. Dans notre dockerfile, nous avons quelques autres commandes qui ajouteront chacune un nouveau layer à cette image.
+# Stage 2 : image finale
+FROM alpine:3.19
+RUN apk add --no-cache ca-certificates
+COPY --from=builder /app/server /server
+CMD ["/server"]
+```
 
-Ainsi, lorsque vous reconstruisez votre image, si votre Dockerfile n'a pas changé, Docker n'utilisera que les layers en cache pour construire l'image.
+L'image finale contient uniquement le binaire compilé et les certificats CA — pas le compilateur Go, pas les sources, pas le cache du module. Une image Go complète pèse ~1 Go ; l'image finale avec ce pattern pèse ~15 Mo.
 
-Avantages des layers d'image en cache:
+## Exécuter en utilisateur non-root
 
-- Contruction d'image plus rapide
-- Push et pull plus rapides de nouvelles versions d'image: Si je pull une nouvelle version d'image de la même application et, disons, 2 nouveaux layers ont été ajoutées dans la nouvelle version: seule la nouvelle version des layers ajoutées seront téléchargées Les autres sont déjà mis en cache localement par Docker.
+Par défaut, les processus dans un conteneur s'exécutent en `root` (UID 0). Une faille dans l'application donne alors un accès root au conteneur, ce qui peut faciliter une escalade de privilèges vers l'hôte.
 
-Optimiser la mise en cache : une fois qu'un layer change, tous les layers suivants doivent également être recréées. En d'autres termes: lorsque vous modifiez le contenu d'une ligne dans le dockerfile, les caches de toutes les lignes ou layers suivantes seront invalidés.
+```dockerfile
+FROM python:3.12-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
 
-Ainsi, la règle ici et la meilleure pratique est: placez vos commandes dans le Dockerfile du moins au plus fréquemment modifé.
+# Créer un utilisateur dédié
+RUN addgroup --system app && adduser --system --ingroup app app
 
-## à l'aide d'un fichier .dockerignore
+# Changer de propriétaire avant de changer d'utilisateur
+RUN chown -R app:app /app
+USER app
 
-C'est assez simple. Nous créons simplement ce fichier .dockerignore et répertorions tous les fichiers et dossiers que nous voulons être ignorés, et lors de la création de l'image, Docker examinera le contenu et ignorera tout ce qui est spécifié à l'intérieur.
+CMD ["python", "main.py"]
+```
 
-## Utilisez des versions multi-étages
+## Ne pas stocker de secrets dans l'image
 
-Maintenant, disons qu'il existe un outil dans votre projet dont vous avez besoin pour construire l'image mais vous n'en avez pas besoin dans l'image finale pour exécuter leapplication.
+Chaque instruction `RUN`, `COPY`, ou `ENV` crée une couche. Une clé API copiée puis supprimée dans une instruction suivante reste visible dans les couches intermédiaires de l'image.
 
-Supposons que vous conserviez ces artefacts dans votre image finale, même s'ils sont absolument inutiles pour exécuter l'application. Dans ce cas, cela entraînera à nouveau une augmentation de la taille de l'image et une augmentation de la surface d'attaque.
+```dockerfile
+# À éviter : le secret reste dans les couches même si supprimé ensuite
+RUN echo "API_KEY=secret" > /app/.env    # couche 1
+RUN rm /app/.env                          # couche 2 — secret toujours visible dans couche 1
 
-Pour cela, vous pouvez utiliser ce qu'on appelle les constructions à plusieurs étages
+# Correct : passer les secrets via BuildKit (ne persistent pas dans l'image)
+RUN --mount=type=secret,id=api_key \
+    API_KEY=$(cat /run/secrets/api_key) ./configure.sh
+```
 
-La fonction de construction en plusieurs étapes vous permet d'utiliser plusieurs images temporaires pendant le processus de construction, mais ne conserve que la dernière image comme artefact final.
+Les secrets applicatifs (mots de passe DB, tokens) ne doivent jamais être embarqués dans l'image — ils doivent être injectés à l'exécution via des variables d'environnement ou un gestionnaire de secrets (Vault, AWS Secrets Manager, Kubernetes Secrets).
 
-## Utilisez l'utilisateur le moins privilégié
+## Épingler les versions des paquets
 
-Maintenant, lorsque nous créons cette image et que nous l'exécutons finalement en tant que conteneur, quel utilisateur du système d'exploitation sera utilisé pour démarrer l'application à l'intérieur? Par défaut, lorsqu'un DockerFile ne spécifie pas un utilisateur, il utilise un utilisateur root. Mais en réalité, il n'y a surtout aucune raison d'exécuter des conteneurs avec des privilèges root.
+Les instructions `RUN pip install` ou `RUN apt-get install` sans version fixe installent la dernière version disponible au moment du build. Deux builds à des dates différentes peuvent produire des images différentes.
 
-Cela introduit essentiellement un problème de sécurité car lorsque le conteneur commence sur l'hôte, il aura potentiellement un accès root sur l'hôte Docker.
+```dockerfile
+# Non reproductible
+RUN pip install fastapi uvicorn
 
-Pour éviter cela, la meilleure pratique consiste à créer simplement un utilisateur dédié et un groupe dédié dans l'image Docker pour exécuter l'application et également exécuter l'application à l'intérieur du conteneur avec cet utilisateur.
+# Reproductible
+RUN pip install fastapi==0.111.0 uvicorn==0.29.0
 
-## Scannez vos images pour les vulnérabilités de sécurité
+# Encore mieux : un lockfile généré par l'outil
+COPY requirements.lock .
+RUN pip install -r requirements.lock
+```
 
-Enfin, comment s'assurer et valider que l'image que vous construisez a peu ou pas de vulnérabilités de sécurité ?
+Pour Python, `pip-compile` (pip-tools) ou `poetry.lock` / `uv.lock` génèrent des lockfiles. Ces fichiers doivent être commités dans le dépôt.
 
-La meilleure pratique est, une fois que vous avez construit l'image, la scannez pour des vulnérabilités de sécurité à l'aide de la commande docker scan.
+## Limiter les paquets installés
 
-En arrière-plan, Docker utilise en fait un service appelé SNYK pour faire la numérisation de la vulnérabilité des images. Le scan utilise une base de données de vulnérabilités, qui est constamment mise à jour.
+Chaque paquet installé ajoute de la surface d'attaque. `apt-get` installe les paquets recommandés par défaut — `--no-install-recommends` réduit le nombre de paquets réellement installés.
 
-## Application / Projet lié
+```dockerfile
+RUN apt-get update && apt-get install -y \
+    --no-install-recommends \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+```
 
-### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
-**Utilisation** : Optimisation des images Docker pour l'efficacité du cluster (taille, sécurité, performance).
+`rm -rf /var/lib/apt/lists/*` supprime le cache apt dans la même instruction que l'installation — sinon le cache reste dans la couche et continue d'occuper de l'espace dans l'image finale.
 
-### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
-**Utilisation** : Images optimisées et sécurisées pour les conteneurs runners.
+## Utiliser .dockerignore
 
-### [CI/CD](/docs/projects/professionnel/cicd)
-**Utilisation** : Construction d'images Docker conformes aux bonnes pratiques de sécurité dans les pipelines.
+Un `.dockerignore` à la racine du projet liste les fichiers et répertoires à exclure du contexte de build. Sans ce fichier, `COPY . /app` transfère tout le projet au daemon Docker — y compris `node_modules`, `.git`, les fichiers de log, les caches.
+
+```
+.git
+node_modules
+__pycache__
+*.pyc
+.env
+*.log
+dist/
+build/
+```
+
+Réduire le contexte de build accélère le build et évite d'embarquer des fichiers sensibles (`.env`, clés) dans l'image.

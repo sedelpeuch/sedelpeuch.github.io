@@ -1,82 +1,122 @@
 ---
 title: "Docker : débogage"
-description: "Guide pour déboguer les conteneurs Docker en utilisant des commandes de base et des options avancées."
+description: "Techniques et commandes pour diagnostiquer les problèmes dans les conteneurs Docker : logs, inspection, shell interactif, ressources, et problèmes réseau."
 tags: [containerization, devops]
 ---
 
-Le débogage des conteneurs Docker est une compétence essentielle pour tout développeur ou administrateur système travaillant avec des environnements conteneurisés. Docker offre une variété de commandes et d'options pour aider à identifier et résoudre les problèmes qui peuvent survenir dans les conteneurs. Dans cet article, nous allons explorer certaines des commandes de base et des techniques avancées pour déboguer les conteneurs Docker.
+Déboguer un conteneur diffère du débogage d'une application classique : le processus s'exécute dans un namespace isolé, sans accès direct au shell dans les cas normaux, avec des logs parfois redirigés vers stdout. Les outils Docker exposent l'état interne du conteneur sans nécessiter d'accès SSH.
 
-<!-- truncate -->
+<!--truncate-->
 
-## Commandes de base pour le débogage
-
-### docker ps
-
-La commande `docker ps` est utilisée pour lister les conteneurs en cours d'exécution. Vous pouvez utiliser l'option `-a` pour afficher tous les conteneurs, qu'ils soient en cours d'exécution ou arrêtés.
+## Inspecter les logs
 
 ```bash
-docker ps
-docker ps -a
+# Logs depuis le démarrage du conteneur
+docker logs <conteneur>
+
+# Suivre les logs en temps réel
+docker logs -f <conteneur>
+
+# Afficher les N dernières lignes
+docker logs --tail 100 <conteneur>
+
+# Filtrer par date
+docker logs --since "2024-01-15T10:00:00" <conteneur>
+docker logs --since 30m <conteneur>  # depuis 30 minutes
 ```
 
-### docker logs
+Docker capture stdout et stderr du processus principal (PID 1). Si l'application écrit dans des fichiers de logs plutôt que sur stdout, `docker logs` ne retourne rien — il faut alors entrer dans le conteneur pour lire ces fichiers, ou reconfigurer l'application pour écrire sur stdout.
 
-La commande `docker logs` permet de visualiser les journaux d'un conteneur. Cela peut être très utile pour identifier les erreurs ou les comportements inattendus.
+## Entrer dans un conteneur en cours d'exécution
 
 ```bash
-docker logs <container_id>
+# Shell interactif
+docker exec -it <conteneur> sh
+docker exec -it <conteneur> bash  # si bash est disponible
+
+# Commande unique sans shell interactif
+docker exec <conteneur> cat /etc/hosts
+docker exec <conteneur> env | sort
 ```
 
-Vous pouvez également utiliser le nom du conteneur à la place de l'ID.
+`-it` combine `-i` (stdin ouvert) et `-t` (allouer un pseudo-TTY) — nécessaire pour un shell interactif.
 
-### docker exec
-
-La commande `docker exec` permet d'exécuter des commandes à l'intérieur d'un conteneur en cours d'exécution. Cela peut être utile pour naviguer dans le système de fichiers du conteneur, vérifier les configurations ou exécuter des scripts de diagnostic.
+Si l'image est minimaliste (distroless, scratch) et ne contient pas de shell, `docker cp` permet de copier des fichiers depuis le conteneur vers l'hôte pour inspection :
 
 ```bash
-docker exec -it <container_id> /bin/bash
+docker cp <conteneur>:/app/logs/error.log ./error.log
 ```
 
-### docker inspect
-
-La commande `docker inspect` fournit des informations détaillées sur un conteneur ou une image Docker. Cela inclut des détails sur la configuration, les réseaux, les volumes et plus encore.
+## Inspecter l'état du conteneur
 
 ```bash
-docker inspect <container_id>
+# Métadonnées complètes en JSON : configuration, réseau, volumes, état
+docker inspect <conteneur>
+
+# Extraire une valeur spécifique avec jq
+docker inspect <conteneur> | jq '.[0].State'
+docker inspect <conteneur> | jq '.[0].NetworkSettings.Networks'
+
+# Variables d'environnement injectées
+docker inspect <conteneur> | jq '.[0].Config.Env'
 ```
 
-## Techniques avancées de débogage
+`docker inspect` révèle également le code de sortie du processus (`ExitCode`) et l'erreur éventuelle (`Error`) — utile pour diagnostiquer les conteneurs qui s'arrêtent immédiatement après le démarrage.
 
-### Utilisation de docker run avec des options
-
-La commande `docker run` peut être utilisée avec diverses options pour faciliter le débogage. Par exemple, l'option `-d` permet de démarrer un conteneur en mode détaché, tandis que l'option `-p` permet de mapper les ports entre l'hôte et le conteneur.
+## Monitorer les ressources
 
 ```bash
-docker run -d -p 8080:80 <image_name>
+# Utilisation CPU, mémoire, réseau, disque en temps réel (tous les conteneurs)
+docker stats
+
+# Conteneurs spécifiques
+docker stats api db
+
+# Une seule capture (pas de rafraîchissement)
+docker stats --no-stream
 ```
 
-### Redémarrage des conteneurs
+Un conteneur qui atteint sa limite mémoire est tué par le kernel — `OOMKilled: true` apparaît dans `docker inspect`. Un conteneur à 100% CPU en permanence indique souvent une boucle infinie ou un deadlock.
 
-Les commandes `docker start` et `docker stop` permettent de redémarrer les conteneurs. Cela peut être utile si vous avez apporté des modifications à la configuration du conteneur et que vous souhaitez les appliquer.
+## Analyser le filesystem du conteneur
 
 ```bash
-docker stop <container_id>
-docker start <container_id>
+# Modifications faites dans la couche de lecture-écriture depuis le démarrage
+docker diff <conteneur>
+# A = ajouté, C = modifié, D = supprimé
+
+# Historique de construction d'une image (taille de chaque couche)
+docker history <image>
 ```
 
-### Nommage des conteneurs
+`docker diff` est utile pour vérifier qu'un job de migration n'a écrit que dans le répertoire attendu, ou pour identifier des fichiers créés de façon inattendue.
 
-Lorsque vous créez un conteneur, vous pouvez lui attribuer un nom pour faciliter son identification. Cela peut être fait en utilisant l'option `--name` avec la commande `docker run`.
+## Problèmes réseau
 
 ```bash
-docker run --name my_container <image_name>
+# Vérifier que le conteneur écoute sur le bon port
+docker exec <conteneur> ss -tlnp
+
+# Résolution DNS entre conteneurs (même réseau Docker)
+docker exec <conteneur> nslookup db
+docker exec <conteneur> ping db
+
+# Réseaux auxquels le conteneur est rattaché
+docker inspect <conteneur> | jq '.[0].NetworkSettings.Networks | keys'
 ```
 
-## Conclusion
+Un conteneur qui ne peut pas joindre un autre par son nom indique généralement qu'ils ne sont pas sur le même réseau Docker. Le réseau `bridge` par défaut n'active pas la résolution DNS par nom — il faut un réseau défini explicitement (`docker network create`) ou Docker Compose.
 
-Le débogage des conteneurs Docker peut sembler complexe au début, mais en utilisant les commandes et techniques appropriées, vous pouvez rapidement identifier et résoudre les problèmes. Les commandes de base comme `docker ps`, `docker logs`, `docker exec` et `docker inspect` sont essentielles pour tout développeur ou administrateur système travaillant avec Docker. En combinant ces commandes avec des techniques avancées comme l'utilisation de `docker run` avec des options et le redémarrage des conteneurs, vous pouvez améliorer considérablement votre efficacité dans le débogage des conteneurs Docker.
+## Déboguer un conteneur qui crashe au démarrage
 
-## Application / Projet lié
+Quand un conteneur s'arrête immédiatement, `docker exec` est inutilisable. L'approche est de remplacer l'entrypoint par un shell pour inspecter manuellement :
 
-### [dolibarr_project_dashboard](/docs/projects/personnel/dolibarr_project_dashboard)
-**Utilisation** : Debugging des conteneurs Docker lors du développement local et en production avec FastAPI et React.
+```bash
+# Remplacer l'entrypoint pour démarrer un shell
+docker run -it --entrypoint sh <image>
+
+# Ou remplacer la commande
+docker run -it <image> sh
+```
+
+Une fois dans le shell, reproduire manuellement les commandes du Dockerfile pour identifier l'étape qui échoue — variables d'environnement manquantes, fichiers absents, permissions incorrectes.

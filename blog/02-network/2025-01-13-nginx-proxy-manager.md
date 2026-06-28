@@ -1,113 +1,178 @@
 ---
-title: "Proxy : Nginx Proxy Manager"
-description: "Présentation de Nginx Proxy Manager, ses fonctionnalités et ses avantages, ainsi qu'une démonstration d'utilisation avec Docker."
+title: "Nginx Proxy Manager"
+description: "Nginx Proxy Manager : interface graphique pour Nginx, gestion des proxy hosts, certificats Let's Encrypt, access lists, streams TCP et configuration avancée."
 tags: [network, devops]
 ---
 
-Nginx Proxy Manager est une interface utilisateur graphique (GUI) pour gérer les proxys inverses Nginx. Il simplifie la gestion des proxys inverses, des certificats SSL et des redirections de trafic. Cet article présente Nginx Proxy Manager, explique ses fonctionnalités et avantages, et fournit une démonstration d'utilisation avec Docker.
+Configurer Nginx manuellement demande de maîtriser sa syntaxe et de gérer les certificats SSL à la main. Nginx Proxy Manager expose une interface web qui automatise ces deux aspects : création de règles de routage via une UI, et renouvellement automatique des certificats Let's Encrypt. Il génère du vrai Nginx sous le capot — les configurations avancées restent accessibles via des blocs personnalisés.
 
 <!--truncate-->
 
-## Qu'est-ce que Nginx Proxy Manager ?
+## Déploiement avec Docker Compose
 
-![Nginx Proxy Manager](/img/nginx-proxy-manager.png)
+```yaml
+services:
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - "80:80"     # trafic HTTP
+      - "443:443"   # trafic HTTPS
+      - "81:81"     # interface d'administration
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+```
 
-[Nginx Proxy Manager](https://nginxproxymanager.com/) est une interface utilisateur graphique (GUI) pour gérer les proxys inverses Nginx. Il permet de configurer facilement des proxys inverses, des certificats SSL et des redirections de trafic. Nginx Proxy Manager est conçu pour être simple à utiliser et accessible aux utilisateurs non techniques.
+```bash
+docker compose up -d
+```
 
-<details>
-<summary>Qu'est-ce qu'un proxy ?</summary>
+L'interface d'administration est accessible sur le port 81. Identifiants par défaut : `admin@example.com` / `changeme` — à modifier immédiatement après la première connexion. Les données de configuration et les certificats sont persistés dans `./data` et `./letsencrypt`.
 
-Un proxy, également connu sous le nom de proxy direct ou proxy de transfert, est un serveur qui agit comme un intermédiaire entre un client (par exemple, un utilisateur ou un appareil) et un serveur de destination sur Internet. Voici un aperçu détaillé de son fonctionnement :
+## Proxy Hosts
 
-1. **Interception des requêtes** : Lorsqu'un client souhaite accéder à une ressource sur Internet, il envoie une requête au proxy au lieu de se connecter directement au serveur de destination. Le proxy intercepte cette requête.
+Un **Proxy Host** associe un nom de domaine entrant à un backend. Dans l'interface : **Hosts → Proxy Hosts → Add Proxy Host**.
 
-2. **Filtrage et sécurité** : Le proxy examine la requête pour s'assurer qu'elle respecte les politiques de sécurité et de filtrage définies par l'administrateur réseau. Il peut bloquer l'accès à certains sites web, filtrer les contenus inappropriés ou malveillants, et appliquer des règles de sécurité.
+| Champ | Valeur |
+|-------|--------|
+| Domain Names | `app.example.com` |
+| Scheme | `http` ou `https` |
+| Forward Hostname / IP | nom de service Docker ou IP |
+| Forward Port | port de l'application |
+| Cache Assets | active le cache des assets statiques |
+| Block Common Exploits | active les règles de protection basiques |
+| Websockets Support | active `proxy_set_header Upgrade` |
 
-3. **Anonymisation** : Le proxy peut masquer l'adresse IP du client en utilisant sa propre adresse IP pour se connecter au serveur de destination. Cela permet de protéger l'identité et la confidentialité du client.
+Pour HTTPS via Let's Encrypt, onglet **SSL** → **Request a new SSL Certificate** → activer **Force SSL**. Le domaine doit être résolvable publiquement et pointer vers l'IP de la machine pour que le challenge ACME HTTP-01 fonctionne.
 
-4. **Mise en cache** : Le proxy peut mettre en cache les réponses des serveurs de destination. Si un autre client demande la même ressource, le proxy peut fournir la réponse mise en cache, ce qui réduit la charge sur le serveur de destination et améliore les temps de réponse.
+## Accès aux services Docker
 
-5. **Transmission de la requête** : Si la requête est autorisée, le proxy la transmet au serveur de destination en utilisant sa propre adresse IP. Le serveur de destination répond alors au proxy.
+Nginx Proxy Manager ne peut atteindre que les backends qui lui sont réseau-accessibles. Trois cas :
 
-6. **Retour de la réponse** : Le proxy reçoit la réponse du serveur de destination, la filtre à nouveau si nécessaire, et la renvoie au client. Le client reçoit ainsi la réponse comme s'il avait directement communiqué avec le serveur de destination.
+**Service dans le même réseau Docker Compose** : utiliser le nom de service directement comme Forward Hostname.
 
-</details>
+**Service dans un autre Compose ou réseau Docker distinct** : créer un réseau partagé et y rattacher les deux services.
 
-### Fonctionnalités de Nginx Proxy Manager
+```yaml
+services:
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    networks:
+      - proxy
+      - default
 
-- **Gestion des proxys inverses** : Configurez facilement des proxys inverses pour vos applications web.
-- **Certificats SSL** : Gérez les certificats SSL pour sécuriser vos sites web.
-- **Redirections de trafic** : Configurez des redirections de trafic pour vos domaines et sous-domaines.
-- **Interface utilisateur intuitive** : Utilisez une interface utilisateur graphique pour gérer vos configurations Nginx.
+  app:
+    image: myapp:latest
+    networks:
+      - proxy
+    # NE PAS exposer le port sur l'hôte — NPM y accède directement via le réseau Docker
 
-### Avantages de Nginx Proxy Manager
+networks:
+  proxy:
+    external: true
+```
 
-- **Simplicité** : Nginx Proxy Manager simplifie la gestion des proxys inverses et des certificats SSL.
-- **Accessibilité** : L'interface utilisateur graphique rend Nginx Proxy Manager accessible aux utilisateurs non techniques.
-- **Flexibilité** : Nginx Proxy Manager prend en charge une variété de configurations et de scénarios d'utilisation.
+```bash
+docker network create proxy
+```
 
-## Utilisation de Nginx Proxy Manager avec Docker
+**Service sur un autre hôte** : utiliser l'IP de la machine. Si le port n'est pas exposé publiquement, Nginx Proxy Manager doit être sur le même réseau L2 ou routé vers cet hôte.
 
-Dans cette section, une démonstration est fournie pour montrer comment utiliser Nginx Proxy Manager avec Docker. Un conteneur Docker pour Nginx Proxy Manager sera créé et un proxy inverse pour une application web sera configuré.
+## Access Lists
 
-### Prérequis
+Les Access Lists permettent de restreindre l'accès à un Proxy Host par IP ou par authentification HTTP Basic.
 
-- Docker installé sur la machine
-- Une application web à proxyfier
+Dans l'interface : **Access Lists → Add Access List**
 
-### Étapes
+Deux types de règles :
+- **IP restrictions** : autoriser ou bloquer des plages d'IP (`192.168.0.0/24`, `10.0.0.1`)
+- **Basic Auth** : username/password pour protéger une URL (utile pour les services sans authentification native comme des dashboards)
 
-1. **Créer un fichier `docker-compose.yml`**
+Une Access List peut combiner les deux — par exemple, autoriser les IPs du réseau interne sans mot de passe et exiger une authentification pour les autres.
 
-   Créez un fichier `docker-compose.yml` avec le contenu suivant :
+Pour l'attacher à un Proxy Host : onglet **Details** → champ **Access List**.
 
-   ```yaml
-   version: '3'
-   services:
-     app:
-       image: your-app-image
-       container_name: your-app
-       ports:
-         - "8080:80"
-     nginx-proxy-manager:
-       image: jc21/nginx-proxy-manager:latest
-       container_name: nginx-proxy-manager
-       ports:
-         - "80:80"
-         - "81:81"
-         - "443:443"
-       volumes:
-         - ./data:/data
-         - ./letsencrypt:/etc/letsencrypt
-   ```
+## Redirection Hosts
 
-2. **Démarrer les conteneurs Docker**
+Pour rediriger un domaine vers un autre (permanent ou temporaire) : **Hosts → Redirection Hosts → Add Redirection Host**.
 
-   Exécutez la commande suivante pour démarrer les conteneurs Docker :
+```
+www.example.com → https://example.com   (301 permanent)
+old.example.com → https://new.example.com/path  (302 temporaire)
+```
 
-   ```bash
-   docker-compose up -d
-   ```
+| Champ | Valeur |
+|-------|--------|
+| Domain Names | domaine source |
+| Scheme | `https` |
+| Forward Domain Name / IP | domaine ou IP de destination |
+| HTTP Code | `301` (SEO) ou `302` (temporaire) |
 
-3. **Accéder à l'interface utilisateur de Nginx Proxy Manager**
+## Stream Hosts (proxy TCP/UDP)
 
-   Ouvrir le navigateur et accéder à `http://localhost:81`. Se connecter avec les informations d'identification par défaut (`admin@example.com` / `changeme`) et changer le mot de passe.
+Les **Stream Hosts** exposent des services TCP ou UDP non-HTTP — utile pour MySQL, PostgreSQL, Redis, MQTT, serveurs de jeu.
 
-4. **Configurer un proxy inverse**
+**Hosts → Streams → Add Stream**
 
-   Dans l'interface utilisateur de Nginx Proxy Manager, ajouter un nouveau proxy hôte avec les paramètres suivants :
+| Champ | Valeur |
+|-------|--------|
+| Incoming Port | port public sur lequel NPM écoute |
+| Forward Host | IP ou hostname du backend |
+| Forward Port | port du service |
+| TCP / UDP | protocole |
 
-   - **Domain Names** : Entrer le nom de domaine ou l'adresse IP de l'application web.
-   - **Forward Hostname / IP** : Entrer `app`.
-   - **Forward Port** : Entrer `80`.
+Exemple : exposer PostgreSQL sur le port 5432 de la machine hôte tout en gardant le conteneur sur un réseau interne.
 
-   Enregistrer la configuration et accéder à l'application web via le nom de domaine ou l'adresse IP configurée.
+## Configuration avancée
 
-## Application / Projet lié
+L'onglet **Advanced** de chaque Proxy Host permet d'injecter des directives Nginx brutes. Nginx Proxy Manager les insère dans le bloc `location /` généré.
 
-### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
-**Utilisation** : Gestion simplifiée des proxys inverses et renouvellement automatique des certificats SSL pour les services hébergés (Grafana, Portainer, etc.).
+```nginx
+# Exemple : cache des assets statiques
+location ~* \.(js|css|png|jpg|jpeg|gif|ico|woff2|svg)$ {
+    expires 1y;
+    add_header Cache-Control "public, immutable";
+    access_log off;
+}
 
-## Conclusion
+# Augmenter la taille maximale du body (upload de fichiers)
+client_max_body_size 100M;
 
-Nginx Proxy Manager est un outil puissant et facile à utiliser pour gérer les proxys inverses Nginx, les certificats SSL et les redirections de trafic. En utilisant Docker, il est possible de déployer et configurer rapidement Nginx Proxy Manager pour les applications web. Essayer Nginx Proxy Manager dès aujourd'hui pour simplifier la gestion des proxys inverses et améliorer la sécurité des sites web.
+# Headers de sécurité supplémentaires
+add_header X-Frame-Options "SAMEORIGIN";
+add_header Content-Security-Policy "default-src 'self'";
+```
+
+La configuration générée par NPM est stockée dans `./data/nginx/` — lisible mais à ne pas modifier directement, elle est régénérée à chaque modification via l'UI.
+
+## Logs et troubleshooting
+
+```bash
+# Logs de l'application NPM (erreurs de configuration, erreurs ACME)
+docker logs nginx-proxy-manager
+
+# Logs Nginx (accès, erreurs par proxy host)
+docker exec nginx-proxy-manager cat /data/logs/proxy-host-1_access.log
+docker exec nginx-proxy-manager cat /data/logs/proxy-host-1_error.log
+```
+
+Les logs Nginx de chaque Proxy Host sont dans `/data/logs/proxy-host-<id>_*.log`. Le numéro d'ID correspond à l'ID visible dans l'URL de l'interface (`/nginx/proxy-hosts/1`).
+
+Problèmes courants :
+
+- **502 Bad Gateway** : le backend n'est pas joignable — vérifier le réseau Docker, le nom de service, le port
+- **Certificate request failed** : le domaine ne pointe pas vers l'IP publique de la machine, ou le port 80 est bloqué par un firewall
+- **ERR_TOO_MANY_REDIRECTS** : l'application backend redirige vers HTTPS alors que NPM communique déjà en HTTPS avec elle — passer le scheme à `https` dans le Proxy Host, ou désactiver les redirections côté backend
+
+## Limites
+
+Nginx Proxy Manager simplifie les cas courants mais n'expose pas toutes les directives Nginx. Les fonctionnalités non disponibles via l'UI :
+
+- Upstream avec plusieurs backends et load balancing (NPM n'a qu'un seul Forward Host par Proxy Host)
+- `proxy_cache` configuré finement
+- Contexte `stream` paramétrable (les Stream Hosts sont plus basiques que le module stream Nginx brut)
+- Configurations multi-tenant complexes
+
+Pour ces cas, utiliser Nginx directement, ou Traefik qui offre une découverte dynamique des services.
