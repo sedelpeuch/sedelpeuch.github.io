@@ -1,101 +1,183 @@
 ---
 title: "GitHub Actions"
-description: "Découvrez comment GitHub Actions peut automatiser vos workflows de développement et de déploiement."
+description: "CI/CD avec GitHub Actions : événements, workflows, jobs, steps et runners — le modèle mental complet."
 tags: [cicd, devops]
 ---
 
-Dans le monde du développement logiciel, l'automatisation est devenue une nécessité pour améliorer l'efficacité et réduire les erreurs humaines. GitHub Actions est une plateforme puissante qui permet d'automatiser les workflows de développement et de déploiement. Dans cet article, nous allons explorer les concepts de base de GitHub Actions, ses avantages, et fournir des exemples concrets pour vous aider à démarrer.
+Sans automatisation, livrer du code en production est un processus manuel : un développeur fusionne une branche, lance les tests à la main, construit l'image Docker, se connecte au serveur, déploie. Chaque étape est une occasion d'oublier quelque chose, de sauter un test, ou de déployer une version qui n'a pas été vérifiée. À mesure que l'équipe et le rythme de livraison augmentent, ce processus ne tient plus.
 
 <!--truncate-->
 
-### Qu'est-ce que GitHub Actions ?
+## CI/CD : le problème et la solution
 
-GitHub Actions est une plateforme d'automatisation des workflows de développement et de déploiement. Elle permet aux développeurs d'automatiser des tâches répétitives, telles que les tests, les builds et les déploiements, en utilisant des fichiers de configuration YAML.
+**L'intégration continue (CI)** répond à un problème de feedback loop. Sans CI, les développeurs travaillent en isolation pendant des jours ou des semaines, puis fusionnent — et découvrent que les branches sont incompatibles, que les tests échouent, que le build est cassé. Plus l'intégration est tardive, plus les conflits sont coûteux à résoudre. La CI force l'intégration fréquente : chaque commit est testé automatiquement, les problèmes sont détectés en minutes plutôt qu'en jours.
 
-### Pourquoi utiliser GitHub Actions ?
+**Le déploiement continu (CD)** prolonge cette logique jusqu'à la production. Un commit qui passe tous les tests peut être déployé automatiquement — ou après approbation manuelle pour les environnements critiques. L'objectif est d'éliminer les déploiements manuels risqués et de rendre la livraison reproductible : le même pipeline s'exécute de la même façon à chaque fois, sur chaque environnement.
 
-GitHub Actions offre plusieurs avantages pour les développeurs et les équipes DevOps :
+```
+Commit
+  → tests automatiques (CI)
+    → build de l'artefact
+      → déploiement staging automatique
+        → approbation manuelle
+          → déploiement production (CD)
+```
 
-1. **Automatisation des workflows** : GitHub Actions permet d'automatiser les tâches répétitives, ce qui réduit les erreurs humaines et améliore l'efficacité.
-2. **Intégration continue (CI)** : Les workflows peuvent être configurés pour s'exécuter automatiquement à chaque commit, garantissant que le code est toujours testé et prêt à être déployé.
-3. **Déploiement continu (CD)** : GitHub Actions facilite le déploiement automatique des applications sur différents environnements, tels que les serveurs de production, les environnements de test et les conteneurs Docker.
-4. **Flexibilité** : Les workflows peuvent être personnalisés pour répondre aux besoins spécifiques de chaque projet, en utilisant des actions prédéfinies ou en créant des actions personnalisées.
-5. **Communauté et écosystème** : GitHub Actions bénéficie d'une large communauté de développeurs et d'un écosystème riche en actions prédéfinies, ce qui facilite l'intégration avec d'autres outils et services.
+Les bénéfices ne sont pas que techniques. Un pipeline CI/CD rend les déploiements fréquents et peu risqués — ce qui encourage des releases plus petites, plus ciblées, plus faciles à déboguer si quelque chose tourne mal. C'est un changement de pratique autant que d'outillage.
 
-### Marketplace et réutilisation
+## GitHub Actions
 
-Le GitHub Marketplace est une ressource précieuse pour trouver des actions prédéfinies créées par la communauté. Vous pouvez réutiliser ces actions dans vos workflows pour automatiser des tâches courantes sans avoir à les coder vous-même. Cela permet de gagner du temps et de bénéficier des meilleures pratiques de la communauté.
+GitHub Actions est le système d'automatisation intégré à GitHub — les workflows vivent dans le dépôt, s'exécutent en réponse à des événements Git, et accèdent nativement aux secrets et aux artefacts du projet.
 
-## Concepts de base de GitHub Actions
+## Le modèle mental
 
-### Événements
+GitHub Actions repose sur cinq concepts qui s'emboîtent :
 
-Les événements sont des déclencheurs qui activent l'exécution des workflows. Les événements courants incluent les commits, les pull requests, les issues et les releases. Par exemple, un workflow peut être configuré pour s'exécuter à chaque commit sur la branche principale.
+```
+Événement (push, pull_request, schedule...)
+  └── Workflow (.github/workflows/ci.yml)
+        └── Job (build, test, deploy...)
+              └── Step (checkout, run npm test, docker push...)
+                    └── Runner (ubuntu-latest, self-hosted...)
+```
 
-### Actions
+Un **événement** déclenche un ou plusieurs **workflows**. Chaque workflow contient un ou plusieurs **jobs**, exécutés en parallèle par défaut. Chaque job est une suite de **steps** qui s'exécutent séquentiellement sur un **runner** — une machine virtuelle éphémère fournie par GitHub ou une machine auto-hébergée.
 
-Les actions sont des tâches individuelles qui composent un workflow. Elles peuvent être prédéfinies ou personnalisées. Les actions prédéfinies sont disponibles dans le GitHub Marketplace et couvrent une large gamme de tâches, telles que l'installation de dépendances, l'exécution de tests et le déploiement d'applications.
-
-### Workflows
-
-Les workflows sont des fichiers de configuration YAML qui définissent les actions à exécuter en réponse à des événements spécifiques. Un workflow peut contenir plusieurs jobs, chacun composé de plusieurs étapes. Les workflows sont stockés dans le répertoire `.github/workflows` du dépôt.
-
-## Exemple de workflow GitHub Actions
-
-Voici un exemple de workflow GitHub Actions pour une application Node.js. Ce workflow s'exécute à chaque commit sur la branche principale, installe les dépendances, exécute les tests et déploie l'application sur un serveur de production.
+## Anatomie d'un workflow
 
 ```yaml
-name: CI/CD Pipeline
+name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
 
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -e ".[dev]"
+
+      - name: Run tests
+        run: pytest
+```
+
+`on` définit les événements déclencheurs. `jobs` liste les jobs et leur runner. Chaque step exécute soit une **action** (`uses`), soit une commande shell (`run`).
+
+## Événements déclencheurs
+
+```yaml
+on: push                          # raccourci : tous les pushs
+
+on:
+  push:
+    branches: [main, develop]     # pushs sur ces branches uniquement
+    paths: ["src/**", "tests/**"] # uniquement si ces chemins changent
+
+  pull_request:
+    types: [opened, synchronize]  # PR ouverte ou mise à jour
+
+  schedule:
+    - cron: "0 6 * * 1"          # chaque lundi à 6h UTC
+
+  workflow_dispatch:               # déclenchement manuel depuis l'UI GitHub
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        default: "staging"
+
+  workflow_run:                    # déclenché par la fin d'un autre workflow
+    workflows: ["CI"]
+    types: [completed]
+```
+
+`workflow_dispatch` est utile pour les déploiements manuels avec paramètres. `workflow_run` permet de chaîner des workflows — un déploiement qui ne se déclenche qu'après un build réussi.
+
+## Actions du Marketplace
+
+Une step `uses` appelle une action externe. Les actions du [GitHub Marketplace](https://github.com/marketplace?type=actions) couvrent les besoins courants : checkout, setup de langages, push Docker, déploiement Kubernetes.
+
+```yaml
+steps:
+  - uses: actions/checkout@v4              # checkout du dépôt
+  - uses: actions/setup-node@v4            # setup Node.js
+    with:
+      node-version: "20"
+  - uses: docker/build-push-action@v5      # build et push d'une image Docker
+    with:
+      push: true
+      tags: ghcr.io/org/app:latest
+```
+
+Le tag `@v4` épingle la version. Toujours épingler une version explicite — `@main` ou `@latest` exposent le workflow aux breaking changes et aux attaques de supply chain.
+
+## Secrets et variables
+
+Les secrets sont chiffrés côté GitHub et injectés dans les steps comme variables d'environnement. Ils ne s'affichent jamais dans les logs.
+
+```yaml
+steps:
+  - name: Deploy
+    env:
+      API_TOKEN: ${{ secrets.API_TOKEN }}
+    run: ./deploy.sh
+```
+
+Les secrets se configurent dans *Settings → Secrets and variables → Actions* du dépôt ou de l'organisation. Le token `GITHUB_TOKEN` est généré automatiquement pour chaque exécution — il donne accès à l'API GitHub avec des permissions limitables :
+
+```yaml
+permissions:
+  contents: read
+  packages: write
+```
+
+## Dépendances entre jobs
+
+Par défaut, les jobs s'exécutent en parallèle. `needs` impose un ordre d'exécution :
+
+```yaml
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - run: echo "build"
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "test"
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
-
-      - name: Deploy to production
-        run: |
-          ssh user@server 'cd /path/to/app && git pull && npm install && pm2 restart app'
+  deploy:
+    needs: [build, test]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "deploy"
 ```
 
-## Les runners GitHub Actions
+`if` conditionne l'exécution d'un job ou d'une step. Ici, `deploy` ne s'exécute que sur la branche `main` et seulement si `build` et `test` ont réussi.
 
-Les runners sont des machines virtuelles ou physiques qui exécutent les jobs définis dans les workflows. GitHub propose des runners hébergés, mais vous pouvez également configurer vos propres runners auto-hébergés pour répondre à des besoins spécifiques. Les runners auto-hébergés offrent plus de contrôle sur l'environnement d'exécution et peuvent être utilisés pour des tâches nécessitant des ressources spécifiques.
+## Runners
 
-## Application / Projet lié
+GitHub fournit des runners hébergés (`ubuntu-latest`, `windows-latest`, `macos-latest`) avec 2 000 minutes gratuites par mois pour les dépôts publics, illimitées pour les dépôts publics. Au-delà, chaque minute est facturée.
 
-### [CI/CD](/docs/projects/professionnel/cicd)
-**Utilisation** : Architecture et patterns pour automatiser les workflows de build, test et déploiement.
+Les runners auto-hébergés (`self-hosted`) tournent sur des machines contrôlées — serveur on-premise, VM cloud, cluster Kubernetes via ARC. Ils ne consomment pas le quota GitHub et donnent accès à des ressources spécifiques (GPU, réseau privé, caches locaux).
 
-### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
-**Utilisation** : Runners auto-hébergés pour exécuter les workflows avec contrôle complet.
-
-### [delpeuch.net - Blog](/docs/projects/personnel/delpeuch-net-blog) & [6TRON Backend](/docs/projects/professionnel/6tron-backend)
-**Utilisation** : Déploiement automatique du blog et du backend lors des commits.
-
-### [standards-python](/docs/projects/professionnel/standards-python)
-**Utilisation** : Workflows CI/CD complets (lint, tests, build, release, deploy) via GitHub Actions.
-
-## Conclusion
-
-GitHub Actions est un outil puissant pour automatiser les workflows de développement et de déploiement. En utilisant des fichiers de configuration YAML, les développeurs peuvent créer des workflows personnalisés pour répondre aux besoins spécifiques de leurs projets. Avec GitHub Actions, les équipes DevOps peuvent améliorer l'efficacité, réduire les erreurs humaines et accélérer le cycle de développement.
-
-Pour en savoir plus sur GitHub Actions, consultez la [documentation officielle](https://docs.github.com/en/actions).
+```yaml
+jobs:
+  build:
+    runs-on: self-hosted          # n'importe quel runner self-hosted
+  gpu-job:
+    runs-on: [self-hosted, gpu]   # runner self-hosted avec le label "gpu"
+```
