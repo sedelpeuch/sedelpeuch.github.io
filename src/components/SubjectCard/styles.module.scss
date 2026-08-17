@@ -1,0 +1,49 @@
+.card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--ifm-toc-border-color);
+  border-left: 4px solid var(--ifm-color-primary);
+  border-radius: 10px;
+  background: var(--content-background-color);
+  text-decoration: none;
+  color: var(--ifm-text-color);
+  transition: transform 0.15s ease;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-2px);
+    text-decoration: none;
+    color: var(--ifm-text-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ifm-color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.cpbx {
+  border-left-color: var(--school-cpbx);
+}
+
+.enseirb {
+  border-left-color: var(--school-enseirb);
+}
+
+.emoji {
+  font-size: 1.4rem;
+  flex: none;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}

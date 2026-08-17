@@ -9,6 +9,6 @@ Cette section regroupe les cours, projets et travaux réalisés durant le parcou
 - 🎓 **CPBX** (2017–2019)
 - 🎓 **ENSEIRB** (2019–2022)
 
-import DocCardList from '@theme/DocCardList';
+import SubjectCardList from "@site/src/components/SubjectCardList";
 
-<DocCardList />
+<SubjectCardList />

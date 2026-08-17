@@ -2,12 +2,13 @@
 title: Cycle Préparatoire De Bordeaux - Semestre 3
 ---
 
-## Informatique
+import DossierHeader from "@site/src/components/DossierHeader";
+import MatiereSection from "@site/src/components/MatiereSection";
+import ResourceList from "@site/src/components/ResourceList";
 
-Responsable [Frantisek Kardos](https://www.labri.fr/index.php?n=Annuaires.Profile&id=Kardos_ID1346656366)
+<DossierHeader school="cpbx" crumbs={["CPBx", "Semestre 3"]} />
 
-Les [notes de cours](informatique/cours.pdf) et les
-[notes de TD](informatique/TD.pdf).
+<MatiereSection icon="💻" title="Informatique" responsable={{ name: "Frantisek Kardos", href: "https://www.labri.fr/index.php?n=Annuaires.Profile&id=Kardos_ID1346656366" }}>
 
 Au semestre 3, en informatique on vous demande de commencer à réfléchir à des
 solutions algorithmiques plus complexes que au premier semestre. L'idée n'est
@@ -15,42 +16,123 @@ pas d'avoir un code fonctionnel à tout prix mais de vous sensibiliser à
 l'établissement d'une reflexion algorithmique et à faire de l'abstraction par
 rapport à la machine. Ainsi, recopier la correction sans comprendre ni réflechir est juste inutile.
 
-## Chimie
+<ResourceList groups={[
+  {
+    type: "cours",
+    title: "Cours",
+    items: [{ label: "Notes de cours", href: require("./informatique/cours.pdf").default }],
+  },
+  {
+    type: "td",
+    title: "Travaux dirigés",
+    items: [{ label: "Notes de TD", href: require("./informatique/TD.pdf").default }],
+  },
+]} />
 
-Responsable [Jean Christophe Soetens](http://theo.ism.u-bordeaux1.fr/index.php)
+</MatiereSection>
 
-Les [notes de cours](Chimie-cours.pdf) et les [notes de TD](Chimie-TD.pdf).
+<MatiereSection icon="🧪" title="Chimie" responsable={{ name: "Jean Christophe Soetens", href: "http://theo.ism.u-bordeaux1.fr/index.php" }}>
 
-## Mathématiques
+<ResourceList groups={[
+  {
+    type: "cours",
+    title: "Cours",
+    items: [{ label: "Notes de cours", href: require("./Chimie-cours.pdf").default }],
+  },
+  {
+    type: "td",
+    title: "Travaux dirigés",
+    items: [{ label: "Notes de TD", href: require("./Chimie-TD.pdf").default }],
+  },
+]} />
+
+</MatiereSection>
+
+<MatiereSection icon="📐" title="Mathématiques">
 
 ### Analyse
 
 Responsable : [Laurent Michel](https://www.math.u-bordeaux.fr/~lamichel/enseignement.html)
 
-Les [notes de cours](maths/ncours.pdf) et les [notes de TD](maths/ntd.pdf).
+<ResourceList groups={[
+  {
+    type: "cours",
+    title: "Cours",
+    items: [{ label: "Notes de cours", href: require("./maths/ncours.pdf").default }],
+  },
+  {
+    type: "td",
+    title: "Travaux dirigés",
+    items: [{ label: "Notes de TD", href: require("./maths/ntd.pdf").default }],
+  },
+]} />
 
 ### Algèbre
 
-Responsable: [Nicolas Popoff](https://www.math.u-bordeaux.fr/~npopoff/)
+Responsable : [Nicolas Popoff](https://www.math.u-bordeaux.fr/~npopoff/)
 
-Les [notes de cours](maths/gcours.pdf) et les [notes de TD](maths/gtd.pdf)
+<ResourceList groups={[
+  {
+    type: "cours",
+    title: "Cours",
+    items: [{ label: "Notes de cours", href: require("./maths/gcours.pdf").default }],
+  },
+  {
+    type: "td",
+    title: "Travaux dirigés",
+    items: [{ label: "Notes de TD", href: require("./maths/gtd.pdf").default }],
+  },
+]} />
 
-## Physique
+</MatiereSection>
+
+<MatiereSection icon="🌀" title="Physique">
 
 ### Thermodynamique
 
-Responsable: Julien Burgin
+Responsable : Julien Burgin
 
-Les [notes de cours](physique/Thermo-cours.pdf) et les [notes de TD](physique/Thermo-TD.pdf)
+<ResourceList groups={[
+  {
+    type: "cours",
+    title: "Cours",
+    items: [{ label: "Notes de cours", href: require("./physique/Thermo-cours.pdf").default }],
+  },
+  {
+    type: "td",
+    title: "Travaux dirigés",
+    items: [{ label: "Notes de TD", href: require("./physique/Thermo-TD.pdf").default }],
+  },
+]} />
 
 ### Electromagnétisme
 
-Responsable:[Jérome Cayssol](https://www.loma.cnrs.fr/jerome-cayssol/)
+Responsable : [Jérome Cayssol](https://www.loma.cnrs.fr/jerome-cayssol/)
 
-Les [notes de cours](physique/Electromagnétisme-cours.pdf) et les [notes de TD](physique/Electromagnétisme-TD.pdf)
+<ResourceList groups={[
+  {
+    type: "cours",
+    title: "Cours",
+    items: [{ label: "Notes de cours", href: require("./physique/Electromagnétisme-cours.pdf").default }],
+  },
+  {
+    type: "td",
+    title: "Travaux dirigés",
+    items: [{ label: "Notes de TD", href: require("./physique/Electromagnétisme-TD.pdf").default }],
+  },
+]} />
 
 ### Travaux Pratiques
 
 Pour l'instant les travaux pratiques du semestre 3 n'ont pas changés depuis 10
-ans. Voici une [proposition](physique/TP-S3.pdf) de
-solution. Normalement tous les TPs sont correct.
+ans. Normalement tous les TPs sont correct.
+
+<ResourceList groups={[
+  {
+    type: "support",
+    title: "Supports",
+    items: [{ label: "Proposition de solution", href: require("./physique/TP-S3.pdf").default }],
+  },
+]} />
+
+</MatiereSection>

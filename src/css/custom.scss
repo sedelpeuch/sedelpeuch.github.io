@@ -6,6 +6,10 @@
   --ifm-color-primary-light: #2cb8fb;
   --ifm-color-primary-lighter: #b0e6ff;
   --ifm-color-primary-lightest: #d5f1fd;
+  --school-cpbx: #f5a623;
+  --school-cpbx-bg: #fdeeca;
+  --school-enseirb: var(--ifm-color-primary);
+  --school-enseirb-bg: var(--ifm-color-primary-lightest);
   --ifm-code-font-size: 95%;
   --ifm-font-family-base: misans, ui-sans-serif, system-ui, -apple-system;
 
@@ -53,6 +57,10 @@
 }
 
 html[data-theme='dark'] {
+  --school-cpbx: #f5a623;
+  --school-cpbx-bg: #3a2c10;
+  --school-enseirb: hsl(214deg 100% 60%);
+  --school-enseirb-bg: #0e2a40;
   --ifm-color-primary: hsl(214deg 100% 60%);
   --ifm-color-primary-light: hsl(214deg 100% 75%);
   --ifm-heading-color: hsl(0deg 0% 100%);
