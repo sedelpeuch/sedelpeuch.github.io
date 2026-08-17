@@ -1,6 +1,13 @@
 ---
 title: Algorithmique numérique
+sidebar_custom_props:
+  icon: "🔢"
+  school: enseirb
 ---
+
+import DossierHeader from "@site/src/components/DossierHeader";
+
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 6", "Algorithmique numérique"]} />
 
 ### Objectif du cours
 

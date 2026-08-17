@@ -7,9 +7,13 @@ hide: true
 ---
 
 
-import DocCardList from '@theme/DocCardList';
+import DossierHeader from "@site/src/components/DossierHeader";
+import ResourceList from "@site/src/components/ResourceList";
+import SubjectCardList from "@site/src/components/SubjectCardList";
 
-<DocCardList />
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 6", "Programmation impérative"]} />
+
+<SubjectCardList />
 
 ### Objectif du cours
 
@@ -23,67 +27,37 @@ programmation.
 
 ### Ressources pédagogiques
 
-#### Cours
+<ResourceList type="cours" title="Cours" count={7}>
 
-| Support   |
-|:----------|
-| [cours 1] |
-| [cours 2] |
-| [cours 3] |
-| [cours 4] |
-| [cours 5] |
-| [cours 6] |
-| [cours 7] |
+- [cours 1](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours1.pdf)
+- [cours 2](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours2.pdf)
+- [cours 3](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours3.pdf)
+- [cours 4](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours4.pdf)
+- [cours 5](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours5.pdf)
+- [cours 6](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours6.pdf)
+- [cours 7](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours7.pdf)
 
-#### Travaux dirigés
+</ResourceList>
 
-| Thème                | Sujet  | Source si présente |
-|:---------------------|:------:|:------------------:|
-| Convention de codage | [TD 1] |      [hash.c]      |
-| Simulation mémoire   | [TD 2] |    [CI-memoire]    |
-| GDB                  | [TD 3] |      [gdb1.c]      |
-| Valgrind             | [TD 4] |      [list.c]      |
-| Cmake IDE Doxygen    | [TD 5] |                    |
-| Diff et patch        | [TD 6] |   [patch.print]    |
-| Svn                  | [TD 7] |                    |
-| Code legacy          | [TD 8] |                    |
+<ResourceList type="td" title="Travaux dirigés" count={8}>
 
-[cours 1]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours1.pdf
+- [TD 1 — Convention de codage](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td_coding-sujet.pdf)
+- [TD 2 — Simulation mémoire](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/Exercices-de-simulation-m%C3%A9moire.pdf)
+- [TD 3 — GDB](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td_gdb_valgrind-sujet.pdf)
+- [TD 4 — Valgrind](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td_valgrind-sujet.pdf)
+- [TD 5 — Cmake IDE Doxygen](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td_cmake-ide-doxygen-sujet.pdf)
+- [TD 6 — Diff et patch](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-diff-patch-svn-git-sujet.pdf)
+- [TD 7 — Svn](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-svn-tests-sujet.pdf)
+- [TD 8 — Code legacy](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-code-legacy-sujet.pdf)
 
-[cours 2]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours2.pdf
+</ResourceList>
 
-[cours 3]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours3.pdf
+<ResourceList type="support" title="Sources des TD" count={5}>
 
-[cours 4]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours4.pdf
+- [hash.c — Convention de codage](http://www.labri.fr/perso/allali/wp-content/uploads/2015/01/hash.c.gz)
+- [CI-memoire — Simulation mémoire](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/CI-memoire.pdf)
+- [gdb1.c — GDB](http://www.labri.fr/perso/allali/?attachment_id=871)
+- [list.c — Valgrind](http://www.labri.fr/perso/allali/wp-content/uploads/2015/01/list.c.gz)
+- [patch.print — Diff et patch](http://www.labri.fr/perso/allali/wp-content/uploads/2015/01/patch.print_.gz)
 
-[cours 5]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours5.pdf
-
-[cours 6]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours6.pdf
-
-[cours 7]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours7.pdf
-
-[hash.c]:http://www.labri.fr/perso/allali/wp-content/uploads/2015/01/hash.c.gz
-
-[CI-memoire]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/CI-memoire.pdf
-
-[gdb1.c]:http://www.labri.fr/perso/allali/?attachment_id=871
-
-[list.c]:http://www.labri.fr/perso/allali/wp-content/uploads/2015/01/list.c.gz
-
-[patch.print]:http://www.labri.fr/perso/allali/wp-content/uploads/2015/01/patch.print_.gz
-
-[TD 1]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td_coding-sujet.pdf
-
-[TD 2]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/Exercices-de-simulation-m%C3%A9moire.pdf
-
-[TD 3]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td_gdb_valgrind-sujet.pdf
-
-[TD 4]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td_valgrind-sujet.pdf
-
-[TD 5]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td_cmake-ide-doxygen-sujet.pdf
-
-[TD 6]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-diff-patch-svn-git-sujet.pdf
-
-[TD 7]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-svn-tests-sujet.pdf
-
-[TD 8]:https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-code-legacy-sujet.pdf
+</ResourceList>

@@ -2,6 +2,9 @@
 title: "Système embarqué"
 ---
 
-import DocCardList from '@theme/DocCardList';
+import DossierHeader from "@site/src/components/DossierHeader";
+import SubjectCardList from "@site/src/components/SubjectCardList";
 
-<DocCardList />
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 9", "Systèmes embarqués"]} />
+
+<SubjectCardList />

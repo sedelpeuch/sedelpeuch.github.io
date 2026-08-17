@@ -2,13 +2,19 @@
 title: "Introduction à l'informatique quantique"
 ---
 
-[Polycopié](http://dept-info.labri.fr/~ges/ENSEIGNEMENT/CALCULQ/polycop_calculq.pdf) d'une ancienne version du cours
-
 import DocCardList from '@theme/DocCardList';
+import DossierHeader from "@site/src/components/DossierHeader";
+import ResourceList from "@site/src/components/ResourceList";
+
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 7", "Introduction à l'informatique quantique"]} />
+
+[Polycopié](http://dept-info.labri.fr/~ges/ENSEIGNEMENT/CALCULQ/polycop_calculq.pdf) d'une ancienne version du cours
 
 <DocCardList />
 
 ## Diapositives
+
+<ResourceList type="cours" title="Diapositives" count={6}>
 
 - [Cours 1]
 - [Cours 2]
@@ -16,6 +22,8 @@ import DocCardList from '@theme/DocCardList';
 - [Cours 4]
 - [Cours 5]
 - [Cours 6]
+
+</ResourceList>
 
 [Cours 1]:https://www.labri.fr/perso/atanasa/info_quantique/CI_1_intro.pdf
 

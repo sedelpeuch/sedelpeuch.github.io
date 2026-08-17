@@ -10,12 +10,16 @@ filière informatique. Il propose notamment les supports de cours lorsqu’ils s
 publics, les sujets (et parfois les corrections) des travaux dirigés.
 Lorsqu’elles ont été prises, mes notes de cours sont disponibles.
 
-import DocCardList from '@theme/DocCardList';
+import SubjectCardList from "@site/src/components/SubjectCardList";
+import ResourceList from "@site/src/components/ResourceList";
 
-<DocCardList />
+<SubjectCardList />
 
 ## Projets 2
 
-[Projet Actor](https://thor.enseirb-matmeca.fr/ruby/projects/projetss6-actor-1920)
+<ResourceList type="projet" title="Projets" count={2}>
 
-[Projet Hex](https://thor.enseirb-matmeca.fr/ruby/repositories/4673)
+- [Projet Actor](https://thor.enseirb-matmeca.fr/ruby/projects/projetss6-actor-1920)
+- [Projet Hex](https://thor.enseirb-matmeca.fr/ruby/repositories/4673)
+
+</ResourceList>

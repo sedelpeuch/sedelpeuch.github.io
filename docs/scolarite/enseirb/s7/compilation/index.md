@@ -3,8 +3,14 @@ title: "Compilation"
 ---
 
 import DocCardList from '@theme/DocCardList';
+import DossierHeader from "@site/src/components/DossierHeader";
+import ResourceList from "@site/src/components/ResourceList";
+
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 7", "Compilation"]} />
 
 <DocCardList />
+
+<ResourceList type="cours" title="Cours" count={8}>
 
 - [Introduction]
 - [Analyse lexicale]
@@ -15,14 +21,24 @@ import DocCardList from '@theme/DocCardList';
 - [Vidéo 7.1]
 - [Vidéo 7.2]
 
+</ResourceList>
+
 ### Travaux dirigés
+
+<ResourceList type="td" title="Travaux dirigés" count={2}>
 
 - [Sujet 1]
 - [Sujet 2]
 
+</ResourceList>
+
 ### Projet
 
-[Projet](./img/Compilprojet.zip)
+<ResourceList type="projet" title="Projet" count={1}>
+
+- [Projet](./img/Compilprojet.zip)
+
+</ResourceList>
 
 [Sujet 1]:https://moodle.bordeaux-inp.fr/pluginfile.php/149561/mod_resource/content/1/td1.pdf
 

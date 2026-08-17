@@ -6,6 +6,12 @@ order: 2
 hide: true
 ---
 
+import DossierHeader from "@site/src/components/DossierHeader";
+import ResourceList from "@site/src/components/ResourceList";
+import SubjectCardList from "@site/src/components/SubjectCardList";
+
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 6", "Graphes"]} />
+
 ### Objectif du cours
 
 Après une brève introduction des graphes, ce cours présente des problèmes sur
@@ -13,13 +19,16 @@ les graphes admettant une solution algorithmique efficace. L'étude de ces
 solutions sera l'occasion d'exhiber des propriétés classiques en Théorie des
 Graphes.
 
-- Le [cours]
-- Les [exercices]
+<ResourceList type="cours" title="Cours" count={1}>
 
-import DocCardList from '@theme/DocCardList';
+- [Cours](https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf)
 
-<DocCardList />
+</ResourceList>
 
-[cours]:https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf
+<ResourceList type="td" title="Exercices" count={1}>
 
-[exercices]:https://moodle.bordeaux-inp.fr/pluginfile.php/51351/mod_resource/content/3/TDgraphe2012.pdf
+- [Exercices](https://moodle.bordeaux-inp.fr/pluginfile.php/51351/mod_resource/content/3/TDgraphe2012.pdf)
+
+</ResourceList>
+
+<SubjectCardList />

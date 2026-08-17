@@ -1,6 +1,13 @@
 ---
 title: "Mathématiques pour la robotique"
+sidebar_custom_props:
+  icon: "📐"
+  school: enseirb
 ---
+
+import DossierHeader from "@site/src/components/DossierHeader";
+
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 9", "Mathématiques pour la robotique"]} />
 
 À partir d'une position initiale, le robot tourne de $\theta$ puis avance de $t$ puis tourne de $\alpha$ puis avance de $d$. Donner son positionnement dans le repère $(x,y,\theta)$.
 

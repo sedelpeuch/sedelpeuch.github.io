@@ -2,6 +2,12 @@
 title: "Autonomie Énergétique"
 ---
 
+import DossierHeader from "@site/src/components/DossierHeader";
+import ResourceList from "@site/src/components/ResourceList";
+import SubjectCardList from "@site/src/components/SubjectCardList";
+
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 9", "Énergie"]} />
+
 Ce module traite de la conversion et de la gestion d’énergie électrique pour les deux principaux besoins en robotique que sont l’alimentation électrique d’une part et le contrôle moteur de l’actionneur d’autre part. Bien qu’intimement liés, ces aspects de l’électronique de puissance font l’objet de deux parties distinctes.
 
 ## Conversion de puissance
@@ -14,14 +20,20 @@ L’objectif est de se familiariser avec la conversion électromécanique réali
 
 ## Documents
 
-[Cours](./img/Cours.pdf)
+<ResourceList type="cours" title="Cours" count={1}>
 
-[TD](./img/TD.pdf)
+- [Cours](./img/Cours.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [TD](./img/TD.pdf)
+
+</ResourceList>
 
 [Correction des TD]
 
 ## Notes de cours
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<SubjectCardList />

@@ -2,11 +2,14 @@
 title: "SGBD"
 ---
 
-import DocCardList from '@theme/DocCardList';
+import DossierHeader from "@site/src/components/DossierHeader";
+import ResourceList from "@site/src/components/ResourceList";
 
-<DocCardList />
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 7", "SGBD"]} />
 
 ### Les cours
+
+<ResourceList type="cours" title="Cours" count={5}>
 
 - [Conception d'une base de donnée]
 - [Le modèle relationnel]
@@ -14,23 +17,38 @@ import DocCardList from '@theme/DocCardList';
 - [Transactions et concurrence]
 - [Algorithme de SGBD]
 
+</ResourceList>
+
 ### Les travaux dirigés
 
-| Sujet de TD |
-|:------------|
-| [Sujet 1]   |
-| [Sujet 2]   |
-| [Sujet 3]   |
-| [Sujet 4]   |
-| [Sujet 5]   |
+<ResourceList type="td" title="Travaux dirigés" count={5}>
+
+- [Sujet 1]
+- [Sujet 2]
+- [Sujet 3]
+- [Sujet 4]
+- [Sujet 5]
+
+</ResourceList>
+
+<ResourceList type="correction" title="Corrections" count={4}>
+
+- [Correction 2](./img/td2.pdf)
+- [Correction 3](./img/td3.pdf)
+- [Correction 4](./img/td4.pdf)
+- [Correction 5](./img/td5.pdf)
+
+</ResourceList>
 
 ### Les travaux pratique
 
-| Sujet de TP |
-|:------------|
-| [TP 1]      |
-| [TP 2]      |
-| [TP 3]      |
+<ResourceList type="support" title="Travaux pratiques" count={3}>
+
+- [TP 1]
+- [TP 2]
+- [TP 3]
+
+</ResourceList>
 
 [Conception d'une base de donnée]: https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=47001
 
@@ -51,14 +69,6 @@ import DocCardList from '@theme/DocCardList';
 [Sujet 4]:https://moodle.bordeaux-inp.fr/pluginfile.php/49011/mod_resource/content/1/td4.pdf
 
 [Sujet 5]:https://moodle.bordeaux-inp.fr/pluginfile.php/49012/mod_resource/content/2/td5.pdf
-
-[Correction 2](./img/td2.pdf)
-
-[Correction 3](./img/td3.pdf)
-
-[Correction 4](./img/td4.pdf)
-
-[Correction 5](./img/td5.pdf)
 
 [TP 1]:https://moodle.bordeaux-inp.fr/mod/page/view.php?id=9985
 

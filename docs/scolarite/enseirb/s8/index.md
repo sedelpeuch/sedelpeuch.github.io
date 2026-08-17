@@ -2,6 +2,6 @@
 title: Semestre 8
 ---
 
-import DocCardList from '@theme/DocCardList';
+import SubjectCardList from '@site/src/components/SubjectCardList';
 
-<DocCardList />
+<SubjectCardList />

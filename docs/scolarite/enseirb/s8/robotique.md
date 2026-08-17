@@ -1,6 +1,13 @@
 ---
 title: "Initiation à la robotique "
+sidebar_custom_props:
+  icon: "🦾"
+  school: enseirb
 ---
+
+import DossierHeader from '@site/src/components/DossierHeader';
+
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 8", "Initiation à la robotique"]} />
 
 ## Définition du problème
 

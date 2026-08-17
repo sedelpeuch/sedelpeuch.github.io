@@ -1,6 +1,13 @@
 ---
 title: "Management de la qualité"
+sidebar_custom_props:
+  icon: "📋"
+  school: enseirb
 ---
+
+import DossierHeader from '@site/src/components/DossierHeader';
+
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 8", "Management de la qualité"]} />
 
 ## Définition de la qualité
 

@@ -1,6 +1,13 @@
 ---
 title: "Évaluation des projets et maîtrise des coûts"
+sidebar_custom_props:
+  icon: "💰"
+  school: enseirb
 ---
+
+import DossierHeader from '@site/src/components/DossierHeader';
+
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 8", "Évaluation des projets et maîtrise des coûts"]} />
 
 ![](./img/fiche1.jpg)
 

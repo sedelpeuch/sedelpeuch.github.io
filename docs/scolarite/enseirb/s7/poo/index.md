@@ -2,6 +2,12 @@
 title: "Programmation Orientée Objets"
 ---
 
+import DocCardList from '@theme/DocCardList';
+import DossierHeader from "@site/src/components/DossierHeader";
+import ResourceList from "@site/src/components/ResourceList";
+
+<DossierHeader school="enseirb" crumbs={["ENSEIRB", "Semestre 7", "Programmation Orientée Objets"]} />
+
 ### Ressources pédagogiques
 
 Le
@@ -11,26 +17,58 @@ de cours.
 Le [site](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/) contenant tous les
 TD
 
-import DocCardList from '@theme/DocCardList';
-
 <DocCardList />
 
 ### Travaux dirigés
 
-| Sujet                           |
-|:--------------------------------|
-| [Presentation-existant]         |
-| [Approche Objet Jauge Position] |
-| [Autobus Passager Standard]     |
-| [Integration rassemblement]     |
-| [Masquage d'information]        |
-| [Nouveaux caractères]           |
-| [Est UN a UN]                   |
-| [Exceptions]                    |
+<ResourceList type="td" title="Travaux dirigés" count={8}>
+
+- [Presentation-existant]
+- [Approche Objet Jauge Position]
+- [Autobus Passager Standard]
+- [Integration rassemblement]
+- [Masquage d'information]
+- [Nouveaux caractères]
+- [Est UN a UN]
+- [Exceptions]
+
+</ResourceList>
 
 ### Projet
 
-[Project](./img/POOprojet.zip)
+<ResourceList type="projet" title="Projet" count={1}>
+
+- [Project](./img/POOprojet.zip)
+
+</ResourceList>
+
+<ResourceList type="support" title="Rapports" count={7}>
+
+- [Rapport 0](./img/0.pdf)
+- [Rapport 1](./img/1.pdf)
+- [Rapport 2](./img/2.pdf)
+- [Rapport 3](./img/3.pdf)
+- [Rapport 4](./img/4.pdf)
+- [Rapport 5](./img/5.pdf)
+- [Rapport 6](./img/6.pdf)
+
+</ResourceList>
+
+<ResourceList type="support" title="Sujets de TD" count={11}>
+
+- [TD 1](./img/POOtd1.zip)
+- [TD 2](./img/POOtd2.zip)
+- [TD 3](./img/POOtd3.zip)
+- [TD 4a](./img/POOtd4a.zip)
+- [TD 4b](./img/POOtd4b.zip)
+- [TD 5a](./img/POOtd5a.zip)
+- [TD 5b](./img/POOtd5b.zip)
+- [TD 6a](./img/POOtd6a.zip)
+- [TD 6b](./img/POOtd6b.zip)
+- [TD 7a](./img/POOtd7a.zip)
+- [TD 7b](./img/POOtd7b.zip)
+
+</ResourceList>
 
 [Presentation-existant]: https://georgy.vvv.enseirb-matmeca.fr/PG202-203/0-presentation-existant/
 
@@ -47,39 +85,3 @@ import DocCardList from '@theme/DocCardList';
 [Est UN a UN]:https://georgy.vvv.enseirb-matmeca.fr/PG202-203/6-estUn-aUn/
 
 [Exceptions]:https://georgy.vvv.enseirb-matmeca.fr/PG202-203/7-exceptions/
-
-[Rapport 0](./img/0.pdf)
-
-[Rapport 1](./img/1.pdf)
-
-[Rapport 2](./img/2.pdf)
-
-[Rapport 3](./img/3.pdf)
-
-[Rapport 4](./img/4.pdf)
-
-[Rapport 5](./img/5.pdf)
-
-[Rapport 6](./img/6.pdf)
-
-[TD 1](./img/POOtd1.zip)
-
-[TD 2](./img/POOtd2.zip)
-
-[TD 3](./img/POOtd3.zip)
-
-[TD 4a](./img/POOtd4a.zip)
-
-[TD 4b](./img/POOtd4b.zip)
-
-[TD 5a](./img/POOtd5a.zip)
-
-[TD 5b](./img/POOtd5b.zip)
-
-[TD 6a](./img/POOtd6a.zip)
-
-[TD 6b](./img/POOtd6b.zip)
-
-[TD 7a](./img/POOtd7a.zip)
-
-[TD 7b](./img/POOtd7b.zip)
