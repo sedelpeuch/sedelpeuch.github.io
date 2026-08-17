@@ -14,51 +14,43 @@ import ResourceList from "@site/src/components/ResourceList";
 
 Responsable : [Dany Carlier-Larregaray](https://www.icmcb-bordeaux.cnrs.fr/carlier-larregaray-dany/)
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [
-      { label: "Notions fondamentales 1", href: require("./chimie/inorga/diapo/1.pdf").default },
-      { label: "Notions fondamentales 2", href: require("./chimie/inorga/diapo/2.pdf").default },
-      { label: "Empilements compacts", href: require("./chimie/inorga/diapo/3.pdf").default },
-      { label: "Sites interstitiels", href: require("./chimie/inorga/diapo/4.pdf").default },
-      { label: "Limite de la stabilité", href: require("./chimie/inorga/diapo/5.pdf").default },
-      { label: "Notes de cours", href: require("./chimie/inorga/cours.pdf").default },
-    ],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "TD", href: require("./chimie/inorga/td.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={6}>
+
+- [Notions fondamentales 1](chimie/inorga/diapo/1.pdf)
+- [Notions fondamentales 2](chimie/inorga/diapo/2.pdf)
+- [Empilements compacts](chimie/inorga/diapo/3.pdf)
+- [Sites interstitiels](chimie/inorga/diapo/4.pdf)
+- [Limite de la stabilité](chimie/inorga/diapo/5.pdf)
+- [Notes de cours](chimie/inorga/cours.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [TD](chimie/inorga/td.pdf)
+
+</ResourceList>
 
 ### Chimie Organique
 
 Responsable : [Denis Deffieux](http://www.sasn.u-bordeaux1.fr/annuaire/deffieux.html)
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [
-      { label: "Partie A", href: require("./chimie/orga/1.pdf").default },
-      { label: "Partie B", href: require("./chimie/orga/2.pdf").default },
-      { label: "Partie C", href: require("./chimie/orga/3.pdf").default },
-      { label: "Aide de cours", href: require("./chimie/orga/aide.pdf").default },
-      { label: "Notes de cours", href: require("./chimie/orga/cours.pdf").default },
-    ],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [
-      { label: "TD — énoncé", href: require("./chimie/orga/td-enonce.pdf").default },
-      { label: "TD — prise de note", href: require("./chimie/orga/td.pdf").default },
-    ],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={5}>
+
+- [Partie A](chimie/orga/1.pdf)
+- [Partie B](chimie/orga/2.pdf)
+- [Partie C](chimie/orga/3.pdf)
+- [Aide de cours](chimie/orga/aide.pdf)
+- [Notes de cours](chimie/orga/cours.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={2}>
+
+- [TD — énoncé](chimie/orga/td-enonce.pdf)
+- [TD — prise de note](chimie/orga/td.pdf)
+
+</ResourceList>
 
 </MatiereSection>
 
@@ -68,35 +60,33 @@ Responsable : [Denis Deffieux](http://www.sasn.u-bordeaux1.fr/annuaire/deffieux.
 
 Responsable : [Mouez Dimassi](https://www.math.u-bordeaux.fr/~mdimassi/)
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Notes de cours", href: require("./maths/ncours.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./maths/ntd.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Notes de cours](maths/ncours.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](maths/ntd.pdf)
+
+</ResourceList>
 
 ### Algèbre
 
 Responsable : [Eric Charpentier](https://www.math.u-bordeaux.fr/~echarpen/)
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Notes de cours", href: require("./maths/gcours.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./maths/gtd.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Notes de cours](maths/gcours.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](maths/gtd.pdf)
+
+</ResourceList>
 
 </MatiereSection>
 
@@ -106,80 +96,75 @@ Responsable : [Eric Charpentier](https://www.math.u-bordeaux.fr/~echarpen/)
 
 Responsable : Mourad Aiche
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [
-      { label: "Régime Transitoire", href: require("./physique/elec/1.pdf").default },
-      { label: "AOP", href: require("./physique/elec/2.pdf").default },
-      { label: "Circuits électriques en régime transitoires", href: require("./physique/elec/3.pdf").default },
-      { label: "Cours", href: require("./physique/elec/cours.pdf").default },
-      { label: "Fiche", href: require("./physique/elec/fiche.pdf").default },
-    ],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "TD — sujet", href: require("./physique/elec/td-sujet.pdf").default }],
-  },
-  {
-    type: "correction",
-    title: "Correction",
-    items: [{ label: "TD — correction", href: require("./physique/elec/td.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={5}>
+
+- [Régime Transitoire](physique/elec/1.pdf)
+- [AOP](physique/elec/2.pdf)
+- [Circuits électriques en régime transitoires](physique/elec/3.pdf)
+- [Cours](physique/elec/cours.pdf)
+- [Fiche](physique/elec/fiche.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [TD — sujet](physique/elec/td-sujet.pdf)
+
+</ResourceList>
+
+<ResourceList type="correction" title="Correction" count={1}>
+
+- [TD — correction](physique/elec/td.pdf)
+
+</ResourceList>
 
 ### Thermodynamique
 
 Responsable : Daniel Blaudez
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Fiche", href: require("./physique/Fiche-Thermodynamique.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./physique/TD-Thermodynamique.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Fiche](physique/Fiche-Thermodynamique.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](physique/TD-Thermodynamique.pdf)
+
+</ResourceList>
 
 ### Optique
 
 Responsable : [Christine Grauby-Heywang](https://www.loma.cnrs.fr/christine-grauby-heywang/)
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Fiche", href: require("./physique/Fiche-Optique.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./physique/TD-Optique.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Fiche](physique/Fiche-Optique.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](physique/TD-Optique.pdf)
+
+</ResourceList>
 
 ### Electromagnétisme
 
 Responsable : [Jérome Cayssol](https://www.loma.cnrs.fr/jerome-cayssol/)
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Notes de cours", href: require("./physique/Cours-Electromagnétisme.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./physique/TD-Electromagnétisme.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Notes de cours](physique/Cours-Electromagnétisme.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](physique/TD-Electromagnétisme.pdf)
+
+</ResourceList>
 
 ### Travaux Pratiques
 
@@ -188,15 +173,11 @@ ans. Faites attention à la partie mécanique, la théorie est juste mais la
 pratique possède plusieurs défaut. En plus une proposition du compte rendu à
 faire sur le deuxième TP d'optique.
 
-<ResourceList groups={[
-  {
-    type: "support",
-    title: "Supports",
-    items: [
-      { label: "Proposition de solution", href: require("./physique/TP.pdf").default },
-      { label: "Compte rendu — TP optique", href: require("./physique/optique.pdf").default },
-    ],
-  },
-]} />
+<ResourceList type="support" title="Supports" count={2}>
+
+- [Proposition de solution](physique/TP.pdf)
+- [Compte rendu — TP optique](physique/optique.pdf)
+
+</ResourceList>
 
 </MatiereSection>

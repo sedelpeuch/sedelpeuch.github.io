@@ -24,21 +24,18 @@ réflechir à comment va s'organiser les fichiers, les fonctions etc. Amusez vou
 
 Responsable : [Patrick Fisher](https://www.math.u-bordeaux.fr/~pfischer/Welcome.html)
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [
-      { label: "Notes de cours", href: require("./maths/diff.pdf").default },
-      { label: "Fiche — Séries de Fourier", href: require("./maths/fourier.pdf").default },
-    ],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./maths/diff-td.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={2}>
+
+- [Notes de cours](maths/diff.pdf)
+- [Fiche — Séries de Fourier](maths/fourier.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](maths/diff-td.pdf)
+
+</ResourceList>
 
 ### Calcul Intégral
 
@@ -46,38 +43,34 @@ Responsable : [Nicolas Popoff](https://www.math.u-bordeaux.fr/~npopoff/)
 
 Attention, les notes de TD ne sont plus à jour.
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [
-      { label: "Notes de cours", href: require("./maths/int.pdf").default },
-      { label: "Fiche", href: require("./maths/int-fiches.pdf").default },
-    ],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./maths/int-td.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={2}>
+
+- [Notes de cours](maths/int.pdf)
+- [Fiche](maths/int-fiches.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](maths/int-td.pdf)
+
+</ResourceList>
 
 ### Probabilité
 
 Responsable : Hervé Joint
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Notes de cours", href: require("./maths/proba.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./maths/proba-td.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Notes de cours](maths/proba.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](maths/proba-td.pdf)
+
+</ResourceList>
 
 </MatiereSection>
 
@@ -89,53 +82,45 @@ Responsable : Daniel Blaudez
 
 Le sujet du DM change chaque année, la version fournie est indicative.
 
-<ResourceList groups={[
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [
-      { label: "Notes de TD", href: require("./physique/rel-quant.pdf").default },
-      { label: "DM", href: require("./physique/dm.pdf").default },
-    ],
-  },
-]} />
+<ResourceList type="td" title="Travaux dirigés" count={2}>
+
+- [Notes de TD](physique/rel-quant.pdf)
+- [DM](physique/dm.pdf)
+
+</ResourceList>
 
 ### Mécanique des fluides
 
 Responsable : Jean Stéphane Baste
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [
-      { label: "Fiche", href: require("./physique/meca.pdf").default },
-      { label: "Prise de notes", href: require("./physique/meca-cours.pdf").default },
-    ],
-  },
-  {
-    type: "correction",
-    title: "Correction",
-    items: [{ label: "Premiers exercices", href: require("./physique/meca-td.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={2}>
+
+- [Fiche](physique/meca.pdf)
+- [Prise de notes](physique/meca-cours.pdf)
+
+</ResourceList>
+
+<ResourceList type="correction" title="Correction" count={1}>
+
+- [Premiers exercices](physique/meca-td.pdf)
+
+</ResourceList>
 
 ### Optique
 
 Responsable : [Pierre Langot](https://www.loma.cnrs.fr/pierre-langot/)
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Fiche", href: require("./physique/Optique-fiches.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./physique/opt-td.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Fiche](physique/Optique-fiches.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](physique/opt-td.pdf)
+
+</ResourceList>
 
 </MatiereSection>
 
@@ -150,23 +135,19 @@ faut respecter.
 
 **L'utilisation des Interfaces Cerveau-Machine dans la communication écrite**
 
-<ResourceList groups={[
-  {
-    type: "projet",
-    title: "Documents du projet",
-    items: [
-      { label: "Article Scientifique", href: require("./projet/article.pdf").default },
-      { label: "Avant projet diaporama", href: require("./projet/article-diap.pdf").default },
-      { label: "Avant projet", href: require("./projet/avant-projet.pdf").default },
-      { label: "Avant synthèse", href: require("./projet/avant-synthese.pdf").default },
-      { label: "Avant synthèse diaporama", href: require("./projet/avant-synthese-diap.pdf").default },
-      { label: "Corpus", href: require("./projet/corpus.pdf").default },
-      { label: "Rédaction", href: require("./projet/redac.pdf").default },
-      { label: "Mémoire", href: require("./projet/memoire.pdf").default },
-      { label: "Soutenance", href: require("./projet/soutenance.pdf").default },
-      { label: "Questions", href: require("./projet/questions.pdf").default },
-    ],
-  },
-]} />
+<ResourceList type="projet" title="Documents du projet" count={10}>
+
+- [Article Scientifique](projet/article.pdf)
+- [Avant projet diaporama](projet/article-diap.pdf)
+- [Avant projet](projet/avant-projet.pdf)
+- [Avant synthèse](projet/avant-synthese.pdf)
+- [Avant synthèse diaporama](projet/avant-synthese-diap.pdf)
+- [Corpus](projet/corpus.pdf)
+- [Rédaction](projet/redac.pdf)
+- [Mémoire](projet/memoire.pdf)
+- [Soutenance](projet/soutenance.pdf)
+- [Questions](projet/questions.pdf)
+
+</ResourceList>
 
 </MatiereSection>

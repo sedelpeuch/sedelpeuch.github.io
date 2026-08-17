@@ -1,5 +1,6 @@
 .group {
   margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .groupTitle {
@@ -63,37 +64,52 @@ html[data-theme="dark"] .correction {
   color: var(--ifm-secondary-text-color);
 }
 
+// children come from rendered markdown (ul > li > a), not module-scoped
+// JSX, so the list/item rules target the plain DOM tags via :global().
 .list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 0.5rem;
-}
-
-.item {
-  display: block;
-  padding: 0.5rem 0.7rem;
-  border: 1px solid var(--ifm-toc-border-color);
-  border-radius: 8px;
-  font-size: 0.85rem;
-  color: var(--ifm-text-color);
-  text-decoration: none;
-  transition: border-color 0.15s ease;
-
-  &:hover,
-  &:focus {
-    border-color: var(--ifm-color-primary);
-    text-decoration: none;
-    color: var(--ifm-text-color);
+  :global(ul) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  &:focus-visible {
-    outline: 2px solid var(--ifm-color-primary);
-    outline-offset: 2px;
+  :global(li) {
+    margin: 0;
+  }
+
+  :global(p) {
+    margin: 0;
+  }
+
+  :global(a) {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid var(--ifm-toc-border-color);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+
+    &:hover,
+    &:focus {
+      border-color: var(--ifm-color-primary);
+      text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ifm-color-primary);
+      outline-offset: 2px;
+    }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .item {
+  .list :global(a) {
     transition: none;
   }
 }

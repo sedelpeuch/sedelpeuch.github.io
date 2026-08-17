@@ -16,35 +16,33 @@ pas d'avoir un code fonctionnel à tout prix mais de vous sensibiliser à
 l'établissement d'une reflexion algorithmique et à faire de l'abstraction par
 rapport à la machine. Ainsi, recopier la correction sans comprendre ni réflechir est juste inutile.
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Notes de cours", href: require("./informatique/cours.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./informatique/TD.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Notes de cours](informatique/cours.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](informatique/TD.pdf)
+
+</ResourceList>
 
 </MatiereSection>
 
 <MatiereSection icon="🧪" title="Chimie" responsable={{ name: "Jean Christophe Soetens", href: "http://theo.ism.u-bordeaux1.fr/index.php" }}>
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Notes de cours", href: require("./Chimie-cours.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./Chimie-TD.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Notes de cours](Chimie-cours.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](Chimie-TD.pdf)
+
+</ResourceList>
 
 </MatiereSection>
 
@@ -54,35 +52,33 @@ rapport à la machine. Ainsi, recopier la correction sans comprendre ni réflech
 
 Responsable : [Laurent Michel](https://www.math.u-bordeaux.fr/~lamichel/enseignement.html)
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Notes de cours", href: require("./maths/ncours.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./maths/ntd.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Notes de cours](maths/ncours.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](maths/ntd.pdf)
+
+</ResourceList>
 
 ### Algèbre
 
 Responsable : [Nicolas Popoff](https://www.math.u-bordeaux.fr/~npopoff/)
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Notes de cours", href: require("./maths/gcours.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./maths/gtd.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Notes de cours](maths/gcours.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](maths/gtd.pdf)
+
+</ResourceList>
 
 </MatiereSection>
 
@@ -92,47 +88,43 @@ Responsable : [Nicolas Popoff](https://www.math.u-bordeaux.fr/~npopoff/)
 
 Responsable : Julien Burgin
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Notes de cours", href: require("./physique/Thermo-cours.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./physique/Thermo-TD.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Notes de cours](physique/Thermo-cours.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](physique/Thermo-TD.pdf)
+
+</ResourceList>
 
 ### Electromagnétisme
 
 Responsable : [Jérome Cayssol](https://www.loma.cnrs.fr/jerome-cayssol/)
 
-<ResourceList groups={[
-  {
-    type: "cours",
-    title: "Cours",
-    items: [{ label: "Notes de cours", href: require("./physique/Electromagnétisme-cours.pdf").default }],
-  },
-  {
-    type: "td",
-    title: "Travaux dirigés",
-    items: [{ label: "Notes de TD", href: require("./physique/Electromagnétisme-TD.pdf").default }],
-  },
-]} />
+<ResourceList type="cours" title="Cours" count={1}>
+
+- [Notes de cours](physique/Electromagnétisme-cours.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Travaux dirigés" count={1}>
+
+- [Notes de TD](physique/Electromagnétisme-TD.pdf)
+
+</ResourceList>
 
 ### Travaux Pratiques
 
 Pour l'instant les travaux pratiques du semestre 3 n'ont pas changés depuis 10
 ans. Normalement tous les TPs sont correct.
 
-<ResourceList groups={[
-  {
-    type: "support",
-    title: "Supports",
-    items: [{ label: "Proposition de solution", href: require("./physique/TP-S3.pdf").default }],
-  },
-]} />
+<ResourceList type="support" title="Supports" count={1}>
+
+- [Proposition de solution](physique/TP-S3.pdf)
+
+</ResourceList>
 
 </MatiereSection>
