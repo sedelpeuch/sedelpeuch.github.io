@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksedelpeuch_net=self.webpackChunksedelpeuch_net||[]).push([[38660],{38660(e,c,s){s.d(c,{createArchitectureServices:()=>t.S});var t=s(64056);s(94144),s(99389)}}]);
