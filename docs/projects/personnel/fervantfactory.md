@@ -7,7 +7,7 @@ description: Homelab auto-hébergé versionné en GitOps (Docker Compose, revers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<img src="/img/project/fervantfactory.png" alt="Aperçu FervantFactory" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
+<img src="/img/dashy.png" alt="Aperçu FervantFactory" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
   <div className="project-meta-item">📅 2023 – présent</div>
