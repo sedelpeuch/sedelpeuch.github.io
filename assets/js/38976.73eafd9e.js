@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksedelpeuch_net=self.webpackChunksedelpeuch_net||[]).push([[38976],{38976(e,s,c){c.d(s,{createPieServices:()=>u.f});var u=c(16019);c(51400)}}]);
