@@ -36,7 +36,7 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ### <IconTitle logo="skill-icons:linux-light" name="02 OS & Linux"/>
 
-[Système & Linux](/blog/tags/linux) L’utilisation avancée des commandes Shell, la gestion du système de fichiers et des permissions, la gestion des clés SSH, la compréhension des adresses IP, ports et DNS sont des fondamentaux acquis lors de la formation d’ingénieur, puis consolidés par la pratique sur des serveurs, clusters et environnements cloud, notamment dans des projets comme FervantFactory ou delpeuch.net.
+[Système & Linux](/blog/tags/linux) L’utilisation avancée des commandes Shell, la gestion du système de fichiers et des permissions, la gestion des clés SSH, la compréhension des adresses IP, ports et DNS sont des fondamentaux acquis lors de la formation d’ingénieur, puis consolidés par la pratique sur des serveurs, clusters et environnements cloud, notamment dans des projets comme HomeLab ou delpeuch.net.
 
 ### <IconTitle logo="skill-icons:python-light" name="09 Langages de script - Python"/>
 

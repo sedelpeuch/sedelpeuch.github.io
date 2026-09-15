@@ -1,5 +1,5 @@
 ---
-title: FervantFactory
+title: HomeLab
 tags: [homelab, docker, docker-compose, gitops, github-actions, traefik, authelia, self-hosting]
 description: Homelab auto-hébergé versionné en GitOps (Docker Compose, reverse proxy et SSO, CI/CD GitHub Actions, secrets chiffrés en repo, sauvegardes chiffrées et documentation générée depuis le code).
 ---
@@ -7,7 +7,7 @@ description: Homelab auto-hébergé versionné en GitOps (Docker Compose, revers
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<img src="/img/dashy.png" alt="Aperçu FervantFactory" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
+<img src="/img/dashy.png" alt="Aperçu HomeLab" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
   <div className="project-meta-item">📅 2023 – présent</div>
@@ -17,13 +17,13 @@ import TabItem from '@theme/TabItem';
 
 ## Le contexte
 
-FervantFactory est le nom du cluster domestique qui héberge mes services personnels : domotique, photos, mots de passe, recettes, médias, monitoring. Ce qui a commencé comme quelques conteneurs sur une machine est devenu, avec le temps, une infrastructure qui héberge des données que je ne peux pas me permettre de perdre, dont un coffre-fort de mots de passe, une bibliothèque de photos et une base domotique. La question a changé de nature : il ne s'agit plus de faire tourner des conteneurs, mais de le faire avec le même niveau de rigueur qu'on attendrait d'une infra professionnelle, versionnée, reproductible, avec des secrets qui ne traînent jamais en clair et des sauvegardes qui survivent à la perte de la machine.
+HomeLab est le nom du cluster domestique qui héberge mes services personnels : domotique, photos, mots de passe, recettes, médias, monitoring. Ce qui a commencé comme quelques conteneurs sur une machine est devenu, avec le temps, une infrastructure qui héberge des données que je ne peux pas me permettre de perdre, dont un coffre-fort de mots de passe, une bibliothèque de photos et une base domotique. La question a changé de nature : il ne s'agit plus de faire tourner des conteneurs, mais de le faire avec le même niveau de rigueur qu'on attendrait d'une infra professionnelle, versionnée, reproductible, avec des secrets qui ne traînent jamais en clair et des sauvegardes qui survivent à la perte de la machine.
 
 L'ensemble du dépôt est structuré en GitOps : un dossier par service, chacun avec son `compose.yml` et sa documentation, déployé automatiquement sur push. Rien ne se configure à la main sur le serveur, tout part du repo.
 
 ## Les services hébergés
 
-Une dizaine de services organisés en quatre familles :
+Une vingtaine de services organisés en quatre familles :
 
 <Tabs>
   <TabItem value="infra" label="Plateforme">
@@ -33,7 +33,10 @@ Une dizaine de services organisés en quatre familles :
     - **Authelia** s'intercale devant les services web pour l'authentification unique.
     - **Portainer** donne une vue d'ensemble des conteneurs sans passer par le CLI.
     - **Gatus** surveille que chaque service répond, et alerte sinon.
+    - **Dozzle** consulte les logs de n'importe quel conteneur depuis le navigateur, sans SSH.
+    - **Sablier** met en veille les services web à usage sporadique et les réveille à la demande.
     - **Backup** chiffre et exporte les volumes critiques chaque nuit.
+    - **Garage** porte le stockage objet S3 de la deuxième copie de sauvegarde, en réciprocité avec un ami.
     - **Docs** compile la documentation du repo en un site consultable.
   </TabItem>
   <TabItem value="monitoring" label="Monitoring">
@@ -48,6 +51,8 @@ Une dizaine de services organisés en quatre familles :
     - **Calibre-Web** sert de bibliothèque d'ebooks.
     - **MPD** joue la musique stockée localement.
     - **Samba** expose la médiathèque en partage réseau pour les appareils qui ne parlent pas HTTP.
+    - **qBittorrent** télécharge en tunnel VPN forcé, premier maillon d'une future chaîne d'automatisation média.
+    - **Stirling PDF** rassemble les outils PDF (fusion, OCR, conversion) en une seule boîte à outils web.
   </TabItem>
   <TabItem value="perso" label="Domotique & productivité">
     - **Home Assistant** pilote la domotique de la maison.
@@ -55,6 +60,9 @@ Une dizaine de services organisés en quatre familles :
     - **Mealie** centralise les recettes et les listes de courses.
     - **Vaultwarden** sert de coffre-fort de mots de passe.
     - **Dashy** fait office de page d'accueil qui centralise l'accès à tout le reste.
+    - **Paperless-ngx** archive et indexe les documents scannés (OCR, recherche plein texte).
+    - **Ghostfolio** suit le portefeuille (PEA, assurance-vie) par import manuel.
+    - **Body Analysis** suit poids, composition corporelle et photos de progression (appli perso).
   </TabItem>
 </Tabs>
 
@@ -78,7 +86,7 @@ Traefik route tout le trafic HTTPS entrant vers le réseau interne partagé par 
 
 Ce modèle a une limite connue : certaines applications mobiles (clients Bitwarden, Immich) ne savent pas suivre une redirection SSO, elles s'attendent à parler directement à l'API du service. Plutôt que de casser ces clients, la règle d'accès Authelia laisse passer explicitement les routes d'API concernées en bypass, pendant que le reste de l'interface web reste protégé. Le compromis est documenté service par service : chaque bypass est justifié par l'authentification applicative propre au service (chiffrement de bout en bout côté Vaultwarden, authentification par token côté Immich), jamais par un service laissé nu par défaut.
 
-Pour les services qui savent parler OIDC nativement (Jellyfin, Mealie, Portainer), le choix a été de configurer un client OIDC directement sur le service plutôt que d'ajouter le middleware forward-auth par-dessus : les deux mécanismes d'authentification ne se combinent pas proprement, et le SSO reste centralisé côté fournisseur d'identité même sans passer par Traefik.
+Pour les services qui savent parler OIDC nativement (Jellyfin, Mealie, Portainer, Vaultwarden, Immich, Ghostfolio, Paperless, Grafana), le choix a été de configurer un client OIDC directement sur le service plutôt que d'ajouter le middleware forward-auth par-dessus : les deux mécanismes d'authentification ne se combinent pas proprement, et le SSO reste centralisé côté fournisseur d'identité même sans passer par Traefik.
 
 ## Secrets versionnés, jamais en clair
 
@@ -90,8 +98,8 @@ Le choix de git-crypt plutôt qu'un vault dédié (Vault, SOPS+KMS) est délibé
 
 Les volumes jugés critiques (config SSO, coffre-fort de mots de passe, bases applicatives, bibliothèques de données irremplaçables) sont sauvegardés quotidiennement : montage en lecture seule, archive compressée, chiffrement **GPG côté client** avant tout envoi réseau, puis upload vers un bucket S3-compatible hébergé chez un fournisseur tiers (avec son propre chiffrement au repos, en plus du GPG).
 
-:::warning Conformité partielle à la règle 3-2-1
-La règle 3-2-1 (3 copies, sur 2 supports différents, dont 1 hors site) n'est aujourd'hui respectée qu'à moitié : il existe bien une copie hors site chiffrée (le bucket S3), mais pas de deuxième copie locale sur un support distinct de la machine de production. Si le disque du homelab meurt, la seule copie de secours est celle hors site. C'est un point d'amélioration identifié, pas un oubli : ajouter une copie locale sur un support séparé (NAS, disque externe) est prévu, sans date fixée.
+:::warning Conformité partielle à la règle 3-2-1, en cours de résolution
+La règle 3-2-1 (3 copies, sur 2 supports différents, dont 1 hors site) n'est aujourd'hui respectée qu'à moitié : il existe bien une copie hors site chiffrée (le bucket S3), mais pas encore de deuxième copie locale sur un support distinct de la machine de production. Si le disque du homelab meurt, la seule copie de secours est celle hors site. Le plan retenu : un stockage objet S3-compatible auto-hébergé (Garage) hébergeant à la fois la copie locale et, en réciprocité avec un ami qui héberge le même dispositif chez lui, une deuxième copie hors site. Le stack tourne déjà, mais encore sur stockage éphémère en attendant l'arrivée du disque dédié qui portera les données de façon persistante.
 :::
 
 Les volumes régénérables (cache de métriques, certificats TLS, bibliothèque média volumineuse) sont volontairement exclus du périmètre de sauvegarde : les sauvegarder coûterait du stockage et du temps pour une donnée qui peut être reconstituée ou qui tolère la perte. La distinction entre ce qui mérite une sauvegarde et ce qui ne la mérite pas est documentée service par service plutôt que décidée au cas par cas.

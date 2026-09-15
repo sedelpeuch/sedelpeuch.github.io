@@ -32,7 +32,7 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ### <IconTitle logo="skill-icons:prometheus" name="07 Monitoring & Observabilité"/>
 
-[Observabilité](/blog/tags/monitoring) Intégration de Grafana, Prometheus et Loki pour la supervision, la visualisation et la gestion des logs. Mise en place de dashboards, alertes et supervision multi-environnements. Voir [FervantFactory](/docs/projects/personnel/fervantfactory).
+[Observabilité](/blog/tags/monitoring) Intégration de Grafana, Prometheus et Loki pour la supervision, la visualisation et la gestion des logs. Mise en place de dashboards, alertes et supervision multi-environnements. Voir [HomeLab](/docs/projects/personnel/homelab).
 
 ### <IconTitle logo="skill-icons:terraform-light" name="08 Infrastructure as Code"/>
 
