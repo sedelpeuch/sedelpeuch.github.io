@@ -18,7 +18,15 @@ Projet expérimental, développé pour un usage personnel au CATIE et aussi comm
 
 ## Ce que ça fait
 
-Le dashboard affiche une vue globale des projets sélectionnés. Pour chaque projet : liste des tâches avec statut, temps passé décomposé par utilisateur, factures avec montants et statuts, propositions commerciales et leur détail, client associé avec lien direct vers Dolibarr. La sélection des projets à suivre est configurable depuis l'interface, sans redémarrage — persitée dans un fichier `data.json`.
+Le dashboard affiche une vue globale des projets sélectionnés. Pour chaque projet : liste des tâches avec statut, temps passé décomposé par utilisateur, factures avec montants et statuts, propositions commerciales et leur détail, client associé avec lien direct vers Dolibarr. La sélection des projets à suivre est configurable depuis l'interface, sans redémarrage, persistée dans un fichier `data.json`.
+
+Au-delà du suivi projet par projet, le dashboard couvre trois axes de pilotage supplémentaires :
+
+- **Méta-projets** : regroupement de plusieurs projets Dolibarr sous un même KPI agrégé (budget, avancement), pour suivre un programme plutôt qu'un projet isolé.
+- **Opportunités commerciales** : vue kanban par étape de pipeline, avec taux de conversion et montants agrégés.
+- **Feuille de route R&D** : une timeline gérée en CRUD complet, indépendante des projets Dolibarr, pour suivre les initiatives internes.
+
+S'y ajoutent le suivi du pointage par utilisateur, une vue de gestion de charge par personne et la possibilité de marquer un projet comme coordonné par l'utilisateur courant, pour distinguer les projets pilotés des projets simplement suivis.
 
 ## L'architecture
 
