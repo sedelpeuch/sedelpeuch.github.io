@@ -1,55 +1,91 @@
 ---
-title: Dashboard d'analyse corporelle
+title: Body Analysis
+tags: [fastapi, react, postgresql, minio, docker, python, data-analysis, quantified-self]
+description: Application de suivi et d'analyse corporelle (FastAPI, React, PostgreSQL, MinIO) — ingestion des exports Samsung Health, analytics d'entraînement (TRIMP, ACWR, dérive cardiaque) et galerie photo confidentielle.
 ---
 
 <img src="/img/project/body_analysis.png" alt="Aperçu dashboard body_analysis" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
 <div className="project-meta-grid">
   <div className="project-meta-item">📅 Depuis 2023</div>
-  <div className="project-meta-item">📖 ETL · Data Viz · Quantified Self</div>
-  <div className="project-meta-item">🔧 Python · Streamlit · Pandas · Altair · Docker</div>
+  <div className="project-meta-item">📖 Data analysis · Quantified self</div>
+  <div className="project-meta-item">🔧 FastAPI · React · PostgreSQL · MinIO · Docker</div>
 </div>
 
-## Le contexte
+## Contexte
 
-Samsung Health exporte des CSV bruts : formats de date incohérents selon la version de l'app, types numériques approximatifs, aucune visualisation native. Passer par une app tierce aurait signifié céder ses données de santé à un service externe. J'ai donc construit la pipeline moi-même — ingestion, traitement, dashboard — déployée sur mon infra perso et alimentée en continu depuis 2023.
+Samsung Health exporte des CSV et fichiers d'activité bruts, sans aucune visualisation exploitable. Passer par une application tierce aurait signifié confier des données de santé (poids, composition corporelle, fréquence cardiaque, photos de suivi) à un service externe. J'ai construit la chaîne moi-même — ingestion, modélisation, analytics, interface — déployée sur mon infrastructure personnelle et alimentée en continu depuis 2023.
 
-Les données couvrent le poids, la composition corporelle, les calories et les activités sportives, organisées en cycles explicites : phases de bulk, de cut, de maintien, chacune avec des objectifs chiffrés.
+Le projet a été réécrit en 2026 : la version initiale était une application Streamlit monolithique ; la version actuelle sépare une API FastAPI et une SPA React, avec une persistance PostgreSQL et un stockage objet MinIO pour les photos.
 
-## L'application
+## Stack technique
 
-Le dashboard est une application Streamlit multi-pages : six vues distinctes correspondant chacune à un angle d'analyse. La vue principale présente une timeline des phases et l'évolution des métriques clés. Les vues Phases et Objectifs permettent un drill-down par cycle avec comparaison aux cibles. La vue Sports agrège les séances sous forme de heatmap calendrier. La vue Photos gère la galerie chronologique. La vue Import orchestre l'ingestion de nouveaux exports.
+<div className="tech-list">
+  <div className="tech-list-row">
+    <div className="tech-list-label">Backend</div>
+    <div className="tech-list-value">Python, FastAPI, SQLAlchemy (async), Pydantic, Alembic</div>
+  </div>
+  <div className="tech-list-row">
+    <div className="tech-list-label">Frontend</div>
+    <div className="tech-list-value">React, TypeScript, Vite</div>
+  </div>
+  <div className="tech-list-row">
+    <div className="tech-list-label">Données</div>
+    <div className="tech-list-value">PostgreSQL, MinIO (stockage objet S3)</div>
+  </div>
+  <div className="tech-list-row">
+    <div className="tech-list-label">Traitement d'image</div>
+    <div className="tech-list-value">Pillow</div>
+  </div>
+  <div className="tech-list-row">
+    <div className="tech-list-label">Conteneurisation</div>
+    <div className="tech-list-value">Docker, Docker Compose</div>
+  </div>
+  <div className="tech-list-row">
+    <div className="tech-list-label">CI/CD</div>
+    <div className="tech-list-value">GitHub Actions, GitHub Container Registry</div>
+  </div>
+  <div className="tech-list-row">
+    <div className="tech-list-label">Qualité</div>
+    <div className="tech-list-value">pytest, Ruff, pre-commit</div>
+  </div>
+</div>
 
-Chaque page est un module Python indépendant. Les données traversent la pipeline une seule fois au chargement — pas de requêtes successives côté UI.
+## Ingestion des exports Samsung Health
 
-## Les défis techniques
+L'export Samsung Health est une archive ZIP volumineuse (1,3 Go décompressés pour l'export réel de ce projet, environ 88 000 fichiers) et non fiable par construction : c'est une entrée utilisateur, pas un format contrôlé. L'extraction vérifie donc les chemins de chaque entrée avant d'écrire le moindre octet, pour bloquer une évasion de répertoire (zip-slip), et suit le volume décompressé en continu pendant l'écriture plutôt que de se fier à la taille déclarée dans les métadonnées de l'archive, qu'un fichier malveillant contrôle entièrement. Le nombre d'entrées est également plafonné, pour se prémunir d'une bombe de décompression.
 
-### Des exports qui ne sont pas fiables
+Les CSV eux-mêmes varient selon la version de l'application source : champs absents, dates mal formées, types numériques instables. Chaque module d'ingestion valide et normalise sa source avant de la faire entrer dans le modèle relationnel, plutôt que de laisser une exception de parsing interrompre silencieusement le traitement d'une ligne.
 
-Le premier problème est la qualité de la source. Les CSV Samsung Health varient selon la version de l'application : champs absents, dates tronquées, types numériques qui changent de format. Laisser la stdlib construire un objet datetime depuis une chaîne mal formée provoque une exception qui casse toute la ligne silencieusement. Le parser effectue donc une pré-validation explicite — extraction regex des composants, vérification des bornes calendaires — avant toute construction. La même logique s'applique aux types numériques : fallback explicite à zéro plutôt que laisser des valeurs manquantes se propager dans les agrégats Pandas en aval.
+## Analytics d'entraînement
 
-### Modéliser des cycles, pas des snapshots
+Le module `analytics/` du backend est délibérément isolé de la base de données et du framework web : chaque fonction prend des structures de données en entrée et retourne des structures en sortie, ce qui les rend testables sans infrastructure. Il couvre plusieurs métriques issues de la physiologie de l'effort :
 
-Les données brutes sont une série temporelle continue. L'enjeu est de les découper en phases cohérentes (bulk, cut, maintien) et de calculer des métriques par cycle : variation de poids absolue et relative, taux mensuel, évolution de masse grasse et musculaire, jours restants. Chaque phase est une dataclass immuable avec ses bornes et ses objectifs, chargée depuis un fichier de configuration versionné. Toutes les métriques sont calculées par filtrage vectorisé sur le dataframe — aucune boucle sur les lignes, seulement des opérations Pandas sur la plage de dates concernée.
+- **TRIMP** (Training Impulse) : charge d'un entraînement calculée par intégration de la réserve de fréquence cardiaque sur la durée de la séance, pondérée par une fonction exponentielle qui accorde plus de poids aux efforts proches du maximum.
+- **Charge aiguë/chronique (ACWR)** : rapport entre la charge d'entraînement moyenne sur 7 jours et sur 28 jours, indicateur de risque de blessure par sur-sollicitation quand ce ratio s'éloigne trop de 1.
+- **Dérive cardiaque** : écart de fréquence cardiaque moyenne entre la première et la seconde moitié d'une séance à effort comparable, signe de fatigue ou de perte d'économie de course.
+- **Zones de fréquence cardiaque** : répartition du temps d'entraînement par zone (récupération à maximal), calculée à partir des échantillons de fréquence cardiaque et de la fréquence maximale de l'utilisateur.
 
-### Afficher des photos sans les exposer
+D'autres modules du même dossier couvrent la composition corporelle, la nutrition, les records personnels et les phases (bulk, cut, maintien), chacun avec sa propre logique de calcul mais la même contrainte d'isolation.
 
-Les photos de suivi corporel sont par nature privées. Les supprimer du dashboard aurait été la solution simple, mais inutile. Elles sont donc transformées à la volée avant affichage : floutage par filtre gaussien à rayon élevé, auto-détection de l'orientation (portrait ou paysage), redimensionnement avec préservation du ratio. Le résultat est consultable et partageable sans rien révéler.
+## Photos et confidentialité
 
-### La musculation est un cas à part
+Les photos de suivi corporel sont par nature privées. Elles sont stockées dans MinIO plutôt que sur le système de fichiers de l'application, à travers un client dédié qui centralise tous les appels au SDK S3 : le reste du backend ne connaît jamais MinIO directement, ce qui permet de le substituer par un double de test dans la suite unitaire.
 
-Samsung Health encode les types d'activité par des constantes entières non documentées. Tous les sports ont un identifiant fixe, sauf la musculation : elle n'a pas de type dédié dans l'export. Elle est identifiée indirectement, à la présence d'un champ `reps` dans les métadonnées JSON de la séance. Ce cas particulier est encapsulé dans le module `sports_utils`, qui centralise aussi le mapping des constantes vers des libellés lisibles. La heatmap d'activité est construite en deux étapes : agrégation Pandas par semaine et jour de semaine, puis encodage déclaratif Altair — ce qui évite de gérer les coordonnées manuellement.
+Le traitement d'image ne fait confiance ni à l'extension du fichier envoyé ni au `Content-Type` déclaré par le client : le type réel est déterminé en inspectant les premiers octets du fichier. L'orientation est corrigée à partir du tag EXIF plutôt que d'une heuristique sur les dimensions de l'image, ce qui corrige un bug de l'ancienne version qui retournait à tort toute photo réellement prise en format paysage. En mode confidentiel, chaque photo est floutée par filtre gaussien à la volée, sans jamais mettre en cache le rendu flouté : l'original stocké reste la seule version durable.
 
-## Le déploiement
+## Déploiement
 
-L'image Docker est construite sur `python:3.11-slim` et publiée automatiquement sur GitHub Container Registry à chaque push sur `master`. La configuration Docker Compose supporte les deux modes d'usage : standalone pour le dev local, et Docker Swarm pour la production, avec rolling update `start-first` et rollback automatique en cas d'échec. Les données sont stockées dans un volume nommé — elles survivent aux redéploiements. Des pre-commit hooks (Black, linters) garantissent que rien de cassé n'entre dans l'historique.
+L'application se compose de quatre services orchestrés par Docker Compose : PostgreSQL, MinIO, l'API FastAPI et le frontend. Le frontend a deux profils distincts : un service de développement (Node + Vite, rechargement à chaud) actif par défaut, et une image de production (build statique servi par nginx, sans runtime Node) qui ne démarre que sur demande explicite via un profil Compose, pour valider l'image avant bascule sans interrompre l'environnement de développement.
 
-## Ce qui reste imparfait
+Le workflow GitHub Actions construit et publie les deux images (API et frontend) sur GitHub Container Registry à chaque push sur `master`, chacune taguée à la fois `latest` et par SHA de commit.
 
-Il n'y a pas de tests automatisés sur le parsing : la robustesse s'est construite empiriquement, au fil des exports. Le fichier `docker-compose.yml` mélange la config standalone et Swarm dans le même fichier, ce qui est fonctionnel mais confus à maintenir. Streamlit tient bien pour ce cas d'usage, mais la gestion d'état via `session_state` atteint ses limites dès qu'on voudrait des interactions plus complexes.
+## Tests
+
+La suite de tests compte 51 fichiers et près de 200 cas, répartis entre tests unitaires (calcul des métriques d'analytics, traitement d'image, sécurité de l'extraction ZIP) et tests d'intégration sur les services exposés par l'API.
 
 ## Liens
 
-- [github.com/sedelpeuch/body_analysis](https://github.com/sedelpeuch/body_analysis)
+- 💻 Code source : [github.com/sedelpeuch/body_analysis](https://github.com/sedelpeuch/body_analysis)
 - [Poetry — gestion des dépendances](/blog/09-scripting/2025-06-06-poetry-python-dependency)
 - [Docker best practices](/blog/03-containerization/2024-12-20-docker-best-practices)
