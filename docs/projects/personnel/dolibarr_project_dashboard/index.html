@@ -21,8 +21,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous">
 <script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d"></script><link rel="stylesheet" href="/assets/css/styles.08338bc0.css">
-<script src="/assets/js/runtime~main.7dfa4a76.js" defer="defer"></script>
-<script src="/assets/js/main.658a7f59.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.3a48b2a1.js" defer="defer"></script>
+<script src="/assets/js/main.4d2e40df.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -34,7 +34,14 @@
 <p>Dolibarr est un ERP open source complet, mais son interface native est pensée pour naviguer dans un projet à la fois. Pour un coordinateur qui suit plusieurs projets simultanément, avoir une vue consolidée — tâches, temps passé par utilisateur, factures, propositions commerciales, clients — demande de naviguer entre des dizaines d&#x27;écrans. Ce dashboard agrège tout ça en une seule page, en interrogeant directement l&#x27;API REST de l&#x27;instance Dolibarr.</p>
 <p>Projet expérimental, développé pour un usage personnel au CATIE et aussi comme terrain d&#x27;expérimentation pour du développement assisté par agents IA.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="ce-que-ça-fait">Ce que ça fait<a href="#ce-que-ça-fait" class="hash-link" aria-label="Lien direct vers Ce que ça fait" title="Lien direct vers Ce que ça fait" translate="no">​</a></h2>
-<p>Le dashboard affiche une vue globale des projets sélectionnés. Pour chaque projet : liste des tâches avec statut, temps passé décomposé par utilisateur, factures avec montants et statuts, propositions commerciales et leur détail, client associé avec lien direct vers Dolibarr. La sélection des projets à suivre est configurable depuis l&#x27;interface, sans redémarrage — persitée dans un fichier <code>data.json</code>.</p>
+<p>Le dashboard affiche une vue globale des projets sélectionnés. Pour chaque projet : liste des tâches avec statut, temps passé décomposé par utilisateur, factures avec montants et statuts, propositions commerciales et leur détail, client associé avec lien direct vers Dolibarr. La sélection des projets à suivre est configurable depuis l&#x27;interface, sans redémarrage, persistée dans un fichier <code>data.json</code>.</p>
+<p>Au-delà du suivi projet par projet, le dashboard couvre trois axes de pilotage supplémentaires :</p>
+<ul>
+<li class=""><strong>Méta-projets</strong> : regroupement de plusieurs projets Dolibarr sous un même KPI agrégé (budget, avancement), pour suivre un programme plutôt qu&#x27;un projet isolé.</li>
+<li class=""><strong>Opportunités commerciales</strong> : vue kanban par étape de pipeline, avec taux de conversion et montants agrégés.</li>
+<li class=""><strong>Feuille de route R&amp;D</strong> : une timeline gérée en CRUD complet, indépendante des projets Dolibarr, pour suivre les initiatives internes.</li>
+</ul>
+<p>S&#x27;y ajoutent le suivi du pointage par utilisateur, une vue de gestion de charge par personne et la possibilité de marquer un projet comme coordonné par l&#x27;utilisateur courant, pour distinguer les projets pilotés des projets simplement suivis.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="larchitecture">L&#x27;architecture<a href="#larchitecture" class="hash-link" aria-label="Lien direct vers L&#x27;architecture" title="Lien direct vers L&#x27;architecture" translate="no">​</a></h2>
 <p>Le backend FastAPI est organisé en trois couches strictement séparées. La couche routes est fine : elle gère la validation HTTP et délègue immédiatement. La couche services contient toute la logique métier — agrégation des données multi-projets, transformations, orchestration des appels. La couche infrastructure isole les détails d&#x27;intégration : client HTTP Dolibarr, stockage JSON, cache, logging.</p>
 <p>Cette séparation n&#x27;est pas de l&#x27;over-engineering pour un projet de cette taille — elle rend les services testables indépendamment de l&#x27;infrastructure, et l&#x27;infrastructure remplaçable sans toucher à la logique métier.</p>
