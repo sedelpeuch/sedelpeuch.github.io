@@ -349,3 +349,30 @@ div[class^='announcementBar_'] {
   border-radius: 8px;
   color: var(--ifm-color-emphasis-700);
 }
+
+.tech-list {
+  margin: 1.75rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.tech-list-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+
+  @media (max-width: 596px) {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
+
+.tech-list-label {
+  color: var(--ifm-color-emphasis-600);
+}
+
+.tech-list-value {
+  color: var(--ifm-font-color-base);
+}
