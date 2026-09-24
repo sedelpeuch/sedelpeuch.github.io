@@ -1,0 +1,134 @@
+// Groupe de ressources d'une matière : en-tête (icône, titre, nombre), puis la
+// liste markdown des liens, en grille, ou en rail d'anneaux pour une séquence
+// de chapitres. L'icône de chaque lien dépend de sa cible (PDF, archive, lien
+// externe, page du site).
+
+.group {
+  --rl-accent: var(--ifm-color-primary);
+  --rl-muted: var(--ifm-color-emphasis-600);
+  margin: 1.25rem 0 1.75rem;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 0.6rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: var(--rl-accent);
+}
+
+.title {
+  font-weight: 520;
+  color: var(--ifm-heading-color);
+}
+
+.count {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--rl-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.list {
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    margin: 0;
+  }
+
+  // Icône de fichier devant chaque lien, selon la cible.
+  a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+
+    &::before {
+      content: "";
+      flex: none;
+      width: 1rem;
+      height: 1rem;
+      align-self: center;
+      background: var(--rl-accent);
+      mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M14%203v4a1%201%200%200%200%201%201h4%22/%3E%3Cpath%20d%3D%22M17%2021h-10a2%202%200%200%201%20-2%20-2v-14a2%202%200%200%201%202%20-2h7l5%205v11a2%202%200%200%201%20-2%202z%22/%3E%3Cpath%20d%3D%22M9%209l1%200%22/%3E%3Cpath%20d%3D%22M9%2013l6%200%22/%3E%3Cpath%20d%3D%22M9%2017l6%200%22/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+
+    &[href$=".pdf"]::before {
+      mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M14%203v4a1%201%200%200%200%201%201h4%22/%3E%3Cpath%20d%3D%22M5%2012v-7a2%202%200%200%201%202%20-2h7l5%205v4%22/%3E%3Cpath%20d%3D%22M5%2018h1.5a1.5%201.5%200%200%200%200%20-3h-1.5v6%22/%3E%3Cpath%20d%3D%22M17%2018h2%22/%3E%3Cpath%20d%3D%22M20%2015h-3v6%22/%3E%3Cpath%20d%3D%22M11%2015v6h1a2%202%200%200%200%202%20-2v-2a2%202%200%200%200%20-2%20-2h-1z%22/%3E%3C/svg%3E");
+    }
+
+    &[href$=".zip"]::before,
+    &[href$=".rar"]::before,
+    &[href$=".gz"]::before,
+    &[href$=".xz"]::before {
+      mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M14%203v4a1%201%200%200%200%201%201h4%22/%3E%3Cpath%20d%3D%22M17%2021h-10a2%202%200%200%201%20-2%20-2v-14a2%202%200%200%201%202%20-2h7l5%205v11a2%202%200%200%201%20-2%202z%22/%3E%3Cpath%20d%3D%22M11%205l-1%200%22/%3E%3Cpath%20d%3D%22M13%207l-1%200%22/%3E%3Cpath%20d%3D%22M11%209l-1%200%22/%3E%3Cpath%20d%3D%22M13%2011l-1%200%22/%3E%3Cpath%20d%3D%22M10%2013a2%202%200%200%201%202%202v1a2%202%200%201%201%20-4%200v-1a2%202%200%200%201%202%20-2z%22/%3E%3C/svg%3E");
+    }
+
+    &[href^="http"]::before {
+      mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%206h-6a2%202%200%200%200%20-2%202v10a2%202%200%200%200%202%202h10a2%202%200%200%200%202%20-2v-6%22/%3E%3Cpath%20d%3D%22M11%2013l9%20-9%22/%3E%3Cpath%20d%3D%22M15%204h5v5%22/%3E%3C/svg%3E");
+    }
+  }
+}
+
+// Grille : plusieurs colonnes pour les longues séries de TD ou de documents.
+.group[data-layout="grid"] .list {
+  ul,
+  ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 0.35rem 1.25rem;
+  }
+
+  li {
+    padding: 0.2rem 0;
+  }
+}
+
+// Rail : une séquence de chapitres, reliés comme dans la timeline d'accueil.
+.group[data-layout="rail"] .list {
+  ul,
+  ol {
+    position: relative;
+    padding-left: 1.6rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: calc(0.45rem - 1px);
+      top: 0.7rem;
+      bottom: 0.7rem;
+      width: 2px;
+      background: var(--rl-accent);
+      opacity: 0.5;
+    }
+  }
+
+  li {
+    padding: 0.25rem 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: calc(-1.6rem + 0.45rem - 5px);
+      top: 0.62rem;
+      width: 10px;
+      height: 10px;
+      box-sizing: border-box;
+      border: 2px solid var(--rl-accent);
+      border-radius: 50%;
+      background: var(--ifm-background-color);
+    }
+  }
+}

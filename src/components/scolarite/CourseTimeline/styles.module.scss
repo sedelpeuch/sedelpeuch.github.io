@@ -1,0 +1,140 @@
+// Frise du parcours scolaire : rail vertical bleu, un anneau par semestre.
+
+.timeline {
+  margin: 1.5rem 0 2rem;
+}
+
+.school {
+  margin-bottom: 2rem;
+}
+
+.schoolTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.9rem;
+  font-size: 1.2rem;
+  font-weight: 520;
+  color: var(--ifm-heading-color);
+
+  &:hover {
+    color: var(--ifm-color-primary);
+    text-decoration: none;
+  }
+
+  :global(article .markdown) & {
+    border-bottom: 0;
+  }
+}
+
+.schoolIcon {
+  width: 1.4rem;
+  height: 1.4rem;
+  color: var(--ifm-color-primary);
+}
+
+.rail {
+  --ct-ring: 14px;
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 2.25rem;
+  list-style: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: calc(0.625rem - 1.25px);
+    top: 0.5rem;
+    bottom: 0.8rem;
+    width: 2.5px;
+    background: var(--ifm-color-primary);
+  }
+}
+
+.step {
+  position: relative;
+  margin: 0 0 1.4rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: calc(-2.25rem + 0.625rem - var(--ct-ring) / 2);
+    top: 0.3rem;
+    width: var(--ct-ring);
+    height: var(--ct-ring);
+    box-sizing: border-box;
+    border: 2.5px solid var(--ifm-color-primary);
+    border-radius: 50%;
+    background: var(--ifm-color-primary);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.stepTitle {
+  font-size: 1.05rem;
+  font-weight: 520;
+  color: var(--ifm-heading-color);
+
+  &:hover {
+    color: var(--ifm-color-primary);
+    text-decoration: none;
+  }
+
+  :global(article .markdown) & {
+    border-bottom: 0;
+  }
+}
+
+.description {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+  }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--ifm-font-color-base);
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--ifm-color-primary);
+    color: var(--ifm-color-primary);
+    text-decoration: none;
+  }
+
+  :global(article .markdown) & {
+    border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  }
+
+  :global(article .markdown) &:hover {
+    border-color: var(--ifm-color-primary);
+  }
+}
+
+.chipIcon {
+  width: 0.95rem;
+  height: 0.95rem;
+  color: var(--ifm-color-primary);
+}
