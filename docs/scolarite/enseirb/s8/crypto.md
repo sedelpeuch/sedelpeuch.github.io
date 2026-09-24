@@ -1,5 +1,6 @@
 ---
-title: "Cryptologie "
+title: "Cryptologie"
+description: "Supports de cours, TD, devoir maison et TP noté du module de cryptologie du semestre 8."
 ---
 
 ## Ressources pédagogiques
@@ -9,7 +10,7 @@ title: "Cryptologie "
 - [TD1](./img/crypto-td-part1.pdf)
 - [TD2](./img/crypto-td-part2.pdf)
 
-## Devoirs maisons
+## Devoirs maison
 
 - [DM1](./img/crypto-dm.pdf)
 - [TP Noté](./img/projectCrypto.zip)
