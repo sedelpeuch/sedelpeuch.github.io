@@ -119,6 +119,16 @@
   &[data-status="en pause"] {
     border-left: 2.5px dashed var(--pi-accent);
   }
+
+  // Neutralise le soulignement des liens du contenu (custom.scss).
+  :global(article .markdown) & {
+    border-bottom: 1px solid var(--pi-rule);
+  }
+
+  :global(article .markdown) &:hover,
+  :global(article .markdown) &:focus-visible {
+    border-color: var(--pi-accent);
+  }
 }
 
 .title {

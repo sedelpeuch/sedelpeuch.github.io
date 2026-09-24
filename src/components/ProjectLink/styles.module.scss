@@ -80,8 +80,8 @@
     border-radius: 12px;
   }
 
-  article .markdown &,
-  article .markdown &:hover,
+  :global(article .markdown) &,
+  :global(article .markdown) &:hover,
   &:hover {
     // Le style des liens du contenu (custom.scss) est plus spécifique.
     border-bottom: 0 !important;
