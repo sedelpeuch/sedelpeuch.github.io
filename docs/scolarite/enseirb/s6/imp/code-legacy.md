@@ -1,18 +1,17 @@
 ---
-layout: page
-hide: true
-title:  Impératif - code-legacy-sujet
+title: Impératif - Code legacy
+description: "Reprise d'un code legacy en C : transformation d'un Makefile en projet CMake."
 ---
 
 ## Code Legacy
 
-### Transformation du Makefile en Cmake
+### Transformation du Makefile en CMake
 
-```c
-# Utilisation de la dernière version de CMake
+```cmake
+# Version minimale de CMake requise
 cmake_minimum_required(VERSION 3.0)
 
-#Etiquette du projet
+# Étiquette du projet
 project(project)
 
 file(
@@ -47,4 +46,8 @@ target_link_libraries(project m)
 target_link_libraries(test m)
 ```
 
+Remarque : `file(GLOB_RECURSE ...)` s'utilise normalement avec des motifs (par exemple `src/*.c`). Pour une liste explicite de fichiers, `set(source_files ...)` est plus lisible, et un nom mal orthographié (comme `src/auxilaire.h` ci-dessus) y est signalé par CMake au lieu d'être ignoré silencieusement.
+
 ### Mise en place de la documentation
+
+Section non rédigée dans ces notes.

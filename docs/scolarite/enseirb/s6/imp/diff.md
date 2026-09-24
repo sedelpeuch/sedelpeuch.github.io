@@ -1,92 +1,109 @@
 ---
-title: Impératif - diff-patch-svn-git
+title: Impératif - diff, patch, SVN et Git
+description: "Notes de TD sur l'installation d'une bibliothèque CMake, la génération et l'application de correctifs avec diff et patch, et les bases de SVN."
 ---
 
-## <i class="fas fa-code"></i> Une nouvelle bibliothèque
+## Une nouvelle bibliothèque
 
-#### Exercice 1
+### Exercice 1
 
-La bibiliothèque permet de faire de la manipulation d'automates. L'auteur est
+La bibliothèque permet de faire de la manipulation d'automates. L'auteur est
 *Julien Allali*. Licence MIT.
 
-#### Exercice 2
+### Exercice 2
 
-    git clone https://github.com/allali/statelib.git
-
-Le système de compilation utilisé est **Cmake**. Compilable avec
-
-    make install
-
-Le système de documentation utilisé est **doxygen**
-
-#### Exercie 3
-
-Ce sont les trois lignes suivantes
-
-```cmake
-    install(TARGETS state DESTINATION lib)
-    install(TARGETS state_static DESTINATION lib)
-    install(FILES src/state.h DESTINATION include)
+```bash
+git clone https://github.com/allali/statelib.git
 ```
 
-Il faut donc réaliser les commandes suivant pour compiler
+Le système de compilation utilisé est **CMake** (génération d'un Makefile, puis `make install`).
+
+Le système de documentation utilisé est **Doxygen**.
+
+### Exercice 3
+
+Ce sont les trois lignes suivantes :
 
 ```cmake
-    cmake -S <path_to_source> -B <path_to_build>
-    sudo make install
+install(TARGETS state DESTINATION lib)
+install(TARGETS state_static DESTINATION lib)
+install(FILES src/state.h DESTINATION include)
 ```
 
-## <i class="fas fa-code"></i> Diff et patch
+Il faut donc réaliser les commandes suivantes pour compiler et installer :
 
-#### Exercice 4
+```bash
+cmake -S <path_to_source> -B <path_to_build>   # génère le Makefile dans le répertoire de build
+cd <path_to_build>
+sudo make install                              # compile puis installe dans lib/ et include/
+```
 
-Précision du cas de renvoie -1.
-Pour recompiler la doc
+## Diff et patch
 
-    make doc
+### Exercice 4
 
-#### Exercice 5
+Précision du cas de renvoi de -1.
+Pour recompiler la documentation :
 
-La commande nous affiche les différences entre deux fichiers.
+```bash
+make doc
+```
 
-    diff -r original new
+### Exercice 5
 
-#### Exercice 6
+La commande suivante affiche les différences entre deux fichiers (récursivement pour deux répertoires avec `-r`) :
 
-La commande suivante permet d&rsquo;analyser tous les fichiers et donne un compte
-rendu des différences qui sera pas la suite applicable.
+```bash
+diff -r original new
+```
 
-    diff -rupN statelib statelib_new > patch
+### Exercice 6
 
-#### Exercice 7
+La commande suivante permet d'analyser tous les fichiers et produit un compte
+rendu des différences (au format unifié) qui sera par la suite applicable avec `patch`.
 
-La commande **patch** permet de fusionner les différences avec un patch
+```bash
+diff -rupN statelib statelib_new > patch
+```
 
-## <i class="fas fa-code"></i> Git
+### Exercice 7
 
-Cette partie présente des évidences sur git, je la passe
+La commande **patch** permet d'appliquer un correctif produit par `diff` :
 
-## <i class="fas fa-code"></i> SVN
+```bash
+cd statelib
+patch -p1 < ../patch
+```
 
-SVN repose sur un système de versionning centralisé. Cela signifie qu’un seul
-répertoire général existe et tous les utilisateurs y ont accès. Etant donné que
-les modifications ne peuvent être fusionnées, le système empêche que deux
-utilisateurs modifient un même fichier simultanément. Ce dernier est attribué au
-premier internaute qui l’ouvre et il reste protégé des autres utilisateurs tant
-qu’il n’a pas été fermé. Apache Subversion permet également de charger et de
-modifier les sous-chemins indépendamment du reste de l’arborescence. C’est ainsi
-que les droits de lecture et d’écriture sont affectés pour la totalité des
-chemins aux différents utilisateurs. En outre, Suversion se caractérise par le
-fait que des répertoires vides, renommés voire déplacés peuvent être enregistrés
-sans causer de perte dans l’historique.
+## Git
+
+Cette partie présente des bases de Git, non reprises ici.
+
+## SVN
+
+SVN repose sur un système de gestion de versions centralisé. Cela signifie qu'un seul
+dépôt central existe et que tous les utilisateurs y accèdent. Par défaut, SVN suit le modèle
+copier-modifier-fusionner : chacun modifie sa copie de travail, et les modifications
+concurrentes d'un même fichier sont fusionnées lors de la mise à jour (`svn update`), les
+conflits éventuels étant résolus à la main. Pour les fichiers difficiles à fusionner
+(binaires), SVN propose aussi un verrouillage explicite (`svn lock`), qui réserve le fichier
+à un utilisateur jusqu'à sa libération. Apache Subversion permet également de récupérer et de
+modifier des sous-arborescences indépendamment du reste du dépôt, et d'attribuer des droits
+de lecture et d'écriture chemin par chemin. En outre, Subversion versionne les répertoires :
+des répertoires vides, renommés voire déplacés peuvent être enregistrés
+sans perte d'historique.
 
 SVN fonctionne comme git en ce qui concerne les **commits** et les **add**.
-Cependant pour initialiser le dossier il faut réalilser les commandes suivantes.
+Cependant, pour initialiser le dépôt, il faut réaliser la commande suivante (depuis le répertoire `~/.depots`) :
 
-    svnadmin --compatible-version 1.5 create pg106
+```bash
+svnadmin --compatible-version 1.5 create pg106
+```
 
-**Attention : on ne travaille jamais directement dans le dépôt mais dans un**
-**autre répertoire synchronisé avec le dépôt !**
-Puis dans le répertoire de travail
+**Attention : on ne travaille jamais directement dans le dépôt, mais dans un
+autre répertoire synchronisé avec le dépôt !**
+Puis, dans le répertoire de travail :
 
-    svn checkout file://$HOME/.depots/pg106
+```bash
+svn checkout file://$HOME/.depots/pg106
+```
