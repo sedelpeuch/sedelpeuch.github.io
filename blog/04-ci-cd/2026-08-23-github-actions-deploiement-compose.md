@@ -2,7 +2,6 @@
 title: "GitHub Actions : déploiement continu de stacks Docker Compose"
 description: "Déployer automatiquement un monorepo de stacks Docker Compose sur un hôte unique à chaque push avec GitHub Actions : calcul des stacks modifiées, SSH via réseau privé, ordre de déploiement, nettoyage sûr, hash de configuration et validation en pull request."
 tags: [cicd, orchestration, devops]
-authors: sedelpeuch
 ---
 
 Un hôte unique qui fait tourner une vingtaine de services Docker Compose, un dépôt Git qui contient un dossier par stack : la question du déploiement se pose dès la deuxième modification. Se connecter en SSH, faire un `git pull`, relancer `docker compose up -d` dans le bon dossier fonctionne, mais l'opération est manuelle, oubliable et non tracée. Cet article décrit un workflow GitHub Actions qui déploie, à chaque push sur la branche principale, uniquement les stacks modifiées, sans orchestrateur et sans agent installé sur l'hôte.
