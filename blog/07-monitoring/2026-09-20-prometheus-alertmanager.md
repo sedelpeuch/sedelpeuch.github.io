@@ -1,6 +1,7 @@
 ---
 title: "Prometheus : Alertmanager"
 description: "Chaîne d'alerting Prometheus de bout en bout : règles d'alerte, routage, groupage et inhibition avec Alertmanager, conception de règles robustes et notifications push via ntfy."
+series: homelab
 tags: [monitoring, devops]
 ---
 

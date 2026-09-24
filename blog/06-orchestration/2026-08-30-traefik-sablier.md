@@ -1,6 +1,7 @@
 ---
 title: "Traefik : Sablier"
 description: "Sablier : scale-to-zero de conteneurs Docker derrière Traefik, avec arrêt après inactivité, réveil à la première requête, groupes de conteneurs, healthchecks et monitoring sans faux positif via Prometheus."
+series: homelab
 tags: [orchestration, devops]
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Authelia : fournisseur OpenID Connect"
 description: "Configurer Authelia 4.39 comme fournisseur OpenID Connect : flux authorization code avec PKCE, discovery, déclaration des clients, mapping des groupes en rôles et diagnostic des erreurs client_secret_basic, redirect_uri et clé de signature."
+series: homelab
 tags: [network, devops]
 ---
 

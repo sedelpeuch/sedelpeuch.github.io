@@ -51,5 +51,5 @@ En septembre 2026, la recherche de code GitHub recense plus de 70 dépôts de l'
 - [ros_workflows](https://github.com/catie-aq/ros_workflows)
 - [zephyr_workflows](https://github.com/catie-aq/zephyr_workflows)
 - [GitHub Actions : Workflow](/blog/2024/12/20/04-ci-cd/workflow)
-- [GitHub Actions : architecture CI/CD réutilisable](/blog/2024/12/20/04-ci-cd/exemple)
+- [GitHub Actions : architecture CI/CD réutilisable](/blog/2024/12/20/04-ci-cd/github-actions-architecture-reutilisable)
 - [GitHub Actions : déploiement Docker Compose](/blog/2026/08/23/04-ci-cd/github-actions-deploiement-compose)
