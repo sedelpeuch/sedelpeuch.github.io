@@ -1,5 +1,5 @@
 ---
-title: Caméléon 🦎
+title: Caméléon
 tags: [iot, dashboard, eirlab, camera, python, flask, opencv]
 description: Tableau de bord Flask et OpenCV pour enregistrer le flux d'une caméra IP et le diffuser dans l'open space du fablab EirLab, lancé depuis une simple clé USB.
 ---

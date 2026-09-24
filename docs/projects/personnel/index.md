@@ -17,6 +17,4 @@ Cette section regroupe des projets réalisés à titre personnel, en dehors du c
 
 Les projets personnels présentés illustrent des démarches d'apprentissage, de veille technologique et d'expérimentation.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<ProjectIndex kind="perso" />
