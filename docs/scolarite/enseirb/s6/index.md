@@ -8,9 +8,7 @@ filière informatique. Elle propose notamment les supports de cours lorsqu'ils s
 publics, les sujets (et parfois les corrections) des travaux dirigés.
 Lorsqu'elles ont été prises, mes notes de cours sont disponibles.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Projets 2
 

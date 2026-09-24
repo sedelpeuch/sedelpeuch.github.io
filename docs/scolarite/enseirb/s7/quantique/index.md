@@ -5,9 +5,7 @@ description: "Notes de cours d'introduction à l'informatique quantique (ENSEIRB
 
 [Polycopié](http://dept-info.labri.fr/~ges/ENSEIGNEMENT/CALCULQ/polycop_calculq.pdf) d'une ancienne version du cours.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Diapositives
 

@@ -9,9 +9,7 @@ Il s'agit d'une introduction aux différentes méthodes existantes pour traiter 
 
 ## Cours intégrés
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Quelques outils
 

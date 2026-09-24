@@ -19,6 +19,4 @@ le
 [td1](https://moodle.bordeaux-inp.fr/pluginfile.php/111540/mod_resource/content/3/TD1.pdf)
 et le [td2](https://moodle.bordeaux-inp.fr/pluginfile.php/111542/mod_resource/content/4/TD2.pdf).
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />

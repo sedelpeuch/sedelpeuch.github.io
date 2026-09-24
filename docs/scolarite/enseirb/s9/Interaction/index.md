@@ -8,6 +8,4 @@ passant par l'attention, la communication, la robotique sociale et développemen
 
 ## Cours
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />

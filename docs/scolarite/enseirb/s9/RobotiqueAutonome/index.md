@@ -10,6 +10,4 @@ Le but de ce cours est de revisiter ces techniques à la lumière de données de
 
 Pour chaque forme d'apprentissage, après un rappel des formes classiques d'apprentissage automatique, des critères d'autonomie sont définis et des données biologiques et comportementales sont introduites, permettant de définir des formes plus plausibles biologiquement et intégrant une vue systémique plus globale du vivant.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />

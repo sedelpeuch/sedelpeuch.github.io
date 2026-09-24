@@ -3,9 +3,7 @@ title: Recherche opérationnelle
 description: "Cours de recherche opérationnelle du semestre 6 : programmation linéaire, méthode du simplexe, programmation linéaire en nombres entiers et modélisation."
 ---
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Ressources pédagogiques
 

@@ -5,6 +5,4 @@ description: Supports de cours et notes des quatre semestres du Cycle Préparato
 
 Le Cycle Préparatoire de Bordeaux (CPBx) est une classe préparatoire intégrée donnant accès aux écoles d'ingénieurs de Bordeaux INP. Les pages ci-dessous regroupent, par semestre, les supports de cours, notes et corrections de TD.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseTimeline />

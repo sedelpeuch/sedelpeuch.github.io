@@ -13,9 +13,7 @@ graphes.
 - Le [cours]
 - Les [exercices]
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 [cours]:https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf
 

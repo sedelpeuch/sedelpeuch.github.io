@@ -21,6 +21,4 @@ L'objectif est de se familiariser avec la conversion électromécanique réalis�
 
 ## Notes de cours
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />

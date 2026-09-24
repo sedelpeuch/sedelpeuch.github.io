@@ -6,6 +6,4 @@ description: "Notes de cours et corrections d'exercices d'architecture des rése
 Notes de cours et corrections d'exercices du module d'architecture des réseaux
 TCP/IP.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />

@@ -3,9 +3,7 @@ title: Programmation impérative
 description: "Cours de programmation impérative avancée en C du semestre 6 : conventions de codage, GDB, Valgrind, CMake, Doxygen, diff/patch, SVN, tests et code legacy."
 ---
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Objectif du cours
 

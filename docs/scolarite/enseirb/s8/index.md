@@ -5,6 +5,4 @@ description: "Ressources du semestre 8 de l'ENSEIRB-MATMECA : applications TCP/I
 
 Cette page regroupe les notes de cours, supports et projets du semestre 8 de l'ENSEIRB-MATMECA.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />

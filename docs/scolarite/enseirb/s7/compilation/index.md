@@ -3,9 +3,7 @@ title: "Compilation"
 description: "Notes de cours, supports et TD de compilation (ENSEIRB-MATMECA, S7) : analyse lexicale et syntaxique, grammaires attribuées, production de code."
 ---
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Supports de cours
 
