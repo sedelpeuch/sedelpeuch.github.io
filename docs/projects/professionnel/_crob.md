@@ -3,11 +3,12 @@ title: "C-Rob : Architecture Logicielle Distribuée & Coordination Technique"
 tags: [robotique, ROS2, Zephyr, open-source, R&D, architecture, devops, perception, navigation]
 ---
 
-<div className="project-meta-grid">
- <div className="project-meta-item">📅 Date : 2025-présent</div>
- <div className="project-meta-item">👤 Rôle : Coordination technique, lead ROS2 (Python)</div>
- <div className="project-meta-item">🛠️ Techno : ROS2 (Python), orchestration, navigation, perception</div>
-</div>
+<ProjectMeta
+  start="2025"
+  role="Coordination technique, lead ROS 2 (Python)"
+  domain="Robotique modulaire, navigation, perception, architecture distribuée"
+  stack={["ROS 2", "Python", "Zephyr", "micro-ROS", "Docker", "GitHub Actions"]}
+/>
 
 <img src="/img/crob.png" alt="C-Rob" style={{maxWidth: '400px', margin: '2em auto', display: 'block'}} />
 
@@ -15,7 +16,7 @@ tags: [robotique, ROS2, Zephyr, open-source, R&D, architecture, devops, percepti
 
 Plateforme : C-Rob, démonstrateur open source de robotique modulaire autonome et sociale développé par le CATIE pour RoboCup@Home. Après 6 années avec une plateforme commerciale (TIAGo PAL Robotics), le projet a nécessité une refonte complète pour maîtriser l'intégralité de la chaîne technologique et atteindre les objectifs de compétition.
 
-La plateforme repose actuellement sur deux modules détachables et indépendants : une base mobile omnidirectionnelle et un module central dédié à la perception et au traitement des données. Un module de préhension, composé d’un bras, viendra prochainement compléter l’ensemble. L’architecture système est organisée en deux niveaux : la base mobile s’appuie sur Zephyr RTOS et micro-ROS pour le contrôle temps réel des moteurs, tandis que le module central exécute ROS2 (Jazzy Jalisco) pour l’intelligence, la navigation et la perception.
+La plateforme repose actuellement sur deux modules détachables et indépendants : une base mobile omnidirectionnelle et un module central dédié à la perception et au traitement des données. Un module de préhension, composé d'un bras, viendra prochainement compléter l'ensemble. L'architecture système est organisée en deux niveaux : la base mobile s'appuie sur Zephyr RTOS et micro-ROS pour le contrôle temps réel des moteurs, tandis que le module central exécute ROS2 (Jazzy Jalisco) pour l'intelligence, la navigation et la perception.
 
 **Enjeux clés :**
 
@@ -28,7 +29,7 @@ La plateforme repose actuellement sur deux modules détachables et indépendants
 
 ### Architecture ROS2 Distribuée Multi-Niveaux
 
-- Définition et mise en œuvre d’une architecture logicielle multi-niveaux :
+- Définition et mise en œuvre d'une architecture logicielle multi-niveaux :
   - Niveau microcontrôleur : Zephyr RTOS sur STM32, contrôle temps réel moteurs/alimentation, utilisation d'un bus CAN pour la communication dans la base mobile
   - Communication inter-niveaux : micro-ROS over UDP
   - Niveau PC embarqué : ROS2 orchestrant navigation, perception, interaction
@@ -68,4 +69,4 @@ La plateforme repose actuellement sur deux modules détachables et indépendants
 
 ## Liens et ressources 🔗
 
-- [Rapport d'activité CATIE (2025)](https://catie.fr/rapport-activite-2025/)
+- [Rapport d'activités CATIE 2025 (PDF)](https://www.catie.fr/wp-content/uploads/2026/04/RA2025_web.pdf)
