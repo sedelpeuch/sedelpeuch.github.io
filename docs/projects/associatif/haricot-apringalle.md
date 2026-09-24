@@ -1,40 +1,31 @@
 ---
 title: Haricot (Apringalle)
-tags: [iot, dashboard, eirlab, capteur, python, flask]
+tags: [iot, dashboard, eirlab, raspberry-pi, timelapse, python]
+description: Boîtier Raspberry Pi qui photographie la croissance d'une plante à intervalle régulier et génère des timelapses depuis un tableau de bord web, projet d'Antoine Pringalle à EirLab.
 ---
 
 <img src="https://www.eirlab.net/wp-content/uploads/2022/01/haricot-dashboard.png" alt="Aperçu Haricot Dashboard" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
-<div className="project-meta-grid">
-  <div className="project-meta-item">📅 2021 – 2022</div>
-  <div className="project-meta-item">🛑 Terminé</div>
-  <div className="project-meta-item">👨‍💻 Contributeur</div>
-</div>
+<ProjectMeta
+  start="2021"
+  end="2022"
+  role="Contributeur"
+  domain="Timelapse, tableau de bord, fablab"
+  stack={["Raspberry Pi", "Python", "Flask"]}
+/>
 
-## Présentation
+## Contexte
 
-Le projet Haricot est né en 2021 au sein d’Eirlab, avec l’objectif de concevoir un système de suivi et de visualisation de la croissance de haricots à l’aide de capteurs connectés. L’idée était de collecter des données (température, humidité, lumière) et de les afficher sur un dashboard accessible en ligne.
+Haricot est un projet d'Antoine Pringalle, membre d'EirLab : un boîtier qui automatise la capture vidéo de la croissance d'une plante en timelapse.
 
-Le projet a impliqué la conception d’un réseau de capteurs, le développement d’une interface web (dashboard) en Python/Flask, et la mise en place d’un système de stockage et de visualisation des données. Une vidéo de démonstration montre le fonctionnement du dashboard et l’évolution des mesures.
+## Réalisations
 
-## Contexte associatif
+Le boîtier repose sur un Raspberry Pi équipé de sa caméra. Une application web sert de tableau de bord : consultation des photos, réglage de l'intervalle de capture et génération de timelapses, avec interpolation d'images pour lisser la vidéo. Une vidéo de démonstration montre le résultat.
 
-Projet réalisé dans le cadre d’Eirlab, pour expérimenter l’IoT et la visualisation de données en environnement associatif. L’outil s’adresse aux membres, bénévoles et curieux du fablab.
+La base graphique de ce tableau de bord a ensuite été réutilisée pour l'interface de [Caméléon](cameleon.md).
 
-## Démarche et réalisations 🚀
+## Liens
 
-- Conception et installation des capteurs (température, humidité, lumière)
-- Développement du dashboard web en Python/Flask
-- Stockage et visualisation des données
-- Tests, documentation et partage avec la communauté
-
-## Technologies et outils 🛠️
-
-- Python (Flask)
-- Capteurs IoT (température, humidité, lumière)
-- Dashboard web
-
-## Liens et ressources 🔗
-
+- 💻 Code source : [GitHub](https://github.com/antoinepringalle/haricot)
 - 📝 Article de présentation : [Eirlab.net](https://www.eirlab.net/2022/01/09/haricots/)
 - 🎬 Vidéo de démonstration : [haricot_eirlab.mp4](https://www.eirlab.net/wp-content/uploads/2022/01/haricot_eirlab.mp4)
