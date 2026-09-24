@@ -60,11 +60,20 @@ Monter un ConfigMap en volume crée un fichier par clé dans le répertoire cibl
         name: api-config
 ```
 
-La différence entre les deux modes d'injection est importante : les variables d'environnement sont figées au démarrage du pod. Si le ConfigMap est modifié, le pod doit être redémarré pour voir les nouvelles valeurs. Un volume ConfigMap est mis à jour dynamiquement — le fichier monté reflète les changements sans redémarrage (avec un délai de quelques secondes).
+La différence entre les deux modes d'injection est importante : les variables d'environnement sont figées au démarrage du conteneur. Si le ConfigMap est modifié, le pod doit être recréé pour voir les nouvelles valeurs. Un volume ConfigMap est mis à jour dynamiquement : le kubelet réécrit les fichiers montés, avec un délai qui dépend de sa période de synchronisation et de son cache (de l'ordre d'une minute). Deux limites s'appliquent : un montage avec `subPath` n'est jamais mis à jour, et l'application doit relire le fichier (surveillance du fichier ou signal de rechargement) pour prendre en compte la nouvelle version.
+
+Pour les variables d'environnement, la prise en compte d'une modification passe par un redémarrage progressif :
+
+```bash
+# Recréer les pods du Deployment un par un, avec la nouvelle configuration
+kubectl rollout restart deployment/api
+```
+
+Helm et Kustomize automatisent ce redémarrage en plaçant un hash du ConfigMap dans une annotation du template de pod (ou dans le nom du ConfigMap) : toute modification de la configuration change le template, ce qui déclenche un rolling update.
 
 ## Secret
 
-Un Secret stocke des données sensibles : mots de passe, tokens, clés TLS. Sa syntaxe est proche du ConfigMap, avec une différence fondamentale : les valeurs sont encodées en base64.
+Un Secret stocke des données sensibles : mots de passe, tokens, clés TLS. Sa syntaxe est proche du ConfigMap ; les valeurs du champ `data` sont encodées en base64, ce qui permet de stocker des données binaires (clés, certificats DER).
 
 ```yaml
 apiVersion: v1
@@ -78,7 +87,7 @@ data:
 ```
 
 :::warning Base64 n'est pas du chiffrement
-L'encodage base64 est réversible en une commande : `echo "cG9zdGdyZXM=" | base64 -d`. Les Secrets Kubernetes ne sont pas chiffrés par défaut — ils sont stockés en clair dans etcd. La sécurité réelle repose sur les contrôles d'accès RBAC qui limitent qui peut lire les Secrets, et sur le chiffrement at-rest d'etcd (à activer explicitement en production).
+L'encodage base64 est réversible en une commande : `echo "cG9zdGdyZXM=" | base64 -d`. Sur un cluster autogéré, les Secrets ne sont pas chiffrés par défaut : ils sont stockés en clair dans etcd et dans ses sauvegardes. La sécurité réelle repose sur les contrôles d'accès RBAC qui limitent qui peut lire les Secrets (y compris indirectement : créer un pod dans un namespace permet d'y monter n'importe quel Secret), et sur le chiffrement au repos, configuré sur l'API server par un fichier `EncryptionConfiguration` (idéalement avec un fournisseur KMS). Les offres managées (EKS, GKE, AKS) proposent ce chiffrement par une clé KMS du fournisseur.
 :::
 
 Pour créer un Secret sans manipuler le base64 manuellement :
@@ -88,6 +97,8 @@ kubectl create secret generic db-credentials \
   --from-literal=username=postgres \
   --from-literal=password=secret123
 ```
+
+Le champ `stringData` d'un manifeste accepte aussi des valeurs en clair, que l'API server encode lui-même. Dans les deux cas, un manifeste de Secret ne doit pas être versionné tel quel dans Git : des outils comme Sealed Secrets (Secret chiffré pour une clé détenue par le cluster), SOPS (fichier chiffré avec une clé KMS ou age) ou External Secrets Operator (synchronisation depuis Vault, AWS Secrets Manager...) permettent de gérer les Secrets de façon déclarative sans exposer leur valeur.
 
 ### Injection dans un pod
 
@@ -111,7 +122,7 @@ spec:
 
 ### Injection en volume
 
-Monter un Secret en volume est préférable pour les certificats TLS ou les fichiers de clés — cela évite que la valeur apparaisse dans les variables d'environnement du processus (visibles via `/proc/<pid>/environ`) :
+Monter un Secret en volume est préférable pour les certificats TLS ou les fichiers de clés — cela évite que la valeur apparaisse dans les variables d'environnement du processus (visibles via `/proc/<pid>/environ`, héritées par les processus fils, parfois écrites dans les rapports d'erreur). Sur le nœud, le kubelet stocke les volumes de Secrets en `tmpfs`, en mémoire, et jamais sur le disque :
 
 ```yaml
       volumeMounts:
@@ -133,4 +144,4 @@ Monter un Secret en volume est préférable pour les certificats TLS ou les fich
 | Stockage etcd | Clair | Clair (chiffrement optionnel) |
 | Visibilité | `kubectl get configmap -o yaml` | `kubectl get secret -o yaml` (base64) |
 
-La règle est simple : tout ce qui ne doit pas apparaître dans un log ou un diff Git va dans un Secret. Le reste dans un ConfigMap.
+Critère de choix : tout ce qui ne doit pas apparaître dans un log ou un diff Git va dans un Secret, le reste dans un ConfigMap. Les deux ressources acceptent le champ `immutable: true`, qui interdit toute modification ultérieure : le kubelet cesse alors de surveiller l'objet, ce qui réduit la charge sur l'API server dans les grands clusters, et une modification accidentelle devient impossible (il faut créer un nouvel objet, sous un nouveau nom).

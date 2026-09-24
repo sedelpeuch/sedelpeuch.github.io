@@ -4,20 +4,20 @@ description: "Implémenter la haute disponibilité avec réplication, autoscalin
 tags: [orchestration, devops]
 ---
 
-Une application Kubernetes avec une seule réplica a une disponibilité structurellement limitée. Un crash de nœud, une maintenance planifiée ou une mise à jour du cluster suffit à provoquer une interruption totale. Trois mécanismes combinés permettent de construire une infrastructure résiliente : la réplication multi-nœud via TopologySpreadConstraints, la protection contre les disruptions planifiées via PodDisruptionBudget, et l'adaptation dynamique à la charge via HorizontalPodAutoscaler.
+Une application Kubernetes avec un seul réplica a une disponibilité structurellement limitée. Un crash de nœud, une maintenance planifiée ou une mise à jour du cluster suffit à provoquer une interruption totale. Trois mécanismes combinés permettent de construire une infrastructure résiliente : la réplication multi-nœud via TopologySpreadConstraints, la protection contre les disruptions planifiées via PodDisruptionBudget, et l'adaptation dynamique à la charge via HorizontalPodAutoscaler.
 
 <!--truncate-->
 
-## Le problème de la réplica unique
+## Le problème du réplica unique
 
-Une configuration monoinstance présente des scénarios de défaillance prévisibles :
+Une configuration à une seule instance présente des scénarios de défaillance prévisibles :
 
 | Événement | Impact | Durée estimée |
 |-----------|--------|---------------|
-| Crash du nœud | Indisponibilité totale | 1-5 minutes |
-| Maintenance planifiée (`drain`) | Indisponibilité totale | 1-2 minutes |
-| Déploiement d'une nouvelle version | Interruption du service | 30-60 secondes |
-| Éviction par ressources | Indisponibilité | Variable |
+| Crash du nœud | Indisponibilité totale | 5 minutes ou plus : le nœud doit être déclaré `NotReady`, puis le délai de tolérance par défaut (300 s) expirer avant l'éviction du pod |
+| Maintenance planifiée (`drain`) | Indisponibilité totale | Temps de démarrage du pod sur un autre nœud |
+| Déploiement d'une nouvelle version | Aucune interruption avec la stratégie `RollingUpdate` par défaut et une *readiness probe* correcte ; interruption avec `Recreate` | Temps de démarrage du nouveau pod |
+| Éviction par pression de ressources sur le nœud | Indisponibilité | Variable |
 
 Passer à 3 réplicas réduit l'impact d'un événement isolé, mais ne suffit pas si les 3 réplicas se trouvent sur le même nœud.
 
@@ -46,7 +46,7 @@ spec:
 
 `maxSkew: 1` signifie que l'écart entre le nœud le plus chargé et le moins chargé ne peut pas dépasser 1. Avec 3 réplicas et 3 nœuds, chaque nœud en héberge exactement 1.
 
-`whenUnsatisfiable: DoNotSchedule` refuse le placement si la contrainte ne peut pas être respectée — plus strict que `ScheduleAnyway` qui place le pod quand même.
+`whenUnsatisfiable: DoNotSchedule` refuse le placement si la contrainte ne peut pas être respectée : le pod reste `Pending`, par exemple si deux nœuds seulement sont disponibles pour trois réplicas et qu'un troisième réplica sur l'un d'eux porterait l'écart à 2. `ScheduleAnyway` traite la contrainte comme une préférence : le scheduler favorise la répartition, mais place le pod quand même.
 
 Pour une distribution multi-AZ :
 
@@ -78,7 +78,7 @@ spec:
       app: api
 ```
 
-Avec `minAvailable: 2`, Kubernetes garantit qu'au moins 2 pods restent disponibles à tout moment lors d'une disruption planifiée. Un `kubectl drain` d'un nœud hébergeant un pod `api` attendra que ce pod soit recréé ailleurs avant de continuer.
+Le mécanisme repose sur l'**API Eviction**. `kubectl drain` (comme le cluster autoscaler, Karpenter ou une mise à jour de nœuds managés) ne supprime pas les pods directement : il demande leur éviction. L'API server accepte une éviction seulement si elle laisse au moins `minAvailable` pods prêts parmi ceux que sélectionne le PDB ; sinon, il répond `429 Too Many Requests` et `kubectl drain` réessaie périodiquement. Avec `minAvailable: 2` et 3 réplicas, le premier pod `api` est évincé, le ReplicaSet en recrée un sur un autre nœud, et toute éviction suivante d'un pod `api` attend que ce remplaçant soit prêt.
 
 La syntaxe alternative avec `maxUnavailable` est équivalente pour un Deployment à 3 réplicas :
 
@@ -87,11 +87,15 @@ spec:
   maxUnavailable: 1
 ```
 
-Un PDB avec `minAvailable` égal au nombre de réplicas bloque toute opération de maintenance. Il faut toujours laisser une marge — `minAvailable: replicas - 1` est la valeur standard.
+Les deux formes divergent quand le nombre de réplicas varie, notamment sous l'effet d'un HPA : `minAvailable: 2` reste fixe alors que l'application peut compter 10 réplicas, tandis que `maxUnavailable: 1` autorise toujours une éviction à la fois. `maxUnavailable` est donc mieux adapté aux Deployments dont la taille évolue.
+
+Un PDB avec `minAvailable` égal au nombre de réplicas (ou `maxUnavailable: 0`) bloque toute opération de maintenance : un `drain` ne se termine jamais. Il faut toujours laisser une marge.
+
+Le périmètre du PDB est limité aux évictions volontaires. Il ne protège ni contre la panne d'un nœud, ni contre la suppression directe d'un pod ou d'un Deployment, ni contre un rolling update, dont le rythme est gouverné par les paramètres `maxSurge` et `maxUnavailable` du Deployment. Le champ `unhealthyPodEvictionPolicy: AlwaysAllow` autorise l'éviction des pods déjà non prêts, pour qu'une application en panne ne bloque pas la maintenance des nœuds.
 
 ## HorizontalPodAutoscaler
 
-HPA surveille les métriques de performance et ajuste le nombre de réplicas pour maintenir un seuil cible. Il nécessite le [Metrics Server](https://github.com/kubernetes-sigs/metrics-server) installé sur le cluster.
+HPA surveille les métriques de performance et ajuste le nombre de réplicas pour maintenir un seuil cible. Il nécessite le [Metrics Server](https://github.com/kubernetes-sigs/metrics-server) installé sur le cluster pour les métriques CPU et mémoire ; les métriques personnalisées (requêtes par seconde, longueur de file) passent par un adaptateur comme prometheus-adapter ou KEDA.
 
 ```bash
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
@@ -131,23 +135,26 @@ spec:
         periodSeconds: 60
 ```
 
+L'utilisation CPU (`Utilization`) est exprimée en pourcentage des **requests** du conteneur, et non de la capacité du nœud : sans `resources.requests.cpu` défini, le HPA ne peut pas calculer la métrique et reste inactif (`<unknown>` dans `kubectl get hpa`).
+
 La formule de calcul utilisée par HPA :
 
-```
+```text
 replicas_désiré = ⌈ replicas_actuels × (métrique_actuelle / métrique_cible) ⌉
 ```
 
-Exemple avec 3 réplicas et une cible CPU à 80 % :
+Le HPA n'agit que si le rapport `métrique_actuelle / métrique_cible` s'écarte de 1 de plus de la tolérance (10 % par défaut). Exemple avec 3 réplicas et une cible CPU à 80 % :
 
-```
-CPU à 85% → ceil(3 × 85/80) = ceil(3.19) = 4 réplicas
-CPU à 30% → ceil(3 × 30/80) = ceil(1.13) = 2, mais limité par minReplicas → reste à 3
+```text
+CPU à 85%  → rapport 1,06, dans la tolérance de 10 % → aucun changement, reste à 3
+CPU à 100% → ceil(3 × 100/80) = ceil(3.75) = 4 réplicas
+CPU à 30%  → ceil(3 × 30/80) = ceil(1.13) = 2, mais limité par minReplicas → reste à 3
 ```
 
 `stabilizationWindowSeconds` évite le flapping : le scale-down attend 5 minutes de charge réduite avant d'agir, le scale-up réagit en 1 minute.
 
 :::warning HPA et replicas
-Ne pas spécifier `replicas` dans le Deployment quand un HPA est actif. Les deux ressources se disputent alors le contrôle, et les rollbacks Helm ou `kubectl apply` réinitialisent le nombre de réplicas à la valeur du manifest, contredisant le HPA.
+Ne pas spécifier `replicas` dans le Deployment quand un HPA est actif. Les deux ressources se disputent alors le contrôle, et les rollbacks Helm ou `kubectl apply` réinitialisent le nombre de réplicas à la valeur du manifeste, contredisant le HPA. Sans le champ, la création initiale démarre à 1 réplica, puis le HPA porte immédiatement le Deployment à `minReplicas`.
 :::
 
 ## Configuration complète
@@ -180,6 +187,10 @@ spec:
       containers:
         - name: api
           image: myapp:1.0
+          resources:
+            requests:
+              cpu: 250m          # référence du calcul d'utilisation du HPA
+              memory: 256Mi
           readinessProbe:
             httpGet:
               path: /health
@@ -229,6 +240,8 @@ kubectl get pods -o wide -l app=api
 kubectl get pdb api-pdb
 # DISRUPTIONS-ALLOWED doit être 1 avec minAvailable: 2 et 3 réplicas
 
-# État du HPA
+# État du HPA (TARGETS affiche l'utilisation courante / la cible)
 kubectl get hpa api-hpa
 ```
+
+Les paramètres `resources` et le déroulement d'un rolling update sont détaillés dans l'article [rolling update et ressources](./2026-04-04-kubernetes-rolling-update-ressources.md).
