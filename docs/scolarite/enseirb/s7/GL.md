@@ -1,6 +1,9 @@
 ---
-title: "Génie Logiciel "
+title: "Génie logiciel"
+description: "Supports de cours de génie logiciel et de l'atelier Scrum (ENSEIRB-MATMECA, S7)."
 ---
+
+Supports de cours du module de génie logiciel et de l'atelier Scrum.
 
 ## Atelier Scrum
 
@@ -8,7 +11,7 @@ title: "Génie Logiciel "
 
 [Cours 2](./img/Cours2.pdf)
 
-## Génie Logiciel
+## Génie logiciel
 
 [Cours 1](./img/GL1.pdf)
 
