@@ -15,9 +15,17 @@ L'objectif est de se familiariser avec la conversion électromécanique réalis�
 
 ## Documents
 
-[Cours](./img/Cours.pdf)
+<ResourceList type="cours" ordered={false}>
 
-[TD](./img/TD.pdf)
+- [Cours](./img/Cours.pdf)
+
+</ResourceList>
+
+<ResourceList type="td">
+
+- [TD](./img/TD.pdf)
+
+</ResourceList>
 
 ## Notes de cours
 
