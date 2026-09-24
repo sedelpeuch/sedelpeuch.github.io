@@ -1,5 +1,6 @@
 ---
-title: "Théorie des jeux pour la modélisation informatique "
+title: "Théorie des jeux pour la modélisation informatique"
+description: "Supports de cours et devoir maison du module de théorie des jeux pour la modélisation informatique du semestre 8."
 ---
 
 ## Ressources pédagogiques
