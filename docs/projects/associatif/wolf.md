@@ -1,5 +1,5 @@
 ---
-title: Wolf 🦊
+title: Wolf
 tags: [gestion, flask, dolibarr, association, python, eirlab]
 description: "Application Flask de gestion interne d'EirLab Community reliant les adhérents à Dolibarr : identification par carte, attribution des formations, gestion du stock par code-barres."
 ---

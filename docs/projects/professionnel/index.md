@@ -15,6 +15,4 @@ Cette section regroupe des projets réalisés dans le cadre professionnel. Les e
 - Navigation autonome, manipulation d'objets et interaction homme-machine
 - Coordination d'équipes pluridisciplinaires et participation à des compétitions internationales
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<ProjectIndex kind="pro" />

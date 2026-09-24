@@ -18,6 +18,4 @@ Cette section regroupe les projets réalisés dans un cadre associatif, principa
 
 Les projets associatifs présentés illustrent des activités variées, impliquant des compétences en développement, automatisation, infrastructure, robotique et électronique.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<ProjectIndex kind="asso" />

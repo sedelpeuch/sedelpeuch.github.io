@@ -1,5 +1,5 @@
 ---
-title: Luciole ✨ 🐝
+title: Luciole
 tags: [led, arduino, fablab, eirlab, electronique, fabrication-numerique]
 description: Panneau lumineux animé au logo d'EirLab Community, en contreplaqué découpé et LED RGB adressables pilotées par Arduino.
 ---
