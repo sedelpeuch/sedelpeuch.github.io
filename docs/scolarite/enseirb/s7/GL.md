@@ -7,16 +7,20 @@ Supports de cours du module de génie logiciel et de l'atelier Scrum.
 
 ## Atelier Scrum
 
-[Cours 1](./img/Cours1.pdf)
+<ResourceList type="cours" title="Supports de cours">
 
-[Cours 2](./img/Cours2.pdf)
+- [Cours 1](./img/Cours1.pdf)
+- [Cours 2](./img/Cours2.pdf)
+
+</ResourceList>
 
 ## Génie logiciel
 
-[Cours 1](./img/GL1.pdf)
+<ResourceList type="cours" title="Supports de cours">
 
-[Cours 2](./img/GL2.pdf)
+- [Cours 1](./img/GL1.pdf)
+- [Cours 2](./img/GL2.pdf)
+- [Cours 3](./img/GL3.pdf)
+- [Cours 4](./img/GL4.pdf)
 
-[Cours 3](./img/GL3.pdf)
-
-[Cours 4](./img/GL4.pdf)
+</ResourceList>
