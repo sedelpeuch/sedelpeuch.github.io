@@ -10,11 +10,16 @@ les graphes admettant une solution algorithmique efficace. L'étude de ces
 solutions sera l'occasion d'exhiber des propriétés classiques en théorie des
 graphes.
 
-- Le [cours]
-- Les [exercices]
+<ResourceList type="cours" ordered={false}>
+
+- [Cours](https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Exercices">
+
+- [Exercices](https://moodle.bordeaux-inp.fr/pluginfile.php/51351/mod_resource/content/3/TDgraphe2012.pdf)
+
+</ResourceList>
 
 <CourseGrid />
-
-[cours]:https://moodle.bordeaux-inp.fr/pluginfile.php/51350/mod_resource/content/1/cours-graphe.pdf
-
-[exercices]:https://moodle.bordeaux-inp.fr/pluginfile.php/51351/mod_resource/content/3/TDgraphe2012.pdf
