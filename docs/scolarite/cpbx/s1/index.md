@@ -1,5 +1,6 @@
 ---
-title: Cycle Préparatoire De Bordeaux - Semestre 1
+title: Cycle Préparatoire de Bordeaux - Semestre 1
+description: Supports de cours, TD et corrections du premier semestre du Cycle Préparatoire de Bordeaux (chimie, informatique, mathématiques, physique).
 ---
 
 ## Chimie
@@ -7,21 +8,21 @@ title: Cycle Préparatoire De Bordeaux - Semestre 1
 Responsable du cours : [Frédéric
 Castet](http://theo.ism.u-bordeaux.fr/~castet/teaching.html)
 
-Une version des [TD] à utiliser avec précaution.
+Une version des [TD](./img/chimie/TD.pdf) à utiliser avec précaution.
 
-[1- L'avènement de la ./img/physique quantique](./img/chimie/cours/1.pdf)
+[1- L'avènement de la physique quantique](./img/chimie/cours/1.pdf)
 
 [2- L'organisation des électrons dans l'atome](./img/chimie/cours/2.pdf)
 
 [3- La classification périodique](./img/chimie/cours/3.pdf)
 
-[4- Le modèle de lewis](./img/chimie/cours/4.pdf)
+[4- Le modèle de Lewis](./img/chimie/cours/4.pdf)
 
 [5- Le modèle VSEPR](./img/chimie/cours/5.pdf)
 
-[6- Orbitales hybriques](./img/chimie/cours/6.pdf)
+[6- Orbitales hybrides](./img/chimie/cours/6.pdf)
 
-[7- Intéractions intermoléculaires](./img/chimie/cours/7.pdf)
+[7- Interactions intermoléculaires](./img/chimie/cours/7.pdf)
 
 [8- Les différents états de la matière](./img/chimie/cours/8.pdf)
 
@@ -65,8 +66,8 @@ Responsable : [Carole Blanc](https://dept-info.labri.fr/~blanc/)
 Une proposition de
 [correction](./img/informatique/correction.pdf). Il faut manier
 les corrections de l'informatique avec précaution. Les codes demandés sont
-relativement simple en 1A, l'idée est de vous faire réflechir et de vous
-sensibilier au paradigme de l'informatique. Ne foncez pas dessus !
+relativement simples en 1A, l'idée est de vous faire réfléchir et de vous
+sensibiliser au paradigme de l'informatique. Ne foncez pas dessus !
 
 ## Mathématiques
 
@@ -75,19 +76,21 @@ sensibilier au paradigme de l'informatique. Ne foncez pas dessus !
 Responsable : [Ghislaine
 Godinaud](https://www.math.u-bordeaux.fr/imb/fiche-personnelle?uid=ggodinau)
 
-Cette section est un peu vide et à besoin de `contribution`, il n'y a qu'une
+Cette section est un peu vide et a besoin de contributions : il n'y a qu'une
 [correction](./img/mathematiques/TD.pdf) partielle des TDs.
 
 ### Spé maths
 
 Responsable : [Eric Charpentier](https://www.math.u-bordeaux.fr/imb/fiche-personnelle?uid=echarpen)
 
-[Cours] d'approfondissage mathématiques traitant des sujets [Equations
-différentielles], proposant un [Compléments sur les suites numériques], traitant
-des [Fonctions numériques de variable réelle] et de la [Divisibilité dans Z]. Le
-tout accompagné de [TD].
+[Cours](./img/mathematiques/cours.pdf) d'approfondissement en mathématiques traitant des
+[équations différentielles](./img/mathematiques/1.pdf), proposant des
+[compléments sur les suites numériques](./img/mathematiques/2.pdf), traitant des
+[fonctions numériques de variable réelle](./img/mathematiques/3.pdf) et de la
+[divisibilité dans Z](./img/mathematiques/4.pdf). Le tout accompagné de
+[TD](./img/mathematiques/spe_td.pdf).
 
-[Equations différentielles](./img/mathematiques/1.pdf)
+[Équations différentielles](./img/mathematiques/1.pdf)
 
 [Compléments sur les suites numériques](./img/mathematiques/2.pdf)
 
@@ -101,7 +104,7 @@ tout accompagné de [TD].
 
 ## Physique
 
-### Electrocinétique
+### Électrocinétique
 
 Responsable : Mourad Aiche
 
@@ -117,20 +120,20 @@ Responsable : Mourad Aiche
 
 ### Mécanique du point
 
-Responsable : Jean Christophe Caillon
+Responsable : Jean-Christophe Caillon
 
-Cette section est un peu vide et à besoin de `contribution`, il n'y a qu'une
+Cette section est un peu vide et a besoin de contributions : il n'y a qu'une
 [correction](./img/physique/meca/TD.pdf) des TDs.
 
 ### Outils mathématiques
 
 Responsable : Daniel Blaudez
 
-[1-Calcul Vectoriel](./img/physique/outils/1.pdf)
+[1-Calcul vectoriel](./img/physique/outils/1.pdf)
 
-[2-Calcul Différentiel.1](./img/physique/outils/2.pdf)
+[2-Calcul différentiel.1](./img/physique/outils/2.pdf)
 
-[2-Calcul Différentiel.2](./img/physique/outils/3.pdf)
+[2-Calcul différentiel.2](./img/physique/outils/3.pdf)
 
 [3-Système de coordonnées](./img/physique/outils/4.pdf)
 
@@ -138,10 +141,10 @@ Responsable : Daniel Blaudez
 
 [5-Intégrales doubles](./img/physique/outils/6.pdf)
 
-[6-Intégrales triple](./img/physique/outils/7.pdf)
+[6-Intégrales triples](./img/physique/outils/7.pdf)
 
 [7-Intégrales curvilignes](./img/physique/outils/8.pdf)
 
-[8-Champs vectoriel et scalaire.1](./img/physique/outils/9.pdf)
+[8-Champs vectoriels et scalaires.1](./img/physique/outils/9.pdf)
 
-[8-Champs vectoriel et scalaire.2](./img/physique/outils/10.pdf)
+[8-Champs vectoriels et scalaires.2](./img/physique/outils/10.pdf)
