@@ -1,6 +1,6 @@
 ---
 title: Associatif
-description: Engagements associatifs pendant la scolarité à l'ENSEIRB-MATMECA : EirLab Community (FabLab) et Eirbot (club de robotique).
+description: "Engagements associatifs pendant la scolarité à l'ENSEIRB-MATMECA : EirLab Community (FabLab) et Eirbot (club de robotique)."
 ---
 
 ## EirLab Community
