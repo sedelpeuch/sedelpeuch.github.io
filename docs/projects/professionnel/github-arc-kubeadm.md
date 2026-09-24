@@ -55,8 +55,5 @@ L'observation des durées de job a fait apparaître plusieurs goulets d'étrangl
 ## Liens
 
 - [Documentation ARC (GitHub)](https://docs.github.com/fr/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/quickstart-for-actions-runner-controller)
-- [GitHub Actions : ARC](/blog/2024/12/20/04-ci-cd/github-arc)
-- [GitHub Actions : Self-Host Runner](/blog/2024/12/20/04-ci-cd/self-host-runner)
-- [Prometheus](/blog/2025/11/21/07-monitoring/prometheus-introduction)
 - [Cluster Kubernetes interne SONU](sonu-k8s-cluster.md)
 - [Workflows GitHub Actions mutualisés](cicd.md)

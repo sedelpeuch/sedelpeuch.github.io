@@ -70,5 +70,3 @@ Il n'y a pas non plus de tests automatisés. L'architecture les rend possibles (
 ## Liens
 
 - 💻 Code source : [github.com/sedelpeuch/dolibarr_project_dashboard](https://github.com/sedelpeuch/dolibarr_project_dashboard)
-- [Python : FastAPI](/blog/2024/12/20/09-scripting/fastapi)
-- [Python : uv](/blog/2025/12/19/09-scripting/uv-python)

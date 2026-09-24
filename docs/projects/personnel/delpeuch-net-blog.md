@@ -41,7 +41,4 @@ Depuis 2024, des assistants IA font partie de la démarche de rédaction : GitHu
 
 - [Blog](/blog/)
 - [Page projet du site delpeuch.net](delpeuch-net.md)
-- [DevOps Roadmap 2024](/blog/2024/01/01/devops-roadmap-2024)
-- [DevOps Roadmap 2025](/blog/2025/01/01/devops-roadmap-2025)
-- [DevOps Roadmap 2026](/blog/2026/01/01/devops-roadmap-2026)
 - 💻 Code source : [github.com/sedelpeuch/sedelpeuch.github.io](https://github.com/sedelpeuch/sedelpeuch.github.io)

@@ -158,14 +158,3 @@ Chaque service a son propre fichier de documentation dans le repo : rôle, archi
 - **Dette technique documentée plutôt que cachée** : les compromis (rollback manuel, troisième copie en cours, bypass d'authentification) sont écrits noir sur blanc dans le repo.
 
 Rien de tout ça n'est exposé publiquement : l'ensemble n'est accessible que via mon réseau privé Tailscale, sans port ouvert sur le routeur domestique.
-
-## Articles liés
-
-- [Git : git-crypt](/blog/2026/07/26/08-iac/git-crypt)
-- [Authelia : forward-auth](/blog/2026/08/02/02-network/authelia-forward-auth) et [Authelia : fournisseur OpenID Connect](/blog/2026/08/09/02-network/authelia-oidc)
-- [GitHub Actions : Renovate](/blog/2026/08/16/04-ci-cd/github-actions-renovate)
-- [GitHub Actions : déploiement Docker Compose](/blog/2026/08/23/04-ci-cd/github-actions-deploiement-compose)
-- [Traefik : Sablier](/blog/2026/08/30/06-orchestration/traefik-sablier)
-- [S3 : Garage](/blog/2026/09/06/05-cloud/s3-garage)
-- [Docker : sauvegarde des volumes](/blog/2026/09/13/03-containerization/docker-volume-backup)
-- [Prometheus : Alertmanager](/blog/2026/09/20/07-monitoring/prometheus-alertmanager)
