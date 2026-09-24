@@ -1,95 +1,100 @@
 ---
 title: "Vidéo 7.2"
+description: "Production de code pour les sous-blocs et les appels de fonction : variables locales en pile, pointeur d'environnement (frame pointer), adresse de retour."
 ---
 
-## Production pour les appels de fonction. Production pour les sous-bloc (variables locales)
+Notes inspirées du cours de David Janin.
 
-Question : où et comment stocker / adresser les variables locales à un sous bloc
-?
+## Production de code pour les sous-blocs et les appels de fonction
 
-Première solution, renommer les variables locales pour les traiter "comme" des
-variables globales. Cette solution fonction cependant la profondeur
-d'implication des blocs doit être bornée (à l'exécution). Cela interdit la
-compilation de fonctions récursives.
+Question : où et comment stocker / adresser les variables locales à un
+sous-bloc ?
 
-Une deuxième solution est d'utiliser la pile. On stocker les variables locales
-dans la pile
+Première solution : renommer les variables locales pour les traiter « comme »
+des variables globales. Cette solution fonctionne, mais le nombre d'instances
+simultanées d'un même bloc doit alors être borné et connu à la compilation, ce
+qui interdit la compilation de fonctions récursives.
+
+Une deuxième solution est d'utiliser la pile : on stocke les variables locales
+dans la pile.
+
 ![](./img/71.png)
 
-La question est comment accéder (en lecture ou écriture) à $x$ ou $g$ ?
+La question est : comment accéder (en lecture ou en écriture) à $x$ ou $g$ ?
 
-LA solution est d'utiliser un pointeur d'environnement (frame pointer) fp qui
-désigne, dans la pile un emplacement fixe pendant toute la durée de vie du sous
-bloc. À partir de là, on peut coder $x \rightarrow *(fp+4)$ et $g \rightarrow
-*(fp+8)$. Comme la valeur de fp ne change pas pendant la durée de vie du bloc,
-on a bien un codage de $x$ et $g$.
+La solution est d'utiliser un pointeur d'environnement (frame pointer) `fp`
+qui désigne, dans la pile, un emplacement fixe pendant toute la durée de vie du
+sous-bloc. À partir de là, on peut coder $x \rightarrow *(fp+4)$ et
+$g \rightarrow *(fp+8)$. Comme la valeur de `fp` ne change pas pendant la durée
+de vie du bloc, on a bien un codage de $x$ et $g$.
 
 Entrée dans le bloc :
 
-```c
+```text
 empiler g (sp = sp - 4)
 empiler x (sp = sp - 4)
 fp = sp
 ```
 
-Cependant cela provoque un problème, on perd la valeur précédente du fp. Pour
-pallier ce problème il faut sauvegarder le fp dans la pile
+Cependant, cela pose un problème : on perd la valeur précédente de `fp`. Pour
+pallier ce problème, il faut sauvegarder `fp` dans la pile :
 
-```c
+```text
 empiler g (sp = sp - 4)
 empiler x (sp = sp - 4)
-empiler fp (*sp = fp, sp = sp -4)
+empiler fp (sp = sp - 4 ; *sp = fp)
 fp = sp
 ```
 
-À la sortie du bloc
+À la sortie du bloc :
 
-```c
-//dépiler les variables locales
-fp = *fp
-//eventuellement une valeur de retour
+```text
+fp = *fp          // restauration de l'ancien fp
+sp = sp + 12      // dépilement du fp sauvegardé et des variables locales
+// éventuellement, une valeur de retour
 ```
 
-On généralise ce principe pour les appels de fonctions. Les ingrédients d'une
-fonction
+On généralise ce principe aux appels de fonctions. Les ingrédients d'une
+fonction :
 
 ```c
-int inc(int x){
+int inc(int x) {
     int y = 1;
     if (x < 0) return x;
     else return (x - y);
 }
 ```
 
-C'est les types qui indiquent la nécessite de définir des emplacements, mémoire
-et leur taille. Idée : stocker ces éléments sur la pile. Où ? Prendre une
-convention de position par rapport au fp. fp a une adresse sur la pile fixe
-pendant toute l'exécution à un appel de fonction.
+Ce sont les types qui indiquent la nécessité de réserver des emplacements
+mémoire, et leur taille. Idée : stocker ces éléments sur la pile. Où ? En
+prenant une convention de position par rapport à `fp`, qui désigne une adresse
+fixe de la pile pendant toute l'exécution d'un appel de fonction.
 
-La position, relative au fp, de chaque des éléments est fixée à la compilation.
+La position, relative à `fp`, de chacun des éléments est fixée à la compilation.
 
-Le contexte contient, a minima, une sauvegarde du fp lors de l'appel.
-L'adressage des variables, locales, des arguments, et de la valeur de retour se
-fait relativement au fp courant.
+Le contexte contient, a minima, une sauvegarde de `fp` lors de l'appel.
+L'adressage des variables locales, des arguments et de la valeur de retour se
+fait relativement au `fp` courant.
 
 ### Appel d'une fonction
 
-```
-Sauvegarde du contexte courant fp
+```text
+Sauvegarde du contexte courant (fp)
 Empilement des arguments
-Réserver la place du résultat
-Positionner le fp
+Réservation de la place du résultat
+Positionnement de fp
 Empilement des variables locales
 goto à l'adresse du code de la fonction
 ```
 
-Question : comment finir l'appel de fonction ? On a besoin d'un branchement à
-l'endroit de l'appel. Cela implique la nécessité de stocker lors de l'appel un
-autre pointeur : le compteur ordinal (co) qui désigne l'adresse courante de
-l'instructeur a execoté. On finit l'appel par un goto co après avoir "retrouvé"
-ce compteur ordinal. En code 3 adresses (et dans la plupart des assembleurs) on
-ne fera pas des goto mais on utilisera une paire d'instruction particulière
-(jump et return). En général, jump et return seront chargé respectivement
+Question : comment terminer l'appel de fonction ? On a besoin d'un branchement
+vers l'endroit de l'appel. Il faut donc stocker, lors de l'appel, un autre
+pointeur : le compteur ordinal (co), qui désigne l'adresse de l'instruction à
+exécuter après l'appel (adresse de retour). On termine l'appel par un `goto co`
+après avoir « retrouvé » ce compteur ordinal. En code 3 adresses (et dans la
+plupart des assembleurs), on n'utilise pas de `goto` mais une paire
+d'instructions particulières (du type `call` / `return`). En général, ces
+instructions sont chargées respectivement :
 
-+ des branchements
-+ de la sauvegarde / restauration du fp et du co.
++ des branchements ;
++ de la sauvegarde / restauration du `fp` et du `co`.

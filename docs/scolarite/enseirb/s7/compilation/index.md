@@ -1,10 +1,13 @@
 ---
 title: "Compilation"
+description: "Notes de cours, supports et TD de compilation (ENSEIRB-MATMECA, S7) : analyse lexicale et syntaxique, grammaires attribuées, production de code."
 ---
 
 import DocCardList from '@theme/DocCardList';
 
 <DocCardList />
+
+## Supports de cours
 
 - [Introduction]
 - [Analyse lexicale]
@@ -13,14 +16,14 @@ import DocCardList from '@theme/DocCardList';
 - [Vidéo 5]
 - [Vidéo 6.2]
 - [Vidéo 7.1]
-- [Vidéo 7.2]
+- Vidéo 7.2 (support non référencé)
 
-### Travaux dirigés
+## Travaux dirigés
 
 - [Sujet 1]
 - [Sujet 2]
 
-### Projet
+## Projet
 
 [Projet](./img/Compilprojet.zip)
 
