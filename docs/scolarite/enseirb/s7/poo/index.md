@@ -5,40 +5,31 @@ description: "Notes de cours de programmation orientée objet en Java (ENSEIRB-M
 
 ## Ressources pédagogiques
 
-Le [polycopié](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/poo-info-2021.pdf)
-de cours.
+<ResourceList type="support">
 
-Le [site](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/) contenant tous les
-TD.
+- [Polycopié de cours](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/poo-info-2021.pdf)
+- [Site contenant tous les TD](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/)
+
+</ResourceList>
 
 <CourseGrid />
 
 ## Travaux dirigés
 
-### Sujets
+<ResourceList type="td" title="Sujets de TD" ordered>
 
-| Sujet                                |
-|:-------------------------------------|
-| [0 - Présentation de l'existant]     |
-| [1 - Approche objet : Jauge, Position] |
-| [2 - Autobus, PassagerStandard]      |
-| [3 - Intégration, rassemblement]     |
-| [4 - Masquage d'information]         |
-| [5 - Nouveaux caractères]            |
-| [6 - Est-un, a-un]                   |
-| [7 - Exceptions]                     |
+- [0 - Présentation de l'existant](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/0-presentation-existant/)
+- [1 - Approche objet : Jauge, Position](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/1-approcheObjet-Jauge-Position/)
+- [2 - Autobus, PassagerStandard](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/2-Autobus-PassagerStandard/)
+- [3 - Intégration, rassemblement](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/3-integration-rassemblement/)
+- [4 - Masquage d'information](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/4-masquage-dInformation/)
+- [5 - Nouveaux caractères](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/5-nouveaux-caracteres/)
+- [6 - Est-un, a-un](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/6-estUn-aUn/)
+- [7 - Exceptions](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/7-exceptions/)
 
-### Rapports
+</ResourceList>
 
-- [Rapport 0](./img/0.pdf)
-- [Rapport 1](./img/1.pdf)
-- [Rapport 2](./img/2.pdf)
-- [Rapport 3](./img/3.pdf)
-- [Rapport 4](./img/4.pdf)
-- [Rapport 5](./img/5.pdf)
-- [Rapport 6](./img/6.pdf)
-
-### Code des TD
+<ResourceList type="td" title="Code des TD">
 
 - [TD 1](./img/POOtd1.zip)
 - [TD 2](./img/POOtd2.zip)
@@ -52,22 +43,24 @@ TD.
 - [TD 7a](./img/POOtd7a.zip)
 - [TD 7b](./img/POOtd7b.zip)
 
+</ResourceList>
+
+<ResourceList type="support" title="Rapports de TD">
+
+- [Rapport 0](./img/0.pdf)
+- [Rapport 1](./img/1.pdf)
+- [Rapport 2](./img/2.pdf)
+- [Rapport 3](./img/3.pdf)
+- [Rapport 4](./img/4.pdf)
+- [Rapport 5](./img/5.pdf)
+- [Rapport 6](./img/6.pdf)
+
+</ResourceList>
+
 ## Projet
 
-[Projet](./img/POOprojet.zip)
+<ResourceList type="projet">
 
-[0 - Présentation de l'existant]: https://georgy.vvv.enseirb-matmeca.fr/PG202-203/0-presentation-existant/
+- [Projet](./img/POOprojet.zip)
 
-[1 - Approche objet : Jauge, Position]: https://georgy.vvv.enseirb-matmeca.fr/PG202-203/1-approcheObjet-Jauge-Position/
-
-[2 - Autobus, PassagerStandard]: https://georgy.vvv.enseirb-matmeca.fr/PG202-203/2-Autobus-PassagerStandard/
-
-[3 - Intégration, rassemblement]: https://georgy.vvv.enseirb-matmeca.fr/PG202-203/3-integration-rassemblement/
-
-[4 - Masquage d'information]: https://georgy.vvv.enseirb-matmeca.fr/PG202-203/4-masquage-dInformation/
-
-[5 - Nouveaux caractères]: https://georgy.vvv.enseirb-matmeca.fr/PG202-203/5-nouveaux-caracteres/
-
-[6 - Est-un, a-un]: https://georgy.vvv.enseirb-matmeca.fr/PG202-203/6-estUn-aUn/
-
-[7 - Exceptions]: https://georgy.vvv.enseirb-matmeca.fr/PG202-203/7-exceptions/
+</ResourceList>
