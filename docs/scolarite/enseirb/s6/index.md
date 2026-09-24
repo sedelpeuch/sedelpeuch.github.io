@@ -12,6 +12,9 @@ Lorsqu'elles ont été prises, mes notes de cours sont disponibles.
 
 ## Projets 2
 
-[Projet Actor](https://thor.enseirb-matmeca.fr/ruby/projects/projetss6-actor-1920)
+<ResourceList type="projet">
 
-[Projet Hex](https://thor.enseirb-matmeca.fr/ruby/repositories/4673)
+- [Projet Actor](https://thor.enseirb-matmeca.fr/ruby/projects/projetss6-actor-1920)
+- [Projet Hex](https://thor.enseirb-matmeca.fr/ruby/repositories/4673)
+
+</ResourceList>

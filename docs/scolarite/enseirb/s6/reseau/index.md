@@ -13,10 +13,17 @@ d'interconnexion réseau, autres protocoles pour les LAN, travaux pratiques.
 
 ## Ressources pédagogiques
 
-Le
-[cours](https://moodle.bordeaux-inp.fr/pluginfile.php/111539/mod_resource/content/1/Cours%20RE100.pdf),
-le
-[td1](https://moodle.bordeaux-inp.fr/pluginfile.php/111540/mod_resource/content/3/TD1.pdf)
-et le [td2](https://moodle.bordeaux-inp.fr/pluginfile.php/111542/mod_resource/content/4/TD2.pdf).
+<ResourceList type="cours" ordered={false}>
+
+- [Cours](https://moodle.bordeaux-inp.fr/pluginfile.php/111539/mod_resource/content/1/Cours%20RE100.pdf)
+
+</ResourceList>
+
+<ResourceList type="td">
+
+- [TD 1](https://moodle.bordeaux-inp.fr/pluginfile.php/111540/mod_resource/content/3/TD1.pdf)
+- [TD 2](https://moodle.bordeaux-inp.fr/pluginfile.php/111542/mod_resource/content/4/TD2.pdf)
+
+</ResourceList>
 
 <CourseGrid />
