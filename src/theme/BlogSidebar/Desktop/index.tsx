@@ -7,26 +7,8 @@ import BlogSidebarContent from "@theme/BlogSidebar/Content";
 import type { Props } from "@theme/BlogSidebar/Desktop";
 import type { BlogSidebarItem } from "@docusaurus/plugin-content-blog";
 import { Icon } from "@iconify/react";
+import { categoryOf } from "@site/src/components/blogCategories";
 import styles from "./styles.module.scss";
-
-// Icônes de catégorie au trait (tabler), dans l'esprit des illustrations du site.
-// La catégorie se lit dans le dossier du permalien : /blog/AAAA/MM/JJ/07-monitoring/...
-const CATEGORIES: Record<string, { label: string; icon: string }> = {
-  network: { label: "Réseau", icon: "tabler:topology-star-3" },
-  containerization: { label: "Conteneurisation", icon: "tabler:box" },
-  "ci-cd": { label: "CI/CD", icon: "tabler:git-merge" },
-  cloud: { label: "Cloud", icon: "tabler:cloud" },
-  orchestration: { label: "Orchestration", icon: "tabler:hierarchy-3" },
-  monitoring: { label: "Observabilité", icon: "tabler:activity-heartbeat" },
-  iac: { label: "Infrastructure as Code", icon: "tabler:file-code" },
-  scripting: { label: "Scripting", icon: "tabler:terminal-2" },
-};
-const DEFAULT = { label: "DevOps", icon: "tabler:route" };
-
-function categoryOf(permalink: string) {
-  const folder = permalink.split("/").find((seg) => /^\d{2}-/.test(seg));
-  return (folder && CATEGORIES[folder.replace(/^\d{2}-/, "")]) || DEFAULT;
-}
 
 const month = (date: string) =>
   new Date(date).toLocaleDateString("fr-FR", { month: "short", timeZone: "UTC" });
