@@ -1,10 +1,11 @@
 ---
 title: "Évaluation des projets et maîtrise des coûts"
+description: "Fiches de synthèse et supports du module d'évaluation des projets et de maîtrise des coûts du semestre 8 (comptabilité, choix d'investissement, rentabilité, pilotage)."
 ---
 
-![](./img/fiche1.jpg)
+![Fiche de synthèse 1](./img/fiche1.jpg)
 
-![](./img/fiche2.jpg)
+![Fiche de synthèse 2](./img/fiche2.jpg)
 
 ## Ressources pédagogiques
 
@@ -19,7 +20,7 @@ title: "Évaluation des projets et maîtrise des coûts"
 + [Correction du cas
   3](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=53059)
 
-### Cours 2 : Faire le choix de valider le démarage d'un projet
+### Cours 2 : Faire le choix de valider le démarrage d'un projet
 
 + [Diaporama du
   cours](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20024/COURS%202%20FAIRE%20LE%20CHOIX%20DE%20VALIDER%20LE%20DE%CC%81MARRAGE%20DUN%20PROJET.pdf)
@@ -56,7 +57,7 @@ title: "Évaluation des projets et maîtrise des coûts"
 <!-- $V_n = V_0 (1 + i)^n$ donc $V_0 = V_n(1+i)^{-n}$ où $i$ représente le taux -->
 <!-- d'intérêt et $n$ le nombre d'année. -->
 
-<!-- $V_0 = V_{init} \times \dfrac{1-(1-i)^{-n}}{i}$ : emprunt banque avec $V_0$ le -->
+<!-- $V_0 = V_{init} \times \dfrac{1-(1+i)^{-n}}{i}$ : emprunt banque avec $V_0$ le -->
 <!-- montant empreinté et $V_{init}$ le montant d'une mensualité ou annuité.  -->
 
 <!-- Donc $V_{init} = V_0 \dfrac{i}{1-(1+i)^{-n}}$ : le montant d'une mensualité ou -->
@@ -188,9 +189,9 @@ title: "Évaluation des projets et maîtrise des coûts"
 
 <!-- ### Cours 2 : faire le choix de valider le démarage d'un projet  -->
 
-<!-- Un projet est un ensemble finalisé d’activités et d’actions entreprises -->
+<!-- Un projet est un ensemble finalisé d'activités et d'actions entreprises -->
 <!-- dans le but de répondre à un besoin défini dans des délais fixés et dans la -->
-<!-- limite d’une enveloppe budgétaire allouée. -->
+<!-- limite d'une enveloppe budgétaire allouée. -->
 
 <!-- La comptabilité future d'un projet doit se faire avec une neutralisation du -->
 <!-- temps écoulé entre la dépense et la recette. C'est le principe de l'**actualisation**. -->
