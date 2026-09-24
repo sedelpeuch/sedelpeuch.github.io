@@ -2,7 +2,6 @@
 title: "Conteneurisation vs Virtualisation"
 description: "Différences architecturales entre conteneurs Docker et machines virtuelles : isolation, taille, démarrage et cas d'usage."
 tags: [containerization, devops]
-authors: sedelpeuch
 ---
 
 Conteneurs et machines virtuelles répondent au même besoin d'isolation des applications, mais à des niveaux différents de la pile système. Comprendre cette différence architecturale explique pourquoi les deux technologies coexistent plutôt que l'une remplace l'autre.

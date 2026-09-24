@@ -2,7 +2,6 @@
 title: "Docker : bonnes pratiques"
 description: "Bonnes pratiques Dockerfile pour des images légères, reproductibles et sécurisées : images de base, multi-stage builds, cache des couches, utilisateur non-root."
 tags: [containerization, devops]
-authors: sedelpeuch
 ---
 
 Une image Docker mal construite peut peser plusieurs gigaoctets, exposer des secrets dans ses couches, ou s'exécuter en root sans raison valable. Ces problèmes découlent directement du fonctionnement des couches et du cache de build, décrits dans l'article [Docker : conteneurs et images](./2024-12-20-docker-containers.md), et s'évitent avec quelques principes de construction appliqués systématiquement.

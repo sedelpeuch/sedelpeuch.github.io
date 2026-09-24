@@ -2,7 +2,6 @@
 title: "Nginx Proxy Manager"
 description: "Nginx Proxy Manager : interface graphique pour Nginx, gestion des proxy hosts, certificats Let's Encrypt, access lists, streams TCP et configuration avancée."
 tags: [network, devops]
-authors: sedelpeuch
 ---
 
 Configurer Nginx manuellement demande de maîtriser sa syntaxe et de gérer les certificats SSL à la main. Nginx Proxy Manager expose une interface web qui automatise ces deux aspects : création de règles de routage via une UI, et renouvellement automatique des certificats Let's Encrypt. Il génère du vrai Nginx sous le capot — les configurations avancées restent accessibles via des blocs personnalisés.

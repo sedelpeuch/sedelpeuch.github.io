@@ -2,7 +2,6 @@
 title: "Docker : conteneurs et images"
 description: "Fonctionnement des images et conteneurs Docker : couches, cycle de vie, réseau, volumes et commandes essentielles."
 tags: [containerization, devops]
-authors: sedelpeuch
 ---
 
 Une image Docker est un artefact statique. Un conteneur est une image en cours d'exécution. Cette distinction structure tout l'outillage : les images se distribuent, les conteneurs s'exécutent. Comprendre leur structure et leur cycle de vie permet de diagnostiquer rapidement les problèmes et de concevoir des Dockerfiles efficaces.

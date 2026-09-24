@@ -2,7 +2,6 @@
 title: "Proxy et reverse proxy"
 description: "Différences architecturales entre proxy direct et reverse proxy : position dans le flux réseau, couche L4/L7, SSL passthrough vs terminaison, load balancing, et cas d'usage."
 tags: [network, devops]
-authors: sedelpeuch
 ---
 
 Un proxy et un reverse proxy remplissent tous les deux un rôle d'intermédiaire réseau, mais ils se positionnent de chaque côté de la connexion — l'un représente le client, l'autre protège le serveur. Confondre les deux mène à des architectures mal configurées et à des règles de sécurité inefficaces.

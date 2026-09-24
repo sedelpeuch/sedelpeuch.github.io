@@ -2,7 +2,6 @@
 title: "GitHub Actions"
 description: "CI/CD avec GitHub Actions : événements, workflows, jobs, steps et runners — le modèle mental complet."
 tags: [cicd, devops]
-authors: sedelpeuch
 ---
 
 Sans automatisation, livrer du code en production est un processus manuel : un développeur fusionne une branche, lance les tests à la main, construit l'image Docker, se connecte au serveur, déploie. Chaque étape est une occasion d'oublier quelque chose, de sauter un test, ou de déployer une version qui n'a pas été vérifiée. À mesure que l'équipe et le rythme de livraison augmentent, ce processus ne tient plus.

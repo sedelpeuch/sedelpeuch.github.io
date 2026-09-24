@@ -2,7 +2,6 @@
 title: "GitHub Actions : Self-Host Runner"
 description: "Installer et configurer un runner GitHub Actions auto-hébergé sur une machine Linux."
 tags: [cicd, devops]
-authors: sedelpeuch
 ---
 
 Les runners hébergés par GitHub (`ubuntu-latest`) sont éphémères, gérés par GitHub, et consomment le quota de minutes de l'organisation. Les runners auto-hébergés tournent sur des machines contrôlées — serveur on-premise, VM cloud, Raspberry Pi — et n'ont pas de quota. Ils donnent accès à des ressources locales : réseau privé, GPU, caches persistants, outils propriétaires.
