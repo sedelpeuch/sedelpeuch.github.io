@@ -7,11 +7,13 @@ description: "Projet maker du semestre 8 : conception d'un plotter vertical pour
 
 Un plotter est un mécanisme d'impression permettant d'effectuer des tracés sur un support à partir d'un fichier (.svg par exemple). L'objectif de ce projet est de réaliser un plotter vertical sur l'un des tableaux blancs d'EirLab, permettant de dessiner et d'effacer ses dessins en boucle.
 
-[Slides de présentation du projet](http://www.eirlab.fr/tiki-download_file.php?fileId=285&display=y)
+<ResourceList type="support" title="Présentations du projet" ordered>
 
-[Slides de présentation de mi-parcours](http://www.eirlab.fr/tiki-download_file.php?fileId=287&display=y)
+- [Slides de présentation du projet](http://www.eirlab.fr/tiki-download_file.php?fileId=285&display=y)
+- [Slides de présentation de mi-parcours](http://www.eirlab.fr/tiki-download_file.php?fileId=287&display=y)
+- [Slides de présentation de fin de projet](http://www.eirlab.fr/tiki-download_file.php?fileId=350&display=y)
 
-[Slides de présentation de fin de projet](http://www.eirlab.fr/tiki-download_file.php?fileId=350&display=y)
+</ResourceList>
 
 ### État de l'art
 

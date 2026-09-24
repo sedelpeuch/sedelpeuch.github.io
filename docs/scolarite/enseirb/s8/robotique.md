@@ -78,4 +78,8 @@ $$
 
 ![Exemples de positions de la patte](./img/2.jpg)
 
-- [Projet](./img/projetRobotique.zip)
+<ResourceList type="projet">
+
+- [Archive du projet](./img/projetRobotique.zip)
+
+</ResourceList>
