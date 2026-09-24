@@ -35,7 +35,9 @@ Docusaurus 3 site (French, single locale). Deployed to GitHub Pages at `delpeuch
 
 ## Content conventions
 
-Blog posts use frontmatter with `tags` matching navbar dropdown categories: `network`, `containerization`, `cicd`, `cloud`, `orchestration`, `monitoring`, `iac`, `scripting`.
+Blog posts use frontmatter with `tags` matching navbar dropdown categories: `network`, `containerization`, `cicd`, `cloud`, `orchestration`, `monitoring`, `iac`, `scripting`, plus `devops` on every post.
+
+Blog permalinks look like `/blog/2025/06/09/08-iac/ansible-zsh-automation` (date + folder + slug without date). Relative `.md` links only resolve within the same plugin: blog ↔ blog is fine, but a link from `docs/` to a blog post (or the reverse) must use the permalink. Never rename or move a published file (blog or docs) without a redirect — URLs are public.
 
 Project docs live under `docs/projects/{professionnel,associatif,personnel}/`.
 
@@ -43,9 +45,14 @@ Project docs live under `docs/projects/{professionnel,associatif,personnel}/`.
 
 ## Workflow contenu en cours
 
-`blog/05-cloud/` est en développement actif. Projet source : `/home/sedelpeuch/PERSO-SDE/task_horizon` (app portfolio — stack Terraform, Helm, FastAPI, Docker). Chaque concept cloud découvert pendant ce développement donne lieu à un article dans `blog/05-cloud/`. L'application elle-même sera documentée dans `docs/projects/` une fois aboutie.
+Deux projets sources alimentent le blog :
 
-Flux : apprentissage terrain (task_horizon) → article blog (concept isolé, impersonnel) → page projet (vue d'ensemble de l'app, résultats).
+- `/home/sedelpeuch/dev/perso/task_horizon` — app portfolio (Terraform, Helm, FastAPI, Docker, EKS). Chaque concept cloud / CI/CD / IaC pratiqué donne lieu à un article (`05-cloud/`, `04-ci-cd/`, `08-iac/`). Page projet : `docs/projects/personnel/task-horizon.md`.
+- `/home/sedelpeuch/dev/perso/fervantfactory` — homelab GitOps Docker Compose (Traefik, Authelia, Renovate, Prometheus, sauvegardes S3…), doc complète dans ses `<stack>/<stack>.md`, `DAS.md`, `docs/pages/`. Page projet : `docs/projects/personnel/homelab.md`.
+
+Flux : apprentissage terrain → article blog (outil ou concept isolé, impersonnel) → page projet (vue d'ensemble, résultats). Le blog est DevOps, pas homelab : on en extrait les outils et pièges réels, présentés de façon générique (`example.com`, jamais de domaine, IP, nom de personne ou matériel réels). Le lien vers le projet passe par la section finale `## Application / Projet lié`. Les notes des projets sources peuvent contenir des approximations : toujours vérifier contre la doc officielle.
+
+Un article peut être antidaté pour combler un trou dans le rythme de publication (dates hebdomadaires cohérentes avec l'ordre des dépendances entre articles).
 
 ## Blog — objectif et ton
 
@@ -53,12 +60,21 @@ Flux : apprentissage terrain (task_horizon) → article blog (concept isolé, im
 
 **Ton :** impersonnel, scientifique, sans jugement de valeur. Expose les faits et mécanismes, jamais d'opinion ni d'enthousiasme ("c'est génial", "c'est simple"). Pas de première personne. Suppose un lecteur qui sait coder et administrer des systèmes, mais découvre le sujet de l'article.
 
+**Nommage :** titre au format `"Famille : sujet"` (`"Terraform : modules"`, `"AWS : Lambda"`, `"Traefik : Sablier"`), ou le nom seul de l'outil pour l'article d'introduction (`"Prometheus"`). Le fichier suit `AAAA-MM-JJ-famille-sujet.md` dans le dossier de sa catégorie (`2026-07-11-terraform-modules.md`).
+
+**Frontmatter :** `title` et `description` toujours entre guillemets doubles (un `:` non quoté casse le YAML et fait tomber tout le plugin), `tags`. **Jamais de champ `authors`** : Sébastien est seul auteur, le champ afficherait sa photo sur chaque billet.
+
 **Structure type d'un article blog :**
-- Introduction courte qui pose le problème concret
-- `<!--truncate-->` après le premier paragraphe (requis pour l'aperçu sur la liste)
-- Sections H2/H3 progressives : concept → mécanisme → exemple pratique → conclusion
+- Introduction d'un seul paragraphe qui pose le problème concret
+- `<!--truncate-->` juste après (requis pour l'aperçu sur la liste)
+- Pas de H1 dans le corps (le `title` en tient lieu), pas d'emoji dans les titres
+- Sections H2/H3 progressives : concept → mécanisme → exemple pratique → pièges / limites → conclusion
 - Analogies concrètes bienvenues pour illustrer les concepts abstraits
-- Blocs de code avec labels de langage, commandes shell commentées
+- Blocs de code toujours avec un langage ; `text` pour les schémas ASCII et pseudo-code (le langage par défaut du site est `python`). Langages Prism additionnels déclarés dans `docusaurus.config.ts` (`hcl`, `nginx`, `docker`, `ini`, `powershell`, `promql`…) ; `logql` n'existe pas dans Prism
+- Liens relatifs `.md` vers les articles prérequis ou liés (maillage des séries)
+- Section finale `## Application / Projet lié` → page projet concernée, avec une ligne `**Utilisation** : ...`
+
+**Typographie :** espace simple avant `:`, apostrophes et guillemets droits, pas de « vous » / « nous ». Exception : les roadmaps annuelles (`blog/*-devops-roadmap-*.md`) sont écrites à la première personne.
 
 ## Projets (`docs/projects/`) — objectif et ton
 
