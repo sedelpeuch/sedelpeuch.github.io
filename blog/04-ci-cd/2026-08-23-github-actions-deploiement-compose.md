@@ -83,7 +83,7 @@ Chaque `compose.yml` porte un `name:` explicite. Le nom de projet préfixe les v
 
 ### Nettoyage sans casse
 
-Les `up --build` successifs accumulent images et cache de build. `docker system prune` supprime aussi **tous les conteneurs arrêtés** et **les réseaux sans conteneur actif**. Or un conteneur arrêté n'est pas forcément un déchet : arrêt volontaire, ou mise en veille par un outil de scale-to-zero comme [Sablier](../06-orchestration/2026-08-30-sablier.md). Conteneur supprimé, `docker start` n'a plus de cible ; réseau supprimé, le conteneur référence un identifiant de réseau inexistant et refuse de démarrer. Le constat vaut pour `docker container prune` et `docker network prune` pris isolément. Deux commandes restent sûres :
+Les `up --build` successifs accumulent images et cache de build. `docker system prune` supprime aussi **tous les conteneurs arrêtés** et **les réseaux sans conteneur actif**. Or un conteneur arrêté n'est pas forcément un déchet : arrêt volontaire, ou mise en veille par un outil de scale-to-zero comme [Sablier](../06-orchestration/2026-08-30-traefik-sablier.md). Conteneur supprimé, `docker start` n'a plus de cible ; réseau supprimé, le conteneur référence un identifiant de réseau inexistant et refuse de démarrer. Le constat vaut pour `docker container prune` et `docker network prune` pris isolément. Deux commandes restent sûres :
 
 ```bash
 # Images non référencées par un conteneur, y compris arrêté
@@ -276,7 +276,7 @@ docker inspect -f '{{.Name}} {{.State.Status}} {{if .State.Health}}{{.State.Heal
 (cd "$d" && docker compose down -v)
 ```
 
-Si les fichiers `.env` sont chiffrés dans le dépôt, ils doivent être déchiffrés sur le runner avant le démarrage (voir [git-crypt](../08-iac/2026-07-26-git-crypt.md)). Ce workflow sert aussi de garde-fou aux mises à jour automatiques d'images proposées par [Renovate](./2026-08-16-renovate.md).
+Si les fichiers `.env` sont chiffrés dans le dépôt, ils doivent être déchiffrés sur le runner avant le démarrage (voir [git-crypt](../08-iac/2026-07-26-git-crypt.md)). Ce workflow sert aussi de garde-fou aux mises à jour automatiques d'images proposées par [Renovate](./2026-08-16-github-actions-renovate.md).
 
 ### Limites
 

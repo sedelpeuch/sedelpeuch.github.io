@@ -265,7 +265,7 @@ La sonde doit viser l'URL **interne** du conteneur (nom de service sur le résea
       replacement: blackbox-exporter:9115
 ```
 
-L'expression sert ensuite de règle d'alerte (`expr: ... > 0` avec un `for:` de quelques minutes, qui absorbe la fenêtre de démarrage pendant laquelle le groupe peut être compté actif sans que l'application réponde encore ; voir l'article [Alertmanager](../07-monitoring/2026-09-20-alertmanager.md)), ou d'endpoint pour un outil d'uptime qui compare le résultat de l'API Prometheus à 0. Limite : si la série `probe_success` disparaît (exporter arrêté, cible retirée), le produit est vide et aucune alerte ne se déclenche. Sablier lui-même doit rester surveillé par un check classique : s'il tombe, plus aucun service ne se réveille.
+L'expression sert ensuite de règle d'alerte (`expr: ... > 0` avec un `for:` de quelques minutes, qui absorbe la fenêtre de démarrage pendant laquelle le groupe peut être compté actif sans que l'application réponde encore ; voir l'article [Alertmanager](../07-monitoring/2026-09-20-prometheus-alertmanager.md)), ou d'endpoint pour un outil d'uptime qui compare le résultat de l'API Prometheus à 0. Limite : si la série `probe_success` disparaît (exporter arrêté, cible retirée), le produit est vide et aucune alerte ne se déclenche. Sablier lui-même doit rester surveillé par un check classique : s'il tombe, plus aucun service ne se réveille.
 
 ## Application / Projet lié
 
