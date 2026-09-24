@@ -1,157 +1,170 @@
 ---
 title: "Introduction"
+description: "Introduction à l'informatique quantique : qubit, superposition, décohérence, sphère de Bloch, portes quantiques, algorithmes de Grover et Shor, historique."
 ---
 
-*Qu'est ce que l'informatique quantique et le calcul quantique ?*
+*Qu'est-ce que l'informatique quantique et le calcul quantique ?*
 
-Le calcul quantique et l'informatique quantique sont l'étude de traitement
-d'information en utilisant des **système quantiques**.
+Le calcul quantique et l'informatique quantique sont l'étude du traitement de
+l'information à l'aide de **systèmes quantiques**.
 
-Un ordinateur quantique n'est pas simplement un ordinateur plus rapide, mais
-c'est un ordinateur qui permet une nouvelle manière de concevoir les
-algorithmes, les **algorithmes quantique**
+Un ordinateur quantique n'est pas simplement un ordinateur plus rapide : c'est
+un ordinateur qui permet une nouvelle manière de concevoir les algorithmes, les
+**algorithmes quantiques**.
 
-L'ordinateur classique fonctionne sur le principe des bits (utilisation
-principale du binaire 0 ou 1), la réalisation physique repose sur le courant
-électrique, si le courant passe l'information vaut 1 sinon elle vaut 0. On se
-base sur les portes logiques (NOT, AND, XOR ...) qui nécessitent des
-transistors.
+L'ordinateur classique fonctionne sur le principe des bits (valeurs binaires 0
+ou 1) ; la réalisation physique repose sur le courant électrique : si le
+courant passe, l'information vaut 1, sinon elle vaut 0. On se base sur les
+portes logiques (NOT, AND, XOR...), réalisées avec des transistors.
 
-Avant le bit quantique nous avons le **bit probabiliste**
-$(p,q); p , q \in [0,1]$ tel que $p+q = 1$
+Entre le bit classique et le bit quantique, on peut définir le **bit
+probabiliste** $(p,q)$ avec $p, q \in [0,1]$ tels que $p+q = 1$.
 
-En revanche un ordinateur quantique manipule des **bits quantiques** (ou qubits)
-qui obéissent aux lois de la mécanique quantique.
+En revanche, un ordinateur quantique manipule des **bits quantiques** (ou
+qubits) qui obéissent aux lois de la mécanique quantique.
 
-### Principe de superposition
+## Principe de superposition
 
-Un objet quantique peut se retrouver en un *superposition d'états*. (l'objet
-quantique respectif n 'est pas seulement soit dans l'était 0 soit dans l'état 1
-mais il peut être dans une superposition d'états)
+Un objet quantique peut se trouver dans une *superposition d'états* : il n'est
+pas seulement soit dans l'état 0, soit dans l'état 1, il peut être dans une
+superposition de ces deux états.
 
-Exemple du principe de superposition : Le chat de Schrodinger.
+Exemple illustrant le principe de superposition : le chat de Schrödinger.
 
-### Décoherence
+## Décohérence
 
 Terme désignant le passage du monde quantique au monde classique. Plus un
-système physique interagit avec son environnement plus les effets quantiques
+système physique interagit avec son environnement, plus les effets quantiques
 s'estompent.
 
-### Représentation d'un qubit
+## Représentation d'un qubit
 
-On note $\vert \Psi \rangle$ un étant d'un système quantique à 2 niveaux (tel un
-qubit) décomposition du vecteur (ket)
+On note $\vert \Psi \rangle$ un état d'un système quantique à 2 niveaux (tel
+un qubit), décomposé sur la base $\{\vert 0 \rangle, \vert 1 \rangle\}$
+(notation « ket ») :
 
-$\vert \Psi \rangle = \alpha \vert 0 \rangle + \beta \vert 1 \rangle$a$
-avec $\alpha^2 + \beta^2 = 1, \alpha, \beta \in C$
+$$\vert \Psi \rangle = \alpha \vert 0 \rangle + \beta \vert 1 \rangle$$
+
+avec $\alpha, \beta \in \mathbb{C}$ et $\vert \alpha \vert^2 + \vert \beta \vert^2 = 1$.
 
 Un nombre complexe est donné par un module et une phase.
 
-### Sphère de Bloch
+## Sphère de Bloch
 
 ![](./img/bloch.png)
 
-Avec le système de coordonnées sphérique : $\begin{cases} x = \sin{\theta}
-\cos{\varphi} \\ y = \sin{\theta} \sin{\varphi} \\ z = \cos{\theta} \end{cases}$
+Avec le système de coordonnées sphériques :
 
-Les facteurs de phase n'affectant pas l'état physique d'un système, nous
-pouvons choisir $\alpha \in \mathbb{R}_+$
+$$
+\begin{cases} x = \sin{\theta} \cos{\varphi} \\ y = \sin{\theta} \sin{\varphi} \\ z = \cos{\theta} \end{cases}
+\qquad \theta \in [0,\pi],\ \varphi \in [0, 2\pi[
+$$
 
-$\vert \Psi \rangle = \cos{\dfrac{\theta}{2}} \vert 0 \rangle + \exp{i \varphi}
-\sin{\dfrac{\theta}{2}} \vert 1\rangle$
+Un facteur de phase global n'affectant pas l'état physique d'un système, nous
+pouvons choisir $\alpha \in \mathbb{R}_+$ :
 
-### Exemples d'objets quantiques
+$$
+\vert \Psi \rangle = \cos{\dfrac{\theta}{2}} \vert 0 \rangle + e^{i \varphi}
+\sin{\dfrac{\theta}{2}} \vert 1\rangle
+$$
 
-#### L'électron
+## Exemples d'objets quantiques
 
-Il possède une propriété quantique : le **spin**. Pour l'électron, il y a 2
-possibilitéés, spin up et spin down. Le spin fait que l'électron peut faire
-office de qubit. On est dans une superposition de ces 2 étant.
+### L'électron
 
-#### Registres
+Il possède une propriété quantique : le **spin**. Pour l'électron (spin 1/2),
+il y a 2 possibilités lors d'une mesure selon un axe : spin up et spin down.
+Le spin permet à l'électron de faire office de qubit : il peut être dans une
+superposition de ces 2 états.
 
-Pour un ordinateur classique on utilise des registres, par exemple un registre à
-4 bits permet de faire 16 états possibles.
+### Registres
 
-Pour un ordinateur quantique, on utilise un registre quantique, par exemple un
-registre à 4 qubits permet une superposition de 16 états.
+Dans un ordinateur classique, on utilise des registres : par exemple, un
+registre à 4 bits peut prendre 16 états possibles (un seul à la fois).
 
-$\alpha_1 \vert 0000 \rangle + \alpha_2 \vert 0001 \rangle + ... + \alpha_n \vert 1111 \rangle$
+Dans un ordinateur quantique, on utilise un registre quantique : par exemple,
+un registre à 4 qubits peut être dans une superposition des 16 états de base :
 
-### Portes quantiques
+$$
+\alpha_0 \vert 0000 \rangle + \alpha_1 \vert 0001 \rangle + \dots + \alpha_{15} \vert 1111 \rangle,
+\qquad \sum_{k=0}^{15} \vert \alpha_k \vert^2 = 1
+$$
 
-Permet de manipuler des qubits et de faire des manipulations comme dans un monde
-classique.
+## Portes quantiques
 
-Par exemple la porte de **Hadamard** :
+Elles permettent de manipuler des qubits, comme les portes logiques manipulent
+des bits dans le monde classique.
 
-$ \begin{cases} \vert 0 \rangle \stackrel{H}{\rightarrow} \dfrac{1}{\sqrt{2}} (\vert 0
+Par exemple, la porte de **Hadamard** :
+
+$$
+\begin{cases} \vert 0 \rangle \stackrel{H}{\rightarrow} \dfrac{1}{\sqrt{2}} (\vert 0
 \rangle + \vert 1 \rangle) \\ \vert 1 \rangle \stackrel{H}{\rightarrow}
-\dfrac{1}{\sqrt{2}} (\vert 0 \rangle - \vert 1 \rangle) \end{cases} $
+\dfrac{1}{\sqrt{2}} (\vert 0 \rangle - \vert 1 \rangle) \end{cases}
+$$
 
-Il existe toute une zoologie des portes quantiques qui prend en entrée 1,2 , ...
-qubits.
+Il existe toute une zoologie de portes quantiques, qui prennent en entrée 1, 2,
+... qubits.
 
-Mathématiquement on représente une porte quantique par une matrice unitaire
-$U$. $U$ est une matrice carré complexe, elle est unitaire si ($U^+$ est
-la matrice transposée conjuguée)
+Mathématiquement, on représente une porte quantique par une matrice unitaire
+$U$. $U$ est une matrice carrée complexe ; elle est unitaire si (avec $U^+$ la
+matrice transposée conjuguée, aussi notée $U^\dagger$) :
 
-$U.U^+ = 1 = U^+.U$
+$$U U^+ = I = U^+ U$$
 
-### Exemple de problème à résoudre
+## Exemples de problèmes à résoudre
 
-Soit $F : \mathbb{N} \rightarrow \mathbb{N}$, trouver $x$ tel que
-$f(x)=42$, $f$ est donnée sous la forme d'un tableau. Un algorithme
-classique effectuerai une recherche exhaustive (de complexité linéaire), en
-quantique l'algorithme de Groves permet de réaliser l'opération en une complexité $\sqrt{n}$.
+Soit $f : \{1,\dots,n\} \rightarrow \mathbb{N}$ donnée sous la forme d'un
+tableau ; trouver $x$ tel que $f(x)=42$. Un algorithme classique effectue une
+recherche exhaustive (complexité linéaire en $n$) ; en quantique, l'algorithme
+de Grover résout ce problème avec $O(\sqrt{n})$ évaluations de $f$.
 
-Autre exemple sur la factorisation des nombres entiers :
+Autre exemple, la factorisation des nombres entiers : elle est simple lorsque
+le nombre n'a que de petits facteurs premiers, mais la difficulté de factoriser
+de grands nombres est à la base de cryptosystèmes comme RSA. En 1994, Peter Shor
+a proposé un algorithme quantique de factorisation de complexité polynomiale,
+alors que le meilleur algorithme classique connu (crible algébrique) est de
+complexité sous-exponentielle mais super-polynomiale.
 
-Simple lorsque le nombre utilise des facteurs premiers petits, appel à des
-algorithmes de cryptographique qui se basent sur la factorisation. En revanche en
-1994, Peter Schor a trouvé un algorithme quantique qui se base sur l'assemblage
-de portes quantiques d'une complexité meilleure (exponentiellement meilleure)
-que la complexité de l'algorithme classique de factorisation.
+## Réalisation physique des qubits
 
-### Réalisation physique des qubits
+Un ordinateur classique fonctionne grâce au courant électrique ; pour réaliser
+un qubit, il faut un système physique suffisamment petit pour obéir aux lois de
+la mécanique quantique.
 
-Un ordinateur classique fonctionne selon le courant électrique, pour réaliser un
-qubit il faut un système physique suffisamment petit pour obéir aux lois de la
-mécanique quantique.
+Les objets permettant de réaliser physiquement un qubit peuvent être : le spin
+de l'électron ou d'un noyau atomique, la polarisation d'un photon, des circuits
+supraconducteurs, des atomes ou des ions piégés.
 
-Les objets susceptibles permettant de réaliser physiquement un qubits peuvent
-être, le spin de l'électron ou d'un noyau atomique, la polarisation d'un photon,
-circuit superconducteurs.
+Cependant, il y a quelques complications techniques :
 
-Cependant il y a quelques complications techniques :
+1. Il faut suffisamment de qubits pour avoir un registre quantique assez grand.
+2. Les qubits doivent être isolés du monde extérieur pour être stables et
+   rester dans un état superposé le plus longtemps possible, le temps
+   d'effectuer les calculs.
 
-1. Il faut avoir suffisamment de qubits pour avoir un registre quantique assez
-   grand
-2. Matériaux isolés du monde extérieur pour qu'ils soient stables et pour qu'ils
-   puissent rester dans un état superposé le plus longtemps possible pour
-   effectuer des calculs
+## La suprématie quantique
 
-### La Suprématie quantique
+Ce terme désigne la démonstration qu'un ordinateur quantique résout un problème
+qu'aucun ordinateur classique ne peut résoudre en un temps raisonnable.
 
-Ce terme désigne un problème que l'on ne pourrait résoudre qu'avec un ordinateur
-quantique et qu'un ordinateur classique ne peux pas résoudre.
-
-## 3 motivation pour l'étude de l'informatique quantique
+## Trois motivations pour l'étude de l'informatique quantique
 
 1. La miniaturisation actuelle a déjà atteint des niveaux où les effets
-   quantiques apparaissent
-2. Les effets quantiques permettent d'accélérer certains calculs et permettent
-   certains calculs inaccessibles aux ordinateurs classiques
+   quantiques apparaissent.
+2. Les effets quantiques permettent d'accélérer certains calculs et rendent
+   réalisables en pratique des calculs hors de portée des ordinateurs
+   classiques.
 3. Le but de l'informatique théorique est d'étudier les pouvoirs et les limites
-   des dispositifs de calculs les plus puissant que l'on peut avoir
+   des dispositifs de calcul les plus puissants que l'on puisse concevoir.
 
 ## Un peu d'histoire
 
-- Début des années 80 : suggestions au sujet de l'existence future d'un
-  ordinateur quantique par Richard Fegman
-- 1985 : David Deutsh a défini la machine de Turing quantique universelle
-- développements des premiers algorithmes quantiques par Deutsh et Jozsa
-- 1994 : algorithme quantique de factorisation de Peter Schor
-- suprématie quantique
-
-## Le monde quantique
+- Début des années 1980 : Richard Feynman suggère l'intérêt d'un ordinateur
+  quantique pour simuler les systèmes quantiques
+- 1985 : David Deutsch définit la machine de Turing quantique universelle
+- 1992 : algorithme de Deutsch-Jozsa, l'un des premiers algorithmes quantiques
+- 1994 : algorithme quantique de factorisation de Peter Shor
+- 1996 : algorithme de recherche de Lov Grover
+- 2019 : Google annonce avoir atteint la suprématie quantique (processeur
+  Sycamore)
