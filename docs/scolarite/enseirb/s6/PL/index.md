@@ -1,16 +1,13 @@
 ---
 title: Recherche opérationnelle
-icon: fa-search
-order: 5
-hide: true
-
+description: "Cours de recherche opérationnelle du semestre 6 : programmation linéaire, méthode du simplexe, programmation linéaire en nombres entiers et modélisation."
 ---
 
 import DocCardList from '@theme/DocCardList';
 
 <DocCardList />
 
-## Ressources Pédagogiques
+## Ressources pédagogiques
 
 | Cours  | Sujet du TD |
 |:------:|:-----------:|
@@ -19,7 +16,7 @@ import DocCardList from '@theme/DocCardList';
 | [PL-3] |  [PL-3 TD]  |
 | [PL-4] |             |
 
-## Devoir Maison
+## Devoir maison
 
 [ProjetGoogle](./img/ProjetGoogle.ipynb)
 
