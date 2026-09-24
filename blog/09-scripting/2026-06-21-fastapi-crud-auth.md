@@ -6,9 +6,9 @@ tags: [scripting, devops]
 
 Une API REST expose des ressources que des clients peuvent créer, lire, modifier et supprimer. La structuration de ces opérations — les codes HTTP à retourner, la forme des corps de requête et de réponse, la gestion des erreurs — détermine la qualité et la prévisibilité de l'interface. FastAPI fournit les outils pour formaliser cette structure, et son système de dépendances permet d'y adjoindre une couche d'authentification de manière composable.
 
-Cet article suppose une connaissance de base de FastAPI. Pour une introduction au framework, voir [l'article précédent sur FastAPI](/blog/2024/12/20/09-scripting/fastapi).
-
 <!--truncate-->
+
+Cet article suppose une connaissance de base de FastAPI. Pour une introduction au framework, voir [l'article précédent sur FastAPI](./2024-12-20-fastapi.md).
 
 ## Structurer un CRUD complet
 
