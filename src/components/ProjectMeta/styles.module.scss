@@ -1,0 +1,131 @@
+// Bloc méta des pages projets.
+// Reprend le motif de la timeline de la page d'accueil : un anneau et un rail
+// verticaux bleus, la période en titre, puis rôle, domaine et stack.
+
+.meta {
+  --pm-muted: var(--ifm-color-emphasis-600);
+  --pm-accent: var(--ifm-color-primary);
+  --pm-ring: 14px;
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  gap: 1rem;
+  margin: 1.75rem 0 2.25rem;
+  font-size: 0.95rem;
+}
+
+.rail {
+  position: relative;
+
+  // Anneau : aligné sur la ligne de la période.
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0.4rem;
+    left: 50%;
+    width: var(--pm-ring);
+    height: var(--pm-ring);
+    translate: -50% 0;
+    border: 2.5px solid var(--pm-accent);
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+
+  // Rail : continu pour une période close, en pointillés pour un projet en cours.
+  &::after {
+    content: "";
+    position: absolute;
+    top: calc(0.4rem + var(--pm-ring));
+    bottom: 0.2rem;
+    left: 50%;
+    width: 2.5px;
+    translate: -50% 0;
+    background: var(--pm-accent);
+  }
+
+  &[data-status="en cours"]::after,
+  &[data-status="en pause"]::after {
+    background: repeating-linear-gradient(
+      180deg,
+      var(--pm-accent) 0 7px,
+      transparent 7px 12px
+    );
+  }
+}
+
+.body p {
+  margin: 0 0 0.35rem;
+}
+
+.period {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 520;
+  font-variant-numeric: tabular-nums;
+  color: var(--ifm-heading-color);
+}
+
+.arrow {
+  color: var(--pm-muted);
+  font-weight: 400;
+}
+
+.status {
+  margin-left: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--pm-muted);
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.4rem;
+    border-radius: 50%;
+    background: var(--pm-muted);
+    vertical-align: 0.05rem;
+  }
+
+  &[data-status="en cours"]::before {
+    background: #22c55e;
+  }
+
+  &[data-status="en pause"]::before {
+    background: #eab308;
+  }
+}
+
+.role {
+  font-size: 1rem;
+}
+
+.domain {
+  color: var(--pm-muted);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tech {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.techIcon {
+  width: 1.05em;
+  height: 1.05em;
+  flex: none;
+  color: var(--pm-accent);
+}
