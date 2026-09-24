@@ -1,40 +1,33 @@
 ---
 title: Reachy Mobile
 tags: [robotique, reachy, mobile, eirlab, python, jupyter]
+description: "Rendre mobile le robot humanoïde Reachy en l'installant sur une base motorisée EZ Wheel : pilotage, téléopération et expérimentations de manipulation, projet mené au fablab EirLab."
 ---
 
 <img src="/img/project/reachy_mobile.png" alt="Aperçu Reachy Mobile" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
-<div className="project-meta-grid">
-  <div className="project-meta-item">📅 2020-2022</div>
-  <div className="project-meta-item">🛑 Terminé</div>
-  <div className="project-meta-item">👨‍💻 Contributeur</div>
-</div>
+<ProjectMeta
+  start="2021"
+  end="2022"
+  role="Développeur principal du code Reachy"
+  domain="Robotique mobile, manipulation, téléopération"
+  stack={["Python", "Jupyter", "Reachy SDK"]}
+/>
 
-## Présentation
+## Contexte
 
-Reachy Mobile est un projet robotique mené chez Eirlab, visant à rendre le robot Reachy mobile grâce à une base motorisée et des développements logiciels spécifiques. Le dépôt principal contient le code de pilotage, d’expérimentation et d’intégration pour la navigation, la téléopération et l’ajout de capteurs sur la plateforme.
+Reachy est un robot humanoïde à bras, conçu pour rester fixe. Le projet Reachy Mobile, mené à EirLab, visait à le rendre mobile en l'installant sur une base motorisée, puis à combiner déplacement et manipulation.
 
-Le projet a permis d’explorer la mobilité, la manipulation et l’intelligence embarquée avec Reachy, en s’appuyant sur Python, Jupyter Notebook et le Reachy SDK.
+## Réalisations
 
-## Démarche et réalisations 🚀
+Le projet est découpé en deux dépôts : le code de la base mobile ([EZ Wheel Navigation](ez-wheel-navigation.md)) et le code du robot Reachy, dont je suis le principal contributeur. Ce second dépôt regroupe, sous forme de scripts Python et de notebooks Jupyter s'appuyant sur le Reachy SDK :
 
-- Développement du code de pilotage pour la base mobile
-- Intégration avec Reachy (Python, Jupyter)
-- Expérimentations de navigation, téléopération et manipulation
-- Documentation vidéo des tests
+- le pilotage de Reachy et son intégration avec la base mobile ;
+- des expérimentations de navigation, de téléopération et de manipulation ;
+- une vidéo de démonstration des essais.
 
-## Technologies et outils 🛠️
-
-- Python, Jupyter Notebook
-- Reachy SDK
-- Contrôleurs moteurs
-
-## Liens et ressources 🔗
+## Liens
 
 - 💻 Code source : [GitHub](https://github.com/Eirlab/reachy_mobile_reachy)
 - 🎥 Démonstration vidéo : [Google Drive](https://drive.google.com/file/d/16iD9CS9QWmb8qNn6hHAq40Rqb6V94oK6/view)
-
----
-
-> Un projet pour explorer la mobilité et l’intelligence embarquée avec Reachy.
+- [EZ Wheel Navigation](ez-wheel-navigation.md) : code de la base mobile
