@@ -8,7 +8,6 @@ Voici un résumé de ma roadmap DevOps personnelle pour 2024. Cette roadmap s’
 
 <!--truncate-->
 
-# DevOps Roadmap 2024
 
 import IconTitle from '@site/src/components/IconTitle';
 
@@ -18,9 +17,9 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ### <IconTitle logo="skill-icons:linux-light" name="02 OS & Linux"/>
 
-[Système & Linux](/blog/tags/linux) Approfondissement des notions de réseau et de sécurité, configuration avancée des pare-feu, gestion des équilibreurs de charge et des proxies, maîtrise des protocoles HTTP/HTTPS et de la virtualisation. L’objectif est de fiabiliser l’infrastructure, d’automatiser la gestion des accès et d’optimiser la sécurité sur des environnements multi-plateformes.
+**Système & Linux** Approfondissement des notions de réseau et de sécurité, configuration avancée des pare-feu, gestion des équilibreurs de charge et des proxies, maîtrise des protocoles HTTP/HTTPS et de la virtualisation. L’objectif est de fiabiliser l’infrastructure, d’automatiser la gestion des accès et d’optimiser la sécurité sur des environnements multi-plateformes.
 
-### <IconTitle logo="skill-icons:docker" name="03 Contenérisation - Docker"/>
+### <IconTitle logo="skill-icons:docker" name="03 Conteneurisation - Docker"/>
 
 [Conteneurisation](/blog/tags/containerization) Déploiement et supervision de stacks Docker Compose et Swarm, gestion centralisée des configurations, automatisation des mises à jour, documentation des architectures modulaires (Home Assistant, Dashy, n8n, Uptime Kuma…). Expérimentation de l’orchestration à l’échelle domestique, avec un accent sur la reproductibilité et la sécurité.
 
@@ -36,7 +35,7 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ### <IconTitle logo="skill-icons:linux-light" name="02 OS & Linux"/>
 
-[Système & Linux](/blog/tags/linux) L’utilisation avancée des commandes Shell, la gestion du système de fichiers et des permissions, la gestion des clés SSH, la compréhension des adresses IP, ports et DNS sont des fondamentaux acquis lors de la formation d’ingénieur, puis consolidés par la pratique sur des serveurs, clusters et environnements cloud, notamment dans des projets comme HomeLab ou delpeuch.net.
+**Système & Linux** L’utilisation avancée des commandes Shell, la gestion du système de fichiers et des permissions, la gestion des clés SSH, la compréhension des adresses IP, ports et DNS sont des fondamentaux acquis lors de la formation d’ingénieur, puis consolidés par la pratique sur des serveurs, clusters et environnements cloud, notamment dans des projets comme HomeLab ou delpeuch.net.
 
 ### <IconTitle logo="skill-icons:python-light" name="09 Langages de script - Python"/>
 

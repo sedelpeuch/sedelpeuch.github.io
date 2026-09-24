@@ -8,7 +8,6 @@ Voici un résumé de ma roadmap DevOps personnelle pour 2026. Cette roadmap s’
 
 <!--truncate-->
 
-# DevOps Roadmap 2026
 
 import IconTitle from '@site/src/components/IconTitle';
 
