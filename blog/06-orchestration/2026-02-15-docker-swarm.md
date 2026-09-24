@@ -271,8 +271,9 @@ docker service create \
 
 ## Application / Projet lié
 
-### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
-**Utilisation** : Comparaison architecturale : le cluster utilise Kubernetes (kubeadm) plutôt que Swarm pour plus de fonctionnalités et scalabilité.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Comparaison architecturale : le cluster utilise Kubernetes (kubeadm) plutôt que Swarm pour plus de fonctionnalités et scalabilité.</ProjectLink>
+</ProjectLinks>
 
 ## Conclusion
 

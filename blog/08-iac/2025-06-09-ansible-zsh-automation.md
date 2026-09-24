@@ -273,8 +273,9 @@ L'utilisation d'Ansible pour configurer un environnement zsh apporte :
 
 ## Application / Projet lié
 
-### [zsh_ansible](/docs/projects/personnel/zsh_ansible)
-**Utilisation** : Cet article documente le projet zsh_ansible, une automatisation complète de la configuration du shell de développement.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/zsh_ansible" title="zsh_ansible">Cet article documente le projet zsh_ansible, une automatisation complète de la configuration du shell de développement.</ProjectLink>
+</ProjectLinks>
 
 ## Conclusion
 

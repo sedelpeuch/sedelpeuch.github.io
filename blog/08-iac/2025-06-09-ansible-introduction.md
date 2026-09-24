@@ -206,14 +206,11 @@ Ansible et [Terraform](./2026-06-21-terraform.md) se combinent souvent : Terrafo
 
 ## Application / Projet lié
 
-### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
-**Utilisation** : Automatisation complète de la configuration et de la maintenance des nœuds Kubernetes avec Ansible.
-
-### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
-**Utilisation** : Provisionnement automatique du cluster Kubernetes et installation d'ARC via des playbooks Ansible.
-
-### [zsh_ansible](/docs/projects/personnel/zsh_ansible)
-**Utilisation** : Cas pratique d'automatisation shell avec Ansible pour la gestion d'infrastructure personnelle.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Automatisation complète de la configuration et de la maintenance des nœuds Kubernetes avec Ansible.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC Kubeadm">Provisionnement automatique du cluster Kubernetes et installation d'ARC via des playbooks Ansible.</ProjectLink>
+  <ProjectLink to="/docs/projects/personnel/zsh_ansible" title="zsh_ansible">Cas pratique d'automatisation shell avec Ansible pour la gestion d'infrastructure personnelle.</ProjectLink>
+</ProjectLinks>
 
 ## Conclusion
 

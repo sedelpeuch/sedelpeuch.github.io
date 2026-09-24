@@ -261,7 +261,8 @@ Le forward-auth contrôle l'**accès** au service, pas l'**identité** dans le s
 
 ## Application / Projet lié
 
-### [HomeLab](/docs/projects/personnel/homelab)
-**Utilisation** : Authelia en forward-auth devant l'ensemble des services web exposés par Traefik, avec une règle de repli `default_policy: deny`, des bypass ciblés sur les chemins d'API des applications mobiles et des sous-domaines dédiés pour les clients natifs.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Authelia en forward-auth devant l'ensemble des services web exposés par Traefik, avec une règle de repli `default_policy: deny`, des bypass ciblés sur les chemins d'API des applications mobiles et des sous-domaines dédiés pour les clients natifs.</ProjectLink>
+</ProjectLinks>
 
 Le forward-auth centralise la décision d'accès au niveau du proxy avec une configuration réduite : un middleware, un cookie de domaine et une liste ordonnée de règles. Sa fiabilité dépend surtout de la précision des exceptions, c'est-à-dire des regex `resources` et des chemins réseau qui ne traversent pas le proxy.

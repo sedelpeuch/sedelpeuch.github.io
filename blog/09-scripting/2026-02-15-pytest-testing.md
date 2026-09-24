@@ -495,11 +495,10 @@ def test_create_user_missing_email(service):
 
 ## Application / Projet lié
 
-### [standards-python](/docs/projects/professionnel/standards-python)
-**Utilisation** : Framework de test principal avec configuration pytest.ini et intégration CI/CD.
-
-### [CI/CD](/docs/projects/professionnel/cicd)
-**Utilisation** : Exécution automatisée des tests pytest lors des push et pull requests.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/standards-python" title="standards-python">Framework de test principal avec configuration pytest.ini et intégration CI/CD.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD">Exécution automatisée des tests pytest lors des push et pull requests.</ProjectLink>
+</ProjectLinks>
 
 ## Conclusion
 

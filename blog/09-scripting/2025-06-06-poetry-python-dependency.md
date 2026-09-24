@@ -274,5 +274,6 @@ Poetry réunit déclaration, résolution, verrouillage, environnement virtuel et
 
 ## Application / Projet lié
 
-### [standards-python](/docs/projects/professionnel/standards-python)
-**Utilisation** : Project template Python utilisant Poetry pour la gestion des dépendances, les tests (pytest) et les releases.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/standards-python" title="standards-python">Project template Python utilisant Poetry pour la gestion des dépendances, les tests (pytest) et les releases.</ProjectLink>
+</ProjectLinks>

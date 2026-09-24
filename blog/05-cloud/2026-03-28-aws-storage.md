@@ -1,6 +1,7 @@
 ---
 title: "AWS : RDS, S3 et EBS"
 description: "RDS pour les données relationnelles, S3 pour les objets et EBS pour le stockage en bloc. Connexion, opérations et différences."
+series: aws
 tags: [cloud, devops]
 ---
 

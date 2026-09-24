@@ -270,9 +270,9 @@ L'expression sert ensuite de règle d'alerte (`expr: ... > 0` avec un `for:` de 
 
 ## Application / Projet lié
 
-### [HomeLab](/docs/projects/personnel/homelab)
-
-**Utilisation** : scale-to-zero de plusieurs stacks à usage sporadique (application web avec base de données, stockage objet et cache, outil de dashboards, boîte à outils PDF sur JVM), derrière un middleware d'authentification, avec détection des pannes réelles par Prometheus et blackbox_exporter.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Scale-to-zero de plusieurs stacks à usage sporadique (application web avec base de données, stockage objet et cache, outil de dashboards, boîte à outils PDF sur JVM), derrière un middleware d'authentification, avec détection des pannes réelles par Prometheus et blackbox_exporter.</ProjectLink>
+</ProjectLinks>
 
 ## Conclusion
 

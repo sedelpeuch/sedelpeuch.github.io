@@ -209,7 +209,8 @@ Une sauvegarde jamais restaurée n'est qu'une hypothèse. Passphrase erronée, v
 
 ## Application / Projet lié
 
-### [HomeLab](/docs/projects/personnel/homelab)
-**Utilisation** : Sauvegarde quotidienne chiffrée des volumes critiques d'une vingtaine de projets Compose vers deux destinations (fournisseur S3 hors site et instance Garage locale sur un autre support), avec classification explicite des volumes par profil de protection.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Sauvegarde quotidienne chiffrée des volumes critiques d'une vingtaine de projets Compose vers deux destinations (fournisseur S3 hors site et instance Garage locale sur un autre support), avec classification explicite des volumes par profil de protection.</ProjectLink>
+</ProjectLinks>
 
 docker-volume-backup couvre l'archivage, le chiffrement, l'expédition et la rotation. La cohérence des bases, le choix des volumes, la conservation de la passphrase et les tests de restauration restent à la charge de l'exploitant, et déterminent si les archives sont réellement exploitables.

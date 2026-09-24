@@ -208,11 +208,10 @@ Ruff a automatiquement :
 
 ## Application / Projet lié
 
-### [standards-python](/docs/projects/professionnel/standards-python)
-**Utilisation** : Ruff configuré comme linter et formatter standard pour l'ensemble du projet Python.
-
-### [CI/CD](/docs/projects/professionnel/cicd)
-**Utilisation** : Vérifications Ruff intégrées dans les pipelines CI/CD pour la qualité du code.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/standards-python" title="standards-python">Ruff configuré comme linter et formatter standard pour l'ensemble du projet Python.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD">Vérifications Ruff intégrées dans les pipelines CI/CD pour la qualité du code.</ProjectLink>
+</ProjectLinks>
 
 ## Ressources
 

@@ -1,6 +1,7 @@
 ---
 title: "Terraform : multi-environnements"
 description: "Gérer dev, staging et prod avec Terraform : workspaces natifs vs structuration par répertoires. Avantages, limites, et gestion des variables par environnement."
+series: terraform
 tags: [iac, devops]
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Terraform : depends_on et lifecycle"
 description: "Contrôler l'ordre de création avec depends_on et le comportement lors des modifications avec lifecycle : prevent_destroy, ignore_changes et create_before_destroy."
+series: terraform
 tags: [iac, devops]
 ---
 

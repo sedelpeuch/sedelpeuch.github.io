@@ -1,6 +1,7 @@
 ---
 title: "AWS : Docker sur EC2 et ECR"
 description: "Installer Docker sur EC2, utiliser ECR comme registre privé avec authentification IAM, et poser les bases d'un déploiement automatisable."
+series: aws
 tags: [cloud, devops]
 ---
 

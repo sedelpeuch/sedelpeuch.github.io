@@ -200,11 +200,10 @@ Le mécanisme des secrets GitHub Actions est décrit dans l'article [GitHub Acti
 
 ## Application / Projet lié
 
-### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
-**Utilisation** : Gestion sécurisée des secrets d'infrastructure (mots de passe, tokens, clés SSH) dans les playbooks Ansible.
-
-### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
-**Utilisation** : Stockage chiffré des tokens GitHub et des identifiants lors du provisionnement d'ARC via Ansible.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Gestion sécurisée des secrets d'infrastructure (mots de passe, tokens, clés SSH) dans les playbooks Ansible.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC Kubeadm">Stockage chiffré des tokens GitHub et des identifiants lors du provisionnement d'ARC via Ansible.</ProjectLink>
+</ProjectLinks>
 
 ## Pour aller plus loin
 
