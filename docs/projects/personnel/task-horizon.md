@@ -4,15 +4,17 @@ tags: [fastapi, kubernetes, helm, terraform, aws, eks, cicd, github-actions, pyt
 description: Application Kanban FastAPI + React déployée sur AWS EKS via Terraform, avec un chart Helm multi-environnement et un pipeline CI/CD GitHub Actions du commit au cluster.
 ---
 
-<div className="project-meta-grid">
-  <div className="project-meta-item">🛑 Terminé</div>
-  <div className="project-meta-item">📅 2025 – 2026</div>
-  <div className="project-meta-item">🔧 FastAPI · React · PostgreSQL · Terraform · Helm · AWS EKS · GitHub Actions</div>
-</div>
+<ProjectMeta
+  start="2026"
+  end="2026"
+  role="Auteur (projet solo)"
+  domain="Application web, Kubernetes multi-environnement, cloud AWS"
+  stack={["FastAPI", "React", "PostgreSQL", "Terraform", "Helm", "AWS EKS", "GitHub Actions"]}
+/>
 
 ## Contexte
 
-TaskHorizon est une application de gestion de tâches Kanban développée seul, sans ambition produit. Son rôle est de servir de terrain d'expérimentation pour un ensemble de compétences DevOps et backend rarement réunies dans un même projet professionnel : conception d'API, modélisation de données, infrastructure as code, orchestration Kubernetes multi-environnement et automatisation CI/CD. Chaque décision (stack, stratégie de déploiement, gestion des secrets, résilience) est prise et assumée de bout en bout, sans contrainte organisationnelle héritée.
+TaskHorizon est une application de gestion de tâches Kanban que j'ai développée seul, sans ambition produit. Son rôle est de servir de terrain d'expérimentation pour un ensemble de compétences DevOps et backend rarement réunies dans un même projet professionnel : conception d'API, modélisation de données, infrastructure as code, orchestration Kubernetes multi-environnement et automatisation CI/CD. Chaque décision (stack, stratégie de déploiement, gestion des secrets, résilience) est prise et assumée de bout en bout, sans contrainte organisationnelle héritée.
 
 L'API REST (FastAPI + PostgreSQL) et l'interface React constituent le support fonctionnel qui rend le projet concret. Le périmètre décrit ci-dessous porte sur ce qui l'entoure.
 
@@ -73,17 +75,19 @@ Le secret de signature JWT et le mot de passe du compte administrateur ne sont j
 
 Un chart Helm unique gère trois environnements (`taskhorizon-test`, `taskhorizon-staging`, `taskhorizon-prod`) cohabitant dans le même namespace. Chaque ressource porte le nom de la release en préfixe, et les `selectorLabels` incluent `app.kubernetes.io/instance` : sans cette discipline, un Service d'un environnement pourrait router du trafic vers les pods d'un autre.
 
-La divergence la plus structurante entre environnements porte sur la persistance des données :
+La divergence la plus structurante entre environnements porte sur la persistance des données et la disponibilité :
 
 | Environnement | Base de données | Réplicas | Particularité |
 | --- | --- | --- | --- |
-| test | PostgreSQL sans volume | 1 | données perdues au redémarrage, état volontairement jetable |
-| staging | StatefulSet PostgreSQL + PVC 5 Gi | variable | PodDisruptionBudget actif |
-| prod | RDS externe (Secret pré-existant) | 3, piloté par HPA | pas de `replicas` fixe dans le Deployment |
+| test | PostgreSQL dans le cluster, sans volume | 1 | données perdues au redémarrage, état volontairement jetable |
+| staging | RDS provisionnée par Terraform, endpoint injecté au déploiement | 2 (API et web) | PodDisruptionBudget actif (`minAvailable: 1`) |
+| prod | RDS externe (Secret préexistant) | API 3 à 10, web 2 à 5, pilotés par HPA | pas de `replicas` fixe dans le Deployment, Ingress TLS via cert-manager |
 
-En production, le Deployment ne fixe pas de nombre de réplicas : c'est le `HorizontalPodAutoscaler` (seuil CPU à 70 %) qui en a la charge. Définir `replicas` et activer un HPA simultanément produit un conflit de contrôle aux effets imprévisibles lors d'un rollback : les deux mécanismes se disputent la valeur cible.
+Le chart conserve un mode intermédiaire, un StatefulSet PostgreSQL adossé à un PVC, activable par une seule valeur (`postgres.pvc.enabled`). Il a servi de persistance pour staging avant la bascule vers RDS, qui aligne staging sur la topologie de production.
 
-Le mot de passe de connexion à la base ne transite jamais par un ConfigMap : il est lu depuis un Secret Kubernetes et substitué au runtime par le kubelet via `$(DB_PASSWORD)`. En staging, ce mot de passe est fourni au moment du déploiement via `--set`, sans jamais résider dans un fichier de values versionné. En production, le chart ne crée aucun Secret de base de données : il référence par son nom un Secret provisionné hors bande, cohérent avec le fait que l'instance RDS elle-même est hors du contrôle du chart applicatif.
+En production, le Deployment ne fixe pas de nombre de réplicas dès que le `HorizontalPodAutoscaler` est activé (seuil CPU à 70 %) : le template n'émet le champ `replicas` que si l'HPA est désactivé. Définir `replicas` et activer un HPA simultanément produit un conflit de contrôle : à chaque `helm upgrade`, la valeur du chart écrase celle calculée par l'HPA, qui la réajuste ensuite.
+
+Le mot de passe de connexion à la base ne transite jamais par un ConfigMap : il est lu depuis un Secret Kubernetes et substitué au runtime par le kubelet via `$(DB_PASSWORD)`. En staging, ce mot de passe est fourni au moment du déploiement via `--set`, depuis les secrets GitHub Actions, sans jamais résider dans un fichier de values versionné. En production, le chart ne crée aucun Secret de base de données : il référence par son nom un Secret provisionné hors bande, cohérent avec le fait que l'instance RDS elle-même est hors du contrôle du chart applicatif.
 
 Le frontend nginx proxifie `/api/` vers le service API interne, dont l'adresse dépend du nom de la release (`taskhorizon-test-api:8000`, `taskhorizon-prod-api:8000`, etc.). Cette configuration est générée dans un ConfigMap, et le Deployment web porte une annotation de checksum sur ce ConfigMap : toute modification de la configuration nginx déclenche un rolling restart automatique, sans intervention manuelle.
 
@@ -110,3 +114,15 @@ Il n'existe pas de workflow `deploy-prod` : le déploiement en production reste 
 ## Liens
 
 - 💻 Code source : [github.com/sedelpeuch/task_horizon](https://github.com/sedelpeuch/task_horizon)
+
+Articles du blog issus de ce projet :
+
+- [FastAPI : CRUD et authentification](/blog/2026/06/21/09-scripting/fastapi-crud-auth)
+- [SQLAlchemy](/blog/2026/06/21/09-scripting/sqlalchemy)
+- [Kubernetes : haute disponibilité et PodDisruptionBudget](/blog/2026/04/03/06-orchestration/kubernetes-haute-disponibilite-pdb)
+- [Kubernetes : rolling update et ressources](/blog/2026/04/04/06-orchestration/kubernetes-rolling-update-ressources)
+- [AWS VPC](/blog/2026/04/02/05-cloud/vpc)
+- [AWS EKS](/blog/2026/06/28/05-cloud/eks)
+- [Terraform : multi-environnements](/blog/2026/07/19/08-iac/terraform-multi-environnements)
+- [Terraform : remote state](/blog/2026/07/11/08-iac/terraform-remote-state)
+- [Pipeline CI/CD vers EKS](/blog/2026/07/19/04-ci-cd/pipeline-cicd-eks)
