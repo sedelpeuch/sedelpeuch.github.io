@@ -49,6 +49,12 @@
     margin: 0;
   }
 
+  // Infima ajoute une marge au-dessus de chaque élément sauf le premier
+  // (.markdown li + li), ce qui décalait la première ligne de la grille.
+  :global(.markdown) & li + li {
+    margin-top: 0;
+  }
+
   // Icône de fichier devant chaque lien, selon la cible.
   a {
     display: inline-flex;

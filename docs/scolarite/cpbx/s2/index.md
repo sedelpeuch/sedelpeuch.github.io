@@ -1,5 +1,6 @@
 ---
 title: Cycle Préparatoire de Bordeaux - Semestre 2
+sidebar_label: Semestre 2
 description: Supports de cours, TD et fiches du deuxième semestre du Cycle Préparatoire de Bordeaux (chimie inorganique et organique, analyse, algèbre, physique).
 ---
 

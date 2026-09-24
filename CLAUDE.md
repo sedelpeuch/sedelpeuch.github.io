@@ -27,7 +27,7 @@ Docusaurus 3 site (French, single locale). Deployed to GitHub Pages at `delpeuch
 - `data/social.ts` — social link definitions consumed by components
 - `static/` — static assets served at root
 
-**Composants et plugins maison :** `src/components/` (ProjectMeta, ProjectIndex, ProjectLink, Series, CategoryNav), enregistrés globalement pour le MDX dans `src/theme/MDXComponents/index.tsx` (aucun import nécessaire). `plugins/projects-data` et `plugins/series-data` exposent des données globales construites à partir des fichiers. Thème surchargé : paginateur (anneaux reliés, pagination limitée à une section de docs), sidebar du blog (icône de catégorie et mois), pied de billet (série ou catégorie). Vocabulaire visuel commun : anneau 14 px et rail 2,5 px bleus (timeline de la page d'accueil), pointillés = en cours / à venir, icônes monochromes teintées de la couleur primaire. Attention : Babel compile `[...new Set()]` de façon incorrecte (mode loose), utiliser `Array.from(new Set())`.
+**Composants et plugins maison :** `src/components/` (ProjectMeta, ProjectIndex, ProjectLink, ProjectArticles, Series, CategoryNav, scolarite/*), enregistrés globalement pour le MDX dans `src/theme/MDXComponents/index.tsx` (aucun import nécessaire). `plugins/projects-data` et `plugins/series-data` exposent des données globales construites à partir des fichiers. Thème surchargé : pied des pages projets (articles du blog qui y renvoient, relation inverse des `<ProjectLink>`), paginateur (anneaux reliés, pagination limitée à une section de docs), sidebar du blog (icône de catégorie et mois), pied de billet (série ou catégorie). Vocabulaire visuel commun : anneau 14 px et rail 2,5 px bleus (timeline de la page d'accueil), pointillés = en cours / à venir, icônes monochromes teintées de la couleur primaire. Attention : Babel compile `[...new Set()]` de façon incorrecte (mode loose), utiliser `Array.from(new Set())`.
 
 **Key config:** `docusaurus.config.ts` — navbar, plugins (KaTeX math, Mermaid diagrams, Algolia search, PWA, image zoom, SASS), theme config.
 
@@ -84,6 +84,12 @@ Un article peut être antidaté pour combler un trou dans le rythme de publicati
 - Série : un parcours pensé pour être lu dans l'ordre (Homelab, Terraform, AWS) se déclare par `series: <id>` dans le frontmatter (ordre = date, `series_order` pour départager une même date). Le billet affiche alors la piste de série ; sinon, une navigation précédent / suivant dans sa catégorie (dossier). Une catégorie n'est pas une série. Libellés des séries : `plugins/series-data/index.js`.
 
 **Typographie :** espace simple avant `:`, apostrophes et guillemets droits, pas de « vous » / « nous ». Exception : les roadmaps annuelles (`blog/*-devops-roadmap-*.md`) sont écrites à la première personne.
+
+## Scolarité (`docs/scolarite/`)
+
+Pages d'index : `<CourseTimeline />` (page Scolarité et pages d'école : frise des semestres avec leurs matières) et `<CourseGrid />` (semestres et matières : une tuile par sous-page, description du frontmatter, nombre de pages), tous deux lus depuis la sidebar. Icônes de matière au trait déduites du libellé (`src/components/scolarite/icons.ts`, ordre du plus spécifique au plus générique), surchargeables par `sidebar_custom_props.icon`.
+
+Pages de matière : les liens de ressources sont regroupés par type dans des `<ResourceList type="cours|td|tp|correction|projet|support" title="…" ordered>` contenant une liste markdown (ligne vide après la balise ouvrante et avant la fermante, sinon MDX ne parse pas la liste ; pas de tableau dedans). `ordered` (défaut pour `cours`) affiche la séquence en rail d'anneaux. Toute modification de ces blocs doit préserver les cibles de liens.
 
 ## Projets (`docs/projects/`) — objectif et ton
 
