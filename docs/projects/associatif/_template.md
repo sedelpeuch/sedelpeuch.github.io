@@ -1,36 +1,36 @@
 ---
 title: Titre du projet
+description: Une phrase qui résume le projet, son contexte et son résultat (SEO). Entre guillemets doubles si elle contient « : ».
 tags: [mots-clés]
 ---
 
-<img src="URL de l’image (locale ou externe)" alt="Aperçu du projet" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
+<img src="URL de l'image (locale ou externe)" alt="Aperçu du projet" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
-<div className="project-meta-grid">
-  <div className="project-meta-item">🟢 En cours / 🟡 En pause / 🛑 Terminé</div>
-  <div className="project-meta-item">📅 AAAA – AAAA ou période</div>
-  <div className="project-meta-item">👨‍💻 auteur / contributeur / responsable / etc.</div>
-</div>
+{/* start : début de la période (« 2023 », « Juillet 2023 »).
+    end : fin de la période ; à omettre si le projet est en cours ; égale à start pour une période ponctuelle.
+    status : optionnel, uniquement « en pause », ou « terminé » pour un projet terminé sans date de fin connue. */}
 
-## Présentation
+<ProjectMeta
+  start="AAAA"
+  end="AAAA"
+  role="Rôle tenu sur le projet"
+  domain="Domaine 1, domaine 2"
+  stack={["Techno 1", "Techno 2"]}
+/>
 
-Brève description du projet, origine et objectif. Préciser le besoin auquel il répond dans le contexte associatif.
+## Contexte
 
-## Contexte associatif
+Problème à résoudre et public concerné, avant la solution.
 
-Rôle de l’association, public concerné, impact ou utilité pour la communauté.
+## Réalisations
 
-## Démarche et réalisations 🚀
+Ce qui a été construit concrètement, avec les décisions techniques et leur justification.
 
-- Étape ou action 1
-- Étape ou action 2
-- …
+## Résultats
 
-## Technologies et outils 🛠️
+Impact mesurable ou qualitatif.
 
-- Liste des technologies, langages, plateformes, matériels
+## Liens
 
-## Liens et ressources 🔗
-
-- 💻 Code source ou ressource principale : [lien]
-- Documentation : [lien]
-- Autre ressource : [lien]
+- 💻 Code source : [lien]
+- 📝 Article de présentation : [lien]
