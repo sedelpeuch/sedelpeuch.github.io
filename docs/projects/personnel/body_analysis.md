@@ -6,11 +6,12 @@ description: Application de suivi et d'analyse corporelle (FastAPI, React, Postg
 
 <img src="/img/project/body_analysis.png" alt="Aperçu dashboard body_analysis" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
-<div className="project-meta-grid">
-  <div className="project-meta-item">📅 Depuis 2023</div>
-  <div className="project-meta-item">📖 Data analysis · Quantified self</div>
-  <div className="project-meta-item">🔧 FastAPI · React · PostgreSQL · MinIO · Docker</div>
-</div>
+<ProjectMeta
+  start="2023"
+  role="Auteur (projet solo)"
+  domain="Analyse de données, quantified self"
+  stack={["FastAPI", "React", "PostgreSQL", "MinIO", "Docker"]}
+/>
 
 ## Contexte
 
@@ -23,7 +24,7 @@ Le projet a été réécrit en 2026 : la version initiale était une application
 <div className="tech-list">
   <div className="tech-list-row">
     <div className="tech-list-label">Backend</div>
-    <div className="tech-list-value">Python, FastAPI, SQLAlchemy (async), Pydantic, Alembic</div>
+    <div className="tech-list-value">Python, FastAPI, SQLAlchemy (async), Pydantic, Alembic, uv</div>
   </div>
   <div className="tech-list-row">
     <div className="tech-list-label">Frontend</div>
@@ -47,7 +48,7 @@ Le projet a été réécrit en 2026 : la version initiale était une application
   </div>
   <div className="tech-list-row">
     <div className="tech-list-label">Qualité</div>
-    <div className="tech-list-value">pytest, Ruff, pre-commit</div>
+    <div className="tech-list-value">pytest, Vitest, Ruff, pre-commit</div>
   </div>
 </div>
 
@@ -76,16 +77,18 @@ Le traitement d'image ne fait confiance ni à l'extension du fichier envoyé ni 
 
 ## Déploiement
 
-L'application se compose de quatre services orchestrés par Docker Compose : PostgreSQL, MinIO, l'API FastAPI et le frontend. Le frontend a deux profils distincts : un service de développement (Node + Vite, rechargement à chaud) actif par défaut, et une image de production (build statique servi par nginx, sans runtime Node) qui ne démarre que sur demande explicite via un profil Compose, pour valider l'image avant bascule sans interrompre l'environnement de développement.
+L'application se compose de quatre services orchestrés par Docker Compose : PostgreSQL, MinIO, l'API FastAPI et le frontend, complétés par une seconde instance PostgreSQL dédiée aux tests d'intégration, pour que la suite de tests ne touche jamais aux données réelles. Le frontend a deux profils distincts : un service de développement (Node + Vite, rechargement à chaud) actif par défaut, et une image de production (build statique servi par nginx, sans runtime Node) qui ne démarre que sur demande explicite via un profil Compose, pour valider l'image avant bascule sans interrompre l'environnement de développement.
 
-Le workflow GitHub Actions construit et publie les deux images (API et frontend) sur GitHub Container Registry à chaque push sur `master`, chacune taguée à la fois `latest` et par SHA de commit.
+Le workflow GitHub Actions construit et publie les deux images (API et frontend) sur GitHub Container Registry à chaque push sur `master`, chacune taguée à la fois `latest` et par SHA de commit. En production, l'application tourne sur mon [homelab](homelab.md) : utilisée quelques minutes par semaine, elle est arrêtée par Sablier après 30 minutes d'inactivité et redémarrée à la première requête, ce qui libère la mémoire occupée au repos par ses conteneurs.
 
 ## Tests
 
-La suite de tests compte 51 fichiers et près de 200 cas, répartis entre tests unitaires (calcul des métriques d'analytics, traitement d'image, sécurité de l'extraction ZIP) et tests d'intégration sur les services exposés par l'API.
+La suite de tests backend compte 51 fichiers et près de 300 fonctions de test, réparties entre tests unitaires (calcul des métriques d'analytics, traitement d'image, sécurité de l'extraction ZIP) et tests d'intégration sur les services exposés par l'API. Le frontend dispose de sa propre suite Vitest.
 
 ## Liens
 
 - 💻 Code source : [github.com/sedelpeuch/body_analysis](https://github.com/sedelpeuch/body_analysis)
-- [Poetry — gestion des dépendances](/blog/2025/06/06/09-scripting/poetry-python-dependency)
+- [uv : gestion des dépendances Python](/blog/2025/12/19/09-scripting/uv-python)
 - [Docker best practices](/blog/2024/12/20/03-containerization/docker-best-practices)
+- [Traefik et Sablier : scale-to-zero](/blog/2026/08/30/06-orchestration/traefik-sablier)
+- [HomeLab](homelab.md) : infrastructure qui héberge l'application
