@@ -14,20 +14,18 @@ interface Props {
   children?: React.ReactNode;
 }
 
-// Compte les éléments de la première liste rencontrée dans les enfants MDX.
+// Compte les éléments de la première liste des enfants MDX : la balise <ul> est
+// rendue par un composant du thème (MDXUl), d'où un comptage structurel des
+// éléments enfants plutôt qu'un test sur le type « li ».
 function countItems(node: React.ReactNode): number {
-  let count = 0;
-  React.Children.forEach(node, (child) => {
-    if (count || !React.isValidElement(child)) return;
-    const props = child.props as { children?: React.ReactNode };
-    const kids = React.Children.toArray(props.children).filter(React.isValidElement);
-    const isList = kids.length > 0 && kids.every((k) => {
-      const t = (k as React.ReactElement).type;
-      return t === "li" || (typeof t !== "string" && (t as { name?: string }).name === "li");
-    });
-    count = isList ? kids.length : countItems(props.children);
-  });
-  return count;
+  for (const child of React.Children.toArray(node)) {
+    if (!React.isValidElement(child)) continue;
+    const kids = React.Children.toArray((child.props as { children?: React.ReactNode }).children).filter(
+      React.isValidElement,
+    );
+    if (kids.length > 0) return kids.length;
+  }
+  return 0;
 }
 
 // Groupe de ressources d'une matière (cours, TD, corrections…) : les liens
