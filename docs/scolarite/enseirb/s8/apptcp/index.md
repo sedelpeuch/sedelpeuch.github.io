@@ -8,9 +8,7 @@ description: "Cours d'applications TCP/IP du semestre 8 : couches hautes, DNS, H
 [Slides de
 cours](https://moodle.bordeaux-inp.fr/pluginfile.php/165937/mod_resource/content/1/Cours%20RE218%202020_2021.pdf).
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Projet
 

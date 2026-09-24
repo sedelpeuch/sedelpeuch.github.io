@@ -6,6 +6,4 @@ description: "Notes de cours de programmation système UNIX/POSIX (ENSEIRB-MATME
 Le [support de cours et de TD](http://mfaverge.vvv.enseirb-matmeca.fr/pg204/)
 est disponible sur le site de l'enseignant.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />

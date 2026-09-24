@@ -12,9 +12,7 @@ jacobienne).
 
 [Réalisation des TP sur Github](https://github.com/Sdelpeuch/Semestre_9/tree/master/Modelisation)
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Introduction
 

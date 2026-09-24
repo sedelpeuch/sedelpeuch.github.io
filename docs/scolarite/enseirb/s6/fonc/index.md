@@ -3,9 +3,7 @@ title: Programmation fonctionnelle
 description: "Cours d'initiation à la programmation fonctionnelle en Scheme/Racket du semestre 6 : lambda-calcul, environnements, récursivité, listes, fonctionnelles, macro-expansions."
 ---
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Objectif du cours
 

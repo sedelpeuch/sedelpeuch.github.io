@@ -5,9 +5,7 @@ description: "Cours de systèmes d'exploitation du semestre 8 : concepts génér
 
 ## Ressources de cours
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Projet
 

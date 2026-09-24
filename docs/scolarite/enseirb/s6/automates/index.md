@@ -3,9 +3,7 @@ title: Automates finis et applications
 description: "Cours d'automates finis et applications du semestre 6 : langages réguliers, expressions régulières, grammaires, déterminisation et minimisation, avec notes de cours et de TD."
 ---
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Objectif du cours
 

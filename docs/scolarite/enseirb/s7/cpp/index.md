@@ -9,6 +9,4 @@ et décrivent principalement le C++98 ; les évolutions importantes des standard
 récents (C++11 à C++20) sont signalées lorsqu'elles modifient les règles
 présentées.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />

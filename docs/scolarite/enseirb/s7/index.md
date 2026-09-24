@@ -8,6 +8,4 @@ filière informatique : les supports de cours lorsqu'ils sont publics, les
 sujets (et parfois les corrections) des travaux dirigés et, lorsqu'elles ont
 été prises, mes notes de cours.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />

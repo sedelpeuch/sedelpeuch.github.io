@@ -7,9 +7,7 @@ Ressources du module de systèmes de gestion de bases de données : notes de
 cours (modélisation entités-associations, modèle relationnel, normalisation,
 algèbre relationnelle, SQL), sujets et corrections de travaux dirigés.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Les cours
 

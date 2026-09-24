@@ -11,9 +11,7 @@ de cours.
 Le [site](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/) contenant tous les
 TD.
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+<CourseGrid />
 
 ## Travaux dirigés
 
