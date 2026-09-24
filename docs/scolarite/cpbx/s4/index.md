@@ -19,22 +19,63 @@ réfléchir à l'organisation des fichiers, des fonctions, etc. Amusez-vous !
 
 Responsable : [Patrick Fischer](https://www.math.u-bordeaux.fr/~pfischer/Welcome.html)
 
-Les [notes de cours](maths/diff.pdf) et les [notes de TD](maths/diff-td.pdf).
-La [fiche](maths/fourier.pdf) sur les séries de Fourier.
+<ResourceList type="cours" title="Notes de cours" ordered={false}>
+
+- [Notes de cours](maths/diff.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Notes de TD">
+
+- [Notes de TD](maths/diff-td.pdf)
+
+</ResourceList>
+
+<ResourceList type="support" title="Fiches">
+
+- [Fiche sur les séries de Fourier](maths/fourier.pdf)
+
+</ResourceList>
 
 ### Calcul intégral
 
 Responsable : [Nicolas Popoff](https://www.math.u-bordeaux.fr/~npopoff/)
 
-Les [notes de cours](maths/int.pdf) et les [notes de
-TD](maths/int-td.pdf) (attention : elles ne sont plus à jour).
-La [fiche](maths/int-fiches.pdf) portant sur le cours.
+<ResourceList type="cours" title="Notes de cours" ordered={false}>
+
+- [Notes de cours](maths/int.pdf)
+
+</ResourceList>
+
+Attention : les notes de TD ne sont plus à jour.
+
+<ResourceList type="td" title="Notes de TD">
+
+- [Notes de TD](maths/int-td.pdf)
+
+</ResourceList>
+
+<ResourceList type="support" title="Fiches">
+
+- [Fiche portant sur le cours](maths/int-fiches.pdf)
+
+</ResourceList>
 
 ### Probabilités
 
 Responsable : Hervé Joint
 
-Les [notes de cours](maths/proba.pdf) et les [notes de TD](maths/proba-td.pdf).
+<ResourceList type="cours" title="Notes de cours" ordered={false}>
+
+- [Notes de cours](maths/proba.pdf)
+
+</ResourceList>
+
+<ResourceList type="td" title="Notes de TD">
+
+- [Notes de TD](maths/proba-td.pdf)
+
+</ResourceList>
 
 ## Physique
 
@@ -42,23 +83,58 @@ Les [notes de cours](maths/proba.pdf) et les [notes de TD](maths/proba-td.pdf).
 
 Responsable : Daniel Blaudez
 
-Les [notes de TD](physique/rel-quant.pdf) et une version
-du [DM](physique/dm.pdf) (je crois que le sujet change
+<ResourceList type="td" title="Notes de TD">
+
+- [Notes de TD](physique/rel-quant.pdf)
+
+</ResourceList>
+
+Une version du DM est également disponible (je crois que le sujet change
 chaque année).
+
+<ResourceList type="projet" title="Devoir maison">
+
+- [DM](physique/dm.pdf)
+
+</ResourceList>
 
 ### Mécanique des fluides
 
 Responsable : Jean-Stéphane Baste
 
-La [fiche](physique/meca.pdf) résumant le cours ainsi
-que des [prises de notes](physique/meca-cours.pdf) et la
-[correction](physique/meca-td.pdf) des premiers exercices.
+<ResourceList type="cours" title="Notes de cours" ordered={false}>
+
+- [Prises de notes](physique/meca-cours.pdf)
+
+</ResourceList>
+
+<ResourceList type="correction">
+
+- [Correction des premiers exercices](physique/meca-td.pdf)
+
+</ResourceList>
+
+<ResourceList type="support" title="Fiches">
+
+- [Fiche résumant le cours](physique/meca.pdf)
+
+</ResourceList>
 
 ### Optique
 
 Responsable : [Pierre Langot](https://www.loma.cnrs.fr/pierre-langot/)
 
-La [fiche](physique/Optique-fiches.pdf) résumant le cours et les [notes de TD](physique/opt-td.pdf).
+<ResourceList type="td" title="Notes de TD">
+
+- [Notes de TD](physique/opt-td.pdf)
+
+</ResourceList>
+
+<ResourceList type="support" title="Fiches">
+
+- [Fiche résumant le cours](physique/Optique-fiches.pdf)
+
+</ResourceList>
 
 ## Projet
 
@@ -71,22 +147,17 @@ faut respecter.
 
 ### L'utilisation des interfaces cerveau-machine dans la communication écrite
 
-[Article scientifique](projet/article.pdf)
+<ResourceList type="projet" title="Documents du projet">
 
-[Avant-projet diaporama](projet/article-diap.pdf)
+- [Article scientifique](projet/article.pdf)
+- [Avant-projet diaporama](projet/article-diap.pdf)
+- [Avant-projet](projet/avant-projet.pdf)
+- [Avant synthèse](projet/avant-synthese.pdf)
+- [Avant synthèse diaporama](projet/avant-synthese-diap.pdf)
+- [Corpus](projet/corpus.pdf)
+- [Rédaction](projet/redac.pdf)
+- [Mémoire](projet/memoire.pdf)
+- [Soutenance](projet/soutenance.pdf)
+- [Questions](projet/questions.pdf)
 
-[Avant-projet](projet/avant-projet.pdf)
-
-[Avant synthèse](projet/avant-synthese.pdf)
-
-[Avant synthèse diaporama](projet/avant-synthese-diap.pdf)
-
-[Corpus](projet/corpus.pdf)
-
-[Rédaction](projet/redac.pdf)
-
-[Mémoire](projet/memoire.pdf)
-
-[Soutenance](projet/soutenance.pdf)
-
-[Questions](projet/questions.pdf)
+</ResourceList>
