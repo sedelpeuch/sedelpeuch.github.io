@@ -1,10 +1,11 @@
 ---
-title: Cycle Préparatoire De Bordeaux - Semestre 2
+title: Cycle Préparatoire de Bordeaux - Semestre 2
+description: Supports de cours, TD et fiches du deuxième semestre du Cycle Préparatoire de Bordeaux (chimie inorganique et organique, analyse, algèbre, physique).
 ---
 
 ## Chimie
 
-### Chimie Inorganique
+### Chimie inorganique
 
 Responsable : [Dany Carlier-Larregaray](https://www.icmcb-bordeaux.cnrs.fr/carlier-larregaray-dany/)
 
@@ -22,7 +23,7 @@ Responsable : [Dany Carlier-Larregaray](https://www.icmcb-bordeaux.cnrs.fr/carli
 
 [TD](chimie/inorga/td.pdf)
 
-### Chimie Organique
+### Chimie organique
 
 Responsable : [Denis
 Deffieux](http://www.sasn.u-bordeaux1.fr/annuaire/deffieux.html)
@@ -33,7 +34,7 @@ Deffieux](http://www.sasn.u-bordeaux1.fr/annuaire/deffieux.html)
 
 [Partie C](chimie/orga/3.pdf)
 
-[TD-ennoncé](chimie/orga/td-enonce.pdf)
+[TD-énoncé](chimie/orga/td-enonce.pdf)
 
 [TD-prise de note](chimie/orga/td.pdf)
 
@@ -51,21 +52,21 @@ Les [notes de cours](maths/ncours.pdf) et les [notes de TD](maths/ntd.pdf).
 
 ### Algèbre
 
-Responsable: [Eric Charpentier](https://www.math.u-bordeaux.fr/~echarpen/)
+Responsable : [Eric Charpentier](https://www.math.u-bordeaux.fr/~echarpen/)
 
-Les [notes de cours](maths/gcours.pdf) et les [notes de TD](maths/gtd.pdf)
+Les [notes de cours](maths/gcours.pdf) et les [notes de TD](maths/gtd.pdf).
 
 ## Physique
 
-### Electrocinétique
+### Électrocinétique
 
-Responsable: Mourad Aiche
+Responsable : Mourad Aiche
 
-[Régime Transitoire](physique/elec/1.pdf)
+[Régime transitoire](physique/elec/1.pdf)
 
 [AOP](physique/elec/2.pdf)
 
-[Circuits électriques en régime transitoires](physique/elec/3.pdf)
+[Circuits électriques en régime transitoire](physique/elec/3.pdf)
 
 [Cours](physique/elec/cours.pdf)
 
@@ -77,26 +78,26 @@ Responsable: Mourad Aiche
 
 ### Thermodynamique
 
-Responsable: Daniel Blaudez
+Responsable : Daniel Blaudez
 
-La [fiche](physique/Fiche-Thermodynamique.pdf) résumant le cours et les [notes de TD](physique/TD-Thermodynamique.pdf)
+La [fiche](physique/Fiche-Thermodynamique.pdf) résumant le cours et les [notes de TD](physique/TD-Thermodynamique.pdf).
 
 ### Optique
 
-Responsable: [Christine Grauby-Heywang](https://www.loma.cnrs.fr/christine-grauby-heywang/)
+Responsable : [Christine Grauby-Heywang](https://www.loma.cnrs.fr/christine-grauby-heywang/)
 
-La [fiche](physique/Fiche-Optique.pdf) résumant le cours et les [notes de TD](physique/TD-Optique.pdf)
+La [fiche](physique/Fiche-Optique.pdf) résumant le cours et les [notes de TD](physique/TD-Optique.pdf).
 
-### Electromagnétisme
+### Électromagnétisme
 
-Responsable:[Jérome Cayssol](https://www.loma.cnrs.fr/jerome-cayssol/)
+Responsable : [Jérôme Cayssol](https://www.loma.cnrs.fr/jerome-cayssol/)
 
 Les [notes de cours](physique/Cours-Electromagnétisme.pdf) et les [notes de TD](physique/TD-Electromagnétisme.pdf)
 
-### Travaux Pratiques
+### Travaux pratiques
 
-Pour l'instant les travaux pratiques du semestre 2 n'ont pas changés depuis 10
+Pour l'instant les travaux pratiques du semestre 2 n'avaient pas changé depuis 10
 ans. Voici une [proposition](physique/TP.pdf) de solution. Faites attention à la partie
-mécanique, la théorie est juste mais la pratique possède plusieurs défaut.
+mécanique, la théorie est juste mais la pratique possède plusieurs défauts.
 
-En plus une proposition du [compte rendu](physique/optique.pdf) à faire sur le deuxième TP d'optique
+En complément, une proposition de [compte rendu](physique/optique.pdf) pour le deuxième TP d'optique.
