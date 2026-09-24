@@ -1,40 +1,31 @@
 ---
 title: EZ Wheel Navigation
-tags: [robotique, ezwheel, reachy, eirlab, cmake, python]
+tags: [robotique, ezwheel, reachy, eirlab, cmake, cpp]
+description: Code de pilotage de la base motorisée EZ Wheel qui porte le robot Reachy dans le projet Reachy Mobile d'EirLab.
 ---
 
 <img src="/img/project/ezwheel.png" alt="Aperçu EZ Wheel" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
-<div className="project-meta-grid">
-  <div className="project-meta-item">📅 2020-2022</div>
-  <div className="project-meta-item">🛑 Terminé</div>
-  <div className="project-meta-item">👨‍💻 Contributeur</div>
-</div>
+<ProjectMeta
+  start="2021"
+  end="2022"
+  role="Principal contributeur"
+  domain="Robotique mobile, pilotage de base motorisée"
+  stack={["C++", "CMake", "Python"]}
+/>
 
-## Présentation
+## Contexte
 
-Le projet EZ Wheel Navigation s’inscrit dans le cadre de Reachy Mobile chez Eirlab, avec l’ambition de doter le robot Reachy d’une véritable mobilité sur une base motorisée EZ Wheel. L’équipe a adapté le code de pilotage, assuré la compatibilité avec les commandes de Reachy, et expérimenté la navigation sur une plateforme ouverte.
+Le projet EZ Wheel Navigation constitue le volet « base mobile » de [Reachy Mobile](reachy-mobile.md) à EirLab : doter le robot Reachy d'une mobilité réelle grâce à une base motorisée EZ Wheel.
 
-Des tests ont permis de valider la robustesse de la base, la précision des déplacements et l’intégration des capteurs. Les séances de téléopération et de navigation autonome ont permis d’optimiser les algorithmes et de documenter les résultats pour la communauté.
+## Réalisations
 
-## Démarche et réalisations 🚀
+- Adaptation du code de pilotage de la base EZ Wheel (C++, CMake).
+- Compatibilité avec les commandes envoyées depuis Reachy et tests d'interopérabilité.
+- Essais de téléopération et de navigation, calibration de la base.
+- Documentation des essais pour les autres membres du fablab.
 
-- Développement et adaptation du code de pilotage pour la base EZ Wheel
-- Intégration logicielle avec Reachy Mobile et tests d’interopérabilité
-- Expérimentations de navigation, calibration et retours d’expérience
-- Documentation des essais et partage avec la communauté Eirlab
-
-## Technologies et outils 🛠️
-
-- CMake, C++
-- Python
-- Contrôleurs moteurs
-- Intégration robotique
-
-## Liens et ressources 🔗
+## Liens
 
 - 💻 Code source : [GitHub](https://github.com/Eirlab/reachy_mobile_ezwheel)
-
----
-
-> Un projet pour explorer la mobilité robotique avec EZ Wheel et Reachy.
+- [Reachy Mobile](reachy-mobile.md) : code du robot et vidéo de démonstration
