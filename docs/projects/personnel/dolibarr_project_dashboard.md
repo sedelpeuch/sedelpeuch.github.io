@@ -63,4 +63,4 @@ Pas de tests automatisés non plus. L'architecture les rend possibles (services 
 ## Liens
 
 - [github.com/sedelpeuch/dolibarr_project_dashboard](https://github.com/sedelpeuch/dolibarr_project_dashboard)
-- [FastAPI — gestion des dépendances](/blog/09-scripting/2024-12-20-fastapi)
+- [FastAPI — gestion des dépendances](/blog/2024/12/20/09-scripting/fastapi)

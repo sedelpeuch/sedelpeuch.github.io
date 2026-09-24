@@ -15,7 +15,7 @@ import DocCardList from '@theme/DocCardList';
 ## Quelques outils
 
 + [Cheat sheet Opencv](./img/opencv.pdf)
-+ [Cours de C++](/docs/enseirb/s7/cpp)
++ [Cours de C++](/docs/scolarite/enseirb/s7/cpp)
 
 ## Tentaive de correction
 

@@ -87,5 +87,5 @@ La suite de tests compte 51 fichiers et près de 200 cas, répartis entre tests 
 ## Liens
 
 - 💻 Code source : [github.com/sedelpeuch/body_analysis](https://github.com/sedelpeuch/body_analysis)
-- [Poetry — gestion des dépendances](/blog/09-scripting/2025-06-06-poetry-python-dependency)
-- [Docker best practices](/blog/03-containerization/2024-12-20-docker-best-practices)
+- [Poetry — gestion des dépendances](/blog/2025/06/06/09-scripting/poetry-python-dependency)
+- [Docker best practices](/blog/2024/12/20/03-containerization/docker-best-practices)
