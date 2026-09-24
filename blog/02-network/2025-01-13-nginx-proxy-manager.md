@@ -2,6 +2,7 @@
 title: "Nginx Proxy Manager"
 description: "Nginx Proxy Manager : interface graphique pour Nginx, gestion des proxy hosts, certificats Let's Encrypt, access lists, streams TCP et configuration avancée."
 tags: [network, devops]
+authors: sedelpeuch
 ---
 
 Configurer Nginx manuellement demande de maîtriser sa syntaxe et de gérer les certificats SSL à la main. Nginx Proxy Manager expose une interface web qui automatise ces deux aspects : création de règles de routage via une UI, et renouvellement automatique des certificats Let's Encrypt. Il génère du vrai Nginx sous le capot — les configurations avancées restent accessibles via des blocs personnalisés.
@@ -29,7 +30,7 @@ services:
 docker compose up -d
 ```
 
-L'interface d'administration est accessible sur le port 81. Identifiants par défaut : `admin@example.com` / `changeme` — à modifier immédiatement après la première connexion. Les données de configuration et les certificats sont persistés dans `./data` et `./letsencrypt`.
+L'interface d'administration est accessible sur le port 81. Les versions historiques créent un compte par défaut `admin@example.com` / `changeme`, à modifier dès la première connexion ; les versions récentes affichent à la place un écran de création du premier administrateur, que les variables d'environnement `INITIAL_ADMIN_EMAIL` et `INITIAL_ADMIN_PASSWORD` permettent de pré-remplir. Le port 81 n'a pas vocation à être exposé sur Internet : le restreindre au réseau local (`"127.0.0.1:81:81"` puis tunnel SSH, ou règle de pare-feu). Les données de configuration et les certificats sont persistés dans `./data` et `./letsencrypt`.
 
 ## Proxy Hosts
 
@@ -98,7 +99,7 @@ Pour l'attacher à un Proxy Host : onglet **Details** → champ **Access List**.
 
 Pour rediriger un domaine vers un autre (permanent ou temporaire) : **Hosts → Redirection Hosts → Add Redirection Host**.
 
-```
+```text
 www.example.com → https://example.com   (301 permanent)
 old.example.com → https://new.example.com/path  (302 temporaire)
 ```
@@ -123,15 +124,16 @@ Les **Stream Hosts** exposent des services TCP ou UDP non-HTTP — utile pour My
 | Forward Port | port du service |
 | TCP / UDP | protocole |
 
-Exemple : exposer PostgreSQL sur le port 5432 de la machine hôte tout en gardant le conteneur sur un réseau interne.
+Exemple : exposer PostgreSQL sur le port 5432 de la machine hôte tout en gardant le conteneur sur un réseau interne. Le port d'écoute du stream doit aussi être publié par le conteneur NPM (`- "5432:5432"` dans `ports`), faute de quoi il reste inaccessible depuis l'extérieur. Un Stream Host opère en L4 : aucune terminaison TLS ni routage par nom de domaine, un port d'entrée correspond à un seul backend.
 
 ## Configuration avancée
 
-L'onglet **Advanced** de chaque Proxy Host permet d'injecter des directives Nginx brutes. Nginx Proxy Manager les insère dans le bloc `location /` généré.
+L'onglet **Advanced** de chaque Proxy Host permet d'injecter des directives Nginx brutes. Nginx Proxy Manager les insère au niveau du bloc `server` généré : des blocs `location` supplémentaires peuvent y être déclarés, mais pas un second `location /`, déjà créé par NPM (Nginx refuse deux `location` identiques dans un même `server`). Le bloc `server` généré définit les variables `$forward_scheme`, `$server` et `$port` à partir des champs du Proxy Host ; toute `location` personnalisée doit les réutiliser dans son `proxy_pass`, sinon Nginx tente de servir les fichiers depuis son propre système de fichiers.
 
 ```nginx
-# Exemple : cache des assets statiques
+# Exemple : en-têtes de cache longue durée pour les assets versionnés
 location ~* \.(js|css|png|jpg|jpeg|gif|ico|woff2|svg)$ {
+    proxy_pass $forward_scheme://$server:$port;
     expires 1y;
     add_header Cache-Control "public, immutable";
     access_log off;
@@ -164,7 +166,7 @@ Problèmes courants :
 
 - **502 Bad Gateway** : le backend n'est pas joignable — vérifier le réseau Docker, le nom de service, le port
 - **Certificate request failed** : le domaine ne pointe pas vers l'IP publique de la machine, ou le port 80 est bloqué par un firewall
-- **ERR_TOO_MANY_REDIRECTS** : l'application backend redirige vers HTTPS alors que NPM communique déjà en HTTPS avec elle — passer le scheme à `https` dans le Proxy Host, ou désactiver les redirections côté backend
+- **ERR_TOO_MANY_REDIRECTS** : NPM termine le TLS et contacte le backend en HTTP ; si le backend impose lui-même HTTPS sans tenir compte de l'en-tête `X-Forwarded-Proto: https` transmis par NPM, il renvoie une redirection vers HTTPS à chaque requête, d'où la boucle. Correctifs : configurer le backend pour faire confiance aux en-têtes `X-Forwarded-*` du proxy, désactiver sa redirection HTTPS, ou passer le scheme du Proxy Host à `https` si le backend écoute réellement en TLS
 
 ## Limites
 
@@ -175,4 +177,4 @@ Nginx Proxy Manager simplifie les cas courants mais n'expose pas toutes les dire
 - Contexte `stream` paramétrable (les Stream Hosts sont plus basiques que le module stream Nginx brut)
 - Configurations multi-tenant complexes
 
-Pour ces cas, utiliser Nginx directement, ou Traefik qui offre une découverte dynamique des services.
+Pour ces cas, utiliser [Nginx](./2024-12-20-nginx.md) directement, ou [Traefik](./2025-06-09-traefik.md) qui offre une découverte dynamique des services.
