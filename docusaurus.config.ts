@@ -239,6 +239,8 @@ const config: Config = {
     ],
   ],
   plugins: [
+    "./plugins/projects-data",
+    "./plugins/series-data",
     "docusaurus-plugin-image-zoom",
     "docusaurus-plugin-sass",
     ["@docusaurus/plugin-ideal-image", { disableInDev: false }],
