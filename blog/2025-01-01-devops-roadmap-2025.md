@@ -8,7 +8,6 @@ Voici un résumé de ma roadmap DevOps personnelle pour 2025. Cette roadmap s’
 
 <!--truncate-->
 
-# DevOps Roadmap 2025
 
 import IconTitle from '@site/src/components/IconTitle';
 
@@ -32,9 +31,9 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ### <IconTitle logo="skill-icons:linux-light" name="02 OS & Linux"/>
 
-[Système & Linux](/blog/tags/linux) Les notions de réseau, sécurité, configuration des pare-feu, équilibreurs de charge, proxies, HTTP/HTTPS et virtualisation ont été approfondies et mises en œuvre dans des projets d’auto-hébergement et de sécurisation d’infrastructures. Voir [HomeLab](/docs/projects/personnel/homelab) et [delpeuch.net](/docs/projects/personnel/delpeuch-net).
+**Système & Linux** Les notions de réseau, sécurité, configuration des pare-feu, équilibreurs de charge, proxies, HTTP/HTTPS et virtualisation ont été approfondies et mises en œuvre dans des projets d’auto-hébergement et de sécurisation d’infrastructures. Voir [HomeLab](/docs/projects/personnel/homelab) et [delpeuch.net](/docs/projects/personnel/delpeuch-net).
 
-### <IconTitle logo="skill-icons:docker" name="03 Contenérisation - Docker"/>
+### <IconTitle logo="skill-icons:docker" name="03 Conteneurisation - Docker"/>
 
 [Conteneurisation](/blog/tags/containerization) Déploiement et supervision de stacks Docker Compose et Swarm, gestion centralisée des configurations, automatisation des mises à jour, documentation des architectures modulaires. Expérimentation de l’orchestration à l’échelle domestique, avec un accent sur la reproductibilité et la sécurité. Voir [HomeLab](/docs/projects/personnel/homelab).
 

@@ -9,7 +9,6 @@ Ingénieur en informatique au [CATIE](http://catie.fr/) spécialisé en Robotiqu
 
 Cette roadmap DevOps personnelle évolue au fil de mes expériences et objectifs. Elle est régulièrement mise à jour. Suggestions et commentaires sont les bienvenus.
 
-# DevOps Roadmap
 
 import IconTitle from '@site/src/components/IconTitle';
 
@@ -21,9 +20,9 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ## <IconTitle logo="skill-icons:linux-light" name="02 OS & Linux"/>
 
-[Système & Linux](/blog/tags/linux) Préparer et maintenir l'infrastructure sur laquelle une application est déployée implique de maîtriser l'administration d'un serveur, l'installation d'outils, la gestion des permissions et des clés SSH, la configuration des pare-feu, ainsi que les notions de réseau, sécurité, virtualisation et protocoles comme HTTP/HTTPS.
+**Système & Linux** Préparer et maintenir l'infrastructure sur laquelle une application est déployée implique de maîtriser l'administration d'un serveur, l'installation d'outils, la gestion des permissions et des clés SSH, la configuration des pare-feu, ainsi que les notions de réseau, sécurité, virtualisation et protocoles comme HTTP/HTTPS.
 
-## <IconTitle logo="skill-icons:docker" name="03 Contenérisation - Docker"/>
+## <IconTitle logo="skill-icons:docker" name="03 Conteneurisation - Docker"/>
 
 [Conteneurisation](/blog/tags/containerization) La conteneurisation est devenue le standard pour l'emballage logiciel. Comprendre Docker, ses réseaux, la persistance des données, la création de Dockerfiles, l'utilisation de Docker-Compose et la gestion des dépôts permet de déployer et gérer des applications de façon moderne.
 
