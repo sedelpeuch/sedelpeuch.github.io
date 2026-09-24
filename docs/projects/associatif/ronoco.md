@@ -1,6 +1,7 @@
 ---
 title: Ronoco
-tags: [opensource, ROS]
+tags: [opensource, ros, no-code, python, flask, node-red]
+description: Interface no-code pour programmer des robots ROS (manipulateurs MoveIt et robots roulants move_base) sans écrire de code ; premier prototype développé en stage de 2e année d'école d'ingénieur.
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,60 +9,39 @@ import TabItem from '@theme/TabItem';
 
 <img src="https://www.eirlab.net/wp-content/uploads/2021/10/logo_full_black.png" alt="Aperçu Ronoco" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
-<div className="project-meta-grid">
-  <div className="project-meta-item">📅 2021 – 2022</div>
-  <div className="project-meta-item">🛑 Terminé</div>
-  <div className="project-meta-item">👨‍💻 Auteur, mainteneur</div>
-</div>
+<ProjectMeta
+  start="Juin 2021"
+  end="Septembre 2021"
+  role="Développeur du premier prototype"
+  domain="Robotique, no-code, interface homme-machine"
+  stack={["ROS", "Python", "Flask", "Node-RED", "JavaScript"]}
+/>
 
-## Présentation
+## Contexte
 
-🤖 Ronoco est né en 2021 d’une envie de démocratiser la robotique : comment permettre à des ingénieurs, étudiants ou passionnés de piloter des robots complexes sans écrire une ligne de code ? Le projet a débuté par des discussions avec des utilisateurs frustrés par la complexité de ROS, puis par des sessions de brainstorming pour imaginer une interface graphique intuitive, inspirée du no-code.
+Avec ROS, créer un comportement robotique suppose d'écrire des programmes en C++ ou en Python, ce qui rend l'outil inaccessible aux experts métier non développeurs : ingénieurs procédés, ingénieurs d'industrialisation. Ronoco (ROS no code) est un projet open source proposé par Yoan Mollard pour lever ce frein. J'en ai développé le premier prototype lors de mon stage d'application de 2e année à l'ENSEIRB-MATMECA, de juin à septembre 2021, au sein de ROS4Pro.
 
-L’aventure a été rythmée par des phases de prototypage, de tests sur de vrais robots (manipulateurs et roulants), et de nombreux échanges avec la communauté open source. Les défis n’ont pas manqué : rendre l’architecture modulaire, assurer la compatibilité avec MoveIt et MoveBase, concevoir une expérience utilisateur fluide…
+## Réalisations
 
-Ronoco, c’est aussi une histoire de partage : documentation détaillée, démos, retours d’expérience lors d’événements techniques, et la satisfaction de voir des non-développeurs réussir à programmer des robots grâce à l’outil.
+L'architecture est découpée en trois modules indépendants :
 
-## Contexte associatif
-
-Projet réalisé au sein d’Eirlab pour démocratiser la programmation robotique auprès d’un public non technique, en facilitant l’accès à ROS et à la conception de programmes robotiques.
-
-## Démarche et réalisations 🚀
-
-- Analyse des besoins : identification des freins à l'adoption de ROS et des attentes des utilisateurs non techniques.
-- Architecture modulaire 🧩 : création de trois modules indépendants pour répondre à différents usages :
-
- <Tabs>
+<Tabs>
   <TabItem value="ronoco-vm" label="ronoco-vm">
-   Interpréteur graphique basé sur Flask, transformant les blocs visuels en commandes ROS.
+    API Flask qui interprète les blocs visuels et les traduit en code ROS exécutable.
   </TabItem>
   <TabItem value="ronoco-nodered" label="ronoco-nodered">
-   Extension Node-RED pour la création d'arbres de comportement et de séquences d'actions.
+    Extension Node-RED pour composer des arbres de comportement et des séquences d'actions.
   </TabItem>
   <TabItem value="ronoco-ui" label="ronoco-ui">
-   Interface web pour piloter les robots, enregistrer des positions et lancer des programmes.
+    Client web qui fournit l'interface graphique et les utilitaires de pilotage : commande des robots, enregistrement de positions, lancement de programmes.
   </TabItem>
- </Tabs>
+</Tabs>
 
-- Intégration ROS : compatibilité avec MoveIt (manipulateurs) et MoveBase (robots roulants), génération de messages ROS standards.
-- Expérience utilisateur 🎨 : design d'une interface graphique inspirée de Node-RED et Scratch, facilitant la prise en main.
-- Documentation et communication 📝 : rédaction de guides, création de visuels et d'une démo animée pour valoriser le projet.
+L'intégration ROS vise ROS Noetic (compatible Melodic) : les manipulateurs sont pilotés via MoveIt, les robots roulants via move_base (client d'action `SimpleActionClient`). Pendant le stage, j'ai testé l'outil sur des robots manipulateurs et roulants, dont un Kuka KR6 R900, un Sawyer, un UR3, un Poppy Ergo Jr et un TurtleBot. La documentation et une démonstration animée accompagnent le dépôt.
 
-## Technologies et outils 🛠️
-
-- ROS (Noetic/Melodic)
-- Python 3, Flask
-- Node.js, npm, Node-RED
-- JavaScript
-- GitHub Actions pour CI
-
-## Impact et retours 🌍
-
-Ronoco a permis à plusieurs utilisateurs non développeurs de concevoir et tester des programmes robotiques, notamment dans des contextes industriels et associatifs. Le projet a été présenté lors d'événements techniques et a suscité l'intérêt de la communauté open-source ROS.
-
-## Liens et ressources 🔗
+## Liens
 
 - 📖 Présentation détaillée : [ronoco](https://delpeuch.net/ronoco/)
 - 💻 Code source : [GitHub](https://github.com/sedelpeuch/ronoco)
 - 📝 Article de présentation : [Eirlab.net](https://www.eirlab.net/2021/11/03/ronoco/)
-- 🖼️ Démo : ![ronoco](https://github.com/sedelpeuch/ronoco/raw/master/ronoco.gif)
+- 🖼️ Démonstration : ![ronoco](https://github.com/sedelpeuch/ronoco/raw/master/ronoco.gif)
