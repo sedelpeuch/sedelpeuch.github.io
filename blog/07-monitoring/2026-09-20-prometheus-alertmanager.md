@@ -285,9 +285,9 @@ Une configuration invalide n'est pas appliquée et l'erreur est journalisée. To
 
 ## Application / Projet lié
 
-### [HomeLab](/docs/projects/personnel/homelab)
-
-**Utilisation** : Prometheus, Alertmanager et ntfy-alertmanager surveillent l'hôte et ses conteneurs (node_exporter, cAdvisor via containerd, smartctl_exporter, blackbox_exporter), avec paliers disque bornés, détection de redémarrage et notification push unique.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Prometheus, Alertmanager et ntfy-alertmanager surveillent l'hôte et ses conteneurs (node_exporter, cAdvisor via containerd, smartctl_exporter, blackbox_exporter), avec paliers disque bornés, détection de redémarrage et notification push unique.</ProjectLink>
+</ProjectLinks>
 
 ## Conclusion
 

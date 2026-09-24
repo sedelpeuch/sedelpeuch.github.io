@@ -1,6 +1,7 @@
 ---
 title: "Terraform"
 description: "Introduction à Terraform sur AWS : structure d'une configuration, variables, outputs, VPC, RDS et intégration CI/CD."
+series: terraform
 tags: [iac, devops]
 ---
 

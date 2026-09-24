@@ -695,11 +695,10 @@ Pour une référence plus élaborée (moyenne mobile sur plusieurs heures), une 
 
 ## Application / Projet lié
 
-### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
-**Utilisation** : Loki comme système d'agrégation de logs pour tous les services hébergés dans le cluster.
-
-### [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)
-**Utilisation** : Collecte centralisée des logs des runners ARC pour le débogage et l'audit.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Loki comme système d'agrégation de logs pour tous les services hébergés dans le cluster.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC Kubeadm">Collecte centralisée des logs des runners ARC pour le débogage et l'audit.</ProjectLink>
+</ProjectLinks>
 
 ## Conclusion
 

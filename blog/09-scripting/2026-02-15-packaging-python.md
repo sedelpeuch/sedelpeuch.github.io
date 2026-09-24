@@ -614,5 +614,6 @@ Le packaging Python repose sur quelques notions : modules, packages, distributio
 
 ## Application / Projet lié
 
-### [standards-python](/docs/projects/professionnel/standards-python)
-**Utilisation** : Templates et bonnes pratiques pour le packaging et la publication de packages Python.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/standards-python" title="standards-python">Templates et bonnes pratiques pour le packaging et la publication de packages Python.</ProjectLink>
+</ProjectLinks>

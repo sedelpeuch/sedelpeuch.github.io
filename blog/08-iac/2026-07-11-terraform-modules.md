@@ -1,6 +1,7 @@
 ---
 title: "Terraform : modules"
 description: "Factoriser et réutiliser de la configuration Terraform avec les modules locaux et le registry public. Structure, inputs, outputs, sources et quand ne pas créer un module."
+series: terraform
 tags: [iac, devops]
 ---
 

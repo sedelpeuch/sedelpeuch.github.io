@@ -191,8 +191,9 @@ Le workflow `Validate` se déclenche sur `pull_request` et démarre réellement 
 
 ## Application / Projet lié
 
-### [HomeLab](/docs/projects/personnel/homelab)
-**Utilisation** : Renovate self-hosted authentifié par une GitHub App maintient les images de près de trente stacks Docker Compose, avec deux niveaux (revue manuelle pour le périmètre d'accès et les données irremplaçables, automerge avec pin par digest pour le reste), bases de données exclues, et relance par `workflow_run` après chaque validation de branche Renovate.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Renovate self-hosted authentifié par une GitHub App maintient les images de près de trente stacks Docker Compose, avec deux niveaux (revue manuelle pour le périmètre d'accès et les données irremplaçables, automerge avec pin par digest pour le reste), bases de données exclues, et relance par `workflow_run` après chaque validation de branche Renovate.</ProjectLink>
+</ProjectLinks>
 
 ## Conclusion
 

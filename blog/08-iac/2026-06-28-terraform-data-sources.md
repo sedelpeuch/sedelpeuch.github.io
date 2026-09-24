@@ -1,6 +1,7 @@
 ---
 title: "Terraform : data sources"
 description: "Interroger l'infrastructure existante avec les data sources Terraform : aws_availability_zones, aws_caller_identity, aws_ami et séparation dans data.tf."
+series: terraform
 tags: [iac, devops]
 ---
 

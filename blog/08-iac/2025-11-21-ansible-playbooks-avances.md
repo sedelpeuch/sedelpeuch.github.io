@@ -313,8 +313,9 @@ Les rôles et les inventaires contiennent souvent des mots de passe ou des clés
 
 ## Application / Projet lié
 
-### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
-**Utilisation** : Playbooks avancés et structures de rôles pour la gestion complexe du cluster Kubernetes, configurations persistantes et secrets sécurisés.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Playbooks avancés et structures de rôles pour la gestion complexe du cluster Kubernetes, configurations persistantes et secrets sécurisés.</ProjectLink>
+</ProjectLinks>
 
 ## Bonnes pratiques avancées
 

@@ -39,5 +39,7 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ## Application / Projet lié
 
-### [delpeuch.net - Blog](/docs/projects/personnel/delpeuch-net-blog) & [delpeuch.net - Portfolio](/docs/projects/personnel/delpeuch-net)
-**Utilisation** : Ce blog article synthétise la roadmap DevOps personnelle et capitalise sur les apprentissages pour partager la progression DevOps de 2025-2026.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/delpeuch-net-blog" title="delpeuch.net - Blog">Ce blog article synthétise la roadmap DevOps personnelle et capitalise sur les apprentissages pour partager la progression DevOps de 2025-2026.</ProjectLink>
+  <ProjectLink to="/docs/projects/personnel/delpeuch-net" title="delpeuch.net - Portfolio">Ce blog article synthétise la roadmap DevOps personnelle et capitalise sur les apprentissages pour partager la progression DevOps de 2025-2026.</ProjectLink>
+</ProjectLinks>

@@ -1,6 +1,7 @@
 ---
 title: "Terraform : count, for_each, locals et expressions"
 description: "Créer plusieurs ressources sans duplication avec count et for_each, calculer des valeurs intermédiaires avec locals, et transformer des collections avec les for expressions."
+series: terraform
 tags: [iac, devops]
 ---
 

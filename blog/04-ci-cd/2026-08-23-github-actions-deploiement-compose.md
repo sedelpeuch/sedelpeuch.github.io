@@ -299,9 +299,9 @@ Le workflow `validate` ne s'exécute que sur les pull requests. Un push direct s
 
 ## Application / Projet lié
 
-### [HomeLab](/docs/projects/personnel/homelab)
-
-**Utilisation** : déploiement continu d'une trentaine de stacks Docker Compose sur un hôte unique, via un runner GitHub hébergé qui rejoint un réseau Tailscale, avec validation des pull requests (dont celles de Renovate) et hash de configuration recalculé par pre-commit.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Déploiement continu d'une trentaine de stacks Docker Compose sur un hôte unique, via un runner GitHub hébergé qui rejoint un réseau Tailscale, avec validation des pull requests (dont celles de Renovate) et hash de configuration recalculé par pre-commit.</ProjectLink>
+</ProjectLinks>
 
 ## Conclusion
 

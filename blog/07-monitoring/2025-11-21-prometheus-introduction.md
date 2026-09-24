@@ -519,8 +519,9 @@ Une alerte dont l'expression renvoie un résultat passe à l'état `pending` ; s
 
 ## Application / Projet lié
 
-### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
-**Utilisation** : Prometheus comme backend métrique du cluster pour monitorer tous les services hébergés (Grafana, Portainer, nodes Kubernetes).
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Prometheus comme backend métrique du cluster pour monitorer tous les services hébergés (Grafana, Portainer, nodes Kubernetes).</ProjectLink>
+</ProjectLinks>
 
 ## Conclusion
 

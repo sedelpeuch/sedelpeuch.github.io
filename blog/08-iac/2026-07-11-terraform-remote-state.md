@@ -1,6 +1,7 @@
 ---
 title: "Terraform : state remote avec S3"
 description: "Stocker le state Terraform dans S3 et verrouiller les exécutions concurrentes avec use_lockfile : pourquoi le state local ne suffit pas en équipe ou en CI/CD, et comment migrer."
+series: terraform
 tags: [iac, devops]
 ---
 

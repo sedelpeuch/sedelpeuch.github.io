@@ -241,7 +241,8 @@ Le `$$` échappe l'interpolation de Compose pour que la variable soit résolue p
 
 ## Application / Projet lié
 
-### [HomeLab](/docs/projects/personnel/homelab)
-**Utilisation** : Authelia comme fournisseur OpenID Connect d'une dizaine d'applications (gestionnaire de mots de passe, photothèque, gestion documentaire, supervision, médiathèque), avec PKCE, méthodes d'authentification de client alignées application par application et mapping du groupe `admins` en rôle administrateur.
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Authelia comme fournisseur OpenID Connect d'une dizaine d'applications (gestionnaire de mots de passe, photothèque, gestion documentaire, supervision, médiathèque), avec PKCE, méthodes d'authentification de client alignées application par application et mapping du groupe `admins` en rôle administrateur.</ProjectLink>
+</ProjectLinks>
 
 OpenID Connect transfère l'identité jusque dans l'application là où le forward-auth s'arrête au proxy. La plupart des échecs d'intégration tiennent à trois paramètres qui doivent concorder exactement entre Authelia et l'application : la méthode d'authentification du client, l'URI de redirection et les claims attendus.
