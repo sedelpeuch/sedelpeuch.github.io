@@ -1,42 +1,34 @@
 ---
 title: Easy Booked @EirLab
-tags: [wordpress, plugin, inscription, eirlab]
+tags: [wordpress, plugin, inscription, php, eirlab]
+description: "Adaptation du plugin WordPress Easy Booked pour gérer les inscriptions aux formations du fablab EirLab : charte graphique, corrections de bugs et gestion des formations complètes."
 ---
 
 <img src="https://www.eirlab.net/wp-content/uploads/2021/11/Capture-decran-de-2021-11-03-16-14-34-1-750x609.png" alt="Aperçu Easy Booked Eirlab" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
-<div className="project-meta-grid">
-  <div className="project-meta-item">📅 2021 – 2022</div>
-  <div className="project-meta-item">🛑 Terminé</div>
-  <div className="project-meta-item">👨‍💻 Auteur, mainteneur</div>
-</div>
+<ProjectMeta
+  start="2021"
+  end="2022"
+  role="Auteur de l'adaptation, mainteneur"
+  domain="Gestion des inscriptions, site associatif"
+  stack={["WordPress", "PHP", "JavaScript"]}
+/>
 
-## Présentation
+## Contexte
 
-Easy Booked est un plugin WordPress développé sur-mesure pour Eirlab, afin de simplifier et fiabiliser la gestion des inscriptions aux formations et événements. Initialement créé par JoyDevs, il a été redéveloppé et adapté par @sedelpeuch pour répondre aux besoins spécifiques d’Eirlab.
+EirLab propose des formations aux machines du fablab, réservées sur créneaux. Le site WordPress de l'association avait besoin d'un calendrier où les administrateurs publient des créneaux et où les membres s'inscrivent, sans outil externe.
 
-Le plugin permet d’afficher un calendrier où les administrateurs publient des créneaux de rendez-vous et les utilisateurs s’y inscrivent. Il adapte les couleurs et la langue à l’écosystème Eirlab, corrige des bugs et ajoute des fonctionnalités (créneaux, notifications, exports, gestion des formations complètes).
+## Réalisations
 
-Le développement s’est fait en lien avec les utilisateurs finaux, avec des phases de tests, corrections et évolutions continues.
+Plutôt que de développer un calendrier de zéro, je suis parti du plugin Easy Booked, créé par JoyDevs, et je l'ai adapté aux besoins d'EirLab :
 
-## Contexte associatif
+- adaptation des couleurs et de la langue à l'identité du fablab ;
+- correction d'un bug d'affichage des rendez-vous ;
+- ajout d'un état « complet » pour les formations, qui restent visibles au lieu de disparaître du calendrier une fois pleines.
 
-Projet réalisé pour la communauté Eirlab, afin d’automatiser et fiabiliser la gestion des inscriptions aux formations et événements. L’outil s’adresse aux membres, formateurs et administrateurs.
+Le développement s'est fait en lien avec les administrateurs et les formateurs, par cycles de tests et de corrections. L'intégration des fiches formateur et formation au calendrier était en cours à la publication de l'article.
 
-## Démarche et réalisations 🚀
-
-- Redéveloppement et adaptation du plugin pour Eirlab
-- Correction de bugs (affichage des créneaux, gestion des formations complètes)
-- Ajout de fonctionnalités spécifiques (notifications, exports, personnalisation)
-- Tests, documentation et support utilisateur
-
-## Technologies et outils 🛠️
-
-- WordPress (plugin)
-- PHP, JavaScript
-- Intégration avec l’écosystème Eirlab
-
-## Liens et ressources 🔗
+## Liens
 
 - 💻 Code source : [GitHub](https://github.com/Eirlab/easy-booked)
 - 📝 Article de présentation : [Eirlab.net](https://www.eirlab.net/2021/11/03/easy-booked-eirlab/)
