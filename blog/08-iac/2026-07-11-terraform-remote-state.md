@@ -43,13 +43,13 @@ terraform {
 
 S3 seul ne peut pas verrouiller l'accès à un objet pendant une opération d'écriture. Deux exécutions simultanées de `terraform apply` liraient le même state, calculeraient leurs plans indépendamment, et écriraient leurs states finaux en se chevauchant, le second écrasant le premier.
 
-`use_lockfile = true` résout ce problème sans infrastructure supplémentaire. Terraform crée un fichier `.tflock` dans le même bucket S3, à côté du state, au début de chaque opération. Ce fichier sert de verrou : si une autre exécution détecte le fichier, elle attend ou abandonne avec une erreur explicite. À la fin de l'opération, le fichier est supprimé.
+`use_lockfile = true` résout ce problème sans infrastructure supplémentaire. Terraform crée un fichier `.tflock` dans le même bucket S3, à côté du state (`prod/terraform.tfstate.tflock`), au début de chaque opération. La création utilise une **écriture conditionnelle** (en-tête `If-None-Match: *`, supporté par S3 depuis août 2024) : S3 refuse l'écriture si l'objet existe déjà, ce qui garantit qu'une seule exécution obtient le verrou, même si deux tentatives sont simultanées. L'exécution qui échoue abandonne avec une erreur explicite, ou réessaie pendant la durée indiquée par `-lock-timeout` (par exemple `-lock-timeout=5m`, utile en CI). À la fin de l'opération, le fichier est supprimé.
 
-```
+```text
 Acquiring state lock. This may take a few moments...
 ```
 
-Avant Terraform 1.10, le verrouillage nécessitait une table DynamoDB dédiée (`dynamodb_table = "terraform-locks"`). `use_lockfile` simplifie le bootstrap en éliminant cette dépendance : un seul bucket S3 suffit.
+Avant Terraform 1.10, le verrouillage nécessitait une table DynamoDB dédiée (`dynamodb_table = "terraform-locks"`). Cet argument est déprécié depuis Terraform 1.11 ; `use_lockfile` simplifie le bootstrap en éliminant cette dépendance : un seul bucket S3 suffit. Les deux mécanismes peuvent être activés simultanément pendant une migration.
 
 Si une exécution se termine anormalement sans supprimer le fichier de verrou (crash, interruption réseau), le verrou reste en place. La commande pour le forcer à la main reste la même :
 
@@ -61,7 +61,22 @@ L'ID du verrou est visible dans le message d'erreur que Terraform affiche quand 
 
 ## Migrer d'un state local vers S3
 
-Le bucket S3 doit exister avant de configurer le backend — il peut être créé manuellement via la console AWS ou avec `aws s3 mb s3://mon-projet-tfstate`. Une fois créé, la migration se fait en deux étapes.
+Le bucket S3 doit exister avant de configurer le backend : Terraform ne peut pas créer le bucket qui stocke son propre state (problème de l'œuf et de la poule). Il se crée manuellement, par la CLI ou par une petite configuration Terraform dédiée au state local :
+
+```bash
+aws s3 mb s3://mon-projet-tfstate --region eu-west-3
+
+# Versioning : chaque écriture du state conserve la version précédente, restaurable en cas d'erreur
+aws s3api put-bucket-versioning --bucket mon-projet-tfstate \
+  --versioning-configuration Status=Enabled
+
+# Bloquer tout accès public
+aws s3api put-public-access-block --bucket mon-projet-tfstate \
+  --public-access-block-configuration \
+  BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
+```
+
+Une fois le bucket créé, la migration se fait en deux étapes.
 
 **Étape 1 :** Ajouter le bloc `backend` dans la configuration principale :
 
@@ -85,7 +100,7 @@ terraform init -migrate-state
 
 Terraform détecte que le backend a changé, lit le state local existant, et le copie dans S3. À la fin de l'opération, le fichier local `terraform.tfstate` peut être supprimé : il n'est plus utilisé.
 
-```
+```text
 Initializing the backend...
 Do you want to copy existing state to the new backend?
   Pre-existing state was found while migrating the previous "local" backend to the
@@ -123,7 +138,7 @@ terraform init \
   -backend-config="use_lockfile=true"
 ```
 
-```ini
+```hcl
 # env/prod.s3.tfbackend
 bucket       = "mon-projet-prod-tfstate"
 key          = "prod/terraform.tfstate"
@@ -132,7 +147,7 @@ encrypt      = true
 use_lockfile = true
 ```
 
-Cette approche est la plus courante en CI/CD : le pipeline injecte les paramètres du backend selon l'environnement cible sans modifier le code Terraform.
+Cette approche est la plus courante en CI/CD : le pipeline injecte les paramètres du backend selon l'environnement cible sans modifier le code Terraform. Changer de fichier `-backend-config` dans un répertoire déjà initialisé exige `terraform init -reconfigure`, sans quoi Terraform conserve la configuration de backend enregistrée dans `.terraform/`. L'article [pipeline CI/CD vers EKS](../04-ci-cd/2026-07-19-pipeline-cicd-eks.md) applique ce mécanisme à un environnement de test, et l'article [multi-environnements](./2026-07-19-terraform-multi-environnements.md) le compare aux autres manières de séparer les environnements.
 
 ## Partager des outputs entre configurations
 
@@ -165,7 +180,7 @@ output "private_subnet_ids" {
 }
 ```
 
-`terraform_remote_state` crée un couplage fort entre les deux configurations : si les outputs changent de nom dans la configuration réseau, la configuration applicative casse. Une alternative plus souple est de stocker les valeurs partagées dans AWS SSM Parameter Store ou Secrets Manager, et de les lire avec des data sources AWS standard. Les deux approches coexistent en pratique selon le degré de couplage acceptable.
+`terraform_remote_state` crée un couplage fort entre les deux configurations : si les outputs changent de nom dans la configuration réseau, la configuration applicative casse. Il impose aussi un droit de lecture sur **tout** le state distant, y compris ses valeurs sensibles, alors que seuls quelques outputs sont utiles. Une alternative plus souple est de stocker les valeurs partagées dans AWS SSM Parameter Store ou Secrets Manager, et de les lire avec des data sources AWS standard. Les deux approches coexistent en pratique selon le degré de couplage acceptable.
 
 ## Récapitulatif
 

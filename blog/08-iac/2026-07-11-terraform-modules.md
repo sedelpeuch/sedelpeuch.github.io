@@ -18,7 +18,7 @@ La motivation principale n'est pas la réduction de code : c'est la séparation 
 
 Un module est simplement un répertoire contenant des fichiers `.tf`. Par convention :
 
-```
+```text
 modules/
 └── network/
     ├── main.tf        # ressources du module
@@ -26,7 +26,9 @@ modules/
     └── outputs.tf     # valeurs exposées aux appelants
 ```
 
-Il n'y a pas de fichier spécial qui déclare qu'un répertoire est un module. Tout répertoire contenant des fichiers `.tf` peut être appelé comme module.
+Il n'y a pas de fichier spécial qui déclare qu'un répertoire est un module. Tout répertoire contenant des fichiers `.tf` peut être appelé comme module ; la configuration dans laquelle `terraform` est exécuté est elle-même le *module racine*.
+
+Un module réutilisable ne contient pas de bloc `provider` : il hérite de la configuration du provider définie dans le module racine. Il déclare en revanche les providers dont il a besoin et les versions qu'il supporte, dans un bloc `terraform { required_providers { ... } }` (souvent dans un fichier `versions.tf`), pour que Terraform puisse vérifier la compatibilité avec la version choisie par l'appelant.
 
 ### variables.tf : définir l'interface d'entrée
 
@@ -114,8 +116,9 @@ module "network" {
   vpc_cidr = "10.0.0.0/16"
   project  = var.project
   subnets = {
-    public  = { cidr = "10.0.1.0/24", az_index = 0 }
-    private = { cidr = "10.0.2.0/24", az_index = 1 }
+    public    = { cidr = "10.0.1.0/24", az_index = 0 }
+    private_a = { cidr = "10.0.2.0/24", az_index = 0 }
+    private_b = { cidr = "10.0.3.0/24", az_index = 1 }
   }
 }
 ```
@@ -124,12 +127,17 @@ Les outputs du module sont accessibles via `module.<nom>.<output>` :
 
 ```hcl
 resource "aws_db_subnet_group" "main" {
-  name       = "${var.project}-db-subnet-group"
-  subnet_ids = [module.network.subnet_ids["private"]]
+  name = "${var.project}-db-subnet-group"
+  subnet_ids = [
+    module.network.subnet_ids["private_a"],
+    module.network.subnet_ids["private_b"],   # RDS exige au moins deux AZ
+  ]
 }
 ```
 
-Après l'ajout d'un module, `terraform init` doit être relancé pour que Terraform installe les sources du module dans `.terraform/` :
+Seuls les outputs sont visibles de l'extérieur : `module.network.aws_vpc.this` n'est pas une référence valide depuis le module racine. Dans le state, les ressources du module sont adressées avec leur préfixe, par exemple `module.network.aws_subnet.this["private_a"]`.
+
+Après l'ajout d'un module, `terraform init` doit être relancé pour que Terraform installe les sources du module dans `.terraform/modules/` (pour un module local, il enregistre simplement son chemin) :
 
 ```bash
 terraform init
@@ -145,7 +153,7 @@ module "network" {
   source   = "../../modules/network"
   vpc_cidr = "10.0.0.0/16"
   project  = "mon-projet-dev"
-  subnets  = { ... }
+  subnets  = { /* ... */ }
 }
 
 # env/prod/main.tf
@@ -153,11 +161,11 @@ module "network" {
   source   = "../../modules/network"
   vpc_cidr = "10.1.0.0/16"
   project  = "mon-projet-prod"
-  subnets  = { ... }
+  subnets  = { /* ... */ }
 }
 ```
 
-Un correctif appliqué au module réseau se propage automatiquement aux deux environnements au prochain `apply`.
+Avec une source locale, un correctif appliqué au module réseau se propage aux deux environnements au prochain `apply` de chacun, y compris une éventuelle régression. Une source versionnée (tag Git ou version du registry) permet au contraire de valider une nouvelle version du module en dev avant de modifier la référence de la prod. L'article [multi-environnements](./2026-07-19-terraform-multi-environnements.md) détaille cette organisation par répertoires.
 
 ## Sources de modules
 
@@ -170,12 +178,12 @@ source = "./modules/network"
 source = "../shared-modules/vpc"
 ```
 
-**Terraform Registry** : les modules publiés sur `registry.terraform.io`. Le format est `<namespace>/<module>/<provider>`, avec un attribut `version` obligatoire pour fixer la version.
+**Terraform Registry** : les modules publiés sur `registry.terraform.io`. Le format est `<namespace>/<module>/<provider>`, avec un attribut `version` facultatif mais indispensable en pratique : sans lui, chaque `terraform init -upgrade` peut installer une nouvelle version majeure.
 
 ```hcl
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   name = "mon-vpc"
   cidr = "10.0.0.0/16"
@@ -186,7 +194,7 @@ module "vpc" {
 }
 ```
 
-`~> 5.0` signifie "toute version >= 5.0 et < 6.0". C'est le contrainte de version recommandée : elle accepte les mises à jour mineures (correctifs) mais pas les versions majeures qui pourraient casser l'interface.
+`~> 6.0` signifie « toute version >= 6.0 et < 7.0 ». C'est la contrainte de version la plus courante : elle accepte les versions mineures et correctives, censées rester compatibles selon le versionnement sémantique, mais pas les versions majeures qui peuvent casser l'interface. `~> 6.0.0` restreindrait aux seules versions correctives (6.0.x). La version majeure 6 de ce module accompagne la version 6 du provider AWS ; les versions de module et de provider doivent être choisies ensemble.
 
 **Git** : pour des modules internes hébergés dans un dépôt privé.
 
@@ -194,7 +202,25 @@ module "vpc" {
 source = "git::https://github.com/mon-org/terraform-modules.git//modules/network?ref=v1.2.0"
 ```
 
-Le double slash `//` sépare l'URL du dépôt du chemin dans le dépôt. `ref` fixe le tag, la branche ou le commit.
+Le double slash `//` sépare l'URL du dépôt du chemin dans le dépôt. `ref` fixe le tag, la branche ou le commit. L'attribut `version` ne s'applique pas aux sources Git : seul `ref` fixe la révision, et un tag reste modifiable par les mainteneurs du dépôt, contrairement à un SHA de commit.
+
+## Déplacer des ressources existantes dans un module
+
+Extraire des ressources existantes du module racine vers un module change leur adresse dans le state (`aws_vpc.main` devient `module.network.aws_vpc.this`). Sans précaution, Terraform planifie la destruction de l'ancienne adresse et la création de la nouvelle, c'est-à-dire le remplacement du VPC. Un bloc `moved` déclare la correspondance :
+
+```hcl
+moved {
+  from = aws_vpc.main
+  to   = module.network.aws_vpc.this
+}
+
+moved {
+  from = aws_subnet.private_a
+  to   = module.network.aws_subnet.this["private_a"]   # une instance précise du for_each
+}
+```
+
+Le plan indique alors `has moved to` au lieu d'une destruction ; une fois appliqué, le bloc `moved` peut rester dans le code pour les autres copies de la configuration qui n'ont pas encore été migrées.
 
 ## Quand ne pas créer un module
 
