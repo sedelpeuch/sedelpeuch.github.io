@@ -158,3 +158,9 @@ watch kubectl get pods -n arc-runners
 ```
 
 Un pod apparaît au moment où le job démarre et disparaît quelques secondes après sa fin.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC - Runners CI/CD auto-hébergés sur Kubernetes">Déploiement d'ARC en mode runner scale set (charts Helm officiels 0.13.0) sur le cluster kubeadm du CATIE, avec authentification par GitHub App et runners éphémères Docker-in-Docker maintenus entre 10 et 60 pods.</ProjectLink>
+</ProjectLinks>

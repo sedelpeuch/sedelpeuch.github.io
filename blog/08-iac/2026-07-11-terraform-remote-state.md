@@ -193,3 +193,9 @@ output "private_subnet_ids" {
 | State perdu suite à une erreur | Versioning S3 |
 | Paramètres du backend variables selon l'env | Configuration partielle + `-backend-config` |
 | Partager des valeurs entre configurations | `terraform_remote_state` ou SSM Parameter Store |
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Backend S3 en configuration partielle, avec une clé de state par environnement injectée par le pipeline de déploiement au `terraform init`.</ProjectLink>
+</ProjectLinks>

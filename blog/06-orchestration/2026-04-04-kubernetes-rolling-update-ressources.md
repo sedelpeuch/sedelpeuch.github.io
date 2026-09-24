@@ -188,3 +188,9 @@ kubectl set image deployment/api api=myapp:v2
 ```
 
 Des codes 502 ou 503, ou des connexions refusées (code `000`), signalent un défaut de la chaîne décrite plus haut : readiness probe absente ou trop permissive, absence de délai `preStop`, ou application qui ne traite pas `SIGTERM`. La répartition des réplicas sur plusieurs nœuds et leur protection pendant les maintenances font l'objet de l'article [PodDisruptionBudget et haute disponibilité](./2026-04-03-kubernetes-haute-disponibilite-pdb.md).
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Rolling restart automatique du frontend nginx déclenché par une annotation de checksum sur son ConfigMap, dans un chart Helm unique qui déploie les environnements test, staging et production.</ProjectLink>
+</ProjectLinks>

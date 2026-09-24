@@ -44,3 +44,9 @@ import IconTitle from '@site/src/components/IconTitle';
 ### <IconTitle logo="skill-icons:git" name="10 Contrôle de version - Git"/>
 
 [Git](/blog/tags/devops) L’usage de Git pour organiser, collaborer et versionner les projets applicatifs et d’automatisation est une compétence essentielle pour tout ingénieur informatique. Elle est mise en œuvre dans la gestion de workflows, de pull requests et de revues de code sur GitHub et GitLab, aussi bien dans le cadre professionnel que pour les side-projects open source.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/delpeuch-net-blog" title="Blog">Première roadmap annuelle du blog, qui pose les fondations (Docker, CI/CD, cloud, Kubernetes, monitoring, Ansible) du fil directeur des articles.</ProjectLink>
+</ProjectLinks>

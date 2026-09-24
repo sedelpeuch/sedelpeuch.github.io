@@ -245,3 +245,9 @@ kubectl get hpa api-hpa
 ```
 
 Les paramètres `resources` et le déroulement d'un rolling update sont détaillés dans l'article [rolling update et ressources](./2026-04-04-kubernetes-rolling-update-ressources.md).
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">PodDisruptionBudget `minAvailable: 1` en staging et HorizontalPodAutoscaler en production (API de 3 à 10 réplicas, web de 2 à 5, seuil CPU à 70 %), sans champ `replicas` fixe lorsque l'HPA est actif.</ProjectLink>
+</ProjectLinks>

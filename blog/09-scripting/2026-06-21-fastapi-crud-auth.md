@@ -269,3 +269,9 @@ def update_user(user_id: str, data: UserUpdate, db: Session = Depends(get_db), c
 ## Ce que FastAPI expose automatiquement
 
 Déclarer les schémas, les codes de retour et les dépendances de sécurité sur les routes permet à FastAPI de générer une documentation Swagger UI complète et précise. Chaque endpoint y est documenté avec ses paramètres, ses codes de réponse possibles, et le schéma de sécurité requis — y compris le formulaire de login OAuth2 et le champ Bearer. La documentation reste ainsi synchronisée avec le code sans effort supplémentaire.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">API REST de l'application avec schémas Pydantic séparés des modèles, authentification JWT signée en HS256, mots de passe hachés en bcrypt et dépendance `require_admin` pour les endpoints réservés aux administrateurs.</ProjectLink>
+</ProjectLinks>

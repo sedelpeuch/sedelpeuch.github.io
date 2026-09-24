@@ -130,3 +130,9 @@ sudo setfacl --modify user:runner:rw /var/run/docker.sock
 ```
 
 L'accès au socket Docker équivaut à un accès `root` sur l'hôte : un job peut lancer `docker run -v /:/host --privileged` et modifier n'importe quel fichier du système. Sur une machine partagée, un runner éphémère dans une VM dédiée, ou un démon Docker *rootless*, limite cette exposition.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC - Runners CI/CD auto-hébergés sur Kubernetes">Modèle du runner auto-hébergé classique (une machine, un runner permanent) comparé à ARC, retenu pour ses pods éphémères par job et son ajustement continu à la file d'attente GitHub Actions.</ProjectLink>
+</ProjectLinks>
