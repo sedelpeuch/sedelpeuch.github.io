@@ -55,7 +55,7 @@ Les workspaces conviennent à des variations mineures entre environnements proch
 
 L'alternative consiste à donner à chaque environnement son propre répertoire de configuration racine, avec son propre state, ses propres fichiers de variables, et éventuellement son propre backend. Le code partagé (les ressources elles-mêmes) reste factorisé dans des modules, appelés différemment par chaque environnement.
 
-```
+```text
 .
 ├── modules/
 │   ├── network/
@@ -147,6 +147,17 @@ Avec des workspaces, ce découpage n'est pas possible : le bloc `provider` est u
 **Duplication du code racine.** Chaque `envs/<nom>/main.tf` répète les mêmes appels de modules avec des paramètres différents. Cette duplication reste limitée si les modules concentrent la complexité, mais elle grandit avec le nombre d'environnements. Des outils tiers comme Terragrunt existent spécifiquement pour réduire cette duplication en générant les fichiers racine à partir d'un modèle commun.
 
 **Pas de garantie automatique de cohérence.** Rien n'empêche `envs/dev/main.tf` et `envs/prod/main.tf` de diverger involontairement (un module ajouté dans un environnement et oublié dans l'autre). La discipline de revue de code est nécessaire pour éviter cette dérive.
+
+### Variante : une racine unique, un backend par environnement
+
+Une troisième organisation, intermédiaire, conserve une seule configuration racine et sépare les environnements par deux fichiers passés à la ligne de commande : un fichier de backend (`-backend-config`) qui désigne le state, et un fichier de variables (`-var-file`) qui porte les valeurs propres à l'environnement.
+
+```bash
+terraform init -reconfigure -backend-config=envs/test/backend.hcl
+terraform apply -var-file=envs/test/terraform.tfvars
+```
+
+Le state est isolé comme avec des répertoires séparés, et le choix de l'environnement est explicite dans chaque commande, sans état implicite comme le workspace sélectionné. Le code reste en revanche commun, comme avec les workspaces : une divergence structurelle passe par des variables booléennes (`enable_rds = false` en test, par exemple, avec `count` comme interrupteur). C'est l'organisation retenue dans l'article [pipeline CI/CD vers EKS](../04-ci-cd/2026-07-19-pipeline-cicd-eks.md), où le pipeline choisit les fichiers selon l'environnement cible.
 
 ## Variables par environnement
 

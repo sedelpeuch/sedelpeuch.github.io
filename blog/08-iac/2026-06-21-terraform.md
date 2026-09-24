@@ -9,7 +9,7 @@ Terraform est un outil d'Infrastructure as Code qui permet de décrire des resso
 <!--truncate-->
 
 :::info Développement local avec LocalStack
-Les exemples de cet article peuvent être testés localement sans compte AWS via [LocalStack](https://localstack.dev/), un serveur qui émule les APIs AWS sur `localhost:4566`. Les outils `tflocal` et `awslocal` sont des wrappers qui redirigent automatiquement vers LocalStack :
+Les exemples de cet article peuvent être testés localement sans compte AWS via [LocalStack](https://www.localstack.cloud/), un serveur qui émule les APIs AWS sur `localhost:4566`. Les outils `tflocal` et `awslocal` sont des wrappers qui redirigent automatiquement vers LocalStack :
 
 ```bash
 pip install localstack terraform-local awscli-local
@@ -24,9 +24,12 @@ Les commandes `tflocal` et `awslocal` remplacent alors `terraform` et `aws` resp
 Terraform s'installe depuis le gestionnaire de paquets HashiCorp :
 
 ```bash
-brew install terraform          # macOS
-apt install terraform           # Ubuntu/Debian avec le dépôt HashiCorp
+brew install hashicorp/tap/terraform   # macOS
+sudo apt install terraform             # Ubuntu/Debian, après ajout du dépôt apt.releases.hashicorp.com
+terraform version
 ```
+
+Terraform est distribué sous licence BSL depuis la version 1.6 (août 2023). OpenTofu, fork communautaire sous licence MPL maintenu par la Linux Foundation, reste compatible avec la syntaxe et les providers présentés ici (commande `tofu`).
 
 ## Structure d'un fichier de configuration Terraform
 
@@ -34,15 +37,22 @@ Un fichier Terraform est un fichier texte avec l'extension `.tf`. Il décrit un 
 
 ### Le bloc `terraform`
 
-Le bloc `terraform` définit les contraintes sur le moteur lui-même, notamment la version minimum requise :
+Le bloc `terraform` définit les contraintes sur le moteur lui-même et les providers requis, avec leur source dans le registre et leur version :
 
 ```hcl
 terraform {
-  required_version = ">= 0.12"
+  required_version = ">= 1.10"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0"   # toute version 6.x, jamais la 7.0
+    }
+  }
 }
 ```
 
-Il peut également déclarer les providers requis et leur version. Maintenir ce bloc à jour garantit que l'infrastructure ne sera pas appliquée avec une version de Terraform incompatible.
+L'opérateur `~>` (*pessimistic constraint*) n'autorise que l'incrément du dernier chiffre indiqué : `~> 6.0` accepte 6.1 ou 6.12, mais pas 7.0, dont les changements pourraient être incompatibles. Ce bloc garantit que la configuration ne sera pas appliquée avec une version de Terraform ou du provider non testée.
 
 ### Le bloc `provider`
 
@@ -57,6 +67,7 @@ provider "aws" {
   skip_credentials_validation = true
   skip_requesting_account_id  = true
   skip_metadata_api_check     = true
+  s3_use_path_style           = true   # URL localhost:4566/bucket plutôt que bucket.localhost
 
   endpoints {
     s3 = "http://localhost:4566"
@@ -66,11 +77,11 @@ provider "aws" {
 
 Les trois directives `skip_*` désactivent les appels de validation que le provider AWS effectue normalement au démarrage contre les APIs IAM et STS. Sans elles, Terraform tenterait de vérifier les credentials contre les vrais serveurs AWS et échouerait. Le bloc `endpoints` redirige les appels S3 vers LocalStack au lieu d'`s3.amazonaws.com`.
 
-En production, ce bloc ne contient pas de credentials en dur. Terraform les lit depuis les variables d'environnement `AWS_ACCESS_KEY_ID` et `AWS_SECRET_ACCESS_KEY`, ou depuis le profil AWS configuré localement.
+En production, ce bloc ne contient pas de credentials en dur. Le provider applique la même chaîne de résolution que la [CLI AWS](../05-cloud/2026-02-21-aws-cli.md) : variables d'environnement (`AWS_ACCESS_KEY_ID`, `AWS_PROFILE`...), fichiers `~/.aws`, puis rôle de l'instance ou identité OIDC en CI. Le bloc se réduit alors à `provider "aws" { region = "eu-west-3" }`.
 
 ### Le bloc `resource`
 
-Un bloc `resource` déclare une ressource à créer. La syntaxe est `resource "<type>" "<nom_local>"`. Le type détermine le service AWS cible ; le nom local sert uniquement à référencer la ressource depuis d'autres blocs du même fichier `.tf` :
+Un bloc `resource` déclare une ressource à créer. La syntaxe est `resource "<type>" "<nom_local>"`. Le type détermine le service AWS cible ; le nom local sert uniquement à référencer la ressource depuis les autres blocs du même module, c'est-à-dire de tous les fichiers `.tf` du répertoire, que Terraform lit comme une seule configuration :
 
 ```hcl
 resource "aws_s3_bucket" "task_horizon_avatar_data" {
@@ -96,7 +107,9 @@ tflocal init
 tflocal plan
 ```
 
-`plan` est un dry run. Terraform compare l'état actuel de l'infrastructure (lu depuis le fichier d'état) avec la configuration déclarée, et affiche les actions qu'il envisage : `+ create`, `~ update`, `- destroy`. Aucune ressource n'est créée ou modifiée à ce stade.
+`plan` est un dry run. Terraform rafraîchit d'abord l'état en interrogeant l'API du fournisseur pour chaque ressource connue, compare ce résultat à la configuration déclarée, puis affiche les actions envisagées : `+ create`, `~ update in-place`, `- destroy`, et `-/+` pour un remplacement (destruction puis recréation, lorsqu'un attribut ne peut pas être modifié en place). Aucune ressource n'est créée ou modifiée à ce stade.
+
+`terraform plan -out=tfplan` enregistre le plan dans un fichier ; `terraform apply tfplan` applique alors exactement ces actions, sans recalcul ni nouvelle confirmation. C'est le mode utilisé en CI, où le plan est relu (ou validé) avant son application. `terraform fmt` (formatage) et `terraform validate` (cohérence syntaxique et des types, sans appel à l'API) complètent le cycle en amont.
 
 Dans le plan, certaines valeurs apparaissent comme `(known after apply)`. Ce sont des attributs que AWS génère lui-même — ARN, identifiants uniques, URLs — et qui n'existent pas encore avant la création effective de la ressource.
 
@@ -128,20 +141,21 @@ Terraform génère trois types de fichiers qu'il faut traiter différemment selo
 
 En local, le fichier d'état est stocké sur le disque. Ce mode de fonctionnement ne convient pas à un usage en équipe ou en CI/CD : deux exécutions simultanées de Terraform peuvent corrompre l'état, et un développeur travaillant sur une autre machine n'a pas accès à l'état à jour.
 
-La solution standard est le backend remote : le fichier d'état est stocké dans un bucket S3 dédié, et un verrou distribué via DynamoDB empêche deux exécutions simultanées. Cette configuration se déclare dans le bloc `terraform` :
+La solution standard est le backend remote : le fichier d'état est stocké dans un bucket S3 dédié, et un verrou empêche deux exécutions simultanées. Depuis Terraform 1.10, ce verrou est un simple fichier `.tflock` créé dans le bucket par écriture conditionnelle (`use_lockfile`) ; la table DynamoDB utilisée auparavant est dépréciée. Cette configuration se déclare dans le bloc `terraform` :
 
 ```hcl
 terraform {
   backend "s3" {
-    bucket         = "mon-projet-tfstate"
-    key            = "prod/terraform.tfstate"
-    region         = "eu-west-3"
-    dynamodb_table = "terraform-locks"
+    bucket       = "mon-projet-tfstate"
+    key          = "prod/terraform.tfstate"
+    region       = "eu-west-3"
+    use_lockfile = true
+    encrypt      = true
   }
 }
 ```
 
-Le passage du backend local au backend remote se fait avec `terraform init -migrate-state`, qui copie l'état existant vers S3.
+Le passage du backend local au backend remote se fait avec `terraform init -migrate-state`, qui copie l'état existant vers S3. Le fonctionnement du verrou, la migration et la configuration partielle du backend sont détaillés dans l'article [Terraform remote state](./2026-07-11-terraform-remote-state.md).
 
 ## Variables
 
@@ -184,6 +198,8 @@ La seconde utilise un fichier `terraform.tfvars`, chargé automatiquement par Te
 bucket_name = "prod-avatars"
 ```
 
+Lorsqu'une même variable est définie à plusieurs endroits, la dernière source lue l'emporte, dans cet ordre : valeur `default`, variables d'environnement `TF_VAR_<nom>`, fichier `terraform.tfvars`, fichiers `*.auto.tfvars` (par ordre alphabétique), puis options `-var` et `-var-file` dans l'ordre de la ligne de commande. Une variable sans `default` ni valeur fournie est demandée interactivement, ou provoque une erreur avec `-input=false`.
+
 :::warning Nommage S3
 S3 n'accepte pas les underscores dans les noms de buckets. Si `bucket_name` contenait un underscore et qu'on le corrige après un premier `apply`, Terraform détruirait le bucket existant pour en recréer un nouveau (`-/+` dans le plan). En production, cela signifie une perte de données. Le plan doit toujours être lu attentivement avant un `apply` sur une infrastructure existante.
 :::
@@ -222,26 +238,39 @@ resource "aws_vpc" "task_horizon_vpc" {
 
 ```hcl
 resource "aws_subnet" "task_horizon_subnet_public" {
-  vpc_id     = aws_vpc.task_horizon_vpc.id
-  cidr_block = "10.0.1.0/24"
+  vpc_id            = aws_vpc.task_horizon_vpc.id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "eu-west-3a"
 }
 
-resource "aws_subnet" "task_horizon_subnet_private" {
-  vpc_id     = aws_vpc.task_horizon_vpc.id
-  cidr_block = "10.0.2.0/24"
+resource "aws_subnet" "task_horizon_subnet_private_a" {
+  vpc_id            = aws_vpc.task_horizon_vpc.id
+  cidr_block        = "10.0.2.0/24"
+  availability_zone = "eu-west-3a"
+}
+
+resource "aws_subnet" "task_horizon_subnet_private_b" {
+  vpc_id            = aws_vpc.task_horizon_vpc.id
+  cidr_block        = "10.0.3.0/24"
+  availability_zone = "eu-west-3b"
 }
 ```
+
+Un subnet appartient à une seule zone de disponibilité ; sans `availability_zone`, AWS en choisit une arbitrairement. Le caractère public ou privé d'un subnet ne dépend pas de cette déclaration mais de sa table de routage (route vers une Internet Gateway ou non), comme le détaille l'article [VPC](../05-cloud/2026-04-02-vpc.md).
 
 La référence `aws_vpc.task_horizon_vpc.id` extrait l'identifiant du VPC créé précédemment. C'est le même mécanisme de référence entre ressources que celui utilisé dans les outputs — la syntaxe `<type>.<nom_local>.<attribut>` est universelle dans Terraform.
 
 ### RDS PostgreSQL
 
-RDS exige un subnet group — un objet AWS qui liste les subnets dans lesquels l'instance de base de données peut être placée. C'est un prérequis obligatoire avant de pouvoir créer l'instance :
+RDS exige un subnet group — un objet AWS qui liste les subnets dans lesquels l'instance de base de données peut être placée. C'est un prérequis obligatoire avant de pouvoir créer l'instance, et il doit couvrir **au moins deux zones de disponibilité**, même pour une instance Single-AZ : AWS le refuse sinon (`DB Subnet Group doesn't meet availability zone coverage requirement`). Cette contrainte permet un basculement Multi-AZ ultérieur sans changer de réseau.
 
 ```hcl
 resource "aws_db_subnet_group" "task_horizon_db_subnet_group" {
-  name       = "task-horizon-db-subnet-group"
-  subnet_ids = [aws_subnet.task_horizon_subnet_private.id]
+  name = "task-horizon-db-subnet-group"
+  subnet_ids = [
+    aws_subnet.task_horizon_subnet_private_a.id,
+    aws_subnet.task_horizon_subnet_private_b.id,
+  ]
 }
 ```
 
@@ -249,7 +278,9 @@ L'instance RDS référence ensuite ce subnet group, ce qui la place dans le rés
 
 ```hcl
 resource "aws_db_instance" "task_horizon_db" {
+  identifier        = "task-horizon-db"
   engine            = "postgres"
+  engine_version    = "16"            # version majeure épinglée, mineure gérée par AWS
   instance_class    = "db.t3.micro"
   allocated_storage = 20
   db_name           = "task_horizon_db"
@@ -277,28 +308,34 @@ variable "db_password" {
 }
 ```
 
-Une variable `sensitive = true` sans `default` force l'injection explicite à chaque exécution. Dans le plan et les logs, la valeur apparaît comme `(sensitive value)`. En CI/CD, elle est injectée depuis les secrets du pipeline :
+Une variable `sensitive = true` sans `default` force l'injection explicite à chaque exécution. Dans le plan et les logs, la valeur apparaît comme `(sensitive value)`. En CI/CD, elle est injectée depuis les secrets du pipeline par une variable d'environnement `TF_VAR_<nom>`, plutôt que par `-var`, qui exposerait la valeur dans la liste des processus et l'historique du shell :
 
-```bash
-terraform apply -var="db_password=${{ secrets.DB_PASSWORD }}"
+```yaml
+# Étape d'un workflow GitHub Actions
+- run: terraform apply -input=false tfplan
+  env:
+    TF_VAR_db_password: ${{ secrets.DB_PASSWORD }}
 ```
+
+`sensitive` ne fait que masquer l'affichage : la valeur est écrite **en clair** dans le fichier d'état, d'où l'importance de protéger le backend (chiffrement, accès restreint). Deux mécanismes évitent de stocker le mot de passe dans l'état : `manage_master_user_password = true` sur `aws_db_instance`, qui fait générer et stocker le mot de passe par AWS Secrets Manager, et les arguments *write-only* introduits par Terraform 1.11 (`password_wo`, accompagné de `password_wo_version`), transmis au fournisseur mais jamais enregistrés dans l'état.
 
 ### Le graphe de dépendances
 
 L'ordre dans lequel les ressources sont déclarées dans les fichiers `.tf` n'a pas d'importance. Terraform analyse les références entre ressources et construit automatiquement un graphe de dépendances pour déterminer l'ordre de création :
 
-```
+```text
 aws_vpc → aws_subnet → aws_db_subnet_group → aws_db_instance
 ```
 
-Les ressources sans dépendance entre elles — comme les subnets public et private — sont créées en parallèle. Cette résolution automatique évite d'avoir à gérer manuellement l'ordre des opérations, et permet à Terraform d'optimiser le temps d'exécution en parallélisant ce qui peut l'être.
+Les ressources sans dépendance entre elles — comme les subnets public et private — sont créées en parallèle (10 opérations simultanées par défaut, option `-parallelism`). La suppression parcourt le graphe en sens inverse : l'instance RDS est détruite avant le subnet group, lui-même avant les subnets. `terraform graph` exporte ce graphe au format DOT. Les cas où une dépendance n'est pas visible dans les références relèvent de `depends_on`, présenté dans l'article [depends_on et lifecycle](./2026-07-11-terraform-depends-on-lifecycle.md).
 
 L'architecture réseau résultante pour TaskHorizon :
 
-```
+```text
 VPC 10.0.0.0/16
-├── subnet public  10.0.1.0/24  — Load Balancer, EKS ingress
-└── subnet private 10.0.2.0/24  — RDS PostgreSQL, EKS nodes
+├── subnet public    10.0.1.0/24 (eu-west-3a) — Load Balancer, EKS ingress
+├── subnet private a 10.0.2.0/24 (eu-west-3a) — RDS PostgreSQL, EKS nodes
+└── subnet private b 10.0.3.0/24 (eu-west-3b) — RDS PostgreSQL (subnet group), EKS nodes
 ```
 
 ## Intégration CI/CD
@@ -307,12 +344,12 @@ Les outputs sont le point de jonction naturel entre un job d'infrastructure et u
 
 ```bash
 # Job 1 — infrastructure
-tflocal apply -var="bucket_name=prod-avatars"
-S3_ARN=$(tflocal output -raw task_horizon_avatar_data_arn)
+terraform apply -input=false -auto-approve -var="bucket_name=prod-avatars"
+S3_ARN=$(terraform output -raw task_horizon_avatar_data_arn)
 
 # Job 2 — déploiement
 helm upgrade taskhorizon ./helm/taskhorizon \
   --set api.env.S3_BUCKET_ARN="$S3_ARN"
 ```
 
-Cette séparation garantit que les valeurs transmises au déploiement sont celles effectivement provisionnées, et non des valeurs codées en dur susceptibles de diverger entre environnements.
+Cette séparation garantit que les valeurs transmises au déploiement sont celles effectivement provisionnées, et non des valeurs codées en dur susceptibles de diverger entre environnements. L'article [pipeline CI/CD vers EKS](../04-ci-cd/2026-07-19-pipeline-cicd-eks.md) décrit une chaîne complète construite sur ce principe, et les articles suivants de la série abordent les [data sources](./2026-06-28-terraform-data-sources.md), les [boucles et locals](./2026-07-11-terraform-count-foreach-locals.md) et les [modules](./2026-07-11-terraform-modules.md).

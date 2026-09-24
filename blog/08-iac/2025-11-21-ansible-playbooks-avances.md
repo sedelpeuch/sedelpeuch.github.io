@@ -1,22 +1,22 @@
 ---
 title: "Ansible : avancé"
-description: "Fonctionnalités avancées d'Ansible pour créer des playbooks modulaires, sécuriser les secrets et automatiser les déploiements."
+description: "Fonctionnalités avancées d'Ansible : rôles, priorité des variables, collections, secrets, organisation d'un projet, tags et gestion des erreurs."
 tags: [iac, devops]
 ---
 
-L'[article précédent sur Ansible](/blog/2025/06/09/08-iac/ansible-introduction) couvrait les bases de cet outil d'automatisation puissant. Cet article explore des concepts avancés qui permettent de créer des infrastructures complexes de manière modulaire, sécurisée et automatisée. 🚀
+L'[article d'introduction à Ansible](./2025-06-09-ansible-introduction.md) couvrait l'inventaire, les playbooks et les modules. Dès que le nombre de playbooks et d'environnements augmente, d'autres mécanismes deviennent nécessaires pour éviter la duplication : rôles, collections, gestion des secrets, organisation des inventaires et traitement des erreurs.
 
 <!--truncate-->
 
-## Les rôles Ansible : modularité et réutilisabilité 📦
+## Les rôles Ansible : modularité et réutilisabilité
 
-Les rôles sont la pierre angulaire de la modularité dans Ansible. Ils permettent d'organiser les playbooks en composants réutilisables et maintenables.
+Les rôles sont l'unité de réutilisation d'Ansible : un rôle regroupe les tâches, handlers, variables, templates et fichiers nécessaires à une fonction (serveur web, base de données), et s'applique à n'importe quel groupe d'hôtes.
 
 ### Structure d'un rôle
 
 Un rôle suit une structure de répertoires standardisée :
 
-```
+```text
 roles/
 └── webserver/
     ├── defaults/           # Variables par défaut (priorité la plus basse)
@@ -40,10 +40,10 @@ roles/
 
 ```bash
 # Créer la structure d'un nouveau rôle
-ansible-galaxy init webserver
+ansible-galaxy role init webserver
 
 # Créer un rôle dans un répertoire spécifique
-ansible-galaxy init roles/webserver
+ansible-galaxy role init --init-path roles webserver
 
 # Voir la structure créée
 tree roles/webserver
@@ -106,6 +106,8 @@ server_port: 80
 server_name: "{{ site_name }}"
 ```
 
+`document_root` et `server_name` référencent `site_name` : les variables Ansible sont évaluées paresseusement, au moment de leur utilisation. Surcharger `site_name` au niveau du playbook modifie donc aussi `document_root`, sans avoir à le redéfinir.
+
 **vars/main.yml**
 
 ```yaml
@@ -114,6 +116,17 @@ server_name: "{{ site_name }}"
 nginx_worker_processes: auto
 nginx_worker_connections: 1024
 ```
+
+La différence entre `defaults/` et `vars/` tient à leur place dans l'ordre de priorité des variables, qui compte plus de vingt niveaux. Les plus courants, du plus faible au plus fort :
+
+1. `defaults/main.yml` du rôle
+2. `group_vars/all`, puis `group_vars/<groupe>`, puis `host_vars/<hôte>` de l'inventaire
+3. `vars:` du play et fichiers `vars_files`
+4. `vars/main.yml` du rôle
+5. `set_fact` et variables enregistrées (`register`), puis paramètres passés au rôle dans le playbook
+6. `-e` / `--extra-vars` en ligne de commande, qui l'emportent sur tout
+
+Un rôle place donc dans `defaults/` tout ce que l'utilisateur doit pouvoir adapter par l'inventaire, et dans `vars/` les constantes internes qu'aucune variable d'inventaire ne doit écraser.
 
 **handlers/main.yml**
 
@@ -156,21 +169,21 @@ server {
 ---
 # Métadonnées et dépendances du rôle
 galaxy_info:
-  author: Votre Nom
+  author: Nom de l'auteur
   description: Installation et configuration de Nginx
-  company: Votre Entreprise
+  company: Organisation
   license: MIT
-  min_ansible_version: 2.9
+  min_ansible_version: "2.15"
 
   platforms:
     - name: Ubuntu
       versions:
-        - focal
         - jammy
+        - noble
     - name: Debian
       versions:
-        - bullseye
         - bookworm
+        - trixie
 
   galaxy_tags:
     - nginx
@@ -179,6 +192,8 @@ galaxy_info:
 
 dependencies: []
 ```
+
+`dependencies` liste des rôles exécutés automatiquement avant celui-ci (par exemple un rôle `common` qui configure le pare-feu et les utilisateurs).
 
 ### Utiliser un rôle dans un playbook
 
@@ -207,9 +222,9 @@ dependencies: []
         - web
 ```
 
-## Collections Ansible 📚
+## Collections Ansible
 
-Les collections sont des packages qui regroupent modules, rôles, plugins et playbooks. Elles remplacent progressivement les rôles Galaxy.
+Les collections sont le format de distribution du contenu Ansible : un paquet versionné qui regroupe modules, plugins, rôles et playbooks sous un espace de noms (`community.general`, `amazon.aws`). Depuis Ansible 2.10, la quasi-totalité des modules, auparavant livrés avec le moteur, sont distribués ainsi ; `ansible-core` ne contient plus que la collection `ansible.builtin`.
 
 ### Installer une collection
 
@@ -258,24 +273,27 @@ collections:
         name: express
         global: yes
 
-    # Méthode 2 : Importer la collection
+    # Méthode 2 : déclarer la collection, puis utiliser le nom court du module
     - name: Docker tasks
-      block:
-        - community.docker.docker_container:
-            name: nginx
-            image: nginx:latest
-            state: started
       collections:
         - community.docker
+      block:
+        - docker_container:
+            name: nginx
+            image: nginx:1.27-alpine
+            state: started
 ```
+
+La forme FQCN reste recommandée : elle rend chaque tâche non ambiguë, alors que le nom court dépend de l'ordre de recherche des collections déclarées.
 
 ### Créer sa propre collection
 
 ```bash
 # Créer la structure d'une collection
 ansible-galaxy collection init mon_namespace.ma_collection
+```
 
-# Structure créée
+```text
 mon_namespace/
 └── ma_collection/
     ├── docs/
@@ -289,174 +307,20 @@ mon_namespace/
     └── README.md
 ```
 
-## Ansible Vault : gérer les secrets en toute sécurité 🔒
+## Ansible Vault : secrets chiffrés
 
-Ansible Vault permet de chiffrer les fichiers contenant des données sensibles.
-
-### Créer un fichier chiffré
-
-```bash
-# Créer un nouveau fichier chiffré
-ansible-vault create secrets.yml
-
-# Vous serez invité à entrer un mot de passe
-# Puis un éditeur s'ouvrira pour saisir le contenu
-```
-
-**Contenu de secrets.yml (déchiffré) :**
-
-```yaml
----
-db_password: "SuperSecretPassword123!"
-api_key: "abc123def456ghi789"
-ssl_certificate_key: |
-```
-
-### Chiffrer un fichier existant
-
-```bash
-# Chiffrer un fichier existant
-ansible-vault encrypt vars/production.yml
-
-# Chiffrer plusieurs fichiers
-ansible-vault encrypt vars/*.yml
-```
-
-### Modifier un fichier chiffré
-
-```bash
-# Éditer un fichier chiffré (déchiffrement temporaire)
-ansible-vault edit secrets.yml
-
-# Voir le contenu sans éditer
-ansible-vault view secrets.yml
-```
-
-### Déchiffrer un fichier
-
-```bash
-# Déchiffrer un fichier (attention, perte de la protection !)
-ansible-vault decrypt secrets.yml
-
-# Rechiffrer avec un nouveau mot de passe
-ansible-vault rekey secrets.yml
-```
-
-### Utiliser Vault dans un playbook
-
-```yaml
----
-- name: Déploiement avec secrets
-  hosts: production
-  vars_files:
-    - vars/common.yml
-    - secrets.yml  # Fichier chiffré avec Vault
-
-  tasks:
-    - name: Configurer la base de données
-      mysql_user:
-        name: app_user
-        password: "{{ db_password }}"  # Depuis secrets.yml
-        priv: "appdb.*:ALL"
-        state: present
-
-    - name: Configurer l'API
-      template:
-        src: api_config.j2
-        dest: /etc/app/config.json
-      vars:
-        api_secret: "{{ api_key }}"
-```
-
-### Exécuter avec Vault
-
-```bash
-# Demander le mot de passe interactivement
-ansible-playbook deploy.yml --ask-vault-pass
-
-# Utiliser un fichier de mot de passe
-ansible-playbook deploy.yml --vault-password-file ~/.vault_pass.txt
-
-# Utiliser un script pour obtenir le mot de passe
-ansible-playbook deploy.yml --vault-password-file get_vault_pass.sh
-```
-
-### Fichier de mot de passe
-
-```bash
-# Créer un fichier de mot de passe
-echo "MonMotDePasseVault" > ~/.vault_pass.txt
-chmod 600 ~/.vault_pass.txt
-
-# Configurer dans ansible.cfg
-cat >> ansible.cfg << EOF
-[defaults]
-vault_password_file = ~/.vault_pass.txt
-EOF
-```
-
-### Script pour récupérer le mot de passe
-
-```bash
-#!/bin/bash
-# get_vault_pass.sh - Récupère le mot de passe depuis un gestionnaire de secrets
-
-# Exemple avec pass (passwordstore.org)
-pass show ansible/vault
-
-# Exemple avec AWS Secrets Manager
-aws secretsmanager get-secret-value \
-  --secret-id ansible-vault \
-  --query SecretString \
-  --output text
-
-# Exemple avec 1Password CLI
-op read "op://DevOps/Ansible Vault/password"
-```
-
-### Vault IDs : gérer plusieurs clés
-
-```bash
-# Créer des fichiers avec différents Vault IDs
-ansible-vault create --vault-id dev@prompt secrets_dev.yml
-ansible-vault create --vault-id prod@prompt secrets_prod.yml
-
-# Utiliser avec des fichiers de mots de passe
-ansible-vault create --vault-id dev@.vault_dev secrets_dev.yml
-
-# Exécuter avec plusieurs Vault IDs
-ansible-playbook deploy.yml \
-  --vault-id dev@.vault_dev \
-  --vault-id prod@.vault_prod
-```
-
-### Chiffrer des variables individuelles
-
-```yaml
----
-# Au lieu de chiffrer tout le fichier
-db_host: localhost
-db_user: app_user
-db_password: !vault |
-  $ANSIBLE_VAULT;1.1;AES256
-  66386439653936393039346235323131386335333132333239336631643366326362333733363264
-  3939666233316362313938396331626664626134623239360a356430646364633338336564383661
-  ...
-
-# Créer une variable chiffrée
-ansible-vault encrypt_string 'SuperSecretPassword' --name 'db_password'
-```
+Les rôles et les inventaires contiennent souvent des mots de passe ou des clés d'API. Ansible Vault les chiffre en AES-256, soit par fichier entier (`ansible-vault encrypt group_vars/all/vault.yml`), soit variable par variable (`ansible-vault encrypt_string`), et les déchiffre en mémoire au moment de l'exécution (`--ask-vault-pass`, `--vault-password-file` ou `--vault-id`). La convention consiste à préfixer les variables chiffrées par `vault_` et à les référencer depuis un fichier en clair (`db_password: "{{ vault_db_password }}"`), pour que les noms de variables restent lisibles et recherchables dans le dépôt. Le fonctionnement détaillé, la gestion des mots de passe et les identifiants de Vault font l'objet de l'article [Ansible Vault](./2025-11-28-ansible-vault.md).
 
 ## Application / Projet lié
 
 ### [Cluster Kubernetes SONU](/docs/projects/professionnel/sonu-k8s-cluster)
 **Utilisation** : Playbooks avancés et structures de rôles pour la gestion complexe du cluster Kubernetes, configurations persistantes et secrets sécurisés.
 
-## Bonnes pratiques avancées 🏆
+## Bonnes pratiques avancées
 
 ### 1. Structure de projet recommandée
 
-```
+```text
 ansible-project/
 ├── ansible.cfg
 ├── inventories/
@@ -485,6 +349,8 @@ ansible-project/
 └── README.md
 ```
 
+Un répertoire d'inventaire par environnement porte ses propres `group_vars` : le même playbook s'applique à la production ou à la préproduction selon l'inventaire passé avec `-i inventories/production`, sans condition sur l'environnement dans le code.
+
 ### 2. Utiliser des tags stratégiquement
 
 ```yaml
@@ -495,11 +361,10 @@ ansible-project/
   tasks:
     - name: Installer les paquets
       apt:
-        name: "{{ item }}"
+        name:                 # une liste : un seul appel au gestionnaire de paquets
+          - nginx
+          - python3
         state: present
-      loop:
-        - nginx
-        - python3
       tags:
         - install
         - packages
@@ -520,10 +385,18 @@ ansible-project/
         - deploy
         - app
 
-# Exécuter uniquement certaines tâches
-# ansible-playbook deploy.yml --tags "config"
-# ansible-playbook deploy.yml --skip-tags "deploy"
 ```
+
+```bash
+# Exécuter uniquement certaines tâches
+ansible-playbook deploy.yml --tags "config"
+ansible-playbook deploy.yml --skip-tags "deploy"
+
+# Lister les tâches et tags sans rien exécuter
+ansible-playbook deploy.yml --list-tasks --list-tags
+```
+
+Un handler notifié par une tâche taguée ne s'exécute que si sa propre tâche est retenue ; les tags spéciaux `always` et `never` forcent ou excluent une tâche indépendamment de la sélection.
 
 ### 3. Gestion des erreurs robuste
 
@@ -533,18 +406,17 @@ ansible-project/
   hosts: all
 
   tasks:
-    - name: Tâche qui peut échouer
-      command: /opt/script.sh
-      register: script_result
-      ignore_errors: yes
-
-    - name: Traiter le résultat
+    - name: Exécuter le script avec reprise sur erreur
       block:
+        - name: Tâche qui peut échouer
+          command: /opt/script.sh
+          register: script_result
+
         - debug:
             msg: "Script réussi : {{ script_result.stdout }}"
       rescue:
         - debug:
-            msg: "Script échoué : {{ script_result.stderr }}"
+            msg: "Script échoué : {{ ansible_failed_result.stderr | default('') }}"
         - include_tasks: rollback.yml
       always:
         - name: Nettoyage
@@ -553,23 +425,23 @@ ansible-project/
             state: absent
 ```
 
-## Conclusion 🎯
+`block`/`rescue`/`always` fonctionne comme `try`/`except`/`finally` : la section `rescue` s'exécute seulement si une tâche du `block` échoue, et `always` dans tous les cas. La variable `ansible_failed_result` contient le résultat de la tâche en échec. À l'inverse, `ignore_errors: yes` sur une tâche masque l'échec sans déclencher `rescue` ; `failed_when` et `changed_when` redéfinissent ce qu'est un échec ou un changement à partir du résultat (code de retour, contenu de la sortie).
 
-Ansible offre des fonctionnalités avancées puissantes pour gérer des infrastructures complexes de manière sécurisée et automatisée. Les rôles et collections permettent de créer des composants réutilisables, Vault protège les secrets, et l'intégration CI/CD automatise les déploiements.
+## Conclusion
+
+Les rôles structurent le code en composants réutilisables, avec une séparation claire entre valeurs par défaut et constantes. Les collections distribuent modules et rôles de façon versionnée, Vault protège les secrets versionnés avec le code, et l'organisation des inventaires par environnement évite les conditions dans les playbooks.
 
 Points clés à retenir :
 
-- **Rôles** : modulariser et réutiliser le code
-- **Collections** : packages complets de fonctionnalités
-- **Vault** : chiffrer les données sensibles
-- **CI/CD** : automatiser les déploiements
-- **Stratégies** : blue-green, canary, rollback automatique
+- **Rôles** : modulariser et réutiliser le code, `defaults/` pour ce qui se surcharge
+- **Priorité des variables** : de `defaults/` (plus faible) à `--extra-vars` (plus forte)
+- **Collections** : distribution versionnée des modules, référencés par leur FQCN
+- **Vault** : chiffrer les données sensibles dans le dépôt
+- **Tags et blocs** : exécution sélective et gestion structurée des erreurs
 
-La maîtrise de ces concepts permet de créer des infrastructures as code robustes, maintenables et sécurisées.
+## Ressources utiles
 
-## Ressources utiles 📚
-
-- [Ansible Best Practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)
+- [Ansible Tips and Tricks](https://docs.ansible.com/ansible/latest/tips_tricks/index.html)
 - [Ansible Galaxy](https://galaxy.ansible.com/)
-- [Ansible Vault Documentation](https://docs.ansible.com/ansible/latest/user_guide/vault.html)
-- [Ansible Collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
+- [Ansible Vault Documentation](https://docs.ansible.com/ansible/latest/vault_guide/index.html)
+- [Ansible Collections](https://docs.ansible.com/ansible/latest/collections_guide/index.html)

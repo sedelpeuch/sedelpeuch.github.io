@@ -4,15 +4,15 @@ description: "Créer plusieurs ressources sans duplication avec count et for_eac
 tags: [iac, devops]
 ---
 
-Une configuration Terraform naive duplique les blocs dès qu'il faut plusieurs instances d'une même ressource. Trois subnets dans trois availability zones se traduisent par trois blocs `resource` quasi-identiques, dont la seule différence est le numéro d'AZ et la plage CIDR. Ajouter une quatrième AZ exige de copier un quatrième bloc. Retirer une AZ laisse un bloc orphelin à supprimer manuellement. Ce mode de fonctionnement produit de la configuration qui ne se maintient pas.
-
-Terraform fournit deux métas-arguments pour éviter cette duplication (`count` et `for_each`) et le bloc `locals` pour nommer et réutiliser des valeurs calculées. Ces trois outils répondent à des problèmes distincts et se composent.
+Une configuration Terraform naïve duplique les blocs dès qu'il faut plusieurs instances d'une même ressource. Trois subnets dans trois availability zones se traduisent par trois blocs `resource` quasi identiques, dont la seule différence est le numéro d'AZ et la plage CIDR : chaque ajout ou retrait d'AZ impose de copier ou de supprimer un bloc à la main.
 
 <!--truncate-->
 
+Terraform fournit deux méta-arguments pour éviter cette duplication (`count` et `for_each`) et le bloc `locals` pour nommer et réutiliser des valeurs calculées. Ces trois outils répondent à des problèmes distincts et se composent. Les exemples s'appuient sur les notions de l'article [Terraform](./2026-06-21-terraform.md) et sur le data source `aws_availability_zones`, présenté dans l'article [data sources](./2026-06-28-terraform-data-sources.md).
+
 ## count
 
-Le problème que `count` résout est simple : créer plusieurs instances identiques d'une ressource sans répéter le bloc. `count` prend un entier : Terraform instancie autant de fois la ressource que la valeur indique.
+`count` crée plusieurs instances identiques d'une ressource sans répéter le bloc. `count` prend un entier : Terraform instancie autant de fois la ressource que la valeur indique.
 
 ```hcl
 resource "aws_subnet" "public" {
@@ -62,7 +62,7 @@ La conséquence à anticiper : toute ressource qui dépend d'une ressource condi
 resource "aws_db_subnet_group" "main" {
   count      = var.enable_rds ? 1 : 0
   name       = "main-db-subnet-group"
-  subnet_ids = [aws_subnet.private[0].id]
+  subnet_ids = aws_subnet.private[*].id   # au moins deux AZ exigées par RDS
 }
 
 resource "aws_db_instance" "main" {
@@ -70,19 +70,26 @@ resource "aws_db_instance" "main" {
   db_subnet_group_name = aws_db_subnet_group.main[0].name
   # ...
 }
+
+# Un output sur une ressource optionnelle ne doit pas indexer [0] sans condition
+output "db_endpoint" {
+  value = one(aws_db_instance.main[*].endpoint)   # null si count = 0
+}
 ```
+
+La fonction `one()` renvoie l'unique élément d'une liste, ou `null` si elle est vide : elle évite l'erreur d'index qu'un `aws_db_instance.main[0].endpoint` provoquerait lorsque la ressource n'existe pas.
 
 ### La limite de count : la fragilité des index
 
 `count` identifie les instances par leur position dans la liste. Si la liste change, les positions changent, et Terraform reconstruit les ressources dont l'index a bougé même si leur configuration n'a pas changé.
 
-Exemple concret : trois subnets créés avec `count = 3`. On décide de supprimer le subnet du milieu. Terraform voit que `public[1]` doit changer (il récupère la configuration de l'ancien `public[2]`) et que `public[2]` disparaît. Il détruit `public[1]` et recrée une ressource avec la configuration de l'ancienne `public[2]`. Le résultat est fonctionnellement identique, mais deux opérations destroy/create ont eu lieu sans raison.
+Exemple concret : trois subnets créés à partir d'une liste de trois CIDR avec `count = length(var.cidrs)`. Le CIDR du milieu est retiré de la liste. Terraform voit que `public[1]` doit changer (il récupère la configuration de l'ancien `public[2]`) et que `public[2]` disparaît. Il détruit `public[1]` pour le recréer avec la configuration de l'ancien `public[2]`, puis détruit `public[2]`. Le résultat est fonctionnellement identique, mais le subnet de la troisième AZ a été détruit et recréé sans raison, avec tout ce qu'il contenait ; si des instances ou des interfaces réseau y sont encore attachées, la destruction échoue.
 
-Pour les ressources que l'on identifie par leur nom plutôt que par leur position, `for_each` évite ce problème.
+Pour les ressources identifiées par leur nom plutôt que par leur position, `for_each` évite ce problème.
 
 ## for_each
 
-`for_each` itère sur une **map** ou un **set de strings**. Chaque entrée produit une instance de la ressource, identifiée par sa clé et non par un index. La clé est stable : supprimer une entrée de la map ne renomme pas les autres instances.
+`for_each` itère sur une **map** ou un **set de strings**. Chaque entrée produit une instance de la ressource, identifiée par sa clé et non par un index. La clé est stable : supprimer une entrée de la map ne renomme pas les autres instances. Les clés doivent être connues au moment du `plan` : une clé dérivée d'un attribut `known after apply` (l'ID d'une ressource créée dans le même plan) provoque l'erreur `Invalid for_each argument`. Les valeurs, elles, peuvent être inconnues.
 
 ```hcl
 resource "aws_subnet" "public" {
@@ -100,7 +107,7 @@ resource "aws_subnet" "public" {
 
 `each.key` est la clé de l'entrée courante (le nom de l'AZ), `each.value` est la valeur associée (le CIDR). Les trois instances créées s'appellent `aws_subnet.public["eu-west-3a"]`, `aws_subnet.public["eu-west-3b"]`, `aws_subnet.public["eu-west-3c"]`.
 
-Si on retire `eu-west-3b` de la map, seule cette instance est détruite. Les deux autres ne sont pas touchées : elles gardent leurs clés `"eu-west-3a"` et `"eu-west-3c"`, inchangées.
+Si `eu-west-3b` est retiré de la map, seule cette instance est détruite. Les deux autres ne sont pas touchées : elles gardent leurs clés `"eu-west-3a"` et `"eu-west-3c"`, inchangées.
 
 Pour récupérer la liste des IDs produits, la fonction `values()` extrait les valeurs d'une map de ressources, puis le splat `[*]` en extrait un attribut :
 
@@ -113,7 +120,7 @@ resource "aws_db_subnet_group" "main" {
 
 ### for_each sur un set
 
-Quand les clés et les valeurs sont identiques (une liste de noms sans attributs supplémentaires), un `set` suffit. La fonction `toset()` convertit une liste en set. Un set garantit l'unicité et trie les éléments, ce qui est requis par `for_each`. `for_each` ne peut pas itérer directement sur une liste car les listes peuvent contenir des doublons et leur ordre peut varier entre deux plans :
+Quand les clés et les valeurs sont identiques (une liste de noms sans attributs supplémentaires), un `set` suffit. La fonction `toset()` convertit une liste en set. `for_each` refuse une liste : chaque instance doit être identifiée par une clé unique, et une liste peut contenir des doublons et n'identifie ses éléments que par leur position, ce que `for_each` cherche précisément à éviter. Un set de strings garantit l'unicité et fournit directement les clés :
 
 ```hcl
 variable "environments" {
@@ -173,9 +180,23 @@ Le choix entre les deux dépend de la nature des ressources :
 
 La règle pratique : `count` pour les interrupteurs conditionnels (`count = var.flag ? 1 : 0`) et pour des ressources réellement interchangeables. `for_each` pour tout ce qui a un nom ou des attributs distincts.
 
+Passer de `count` à `for_each` sur des ressources existantes change leurs adresses (`aws_subnet.public[0]` devient `aws_subnet.public["eu-west-3a"]`) : sans précaution, Terraform planifie la destruction des anciennes instances et la création des nouvelles. Un bloc `moved` déclare la correspondance, et le plan se réduit à un renommage dans le state, sans aucune opération sur l'infrastructure :
+
+```hcl
+moved {
+  from = aws_subnet.public[0]
+  to   = aws_subnet.public["eu-west-3a"]
+}
+
+moved {
+  from = aws_subnet.public[1]
+  to   = aws_subnet.public["eu-west-3b"]
+}
+```
+
 ## locals
 
-Les `locals` répondent à un problème de lisibilité et de maintenabilité. Sans eux, les expressions complexes se répètent à travers la configuration, et chaque modification exige de retrouver et de corriger chaque occurrence. Un `local` donne un nom à une valeur calculée et la rend réutilisable.
+Les `locals` répondent à un besoin de lisibilité et de maintenabilité. Sans eux, les expressions complexes se répètent à travers la configuration, et chaque modification exige de retrouver et de corriger chaque occurrence. Un `local` donne un nom à une valeur calculée et la rend réutilisable.
 
 ```hcl
 locals {
@@ -233,7 +254,9 @@ locals {
 }
 ```
 
-`cidrsubnet("10.0.0.0/16", 8, i)` calcule le i-ème sous-réseau `/24` dans le bloc `/16`. Pour `i = 0`, il retourne `10.0.0.0/24`. Pour `i = 1`, `10.0.1.0/24`. Le résultat final est `{ "eu-west-3a" = "10.0.0.0/24", "eu-west-3b" = "10.0.1.0/24", "eu-west-3c" = "10.0.2.0/24" }`, prêt à être consommé par `for_each`. Si AWS ajoute une quatrième AZ demain, elle apparaît dans la map sans toucher à la configuration.
+`cidrsubnet("10.0.0.0/16", 8, i)` calcule le i-ème sous-réseau `/24` dans le bloc `/16` : le deuxième argument est le nombre de bits ajoutés au préfixe (16 + 8 = 24), le troisième le numéro du sous-réseau. Pour `i = 0`, il retourne `10.0.0.0/24`. Pour `i = 1`, `10.0.1.0/24`. Le résultat final est `{ "eu-west-3a" = "10.0.0.0/24", "eu-west-3b" = "10.0.1.0/24", "eu-west-3c" = "10.0.2.0/24" }`, prêt à être consommé par `for_each`.
+
+Si AWS ajoute une quatrième AZ, elle apparaît dans la map et un subnet supplémentaire est créé au prochain `apply`, sans modification de la configuration. Le calcul reste néanmoins lié à la **position** de chaque AZ dans la liste : si une AZ disparaissait du résultat du data source (zone indisponible, filtre modifié), les AZ suivantes changeraient d'indice, donc de CIDR, et leurs subnets seraient remplacés. Pour une infrastructure durable, une map explicite `{ AZ => CIDR }` en variable, ou un nombre d'AZ fixé (`slice(names, 0, 3)`), rend le plan indépendant de ces variations.
 
 Les `for` expressions acceptent également une clause `if` pour filtrer :
 
@@ -274,9 +297,9 @@ Le data source fournit les AZs réelles de la région. Le `local` transforme cet
 
 ## Organisation dans les fichiers
 
-Par convention, les `locals` vont dans un fichier `locals.tf` séparé. Sur une configuration de taille modeste, cette séparation semble superflue. Elle devient indispensable dès que la configuration grossit : retrouver rapidement où une valeur est calculée évite de fouiller dans `main.tf` :
+Par convention, les `locals` vont dans un fichier `locals.tf` séparé. Sur une configuration de taille modeste, cette séparation semble superflue ; elle devient utile dès que la configuration grossit, pour retrouver rapidement où une valeur est calculée :
 
-```
+```text
 terraform/
 ├── main.tf        # ressources
 ├── variables.tf   # variables d'entrée
@@ -286,4 +309,4 @@ terraform/
 └── providers.tf   # configuration du provider
 ```
 
-Les `locals` qui dépendent de data sources ne peuvent pas être évalués avant que le `plan` ne résolve ces data sources. Ce n'est pas une contrainte à contourner : Terraform résout la séquence automatiquement, comme il le fait pour les dépendances entre ressources.
+Les `locals` qui dépendent de data sources ne peuvent pas être évalués avant que le `plan` ne résolve ces data sources. Ce n'est pas une contrainte à contourner : Terraform résout la séquence automatiquement, comme il le fait pour les dépendances entre ressources. `terraform console` permet d'évaluer interactivement une expression (`local.az_subnet_map`, `cidrsubnet("10.0.0.0/16", 8, 2)`) avec les valeurs de la configuration et du state courants, ce qui facilite la mise au point des expressions `for`.
