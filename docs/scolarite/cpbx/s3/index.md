@@ -1,5 +1,6 @@
 ---
 title: Cycle Préparatoire de Bordeaux - Semestre 3
+sidebar_label: Semestre 3
 description: Notes de cours et de TD du troisième semestre du Cycle Préparatoire de Bordeaux (informatique, chimie, analyse, algèbre, physique).
 ---
 

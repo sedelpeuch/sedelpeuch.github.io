@@ -1,5 +1,6 @@
 ---
 title: Cycle Préparatoire de Bordeaux - Semestre 1
+sidebar_label: Semestre 1
 description: Supports de cours, TD et corrections du premier semestre du Cycle Préparatoire de Bordeaux (chimie, informatique, mathématiques, physique).
 ---
 

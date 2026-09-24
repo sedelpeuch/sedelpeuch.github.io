@@ -1,5 +1,6 @@
 ---
 title: Cycle Préparatoire de Bordeaux - Semestre 4
+sidebar_label: Semestre 4
 description: Notes de cours, TD et exemples de projets du quatrième semestre du Cycle Préparatoire de Bordeaux (informatique, mathématiques, physique, projet).
 ---
 
