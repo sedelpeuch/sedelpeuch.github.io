@@ -5,31 +5,31 @@ title: "TD3 - Modèle relationnel"
 ## Le cinéma du troisième art
 
 *Un cinéma comporte plusieurs salles définies par un identifiant et une
-capacité; où différents films, définis par le titre et le genre, sont projetés.*
+capacité, où différents films, définis par le titre et le genre, sont projetés.*
 
 1. *On suppose que les horaires ne sont pas fixes, proposez un schéma
-   conceptuel*
+   conceptuel.*
    ![](./img/uml11.png)
 
-2. *Il y a t'il des modifications à apporter au schéma précédent si l'on suppose
-   maintenant que les films sont projetés à des horaires précises ? Par exemple,
+2. *Y a-t-il des modifications à apporter au schéma précédent si l'on suppose
+   maintenant que les films sont projetés à des horaires précis ? Par exemple,
    tous les films sont projetés, soit entre 16h et 18h, soit entre 20h et 22h,
-   etc. Si oui, adapter le schéma conceptuel ...*
+   etc. Si oui, adapter le schéma conceptuel.*
    ![](./img/uml12.png)
 
-3. *Comment modifier le schéma conceptuel pour indiquer qu'à une horaire donné,
+3. *Comment modifier le schéma conceptuel pour indiquer qu'à un horaire donné,
    il n'y a qu'un seul film ?*
    ![](./img/uml13.png)
 
 ## Bibliothèque d'emprunts
 
 *On considère une base de données pour gérer une bibliothèque d'emprunts.
-L'interview des bibliothécaire permet de déterminer les faits suivants :*
+L'interview des bibliothécaires permet de déterminer les faits suivants :*
 
-- *un livre est caractérisé par un numéro, un éditeur et un autre*
-- *un adhérent qui s'inscrit ) la bibliothèque vers une caution*
+- *un livre est caractérisé par un numéro, un éditeur et un auteur*
+- *un adhérent qui s'inscrit à la bibliothèque verse une caution*
 - *les emprunts durent au maximum 8 jours*
-- *on veut pouvoir obtenir, pour chaque adhérent les emprunts qu'il a effectué
+- *on veut pouvoir obtenir, pour chaque adhérent, les emprunts qu'il a effectués
   (nombre, numéro et titre du livre, date de l'emprunt) au cours des trois
   derniers mois*
 - *toutes les semaines, on édite la liste des emprunteurs en retard : nom et
@@ -42,21 +42,28 @@ L'interview des bibliothécaire permet de déterminer les faits suivants :*
 
 2. *Donner un schéma relationnel de cette base*
 
-Livres(*Numéro Livre*, Titre, Date d'achat, État, #id_personne)
+Clés primaires en gras, clés étrangères précédées de # :
 
-Personnes(*Numéro personne*, Nom, prénom)
-
-Emprunter(#num_livre, #num_personne, #id_emprunt)
-
-Emprunts(*id_emprunt*,date)
-
-EtreAuteur(#num_livre,#num_personne)
++ Livres(**Numéro livre**, Titre, Date d'achat, État, #Numéro éditeur) ; l'éditeur
+  est une personne (association Éditer de cardinalité 1,1 côté livre).
++ Personnes(**Numéro personne**, Nom, Prénom)
++ Emprunter(**#Numéro livre, #Numéro personne, Date d'emprunt**) ; la date fait
+  partie de la clé, car une même personne peut emprunter plusieurs fois le même
+  livre.
++ ÊtreAuteur(**#Numéro livre, #Numéro personne**)
 
 3. *Peut-on utiliser une seule relation contenant tous les attributs ? Pourquoi ?*
 
+Non : une relation unique répéterait les informations du livre et de l'adhérent
+à chaque emprunt (redondance). Cette redondance provoque des anomalies de mise à
+jour (modifier une adresse en plusieurs lignes), d'insertion (impossible
+d'enregistrer un livre jamais emprunté sans valeurs nulles) et de suppression
+(supprimer le dernier emprunt d'un livre fait disparaître le livre).
+
 ## Passage au relationnel (synthèse) - Le cinéma du premier art
 
-Donner un schéma relationnel correspondant au schéma conceptuel suivant
+Donner un schéma relationnel correspondant au schéma conceptuel suivant :
+
 ![](./img/3.png)
 
 ![](./img/uml16.png)
