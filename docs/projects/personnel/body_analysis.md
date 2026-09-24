@@ -88,7 +88,4 @@ La suite de tests backend compte 51 fichiers et près de 300 fonctions de test, 
 ## Liens
 
 - 💻 Code source : [github.com/sedelpeuch/body_analysis](https://github.com/sedelpeuch/body_analysis)
-- [uv : gestion des dépendances Python](/blog/2025/12/19/09-scripting/uv-python)
-- [Docker best practices](/blog/2024/12/20/03-containerization/docker-best-practices)
-- [Traefik et Sablier : scale-to-zero](/blog/2026/08/30/06-orchestration/traefik-sablier)
 - [HomeLab](homelab.md) : infrastructure qui héberge l'application

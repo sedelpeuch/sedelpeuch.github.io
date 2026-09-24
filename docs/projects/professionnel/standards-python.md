@@ -52,10 +52,6 @@ L'adoption de Cruft n'est pas universelle — certains projets anciens ne l'ont 
 
 ## Liens
 
-Le dépôt du template est privé à l'organisation `catie-aq`. Articles du blog liés :
+Le dépôt du template est privé à l'organisation `catie-aq`. Page liée :
 
-- [Python : uv](/blog/2025/12/19/09-scripting/uv-python)
-- [Python : Ruff](/blog/2025/12/09/09-scripting/ruff-linting-formatting)
-- [Python : Pytest](/blog/2026/02/15/09-scripting/pytest-testing)
-- [Python : Packaging](/blog/2026/02/15/09-scripting/packaging-python)
 - [Workflows GitHub Actions mutualisés](cicd.md)

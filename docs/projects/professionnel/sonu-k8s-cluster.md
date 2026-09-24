@@ -104,11 +104,7 @@ L'incident a aussi mis en évidence une dépendance : les [runners GitHub ARC](g
 
 ## Liens
 
-Les dépôts Helm des services sont privés à l'organisation `catie-aq`. Articles et pages liés :
+Les dépôts Helm des services sont privés à l'organisation `catie-aq`. Pages liées :
 
-- [Kubernetes : certificats](/blog/2025/06/06/06-orchestration/renouveler-certificats)
-- [Kubernetes : Stockage](/blog/2025/01/12/06-orchestration/k8s-storage)
-- [Prometheus](/blog/2025/11/21/07-monitoring/prometheus-introduction)
-- [Loki](/blog/2025/11/21/07-monitoring/loki-logs-management)
 - [Workflows GitHub Actions mutualisés](cicd.md)
 - [GitHub ARC sur ce cluster](github-arc-kubeadm.md)

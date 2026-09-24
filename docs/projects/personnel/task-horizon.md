@@ -114,15 +114,3 @@ Il n'existe pas de workflow `deploy-prod` : le déploiement en production reste 
 ## Liens
 
 - 💻 Code source : [github.com/sedelpeuch/task_horizon](https://github.com/sedelpeuch/task_horizon)
-
-Articles du blog issus de ce projet :
-
-- [FastAPI : CRUD et authentification](/blog/2026/06/21/09-scripting/fastapi-crud-auth)
-- [SQLAlchemy](/blog/2026/06/21/09-scripting/sqlalchemy)
-- [Kubernetes : haute disponibilité et PodDisruptionBudget](/blog/2026/04/03/06-orchestration/kubernetes-haute-disponibilite-pdb)
-- [Kubernetes : rolling update et ressources](/blog/2026/04/04/06-orchestration/kubernetes-rolling-update-ressources)
-- [AWS VPC](/blog/2026/04/02/05-cloud/vpc)
-- [AWS EKS](/blog/2026/06/28/05-cloud/eks)
-- [Terraform : multi-environnements](/blog/2026/07/19/08-iac/terraform-multi-environnements)
-- [Terraform : remote state](/blog/2026/07/11/08-iac/terraform-remote-state)
-- [Pipeline CI/CD vers EKS](/blog/2026/07/19/04-ci-cd/pipeline-cicd-eks)

@@ -67,5 +67,3 @@ Enfin, Ansible doit être installé avant que le provisioning puisse tourner. Po
 ## Liens
 
 - 💻 Code source : [github.com/sedelpeuch/zsh_ansible](https://github.com/sedelpeuch/zsh_ansible)
-- [Ansible : introduction](/blog/2025/06/09/08-iac/ansible-introduction)
-- [Article associé : Ansible, cas pratique zsh](/blog/2025/06/09/08-iac/ansible-zsh-automation)

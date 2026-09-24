@@ -75,4 +75,3 @@ Ces outils ont en commun d'être petits, ciblés et maintenables : chacun résou
 
 - [Cluster Kubernetes interne SONU](sonu-k8s-cluster.md)
 - [Workflows GitHub Actions mutualisés](cicd.md)
-- [Python : FastAPI](/blog/2024/12/20/09-scripting/fastapi)
