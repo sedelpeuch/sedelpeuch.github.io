@@ -1,23 +1,19 @@
 ---
-title: Prog fonctionnelle
-icon: fa-code-branch
-order: 6
-hide: true
+title: Programmation fonctionnelle
+description: "Cours d'initiation à la programmation fonctionnelle en Scheme/Racket du semestre 6 : lambda-calcul, environnements, récursivité, listes, fonctionnelles, macro-expansions."
 ---
 
 import DocCardList from '@theme/DocCardList';
 
 <DocCardList />
 
-### Objectif du cours
+## Objectif du cours
 
-Initiation à la programmation fonctionnelle (evaluation, environnements, récursivité, listes, fonctionnelles, macroexpansion).
+Initiation à la programmation fonctionnelle (évaluation, environnements, récursivité, listes, fonctionnelles, macro-expansion).
 
-### Ressources pédagogiques
+## Ressources pédagogiques
 
-Le support de [cours]
-
-[cours](https://www.labri.fr/perso/myriam/Enseignement/Scheme/scheme.pdf)
+Le support de [cours](https://www.labri.fr/perso/myriam/Enseignement/Scheme/scheme.pdf).
 
 [TD 1](https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td1.pdf)
 
