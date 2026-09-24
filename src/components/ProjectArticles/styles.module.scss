@@ -1,0 +1,97 @@
+// Liste « articles liés » en bas des pages projets : rail vertical et anneaux.
+
+.section {
+  --pa-accent: var(--ifm-color-primary);
+  --pa-muted: var(--ifm-color-emphasis-600);
+  --pa-ring: 14px;
+  margin: 3rem 0 1rem;
+}
+
+.heading {
+  margin-bottom: 0.4rem;
+}
+
+.intro {
+  margin: 0 0 1.5rem;
+  color: var(--pa-muted);
+  font-size: 0.95rem;
+}
+
+.rail {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 2.25rem;
+  list-style: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: calc(0.625rem - 1.25px);
+    top: 0.45rem;
+    bottom: 0.6rem;
+    width: 2.5px;
+    background: var(--pa-accent);
+  }
+}
+
+.item {
+  position: relative;
+  margin: 0 0 1.5rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: calc(-2.25rem + 0.625rem - var(--pa-ring) / 2);
+    top: 0.2rem;
+    width: var(--pa-ring);
+    height: var(--pa-ring);
+    box-sizing: border-box;
+    border: 2.5px solid var(--pa-accent);
+    border-radius: 50%;
+    background: var(--ifm-background-color);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.6rem;
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--pa-muted);
+
+  time {
+    margin-left: auto;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--pa-accent);
+}
+
+.title {
+  display: inline-block;
+  margin: 0.15rem 0 0.2rem;
+  font-size: 1.05rem;
+  font-weight: 520;
+  color: var(--ifm-heading-color);
+
+  &:hover {
+    color: var(--pa-accent);
+    text-decoration: none;
+  }
+}
+
+.text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
