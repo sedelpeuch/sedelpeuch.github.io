@@ -14,10 +14,17 @@ ceux-ci. Quelques familles d'algorithmes sont introduites : diviser pour régner
 programmation dynamique et algorithmes gloutons. La comparaison d'algorithmes est abordée par
 l'introduction de la notion de complexité.
 
-Support de
-[cours](http://www.apprendre-en-ligne.net/info/bibliotheque/initiation-algorithmique.pdf),
-ainsi que des [fiches de
-révision](https://drive.google.com/file/d/1-SemWVRsfUbeEjiQ5UYnzp4yw0mdMLHn/view).
+<ResourceList type="cours" ordered={false}>
+
+- [Support de cours](http://www.apprendre-en-ligne.net/info/bibliotheque/initiation-algorithmique.pdf)
+
+</ResourceList>
+
+<ResourceList type="support" title="Fiches de révision">
+
+- [Fiches de révision](https://drive.google.com/file/d/1-SemWVRsfUbeEjiQ5UYnzp4yw0mdMLHn/view)
+
+</ResourceList>
 
 ### Structures arborescentes
 
@@ -25,8 +32,11 @@ Ce cours rappelle quelques structures mathématiques usuelles (ensemble, séquen
 et arbre), introduit la notion de type abstrait et fournit quelques méthodes pour
 les implémenter.
 
-Support de
-[cours](http://www.mohamedelafrit.com/education/ENSEIRB/Graphes/notes22Novembre2006.pdf).
+<ResourceList type="cours" ordered={false}>
+
+- [Support de cours](http://www.mohamedelafrit.com/education/ENSEIRB/Graphes/notes22Novembre2006.pdf)
+
+</ResourceList>
 
 ### Traitement de l'information
 
@@ -41,8 +51,13 @@ Le cours d'analyse des données répond à deux objectifs :
   particulier à l'aide des exemples présentés dans le cours.
 
 Pas de ressources pédagogiques... mais une alternative provenant de l'Institut de
-mathématiques de Toulouse qui résume parfaitement le
-[cours](./img/asdm.pdf) (bonne chance).
+mathématiques de Toulouse qui résume parfaitement le cours (bonne chance).
+
+<ResourceList type="cours" ordered={false}>
+
+- [Cours de l'Institut de mathématiques de Toulouse](./img/asdm.pdf)
+
+</ResourceList>
 
 ### Probabilités et statistiques
 
@@ -52,7 +67,11 @@ recherche opérationnelle, traitement du signal, théorie de l'information,
 analyse des données, algorithmique probabiliste et surtout les statistiques
 étudiées dans la deuxième partie de ce module.
 
-Le support de [cours](./img/probas.pdf).
+<ResourceList type="cours" ordered={false}>
+
+- [Support de cours](./img/probas.pdf)
+
+</ResourceList>
 
 ### Logique et preuve
 
@@ -69,12 +88,22 @@ algorithmes.
 + la troisième partie traite de la preuve de programmes : spécification (pré et
   postconditions), terminaison, invariant de boucle, logique de Hoare.
 
-Le support de [cours](./img/poly-if107-etd.pdf) ainsi que les TD,
-[introduction](./img/td-induction.etd.pdf), [logique des
-prédicats](./img/td-logique-predicats.etd.pdf), [logique
-propositionnelle](./img/td-logique-propositionnelle.etd.pdf), [preuve
-formelle](./img/td-preuve-formelle.etd.pdf), [preuve de
-Hoare](./img/td-preuve-hoare.etd.pdf) et [preuve de programme](./img/td-preuve-programme.etd.pdf).
+<ResourceList type="cours" ordered={false}>
+
+- [Support de cours](./img/poly-if107-etd.pdf)
+
+</ResourceList>
+
+<ResourceList type="td">
+
+- [Introduction](./img/td-induction.etd.pdf)
+- [Logique des prédicats](./img/td-logique-predicats.etd.pdf)
+- [Logique propositionnelle](./img/td-logique-propositionnelle.etd.pdf)
+- [Preuve formelle](./img/td-preuve-formelle.etd.pdf)
+- [Preuve de Hoare](./img/td-preuve-hoare.etd.pdf)
+- [Preuve de programme](./img/td-preuve-programme.etd.pdf)
+
+</ResourceList>
 
 ---
 
@@ -87,19 +116,22 @@ informatique de l'ENSEIRB-MATMECA : éditeur de texte, compilateur, composeur de
 documents. Ce cours aborde également la programmation shell permettant
 d'automatiser des tâches d'administration système.
 
-[00](http://mfaverge.vvv.enseirb-matmeca.fr/wordpress/wp-content/cours/IF104/00-introduction.pdf)
+<ResourceList type="cours">
 
-[01](./img/01.pdf)
+- [00 - Introduction](http://mfaverge.vvv.enseirb-matmeca.fr/wordpress/wp-content/cours/IF104/00-introduction.pdf)
+- [01](./img/01.pdf)
+- [02](./img/02.pdf)
+- [03](./img/03.pdf)
+- [04](./img/04.pdf)
 
-[02](./img/02.pdf)
+</ResourceList>
 
-[03](./img/03.pdf)
+<ResourceList type="support" title="Archives">
 
-[04](./img/04.pdf)
+- [Bash](./img/Bash.tar.xz)
+- [LaTeX](./img/LaTeX.tar.xz)
 
-[Bash](./img/Bash.tar.xz)
-
-[LaTeX](./img/LaTeX.tar.xz)
+</ResourceList>
 
 ### Structure des ordinateurs
 
@@ -113,34 +145,47 @@ différents éléments.
 + mémoire : structure et gestion de la mémoire, exécution de programme et système
   d'exploitation.
 
-Les différents cours : [archi1](./img/archi-1.pdf),
-[archi2](./img/archi-2.pdf), [archi3](./img/archi-3.pdf),
-[archi4](./img/archi-4.pdf), [archi5](./img/archi-5.pdf),
-[archi6](./img/archi-6.pdf) et [archi7](./img/archi-7.pdf).
+<ResourceList type="cours">
+
+- [Archi 1](./img/archi-1.pdf)
+- [Archi 2](./img/archi-2.pdf)
+- [Archi 3](./img/archi-3.pdf)
+- [Archi 4](./img/archi-4.pdf)
+- [Archi 5](./img/archi-5.pdf)
+- [Archi 6](./img/archi-6.pdf)
+- [Archi 7](./img/archi-7.pdf)
+
+</ResourceList>
 
 ### Programmation impérative 1
 
 L'objectif de ce cours est d'apprendre les bases de la programmation impérative
 par l'étude de la syntaxe et la sémantique du langage C.
 
-Lien vers le [cours](https://www.labri.fr/perso/fmoranda/slides/pg101.html#/) et
-la [plateforme d'exercices](https://thor.enseirb-matmeca.fr:4443/).
+<ResourceList type="cours" ordered={false}>
 
-[correction1](./img/feuille1.tar.xz)
+- [Cours](https://www.labri.fr/perso/fmoranda/slides/pg101.html#/)
 
-[correction2](./img/feuille2.tar.xz)
+</ResourceList>
 
-[correction3](./img/feuille3.tar.xz)
+<ResourceList type="correction">
 
-[correction4](./img/feuille4.tar.xz)
+- [Correction 1](./img/feuille1.tar.xz)
+- [Correction 2](./img/feuille2.tar.xz)
+- [Correction 3](./img/feuille3.tar.xz)
+- [Correction 4](./img/feuille4.tar.xz)
+- [Correction 5](./img/feuille5.tar.xz)
+- [Correction 5.1](./img/feuille5-1.tar.xz)
+- [Correction 5.2](./img/feuille5-2.tar.xz)
+- [Correction 6](./img/feuille6.tar.xz)
 
-[correction5](./img/feuille5.tar.xz)
+</ResourceList>
 
-[correction5.1](./img/feuille5-1.tar.xz)
+<ResourceList type="support">
 
-[correction5.2](./img/feuille5-2.tar.xz)
+- [Plateforme d'exercices](https://thor.enseirb-matmeca.fr:4443/)
 
-[correction6](./img/feuille6.tar.xz)
+</ResourceList>
 
 ---
 
@@ -156,6 +201,8 @@ en pratique (voire d'approfondir) les connaissances théoriques vues en cours ;
 d'autre part, ils constituent souvent un premier contact avec le travail en
 équipe. Ils sont normalement réalisés par groupes de 4 ou 5 élèves.
 
-La
-[page](https://www.labri.fr/perso/renault/working/teaching/projets/projets.php)
-des projets.
+<ResourceList type="projet">
+
+- [Page des projets](https://www.labri.fr/perso/renault/working/teaching/projets/projets.php)
+
+</ResourceList>
