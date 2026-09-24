@@ -27,6 +27,8 @@ Docusaurus 3 site (French, single locale). Deployed to GitHub Pages at `delpeuch
 - `data/social.ts` — social link definitions consumed by components
 - `static/` — static assets served at root
 
+**Composants et plugins maison :** `src/components/` (ProjectMeta, ProjectIndex, ProjectLink, Series, CategoryNav), enregistrés globalement pour le MDX dans `src/theme/MDXComponents/index.tsx` (aucun import nécessaire). `plugins/projects-data` et `plugins/series-data` exposent des données globales construites à partir des fichiers. Thème surchargé : paginateur (anneaux reliés, pagination limitée à une section de docs), sidebar du blog (icône de catégorie et mois), pied de billet (série ou catégorie). Vocabulaire visuel commun : anneau 14 px et rail 2,5 px bleus (timeline de la page d'accueil), pointillés = en cours / à venir, icônes monochromes teintées de la couleur primaire. Attention : Babel compile `[...new Set()]` de façon incorrecte (mode loose), utiliser `Array.from(new Set())`.
+
 **Key config:** `docusaurus.config.ts` — navbar, plugins (KaTeX math, Mermaid diagrams, Algolia search, PWA, image zoom, SASS), theme config.
 
 **Plugins active:** `@docusaurus/plugin-ideal-image`, `@docusaurus/plugin-pwa`, `@docusaurus/theme-mermaid`, `@docusaurus/theme-search-algolia`, `@easyops-cn/docusaurus-search-local`, `docusaurus-plugin-image-zoom`, `docusaurus-plugin-sass`.
@@ -72,7 +74,14 @@ Un article peut être antidaté pour combler un trou dans le rythme de publicati
 - Analogies concrètes bienvenues pour illustrer les concepts abstraits
 - Blocs de code toujours avec un langage ; `text` pour les schémas ASCII et pseudo-code (le langage par défaut du site est `python`). Langages Prism additionnels déclarés dans `docusaurus.config.ts` (`hcl`, `nginx`, `docker`, `ini`, `powershell`, `promql`…) ; `logql` n'existe pas dans Prism
 - Liens relatifs `.md` vers les articles prérequis ou liés (maillage des séries)
-- Section finale `## Application / Projet lié` → page projet concernée, avec une ligne `**Utilisation** : ...`
+- Section finale `## Application / Projet lié` contenant un encart par projet concerné :
+  ```mdx
+  <ProjectLinks>
+    <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Ce que l'article met en pratique dans ce projet.</ProjectLink>
+  </ProjectLinks>
+  ```
+  (plusieurs `<ProjectLink>` → grille de cartes ; période et stack sont lues dans la fiche du projet)
+- Série : un parcours pensé pour être lu dans l'ordre (Homelab, Terraform, AWS) se déclare par `series: <id>` dans le frontmatter (ordre = date, `series_order` pour départager une même date). Le billet affiche alors la piste de série ; sinon, une navigation précédent / suivant dans sa catégorie (dossier). Une catégorie n'est pas une série. Libellés des séries : `plugins/series-data/index.js`.
 
 **Typographie :** espace simple avant `:`, apostrophes et guillemets droits, pas de « vous » / « nous ». Exception : les roadmaps annuelles (`blog/*-devops-roadmap-*.md`) sont écrites à la première personne.
 
@@ -88,5 +97,6 @@ Un article peut être antidaté pour combler un trou dans le rythme de publicati
 - Section contexte : problème métier avant la solution
 - Section réalisations : ce qui a été construit concrètement (Tabs Docusaurus si plusieurs axes)
 - Section résultats : impact mesurable ou qualitatif
+- La fiche en tête de page est le composant global `<ProjectMeta start="2023" end="2025" role="…" domain="…" stack={["Docker", "Traefik"]} />` (pas de `end` = en cours ; `end` égal à `start` = ponctuel ; `status="en pause"` si besoin). Elle est la source unique : `plugins/projects-data` en extrait les props (chaînes entre guillemets doubles et tableau `stack`, format à respecter) pour l'index `<ProjectIndex />` des pages d'index et pour les encarts `<ProjectLink>` du blog. Icônes de stack : `src/components/techIcons.ts` (simple-icons monochromes ; un nom absent s'affiche sans icône).
 - Liens externes si pertinents
 - MDX autorisé : `Tabs`, `TabItem`, `:::info` callouts, images avec style inline

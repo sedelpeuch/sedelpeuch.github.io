@@ -286,7 +286,7 @@ Soit $n \geq 2$. Toute application booléenne inversible
 $$f : \mathbb{B}^n \rightarrow \mathbb{B}^n$$
 
 est calculable par un circuit avec variables auxiliaires sur l'ensemble de
-portes {NOT, SWAP, TOF}. La porte NOT peut être remplacée par la porte cNOT
+portes \{NOT, SWAP, TOF\}. La porte NOT peut être remplacée par la porte cNOT
 (NOT contrôlé) :
 
 | Entrée | Sortie |
