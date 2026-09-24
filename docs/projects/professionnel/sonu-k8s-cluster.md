@@ -88,7 +88,7 @@ Le cluster sert également de terrain de déploiement pour de nouveaux projets a
 
 Les certificats clients et serveurs générés par kubeadm ont une durée de validité d'un an. `kubeadm upgrade` les renouvelle au passage, mais le plan de contrôle n'ayant pas été mis à jour dans l'année, ils ont expiré : `kubectl` a cessé de répondre, les nouveaux pods n'étaient plus planifiés, et les messages `x509: certificate has expired` sont apparus dans les logs. Sur un cluster managé, ce renouvellement est à la charge du fournisseur.
 
-La procédure de renouvellement est `kubeadm certs renew all` sur le nœud de plan de contrôle, suivie de la mise à jour du kubeconfig administrateur, puis du redémarrage des composants du plan de contrôle. Ceux-ci sont des pods statiques : un simple redémarrage du kubelet ne suffit pas, il faut déplacer temporairement leurs manifestes hors de `/etc/kubernetes/manifests` pour forcer leur recréation. Les workers n'ont rien à renouveler, le kubelet assurant lui-même la rotation de son certificat client. Le problème est banal en théorie, mais déstabilisant la première fois : le cluster est muet et les outils de diagnostic habituels ne répondent plus. J'ai documenté la procédure dans un [article de blog](/blog/2025/06/06/06-orchestration/renouveller-certificats).
+La procédure de renouvellement est `kubeadm certs renew all` sur le nœud de plan de contrôle, suivie de la mise à jour du kubeconfig administrateur, puis du redémarrage des composants du plan de contrôle. Ceux-ci sont des pods statiques : un simple redémarrage du kubelet ne suffit pas, il faut déplacer temporairement leurs manifestes hors de `/etc/kubernetes/manifests` pour forcer leur recréation. Les workers n'ont rien à renouveler, le kubelet assurant lui-même la rotation de son certificat client. Le problème est banal en théorie, mais déstabilisant la première fois : le cluster est muet et les outils de diagnostic habituels ne répondent plus. J'ai documenté la procédure dans un [article de blog](/blog/2025/06/06/06-orchestration/renouveler-certificats).
 
 L'incident a aussi mis en évidence une dépendance : les [runners GitHub ARC](github-arc-kubeadm.md) tournent sur ce même cluster, donc son indisponibilité arrête les pipelines CI/CD de toute l'organisation. Il n'existe pas de plan de bascule ; c'est une limite assumée pour une infrastructure interne sans engagement de niveau de service.
 
@@ -106,7 +106,7 @@ L'incident a aussi mis en évidence une dépendance : les [runners GitHub ARC](g
 
 Les dépôts Helm des services sont privés à l'organisation `catie-aq`. Articles et pages liés :
 
-- [Kubernetes : certificats](/blog/2025/06/06/06-orchestration/renouveller-certificats)
+- [Kubernetes : certificats](/blog/2025/06/06/06-orchestration/renouveler-certificats)
 - [Kubernetes : Stockage](/blog/2025/01/12/06-orchestration/k8s-storage)
 - [Prometheus](/blog/2025/11/21/07-monitoring/prometheus-introduction)
 - [Loki](/blog/2025/11/21/07-monitoring/loki-logs-management)

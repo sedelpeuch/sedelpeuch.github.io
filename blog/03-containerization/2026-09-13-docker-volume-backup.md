@@ -1,6 +1,7 @@
 ---
 title: "Docker : sauvegarde des volumes"
 description: "Sauvegarder des volumes Docker nommés avec offen/docker-volume-backup : archive chiffrée GPG vers S3, rétention, cohérence des bases de données, pièges du versioning, stratégie 3-2-1 et restauration pas à pas."
+series: homelab
 tags: [containerization, devops]
 ---
 

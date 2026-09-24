@@ -1,6 +1,7 @@
 ---
 title: "Authelia : forward-auth"
 description: "Centraliser l'authentification de services web derrière Traefik avec le forward-auth d'Authelia : middleware forwardAuth, cookie de session, règles access_control, clients non-navigateur et pièges des regex de bypass."
+series: homelab
 tags: [network, devops]
 ---
 
