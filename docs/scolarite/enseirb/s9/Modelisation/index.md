@@ -10,28 +10,37 @@ géométrique, cinématique et dynamique, forces et moments. Il doit également 
 du langage et des notions de base de la robotique (Denavit-Hartenberg, degrés de liberté, singularités,
 jacobienne).
 
-[Réalisation des TP sur Github](https://github.com/Sdelpeuch/Semestre_9/tree/master/Modelisation)
-
 <CourseGrid />
 
-## Introduction
+## Ressources
 
-+ [**Slides** - Introduction](./img/1.pdf)
+<ResourceList type="cours" title="Slides du cours">
 
-## Mouvements, changements de coordonnées
+- [Introduction](./img/1.pdf)
+- [Mouvements, changements de coordonnées](./img/2.pdf)
+- [Modèle géométrique](./img/3.pdf)
+- [Modèle cinématique](./img/4.pdf)
 
-+ [**Slides** - Mouvements, changements de coordonnées](./img/2.pdf)
-+ [**Sujet** - Application des transformations homogènes au modèle géométrique inverse](./img/exo1.pdf)
-+ [**Application** - Mouvements, changements de coordonnées](./img/exo1_application.pdf)
+</ResourceList>
 
-## Modèle géométrique
+<ResourceList type="td" title="Sujets d'exercices">
 
-+ [**Slides** - Modèle géométrique](./img/3.pdf)
-+ [**Sujet** - Modèle géométrique inverse d'un robot SCARA](./img/exo2.1.pdf)
-+ [**Sujet** - Modèle géométrique inverse d'un robot ABB](./img/exo2.2.pdf)
-+ [**Annexe** - Équations de Paul](./img/paul.pdf)
+- [Mouvements, changements de coordonnées : application des transformations homogènes au modèle géométrique inverse](./img/exo1.pdf)
+- [Mouvements, changements de coordonnées : application](./img/exo1_application.pdf)
+- [Modèle géométrique : modèle géométrique inverse d'un robot SCARA](./img/exo2.1.pdf)
+- [Modèle géométrique : modèle géométrique inverse d'un robot ABB](./img/exo2.2.pdf)
+- [Modèle cinématique : modèle cinématique inverse d'un robot UR10](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=93385)
 
-## Modèle cinématique
+</ResourceList>
 
-+ [**Slides** - Modèle cinématique](./img/4.pdf)
-+ [**Sujet** - Modèle cinématique inverse d'un robot UR10](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=93385)
+<ResourceList type="tp" title="Réalisation des TP">
+
+- [Réalisation des TP sur GitHub](https://github.com/Sdelpeuch/Semestre_9/tree/master/Modelisation)
+
+</ResourceList>
+
+<ResourceList type="support" title="Annexes">
+
+- [Équations de Paul](./img/paul.pdf)
+
+</ResourceList>
