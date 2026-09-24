@@ -1,40 +1,34 @@
 ---
 title: Vertical Plotter
 tags: [maker, robotique, arduino, python, dessin, open-source]
+description: Traceur vertical qui dessine sur les tableaux blancs d'EirLab, piloté par Arduino, avec une chaîne de conversion SVG vers trajectoires adaptée aux 2 Ko de mémoire du microcontrôleur.
 ---
 
 <img src="https://www.eirlab.net/wp-content/uploads/2021/10/PlotterV1Meca.jpg" alt="Aperçu Vertical Plotter" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
-<div className="project-meta-grid">
-  <div className="project-meta-item">📅 2021 – 2022</div>
-  <div className="project-meta-item">🛑 Terminé</div>
-  <div className="project-meta-item">👨‍💻 Auteur, contributeur</div>
-</div>
+<ProjectMeta
+  start="2021"
+  end="2021"
+  role="Auteur principal"
+  domain="Robotique DIY, dessin automatisé, électronique"
+  stack={["Arduino", "C++", "Python"]}
+/>
 
-## Présentation
+## Contexte
 
-🖊️ Le Vertical Plotter est un projet maker mené en 2021, né de l’envie de repousser les limites du dessin automatisé et d’explorer la robotique DIY. L’idée : transformer un simple tableau blanc en une toile interactive, où un feutre suspendu, guidé par deux moteurs pas-à-pas, trace des motifs génératifs ou des dessins vectoriels.
+Le Vertical Plotter est le projet du groupe maker 2021 d'EirLab, mené avec Antoine Pringalle : un traceur suspendu devant un tableau blanc, qui déplace un feutre à l'aide de deux moteurs pas à pas pour reproduire des dessins vectoriels.
 
-L’aventure a commencé au sein d’un groupe maker, dans une ambiance conviviale et collaborative. Chacun a pu apporter ses compétences : conception mécanique, électronique, programmation, mais aussi créativité pour imaginer des motifs à dessiner. Le projet a été rythmé par des séances de brainstorming, des essais-erreurs, des moments de doute (quand le feutre tombait ou que les moteurs décrochaient !), mais aussi de grandes satisfactions lors des premiers tracés réussis.
+## Réalisations
 
-L’objectif n’était pas seulement technique : il s’agissait aussi de partager l’expérience, de documenter la démarche et de rendre le projet accessible à d’autres passionnés via l’open source. Le Vertical Plotter est ainsi devenu un support d’apprentissage, d’expérimentation et de vulgarisation autour de la robotique et de l’art génératif.
+- **Mécanique** : structure en matériaux accessibles (bois, pièces imprimées en 3D). Une seconde version a déplacé l'électronique, jusque-là centralisée sur la nacelle, pour corriger le centre de gravité de la première et stabiliser le tracé.
+- **Électronique** : deux moteurs pas à pas pilotés par des drivers A4988 et un Arduino Uno ; un servomoteur MG90S lève et abaisse le feutre.
+- **Logiciel** : un firmware C++ transforme les tracés vectoriels en trajectoires. L'Arduino Uno ne dispose que de 2 Ko de SRAM, trop peu pour charger un SVG : les points sont extraits en amont (outil web PathToPoints), puis un script Python génère le code C++ qui les embarque directement dans le firmware.
 
-## Démarche et réalisations 🚀
+## Résultats
 
-- Conception mécanique : réflexion sur la géométrie du système, choix des matériaux accessibles (bois, impression 3D), modélisation et assemblage de la structure pour garantir stabilité et précision.
-- Électronique : sélection et câblage des moteurs pas-à-pas, drivers A4988, alimentation adaptée, intégration d’un microcontrôleur Arduino pour piloter l’ensemble.
-- Programmation embarquée : écriture du firmware Arduino pour gérer les déplacements du feutre, interpréter les commandes de dessin et assurer la sécurité du système.
-- Logiciel PC : développement d’un script Python permettant de convertir des images ou des fichiers SVG en instructions de dessin (G-code simplifié), avec gestion des vitesses, des accélérations et des pauses.
-- Tests, calibrage et itérations : nombreux essais pour ajuster la tension des câbles, la précision des tracés, la robustesse du système, et partage des résultats avec la communauté.
+Le plotter fonctionne et dessine en boucle sur les tableaux blancs d'EirLab, dont un cœur reprenant le logo du fablab. Le code et la documentation sont publiés en open source.
 
-## Technologies et outils 🛠️
-
-- Arduino (C++) pour le pilotage temps réel
-- Python pour la génération des instructions de dessin
-- Moteurs pas-à-pas, drivers A4988, courroies, poulies
-- Impression 3D pour la conception de pièces sur-mesure
-
-## Liens et ressources 🔗
+## Liens
 
 - 💻 Code source et documentation : [GitHub](https://github.com/sedelpeuch/MakerPlotter)
 - 📝 Article de présentation : [Eirlab.net](https://www.eirlab.net/2021/09/19/vertical-plotter/)
