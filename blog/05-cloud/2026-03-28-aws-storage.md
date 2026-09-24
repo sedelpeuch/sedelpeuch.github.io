@@ -7,7 +7,7 @@ tags: [cloud, devops]
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Le stockage est un élément critique de toute infrastructure cloud. AWS propose trois services de stockage avec des caractéristiques radicalement différentes : Amazon RDS pour les bases de données relationnelles managées, Amazon S3 pour le stockage d'objets hautement scalable, et Amazon EBS pour le stockage en bloc persistant.
+Le choix d'un service de stockage conditionne les performances, la durabilité et le coût d'une infrastructure cloud. AWS propose trois services aux modèles d'accès très différents : Amazon RDS pour les bases de données relationnelles managées, Amazon S3 pour le stockage d'objets hautement scalable, et Amazon EBS pour le stockage en bloc persistant.
 
 <!--truncate-->
 
@@ -24,17 +24,17 @@ Amazon Relational Database Service (RDS) est un service AWS géré qui simplifie
 - **Oracle Database** (commercial)
 - **Microsoft SQL Server** (commercial)
 
-RDS gère automatiquement les tâches d'administration : sauvegardes, patching des versions, haute disponibilité, et sauvegarde automatique. L'administrateur peut se concentrer sur l'application, sans intervenir sur la gestion du serveur de base de données.
+RDS prend en charge les tâches d'administration : sauvegardes, application des correctifs, réplication et basculement. En contrepartie, l'accès au système d'exploitation sous-jacent n'est pas possible (pas de SSH, pas de superutilisateur complet) : les réglages du moteur passent par des *parameter groups*.
 
 ### Avantages de RDS
 
-**Maintenance automatique** : AWS effectue les sauvegardes quotidiennes, les patchs de sécurité et les mises à jour mineures sans intervention manuelle.
+**Maintenance automatique** : AWS effectue les sauvegardes quotidiennes et applique les correctifs de sécurité et les versions mineures pendant une fenêtre de maintenance hebdomadaire configurable.
 
-**Haute disponibilité** : Le déploiement Multi-AZ réplique la base de données dans une zone de disponibilité différente. En cas d'incident, un basculement automatique survient en quelques minutes.
+**Haute disponibilité** : Le déploiement Multi-AZ maintient une instance de secours dans une autre zone de disponibilité, alimentée par réplication **synchrone** du stockage. En cas de panne de l'instance principale ou de sa zone, RDS bascule automatiquement l'enregistrement DNS de l'endpoint vers l'instance de secours, en une à deux minutes généralement. L'instance de secours ne sert pas de trafic en lecture ; la variante *Multi-AZ DB cluster* (deux secours lisibles) réduit le basculement à moins d'une minute.
 
-**Sauvegardes et récupération** : Les sauvegardes automatiques conservent 35 jours de journaux, permettant une récupération à un point dans le temps (PITR). Les snapshots manuels peuvent être conservés indéfiniment.
+**Sauvegardes et récupération** : Les sauvegardes automatiques combinent un snapshot quotidien et l'archivage continu des journaux de transactions, ce qui permet une restauration à n'importe quelle seconde de la période de rétention (PITR, 1 à 35 jours). Une restauration crée toujours une **nouvelle** instance, avec un nouvel endpoint. Les snapshots manuels sont conservés jusqu'à leur suppression explicite.
 
-**Scalabilité** : Les ressources (CPU, mémoire) peuvent être augmentées sans arrêt du service. Les lectures peuvent être distribuées sur des réplicas en lecture.
+**Scalabilité** : Le changement de classe d'instance (CPU, mémoire) redémarre la base : quelques minutes d'interruption en Single-AZ, réduites à la durée d'un basculement en Multi-AZ. Les lectures peuvent être distribuées sur des réplicas en lecture, alimentés par réplication **asynchrone** : une lecture sur un réplica peut donc renvoyer une donnée légèrement en retard.
 
 **Sécurité** : Chiffrement en transit (SSL/TLS) et au repos (KMS), isolement réseau via VPC, gestion d'accès via IAM.
 
@@ -43,43 +43,43 @@ RDS gère automatiquement les tâches d'administration : sauvegardes, patching d
 La création d'une RDS depuis la console AWS se fait en quelques clics :
 
 1. **Naviguer vers RDS** → **Databases** → **Create database**
-2. **Sélectionnez le moteur** : Aurora PostgreSQL, MySQL, etc.
-3. **Choisissez le mode** :
-   - **Easy Create** (configuration simplifiée) : idéal pour débuter
-   - **Standard Create** (contrôle total) : pour la production
+2. **Choisir le moteur** : Aurora PostgreSQL, MySQL, etc.
+3. **Choisir le mode** :
+   - **Easy Create** (configuration simplifiée) : pour un premier essai
+   - **Standard Create** (contrôle complet) : pour la production
 
 Pour une première base de données, Easy Create suffit. Les paramètres par défaut incluent :
 
-- Un type d'instance `db.t3.micro` (Free Tier)
-- Stockage de 20 GB
-- Backup automatique
-- Un utilisateur root administrateur
-- Un VPC par défaut
+- Un type d'instance `db.t3.micro` ou `db.t4g.micro` (éligibles à l'offre gratuite)
+- Stockage de 20 Go
+- Sauvegardes automatiques
+- Un utilisateur principal (*master user*) administrateur
+- Le VPC par défaut
 
-4. **Définissez les credentials** :
+4. **Définir les identifiants** :
    - Master username (par défaut `admin` ou `postgres`)
-   - Master password (à mémoriser ou stocker de façon sécurisée)
+   - Master password, ou gestion du mot de passe par AWS Secrets Manager (rotation automatique, aucun mot de passe à conserver)
 
 5. **Configurer les paramètres réseau** :
-   - VPC : sélectionner le VPC par défaut
-   - Security Group : autoriser le port 5432 (PostgreSQL) ou 3306 (MySQL)
-   - Connectivité publique : activer pour un accès depuis une machine locale
+   - VPC : le VPC par défaut
+   - Security Group : autoriser le port 5432 (PostgreSQL) ou 3306 (MySQL), idéalement depuis le seul Security Group de l'application
+   - Accès public : à activer uniquement pour un test depuis un poste local, avec une règle limitée à son adresse IP
 
-6. **Validez et créez** : Le déploiement prend quelques minutes.
+6. **Créer** : le déploiement prend quelques minutes.
 
 ### Paramètres essentiels à connaître
 
-**DB identifier** : nom unique de votre instance (visible dans les logs, ARNs, etc.)
+**DB identifier** : nom unique de l'instance dans la région (visible dans les logs, les ARN, et l'endpoint)
 
 **Multi-AZ** : réplication dans une autre zone. Recommandé en production, désactivé en test (coûts doublés).
 
 **Backup retention period** : nombre de jours de rétention des sauvegardes automatiques. Par défaut 7, maximum 35 jours.
 
-**Performance Insights** : monitoring détaillé de la charge et des requêtes. Activé automatiquement en Standard Create, payant après l'essai gratuit.
+**Performance Insights** : analyse de la charge de la base par requête et par événement d'attente, avec 7 jours d'historique gratuits. AWS intègre progressivement ces fonctions dans CloudWatch Database Insights.
 
 **Enhanced Monitoring** : métriques détaillées du système d'exploitation. Utile pour diagnostiquer les goulots.
 
-**Storage Auto Scaling** : augmente automatiquement le stockage EBS si la capacité atteint 90%. Évite les interruptions dues au manque d'espace.
+**Storage Auto Scaling** : augmente automatiquement le stockage lorsque l'espace libre descend sous 10 % pendant plusieurs minutes, jusqu'à un plafond configurable. Le stockage d'une instance RDS peut croître mais jamais diminuer.
 
 ### Récupérer les informations de connexion
 
@@ -87,31 +87,33 @@ Une fois l'instance créée (état "Available"), les détails de connexion sont 
 
 1. **Console RDS** → **Databases** → Instance RDS créée
 2. **Onglet "Connectivity & security"** :
-   - **Endpoint** : adresse URL de la BD (ex: `mydb.c1234567890.eu-west-3.rds.amazonaws.com`)
+   - **Endpoint** : nom DNS de l'instance (ex. : `mydb.c1234567890.eu-west-3.rds.amazonaws.com`), qui suit l'instance principale en cas de basculement Multi-AZ
    - **Port** : 5432 pour PostgreSQL, 3306 pour MySQL
    - Master username et password (définis lors de la création)
 
 ### Se connecter à une RDS depuis Python
 
-La connexion dépend du moteur. Voici les deux cas les plus courants.
+La connexion dépend du moteur. Les deux cas les plus courants :
 
 <Tabs>
 <TabItem value="postgresql" label="PostgreSQL / Aurora PostgreSQL">
 
-Installez d'abord le driver :
+Installation du driver :
 
 ```bash
 pip install psycopg2-binary
 ```
 
-Ensuite, connectez-vous :
+Connexion :
 
 ```python
+import os
 import psycopg2
 
-password = "your-master-password"
+password = os.environ["DB_PASSWORD"]  # jamais en dur dans le code
 endpoint = "mydb.c1234567890.eu-west-3.rds.amazonaws.com"
 
+conn = None
 try:
     conn = psycopg2.connect(
         host=endpoint,
@@ -119,7 +121,8 @@ try:
         database="postgres",  # base par défaut
         user="postgres",  # ou le master username utilisé
         password=password,
-        sslmode="require"  # SSL obligatoire pour RDS
+        sslmode="verify-full",  # chiffrement et vérification du certificat du serveur
+        sslrootcert="global-bundle.pem",  # bundle des CA RDS, téléchargé depuis AWS
     )
 
     cur = conn.cursor()
@@ -140,29 +143,32 @@ finally:
 </TabItem>
 <TabItem value="mysql" label="MySQL / MariaDB">
 
-Installez d'abord le driver :
+Installation du driver :
 
 ```bash
 pip install mysql-connector-python
 ```
 
-Ensuite, connectez-vous :
+Connexion :
 
 ```python
+import os
 import mysql.connector
 
-password = "your-master-password"
+password = os.environ["DB_PASSWORD"]  # jamais en dur dans le code
 endpoint = "mydb.c1234567890.eu-west-3.rds.amazonaws.com"
 
+conn = None
 try:
     conn = mysql.connector.connect(
         host=endpoint,
         port=3306,
-        database="mysql",  # base par défaut
+        database="mysql",  # base système, présente par défaut
         user="admin",  # ou le master username utilisé
         password=password,
-        ssl_disabled=False,
-        autocommit=True
+        ssl_ca="global-bundle.pem",  # bundle des CA RDS
+        ssl_verify_identity=True,
+        autocommit=True,
     )
 
     cur = conn.cursor()
@@ -186,15 +192,16 @@ finally:
 **Points importants :**
 
 - **Port** : 5432 pour PostgreSQL, 3306 pour MySQL
-- **database** : la base cible (généralement `postgres` ou `mysql` par défaut)
+- **database** : la base cible (`postgres` ou `mysql` existent par défaut)
 - **user** : le master username défini lors de la création
-- **SSL** : RDS requiert SSL/TLS. Les connecteurs le gèrent automatiquement.
+- **TLS** : RDS pour PostgreSQL impose TLS par défaut depuis la version 15 (paramètre `rds.force_ssl`) ; pour MySQL, il faut l'exiger explicitement (`require_secure_transport`). Le mode `require` de libpq chiffre la connexion sans vérifier l'identité du serveur ; `verify-full`, associé au bundle de certificats RDS, protège aussi contre l'interception.
+- `conn = None` avant le `try` évite une `NameError` dans le bloc `finally` si la connexion échoue.
 
 ### Cas d'usage RDS
 
 **Application web avec données structurées** : Stocker les utilisateurs, posts, commentaires, etc. dans des tables relationnelles.
 
-**Données financières** : Transactions, comptes clients, audits. Les BD relationnelles offrent les ACID guaranties.
+**Données financières** : Transactions, comptes clients, audits. Les bases relationnelles offrent les garanties ACID.
 
 **Migrer une BD locale** : RDS simplifie la migration d'une BD existante vers le cloud.
 
@@ -202,13 +209,13 @@ finally:
 
 ### Facturation RDS
 
-- **Par instance-heure** : un `db.t3.micro` coûte ~$0.015/heure ( ~$11/mois)
-- **Stockage EBS** : ~$0.12 par GB/mois (pour 20 GB = ~$2.40/mois)
-- **Sauvegardes** : stockage supplémentaire au-delà de la taille de la BD (~$0.21/GB/mois)
+- **Par instance-heure** : un `db.t3.micro` coûte ~$0.02/heure (~$15/mois selon la région), le double en Multi-AZ
+- **Stockage** : ~$0.12 par Go/mois en `gp2`/`gp3` (pour 20 Go = ~$2.40/mois)
+- **Sauvegardes** : gratuites jusqu'à la taille de la base, ~$0.095/Go/mois au-delà
 - **Transfert de données sortantes** : payant (transfert entrant gratuit)
-- **Free Tier** : 750h/mois de `db.t2.micro` + 20 GB de stockage pour 12 mois
+- **Offre gratuite (ancien modèle 12 mois)** : 750 h/mois de `db.t3.micro` (ou `db.t2.micro`/`db.t4g.micro`) + 20 Go de stockage ; avec le plan *Free* à crédits, la consommation est déduite des crédits
 
-**Astuce** : Les BD de développement peuvent être arrêtées quand elles ne sont pas utilisées. Aucun coût n'est facturé pour une BD arrêtée (pendant 7 jours max).
+Une base de développement peut être arrêtée quand elle ne sert pas : les heures d'instance cessent d'être facturées, mais le stockage et les sauvegardes le restent. RDS redémarre automatiquement une instance arrêtée au bout de 7 jours.
 
 ---
 
@@ -220,21 +227,22 @@ Amazon Simple Storage Service (S3) est un service de stockage d'objets hautement
 
 **Caractéristiques clés :**
 
-- **Scalabilité infinie** : stockez des pétaoctets sans limite
-- **Durabilité 11-9** : 99.999999999% de durabilité (une seule perte attendue pour 10 milliards d'objets)
-- **Disponibilité 99.99%** : le service est disponible en permanence
+- **Capacité illimitée** : pas de volume à provisionner, un objet peut atteindre 50 To (historiquement 5 To)
+- **Durabilité de 11 neuf** : 99,999999999 % par an ; selon AWS, pour 10 millions d'objets stockés, la perte d'un objet est attendue en moyenne une fois tous les 10 000 ans. Les données sont répliquées sur au moins trois zones de disponibilité (sauf classes *One Zone*)
+- **Disponibilité** : conçue pour 99,99 % en classe Standard, avec un engagement contractuel (SLA) de 99,9 %
 - **Pas de gestion serveur** : AWS gère l'infrastructure complète
 - **Classes de stockage** : Standard, Infrequent Access, Glacier (archivage) pour optimiser les coûts
+- **Cohérence forte** : depuis décembre 2020, toute lecture qui suit une écriture ou une suppression réussie voit le nouvel état de l'objet, y compris pour les listings
 
 ### Concepts clés
 
-**Bucket** : conteneur principal des objets. Un bucket est nommé uniquement dans **tout AWS** (pas d'homonymes possibles).
+**Bucket** : conteneur principal des objets. Son nom est unique dans **toute la partition AWS**, tous comptes confondus (pas d'homonymes possibles), car il sert de nom DNS.
 
-**Object** : fichier stocké dans un bucket, identifié par une clé (chemin). Exemple : `mon-bucket/dossier/fichier.txt`.
+**Object** : fichier stocké dans un bucket, identifié par une clé, accompagné de métadonnées (type de contenu, métadonnées utilisateur). Exemple : l'objet de clé `dossier/fichier.txt` dans le bucket `mon-bucket`.
 
-**Key** : path unique dans un bucket. S3 n'a **pas de dossiers réels**, juste des chemins. Les "dossiers" sont des conventions de naming.
+**Key** : identifiant unique de l'objet dans le bucket. S3 n'a **pas de dossiers réels** : l'espace de noms est plat, et les « dossiers » affichés par la console ne sont que des préfixes de clés délimités par `/`. Renommer un « dossier » revient donc à copier puis supprimer chaque objet.
 
-**Region** : zone géographique où le bucket est créé. Les données ne quittent pas la région (pour la conformité).
+**Region** : zone géographique où le bucket est créé. Les données ne quittent pas la région, sauf réplication configurée explicitement.
 
 ### Créer un bucket S3
 
@@ -242,11 +250,12 @@ Depuis la console AWS :
 
 1. **Naviguer vers S3** → **Create bucket**
 2. **Nom du bucket** : doit être unique mondialement (ex: `mon-app-storage-2026`)
-3. **Région** : sélectionner la région la plus proche des utilisateurs ou services visés
-4. **ACL (Access Control List)** : maintenir "Private" (par défaut) pour restreindre l'accès
-5. **Versioning** : activer si l'historique des versions est nécessaire
-6. **Encryption** : activez le chiffrement par défaut (AES-256 ou KMS)
-7. **Créez le bucket**
+3. **Région** : la plus proche des utilisateurs ou des services consommateurs
+4. **Object Ownership** : conserver *ACLs disabled* (par défaut depuis avril 2023) ; les droits sont alors gérés uniquement par des policies IAM et de bucket
+5. **Block Public Access** : conserver les quatre blocages activés (par défaut), sauf besoin explicite d'accès public
+6. **Versioning** : activer si l'historique des versions est nécessaire
+7. **Encryption** : tout nouvel objet est chiffré par défaut en SSE-S3 (AES-256) depuis janvier 2023 ; SSE-KMS ajoute un contrôle d'accès à la clé et une trace CloudTrail de chaque usage
+8. **Créer le bucket**
 
 ### Interagir avec S3 en Python
 
@@ -256,7 +265,7 @@ Pour utiliser S3 avec Python, le package `boto3` est requis. L'installation se f
 pip install boto3
 ```
 
-D'abord, configurer les credentials AWS (voir [AWS CLI](/blog/2026/02/21/aws-cli)):
+D'abord, configurer les identifiants AWS (voir [AWS CLI](./2026-02-21-aws-cli.md)) :
 
 ```bash
 aws configure
@@ -267,7 +276,8 @@ Ensuite, boto3 utilise automatiquement ces credentials :
 ```python
 import boto3
 
-# boto3 cherche automatiquement les credentials dans ~/.aws/credentials
+# boto3 applique la même chaîne de résolution que la CLI :
+# variables d'environnement, fichiers ~/.aws, puis rôle du conteneur ou de l'instance
 s3_client = boto3.client('s3')
 
 # Ou utiliser un profil spécifique
@@ -288,13 +298,12 @@ for bucket in response['Buckets']:
 **Lister le contenu d'un bucket :**
 
 ```python
-response = s3_client.list_objects_v2(Bucket='mon-bucket')
+# Un appel list_objects_v2 renvoie au plus 1000 clés : le paginator enchaîne les appels
+paginator = s3_client.get_paginator('list_objects_v2')
 
-if 'Contents' in response:
-    for obj in response['Contents']:
+for page in paginator.paginate(Bucket='mon-bucket', Prefix='dossier/'):
+    for obj in page.get('Contents', []):
         print(f"{obj['Key']} — {obj['Size']} bytes")
-else:
-    print("Bucket is empty")
 ```
 
 **Upload un fichier :**
@@ -307,14 +316,19 @@ s3_client.upload_file(
     Key='dossier/mon-fichier.txt'
 )
 
-# Upload avec contrôle d'ACL (ex: public-read)
+# Upload avec métadonnées et chiffrement KMS
 s3_client.upload_file(
-    Filename='./mon-fichier.txt',
+    Filename='./rapport.pdf',
     Bucket='mon-bucket',
-    Key='dossier/mon-fichier.txt',
-    ExtraArgs={'ACL': 'private'}  # ou 'public-read'
+    Key='dossier/rapport.pdf',
+    ExtraArgs={
+        'ContentType': 'application/pdf',
+        'ServerSideEncryption': 'aws:kms',
+    },
 )
 ```
+
+`upload_file` bascule automatiquement en *multipart upload* au-delà d'un seuil (8 Mo par défaut) : le fichier est découpé en parties envoyées en parallèle, puis assemblées côté S3. Sur un bucket aux ACL désactivées (configuration par défaut), un paramètre `ACL` autre que `bucket-owner-full-control` provoque une erreur `AccessControlListNotSupported`.
 
 **Download un fichier :**
 
@@ -335,8 +349,8 @@ s3_client.delete_object(Bucket='mon-bucket', Key='dossier/mon-fichier.txt')
 **Obtenir l'URL publique d'un objet :**
 
 ```python
-# Accès direct (si l'objet est public)
-url = f"https://mon-bucket.s3.amazonaws.com/mon-fichier.txt"
+# Accès direct (si l'objet est public) : https://<bucket>.s3.<region>.amazonaws.com/<clé>
+url = "https://mon-bucket.s3.eu-west-3.amazonaws.com/mon-fichier.txt"
 
 # Ou générer une URL signée (valable 1 heure)
 url = s3_client.generate_presigned_url(
@@ -347,19 +361,29 @@ url = s3_client.generate_presigned_url(
 print(url)
 ```
 
+Une URL pré-signée embarque dans ses paramètres une signature SigV4 calculée localement avec les identifiants de l'appelant : aucun appel à AWS n'a lieu lors de sa génération. Quiconque possède l'URL obtient l'accès avec les permissions de l'identité signataire, jusqu'à expiration (7 jours au maximum). Si elle est signée avec des identifiants temporaires (rôle), elle expire aussi à l'expiration de ces identifiants.
+
 ### Classes de stockage S3
 
 S3 propose plusieurs classes optimisées pour différents cas d'usage :
 
-**S3 Standard** : accès fréquent, traitement immédiat. Prix : ~$0.025/GB/mois.
+Les prix indiqués sont ceux de la région `us-east-1`, à titre d'ordre de grandeur.
 
-**S3 Standard-IA** (Infrequent Access) : accès occasionnel, données doivent rester disponibles. Prix : ~$0.0125/GB/mois + frais accès.
+**S3 Standard** : accès fréquent, latence de l'ordre de la dizaine de millisecondes. Prix : ~$0.023/Go/mois.
 
-**S3 Intelligent-Tiering** : AWS déplace automatiquement les objets entre Standard et IA selon l'usage. Prix : ~$0.0125/GB/mois + frais gestion.
+**S3 Standard-IA** (Infrequent Access) : accès occasionnel, même latence que Standard. Prix : ~$0.0125/Go/mois, plus des frais par Go lu, une durée minimale facturée de 30 jours et une taille minimale facturée de 128 Ko par objet.
 
-**S3 Glacier Flexible Retrieval** : archivage, accès rare. Récupération en heures. Prix : ~$0.004/GB/mois.
+**S3 One Zone-IA** : comme Standard-IA, mais stocké dans une seule zone de disponibilité : ~20 % moins cher, perdu en cas de destruction de la zone. Adapté aux données reproductibles.
 
-**S3 Glacier Deep Archive** : archivage longue durée (7+ ans), accès très rare. Récupération en 12h. Prix : ~$0.00099/GB/mois.
+**S3 Intelligent-Tiering** : S3 déplace chaque objet entre des niveaux d'accès selon son usage réel (accès fréquent, puis peu fréquent après 30 jours sans lecture, puis archive instantanée après 90 jours), sans frais de lecture. Prix du niveau fréquent identique à Standard, plus des frais de suivi par objet. Adapté aux motifs d'accès imprévisibles.
+
+**S3 Glacier Instant Retrieval** : archive consultée rarement mais lue en millisecondes. Prix : ~$0.004/Go/mois, durée minimale de 90 jours.
+
+**S3 Glacier Flexible Retrieval** : archive dont la lecture nécessite une restauration préalable, de quelques minutes (expédiée) à 12 heures (en masse). Prix : ~$0.0036/Go/mois, durée minimale de 90 jours.
+
+**S3 Glacier Deep Archive** : archivage longue durée, restauration sous 12 heures (standard) à 48 heures (en masse). Prix : ~$0.00099/Go/mois, durée minimale de 180 jours.
+
+Les durées minimales signifient qu'un objet supprimé avant leur terme est facturé comme s'il avait été conservé jusqu'au bout : une classe froide peut coûter plus cher que Standard pour des données de courte durée de vie.
 
 ### Cas d'usage S3
 
@@ -381,7 +405,32 @@ S3 propose plusieurs classes optimisées pour différents cas d'usage :
 - **Feature supplémentaires** : versioning, lifecycle, replication (tous payants)
 - **Free Tier** : 5 GB stocké + 20 000 GET + 2000 PUT pour 12 mois
 
-**Astuce** : Utilisez les policies de cycle de vie pour migrer automatiquement les vieux objets vers Glacier (beaucoup moins cher).
+Les règles de cycle de vie (*lifecycle rules*) automatisent les transitions entre classes et l'expiration des objets :
+
+```json
+{
+  "Rules": [
+    {
+      "ID": "archive-logs",
+      "Filter": { "Prefix": "logs/" },
+      "Status": "Enabled",
+      "Transitions": [
+        { "Days": 30, "StorageClass": "STANDARD_IA" },
+        { "Days": 90, "StorageClass": "GLACIER" }
+      ],
+      "Expiration": { "Days": 365 },
+      "NoncurrentVersionExpiration": { "NoncurrentDays": 30 }
+    }
+  ]
+}
+```
+
+```bash
+aws s3api put-bucket-lifecycle-configuration \
+  --bucket mon-bucket --lifecycle-configuration file://lifecycle.json
+```
+
+Sur un bucket versionné, une suppression ne fait qu'ajouter un marqueur de suppression : les versions précédentes restent stockées et facturées. `NoncurrentVersionExpiration` les supprime après le délai indiqué.
 
 ---
 
@@ -389,11 +438,11 @@ S3 propose plusieurs classes optimisées pour différents cas d'usage :
 
 ### Qu'est-ce que EBS ?
 
-Amazon Elastic Block Store (EBS) est un service de stockage par bloc hautement disponible et performant. Contrairement à S3 qui est un service indépendant, EBS se **rattache directement à une instance EC2**, fonctionnant comme un disque dur externe.
+Amazon Elastic Block Store (EBS) est un service de stockage par bloc. Contrairement à S3, accessible par API depuis n'importe où, un volume EBS **s'attache à une instance EC2** et apparaît dans le système comme un disque (périphérique bloc) sur lequel créer un système de fichiers. Il s'agit d'un stockage réseau, répliqué au sein d'une seule zone de disponibilité : un volume ne peut être attaché qu'à une instance de la **même zone**.
 
 **Caractéristiques clés :**
 
-- **Attaché à une instance** : Un volume EBS ne peut être attaché qu'à une seule EC2 à la fois
+- **Attaché à une instance** : Un volume EBS n'est attaché qu'à une seule instance à la fois (exception : *Multi-Attach* des volumes `io1`/`io2`, qui exige un système de fichiers en cluster)
 - **Persistant** : Les données survivent à l'arrêt/redémarrage de l'instance
 - **Performance élevée** : Latence basse, haute IOPS (entrées/sorties par seconde)
 - **Volumes multiples** : Une instance peut avoir plusieurs volumes EBS
@@ -406,16 +455,16 @@ Chaque instance EC2 a un **volume root** (le disque système). Des volumes suppl
 
 **SSD (haute performance) :**
 
-- **gp3** (General Purpose) : équilibre coût/performance pour la plupart des workloads. ~$0.10/GB/mois.
-- **gp2** : version antérieure, moins performante. ~$0.10/GB/mois.
-- **io1/io2** : haute IOPS pour BD exigeantes. ~$0.125/GB/mois + coûts IOPS.
+- **gp3** (General Purpose) : 3 000 IOPS et 125 Mo/s de base quelle que soit la taille, ajustables indépendamment de la capacité. ~$0.08/Go/mois.
+- **gp2** : génération précédente, dont les performances sont liées à la taille (3 IOPS par Go, avec un mécanisme de crédits de burst pour les petits volumes). ~$0.10/Go/mois.
+- **io1/io2** : IOPS provisionnées pour les bases exigeantes. ~$0.125/Go/mois + coûts par IOPS.
 
 **HDD (stockage économique) :**
 
-- **st1** : débit élevé pour big data. ~$0.045/GB/mois.
-- **sc1** : archives économiques. ~$0.015/GB/mois.
+- **st1** : débit élevé pour big data. ~$0.045/Go/mois.
+- **sc1** : archives économiques. ~$0.015/Go/mois.
 
-Le type **gp3** est recommandé pour débuter (le meilleur rapport coût/performance).
+Le type **gp3** convient à la plupart des usages : un petit volume `gp3` offre d'emblée 3 000 IOPS, là où un volume `gp2` de 100 Go n'en garantit que 300, pour un prix au Go inférieur de 20 %.
 
 ### Attacher un volume EBS
 
@@ -423,11 +472,11 @@ Depuis la console EC2 :
 
 1. **Créer un volume** : EC2 → **Elastic Block Store** → **Volumes** → **Create volume**
    - Sélectionner la zone (même que l'instance)
-   - Taille (ex: 100 GB)
+   - Taille (ex. : 100 Go)
    - Type (gp3 recommandé)
    - Chiffrement : activer (recommandé)
 
-2. **Attacher l'instance** : Clic droit sur le volume → **Attach volume** → sélectionner l'instance et le device (ex: `/dev/sdf`)
+2. **Attacher le volume** : clic droit sur le volume → **Attach volume** → sélectionner l'instance et le nom de périphérique (ex. : `/dev/sdf`). Sur les instances Nitro (générations actuelles), les volumes EBS sont exposés comme périphériques NVMe : `/dev/sdf` apparaît dans le système sous le nom `/dev/nvme1n1`, d'où l'intérêt de `lsblk` pour l'identifier.
 
 3. **Monter dans l'instance** (depuis SSH) :
 
@@ -448,16 +497,33 @@ sudo mount /dev/nvme1n1 /mnt/data
 df -h
 ```
 
-4. **Rendre permanent** : Ajouter une ligne à `/etc/fstab` pour que le montage survive aux redémarrages.
+4. **Rendre permanent** : ajouter une ligne à `/etc/fstab` pour que le montage survive aux redémarrages. L'ordre des noms NVMe n'étant pas garanti d'un démarrage à l'autre, la ligne référence l'UUID du système de fichiers :
+
+```bash
+# Récupérer l'UUID du système de fichiers
+sudo blkid /dev/nvme1n1
+
+# Ligne /etc/fstab : nofail évite un échec de démarrage si le volume est détaché
+# UUID=0a1b2c3d-...  /mnt/data  ext4  defaults,nofail  0  2
+
+# Vérifier la syntaxe du fstab sans redémarrer
+sudo mount -a
+```
+
+Un volume peut être agrandi, ou changer de type, sans détachement (*Elastic Volumes*) : après `aws ec2 modify-volume`, le système de fichiers s'étend avec `growpart` puis `resize2fs` (ext4) ou `xfs_growfs` (XFS).
 
 ### Snapshots et sauvegardes
 
-Un snapshot EBS est une **sauvegarde incrémentiellele** du volume (seules les modifications depuis le dernier snapshot sont copiées).
+Un snapshot EBS est une **sauvegarde incrémentielle** du volume, stockée par AWS sur S3 : le premier snapshot copie tous les blocs utilisés, les suivants uniquement les blocs modifiés depuis le précédent. La suppression d'un snapshot intermédiaire ne fait perdre aucune donnée : les blocs encore référencés par d'autres snapshots sont conservés.
 
 ```bash
-# Créer un snapshot depuis la console
-# EC2 → Elastic Block Store → Snapshots → Create snapshot
+# Créer un snapshot (console : EC2 → Elastic Block Store → Snapshots → Create snapshot)
+aws ec2 create-snapshot \
+  --volume-id vol-0123456789abcdef0 \
+  --description "data avant migration"
 ```
+
+Un snapshot capture l'état des blocs au moment de sa création, sans figer les écritures en cours dans le cache du système de fichiers ou de l'application : pour une cohérence applicative (base de données), il faut suspendre les écritures ou utiliser les mécanismes de l'application. Amazon Data Lifecycle Manager ou AWS Backup automatisent la création et la rotation des snapshots.
 
 Cas d'usage :
 - **Sauvegarde** : protéger les données critiques
@@ -473,7 +539,7 @@ Prix : ~$0.05 par GB/mois pour le stockage du snapshot.
 
 **Bases de données locales** : Installer PostgreSQL, MySQL directement sur l'EC2 avec EBS comme stockage (au lieu de RDS managé).
 
-**Application avec données temporaires** : Cache, sessions, fichiers temporaires nécessitant un accès rapide.
+**Application avec données persistantes locales** : fichiers applicatifs, index de recherche, files de messages nécessitant un accès disque à faible latence. Pour des données purement temporaires, le stockage d'instance (*instance store*), physiquement attaché à l'hôte, est plus rapide et inclus dans le prix de l'instance.
 
 **Haute performance** : Traitement de données intensif, machine learning, analytics où la latence est critique.
 
@@ -482,11 +548,11 @@ Prix : ~$0.05 par GB/mois pour le stockage du snapshot.
 | Aspect | EBS | S3 | RDS |
 |--------|-----|-----|-----|
 | **Attachement** | Instance EC2 unique | Indépendant | Indépendant |
-| **Accès** | Disque système | API HTTP | Connexion BD |
-| **Performance** | Très rapide (msec) | Réseau (sec) | Requêtes SQL (msec) |
-| **Scalabilité** | Limitée à instance | Infinie | Instance-dépendante |
-| **Persistance** | Survit arrêt EC2 | Permanent | Permanent |
-| **Prix** | ~$0.10/GB/mois | ~$0.025/GB/mois | Instance-heure + stockage |
+| **Accès** | Périphérique bloc (système de fichiers) | API HTTP | Connexion BD |
+| **Latence** | Inférieure à la milliseconde | Dizaines de millisecondes | Millisecondes (requêtes SQL) |
+| **Scalabilité** | Jusqu'à 64 Tio par volume, dans une AZ | Illimitée | Dépend de l'instance |
+| **Persistance** | Survit à l'arrêt de l'instance | Permanent | Permanent |
+| **Prix** | ~$0.08/Go/mois (gp3) | ~$0.023/Go/mois | Instance-heure + stockage |
 | **Données** | Non structurées (fichiers) | Non structurées (objets) | Relationnelles (tables) |
 
 **Résumé :**
@@ -496,19 +562,19 @@ Prix : ~$0.05 par GB/mois pour le stockage du snapshot.
 
 ### Facturation EBS
 
-- **Volume** : ~$0.10/GB/mois pour gp3
-- **Snapshots** : ~$0.05 par GB/mois
-- **IOPS surprovisionnés** : coûts additionnels pour io1/io2
-- **Free Tier** : 30 GB de stockage EBS combiné (gp2 & io1) pour 12 mois
+- **Volume** : ~$0.08/Go/mois pour gp3, facturé sur la capacité provisionnée et non utilisée
+- **Snapshots** : ~$0.05 par Go/mois
+- **Performances provisionnées** : coûts additionnels pour les IOPS de io1/io2 et pour les IOPS ou le débit de gp3 au-delà du niveau de base
+- **Offre gratuite (ancien modèle 12 mois)** : 30 Go de stockage EBS SSD à usage général ou magnétique, et 1 Go de snapshots
 
 ### Bonnes pratiques EBS
 
 - Utiliser **gp3** pour la plupart des cas (meilleur coût/performance)
 - Créer des **snapshots réguliers** des données critiques
 - Activer le **chiffrement** sur tous les volumes
-- Monitorer l'**utilisation disque** pour éviter les saturation
-- Supprimer les volumes **inutilisés** pour réduire les coûts
-- Utiliser **EBS Auto Scaling** si la charge varie dynamiquement
+- Surveiller l'**utilisation disque** : l'espace libre du système de fichiers n'est pas une métrique CloudWatch native, il faut l'agent CloudWatch pour la collecter
+- Supprimer les volumes **inutilisés** (état `available`, non attachés) : ils restent facturés
+- Ajuster taille et performances via **Elastic Volumes** plutôt que de surdimensionner d'emblée : EBS n'agrandit jamais un volume automatiquement
 
 ---
 
@@ -517,15 +583,15 @@ Prix : ~$0.05 par GB/mois pour le stockage du snapshot.
 | Aspect | RDS | S3 |
 |--------|-----|-----|
 | **Type de données** | Structurées (tables, lignes, colonnes) | Non structurées (objets, blobs) |
-| **Accès** | Requêtes SQL, connexion persistente | API REST HTTP, sans connexion |
+| **Accès** | Requêtes SQL, connexion persistante | API REST HTTP, sans connexion |
 | **Scalabilité** | verticale (augmenter instance) + répliques lecture | Horizontale infinie |
 | **Disponibilité** | 99.95% avec Multi-AZ | 99.99% |
 | **Durabilité** | Sauvegardes automatiques | 11-9 (copie par défaut dans 3 AZ) |
 | **Coûts** | Instance-heure + stockage | Stockage + requêtes + transfert |
-| **Transactions** | ACID (atomicité, cohérence) | Cohérence éventuelle |
+| **Transactions** | ACID (atomicité, cohérence) | Opérations atomiques par objet, cohérence forte, écritures conditionnelles ; pas de transaction multi-objets |
 | **Latence** | Millisecondes (requêtes db) | Millisecondes (API) |
-| **Chiffrement** | SSL en transit, KMS au repos | SSL en transit, SSE en repos |
-| **Audit** | Pas natif (logs fournis) | CloudTrail + access logs |
+| **Chiffrement** | TLS en transit, KMS au repos | TLS en transit, SSE au repos |
+| **Audit** | CloudTrail pour les appels d'API RDS ; audit des requêtes via les logs du moteur (pgAudit, audit plugin MySQL) ou Database Activity Streams | CloudTrail (API de gestion et, en option, événements de données) + access logs |
 
 ### Cas d'usage appropriés pour RDS
 
@@ -544,11 +610,11 @@ Prix : ~$0.05 par GB/mois pour le stockage du snapshot.
 - Demande de **scalabilité infinie**
 - Optimisation des **coûts d'archivage long terme**
 
-### Architecture hybrid
+### Architecture hybride
 
 En pratique, une application moderne utilise **les deux** :
 
-```
+```text
 ┌─────────────────────────────────┐
 │     Application Web/API         │
 └─────────────────────────────────┘
@@ -571,7 +637,7 @@ Par exemple, une application de réseau social stocke les profils, posts, commen
 **Pour RDS :**
 - Toujours utiliser **Multi-AZ en production**
 - Activer **automated backups** avec retention de 7-35j
-- Utiliser **IAM database authentication** plutôt que des mots de passe en dur
+- Utiliser **IAM database authentication** (jeton temporaire généré par `aws rds generate-db-auth-token`) ou le mot de passe géré par Secrets Manager plutôt que des mots de passe en dur
 - Auditer les **slow queries** et optimiser les index
 - Monitorer **CPU, mémoire, stockage** avec CloudWatch
 
@@ -583,4 +649,4 @@ Par exemple, une application de réseau social stocke les profils, posts, commen
 - Activer **logging** et **CloudTrail** pour l'audit
 - Utiliser **CloudFront** comme CDN pour distribuer globalement
 
-Les services RDS et S3 offrent une fondation solide pour le stockage et la gestion des données en production. Une combinaison avec Lambda, EC2 ou ECS permet de construire une application cloud complète.
+RDS, S3 et EBS couvrent trois modèles d'accès distincts : requêtes relationnelles, objets adressés par clé via HTTP, et blocs montés par une instance. Combinés à des services de calcul comme [EC2](./2026-02-19-ec2.md), [Lambda](./2026-02-21-lambda.md) ou ECS, ils constituent la couche de persistance d'une application cloud.
