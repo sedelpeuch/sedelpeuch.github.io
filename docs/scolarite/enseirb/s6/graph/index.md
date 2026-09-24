@@ -1,17 +1,14 @@
 ---
-layout: default
 title: Graphes
-icon: fa-project-diagram
-order: 2
-hide: true
+description: "Cours de théorie des graphes du semestre 6 : définitions, représentations, parcours, arbres couvrants, plus courts chemins, flots, couplages, avec exercices corrigés."
 ---
 
-### Objectif du cours
+## Objectif du cours
 
 Après une brève introduction des graphes, ce cours présente des problèmes sur
 les graphes admettant une solution algorithmique efficace. L'étude de ces
-solutions sera l'occasion d'exhiber des propriétés classiques en Théorie des
-Graphes.
+solutions sera l'occasion d'exhiber des propriétés classiques en théorie des
+graphes.
 
 - Le [cours]
 - Les [exercices]
