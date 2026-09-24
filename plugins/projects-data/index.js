@@ -1,12 +1,17 @@
-// Collecte les fiches <ProjectMeta /> des pages docs/projects et les expose en
-// données globales (usePluginData("projects-data")). La page projet reste la
-// source unique : l'index des projets et les encarts « projet lié » du blog
-// lisent ces mêmes valeurs.
+// Collecte les fiches <ProjectMeta /> des pages docs/projects et, dans l'autre
+// sens, les <ProjectLink to="…"> des billets du blog, puis expose le tout en
+// données globales (usePluginData("projects-data")) :
+// - `projects` : la fiche de chaque projet (index des projets, encarts du blog) ;
+// - `articles` : pour chaque permalien de projet, les billets qui y renvoient
+//   (liste « articles liés » en bas des pages projets).
+// Chaque relation n'est écrite qu'à un seul endroit.
 const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
+const { walkMarkdown, blogPermalink, blogDate } = require("../lib/blog");
 
 const ROOT = "docs/projects";
+const BLOG = "blog";
 const KINDS = { professionnel: "pro", personnel: "perso", associatif: "asso" };
 
 function walk(dir) {
@@ -38,15 +43,46 @@ function parseMeta(body) {
   return meta.start ? meta : null;
 }
 
+// <ProjectLink to="…" title="…">phrase</ProjectLink> d'un billet.
+function parseLinks(body) {
+  return [...body.matchAll(/<ProjectLink\b([^>]*)>([\s\S]*?)<\/ProjectLink>/g)].map(([, attrs, text]) => ({
+    to: (attrs.match(/\bto="([^"]+)"/) ?? [])[1],
+    text: text.replace(/\s+/g, " ").trim(),
+  })).filter((l) => l.to);
+}
+
+function collectArticles(blogRoot) {
+  const articles = {};
+  for (const file of walkMarkdown(blogRoot)) {
+    const { data, content } = matter(fs.readFileSync(file, "utf8"));
+    if (data.draft || data.unlisted) continue;
+    const rel = path.relative(blogRoot, file);
+    const folder = rel.split(path.sep)[0];
+    for (const link of parseLinks(content)) {
+      const key = link.to.replace(/\/+$/, "");
+      (articles[key] ??= []).push({
+        title: data.title ?? path.basename(rel),
+        permalink: blogPermalink(rel, data),
+        date: blogDate(rel),
+        category: /^\d{2}-/.test(folder) ? folder.replace(/^\d{2}-/, "") : "",
+        text: link.text,
+      });
+    }
+  }
+  for (const list of Object.values(articles)) list.sort((a, b) => b.date.localeCompare(a.date));
+  return articles;
+}
+
 module.exports = function projectsDataPlugin(context) {
   const root = path.join(context.siteDir, ROOT);
+  const blogRoot = path.join(context.siteDir, BLOG);
   return {
     name: "projects-data",
     getPathsToWatch() {
-      return [path.join(root, "**/*.{md,mdx}")];
+      return [path.join(root, "**/*.{md,mdx}"), path.join(blogRoot, "**/*.{md,mdx}")];
     },
     async loadContent() {
-      return walk(root)
+      const projects = walk(root)
         .filter((file) => {
           const base = path.basename(file);
           return !base.startsWith("_") && !/^index\.mdx?$/.test(base);
@@ -66,9 +102,10 @@ module.exports = function projectsDataPlugin(context) {
           };
         })
         .filter(Boolean);
+      return { projects, articles: collectArticles(blogRoot) };
     },
     async contentLoaded({ content, actions }) {
-      actions.setGlobalData({ projects: content });
+      actions.setGlobalData(content);
     },
   };
 };
