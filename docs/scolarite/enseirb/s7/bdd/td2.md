@@ -1,6 +1,9 @@
 ---
-title: "TD2 - Modèlisation des données"
+title: "TD2 - Modélisation des données"
 ---
+
+Corrections sous forme de diagrammes des trois exercices de modélisation
+conceptuelle du TD2 (sujet disponible depuis la page du module).
 
 ## Exercice 1
 
