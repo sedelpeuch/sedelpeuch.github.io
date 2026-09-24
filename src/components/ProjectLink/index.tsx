@@ -17,7 +17,8 @@ interface Props {
 const normalize = (p: string) => p.replace(/\/+$/, "");
 
 // Encart « mis en pratique dans le projet » : anneau de la timeline, nom du
-// projet, phrase d'usage, icônes de stack. Toute la carte est cliquable.
+// projet, phrase d'usage, icônes de stack. Toute la carte est cliquable via le
+// lien du titre étiré (pas de <a> englobant : la phrase peut contenir des liens).
 export function ProjectLink({ to, title, children }: Props): JSX.Element {
   const { projects } = usePluginData("projects-data") as { projects: ProjectData[] };
   const project = projects.find((p) => normalize(p.permalink) === normalize(to));
@@ -25,14 +26,16 @@ export function ProjectLink({ to, title, children }: Props): JSX.Element {
   const stack = project?.stack ?? [];
 
   return (
-    <Link to={to} className={styles.card}>
+    <div className={styles.card}>
       <span className={styles.ring} aria-hidden="true" />
       <span className={styles.body}>
         <span className={styles.label}>
           Mis en pratique dans le projet
           {project && <span className={styles.period}>{projectPeriod(project)}</span>}
         </span>
-        <span className={styles.name}>{name}</span>
+        <Link to={to} className={styles.name}>
+          {name}
+        </Link>
         {children && <span className={styles.text}>{children}</span>}
         {stack.length > 0 && (
           <span className={styles.stack}>
@@ -48,13 +51,13 @@ export function ProjectLink({ to, title, children }: Props): JSX.Element {
           </span>
         )}
       </span>
-    </Link>
+    </div>
   );
 }
 
 // Conteneur : une seule carte occupe toute la largeur, plusieurs passent en grille.
 export function ProjectLinks({ children }: { children: React.ReactNode }): JSX.Element {
-  const count = React.Children.count(children);
+  const count = React.Children.toArray(children).filter(React.isValidElement).length;
   return (
     <div className={styles.grid} data-count={count}>
       {children}
