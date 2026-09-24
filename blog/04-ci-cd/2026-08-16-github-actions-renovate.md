@@ -1,5 +1,5 @@
 ---
-title: "Renovate"
+title: "GitHub Actions : Renovate"
 description: "Renovate self-hosted sur GitHub Actions pour maintenir à jour les images Docker de fichiers Compose et Dockerfile : GitHub App, pin par digest, packageRules par niveau de risque, automerge conditionné aux checks et déclenchement par workflow_run."
 tags: [cicd, devops]
 ---
