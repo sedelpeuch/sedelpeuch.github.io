@@ -334,22 +334,6 @@ div[class^='announcementBar_'] {
   white-space: nowrap;
 }
 
-.project-meta-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 0.75rem;
-  margin: 1.75rem 0;
-  font-size: 0.9rem;
-}
-
-.project-meta-item {
-  padding: 0.6rem 0.85rem;
-  border-left: 3px solid var(--ifm-color-primary);
-  background: var(--ifm-background-surface-color);
-  border-radius: 8px;
-  color: var(--ifm-color-emphasis-700);
-}
-
 .tech-list {
   margin: 1.75rem 0;
   display: grid;
@@ -375,4 +359,89 @@ div[class^='announcementBar_'] {
 
 .tech-list-value {
   color: var(--ifm-font-color-base);
+}
+
+// Paginateur précédent / suivant : deux anneaux reliés par le rail bleu,
+// dans le vocabulaire de la timeline de la page d'accueil.
+.pagination-nav {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: calc(1.5rem + 7px - 1.25px);
+    left: 7px;
+    right: 7px;
+    height: 2.5px;
+    background: var(--ifm-color-primary);
+    opacity: 0.35;
+  }
+}
+
+.pagination-nav__link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  line-height: 1.4;
+
+  &:hover {
+    border: 0;
+    text-decoration: none;
+
+    .pagination-nav__label {
+      color: var(--ifm-color-primary);
+    }
+  }
+}
+
+.pagination-nav__link--next {
+  grid-column: 2;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.pagination-nav__ring {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  box-sizing: border-box;
+  border: 2.5px solid var(--ifm-color-primary);
+  border-radius: 50%;
+  background: var(--ifm-background-color);
+}
+
+.pagination-nav__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.pagination-nav__sublabel {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.pagination-nav__label {
+  font-size: 1rem;
+  font-weight: 520;
+  color: var(--ifm-heading-color);
+  word-break: normal;
+
+  &::before,
+  &::after {
+    content: none !important;
+  }
 }

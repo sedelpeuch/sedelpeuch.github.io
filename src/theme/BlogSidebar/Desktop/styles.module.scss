@@ -1,0 +1,59 @@
+// Sidebar du blog : chronologique, icône de catégorie et mois devant chaque billet.
+
+.sidebar {
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 2rem);
+  max-height: calc(100vh - (var(--ifm-navbar-height) + 2rem));
+  overflow-y: auto;
+}
+
+.title {
+  font-size: var(--ifm-h3-font-size);
+  font-weight: var(--ifm-font-weight-bold);
+}
+
+.year {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 520;
+  font-variant-numeric: tabular-nums;
+}
+
+.list {
+  font-size: 0.88rem;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1.1rem 1fr auto;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin-top: 0.55rem;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+  align-self: center;
+  color: var(--ifm-color-primary);
+}
+
+.link {
+  color: var(--ifm-font-color-base);
+
+  &:hover {
+    color: var(--ifm-color-primary);
+    text-decoration: none;
+  }
+}
+
+.linkActive {
+  color: var(--ifm-color-primary) !important;
+  font-weight: 520;
+}
+
+.month {
+  font-size: 0.78rem;
+  color: var(--ifm-color-emphasis-600);
+  white-space: nowrap;
+}

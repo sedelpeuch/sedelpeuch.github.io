@@ -1,0 +1,115 @@
+// Encart « projet lié » en fin d'article de blog.
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 1rem 0 2rem;
+
+  &:not([data-count="1"]) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+.card {
+  --pl-accent: var(--ifm-color-primary);
+  --pl-muted: var(--ifm-color-emphasis-600);
+  --pl-ring: 14px;
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+  color: inherit;
+  transition: border-color 0.15s ease;
+
+  // Neutralise le soulignement des liens du contenu (custom.scss).
+  article .markdown &:not(.hash-link),
+  &:hover,
+  &:focus-visible {
+    border-bottom: 1px solid var(--ifm-color-emphasis-200);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:hover,
+  &:focus-visible,
+  article .markdown &:hover {
+    border-color: var(--pl-accent);
+  }
+}
+
+.ring {
+  justify-self: center;
+  width: var(--pl-ring);
+  height: var(--pl-ring);
+  margin-top: 0.3rem;
+  box-sizing: border-box;
+  border: 2.5px solid var(--pl-accent);
+  border-radius: 50%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.label {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  font-size: 0.85rem;
+  color: var(--pl-muted);
+}
+
+.period {
+  font-variant-numeric: tabular-nums;
+}
+
+.name {
+  font-size: 1.1rem;
+  font-weight: 520;
+  color: var(--ifm-heading-color);
+}
+
+.text {
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.iconWrap {
+  display: inline-flex;
+}
+
+.icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--pl-accent);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}
