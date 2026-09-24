@@ -2,6 +2,7 @@
 title: "Docker : débogage"
 description: "Techniques et commandes pour diagnostiquer les problèmes dans les conteneurs Docker : logs, inspection, shell interactif, ressources, et problèmes réseau."
 tags: [containerization, devops]
+authors: sedelpeuch
 ---
 
 Déboguer un conteneur diffère du débogage d'une application classique : le processus s'exécute dans un namespace isolé, sans accès direct au shell dans les cas normaux, avec des logs parfois redirigés vers stdout. Les outils Docker exposent l'état interne du conteneur sans nécessiter d'accès SSH.
@@ -47,6 +48,23 @@ Si l'image est minimaliste (distroless, scratch) et ne contient pas de shell, `d
 docker cp <conteneur>:/app/logs/error.log ./error.log
 ```
 
+Une autre approche consiste à démarrer un conteneur outillé qui rejoint les namespaces du conteneur cible. L'image `nicolaka/netshoot` embarque `curl`, `dig`, `ss`, `tcpdump` et `strace` :
+
+```bash
+# Partager les namespaces réseau et PID du conteneur cible
+docker run -it --rm \
+  --network container:<conteneur> \
+  --pid container:<conteneur> \
+  nicolaka/netshoot
+
+# Depuis ce shell : ports en écoute du conteneur cible, processus, trafic
+ss -tlnp
+ps aux
+tcpdump -i eth0 port 8000
+```
+
+Le système de fichiers du conteneur cible reste accessible via `/proc/<pid>/root/`, le PID étant celui visible dans le namespace partagé. Kubernetes applique le même principe avec `kubectl debug` et les conteneurs éphémères.
+
 ## Inspecter l'état du conteneur
 
 ```bash
@@ -61,7 +79,23 @@ docker inspect <conteneur> | jq '.[0].NetworkSettings.Networks'
 docker inspect <conteneur> | jq '.[0].Config.Env'
 ```
 
-`docker inspect` révèle également le code de sortie du processus (`ExitCode`) et l'erreur éventuelle (`Error`) — utile pour diagnostiquer les conteneurs qui s'arrêtent immédiatement après le démarrage.
+`docker inspect` révèle également le code de sortie du processus (`ExitCode`) et l'erreur éventuelle (`Error`) — utile pour diagnostiquer les conteneurs qui s'arrêtent immédiatement après le démarrage. L'option `--format` (template Go) extrait un champ sans `jq` :
+
+```bash
+docker inspect -f '{{.State.ExitCode}} {{.State.OOMKilled}}' <conteneur>
+```
+
+Au-delà de 128, le code de sortie encode le signal reçu (128 + numéro du signal) :
+
+| Code | Signification courante |
+|------|------------------------|
+| `0` | fin normale du processus |
+| `1` | erreur applicative générique |
+| `126` | commande trouvée mais non exécutable (permissions, format binaire) |
+| `127` | commande introuvable (`CMD` ou `ENTRYPOINT` erroné, binaire absent de l'image) |
+| `137` | `SIGKILL` (9) : dépassement de la limite mémoire, `docker kill`, ou fin du délai de `docker stop` |
+| `139` | `SIGSEGV` (11) : erreur de segmentation, souvent une incompatibilité de bibliothèque native |
+| `143` | `SIGTERM` (15) : arrêt demandé, traité par l'application sans code de sortie propre |
 
 ## Monitorer les ressources
 
@@ -76,7 +110,7 @@ docker stats api db
 docker stats --no-stream
 ```
 
-Un conteneur qui atteint sa limite mémoire est tué par le kernel — `OOMKilled: true` apparaît dans `docker inspect`. Un conteneur à 100% CPU en permanence indique souvent une boucle infinie ou un deadlock.
+Un conteneur qui atteint sa limite mémoire est tué par le kernel — `OOMKilled: true` apparaît dans `docker inspect`. Un conteneur à 100% CPU en permanence indique souvent une boucle infinie ou une attente active ; à l'inverse, un interblocage (*deadlock*) se manifeste plutôt par une consommation CPU nulle et des requêtes qui n'aboutissent jamais.
 
 ## Analyser le filesystem du conteneur
 
@@ -105,7 +139,7 @@ docker exec <conteneur> ping db
 docker inspect <conteneur> | jq '.[0].NetworkSettings.Networks | keys'
 ```
 
-Un conteneur qui ne peut pas joindre un autre par son nom indique généralement qu'ils ne sont pas sur le même réseau Docker. Le réseau `bridge` par défaut n'active pas la résolution DNS par nom — il faut un réseau défini explicitement (`docker network create`) ou Docker Compose.
+Les images minimales ne contiennent souvent ni `ss`, ni `nslookup`, ni `ping` : le conteneur `netshoot` décrit plus haut fournit ces outils sans modifier l'image. Un conteneur qui ne peut pas joindre un autre par son nom indique généralement qu'ils ne sont pas sur le même réseau Docker. Le réseau `bridge` par défaut n'active pas la résolution DNS par nom — il faut un réseau défini explicitement (`docker network create`) ou Docker Compose.
 
 ## Déboguer un conteneur qui crashe au démarrage
 
@@ -115,8 +149,10 @@ Quand un conteneur s'arrête immédiatement, `docker exec` est inutilisable. L'a
 # Remplacer l'entrypoint pour démarrer un shell
 docker run -it --entrypoint sh <image>
 
-# Ou remplacer la commande
+# Ou remplacer la commande (CMD)
 docker run -it <image> sh
 ```
+
+La seconde forme ne fonctionne que si l'image ne définit pas d'`ENTRYPOINT` : dans le cas contraire, `sh` est passé comme argument à l'entrypoint au lieu d'être exécuté.
 
 Une fois dans le shell, reproduire manuellement les commandes du Dockerfile pour identifier l'étape qui échoue — variables d'environnement manquantes, fichiers absents, permissions incorrectes.

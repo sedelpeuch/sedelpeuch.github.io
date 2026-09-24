@@ -2,9 +2,10 @@
 title: "Docker : bonnes pratiques"
 description: "Bonnes pratiques Dockerfile pour des images légères, reproductibles et sécurisées : images de base, multi-stage builds, cache des couches, utilisateur non-root."
 tags: [containerization, devops]
+authors: sedelpeuch
 ---
 
-Une image Docker mal construite peut peser plusieurs gigaoctets, exposer des secrets dans ses couches, ou s'exécuter en root sans raison valable. Ces problèmes sont évitables avec quelques principes de construction appliqués systématiquement.
+Une image Docker mal construite peut peser plusieurs gigaoctets, exposer des secrets dans ses couches, ou s'exécuter en root sans raison valable. Ces problèmes découlent directement du fonctionnement des couches et du cache de build, décrits dans l'article [Docker : conteneurs et images](./2024-12-20-docker-containers.md), et s'évitent avec quelques principes de construction appliqués systématiquement.
 
 <!--truncate-->
 
@@ -29,6 +30,10 @@ FROM python:3.12-alpine
 | `python:3.12-slim` | ~130 Mo | Bonne | Production |
 | `python:3.12-alpine` | ~50 Mo | Limitée (musl) | Production si compatible |
 
+L'incompatibilité d'Alpine tient à sa bibliothèque C : les wheels binaires `manylinux` publiés sur PyPI sont liés à la glibc et ne s'installent pas sur musl. Faute de wheel `musllinux`, pip compile le paquet depuis les sources, ce qui exige un compilateur dans l'image et allonge le build. Pour les binaires statiques (Go, Rust), les images `distroless` ou `scratch` vont plus loin qu'Alpine : ni shell ni gestionnaire de paquets.
+
+Une étiquette comme `python:3.12-slim` est mobile : elle pointe vers une nouvelle image à chaque correctif publié. Épingler le digest (`FROM python:3.12-slim@sha256:...`) garantit que deux builds utilisent exactement la même base ; un outil comme Renovate ou Dependabot met ensuite ce digest à jour de façon contrôlée.
+
 ## Ordonner les instructions pour maximiser le cache
 
 Docker invalide le cache à partir de la première couche modifiée. Les fichiers qui changent souvent doivent être copiés le plus tard possible.
@@ -46,7 +51,18 @@ RUN pip install -r /app/requirements.txt
 COPY . /app
 ```
 
-La règle : copier d'abord ce qui change rarement (fichiers de dépendances), puis ce qui change souvent (code source).
+La règle : copier d'abord ce qui change rarement (fichiers de dépendances), puis ce qui change souvent (code source). Pour une instruction `COPY`, la clé de cache est calculée à partir du contenu des fichiers copiés (et non de leur date de modification) ; pour `RUN`, à partir du texte de la commande. Un `RUN apt-get update` n'est donc jamais réexécuté tant que sa ligne ne change pas, même si les dépôts ont évolué.
+
+BuildKit ajoute les montages de cache, qui conservent un répertoire entre deux builds sans l'intégrer à l'image :
+
+```dockerfile
+# syntax=docker/dockerfile:1
+FROM python:3.12-slim
+COPY requirements.txt /app/
+# Le cache pip est réutilisé d'un build à l'autre, même si la couche est reconstruite
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install -r /app/requirements.txt
+```
 
 ## Multi-stage build
 
@@ -62,13 +78,13 @@ COPY . .
 RUN CGO_ENABLED=0 go build -o /app/server .
 
 # Stage 2 : image finale
-FROM alpine:3.19
+FROM alpine:3.20
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /app/server /server
 CMD ["/server"]
 ```
 
-L'image finale contient uniquement le binaire compilé et les certificats CA — pas le compilateur Go, pas les sources, pas le cache du module. Une image Go complète pèse ~1 Go ; l'image finale avec ce pattern pèse ~15 Mo.
+L'image finale contient uniquement le binaire compilé et les certificats CA — pas le compilateur Go, pas les sources, pas le cache du module. Une image Go complète pèse ~1 Go ; l'image finale avec ce pattern pèse ~15 Mo. `CGO_ENABLED=0` produit un binaire statique, indépendant de la glibc de l'étage de compilation : sans cette option, le binaire lié dynamiquement échouerait au démarrage sur Alpine (musl).
 
 ## Exécuter en utilisateur non-root
 
@@ -79,21 +95,22 @@ FROM python:3.12-slim
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-COPY . .
 
 # Créer un utilisateur dédié
 RUN addgroup --system app && adduser --system --ingroup app app
 
-# Changer de propriétaire avant de changer d'utilisateur
-RUN chown -R app:app /app
+# Copier le code directement avec le bon propriétaire
+COPY --chown=app:app . .
 USER app
 
 CMD ["python", "main.py"]
 ```
 
+Un `RUN chown -R app:app /app` après la copie aboutirait au même résultat fonctionnel, mais en dupliquant tous les fichiers concernés dans une nouvelle couche (mécanisme de *copy-up*) : la taille de l'image doublerait pour ces fichiers. L'option `--chown` de `COPY` fixe le propriétaire dès l'écriture de la couche. L'utilisateur non-root se vérifie à l'exécution avec `docker run --rm image id`, et Kubernetes peut l'imposer via `securityContext.runAsNonRoot: true`.
+
 ## Ne pas stocker de secrets dans l'image
 
-Chaque instruction `RUN`, `COPY`, ou `ENV` crée une couche. Une clé API copiée puis supprimée dans une instruction suivante reste visible dans les couches intermédiaires de l'image.
+Chaque instruction `RUN` ou `COPY` crée une couche, et `ENV` ou `ARG` sont enregistrés dans la configuration de l'image (visibles avec `docker history` et `docker inspect`). Une clé API copiée puis supprimée dans une instruction suivante reste lisible dans la couche intermédiaire, qu'il suffit d'extraire de l'archive de l'image (`docker save`).
 
 ```dockerfile
 # À éviter : le secret reste dans les couches même si supprimé ensuite
@@ -104,6 +121,13 @@ RUN rm /app/.env                          # couche 2 — secret toujours visible
 RUN --mount=type=secret,id=api_key \
     API_KEY=$(cat /run/secrets/api_key) ./configure.sh
 ```
+
+```bash
+# Le secret est fourni au build depuis un fichier local (ou une variable d'environnement avec env=)
+docker build --secret id=api_key,src=./api_key.txt -t myapp .
+```
+
+Le fichier est monté en tmpfs dans `/run/secrets/api_key` uniquement pendant l'exécution de ce `RUN` : il n'apparaît ni dans les couches, ni dans l'historique, ni dans le cache de build.
 
 Les secrets applicatifs (mots de passe DB, tokens) ne doivent jamais être embarqués dans l'image — ils doivent être injectés à l'exécution via des variables d'environnement ou un gestionnaire de secrets (Vault, AWS Secrets Manager, Kubernetes Secrets).
 
@@ -142,7 +166,7 @@ RUN apt-get update && apt-get install -y \
 
 Un `.dockerignore` à la racine du projet liste les fichiers et répertoires à exclure du contexte de build. Sans ce fichier, `COPY . /app` transfère tout le projet au daemon Docker — y compris `node_modules`, `.git`, les fichiers de log, les caches.
 
-```
+```text
 .git
 node_modules
 __pycache__
