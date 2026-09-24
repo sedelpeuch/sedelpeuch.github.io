@@ -1,14 +1,12 @@
 ---
 title: "Python : Ruff"
 description: Découvrir Ruff, l'outil Python ultra-rapide écrit en Rust pour remplacer flake8, black et isort.
-tags: [scripting]
+tags: [scripting, devops]
 ---
 
-Ruff est un **linter et formatter Python ultra-rapide** écrit en Rust. Il remplace plusieurs outils comme flake8, black, isort et pylint en étant 10 à 100 fois plus rapide. Cet outil simplifie considérablement la chaîne de qualité du code Python.
+Ruff est un **linter et formateur Python** écrit en Rust, développé par Astral. Il réimplémente les règles de flake8 (et de nombreux plugins), isort, pyupgrade et une partie de pylint, ainsi qu'un formateur compatible avec black, avec des temps d'exécution de l'ordre de 10 à 100 fois inférieurs selon ses auteurs. Un seul outil et un seul fichier de configuration remplacent ainsi plusieurs dépendances de la chaîne de qualité du code.
 
 <!--truncate-->
-
-# Ruff : Linting et Formatting Python
 
 ## Qu'est-ce que Ruff ?
 

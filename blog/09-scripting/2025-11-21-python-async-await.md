@@ -1,14 +1,14 @@
 ---
 title: "Python : async/await"
 description: "Maîtrisez la programmation asynchrone en Python pour créer des applications performantes et réactives."
-tags: [scripting]
+tags: [scripting, devops]
 ---
 
-La programmation asynchrone est devenue essentielle pour créer des applications Python performantes, notamment pour les APIs, les web scrapers, ou les applications traitant de nombreuses opérations I/O. Dans cet article, nous explorerons en profondeur `async`/`await` et `asyncio`, avec des cas d'usage pratiques notamment avec FastAPI. 🚀
+Une application qui passe l'essentiel de son temps à attendre des entrées/sorties (réponses réseau, requêtes de base de données, lectures de fichiers) gaspille ce temps si elle les traite l'une après l'autre. La programmation asynchrone en Python, avec `async`/`await` et la bibliothèque standard `asyncio`, permet de mener ces attentes de front dans un seul thread. Cet article en présente les mécanismes et les cas d'usage, notamment avec FastAPI.
 
 <!--truncate-->
 
-## Comprendre la programmation asynchrone 🤔
+## Comprendre la programmation asynchrone
 
 ### Le problème : l'attente inutile
 
@@ -59,13 +59,13 @@ L'asynchrone est efficace uniquement pour les opérations **I/O-bound** (limité
 - Compression de données
 - Pour ces cas, utiliser `multiprocessing` ou `threading`
 
-## Les bases d'async/await 📚
+## Les bases d'async/await
 
 ### Les coroutines : des fonctions "pausables"
 
 Une **coroutine** est une fonction spéciale qui peut être suspendue et reprise. Elle se déclare avec `async def` au lieu de `def`.
 
-**Concept clé :** Une coroutine ne s'exécute pas immédiatement quand on l'appelle. Elle retourne un objet "coroutine" qui doit être `await`é pour s'exécuter réellement.
+**Concept clé :** Une coroutine ne s'exécute pas immédiatement à l'appel. Elle retourne un objet "coroutine" qui doit être `await`é pour s'exécuter réellement.
 
 ```python
 async def fonction_async():
@@ -132,7 +132,7 @@ async def main():
     resultat = await task
 ```
 
-## asyncio : fonctionnalités essentielles 🛠️
+## asyncio : fonctionnalités essentielles
 
 ### L'Event Loop : le chef d'orchestre
 
@@ -187,13 +187,13 @@ except asyncio.TimeoutError:
     print("L'opération a pris trop de temps !")
 ```
 
-## Requêtes HTTP asynchrones 🌐
+## Requêtes HTTP asynchrones
 
-### Le cas d'usage parfait pour l'asynchrone
+### Le cas d'usage type de l'asynchrone
 
 Les requêtes HTTP sont le meilleur exemple d'opération I/O-bound : le programme passe la majorité du temps à attendre la réponse du serveur, sans rien faire.
 
-**Avantage de l'async :** Pendant qu'une requête attend la réponse, on peut en lancer d'autres. Résultat : 10 requêtes prennent le temps d'une seule !
+**Avantage de l'async :** pendant qu'une requête attend sa réponse, la boucle d'événements en lance d'autres. Dix requêtes indépendantes prennent alors à peu près le temps de la plus lente, et non la somme des dix.
 
 ### Avec httpx : le client HTTP asynchrone
 
@@ -221,11 +221,11 @@ users = await fetch_users(["python", "microsoft", "google", "facebook", "apple"]
 
 **Gain de performance :** Sans async, 10 requêtes de 200ms = 2 secondes. Avec async = 200ms !
 
-## Intégration avec FastAPI 🚀
+## Intégration avec FastAPI
 
 ### Pourquoi FastAPI et async sont faits l'un pour l'autre
 
-FastAPI est conçu dès le départ pour l'asynchrone. Une API web est l'exemple parfait d'application I/O-bound : la plupart du temps est passé à attendre des bases de données, des APIs externes, ou des fichiers.
+FastAPI est conçu dès le départ pour l'asynchrone. Une API web est un exemple typique d'application I/O-bound : la plupart du temps est passé à attendre des bases de données, des APIs externes, ou des fichiers.
 
 **Avantage :** Avec async, un serveur FastAPI peut gérer des milliers de requêtes simultanées sans créer de threads, simplement en utilisant l'event loop.
 
@@ -294,7 +294,7 @@ async def get_user_cached(user_id: int):
 
 **Architecture typique :** API FastAPI → Cache Redis → Base de données PostgreSQL, le tout en asynchrone bout en bout.
 
-## Patterns avancés 🎯
+## Patterns avancés
 
 ### Limiter la concurrence avec Semaphore
 
@@ -365,7 +365,7 @@ async with AsyncResource() as resource:
     await resource.operation()
 ```
 
-## Bonnes pratiques 🐛
+## Bonnes pratiques
 
 ### Erreurs courantes à éviter
 
@@ -432,21 +432,19 @@ asyncio.run(main(), debug=True)
 
 **Utile pendant le développement** pour repérer les opérations bloquantes accidentelles.
 
-## Conclusion 🎯
+## Conclusion
 
-La programmation asynchrone en Python avec `async`/`await` et `asyncio` est essentielle pour créer des applications performantes et réactives. Elle brille particulièrement avec FastAPI pour les APIs modernes.
+La programmation asynchrone en Python avec `async`/`await` et `asyncio` permet de traiter de nombreuses opérations d'entrée/sortie en parallèle dans un seul thread. Elle n'accélère pas le calcul : une tâche CPU-bound bloque la boucle d'événements et relève plutôt de processus séparés (`ProcessPoolExecutor`, multiprocessing).
 
 Points clés à retenir :
 
-- **async/await** : syntaxe simple pour la concurrence
-- **asyncio** : bibliothèque standard puissante
-- **I/O-bound** : parfait pour les opérations réseau/disque
-- **FastAPI** : framework idéal pour l'async
+- **async/await** : syntaxe de la concurrence coopérative, où chaque `await` est un point de suspension
+- **asyncio** : boucle d'événements et primitives de la bibliothèque standard
+- **I/O-bound** : domaine d'application de l'asynchrone (réseau, base de données, disque)
+- **FastAPI** : routes `async def` exécutées dans la boucle, routes `def` dans un pool de threads
 - **Patterns** : queue, semaphore, retry, etc.
 
-Ces connaissances permettent de créer des applications Python hautement performantes.
-
-## Ressources utiles 📚
+## Ressources utiles
 
 - [Documentation asyncio](https://docs.python.org/3/library/asyncio.html)
 - [Real Python - Async IO](https://realpython.com/async-io-python/)

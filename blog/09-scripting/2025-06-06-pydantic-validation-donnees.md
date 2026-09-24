@@ -1,14 +1,14 @@
 ---
 title: "Python : Pydantic"
-description: "Comment utiliser Pydantic pour valider, sérialiser et documenter vos modèles de données en Python."
+description: "Pydantic pour valider, sérialiser et documenter des modèles de données en Python : modèles, validateurs, configuration, intégration avec FastAPI et différences entre v1 et v2."
 tags: [scripting, devops]
 ---
 
-Dans un monde où les APIs et les microservices se multiplient, la validation des données est devenue une préoccupation majeure. Pydantic s'impose comme la solution de référence en Python pour définir et valider des structures de données. Découvrons ensemble cette bibliothèque puissante qui révolutionne la façon dont nous manipulons les données. 🔍
+Les données qui entrent dans une application (requêtes HTTP, fichiers de configuration, messages) n'ont aucune garantie de forme ni de type. Pydantic, bibliothèque de référence en Python pour ce besoin, valide et convertit ces données à partir de classes annotées avec les types standard du langage, et produit des erreurs détaillées lorsqu'elles ne respectent pas le modèle.
 
 <!--truncate-->
 
-## Qu'est-ce que Pydantic? 🤔
+## Qu'est-ce que Pydantic?
 
 Pydantic est une bibliothèque Python qui permet de valider des données et de gérer les paramètres de configuration en utilisant les annotations de type Python. Elle offre plusieurs avantages :
 
@@ -18,9 +18,9 @@ Pydantic est une bibliothèque Python qui permet de valider des données et de g
 - **Sérialisation et désérialisation faciles**
 - **Performances optimisées** grâce à l'utilisation de code compilé en Rust
 
-Pydantic est notamment le système de modèles utilisé par FastAPI, ce qui en fait un incontournable pour les développeurs d'APIs modernes.
+Pydantic est notamment le système de modèles utilisé par [FastAPI](./2024-12-20-fastapi.md), qui s'appuie sur lui pour valider les requêtes et sérialiser les réponses.
 
-## Installation de Pydantic 🚀
+## Installation de Pydantic
 
 L'installation de Pydantic est simple avec pip :
 
@@ -31,13 +31,13 @@ pip install pydantic
 pip install "pydantic>=2.0.0"
 ```
 
-Si vous utilisez Poetry (comme nous l'avons vu dans [notre article précédent](/blog/2025/06/06/09-scripting/poetry-python-dependency)) :
+Avec Poetry (voir l'article [Python : Poetry](./2025-06-06-poetry-python-dependency.md)) :
 
 ```bash
 poetry add pydantic
 ```
 
-## Les bases de Pydantic 📚
+## Les bases de Pydantic
 
 ### Définition de modèles
 
@@ -107,7 +107,7 @@ new_user = User.model_validate(user_data)
 user_from_json = User.model_validate_json('{"id": 3, "name": "Bob", "email": "bob@example.com", "birth_date": "1985-07-20"}')
 ```
 
-## Fonctionnalités avancées 🔧
+## Fonctionnalités avancées
 
 ### Validateurs personnalisés
 
@@ -189,9 +189,9 @@ class Settings(BaseModel):
     max_connections: int = 100
 ```
 
-## Pydantic et FastAPI : le duo parfait 🤝
+## Pydantic et FastAPI
 
-Pydantic est particulièrement puissant lorsqu'il est utilisé avec FastAPI :
+FastAPI utilise les modèles Pydantic pour valider les corps de requête et filtrer les réponses :
 
 ```python
 from fastapi import FastAPI, Path
@@ -238,7 +238,7 @@ Avec cette configuration, FastAPI :
 - Génère une documentation OpenAPI interactive
 - Effectue la sérialisation des réponses
 
-## Pydantic v1 vs v2 : les différences majeures 🔄
+## Pydantic v1 vs v2 : les différences majeures
 
 Pydantic v2 (sorti en 2023) a introduit plusieurs changements importants :
 
@@ -289,7 +289,7 @@ class UserV2(BaseModel):
     json_data = user.model_dump_json()
 ```
 
-## Bonnes pratiques avec Pydantic 👍
+## Bonnes pratiques avec Pydantic
 
 1. **Utilisez des types précis**: Les types comme `EmailStr`, `HttpUrl`, `conint`, etc. améliorent la validation
 
@@ -341,7 +341,7 @@ class UserV2(BaseModel):
        }
    ```
 
-## Cas d'utilisation concrets 🛠️
+## Cas d'utilisation concrets
 
 ### Validation de configuration
 
@@ -419,11 +419,11 @@ async def fetch_articles():
         return articles
 ```
 
-## Conclusion 🎯
+## Conclusion
 
-Pydantic s'est imposé comme un outil indispensable dans l'écosystème Python moderne, particulièrement pour le développement d'APIs et d'applications manipulant des données structurées. Ses points forts :
+Pydantic est largement utilisé dans l'écosystème Python, en particulier pour les API et les applications qui manipulent des données structurées. Ses caractéristiques principales :
 
-- **Validation robuste** des données basée sur les types Python standard
-- **API intuitive** permettant de définir rapidement des modèles complexes
-- **Performances impressionnantes** grâce au moteur de validation en Rust
-- **Intégration harmonieuse** avec FastAPI et d'autres frameworks
+- **Validation** des données fondée sur les annotations de types standard
+- **Modèles déclaratifs** composables pour décrire des structures imbriquées
+- **Performances** : depuis la v2, le cœur de validation (`pydantic-core`) est écrit en Rust
+- **Intégration** avec FastAPI, SQLModel et de nombreux autres frameworks

@@ -13,12 +13,12 @@ Publier son code Python sur PyPI c'est le rendre accessible à des milliers de d
 ### Différence : Module vs Package
 
 **Module** : Un fichier Python unique
-```
+```text
 calculator.py  # C'est un module
 ```
 
 **Package** : Un dossier contenant des modules
-```
+```text
 calculator/
 ├── __init__.py        # Marque le dossier comme package
 ├── operations.py
@@ -30,7 +30,7 @@ Le fichier `__init__.py` est crucial : c'est ce qui dit à Python "je suis un pa
 
 ### Structure simple
 
-```
+```text
 my_package/
 ├── my_package/           # Code source
 │   ├── __init__.py
@@ -62,7 +62,7 @@ Quand on publie un package, on crée deux types de distribution :
 
 **Format** : `my_package-1.0.0.tar.gz` (ou `.zip`)
 
-```
+```text
 my_package-1.0.0/
 ├── my_package/
 │   ├── __init__.py
@@ -87,7 +87,7 @@ my_package-1.0.0/
 
 **Format** : `my_package-1.0.0-py3-none-any.whl` (archive ZIP)
 
-```
+```text
 my_package-1.0.0.dist-info/
 ├── METADATA
 ├── RECORD
@@ -340,7 +340,7 @@ password = mon_mot_de_passe_clair  # Mauvaise idée !
 
 D'abord, ajouter TestPyPI à `~/.pypirc` :
 
-```
+```text
 [distutils]
 index-servers =
     pypi
@@ -384,7 +384,7 @@ python -m twine upload dist/my_package-1.0.0*
 
 Format : `MAJOR.MINOR.PATCH[-pre-release][+build]`
 
-```
+```text
 1.0.0          # Release stable
 1.0.1          # Bugfix (PATCH)
 1.1.0          # Feature (MINOR)
@@ -520,7 +520,7 @@ some-critical-lib = "1.2.3"
 
 Utile si on maintient plusieurs packages liés :
 
-```
+```text
 src/
 ├── mycompany/
 │   ├── __init__.py          (empty!)
@@ -575,7 +575,7 @@ pip install my-awesome-lib[dev]               # + all dev tools
 
 ### Poetry
 
-Si vous préférez une approche all-in-one avec lock file :
+Pour une approche tout-en-un avec lock file (voir l'article [Python : Poetry](./2025-06-06-poetry-python-dependency.md)) :
 
 ```bash
 poetry new my-lib
@@ -583,22 +583,23 @@ poetry add requests pydantic
 poetry build && poetry publish
 ```
 
-Poetry gère pyproject.toml, dependencies, et publication automatiquement. Idéal si vous aimez la cohésion.
+Poetry gère `pyproject.toml`, les dépendances, le lock file et la publication dans un même outil.
 
 ### uv
 
-Package manager ultra-rapide (écrit en Rust) :
+Gestionnaire de paquets et de projets écrit en Rust (voir l'article [Python : uv](./2025-12-19-uv-python.md)) :
 
 ```bash
-uv pip install requests
-uv venv
+uv init --package my-lib
+uv add requests pydantic
+uv build && uv publish
 ```
 
-Remplace pip pour des workflows rapides. Toujours utilise pyproject.toml/setup.py pour packages, juste accélère les installations.
+uv couvre la gestion des dépendances, le lock file, la construction et la publication, en s'appuyant sur le `[build-system]` déclaré dans `pyproject.toml`.
 
-**Les deux restent compatibles avec le système d'emballage standard** (wheel, sdist, PyPI, setuptools). Juste des wrapper/helpers autour.
+**Les deux restent compatibles avec le système de packaging standard** (wheel, sdist, PyPI, PEP 517/621) : ils produisent les mêmes distributions que setuptools et twine, et un projet peut changer d'outil sans changer de format.
 
-## Résources
+## Ressources
 
 - [Official Packaging Guide](https://packaging.python.org/tutorials/packaging-projects/)
 - [setuptools Documentation](https://setuptools.pypa.io/)
@@ -609,9 +610,7 @@ Remplace pip pour des workflows rapides. Toujours utilise pyproject.toml/setup.p
 
 ## Conclusion
 
-Le packaging Python s'appuie sur des concepts simples : modules, packages, distributions (wheel/sdist), métadonnées, et PyPI. Une fois qu'on comprend ça, publier son code devient facile. setuptools + twine suffisent pour la plupart des cas. Les alternatives modernes comme Poetry offrent plus de confort mais reposent toujours sur les mêmes fondations.
-
-À vos pipelines! 🚀
+Le packaging Python repose sur quelques notions : modules, packages, distributions (wheel et sdist), métadonnées et index (PyPI). setuptools et twine suffisent pour la plupart des cas ; Poetry et uv regroupent ces étapes dans un seul outil, mais produisent les mêmes distributions standard.
 
 ## Application / Projet lié
 
