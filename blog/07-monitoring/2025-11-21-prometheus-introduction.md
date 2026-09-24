@@ -521,6 +521,7 @@ Une alerte dont l'expression renvoie un résultat passe à l'état `pending` ; s
 
 <ProjectLinks>
   <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Prometheus comme backend métrique du cluster pour monitorer tous les services hébergés (Grafana, Portainer, nodes Kubernetes).</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC - Runners CI/CD auto-hébergés sur Kubernetes">Collecte par le Prometheus du cluster des métriques du listener et du contrôleur ARC (jobs, runners occupés et inactifs, durées de démarrage et d'exécution), qui ont guidé le relèvement du plafond de 20 à 60 runners.</ProjectLink>
 </ProjectLinks>
 
 ## Conclusion

@@ -174,3 +174,9 @@ Les deux mécanismes se complètent mais ont des périmètres différents :
 | Usage | Factoriser des steps | Encapsuler un pipeline complet |
 
 Un workflow réutilisable définit `on: workflow_call` et ne peut pas être utilisé dans une step — il est un job à part entière avec ses propres runners. Une action composite s'exécute dans l'environnement du job qui l'appelle et peut être insérée n'importe où dans une liste de steps. Le détail de la syntaxe des actions composites figure dans l'article [action réutilisable](./2024-12-20-action.md).
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD - Workflows GitHub Actions mutualisés">Bibliothèque de workflows réutilisables (`workflow_call`) organisée par domaine technologique, appelée par plus de 70 dépôts pour `generic_workflows` et près de 90 pour `zephyr_workflows`, tous alignés sur la branche principale sans tag de version.</ProjectLink>
+</ProjectLinks>

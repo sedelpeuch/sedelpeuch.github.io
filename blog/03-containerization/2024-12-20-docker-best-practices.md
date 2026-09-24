@@ -177,3 +177,9 @@ build/
 ```
 
 Réduire le contexte de build accélère le build et évite d'embarquer des fichiers sensibles (`.env`, clés) dans l'image.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/body_analysis" title="Body Analysis">Image de production du frontend réduite à un build statique servi par nginx, sans runtime Node, publiée avec l'image de l'API sur GitHub Container Registry et taguée par SHA de commit.</ProjectLink>
+</ProjectLinks>

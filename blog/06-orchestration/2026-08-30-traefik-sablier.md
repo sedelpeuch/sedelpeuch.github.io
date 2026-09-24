@@ -272,6 +272,7 @@ L'expression sert ensuite de règle d'alerte (`expr: ... > 0` avec un `for:` de 
 
 <ProjectLinks>
   <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Scale-to-zero de plusieurs stacks à usage sporadique (application web avec base de données, stockage objet et cache, outil de dashboards, boîte à outils PDF sur JVM), derrière un middleware d'authentification, avec détection des pannes réelles par Prometheus et blackbox_exporter.</ProjectLink>
+  <ProjectLink to="/docs/projects/personnel/body_analysis" title="Body Analysis">Application utilisée quelques minutes par semaine, arrêtée après 30 minutes d'inactivité et redémarrée à la première requête, ce qui libère la mémoire occupée au repos par ses conteneurs.</ProjectLink>
 </ProjectLinks>
 
 ## Conclusion

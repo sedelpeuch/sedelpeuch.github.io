@@ -199,3 +199,9 @@ Cette approche fonctionne aussi bien avec des workspaces qu'avec des répertoire
 | Cas d'usage adapté | Environnements proches, projet modeste | Environnements divergents, production critique |
 
 La structuration par répertoires est l'approche la plus répandue dès qu'un environnement de production est en jeu : l'isolation explicite réduit le risque d'appliquer une modification destinée à dev sur prod, et la possibilité de cibler des comptes AWS distincts limite l'ampleur d'une erreur. Les workspaces couvrent un besoin plus restreint — des environnements éphémères de test (une stack par pull request, par exemple), où la légèreté de `terraform workspace new` compense l'absence de divergence structurelle et le partage des credentials.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Configuration racine unique pour les environnements test et staging, sélectionnés par un fichier `-backend-config` et un fichier `-var-file` par environnement, avec l'instance RDS activée par la variable `enable_rds`.</ProjectLink>
+</ProjectLinks>

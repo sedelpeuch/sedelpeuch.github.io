@@ -140,3 +140,9 @@ with engine.connect() as conn:
 ```
 
 L'ORM est un outil, pas une obligation. La capacité de mélanger ORM et SQL brut selon le contexte est précisément ce qui rend SQLAlchemy adapté aux applications réelles.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Modèles SQLAlchemy des entités `User`, `Column`, `Task` et `Label`, session injectée par requête via les dépendances FastAPI et déplacement d'une tâche recalculé dans une seule transaction.</ProjectLink>
+</ProjectLinks>

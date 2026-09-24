@@ -301,6 +301,7 @@ Le workflow `validate` ne s'exécute que sur les pull requests. Un push direct s
 
 <ProjectLinks>
   <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Déploiement continu d'une trentaine de stacks Docker Compose sur un hôte unique, via un runner GitHub hébergé qui rejoint un réseau Tailscale, avec validation des pull requests (dont celles de Renovate) et hash de configuration recalculé par pre-commit.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD - Workflows GitHub Actions mutualisés">Le dépôt `generic_workflows` propose un workflow réutilisable de déploiement Docker Compose, à côté du déploiement Helm, pour les dépôts de l'organisation.</ProjectLink>
 </ProjectLinks>
 
 ## Conclusion

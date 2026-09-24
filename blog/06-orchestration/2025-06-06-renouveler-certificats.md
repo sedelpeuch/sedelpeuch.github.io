@@ -125,3 +125,9 @@ sudo chmod +x /usr/local/bin/renew-k8s-certs.sh
 ```
 
 Le script ne recopie pas `admin.conf` vers les kubeconfig des utilisateurs : ceux-ci doivent être mis à jour séparément. Renouveler au moins 30 jours avant l'expiration laisse une marge pour traiter les problèmes imprévus ; une alerte de supervision sur la date d'expiration (par exemple via l'exporter `x509-certificate-exporter` et [Prometheus](../07-monitoring/2025-11-21-prometheus-introduction.md)) complète utilement l'automatisation.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Renouvellement par `kubeadm certs renew all` des certificats expirés du plan de contrôle, suivi de la recréation des pods statiques par déplacement temporaire de leurs manifestes.</ProjectLink>
+</ProjectLinks>

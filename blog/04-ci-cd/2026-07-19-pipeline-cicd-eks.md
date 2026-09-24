@@ -100,3 +100,9 @@ Chaque environnement a sa clé de state (`envs/test/backend.hcl`) et ses variabl
 ## Ce que couvre la suite
 
 À ce stade, chaque push sur `master` déclenche la chaîne jusqu'au test : build, publication, `terraform apply`, déploiement Helm. La suite introduira le **staging** (déclenché par tag, base RDS provisionnée par Terraform, endpoint récupéré via `terraform output`) et la **production** (approbation manuelle, secrets de base de données ne transitant jamais par la CI).
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Chaîne `Publish` puis `Deploy Test` : images de l'API et du frontend publiées sur GHCR, puis `terraform apply` et déploiement Helm sur l'environnement de test à chaque push sur `master`.</ProjectLink>
+</ProjectLinks>

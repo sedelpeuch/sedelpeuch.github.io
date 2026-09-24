@@ -40,3 +40,9 @@ import IconTitle from '@site/src/components/IconTitle';
 ### <IconTitle logo="skill-icons:githubactions-light" name="04 CI/CD Pipeline"/>
 
 [CI/CD](/blog/tags/cicd) Modernisation des pipelines CI/CD avec GitHub Actions, conception de workflows réutilisables, sécurisation des accès, documentation technique centralisée, publication automatique de releases/tags, support des runners personnalisés et matrices de jobs. Voir [CI/CD GitHub Actions](/docs/projects/professionnel/cicd) et [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm).
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/delpeuch-net-blog" title="Blog">Roadmap annuelle qui approfondit Kubernetes, la stack Prometheus/Loki et Ansible avec des cas pratiques réels, dans la continuité de la roadmap 2024.</ProjectLink>
+</ProjectLinks>
