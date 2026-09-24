@@ -9,48 +9,39 @@ description: "Fiches de synthèse et supports du module d'évaluation des projet
 
 ## Ressources pédagogiques
 
-### Cours 1 : Le système d'organisation comptable
+<ResourceList type="cours" title="Diaporamas des cours">
 
-+ [Diaporama du
-  cours](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/4412/COURS%201%20LE%20SYSTE%CC%80ME%20DORGANISATION%20COMPTABLE.pdf?time=1614244473916)
-+ [Applications du
-  cours](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/4412/document%20eleves%20COURS%201.pdf?time=1614003284193)
-+ [Correction du cas
-  2](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=53055)
-+ [Correction du cas
-  3](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=53059)
+- [Cours 1, le système d'organisation comptable](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/4412/COURS%201%20LE%20SYSTE%CC%80ME%20DORGANISATION%20COMPTABLE.pdf?time=1614244473916)
+- [Cours 2, faire le choix de valider le démarrage d'un projet](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20024/COURS%202%20FAIRE%20LE%20CHOIX%20DE%20VALIDER%20LE%20DE%CC%81MARRAGE%20DUN%20PROJET.pdf)
+- [Cours 3, la rentabilité d'exploitation des projets](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20455/cours%203%20LA%20RENTABILITE%CC%81%20DEXPLOITTION%20DES%20PROJETS.pdf)
+- [Cours 4, prise de décision et contrôle](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20540/Cours%204%20Le%20pilotage%20e%CC%81conomique%20des%20projets.pdf?time=1617096195978)
 
-### Cours 2 : Faire le choix de valider le démarrage d'un projet
+</ResourceList>
 
-+ [Diaporama du
-  cours](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20024/COURS%202%20FAIRE%20LE%20CHOIX%20DE%20VALIDER%20LE%20DE%CC%81MARRAGE%20DUN%20PROJET.pdf)
-+ [Applications du
-  cours](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20024/document%20eleves%20COURS%202%202021.pdf)
-+ [Correction du cas 1-7, 9, 11,
-  12](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=82614)
-+ [Correction du cas
-  7](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=83215)
+<ResourceList type="td" title="Applications des cours">
 
-### Cours 3 : La rentabilité d'exploitation des projets
+- [Cours 1, applications](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/4412/document%20eleves%20COURS%201.pdf?time=1614003284193)
+- [Cours 2, applications](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20024/document%20eleves%20COURS%202%202021.pdf)
+- [Cours 3, applications](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20455/document%20e%CC%81le%CC%80ve%20COURS%203.pdf)
+- [Cours 4, applications](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20540/document%20eleves%20COURS%204%20moodle.pdf)
 
-+ [Diaporama du
-  cours](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20455/cours%203%20LA%20RENTABILITE%CC%81%20DEXPLOITTION%20DES%20PROJETS.pdf)
-+ [Applications du
-  cours](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20455/document%20e%CC%81le%CC%80ve%20COURS%203.pdf)
-+ [Correction du cas 2](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=83611)
-+ [Correction du cas 6](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=83976)
-+ [Correction du cas
-  8](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=83977)
+</ResourceList>
 
-### Cours 4 : Prise de décision et contrôle
+<ResourceList type="correction">
 
-+ [Diaporama du
-  cours](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20540/Cours%204%20Le%20pilotage%20e%CC%81conomique%20des%20projets.pdf?time=1617096195978)
-+ [Applications du cours](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20540/document%20eleves%20COURS%204%20moodle.pdf)
-+ [Correction du cas 2](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=56126)
-+ [Correction du cas 3](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=85902)
-+ [Correction du cas 5](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=56319)
-+ [Correction du cas 6](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=56327)
+- [Cours 1, correction du cas 2](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=53055)
+- [Cours 1, correction du cas 3](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=53059)
+- [Cours 2, correction du cas 1-7, 9, 11, 12](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=82614)
+- [Cours 2, correction du cas 7](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=83215)
+- [Cours 3, correction du cas 2](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=83611)
+- [Cours 3, correction du cas 6](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=83976)
+- [Cours 3, correction du cas 8](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=83977)
+- [Cours 4, correction du cas 2](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=56126)
+- [Cours 4, correction du cas 3](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=85902)
+- [Cours 4, correction du cas 5](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=56319)
+- [Cours 4, correction du cas 6](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=56327)
+
+</ResourceList>
 
 <!-- ## Formulaire utile  -->
 

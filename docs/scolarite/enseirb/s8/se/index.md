@@ -9,6 +9,10 @@ description: "Cours de systèmes d'exploitation du semestre 8 : concepts génér
 
 ## Projet
 
-+ [Rapport de mi-parcours](./img/OS-Rapport-mid.pdf)
-+ [Rapport final](./img/OSRapportFinal.pdf)
-+ [Archive](./img/projetSys.zip)
+<ResourceList type="projet">
+
+- [Rapport de mi-parcours](./img/OS-Rapport-mid.pdf)
+- [Rapport final](./img/OSRapportFinal.pdf)
+- [Archive du projet](./img/projetSys.zip)
+
+</ResourceList>
