@@ -9,11 +9,12 @@ import TabItem from '@theme/TabItem';
 
 <img src="/img/dashy.png" alt="Aperçu HomeLab" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
 
-<div className="project-meta-grid">
-  <div className="project-meta-item">📅 2023 – présent</div>
-  <div className="project-meta-item">📖 Homelab · Auto-hébergement · GitOps</div>
-  <div className="project-meta-item">🔧 Docker Compose · Traefik · Authelia · GitHub Actions · Renovate · Prometheus · git-crypt</div>
-</div>
+<ProjectMeta
+  start="2023"
+  role="Concepteur et mainteneur"
+  domain="Homelab, auto-hébergement, GitOps"
+  stack={["Docker Compose", "Traefik", "Authelia", "GitHub Actions", "Renovate", "Prometheus", "git-crypt"]}
+/>
 
 ## Le contexte
 
