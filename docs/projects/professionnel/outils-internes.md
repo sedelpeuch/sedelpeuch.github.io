@@ -1,39 +1,41 @@
 ---
 title: Automatisation du quotidien — outils internes SONU
 description: "Bots Slack, dashboard Jira, alertes ERP et site de documentation interne. Outils développés et déployés sur Kubernetes pour automatiser les tâches répétitives de l'équipe SONU au CATIE."
+tags: [python, fastapi, react, slack, kubernetes, helm, automation]
 ---
 
-<div className="project-meta-grid">
-  <div className="project-meta-item">📅 2023 – en cours</div>
-  <div className="project-meta-item">👤 Rôle : Concepteur & mainteneur</div>
-  <div className="project-meta-item">🛠️ Python · FastAPI · React · Slack API · Kubernetes · Helm</div>
-</div>
+<ProjectMeta
+  start="2023"
+  role="Concepteur et mainteneur"
+  domain="Automatisation interne, bots, outillage d'équipe"
+  stack={["Python", "FastAPI", "React", "Slack API", "Kubernetes", "Helm"]}
+/>
 
-## Le contexte
+## Contexte
 
-Dans une petite équipe technique, il y a toujours un tas de tâches récurrentes que personne ne fait parce qu'elles sont ennuyeuses, chronophages, ou tout simplement oubliées. Suivre la charge de travail des projets actifs. Attraper une correction de stock anormale dans l'ERP avant qu'elle ne fausse les prix. Envoyer manuellement un email à chaque demande de téléchargement. Ce sont de petites frictions quotidiennes — individuellement tolérables, collectivement significatives.
+Dans une petite équipe technique, certaines tâches récurrentes finissent par ne plus être faites, parce qu'elles sont fastidieuses, chronophages ou simplement oubliées : suivre la charge de travail des projets actifs, repérer une correction de stock anormale dans l'ERP avant qu'elle ne fausse les prix, envoyer un e-mail à chaque demande de téléchargement. Individuellement tolérables, ces frictions deviennent significatives une fois cumulées.
 
-Ces outils ne sont pas des projets clients. Ils existent parce qu'un problème concret se répétait et que l'automatiser coûtait moins cher que de continuer à le subir. Tous tournent sur le cluster Kubernetes interne de l'équipe, déployés via Helm, et font partie du quotidien depuis des mois sans nécessiter d'attention particulière.
+Ces outils ne sont pas des projets clients. Chacun existe parce qu'un problème concret se répétait et que l'automatiser coûtait moins cher que de continuer à le traiter à la main. Tous tournent sur le [cluster Kubernetes interne](sonu-k8s-cluster.md) de l'équipe, déployés via Helm, et font partie du quotidien depuis des mois sans demander d'attention particulière.
 
 ## Outils développés
 
 ### Dashboard de charge Jira
 
-Suivre la charge de travail sur plusieurs projets actifs en parallèle, avec Jira seul, c'est rarement satisfaisant. Les vues natives sont soit trop détaillées, soit pas assez agrégées pour avoir une vue d'ensemble.
+Suivre avec Jira seul la charge de travail de plusieurs projets menés en parallèle est peu commode : les vues natives sont soit trop détaillées, soit pas assez agrégées pour donner une vue d'ensemble.
 
-Le jira-dashboard est une application FastAPI + React qui expose quelques endpoints simples : tickets par période, heatmap annuelle de charge, répartition par utilisateur. L'interface est minimaliste — pas de configuration, pas de comptes à gérer. C'est une fenêtre de lecture sur les données Jira, pensée pour les revues d'équipe et les bilans mensuels.
+Le jira-dashboard est une application FastAPI + React qui expose quelques endpoints simples : tickets par période, heatmap annuelle de charge, répartition par utilisateur. L'interface est minimaliste, sans configuration ni comptes à gérer : c'est une fenêtre de lecture sur les données Jira, pensée pour les revues d'équipe et les bilans mensuels.
 
 ### Alertes de mouvement de stock
 
-L'équipe utilise Dolibarr comme ERP pour la gestion des stocks et des commandes. Une correction de stock non documentée — qu'elle soit due à une erreur de saisie ou à un ajustement non annoncé — peut passer inaperçue et créer des incohérences en comptabilité ou dans les commandes fournisseurs.
+L'équipe utilise Dolibarr comme ERP pour la gestion des stocks et des commandes. Une correction de stock non documentée, qu'elle soit due à une erreur de saisie ou à un ajustement non annoncé, peut passer inaperçue et créer des incohérences en comptabilité ou dans les commandes fournisseurs.
 
-Un bot surveille l'API Dolibarr en continu et envoie une alerte Slack dès qu'une correction de stock est détectée. Ce n'est pas un contrôle d'accès, c'est une transparence automatique : l'équipe est au courant immédiatement, sans qu'il faille aller regarder les logs manuellement.
+Un bot surveille l'API Dolibarr en continu et envoie une alerte Slack dès qu'une correction de stock est détectée. Il ne s'agit pas d'un contrôle d'accès mais de transparence : l'équipe est informée immédiatement, sans consulter les journaux à la main.
 
 ### Envoi de ressources 6TRON
 
-La marque matérielle du CATIE, 6TRON, met à disposition des fichiers de conception (Altium, documentation technique) sur son site web. Quand un utilisateur soumet une demande de téléchargement depuis le formulaire, une notification arrive dans Slack — et il fallait ensuite envoyer manuellement l'email avec le lien.
+La marque matérielle du CATIE, 6TRON, met à disposition des fichiers de conception (Altium, documentation technique) sur son site web. Quand un utilisateur soumet une demande de téléchargement depuis le formulaire, une notification arrive dans Slack, et il fallait ensuite envoyer manuellement l'e-mail contenant le lien.
 
-Le bot automatise cette chaîne depuis l'entrée jusqu'à la sortie : il écoute les notifications Slack, récupère l'URL de téléchargement correspondante dans un fichier YAML centralisé, et envoie l'email via Mailjet sans intervention humaine. Un canal Slack reçoit la confirmation d'envoi. Le bot expose des endpoints `/health` et `/ready` que Kubernetes utilise pour décider de redémarrer le pod en cas d'erreur fatale.
+Le bot automatise cette chaîne de bout en bout : il écoute les notifications Slack, récupère l'URL de téléchargement correspondante dans un fichier YAML centralisé, et envoie l'e-mail via Mailjet sans intervention humaine. Un canal Slack reçoit la confirmation d'envoi. Le bot expose des endpoints `/health` et `/ready` que Kubernetes utilise pour décider de redémarrer le pod en cas d'erreur fatale.
 
 ### Recherche de composants électroniques
 
@@ -45,16 +47,16 @@ Un site Docusaurus tourne sur le cluster et expose la documentation de l'équipe
 
 ## Déploiement : une chaîne uniforme
 
-Ce qui rend cet ensemble maintenable, c'est que tous ces services suivent exactement le même modèle de déploiement. Chaque outil est une application Python gérée par Poetry, packagée dans une image Docker publiée sur le registre `ghcr.io/catie-aq/`. Son dépôt contient un chart Helm qui décrit le déploiement Kubernetes : `Deployment`, `ServiceAccount`, `PersistentVolumeClaim` si nécessaire, et la configuration via `values.yaml`.
+L'ensemble reste maintenable parce que tous ces services suivent le même modèle de déploiement. Chaque outil est une application Python gérée par Poetry, packagée dans une image Docker publiée sur le registre `ghcr.io/catie-aq/`. Son dépôt contient un chart Helm qui décrit le déploiement Kubernetes : `Deployment`, `ServiceAccount`, `PersistentVolumeClaim` si nécessaire, et la configuration via `values.yaml`.
 
-Le déploiement est déclenché par un `git push` sur `main`. Le workflow GitHub Actions appelle le workflow réutilisable `helm-deploy` de [`generic_workflows`](/docs/projects/professionnel/cicd), qui injecte le kubeconfig depuis les secrets du dépôt et applique le chart sur le cluster. Résultat : ajouter un nouveau service ou mettre à jour un existant prend quelques minutes, sans accès SSH direct au cluster.
+Le déploiement est déclenché par un `git push` sur `main`. Le workflow GitHub Actions appelle le workflow réutilisable `deploy-helm` de [`generic_workflows`](cicd.md), qui injecte le kubeconfig depuis les secrets et applique le chart sur le cluster. Ajouter un nouveau service ou mettre à jour un service existant se fait ainsi sans accès SSH au cluster.
 
-L'exposition réseau est homogène elle aussi : chaque service reçoit une annotation Tailscale et devient accessible sur le réseau de l'équipe via son propre proxy. Pas d'ingress controller, pas de certificats TLS à gérer manuellement.
+L'exposition réseau est homogène elle aussi : chaque service reçoit une annotation Tailscale et devient accessible sur le réseau de l'équipe via son propre proxy, sans ingress controller ni ouverture de port.
 
 ```mermaid
 flowchart LR
     dev{{Développeur}} -->|git push main| repo{{Dépôt\ncatie-aq}}
-    repo --> gha{{GitHub Actions\nhelm-deploy}}
+    repo --> gha{{GitHub Actions\ndeploy-helm}}
     gha --> cluster
 
     subgraph cluster["Cluster sonu — namespace sonu"]
@@ -65,6 +67,12 @@ flowchart LR
     ts -->|WireGuard| team{{Équipe}}
 ```
 
-## Ce que ça représente
+## Bilan
 
-Ces outils ont en commun d'être petits, ciblés et maintenables. Chacun résout un problème précis sans essayer d'en résoudre dix. Dans une équipe qui pilote des projets clients, avoir des outils internes bien huilés libère du temps et de l'attention pour le travail qui compte.
+Ces outils ont en commun d'être petits, ciblés et maintenables : chacun résout un problème précis. Dans une équipe qui pilote des projets clients, ils libèrent du temps et de l'attention pour le travail à valeur ajoutée.
+
+## Liens
+
+- [Cluster Kubernetes interne SONU](sonu-k8s-cluster.md)
+- [Workflows GitHub Actions mutualisés](cicd.md)
+- [Python : FastAPI](/blog/2024/12/20/09-scripting/fastapi)
