@@ -47,7 +47,7 @@ Un site Docusaurus tourne sur le cluster et expose la documentation de l'équipe
 
 Ce qui rend cet ensemble maintenable, c'est que tous ces services suivent exactement le même modèle de déploiement. Chaque outil est une application Python gérée par Poetry, packagée dans une image Docker publiée sur le registre `ghcr.io/catie-aq/`. Son dépôt contient un chart Helm qui décrit le déploiement Kubernetes : `Deployment`, `ServiceAccount`, `PersistentVolumeClaim` si nécessaire, et la configuration via `values.yaml`.
 
-Le déploiement est déclenché par un `git push` sur `main`. Le workflow GitHub Actions appelle le workflow réutilisable `helm-deploy` de [`generic_workflows`](/projects/professionnel/cicd), qui injecte le kubeconfig depuis les secrets du dépôt et applique le chart sur le cluster. Résultat : ajouter un nouveau service ou mettre à jour un existant prend quelques minutes, sans accès SSH direct au cluster.
+Le déploiement est déclenché par un `git push` sur `main`. Le workflow GitHub Actions appelle le workflow réutilisable `helm-deploy` de [`generic_workflows`](/docs/projects/professionnel/cicd), qui injecte le kubeconfig depuis les secrets du dépôt et applique le chart sur le cluster. Résultat : ajouter un nouveau service ou mettre à jour un existant prend quelques minutes, sans accès SSH direct au cluster.
 
 L'exposition réseau est homogène elle aussi : chaque service reçoit une annotation Tailscale et devient accessible sur le réseau de l'équipe via son propre proxy. Pas d'ingress controller, pas de certificats TLS à gérer manuellement.
 

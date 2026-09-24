@@ -157,6 +157,12 @@ const config: Config = {
         "rust",
         "toml",
         "protobuf",
+        "hcl",
+        "nginx",
+        "docker",
+        "ini",
+        "powershell",
+        "promql",
       ],
       defaultLanguage: "python",
       magicComments: [
