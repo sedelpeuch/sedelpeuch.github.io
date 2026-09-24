@@ -164,6 +164,8 @@ const config: Config = {
         "powershell",
         "promql",
         "sql",
+        "scheme",
+        "cmake",
       ],
       defaultLanguage: "python",
       magicComments: [
@@ -241,6 +243,26 @@ const config: Config = {
   plugins: [
     "./plugins/projects-data",
     "./plugins/series-data",
+    [
+      // Anciens permaliens de billets renommés (fautes dans le nom de fichier).
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {
+            from: "/blog/2024/12/20/03-containerization/ghrc",
+            to: "/blog/2024/12/20/03-containerization/ghcr",
+          },
+          {
+            from: "/blog/2025/06/06/06-orchestration/renouveller-certificats",
+            to: "/blog/2025/06/06/06-orchestration/renouveler-certificats",
+          },
+          {
+            from: "/blog/2024/12/20/04-ci-cd/exemple",
+            to: "/blog/2024/12/20/04-ci-cd/github-actions-architecture-reutilisable",
+          },
+        ],
+      },
+    ],
     "docusaurus-plugin-image-zoom",
     "docusaurus-plugin-sass",
     ["@docusaurus/plugin-ideal-image", { disableInDev: false }],
