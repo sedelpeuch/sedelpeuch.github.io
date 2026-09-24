@@ -1,15 +1,13 @@
 ---
-title: Automates, Applications finies
-icon: fa-robot
-order: 3
-hide: true
+title: Automates finis et applications
+description: "Cours d'automates finis et applications du semestre 6 : langages réguliers, expressions régulières, grammaires, déterminisation et minimisation, avec notes de cours et de TD."
 ---
 
 import DocCardList from '@theme/DocCardList';
 
 <DocCardList />
 
-### Objectif du cours
+## Objectif du cours
 
 Les automates finis permettent de modéliser des programmes informatiques à
 mémoire finie. Ils permettent de résoudre des problèmes à un niveau
@@ -21,18 +19,18 @@ réguliers, expressions régulières, équivalence de ces trois formalismes,
 non-déterminisme, automate minimal, lemme de l'étoile) ainsi que leur
 utilisation pour la résolution de problèmes concrets.
 
-### Ressources pédagogiques
+## Ressources pédagogiques
 
 Le support de
-[cours](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/content/6/poly-if114-etd.pdf)
+[cours](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/content/6/poly-if114-etd.pdf).
 
 |                    Thème                     | Sujet de TD |
 |:--------------------------------------------:|:-----------:|
-|         Automates finis et language          | [td1-sujet] |
+|         Automates finis et langages         | [td1-sujet] |
 | Expressions régulières et théorème de Kleene | [td2-sujet] |
 |            Langages non réguliers            | [td3-sujet] |
 |                  Grammaires                  | [td4-sujet] |
-|     Non déterminisme et déterminisation      | [td5-sujet] |
+|     Non-déterminisme et déterminisation     | [td5-sujet] |
 |       Automate minimal et minimisation       | [td6-sujet] |
 |      Introduction à l'analyse lexicale       | [td7-sujet] |
 

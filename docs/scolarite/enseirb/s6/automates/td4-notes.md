@@ -1,91 +1,94 @@
 ---
-title: Automates finis et application - TD4
+title: Automates finis et applications - TD4
+description: "Notes du TD4 d'automates finis : lemme d'Arden, grammaires linéaires gauches et droites, arbres de dérivation, ambiguïté et construction de grammaires."
 ---
 
 ## Exercice 1
 
-Lemme d'Arden : $A^\ast.B$ est une solution de $X = A.X U B$ (et si A ne
-contient pas eps, cette solution est unique)
+Lemme d'Arden : $A^\ast.B$ est une solution de $X = A.X \cup B$ (et si $A$ ne
+contient pas $\epsilon$, cette solution est unique).
 
 * En pratique, il faut choisir la variable qui sera éliminée en premier. Ici, on
   va remplacer $X_2$ par sa valeur dans $X_1$ (on se permet de confondre
-  les singletons avec l'élement par concision) : $X1 = b.X_1 U (b.A.X_0 U
-  \{a, b\}.X_1) U \epsilon$ $X1 = \{b, ba, bb\}.X_1 U ba.X_0 U \epsilon$
+  les singletons avec leur élément par concision) :
 
-D'après le Lemme d'Arden, on a : $X_1 = \{b, ba, bb\}^\ast . (ba.X_0 U
-\epsilon)$
+$$
+\begin{aligned}
+X_1 &= b.X_1 \cup b.(a.X_0 \cup \{a, b\}.X_1) \cup \epsilon \\
+X_1 &= \{b, ba, bb\}.X_1 \cup ba.X_0 \cup \epsilon
+\end{aligned}
+$$
 
-On remplace dans X0 : $X_0 = (a U b.\{b, ba, bb\}^\ast .ba).X_0 U b.\{b, ba,
-bb\}^\ast U \epsilon$
+D'après le lemme d'Arden, on a : $X_1 = \{b, ba, bb\}^\ast . (ba.X_0 \cup
+\epsilon)$.
 
-Encore une fois, avec le lemme : $X0 = (a U b.\{b, ba, bb\}^\ast.ba)^\ast .
-(b.{b, ba, bb}* U \epsilon)$
+On remplace dans $X_0$ : $X_0 = (a \cup b.\{b, ba, bb\}^\ast .ba).X_0 \cup b.\{b, ba,
+bb\}^\ast \cup \epsilon$.
+
+Encore une fois, avec le lemme : $X_0 = (a \cup b.\{b, ba, bb\}^\ast.ba)^\ast .
+(b.\{b, ba, bb\}^\ast \cup \epsilon)$.
 
 Et on termine en remplaçant $X_0$ et $X_1$ dans $X_2$.
 
 * On veut montrer que $\Sigma^\ast$ est toujours solution si $A$ contient le
   mot vide.
 
-Si A contient eps, alors $A.Σ* = Σ*$ de plus, $B$ est inclus dans $Σ*$
-donc $A.Σ* U B = Σ*$
+Si $A$ contient $\epsilon$, alors $A.\Sigma^\ast = \Sigma^\ast$ ; de plus, $B$ est inclus dans $\Sigma^\ast$,
+donc $A.\Sigma^\ast \cup B = \Sigma^\ast$.
 
-donc $Σ*$ est bien solution de l'équation $X = A.X U B$
+Donc $\Sigma^\ast$ est bien solution de l'équation $X = A.X \cup B$.
 
-* Pour prouver le lemme, il faut montrer que A*.B est bien une solution puis
-  l'unicité (ce qu'on va faire en montrant qu'elle est la plus petit et la plus
-  grande)
+* Pour prouver le lemme, il faut montrer que $A^\ast.B$ est bien une solution, puis
+  l'unicité (ce qu'on va faire en montrant qu'elle est la plus petite et la plus
+  grande).
 
-* Montrons d'abord que $A*.B$ est une solution de $X = A.X U B$
+* Montrons d'abord que $A^\ast.B$ est une solution de $X = A.X \cup B$ :
 
-$A*.B = (eps U A.A*).B = B U A.A*.B$
-or le produit de langages est associatif, donc
-$A*.B = A(A*.B U B)$
+$$
+A^\ast.B = (\epsilon \cup A.A^\ast).B = B \cup A.A^\ast.B
+$$
 
-* Dans la cas où $A$ ne contient pas le mot vide Soit $S$ une solution, et
-  $w$ un mot de $S$ Supposons que $w$ est le plus court possible tel que
-  $w$ n'est pas dans $A*.B$ $w$ est dans $S = A.S U B$ donc $w$ est soit :
-  * dans $B$ (impossible)
-  * soit dans $AS$
+Or le produit de langages est associatif, donc $A^\ast.B = A.(A^\ast.B) \cup B$.
 
-donc $w = u.v$ avec $u$ dans $A$ et $v$ dans $S v$ est aussi dans $A*.B$ (car $|v| < |w|$)
-donc $w$ est dans $A.A*.B$, donc dans $A*.B$
+* Toute solution $S$ contient $A^\ast.B$. Montrons par récurrence sur $n$ que $A^n.B \subseteq S$ : on a $A^0.B = B \subseteq A.S \cup B = S$, et si $A^n.B \subseteq S$, alors $A^{n+1}.B = A.(A^n.B) \subseteq A.S \subseteq S$. Donc $A^\ast.B = \bigcup_n A^n.B \subseteq S$.
 
-Supposons maintenant que $S$ est une solution et $w$ dans $A*.B$ qui n'est pas dans $S$, de longueur minimale
+* Dans le cas où $A$ ne contient pas le mot vide, toute solution $S$ est incluse dans $A^\ast.B$. Soit $w$ un mot de $S$ le plus court possible tel que
+  $w$ n'est pas dans $A^\ast.B$. $w$ est dans $S = A.S \cup B$, donc $w$ est :
+  * soit dans $B$ (impossible, car $B \subseteq A^\ast.B$) ;
+  * soit dans $A.S$.
 
-On a toujours que $A*.B = A.A*B U B$ donc $w$ appartient à l'un des deux
-ensembles Or $B$ est inclus dans $S$, donc $w$ est dans $A.A*.B$ Ainsi,
-$w = x.y.z$ avec $x$ non-vide, $y$ dans $A*$ et $z$ dans $B$
+Donc $w = u.v$ avec $u$ dans $A$ et $v$ dans $S$. Comme $u \neq \epsilon$, $|v| < |w|$, donc $v$ est dans $A^\ast.B$ par minimalité de $w$.
+Donc $w$ est dans $A.A^\ast.B$, donc dans $A^\ast.B$ : contradiction.
 
-$yz$ est dans $A*.B$, donc dans $S$
-or $S = AS U B$, donc $x.yz$ est dans $S$ -> contradiction
-
-* On construit l'automate en créant un état par variable + un état final et on crée les transitions pour chaque règle (cf. cours)
+* On construit l'automate en créant un état par variable plus un état final, et on crée les transitions pour chaque règle (cf. cours).
 
 ## Exercice 2
 
-L'intuition naïve qu'on pourrait avoir serait "d'inverser" les résultats de
+L'intuition naïve qu'on pourrait avoir serait "d'inverser" les membres droits de
 chaque règle. Cependant, cette méthode génère en fait le miroir du langage de la
 grammaire de départ.
 
-À partir d'une grammaire linéaire droite G, on peut obtenir un automate fini A
-qui accepte le langage de la grammaire. Ensuite, on calcule l'automate A' qui
+À partir d'une grammaire linéaire droite $G$, on peut obtenir un automate fini $A$
+qui accepte le langage de la grammaire. Ensuite, on calcule l'automate $A'$ qui
 accepte le langage miroir, ce qui permet d'obtenir une grammaire linéaire droite
-G'. Enfin, on inverse "naïvement" G' et on obtient une grammaire linéaire gauche
-G'' de même langage que G. (on peut bien sûr effectuer l'opération inverse)
+$G'$. Enfin, on inverse "naïvement" $G'$ et on obtient une grammaire linéaire gauche
+$G''$ de même langage que $G$ (on peut bien sûr effectuer l'opération inverse).
 
 On peut aussi convertir en automate fini puis inverser les états initiaux et
-finaux du résultat, ainsi que toutes les transitions. FH: cette transformation
+finaux du résultat, ainsi que toutes les transitions. FH : cette transformation
 correspond au calcul de l'automate miroir dans la solution ci-dessus. C'est une
-étape de la construction, mais elle ne répond pas totalement à la question
+étape de la construction, mais elle ne répond pas totalement à la question.
 
 ### Parenthèse sur un arbre de dérivation pour une grammaire régulière
 
-$\begin{align} S &\rightarrow aS | bT \\
-T &\rightarrow aT | bS | \epsilon \end{align}$
+$$
+\begin{aligned} S &\rightarrow aS \mid bT \\
+T &\rightarrow aT \mid bS \mid \epsilon \end{aligned}
+$$
 
-pour une génération $S \Rightarrow aS \Rightarrow abT \Rightarrow ab$
+Pour la dérivation $S \Rightarrow aS \Rightarrow abT \Rightarrow ab$ :
 
-```
+```text
      S
     / \
    a   S
@@ -95,14 +98,14 @@ pour une génération $S \Rightarrow aS \Rightarrow abT \Rightarrow ab$
         eps
 ```
 
-$S \rightarrow S + S | x$
+$S \rightarrow S + S \mid x$
 
-On peut avoir deux suites de dérivations différentes, mais le même arbre
+On peut avoir deux suites de dérivations différentes, mais le même arbre :
 
 1. $S \Rightarrow S + S \Rightarrow x + S \Rightarrow x + x$
 2. $S \Rightarrow S + S \Rightarrow S + x \Rightarrow x + x$
 
-```
+```text
        S
     /  |  \
    S   +   S
@@ -110,12 +113,12 @@ On peut avoir deux suites de dérivations différentes, mais le même arbre
    x       x
 ```
 
-$S \Rightarrow S+S \Rightarrow S+S+S \Rightarrow$
-Dans ce cas, on peut choisir de remplacer le premier ou le deuxième $S$ par $S + S$
+$S \Rightarrow S+S \Rightarrow S+S+S \Rightarrow \ldots$
+Dans ce cas, on peut choisir de remplacer le premier ou le deuxième $S$ par $S + S$, ce qui donne deux arbres distincts pour le même mot : la grammaire est ambiguë.
 
 En remplaçant le deuxième, on trouve l'arbre suivant :
 
-```
+```text
        S
     /  |  \
    S   +   S
@@ -127,63 +130,84 @@ En remplaçant le deuxième, on trouve l'arbre suivant :
 
 ## Exercice 3
 
-On est en présence d'une grammaire non-linéaire (à cause de la première règle qui mène à A1B avec deux symboles non-terminaux)
+On est en présence d'une grammaire non linéaire (à cause de la première règle, qui mène à $A1B$ avec deux symboles non terminaux).
 
-1. $S \rightarrow A1B
-   A1B \rightarrow 0A1B | 1B
-   B \rightarrow 0B | 1B | eps$
+1. Grammaire de départ, où l'on remplace le facteur $A1B$ par une variable (d'après les règles de $A$, $A1B \rightarrow 0A1B \mid 1B$) :
 
-$S \rightarrow A'
-A' \rightarrow 0A' | 1B
-B \rightarrow 0B | 1B | eps$
+$$
+\begin{aligned}
+S &\rightarrow A1B \\
+A1B &\rightarrow 0A1B \mid 1B \\
+B &\rightarrow 0B \mid 1B \mid \epsilon
+\end{aligned}
+$$
 
-Finalement en supprimant la variable inutile
-$S \rightarrow 0S | 1B \\
-B \rightarrow 0B | 1B | eps$
+En renommant $A1B$ en $A'$ :
 
-Il faut garder à l'esprit que les grammaire hors-contexte ne sont pas toutes équivalentes à des grammaires linéaires.
+$$
+\begin{aligned}
+S &\rightarrow A' \\
+A' &\rightarrow 0A' \mid 1B \\
+B &\rightarrow 0B \mid 1B \mid \epsilon
+\end{aligned}
+$$
+
+Finalement, en supprimant la variable inutile :
+
+$$
+\begin{aligned}
+S &\rightarrow 0S \mid 1B \\
+B &\rightarrow 0B \mid 1B \mid \epsilon
+\end{aligned}
+$$
+
+Il faut garder à l'esprit que les grammaires hors contexte ne sont pas toutes équivalentes à des grammaires linéaires.
 
 ## Exercice 4
 
-Conversion de langages en grammaires
+Conversion de langages en grammaires.
 
-1. $\{a^n.b^n\} : S \rightarrow aSb | eps$
+1. $\{a^n b^n \mid n \geq 0\}$ : $S \rightarrow aSb \mid \epsilon$
 
-2. $\{a^n.b^m, m <= n\} : S \rightarrow aS | aSb| eps$
+2. $\{a^n b^m \mid m \leq n\}$ : $S \rightarrow aS \mid aSb \mid \epsilon$
 
-D'ailleurs, cette grammaire est ambigüe
+   D'ailleurs, cette grammaire est ambiguë :
+   $S \Rightarrow aS \Rightarrow aaSb \Rightarrow aab$,
+   mais aussi $S \Rightarrow aSb \Rightarrow aaSb \Rightarrow aab$,
+   qui correspondent à deux arbres différents : on a deux façons différentes de construire $aab$.
 
-$S \Rightarrow aS \Rightarrow aaSb \Rightarrow aab$
-mais aussi $S \Rightarrow aSb \Rightarrow aaSb \Rightarrow aab$
-qui ont deux arbres différents donc on a deux façon différentes de construire $aab$
+3. $\{w w^R\}$ : $S \rightarrow aSa \mid bSb \mid \epsilon$,
+   qui n'est pas ambiguë.
 
-3. ${w.w^R} : S \rightarrow aSa | bSb | eps$
-   qui n'est pas ambigüe
+4. Les mots de Dyck : $S \rightarrow SS \mid (S) \mid [S] \mid \{S\} \mid \epsilon$,
+   qui est ambiguë.
 
-4. Les mots de Dyck : $S \rightarrow SS | (S) | [S] | {S} | \epsilon$
-   qui est ambigüe
+5. Variante avec les parenthèses imbriquées dans l'ordre
+   $\{\}$, puis $()$, puis $[]$ :
 
-5. variante avec les parenthèses dans l'ordre :
-   $ 1: {}, 2: (), 3: []$
-
-$S \rightarrow SS | {T} | \epsilon \\
-T \rightarrow TT | (U) | \epsilon \\
-U \rightarrow UU | [] | \epsilon$
+$$
+\begin{aligned}
+S &\rightarrow SS \mid \{T\} \mid \epsilon \\
+T &\rightarrow TT \mid (U) \mid \epsilon \\
+U &\rightarrow UU \mid [\,] \mid \epsilon
+\end{aligned}
+$$
 
 ## Exercice 5
 
-$S \rightarrow S + S | S * S \\
-S \rightarrow 0 | 1$
+$$
+S \rightarrow S + S \mid S * S \mid 0 \mid 1
+$$
 
-1. Cette grammaire est hors-contexte
+1. Cette grammaire est hors contexte.
 
 2. On exhibe deux arbres différents qui génèrent le même mot
-   cf. la Parenthèse au début de ces notes
+   (cf. la parenthèse de l'exercice 2).
 
-Problème : difficulté pour évaluer l'expression (arithmétique) car on ne sait pas quel arbre choisir
+   Problème : il est difficile d'évaluer l'expression (arithmétique) car on ne sait pas quel arbre choisir (la priorité de $*$ sur $+$ n'est pas imposée).
 
-3. On peut se baser sur l'expression régulière $({0,1}{+,x})*{0,1}$,
-   on trouve $S \rightarrow 0+S | 1+S | 0*S | 1*S | 0 | 1$
+3. On peut se baser sur l'expression régulière $(\{0,1\}\{+,*\})^\ast\{0,1\}$ :
+   on trouve $S \rightarrow 0+S \mid 1+S \mid 0*S \mid 1*S \mid 0 \mid 1$.
 
-4. on ajoute la règle $S \rightarrow (S)$
-   Il n'y a pas de grammaire régulière qui décrit ce nouveau langage, car ce n'est pas un langage régulier
+4. On ajoute la règle $S \rightarrow (S)$.
+   Il n'y a pas de grammaire régulière qui décrit ce nouveau langage, car ce n'est pas un langage régulier (il faut compter les parenthèses ouvrantes non fermées).
