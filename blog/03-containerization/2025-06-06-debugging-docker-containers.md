@@ -2,7 +2,6 @@
 title: "Docker : débogage"
 description: "Techniques et commandes pour diagnostiquer les problèmes dans les conteneurs Docker : logs, inspection, shell interactif, ressources, et problèmes réseau."
 tags: [containerization, devops]
-authors: sedelpeuch
 ---
 
 Déboguer un conteneur diffère du débogage d'une application classique : le processus s'exécute dans un namespace isolé, sans accès direct au shell dans les cas normaux, avec des logs parfois redirigés vers stdout. Les outils Docker exposent l'état interne du conteneur sans nécessiter d'accès SSH.

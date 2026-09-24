@@ -2,7 +2,6 @@
 title: "GitHub Actions : ARC"
 description: "Déployer Actions Runner Controller (ARC) sur Kubernetes pour des runners GitHub Actions auto-hébergés et autoscalables."
 tags: [cicd, devops]
-authors: sedelpeuch
 ---
 
 Un [runner auto-hébergé](./2024-12-20-self-host-runner.md) classique est une machine fixe qui exécute les jobs séquentiellement. Si dix workflows se déclenchent simultanément, neuf attendent. Actions Runner Controller (ARC) est un opérateur Kubernetes qui provisionne des pods runner à la demande — un pod par job — et les supprime à la fin de l'exécution. La capacité s'adapte automatiquement à la charge.

@@ -2,7 +2,6 @@
 title: "Pipeline CI/CD de bout en bout : de git push au déploiement sur EKS"
 description: "Chaîne CI/CD complète pour une application web front + back : build et publication d'images sur GHCR, provisionnement Terraform, déploiement Helm sur AWS EKS. Première partie : l'environnement de test."
 tags: [cicd, devops, cloud, iac]
-authors: sedelpeuch
 ---
 
 Déployer une application web — un frontend, un backend, une base de données — enchaîne toujours les mêmes étapes : construire les images, les publier, provisionner l'infrastructure, déployer sur le cluster. Automatiser cet enchaînement du `git push` à l'application en ligne est l'objet d'un pipeline CI/CD. Cet article décrit une telle chaîne, bâtie avec GitHub Actions, Terraform et Helm sur AWS EKS.
