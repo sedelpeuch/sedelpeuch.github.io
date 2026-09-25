@@ -10,8 +10,9 @@ import { Icon } from "@iconify/react";
 import { categoryOf } from "@site/src/components/blogCategories";
 import styles from "./styles.module.scss";
 
-const month = (date: string) =>
-  new Date(date).toLocaleDateString("fr-FR", { month: "short", timeZone: "UTC" });
+// Jour et mois (« 20 septembre ») : l'année est déjà donnée par le groupe.
+const dayMonth = (date: string) =>
+  new Date(date).toLocaleDateString("fr-FR", { day: "numeric", month: "long", timeZone: "UTC" });
 
 function ListComponent({ items }: { items: BlogSidebarItem[] }) {
   return (
@@ -29,7 +30,11 @@ function ListComponent({ items }: { items: BlogSidebarItem[] }) {
             >
               {item.title}
             </Link>
-            {item.date && <time className={styles.month}>{month(item.date)}</time>}
+            {item.date && (
+              <time className={styles.month} dateTime={item.date}>
+                {dayMonth(item.date)}
+              </time>
+            )}
           </li>
         );
       })}
