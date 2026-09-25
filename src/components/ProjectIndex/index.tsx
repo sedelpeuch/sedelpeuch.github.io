@@ -20,14 +20,17 @@ interface Props {
   kind?: ProjectKind;
 }
 
-// Tri : année de début décroissante, puis projets en cours d'abord, puis fin décroissante.
+// Un projet est rangé à l'année où il s'est terminé ; les projets sans date de
+// fin forment le groupe « En cours », en tête de la frise.
+const ONGOING = Infinity;
+const groupOf = (p: ProjectData) => (p.end ? yearOf(p.end) : ONGOING);
+
+// Tri : groupe décroissant (en cours d'abord), puis début le plus récent, puis titre.
 function sortProjects(a: ProjectData, b: ProjectData): number {
-  const ya = yearOf(a.start);
-  const yb = yearOf(b.start);
-  if (ya !== yb) return yb - ya;
-  const ea = a.end ? yearOf(a.end) : Infinity;
-  const eb = b.end ? yearOf(b.end) : Infinity;
-  return eb - ea || a.title.localeCompare(b.title, "fr");
+  const ga = groupOf(a);
+  const gb = groupOf(b);
+  if (ga !== gb) return gb - ga;
+  return yearOf(b.start) - yearOf(a.start) || a.title.localeCompare(b.title, "fr");
 }
 
 function Tile({ project, showKind }: { project: ProjectData; showKind: boolean }) {
@@ -68,7 +71,7 @@ export default function ProjectIndex({ kind }: Props): JSX.Element {
   const visible = projects
     .filter((p) => filter === "all" || p.kind === filter)
     .sort(sortProjects);
-  const years = Array.from(new Set(visible.map((p) => yearOf(p.start))));
+  const groups = Array.from(new Set(visible.map(groupOf)));
   const kinds = (Object.keys(KIND_LABELS) as ProjectKind[]).filter((k) =>
     projects.some((p) => p.kind === k),
   );
@@ -93,12 +96,18 @@ export default function ProjectIndex({ kind }: Props): JSX.Element {
         </div>
       )}
       <div className={styles.years}>
-        {years.map((year) => (
-          <section key={year} className={styles.year}>
-            <h2 className={styles.yearLabel}>{year || "Sans date"}</h2>
+        {groups.map((group) => (
+          <section
+            key={group}
+            className={styles.year}
+            data-ongoing={group === ONGOING}
+          >
+            <h2 className={styles.yearLabel}>
+              {group === ONGOING ? "En cours" : group || "Sans date"}
+            </h2>
             <div className={styles.grid}>
               {visible
-                .filter((p) => yearOf(p.start) === year)
+                .filter((p) => groupOf(p) === group)
                 .map((p) => (
                   <Tile key={p.permalink} project={p} showKind={!kind && filter === "all"} />
                 ))}
