@@ -81,11 +81,6 @@ const config: Config = {
           to: "docs/projects",
         },
         {
-          label: "Enseignement",
-          position: "right",
-          to: "docs/enseignement",
-        },
-        {
           type: "dropdown",
           label: "Scolarité",
           position: "right",
