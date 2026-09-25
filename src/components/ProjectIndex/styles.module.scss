@@ -90,6 +90,11 @@
   }
 }
 
+// Groupe « En cours » : anneau en pointillés, comme les projets non terminés.
+.year[data-ongoing="true"] .yearLabel::before {
+  border-style: dashed;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
