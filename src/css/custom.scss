@@ -445,3 +445,44 @@ div[class^='announcementBar_'] {
     content: none !important;
   }
 }
+
+// Blog en pleine largeur sur écran large, comme les docs : sidebar collée à
+// gauche avec une largeur fixe, contenu élastique, table des matières à droite.
+@media (min-width: 997px) {
+  html.plugin-blog .main-wrapper > .container.margin-vert--lg {
+    max-width: none;
+    margin: 0;
+    padding: 0 1.5rem 0 0;
+
+    > .row {
+      flex-wrap: nowrap;
+      margin: 0;
+
+      > aside.col--3 {
+        flex: 0 0 var(--doc-sidebar-width, 300px);
+        max-width: var(--doc-sidebar-width, 300px);
+        padding: 2rem 0.5rem 0 1.25rem;
+        border-right: 1px solid var(--ifm-toc-border-color);
+      }
+
+      > main.col {
+        flex: 1 1 0;
+        max-width: none;
+        padding: 2rem 2.5rem 0;
+
+        // Même largeur de lecture que les pages de docs, centrée dans l'espace libre.
+        > * {
+          max-width: 960px;
+          margin-right: auto;
+          margin-left: auto;
+        }
+      }
+
+      > .col--2 {
+        flex: 0 0 280px;
+        max-width: 280px;
+        padding-top: 2rem;
+      }
+    }
+  }
+}
