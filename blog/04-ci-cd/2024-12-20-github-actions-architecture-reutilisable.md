@@ -4,7 +4,7 @@ description: "Structurer une architecture CI/CD mutualisée avec des workflows r
 tags: [cicd, devops]
 ---
 
-Quand plusieurs dépôts partagent la même stack technique, chacun maintient souvent une copie quasi-identique de ses workflows CI/CD. Une modification — nouvelle version d'un outil, changement de runner, ajout d'une étape de sécurité — doit être répercutée manuellement dans chaque dépôt. Un dépôt centralisé de workflows mutualisés résout ce problème : les dépôts consommateurs appellent les workflows du dépôt central, qui devient le seul point de maintenance.
+Quand plusieurs dépôts partagent la même stack technique, chacun maintient souvent une copie quasi-identique de ses workflows CI/CD. Une modification (nouvelle version d'un outil, changement de runner, ajout d'une étape de sécurité) doit être répercutée manuellement dans chaque dépôt. Un dépôt centralisé de workflows mutualisés résout ce problème : les dépôts consommateurs appellent les workflows du dépôt central, qui devient le seul point de maintenance.
 
 <!--truncate-->
 
@@ -101,7 +101,7 @@ Dans un workflow réutilisable, une référence locale `uses: ./.github/actions/
 
 ## Workflow consommateur dans chaque dépôt
 
-Le workflow de chaque dépôt consommateur devient minimal — il se contente d'appeler le workflow central :
+Le workflow de chaque dépôt consommateur devient minimal : il se contente d'appeler le workflow central :
 
 ```yaml
 # project_a/.github/workflows/ci.yml
@@ -173,7 +173,7 @@ Les deux mécanismes se complètent mais ont des périmètres différents :
 | Secrets | Via `inputs` | Via `secrets` dédié |
 | Usage | Factoriser des steps | Encapsuler un pipeline complet |
 
-Un workflow réutilisable définit `on: workflow_call` et ne peut pas être utilisé dans une step — il est un job à part entière avec ses propres runners. Une action composite s'exécute dans l'environnement du job qui l'appelle et peut être insérée n'importe où dans une liste de steps. Le détail de la syntaxe des actions composites figure dans l'article [action réutilisable](./2024-12-20-action.md).
+Un workflow réutilisable définit `on: workflow_call` et ne peut pas être utilisé dans une step : c'est un job à part entière avec ses propres runners. Une action composite s'exécute dans l'environnement du job qui l'appelle et peut être insérée n'importe où dans une liste de steps. Le détail de la syntaxe des actions composites figure dans l'article [action réutilisable](./2024-12-20-action.md).
 
 ## Application / Projet lié
 

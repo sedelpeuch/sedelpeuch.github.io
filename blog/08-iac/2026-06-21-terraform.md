@@ -5,7 +5,7 @@ series: terraform
 tags: [iac, devops]
 ---
 
-Terraform est un outil d'Infrastructure as Code qui permet de décrire des ressources cloud sous forme de fichiers de configuration texte, puis de les créer, modifier et supprimer via une séquence de commandes. La configuration décrit un état désiré — quelles ressources doivent exister, avec quels attributs — et Terraform calcule les opérations nécessaires pour atteindre cet état depuis la situation actuelle.
+Terraform est un outil d'Infrastructure as Code qui permet de décrire des ressources cloud sous forme de fichiers de configuration texte, puis de les créer, modifier et supprimer via une séquence de commandes. La configuration décrit un état désiré (quelles ressources doivent exister, avec quels attributs) et Terraform calcule les opérations nécessaires pour atteindre cet état depuis la situation actuelle.
 
 <!--truncate-->
 
@@ -112,7 +112,7 @@ tflocal plan
 
 `terraform plan -out=tfplan` enregistre le plan dans un fichier ; `terraform apply tfplan` applique alors exactement ces actions, sans recalcul ni nouvelle confirmation. C'est le mode utilisé en CI, où le plan est relu (ou validé) avant son application. `terraform fmt` (formatage) et `terraform validate` (cohérence syntaxique et des types, sans appel à l'API) complètent le cycle en amont.
 
-Dans le plan, certaines valeurs apparaissent comme `(known after apply)`. Ce sont des attributs que AWS génère lui-même — ARN, identifiants uniques, URLs — et qui n'existent pas encore avant la création effective de la ressource.
+Dans le plan, certaines valeurs apparaissent comme `(known after apply)`. Ce sont des attributs que AWS génère lui-même (ARN, identifiants uniques, URLs) et qui n'existent pas encore avant la création effective de la ressource.
 
 ### `apply`
 
@@ -160,7 +160,7 @@ Le passage du backend local au backend remote se fait avec `terraform init -migr
 
 ## Variables
 
-Coder des valeurs en dur dans `main.tf` — nom du bucket, région, taille des instances — rend la configuration non réutilisable entre environnements. Terraform résout ce problème avec les variables, déclarées par convention dans un fichier `variables.tf` séparé :
+Coder des valeurs en dur dans `main.tf` (nom du bucket, région, taille des instances) rend la configuration non réutilisable entre environnements. Terraform résout ce problème avec les variables, déclarées par convention dans un fichier `variables.tf` séparé :
 
 ```hcl
 variable "bucket_name" {
@@ -184,7 +184,7 @@ resource "aws_s3_bucket" "task_horizon_avatar_data" {
 }
 ```
 
-Le même mécanisme s'applique à n'importe quel attribut d'une ressource — `region = var.aws_region` dans le bloc `provider`, `instance_class = var.db_instance_class` dans un bloc RDS, etc.
+Le même mécanisme s'applique à n'importe quel attribut d'une ressource : `region = var.aws_region` dans le bloc `provider`, `instance_class = var.db_instance_class` dans un bloc RDS, etc.
 
 La valeur par défaut est utilisée si aucune surcharge n'est fournie. Pour surcharger sans modifier le fichier, deux méthodes coexistent. La première passe la valeur directement à la commande :
 
@@ -207,7 +207,7 @@ S3 n'accepte pas les underscores dans les noms de buckets. Si `bucket_name` cont
 
 ## Outputs
 
-Après un `apply`, Terraform connaît toutes les valeurs générées par AWS — ARNs, URLs, identifiants — qui n'existaient pas avant la création des ressources. Les outputs les exposent de manière structurée :
+Après un `apply`, Terraform connaît toutes les valeurs générées par AWS (ARNs, URLs, identifiants), qui n'existaient pas avant la création des ressources. Les outputs les exposent de manière structurée :
 
 ```hcl
 output "task_horizon_avatar_data_arn" {
@@ -227,7 +227,7 @@ tflocal output -raw task_horizon_avatar_data_arn
 
 ### VPC et subnets
 
-Un VPC (Virtual Private Cloud) est un réseau isolé dans AWS. Toutes les ressources d'un projet — bases de données, instances, load balancers — vivent dans ce réseau. La plage d'adresses IP du VPC se déclare via un bloc CIDR :
+Un VPC (Virtual Private Cloud) est un réseau isolé dans AWS. Toutes les ressources d'un projet (bases de données, instances, load balancers) vivent dans ce réseau. La plage d'adresses IP du VPC se déclare via un bloc CIDR :
 
 ```hcl
 resource "aws_vpc" "task_horizon_vpc" {
@@ -259,11 +259,11 @@ resource "aws_subnet" "task_horizon_subnet_private_b" {
 
 Un subnet appartient à une seule zone de disponibilité ; sans `availability_zone`, AWS en choisit une arbitrairement. Le caractère public ou privé d'un subnet ne dépend pas de cette déclaration mais de sa table de routage (route vers une Internet Gateway ou non), comme le détaille l'article [VPC](../05-cloud/2026-04-02-vpc.md).
 
-La référence `aws_vpc.task_horizon_vpc.id` extrait l'identifiant du VPC créé précédemment. C'est le même mécanisme de référence entre ressources que celui utilisé dans les outputs — la syntaxe `<type>.<nom_local>.<attribut>` est universelle dans Terraform.
+La référence `aws_vpc.task_horizon_vpc.id` extrait l'identifiant du VPC créé précédemment. C'est le même mécanisme de référence entre ressources que celui utilisé dans les outputs : la syntaxe `<type>.<nom_local>.<attribut>` est universelle dans Terraform.
 
 ### RDS PostgreSQL
 
-RDS exige un subnet group — un objet AWS qui liste les subnets dans lesquels l'instance de base de données peut être placée. C'est un prérequis obligatoire avant de pouvoir créer l'instance, et il doit couvrir **au moins deux zones de disponibilité**, même pour une instance Single-AZ : AWS le refuse sinon (`DB Subnet Group doesn't meet availability zone coverage requirement`). Cette contrainte permet un basculement Multi-AZ ultérieur sans changer de réseau.
+RDS exige un subnet group, un objet AWS qui liste les subnets dans lesquels l'instance de base de données peut être placée. C'est un prérequis obligatoire avant de pouvoir créer l'instance, et il doit couvrir **au moins deux zones de disponibilité**, même pour une instance Single-AZ : AWS le refuse sinon (`DB Subnet Group doesn't meet availability zone coverage requirement`). Cette contrainte permet un basculement Multi-AZ ultérieur sans changer de réseau.
 
 ```hcl
 resource "aws_db_subnet_group" "task_horizon_db_subnet_group" {
@@ -328,15 +328,15 @@ L'ordre dans lequel les ressources sont déclarées dans les fichiers `.tf` n'a 
 aws_vpc → aws_subnet → aws_db_subnet_group → aws_db_instance
 ```
 
-Les ressources sans dépendance entre elles — comme les subnets public et private — sont créées en parallèle (10 opérations simultanées par défaut, option `-parallelism`). La suppression parcourt le graphe en sens inverse : l'instance RDS est détruite avant le subnet group, lui-même avant les subnets. `terraform graph` exporte ce graphe au format DOT. Les cas où une dépendance n'est pas visible dans les références relèvent de `depends_on`, présenté dans l'article [depends_on et lifecycle](./2026-07-11-terraform-depends-on-lifecycle.md).
+Les ressources sans dépendance entre elles, comme les subnets public et private, sont créées en parallèle (10 opérations simultanées par défaut, option `-parallelism`). La suppression parcourt le graphe en sens inverse : l'instance RDS est détruite avant le subnet group, lui-même avant les subnets. `terraform graph` exporte ce graphe au format DOT. Les cas où une dépendance n'est pas visible dans les références relèvent de `depends_on`, présenté dans l'article [depends_on et lifecycle](./2026-07-11-terraform-depends-on-lifecycle.md).
 
 L'architecture réseau résultante pour TaskHorizon :
 
 ```text
 VPC 10.0.0.0/16
-├── subnet public    10.0.1.0/24 (eu-west-3a) — Load Balancer, EKS ingress
-├── subnet private a 10.0.2.0/24 (eu-west-3a) — RDS PostgreSQL, EKS nodes
-└── subnet private b 10.0.3.0/24 (eu-west-3b) — RDS PostgreSQL (subnet group), EKS nodes
+├── subnet public    10.0.1.0/24 (eu-west-3a) : Load Balancer, EKS ingress
+├── subnet private a 10.0.2.0/24 (eu-west-3a) : RDS PostgreSQL, EKS nodes
+└── subnet private b 10.0.3.0/24 (eu-west-3b) : RDS PostgreSQL (subnet group), EKS nodes
 ```
 
 ## Intégration CI/CD
@@ -344,11 +344,11 @@ VPC 10.0.0.0/16
 Les outputs sont le point de jonction naturel entre un job d'infrastructure et un job de déploiement applicatif. Le premier job crée ou met à jour les ressources cloud ; le second utilise les valeurs produites pour configurer le déploiement :
 
 ```bash
-# Job 1 — infrastructure
+# Job 1 : infrastructure
 terraform apply -input=false -auto-approve -var="bucket_name=prod-avatars"
 S3_ARN=$(terraform output -raw task_horizon_avatar_data_arn)
 
-# Job 2 — déploiement
+# Job 2 : déploiement
 helm upgrade taskhorizon ./helm/taskhorizon \
   --set api.env.S3_BUCKET_ARN="$S3_ARN"
 ```

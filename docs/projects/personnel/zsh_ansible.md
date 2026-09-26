@@ -16,7 +16,7 @@ tags: [ansible, iac, zsh, automation]
 
 Configurer un shell sur une nouvelle machine demande une série de manipulations identiques : installer zsh, installer oh-my-zsh, cloner les plugins un par un depuis leurs repos respectifs, récupérer le bon `.zshrc`, installer Starship et placer sa configuration au bon endroit. Cette séquence se répète à chaque nouveau poste ou conteneur de développement. Ce projet l'automatise avec une seule commande Ansible.
 
-J'aurais pu écrire un script bash. La raison de choisir Ansible plutôt qu'un ensemble de `curl | bash` et de tests `if [ ! -d ~/.oh-my-zsh ]` tient à trois choses concrètes. D'abord, l'idempotence est gérée nativement par les modules — `apt` avec `state: present` ne réinstalle pas si le paquet existe déjà, l'installateur d'oh-my-zsh et les clones de plugins sont conditionnés par un `stat` préalable, et `copy` n'écrit le fichier de configuration que si son contenu a changé. Ensuite, les élévations de privilèges sont déclaratives et précises : on peut indiquer `become: yes` sur une tâche spécifique sans que tout le playbook tourne en root. Enfin, chaque playbook reste exécutable indépendamment, ce qui permet de relancer uniquement la partie plugins sans retoucher à zsh.
+J'aurais pu écrire un script bash. La raison de choisir Ansible plutôt qu'un ensemble de `curl | bash` et de tests `if [ ! -d ~/.oh-my-zsh ]` tient à trois choses concrètes. D'abord, l'idempotence est gérée nativement par les modules : `apt` avec `state: present` ne réinstalle pas si le paquet existe déjà, l'installateur d'oh-my-zsh et les clones de plugins sont conditionnés par un `stat` préalable, et `copy` n'écrit le fichier de configuration que si son contenu a changé. Ensuite, les élévations de privilèges sont déclaratives et précises : on peut indiquer `become: yes` sur une tâche spécifique sans que tout le playbook tourne en root. Enfin, chaque playbook reste exécutable indépendamment, ce qui permet de relancer uniquement la partie plugins sans retoucher à zsh.
 
 ## L'architecture : un playbook par préoccupation
 
@@ -46,7 +46,7 @@ Le dépôt Ansible gère la mécanique d'installation, les Gists portent la conf
 
 ## Les plugins installés
 
-Huit extensions au total, dont sept clonées depuis Git. `zsh-autosuggestions` suggère des commandes en gris basées sur l'historique — la suggestion s'accepte avec la touche droite. `zsh-syntax-highlighting` colore la commande en cours de frappe en vert si elle est valide, rouge sinon. `zsh-completions` élargit les complétions natives de zsh. `zsh-history-substring-search` permet de chercher dans l'historique par sous-chaîne plutôt que par préfixe. `fast-syntax-highlighting` est une alternative plus rapide à `zsh-syntax-highlighting`, maintenue par la communauté `zdharma-continuum`. `zsh-bat` remplace `cat` pour utiliser `bat` quand il est disponible. `autoupdate` maintient les plugins tiers à jour automatiquement lors des mises à jour OMZ. `autojump` est installé via `apt` (pas un plugin git) et ajoute la commande `j` pour naviguer vers les répertoires fréquemment visités.
+Huit extensions au total, dont sept clonées depuis Git. `zsh-autosuggestions` suggère des commandes en gris basées sur l'historique ; la suggestion s'accepte avec la touche droite. `zsh-syntax-highlighting` colore la commande en cours de frappe en vert si elle est valide, rouge sinon. `zsh-completions` élargit les complétions natives de zsh. `zsh-history-substring-search` permet de chercher dans l'historique par sous-chaîne plutôt que par préfixe. `fast-syntax-highlighting` est une alternative plus rapide à `zsh-syntax-highlighting`, maintenue par la communauté `zdharma-continuum`. `zsh-bat` remplace `cat` pour utiliser `bat` quand il est disponible. `autoupdate` maintient les plugins tiers à jour automatiquement lors des mises à jour OMZ. `autojump` est installé via `apt` (pas un plugin git) et ajoute la commande `j` pour naviguer vers les répertoires fréquemment visités.
 
 ## Tester dans Docker
 
@@ -56,7 +56,7 @@ Le README documente un workflow de test en Docker. L'image `williamyeh/ansible:u
 
 Le support est limité à Debian/Ubuntu : tous les `apt` supposent un système compatible. Il n'y a pas de branche `dnf` ou `brew` pour macOS. Pour un usage multi-OS, les tâches système devraient passer par des variables de type `ansible_pkg_mgr` ou des `when: ansible_os_family == 'Debian'`.
 
-Les URLs de Gists sont hardcodées dans les playbooks, ce qui rend le projet difficile à forker et réutiliser tel quel. Le `.zshrc` récupéré est une config personnelle — quelqu'un d'autre obtiendrait ma configuration, pas la sienne.
+Les URLs de Gists sont hardcodées dans les playbooks, ce qui rend le projet difficile à forker et réutiliser tel quel. Le `.zshrc` récupéré est une config personnelle : quelqu'un d'autre obtiendrait ma configuration, pas la sienne.
 
 zsh est installé, mais n'est pas défini comme shell par défaut : aucune tâche n'appelle le module `user` (paramètre `shell`) ni `chsh`, cette étape reste manuelle.
 

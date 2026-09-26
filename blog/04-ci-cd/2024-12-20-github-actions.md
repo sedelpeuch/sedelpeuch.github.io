@@ -1,6 +1,6 @@
 ---
 title: "GitHub Actions"
-description: "CI/CD avec GitHub Actions : événements, workflows, jobs, steps et runners — le modèle mental complet."
+description: "CI/CD avec GitHub Actions : événements, workflows, jobs, steps et runners."
 tags: [cicd, devops]
 ---
 
@@ -10,9 +10,9 @@ Sans automatisation, livrer du code en production est un processus manuel : un d
 
 ## CI/CD : le problème et la solution
 
-**L'intégration continue (CI)** répond à un problème de feedback loop. Sans CI, les développeurs travaillent en isolation pendant des jours ou des semaines, puis fusionnent — et découvrent que les branches sont incompatibles, que les tests échouent, que le build est cassé. Plus l'intégration est tardive, plus les conflits sont coûteux à résoudre. La CI force l'intégration fréquente : chaque commit est testé automatiquement, les problèmes sont détectés en minutes plutôt qu'en jours.
+**L'intégration continue (CI)** répond à un problème de feedback loop. Sans CI, les développeurs travaillent en isolation pendant des jours ou des semaines, puis fusionnent, et découvrent que les branches sont incompatibles, que les tests échouent, que le build est cassé. Plus l'intégration est tardive, plus les conflits sont coûteux à résoudre. La CI force l'intégration fréquente : chaque commit est testé automatiquement, les problèmes sont détectés en minutes plutôt qu'en jours.
 
-**Le déploiement continu (CD)** prolonge cette logique jusqu'à la production. Un commit qui passe tous les tests peut être déployé automatiquement — ou après approbation manuelle pour les environnements critiques. L'objectif est d'éliminer les déploiements manuels risqués et de rendre la livraison reproductible : le même pipeline s'exécute de la même façon à chaque fois, sur chaque environnement.
+**Le déploiement continu (CD)** prolonge cette logique jusqu'à la production. Un commit qui passe tous les tests peut être déployé automatiquement, ou après approbation manuelle pour les environnements critiques. L'objectif est d'éliminer les déploiements manuels risqués et de rendre la livraison reproductible : le même pipeline s'exécute de la même façon à chaque fois, sur chaque environnement.
 
 ```text
 Commit
@@ -23,11 +23,11 @@ Commit
           → déploiement production (CD)
 ```
 
-Les bénéfices ne sont pas que techniques. Un pipeline CI/CD rend les déploiements fréquents et peu risqués — ce qui encourage des releases plus petites, plus ciblées, plus faciles à déboguer si quelque chose tourne mal. C'est un changement de pratique autant que d'outillage.
+Les bénéfices ne sont pas que techniques. Un pipeline CI/CD rend les déploiements fréquents et peu risqués, ce qui encourage des releases plus petites, plus ciblées, plus faciles à déboguer si quelque chose tourne mal. C'est un changement de pratique autant que d'outillage.
 
 ## GitHub Actions
 
-GitHub Actions est le système d'automatisation intégré à GitHub — les workflows vivent dans le dépôt, s'exécutent en réponse à des événements Git, et accèdent nativement aux secrets et aux artefacts du projet.
+GitHub Actions est le système d'automatisation intégré à GitHub : les workflows vivent dans le dépôt, s'exécutent en réponse à des événements Git, et accèdent nativement aux secrets et aux artefacts du projet.
 
 ## Le modèle mental
 
@@ -40,7 +40,7 @@ GitHub Actions repose sur cinq concepts qui s'emboîtent :
               └── Step (checkout, run npm test, docker push...)
 ```
 
-Un **événement** déclenche un ou plusieurs **workflows**. Chaque workflow contient un ou plusieurs **jobs**, exécutés en parallèle par défaut. Chaque job est une suite de **steps** qui s'exécutent séquentiellement sur un **runner** — une machine virtuelle éphémère fournie par GitHub ou une machine auto-hébergée.
+Un **événement** déclenche un ou plusieurs **workflows**. Chaque workflow contient un ou plusieurs **jobs**, exécutés en parallèle par défaut. Chaque job est une suite de **steps** qui s'exécutent séquentiellement sur un **runner**, une machine virtuelle éphémère fournie par GitHub ou une machine auto-hébergée.
 
 ## Anatomie d'un workflow
 
@@ -149,7 +149,7 @@ steps:
     run: ./deploy.sh
 ```
 
-Les secrets se configurent dans *Settings → Secrets and variables → Actions* du dépôt ou de l'organisation. Le token `GITHUB_TOKEN` est généré automatiquement pour chaque exécution — il donne accès à l'API GitHub avec des permissions limitables :
+Les secrets se configurent dans *Settings → Secrets and variables → Actions* du dépôt ou de l'organisation. Le token `GITHUB_TOKEN` est généré automatiquement pour chaque exécution ; il donne accès à l'API GitHub avec des permissions limitables :
 
 ```yaml
 permissions:
@@ -202,7 +202,7 @@ jobs:
 
 GitHub fournit des runners hébergés (`ubuntu-latest`, `windows-latest`, `macos-latest`). Leur usage est gratuit et illimité pour les dépôts publics (runners standard). Pour les dépôts privés, chaque plan inclut un quota mensuel (2 000 minutes sur le plan Free) ; les minutes Windows et macOS sont décomptées avec un multiplicateur (×2 et ×10), et le dépassement est facturé à la minute.
 
-Les runners auto-hébergés (`self-hosted`) tournent sur des machines contrôlées — serveur on-premise, VM cloud, cluster Kubernetes via ARC. Ils ne consomment pas le quota de minutes des runners hébergés et donnent accès à des ressources spécifiques (GPU, réseau privé, caches locaux). Les articles [runner auto-hébergé](./2024-12-20-self-host-runner.md) et [Actions Runner Controller](./2024-12-20-github-arc.md) détaillent leur mise en place, et l'article [GitHub Actions : Workflow](./2024-12-20-workflow.md) les primitives avancées d'un workflow (matrix, artefacts, conteneurs).
+Les runners auto-hébergés (`self-hosted`) tournent sur des machines contrôlées : serveur on-premise, VM cloud, cluster Kubernetes via ARC. Ils ne consomment pas le quota de minutes des runners hébergés et donnent accès à des ressources spécifiques (GPU, réseau privé, caches locaux). Les articles [runner auto-hébergé](./2024-12-20-self-host-runner.md) et [Actions Runner Controller](./2024-12-20-github-arc.md) détaillent leur mise en place, et l'article [GitHub Actions : Workflow](./2024-12-20-workflow.md) les primitives avancées d'un workflow (matrix, artefacts, conteneurs).
 
 ```yaml
 jobs:

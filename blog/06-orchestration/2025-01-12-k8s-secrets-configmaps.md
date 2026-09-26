@@ -4,13 +4,13 @@ description: "Gérer la configuration et les credentials dans Kubernetes : Confi
 tags: [orchestration, devops]
 ---
 
-Une image Docker doit être identique entre les environnements — dev, staging, prod. Ce qui change entre environnements, c'est la configuration : URL de base de données, niveau de log, clés API. Kubernetes fournit deux ressources pour externaliser cette configuration : ConfigMap pour les données non sensibles, Secret pour les credentials.
+Une image Docker doit être identique entre les environnements : dev, staging, prod. Ce qui change entre environnements, c'est la configuration : URL de base de données, niveau de log, clés API. Kubernetes fournit deux ressources pour externaliser cette configuration : ConfigMap pour les données non sensibles, Secret pour les credentials.
 
 <!--truncate-->
 
 ## ConfigMap
 
-Un ConfigMap stocke des paires clé-valeur de configuration sous forme de texte brut. Il découple la configuration de l'image — une même image peut se comporter différemment selon le ConfigMap injecté.
+Un ConfigMap stocke des paires clé-valeur de configuration sous forme de texte brut. Il découple la configuration de l'image : une même image peut se comporter différemment selon le ConfigMap injecté.
 
 ```yaml
 apiVersion: v1
@@ -122,7 +122,7 @@ spec:
 
 ### Injection en volume
 
-Monter un Secret en volume est préférable pour les certificats TLS ou les fichiers de clés — cela évite que la valeur apparaisse dans les variables d'environnement du processus (visibles via `/proc/<pid>/environ`, héritées par les processus fils, parfois écrites dans les rapports d'erreur). Sur le nœud, le kubelet stocke les volumes de Secrets en `tmpfs`, en mémoire, et jamais sur le disque :
+Monter un Secret en volume est préférable pour les certificats TLS ou les fichiers de clés, car cela évite que la valeur apparaisse dans les variables d'environnement du processus (visibles via `/proc/<pid>/environ`, héritées par les processus fils, parfois écrites dans les rapports d'erreur). Sur le nœud, le kubelet stocke les volumes de Secrets en `tmpfs`, en mémoire, et jamais sur le disque :
 
 ```yaml
       volumeMounts:

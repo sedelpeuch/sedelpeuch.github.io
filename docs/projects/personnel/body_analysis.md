@@ -1,7 +1,7 @@
 ---
 title: Body Analysis
 tags: [fastapi, react, postgresql, minio, docker, python, data-analysis, quantified-self]
-description: Application de suivi et d'analyse corporelle (FastAPI, React, PostgreSQL, MinIO) — ingestion des exports Samsung Health, analytics d'entraînement (TRIMP, ACWR, dérive cardiaque) et galerie photo confidentielle.
+description: "Application de suivi et d'analyse corporelle (FastAPI, React, PostgreSQL, MinIO) : ingestion des exports Samsung Health, analytics d'entraînement (TRIMP, ACWR, dérive cardiaque) et galerie photo confidentielle."
 ---
 
 <img src="/img/project/body_analysis.png" alt="Aperçu dashboard body_analysis" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
@@ -15,7 +15,7 @@ description: Application de suivi et d'analyse corporelle (FastAPI, React, Postg
 
 ## Contexte
 
-Samsung Health exporte des CSV et fichiers d'activité bruts, sans aucune visualisation exploitable. Passer par une application tierce aurait signifié confier des données de santé (poids, composition corporelle, fréquence cardiaque, photos de suivi) à un service externe. J'ai construit la chaîne moi-même — ingestion, modélisation, analytics, interface — déployée sur mon infrastructure personnelle et alimentée en continu depuis 2023.
+Samsung Health exporte des CSV et fichiers d'activité bruts, sans aucune visualisation exploitable. Passer par une application tierce aurait signifié confier des données de santé (poids, composition corporelle, fréquence cardiaque, photos de suivi) à un service externe. J'ai construit la chaîne moi-même (ingestion, modélisation, analytics, interface), déployée sur mon infrastructure personnelle et alimentée en continu depuis 2023.
 
 Le projet a été réécrit en 2026 : la version initiale était une application Streamlit monolithique ; la version actuelle sépare une API FastAPI et une SPA React, avec une persistance PostgreSQL et un stockage objet MinIO pour les photos.
 

@@ -25,7 +25,7 @@ spec:
       maxUnavailable: 0  # pods indisponibles autorisés pendant la mise à jour
 ```
 
-`maxUnavailable: 0` garantit zéro interruption — Kubernetes ne supprime un pod v1 qu'après qu'un pod v2 soit déclaré prêt par sa readinessProbe.
+`maxUnavailable: 0` garantit zéro interruption : Kubernetes ne supprime un pod v1 qu'après qu'un pod v2 soit déclaré prêt par sa readinessProbe.
 
 `maxSurge: 1` autorise temporairement un pod supplémentaire. Avec 3 réplicas, Kubernetes peut monter à 4 pods pendant la transition. Les deux paramètres acceptent aussi un pourcentage ; leur valeur par défaut est `25%` chacun, arrondi au supérieur pour `maxSurge` et à l'inférieur pour `maxUnavailable`. Pour 3 réplicas, les valeurs par défaut donnent donc `maxSurge: 1` et `maxUnavailable: 0`.
 
@@ -154,7 +154,7 @@ spec:
           - ALL
 ```
 
-`runAsNonRoot: true` interdit l'exécution en root : le kubelet refuse de démarrer un conteneur dont l'UID effectif serait 0. Ici, `runAsUser: 1000` remplace l'utilisateur défini par l'image ; sans `runAsUser`, c'est l'instruction `USER` de l'image qui est vérifiée, et elle doit alors être numérique (un nom comme `USER app` ne peut pas être contrôlé et le conteneur est refusé). `fsGroup: 1000` rend les volumes montés accessibles en écriture à ce groupe. `capabilities: drop: ALL` supprime toutes les capabilities Linux (CAP_SYS_ADMIN, CAP_NET_BIND_SERVICE, etc.) — le conteneur ne peut pas interagir avec le kernel au-delà de ce qu'un processus non privilégié peut faire normalement. `readOnlyRootFilesystem: true` monte le système de fichiers racine en lecture seule — tout ce qui doit être écrit doit passer par un volume explicite. Cet ensemble de réglages correspond au profil `restricted` des Pod Security Standards, que l'admission Pod Security peut imposer à tout un namespace (label `pod-security.kubernetes.io/enforce: restricted`).
+`runAsNonRoot: true` interdit l'exécution en root : le kubelet refuse de démarrer un conteneur dont l'UID effectif serait 0. Ici, `runAsUser: 1000` remplace l'utilisateur défini par l'image ; sans `runAsUser`, c'est l'instruction `USER` de l'image qui est vérifiée, et elle doit alors être numérique (un nom comme `USER app` ne peut pas être contrôlé et le conteneur est refusé). `fsGroup: 1000` rend les volumes montés accessibles en écriture à ce groupe. `capabilities: drop: ALL` supprime toutes les capabilities Linux (CAP_SYS_ADMIN, CAP_NET_BIND_SERVICE, etc.) : le conteneur ne peut pas interagir avec le kernel au-delà de ce qu'un processus non privilégié peut faire normalement. `readOnlyRootFilesystem: true` monte le système de fichiers racine en lecture seule : tout ce qui doit être écrit doit passer par un volume explicite. Cet ensemble de réglages correspond au profil `restricted` des Pod Security Standards, que l'admission Pod Security peut imposer à tout un namespace (label `pod-security.kubernetes.io/enforce: restricted`).
 
 ```yaml
     volumeMounts:
@@ -174,14 +174,14 @@ spec:
 Pour vérifier qu'une mise à jour ne provoque aucune interruption :
 
 ```bash
-# Terminal 1 — surveiller les pods
+# Terminal 1 : surveiller les pods
 watch -n 1 'kubectl get pods -o wide'
 
-# Terminal 2 — trafic continu, depuis un pod du cluster (le nom du Service n'est résolu qu'à l'intérieur)
+# Terminal 2 : trafic continu, depuis un pod du cluster (le nom du Service n'est résolu qu'à l'intérieur)
 kubectl run load --rm -it --image=curlimages/curl --restart=Never -- \
   sh -c 'while true; do curl -s -o /dev/null -w "%{http_code}\n" http://mon-service/health; sleep 0.5; done'
 
-# Terminal 3 — déclencher la mise à jour
+# Terminal 3 : déclencher la mise à jour
 kubectl set image deployment/api api=myapp:v2
 
 # Tous les codes retournés doivent être 200

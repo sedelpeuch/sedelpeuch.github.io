@@ -12,7 +12,7 @@ Le choix d'un service de stockage conditionne les performances, la durabilité e
 
 <!--truncate-->
 
-## RDS — Bases de données relationnelles managées
+## RDS : bases de données relationnelles managées
 
 ### Qu'est-ce que RDS ?
 
@@ -220,7 +220,7 @@ Une base de développement peut être arrêtée quand elle ne sert pas : les heu
 
 ---
 
-## S3 — Stockage d'objets hautement scalable
+## S3 : stockage d'objets
 
 ### Qu'est-ce que S3 ?
 
@@ -304,7 +304,7 @@ paginator = s3_client.get_paginator('list_objects_v2')
 
 for page in paginator.paginate(Bucket='mon-bucket', Prefix='dossier/'):
     for obj in page.get('Contents', []):
-        print(f"{obj['Key']} — {obj['Size']} bytes")
+        print(f"{obj['Key']} : {obj['Size']} bytes")
 ```
 
 **Upload un fichier :**
@@ -435,7 +435,7 @@ Sur un bucket versionné, une suppression ne fait qu'ajouter un marqueur de supp
 
 ---
 
-## EBS — Stockage bloc attaché aux instances
+## EBS : stockage bloc attaché aux instances
 
 ### Qu'est-ce que EBS ?
 
@@ -536,7 +536,7 @@ Prix : ~$0.05 par GB/mois pour le stockage du snapshot.
 
 ### Cas d'usage EBS
 
-**Disque système d'EC2** : Partitionnement / OS / applications système — Le volume root pour chaque instance.
+**Disque système d'EC2** : Partitionnement / OS / applications système, soit le volume root de chaque instance.
 
 **Bases de données locales** : Installer PostgreSQL, MySQL directement sur l'EC2 avec EBS comme stockage (au lieu de RDS managé).
 

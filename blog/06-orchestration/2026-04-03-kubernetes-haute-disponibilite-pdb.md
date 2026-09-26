@@ -25,7 +25,7 @@ Passer à 3 réplicas réduit l'impact d'un événement isolé, mais ne suffit p
 
 Sans contrainte de distribution, le scheduler peut placer plusieurs réplicas sur un même nœud. La perte de ce nœud emporte alors toutes les réplicas simultanément.
 
-`topologySpreadConstraints` force une distribution homogène selon un critère topologique — nœud, zone de disponibilité, région :
+`topologySpreadConstraints` force une distribution homogène selon un critère topologique (nœud, zone de disponibilité, région) :
 
 ```yaml
 spec:
@@ -64,7 +64,7 @@ topologySpreadConstraints:
 
 La réplication protège contre les défaillances involontaires. Le PodDisruptionBudget protège contre les interruptions **planifiées** : `kubectl drain`, mise à jour du cluster, autoscaling de nœuds vers le bas.
 
-Sans PDB, un `kubectl drain` peut supprimer simultanément plusieurs pods — si les 3 réplicas se trouvent sur les nœuds drainés, l'application est intégralement indisponible pendant la maintenance.
+Sans PDB, un `kubectl drain` peut supprimer simultanément plusieurs pods : si les 3 réplicas se trouvent sur les nœuds drainés, l'application est intégralement indisponible pendant la maintenance.
 
 ```yaml
 apiVersion: policy/v1
@@ -168,7 +168,7 @@ kind: Deployment
 metadata:
   name: api
 spec:
-  # Pas de replicas ici — géré par HPA
+  # Pas de replicas ici : géré par HPA
   selector:
     matchLabels:
       app: api

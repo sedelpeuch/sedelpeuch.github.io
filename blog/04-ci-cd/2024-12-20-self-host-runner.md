@@ -4,7 +4,7 @@ description: "Installer et configurer un runner GitHub Actions auto-hébergé su
 tags: [cicd, devops]
 ---
 
-Les runners hébergés par GitHub (`ubuntu-latest`) sont éphémères, gérés par GitHub, et consomment le quota de minutes de l'organisation. Les runners auto-hébergés tournent sur des machines contrôlées — serveur on-premise, VM cloud, Raspberry Pi — et n'ont pas de quota. Ils donnent accès à des ressources locales : réseau privé, GPU, caches persistants, outils propriétaires.
+Les runners hébergés par GitHub (`ubuntu-latest`) sont éphémères, gérés par GitHub, et consomment le quota de minutes de l'organisation. Les runners auto-hébergés tournent sur des machines contrôlées (serveur on-premise, VM cloud, Raspberry Pi) et n'ont pas de quota. Ils donnent accès à des ressources locales : réseau privé, GPU, caches persistants, outils propriétaires.
 
 <!--truncate-->
 
@@ -48,7 +48,7 @@ L'option `--ephemeral` enregistre un runner qui exécute **un seul job** puis se
 
 ## Exécution en tant que service
 
-Lancer le runner en processus de premier plan (`./run.sh`) n'est pas adapté à la production — il s'arrête à la déconnexion de la session. L'installer comme service systemd le démarre automatiquement au boot :
+Lancer le runner en processus de premier plan (`./run.sh`) n'est pas adapté à la production : il s'arrête à la déconnexion de la session. L'installer comme service systemd le démarre automatiquement au boot :
 
 ```bash
 # Le service s'exécute sous l'utilisateur indiqué (par défaut, celui qui a lancé config.sh)
@@ -101,7 +101,7 @@ Sans `container`, les steps s'exécutent directement sur la machine hôte et dé
 
 ## Nettoyage du workspace
 
-Sur un runner auto-hébergé non éphémère, le workspace persiste entre les jobs — contrairement aux runners GitHub qui démarrent sur une machine propre. Pour les actions qui ne tournent pas dans un container, ajouter une step de nettoyage en fin de job :
+Sur un runner auto-hébergé non éphémère, le workspace persiste entre les jobs, contrairement aux runners GitHub qui démarrent sur une machine propre. Pour les actions qui ne tournent pas dans un container, ajouter une step de nettoyage en fin de job :
 
 ```yaml
     steps:

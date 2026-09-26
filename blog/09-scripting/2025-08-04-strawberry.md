@@ -12,7 +12,7 @@ Ce guide présente, étape par étape, la création d'une API GraphQL en Python 
 
 ### FastAPI
 
-FastAPI est un framework web moderne pour Python, conçu pour créer des APIs performantes, robustes et faciles à maintenir. Il offre :
+FastAPI est un framework web Python pour construire des APIs. Il offre :
 
 - Un support natif d'async/await pour la performance
 - Une documentation automatique (Swagger/OpenAPI)

@@ -4,7 +4,7 @@ description: "Différences architecturales entre proxy direct et reverse proxy :
 tags: [network, devops]
 ---
 
-Un proxy et un reverse proxy remplissent tous les deux un rôle d'intermédiaire réseau, mais ils se positionnent de chaque côté de la connexion — l'un représente le client, l'autre protège le serveur. Confondre les deux mène à des architectures mal configurées et à des règles de sécurité inefficaces.
+Un proxy et un reverse proxy remplissent tous les deux un rôle d'intermédiaire réseau, mais ils se positionnent de chaque côté de la connexion : l'un représente le client, l'autre protège le serveur. Confondre les deux mène à des architectures mal configurées et à des règles de sécurité inefficaces.
 
 <!--truncate-->
 
@@ -18,7 +18,7 @@ Client (configuré pour passer par le proxy)
     → Serveur de destination (ne voit que l'IP du proxy)
 ```
 
-Le proxy direct est transparent pour le serveur mais visible du client — le client doit savoir qu'il existe et s'y connecter explicitement (via les paramètres réseau du navigateur, les variables `HTTP_PROXY`/`HTTPS_PROXY`, ou la configuration système).
+Le proxy direct est transparent pour le serveur mais visible du client : le client doit savoir qu'il existe et s'y connecter explicitement (via les paramètres réseau du navigateur, les variables `HTTP_PROXY`/`HTTPS_PROXY`, ou la configuration système).
 
 Cas d'usage typiques :
 
@@ -26,7 +26,7 @@ Cas d'usage typiques :
 
 **Filtrage sortant en entreprise** : un proxy Squid centralise le trafic HTTP/HTTPS de tous les postes. L'administrateur peut bloquer des domaines, inspecter les requêtes (avec un proxy intercepteur SSL), journaliser les accès.
 
-**Cache partagé** : si 100 postes téléchargent la même mise à jour, le proxy la télécharge une fois et la sert depuis son cache — réduit la consommation de bande passante.
+**Cache partagé** : si 100 postes téléchargent la même mise à jour, le proxy la télécharge une fois et la sert depuis son cache, ce qui réduit la consommation de bande passante.
 
 ```bash
 # Variables proxy standard (reconnues par la plupart des clients HTTP)
@@ -37,7 +37,7 @@ export NO_PROXY=localhost,127.0.0.1,10.0.0.0/8
 
 ## Le reverse proxy
 
-Un reverse proxy est un intermédiaire configuré côté **serveur**. Les clients ne connaissent que l'adresse du reverse proxy — ils ignorent l'existence des backends derrière. Du point de vue du client, il parle directement au serveur de l'application.
+Un reverse proxy est un intermédiaire configuré côté **serveur**. Les clients ne connaissent que l'adresse du reverse proxy et ignorent l'existence des backends derrière. Du point de vue du client, il parle directement au serveur de l'application.
 
 ```text
 Client (ne sait pas ce qu'il y a derrière)
@@ -53,7 +53,7 @@ Cas d'usage typiques :
 
 **Load balancing** : distribuer le trafic entre plusieurs instances d'une application. Si un backend tombe, le reverse proxy cesse de lui envoyer des requêtes.
 
-**Terminaison TLS** : centraliser la gestion des certificats SSL sur le reverse proxy. Les backends communiquent en HTTP clair sur le réseau interne — plus simple à gérer, et les backends n'ont pas besoin de connaître les certificats.
+**Terminaison TLS** : centraliser la gestion des certificats SSL sur le reverse proxy. Les backends communiquent en HTTP clair sur le réseau interne, ce qui est plus simple à gérer, et les backends n'ont pas besoin de connaître les certificats.
 
 **Masquage de l'infrastructure** : les clients ne connaissent pas les IPs ni les ports des backends. Toute la surface exposée publiquement se réduit au reverse proxy.
 
@@ -153,7 +153,7 @@ proxy_set_header X-Forwarded-Proto $scheme;
 proxy_set_header X-Forwarded-Host  $host;
 ```
 
-`X-Forwarded-For` accumule les adresses si la requête traverse plusieurs proxies : chaque proxy ajoute en fin de liste l'adresse de son interlocuteur direct (`$proxy_add_x_forwarded_for` dans Nginx). Pour un trajet client → proxy1 → proxy2 → backend, le backend reçoit `X-Forwarded-For: IP_client, IP_proxy1` et voit `IP_proxy2` comme adresse source de la connexion. L'application backend doit lire ces headers pour obtenir l'IP réelle — important pour les logs, la géolocalisation, et les règles de rate limiting.
+`X-Forwarded-For` accumule les adresses si la requête traverse plusieurs proxies : chaque proxy ajoute en fin de liste l'adresse de son interlocuteur direct (`$proxy_add_x_forwarded_for` dans Nginx). Pour un trajet client → proxy1 → proxy2 → backend, le backend reçoit `X-Forwarded-For: IP_client, IP_proxy1` et voit `IP_proxy2` comme adresse source de la connexion. L'application backend doit lire ces headers pour obtenir l'IP réelle, nécessaire pour les logs, la géolocalisation, et les règles de rate limiting.
 
 Un client peut envoyer lui-même un `X-Forwarded-For` arbitraire, qui sera conservé en tête de liste. La lecture sûre consiste donc à parcourir la liste **depuis la droite** et à retenir la première adresse qui n'appartient pas à un proxy de confiance connu. L'en-tête standardisé `Forwarded` (RFC 7239, par exemple `Forwarded: for=203.0.113.7;proto=https`) regroupe ces informations en un seul champ, mais reste moins répandu que les en-têtes `X-Forwarded-*`.
 

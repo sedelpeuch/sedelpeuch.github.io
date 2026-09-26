@@ -4,7 +4,7 @@ description: "Guide pratique pour renouveler les certificats expirants dans un c
 tags: [orchestration, devops]
 ---
 
-Par défaut, les certificats clients et serveurs générés par kubeadm ont une durée de validité d'un an (dix ans pour les autorités de certification). À l'expiration, les composants du cluster ne peuvent plus s'authentifier entre eux — le cluster devient inaccessible. Le renouvellement est une opération de maintenance prévisible, à planifier avant l'expiration plutôt qu'en urgence.
+Par défaut, les certificats clients et serveurs générés par kubeadm ont une durée de validité d'un an (dix ans pour les autorités de certification). À l'expiration, les composants du cluster ne peuvent plus s'authentifier entre eux, et le cluster devient inaccessible. Le renouvellement est une opération de maintenance prévisible, à planifier avant l'expiration plutôt qu'en urgence.
 
 <!--truncate-->
 

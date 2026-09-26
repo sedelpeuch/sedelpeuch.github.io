@@ -12,7 +12,7 @@ Faire tourner quelques conteneurs sur une seule machine se gère avec Docker ou 
 
 Un cluster Kubernetes est divisé en deux niveaux de responsabilité distincts.
 
-Le **control plane** est le cerveau du cluster. Il maintient l'état désiré de l'infrastructure, prend les décisions de planification et réagit aux événements. Il n'exécute pas les workloads applicatifs — il orchestre.
+Le **control plane** est le cerveau du cluster. Il maintient l'état désiré de l'infrastructure, prend les décisions de planification et réagit aux événements. Il n'exécute pas les workloads applicatifs : il orchestre.
 
 Le **data plane** est l'ensemble des nœuds qui exécutent réellement les conteneurs. Chaque nœud worker reçoit des instructions du control plane et les applique localement.
 
@@ -34,7 +34,7 @@ Data plane (× N nœuds)
 
 ### API Server
 
-L'API Server est le seul composant avec lequel les autres interagissent directement. Toutes les opérations — `kubectl apply`, les contrôleurs internes, les opérateurs externes — passent par lui. Il valide les requêtes, les persiste dans etcd, et notifie les composants intéressés via un mécanisme de watch.
+L'API Server est le seul composant avec lequel les autres interagissent directement. Toutes les opérations (`kubectl apply`, les contrôleurs internes, les opérateurs externes) passent par lui. Il valide les requêtes, les persiste dans etcd, et notifie les composants intéressés via un mécanisme de watch.
 
 ### etcd
 
@@ -44,7 +44,7 @@ etcd réplique ses données avec l'algorithme de consensus Raft : une écriture 
 
 ### Scheduler
 
-Quand un pod est créé sans nœud assigné, le Scheduler l'analyse et sélectionne le nœud le plus adapté selon les ressources disponibles, les affinités déclarées et les contraintes de topologie. Il écrit sa décision dans etcd via l'API Server — le Kubelet du nœud sélectionné prend ensuite le relais.
+Quand un pod est créé sans nœud assigné, le Scheduler l'analyse et sélectionne le nœud le plus adapté selon les ressources disponibles, les affinités déclarées et les contraintes de topologie. Il écrit sa décision dans etcd via l'API Server ; le Kubelet du nœud sélectionné prend ensuite le relais.
 
 ### Controller Manager
 
@@ -60,7 +60,7 @@ Le Kubelet est l'agent qui tourne sur chaque nœud worker. Il surveille les pods
 
 ### Container Runtime
 
-Le container runtime exécute les conteneurs. Kubernetes délègue cette responsabilité via l'interface CRI (Container Runtime Interface) — containerd et CRI-O sont les runtimes les plus répandus. Docker Engine n'est plus utilisable directement comme runtime depuis Kubernetes 1.24 (suppression du composant `dockershim`), sauf via l'adaptateur externe `cri-dockerd`. Les images construites avec Docker restent exécutables sans changement : ce sont des images au format OCI, que containerd et CRI-O savent lancer.
+Le container runtime exécute les conteneurs. Kubernetes délègue cette responsabilité via l'interface CRI (Container Runtime Interface) ; containerd et CRI-O sont les runtimes les plus répandus. Docker Engine n'est plus utilisable directement comme runtime depuis Kubernetes 1.24 (suppression du composant `dockershim`), sauf via l'adaptateur externe `cri-dockerd`. Les images construites avec Docker restent exécutables sans changement : ce sont des images au format OCI, que containerd et CRI-O savent lancer.
 
 ### Kube-proxy
 

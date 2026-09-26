@@ -4,7 +4,7 @@ description: "Nginx Proxy Manager : interface graphique pour Nginx, gestion des 
 tags: [network, devops]
 ---
 
-Configurer Nginx manuellement demande de maîtriser sa syntaxe et de gérer les certificats SSL à la main. Nginx Proxy Manager expose une interface web qui automatise ces deux aspects : création de règles de routage via une UI, et renouvellement automatique des certificats Let's Encrypt. Il génère du vrai Nginx sous le capot — les configurations avancées restent accessibles via des blocs personnalisés.
+Configurer Nginx manuellement demande de maîtriser sa syntaxe et de gérer les certificats SSL à la main. Nginx Proxy Manager expose une interface web qui automatise ces deux aspects : création de règles de routage via une UI, et renouvellement automatique des certificats Let's Encrypt. Il génère du vrai Nginx sous le capot : les configurations avancées restent accessibles via des blocs personnalisés.
 
 <!--truncate-->
 
@@ -67,7 +67,7 @@ services:
     image: myapp:latest
     networks:
       - proxy
-    # NE PAS exposer le port sur l'hôte — NPM y accède directement via le réseau Docker
+    # NE PAS exposer le port sur l'hôte : NPM y accède directement via le réseau Docker
 
 networks:
   proxy:
@@ -90,7 +90,7 @@ Deux types de règles :
 - **IP restrictions** : autoriser ou bloquer des plages d'IP (`192.168.0.0/24`, `10.0.0.1`)
 - **Basic Auth** : username/password pour protéger une URL (utile pour les services sans authentification native comme des dashboards)
 
-Une Access List peut combiner les deux — par exemple, autoriser les IPs du réseau interne sans mot de passe et exiger une authentification pour les autres.
+Une Access List peut combiner les deux, par exemple autoriser les IPs du réseau interne sans mot de passe et exiger une authentification pour les autres.
 
 Pour l'attacher à un Proxy Host : onglet **Details** → champ **Access List**.
 
@@ -112,7 +112,7 @@ old.example.com → https://new.example.com/path  (302 temporaire)
 
 ## Stream Hosts (proxy TCP/UDP)
 
-Les **Stream Hosts** exposent des services TCP ou UDP non-HTTP — utile pour MySQL, PostgreSQL, Redis, MQTT, serveurs de jeu.
+Les **Stream Hosts** exposent des services TCP ou UDP non-HTTP, utile pour MySQL, PostgreSQL, Redis, MQTT, serveurs de jeu.
 
 **Hosts → Streams → Add Stream**
 
@@ -146,7 +146,7 @@ add_header X-Frame-Options "SAMEORIGIN";
 add_header Content-Security-Policy "default-src 'self'";
 ```
 
-La configuration générée par NPM est stockée dans `./data/nginx/` — lisible mais à ne pas modifier directement, elle est régénérée à chaque modification via l'UI.
+La configuration générée par NPM est stockée dans `./data/nginx/`. Elle est lisible, mais ne doit pas être modifiée directement, car elle est régénérée à chaque modification via l'UI.
 
 ## Logs et troubleshooting
 
@@ -163,7 +163,7 @@ Les logs Nginx de chaque Proxy Host sont dans `/data/logs/proxy-host-<id>_*.log`
 
 Problèmes courants :
 
-- **502 Bad Gateway** : le backend n'est pas joignable — vérifier le réseau Docker, le nom de service, le port
+- **502 Bad Gateway** : le backend n'est pas joignable ; vérifier le réseau Docker, le nom de service, le port
 - **Certificate request failed** : le domaine ne pointe pas vers l'IP publique de la machine, ou le port 80 est bloqué par un firewall
 - **ERR_TOO_MANY_REDIRECTS** : NPM termine le TLS et contacte le backend en HTTP ; si le backend impose lui-même HTTPS sans tenir compte de l'en-tête `X-Forwarded-Proto: https` transmis par NPM, il renvoie une redirection vers HTTPS à chaque requête, d'où la boucle. Correctifs : configurer le backend pour faire confiance aux en-têtes `X-Forwarded-*` du proxy, désactiver sa redirection HTTPS, ou passer le scheme du Proxy Host à `https` si le backend écoute réellement en TLS
 

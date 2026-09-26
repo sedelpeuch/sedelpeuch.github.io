@@ -25,7 +25,7 @@ docker logs --since "2024-01-15T10:00:00" <conteneur>
 docker logs --since 30m <conteneur>  # depuis 30 minutes
 ```
 
-Docker capture stdout et stderr du processus principal (PID 1). Si l'application écrit dans des fichiers de logs plutôt que sur stdout, `docker logs` ne retourne rien — il faut alors entrer dans le conteneur pour lire ces fichiers, ou reconfigurer l'application pour écrire sur stdout.
+Docker capture stdout et stderr du processus principal (PID 1). Si l'application écrit dans des fichiers de logs plutôt que sur stdout, `docker logs` ne retourne rien. Il faut alors entrer dans le conteneur pour lire ces fichiers, ou reconfigurer l'application pour écrire sur stdout.
 
 ## Entrer dans un conteneur en cours d'exécution
 
@@ -39,7 +39,7 @@ docker exec <conteneur> cat /etc/hosts
 docker exec <conteneur> env | sort
 ```
 
-`-it` combine `-i` (stdin ouvert) et `-t` (allouer un pseudo-TTY) — nécessaire pour un shell interactif.
+`-it` combine `-i` (stdin ouvert) et `-t` (allouer un pseudo-TTY), nécessaire pour un shell interactif.
 
 Si l'image est minimaliste (distroless, scratch) et ne contient pas de shell, `docker cp` permet de copier des fichiers depuis le conteneur vers l'hôte pour inspection :
 
@@ -78,7 +78,7 @@ docker inspect <conteneur> | jq '.[0].NetworkSettings.Networks'
 docker inspect <conteneur> | jq '.[0].Config.Env'
 ```
 
-`docker inspect` révèle également le code de sortie du processus (`ExitCode`) et l'erreur éventuelle (`Error`) — utile pour diagnostiquer les conteneurs qui s'arrêtent immédiatement après le démarrage. L'option `--format` (template Go) extrait un champ sans `jq` :
+`docker inspect` révèle également le code de sortie du processus (`ExitCode`) et l'erreur éventuelle (`Error`), utile pour diagnostiquer les conteneurs qui s'arrêtent immédiatement après le démarrage. L'option `--format` (template Go) extrait un champ sans `jq` :
 
 ```bash
 docker inspect -f '{{.State.ExitCode}} {{.State.OOMKilled}}' <conteneur>
@@ -109,7 +109,7 @@ docker stats api db
 docker stats --no-stream
 ```
 
-Un conteneur qui atteint sa limite mémoire est tué par le kernel — `OOMKilled: true` apparaît dans `docker inspect`. Un conteneur à 100% CPU en permanence indique souvent une boucle infinie ou une attente active ; à l'inverse, un interblocage (*deadlock*) se manifeste plutôt par une consommation CPU nulle et des requêtes qui n'aboutissent jamais.
+Un conteneur qui atteint sa limite mémoire est tué par le kernel : `OOMKilled: true` apparaît dans `docker inspect`. Un conteneur à 100% CPU en permanence indique souvent une boucle infinie ou une attente active ; à l'inverse, un interblocage (*deadlock*) se manifeste plutôt par une consommation CPU nulle et des requêtes qui n'aboutissent jamais.
 
 ## Analyser le filesystem du conteneur
 
@@ -138,7 +138,7 @@ docker exec <conteneur> ping db
 docker inspect <conteneur> | jq '.[0].NetworkSettings.Networks | keys'
 ```
 
-Les images minimales ne contiennent souvent ni `ss`, ni `nslookup`, ni `ping` : le conteneur `netshoot` décrit plus haut fournit ces outils sans modifier l'image. Un conteneur qui ne peut pas joindre un autre par son nom indique généralement qu'ils ne sont pas sur le même réseau Docker. Le réseau `bridge` par défaut n'active pas la résolution DNS par nom — il faut un réseau défini explicitement (`docker network create`) ou Docker Compose.
+Les images minimales ne contiennent souvent ni `ss`, ni `nslookup`, ni `ping` : le conteneur `netshoot` décrit plus haut fournit ces outils sans modifier l'image. Un conteneur qui ne peut pas joindre un autre par son nom indique généralement qu'ils ne sont pas sur le même réseau Docker. Le réseau `bridge` par défaut n'active pas la résolution DNS par nom : il faut un réseau défini explicitement (`docker network create`) ou Docker Compose.
 
 ## Déboguer un conteneur qui crashe au démarrage
 
@@ -154,4 +154,4 @@ docker run -it <image> sh
 
 La seconde forme ne fonctionne que si l'image ne définit pas d'`ENTRYPOINT` : dans le cas contraire, `sh` est passé comme argument à l'entrypoint au lieu d'être exécuté.
 
-Une fois dans le shell, reproduire manuellement les commandes du Dockerfile pour identifier l'étape qui échoue — variables d'environnement manquantes, fichiers absents, permissions incorrectes.
+Une fois dans le shell, reproduire manuellement les commandes du Dockerfile pour identifier l'étape qui échoue : variables d'environnement manquantes, fichiers absents, permissions incorrectes.
