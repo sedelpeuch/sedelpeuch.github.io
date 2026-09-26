@@ -30,7 +30,7 @@ docker history myapp:latest
 
 Les couches sont immuables et identifiées par un hash SHA256. Si deux images partagent les mêmes couches inférieures (même image de base, mêmes dépendances), ces couches ne sont stockées qu'une seule fois sur le disque et dans le registry. `docker pull` ne télécharge que les couches absentes localement.
 
-Quand un conteneur démarre, Docker ajoute une couche de lecture-écriture au-dessus des couches de l'image. Toutes les modifications faites dans le conteneur (fichiers créés, modifiés, supprimés) se font dans cette couche — l'image sous-jacente reste intacte. Si le conteneur est supprimé, cette couche disparaît avec lui.
+Quand un conteneur démarre, Docker ajoute une couche de lecture-écriture au-dessus des couches de l'image. Toutes les modifications faites dans le conteneur (fichiers créés, modifiés, supprimés) se font dans cette couche ; l'image sous-jacente reste intacte. Si le conteneur est supprimé, cette couche disparaît avec lui.
 
 Le pilote de stockage `overlay2` (OverlayFS) superpose ces couches en un seul système de fichiers. La modification d'un fichier issu de l'image déclenche un *copy-up* : le fichier entier est d'abord copié dans la couche d'écriture, puis modifié. Une suppression crée un fichier spécial (*whiteout*) qui masque le fichier de la couche inférieure sans libérer d'espace dans l'image. Ce mécanisme explique pourquoi les écritures intensives (bases de données, logs volumineux) doivent passer par des volumes, qui contournent OverlayFS.
 
@@ -111,7 +111,7 @@ docker run -v /home/user/data:/data myapp:latest
 docker run --tmpfs /tmp myapp:latest
 ```
 
-Les volumes nommés sont préférés en production — Docker gère leur emplacement (`/var/lib/docker/volumes/`), ils survivent aux `docker rm`, et ils sont plus performants que les bind mounts sur macOS et Windows.
+Les volumes nommés sont préférés en production : Docker gère leur emplacement (`/var/lib/docker/volumes/`), ils survivent aux `docker rm`, et ils sont plus performants que les bind mounts sur macOS et Windows.
 
 ## Commandes de gestion courantes
 

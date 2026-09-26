@@ -1,10 +1,10 @@
 ---
 title: "Kubernetes : composants de base"
-description: "Pod, Deployment, StatefulSet, Service — les ressources fondamentales de Kubernetes et quand utiliser chacune."
+description: "Pod, Deployment, StatefulSet, Service : les ressources fondamentales de Kubernetes et quand utiliser chacune."
 tags: [orchestration, devops]
 ---
 
-Kubernetes expose une API déclarative : l'utilisateur décrit l'état souhaité via des ressources YAML, et le cluster converge vers cet état (voir l'[architecture de Kubernetes](./2025-01-12-k8s-introduction.md)). Quatre ressources couvrent la majorité des besoins : Pod, Deployment, StatefulSet, Service. Comprendre pourquoi chacune existe — et pas seulement comment l'écrire — évite les mauvais choix d'architecture.
+Kubernetes expose une API déclarative : l'utilisateur décrit l'état souhaité via des ressources YAML, et le cluster converge vers cet état (voir l'[architecture de Kubernetes](./2025-01-12-k8s-introduction.md)). Quatre ressources couvrent la majorité des besoins : Pod, Deployment, StatefulSet, Service. Comprendre pourquoi chacune existe, et pas seulement comment l'écrire, évite les mauvais choix d'architecture.
 
 <!--truncate-->
 
@@ -25,7 +25,7 @@ spec:
         - containerPort: 80
 ```
 
-En pratique, un Pod n'est presque jamais créé directement. Un Pod seul n'est pas recréé s'il crashe ou si son nœud tombe — c'est le rôle des contrôleurs (Deployment, StatefulSet) de maintenir un ensemble de pods en vie.
+En pratique, un Pod n'est presque jamais créé directement. Un Pod seul n'est pas recréé s'il crashe ou si son nœud tombe : c'est le rôle des contrôleurs (Deployment, StatefulSet) de maintenir un ensemble de pods en vie.
 
 ## Deployment
 
@@ -57,7 +57,7 @@ Le `selector` est le lien entre le Deployment et ses pods : Kubernetes identifie
 
 Le Deployment ne gère pas les pods directement : il crée un ReplicaSet par version du `template`. Une mise à jour de l'image crée un nouveau ReplicaSet dont le nombre de réplicas augmente pendant que celui de l'ancien diminue ; l'ancien ReplicaSet, conservé à zéro réplica, permet le rollback (`kubectl rollout undo`). Ce mécanisme est détaillé dans l'article [rolling update et ressources](./2026-04-04-kubernetes-rolling-update-ressources.md).
 
-Un Deployment convient à tout ce qui est **stateless** : APIs, frontends, workers. Les pods sont interchangeables — peu importe lequel répond à une requête.
+Un Deployment convient à tout ce qui est **stateless** : APIs, frontends, workers. Les pods sont interchangeables : peu importe lequel répond à une requête.
 
 ## StatefulSet
 
@@ -115,7 +115,7 @@ spec:
             storage: 10Gi
 ```
 
-`volumeClaimTemplates` est la différence clé : chaque pod reçoit son propre PersistentVolumeClaim (`data-postgres-0`, `data-postgres-1`...), créé automatiquement. Si `postgres-0` est supprimé et recréé, il retrouve exactement le même volume — les données sont préservées. Les PVC survivent aussi par défaut à la suppression du StatefulSet lui-même ; le champ `persistentVolumeClaimRetentionPolicy` modifie ce comportement.
+`volumeClaimTemplates` est la différence clé : chaque pod reçoit son propre PersistentVolumeClaim (`data-postgres-0`, `data-postgres-1`...), créé automatiquement. Si `postgres-0` est supprimé et recréé, il retrouve exactement le même volume, et les données sont préservées. Les PVC survivent aussi par défaut à la suppression du StatefulSet lui-même ; le champ `persistentVolumeClaimRetentionPolicy` modifie ce comportement.
 
 Le champ `serviceName` désigne le Service headless (`clusterIP: None`) déclaré plus haut. Au lieu d'une IP virtuelle unique, le DNS du cluster publie un enregistrement par pod : `postgres-0.postgres.default.svc.cluster.local` désigne toujours le même pod, ce qui permet par exemple à des réplicas de joindre nommément le primaire. Le Secret `postgres-credentials` référencé par la variable d'environnement est décrit dans l'article [Secrets et ConfigMaps](./2025-01-12-k8s-secrets-configmaps.md), et les volumes dans l'article [stockage](./2025-01-12-k8s-storage.md).
 
@@ -123,7 +123,7 @@ Un StatefulSet convient aux bases de données, aux systèmes de messagerie, à t
 
 ## Service
 
-Un Pod a une IP éphémère — elle change à chaque recréation. Un Service est une abstraction réseau stable qui pointe vers un ensemble de pods via un sélecteur de labels, quelle que soit leur IP ou leur nombre.
+Un Pod a une IP éphémère, qui change à chaque recréation. Un Service est une abstraction réseau stable qui pointe vers un ensemble de pods via un sélecteur de labels, quelle que soit leur IP ou leur nombre.
 
 ```yaml
 apiVersion: v1

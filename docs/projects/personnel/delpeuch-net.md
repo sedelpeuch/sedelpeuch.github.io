@@ -45,7 +45,7 @@ La mesure d'audience passe par Umami, branché via un script externe, plutôt qu
 
 Le site est déployé sur GitHub Pages via deux workflows GitHub Actions.
 
-`gh-pages.yml` gère le déploiement principal, avec une logique de planification volontaire : un push pendant les heures de travail (8 h – 18 h UTC en semaine) ne déclenche pas de déploiement immédiat, il attend le cron de 18 h UTC. En dehors de ces plages (soir, week-end), le déploiement part immédiatement. Avant de construire, l'exécution planifiée vérifie qu'au moins un commit a été poussé dans les dernières 24 heures, pour éviter des builds inutiles. Le calcul se fait dans un script `actions/github-script` en tête de workflow, dont la sortie conditionne le job de déploiement.
+`gh-pages.yml` gère le déploiement principal, avec une logique de planification volontaire : un push pendant les heures de travail (de 8 h à 18 h UTC en semaine) ne déclenche pas de déploiement immédiat, il attend le cron de 18 h UTC. En dehors de ces plages (soir, week-end), le déploiement part immédiatement. Avant de construire, l'exécution planifiée vérifie qu'au moins un commit a été poussé dans les dernières 24 heures, pour éviter des builds inutiles. Le calcul se fait dans un script `actions/github-script` en tête de workflow, dont la sortie conditionne le job de déploiement.
 
 `pr_preview.yml` déploie une prévisualisation pour chaque pull request, accessible à une URL dédiée (`/pr-preview/pr-<numéro>/`) et construite avec le `BASE_URL` correspondant. La prévisualisation est supprimée automatiquement à la fermeture de la pull request. Le déploiement principal exclut ce répertoire de son nettoyage (`clean-exclude`), pour ne pas effacer les prévisualisations en cours.
 

@@ -4,11 +4,11 @@ description: "Chaîne CI/CD complète pour une application web front + back : bu
 tags: [cicd, devops, cloud, iac]
 ---
 
-Déployer une application web — un frontend, un backend, une base de données — enchaîne toujours les mêmes étapes : construire les images, les publier, provisionner l'infrastructure, déployer sur le cluster. Automatiser cet enchaînement du `git push` à l'application en ligne est l'objet d'un pipeline CI/CD. Cet article décrit une telle chaîne, bâtie avec GitHub Actions, Terraform et Helm sur AWS EKS.
+Déployer une application web (un frontend, un backend, une base de données) enchaîne toujours les mêmes étapes : construire les images, les publier, provisionner l'infrastructure, déployer sur le cluster. Automatiser cet enchaînement du `git push` à l'application en ligne est l'objet d'un pipeline CI/CD. Cet article décrit une telle chaîne, bâtie avec GitHub Actions, Terraform et Helm sur AWS EKS.
 
 <!--truncate-->
 
-Cette première partie couvre le build, la publication des images et le déploiement automatique sur l'environnement de **test**. Le **staging** et la **production** — déclenchement par tag, base RDS, injection de secrets, approbation manuelle — feront l'objet d'une suite.
+Cette première partie couvre le build, la publication des images et le déploiement automatique sur l'environnement de **test**. Le **staging** et la **production** (déclenchement par tag, base RDS, injection de secrets, approbation manuelle) feront l'objet d'une suite.
 
 ## Vue d'ensemble
 
@@ -28,11 +28,11 @@ Deux événements alimentent la chaîne :
 - un **push sur `master`** produit des images `:main` et déploie sur test uniquement ;
 - un **tag `vX.Y.Z`** produit des images versionnées et parcourt la chaîne jusqu'au staging, la production étant l'objet de la suite.
 
-## Étape 1 — Publish : construire et publier les images
+## Étape 1 (Publish) : construire et publier les images
 
 Le workflow `publish.yaml` construit les images du backend et du frontend et les pousse sur GitHub Container Registry (GHCR). Il se déclenche sur les push `master` et les tags `v*.*.*`.
 
-Le tag appliqué aux images dépend du déclencheur — un tag mobile `main` pour une branche, un tag figé pour une version :
+Le tag appliqué aux images dépend du déclencheur : un tag mobile `main` pour une branche, un tag figé pour une version :
 
 ```yaml
 - name: Compute image tag
@@ -45,13 +45,13 @@ Le tag appliqué aux images dépend du déclencheur — un tag mobile `main` pou
     fi
 ```
 
-Cette distinction est structurante : `:main` est réécrit à chaque push et sert le test, tandis que `:vX.Y.Z` est immuable et sert staging et prod — une version déployée en production correspond ainsi toujours à un artefact figé.
+Cette distinction est structurante : `:main` est réécrit à chaque push et sert le test, tandis que `:vX.Y.Z` est immuable et sert staging et prod ; une version déployée en production correspond ainsi toujours à un artefact figé.
 
 Un tag mobile a toutefois une conséquence sur le déploiement : si le chart référence `image: ghcr.io/...:main` et que ce tag est seulement réécrit dans le registry, un `helm upgrade` produit un manifeste de Deployment identique au précédent. Kubernetes ne détecte aucun changement dans le template de pod et ne déclenche **aucun rollout** : les pods existants continuent d'exécuter l'ancienne image, même avec `imagePullPolicy: Always` (qui ne s'applique qu'à la création d'un pod). Pour que chaque push produise un déploiement effectif, l'image est également taguée avec le SHA du commit (`:sha-<commit>` ou `:${{ github.sha }}`), et c'est ce tag unique qui est transmis au chart ; `:main` ne reste qu'un alias pratique pour un usage manuel.
 
 Le build lui-même utilise `docker/build-push-action`, avec `cache-from`/`cache-to` en `type=gha` : le cache de Buildx est branché sur celui de GitHub Actions, et les couches inchangées ne sont pas reconstruites. L'authentification à GHCR passe par le `GITHUB_TOKEN` du workflow, sans secret à gérer, dès lors que le job a la permission `packages: write`.
 
-## Étape 2 — Deploy Test : provisionner et déployer
+## Étape 2 (Deploy Test) : provisionner et déployer
 
 Le workflow `deploy-test.yaml` se déclenche à la fin de `Publish` via l'événement `workflow_run`, et ne s'exécute que si le build a réussi :
 
@@ -77,9 +77,9 @@ Le job enchaîne ensuite trois temps.
 - run: terraform apply -auto-approve -var-file=envs/test/terraform.tfvars
 ```
 
-Chaque environnement a sa clé de state (`envs/test/backend.hcl`) et ses variables (`envs/test/terraform.tfvars`, avec `enable_rds = false` en test — une base éphémère suffit). Une seule configuration racine sert ainsi tous les environnements, le fichier passé à `-backend-config` sélectionnant le state : ce mécanisme de configuration partielle est détaillé dans l'article [Terraform remote state](../08-iac/2026-07-11-terraform-remote-state.md#configuration-partielle-avec--backend-config). L'article [multi-environnements Terraform](../08-iac/2026-07-19-terraform-multi-environnements.md) compare cette approche aux workspaces et aux répertoires séparés par environnement.
+Chaque environnement a sa clé de state (`envs/test/backend.hcl`) et ses variables (`envs/test/terraform.tfvars`, avec `enable_rds = false` en test : une base éphémère suffit). Une seule configuration racine sert ainsi tous les environnements, le fichier passé à `-backend-config` sélectionnant le state : ce mécanisme de configuration partielle est détaillé dans l'article [Terraform remote state](../08-iac/2026-07-11-terraform-remote-state.md#configuration-partielle-avec--backend-config). L'article [multi-environnements Terraform](../08-iac/2026-07-19-terraform-multi-environnements.md) compare cette approche aux workspaces et aux répertoires séparés par environnement.
 
-**La connexion au cluster** se fait avec `aws eks update-kubeconfig --name task-horizon-eks --region eu-west-3`, à partir des credentials AWS configurés en amont — les mêmes qui ont autorisé le `terraform apply`.
+**La connexion au cluster** se fait avec `aws eks update-kubeconfig --name task-horizon-eks --region eu-west-3`, à partir des credentials AWS configurés en amont, les mêmes qui ont autorisé le `terraform apply`.
 
 **Helm** déploie enfin l'application. `upgrade --install` installe la release ou la met à jour : l'opération est idempotente et rejouable.
 

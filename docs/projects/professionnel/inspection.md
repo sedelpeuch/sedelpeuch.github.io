@@ -19,7 +19,7 @@ import TabItem from '@theme/TabItem';
 
 ## Contexte
 
-Sur les parcs portuaires, les véhicules neufs arrivent par convois avant d'être chargés dans des navires rouliers. Chaque véhicule doit passer une inspection visuelle pour détecter les dommages survenus pendant le transport — rayures, impacts, déformations de carrosserie. Ces inspections se faisaient manuellement : lentes, coûteuses et inégales selon l'opérateur.
+Sur les parcs portuaires, les véhicules neufs arrivent par convois avant d'être chargés dans des navires rouliers. Chaque véhicule doit passer une inspection visuelle pour détecter les dommages survenus pendant le transport : rayures, impacts, déformations de carrosserie. Ces inspections se faisaient manuellement : lentes, coûteuses et inégales selon l'opérateur.
 
 Le CATIE a accompagné une entreprise internationale spécialisée dans le contrôle automatisé des véhicules sur sites portuaires pour automatiser entièrement ce processus. Le dispositif final capture jusqu'à 20 000 images en 3 secondes par véhicule, détecte les défauts de surface, et redirige les cas suspects vers une zone de vérification sans interrompre le flux logistique. J'ai contribué à deux composants d'une infrastructure plus large pilotée par un orchestrateur central, ainsi qu'à l'optimisation de la chaîne d'acquisition et aux scripts d'automatisation et de test.
 
@@ -52,4 +52,4 @@ Le dispositif déployé capture jusqu'à 20 000 images en 3 secondes par véhicu
 
 ## Liens
 
-- [Rapport d'activités CATIE 2025 – section Vision par ordinateur](https://www.catie.fr/wp-content/uploads/2026/04/RA2025_web.pdf)
+- [Rapport d'activités CATIE 2025, section Vision par ordinateur](https://www.catie.fr/wp-content/uploads/2026/04/RA2025_web.pdf)

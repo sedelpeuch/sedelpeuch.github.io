@@ -13,7 +13,7 @@ Terraform ne gère pas toujours l'intégralité d'une infrastructure. En pratiqu
 
 Un bloc `resource` déclare une ressource que Terraform crée, modifie et détruit. Elle vit dans le state, et Terraform en est responsable pour toute sa durée de vie.
 
-Un bloc `data` est une requête en lecture seule vers l'API du provider. Terraform interroge AWS au moment du `plan`, récupère la valeur, et l'injecte dans la configuration. Rien n'est créé, rien n'est détruit — si la ressource ciblée n'existe pas, le `plan` échoue. Exception : si les arguments d'un data source dépendent d'une valeur encore inconnue (un attribut `known after apply` d'une ressource créée dans le même plan), sa lecture est reportée à l'`apply`, et tout ce qui en dépend apparaît lui aussi comme inconnu dans le plan.
+Un bloc `data` est une requête en lecture seule vers l'API du provider. Terraform interroge AWS au moment du `plan`, récupère la valeur, et l'injecte dans la configuration. Rien n'est créé, rien n'est détruit : si la ressource ciblée n'existe pas, le `plan` échoue. Exception : si les arguments d'un data source dépendent d'une valeur encore inconnue (un attribut `known after apply` d'une ressource créée dans le même plan), sa lecture est reportée à l'`apply`, et tout ce qui en dépend apparaît lui aussi comme inconnu dans le plan.
 
 ```hcl
 # Terraform crée ce VPC et le gère
@@ -35,7 +35,7 @@ La référence suit le même pattern que pour les ressources, avec le préfixe `
 data.<type>.<nom>.<attribut>
 ```
 
-Par convention, les data sources sont regroupés dans un fichier `data.tf` séparé — convention communautaire établie, non imposée par HashiCorp, mais qui améliore la lisibilité dès que la configuration grossit.
+Par convention, les data sources sont regroupés dans un fichier `data.tf` séparé, selon une convention communautaire établie, non imposée par HashiCorp, mais qui améliore la lisibilité dès que la configuration grossit.
 
 ## Résoudre des dépendances dynamiques
 
@@ -47,7 +47,7 @@ Le data source `aws_availability_zones` interroge AWS et retourne la liste des A
 data "aws_availability_zones" "available" {}
 ```
 
-L'argument `state = "available"` restreint le résultat aux zones utilisables ; un filtre sur `opt-in-status` écarte les *Local Zones*, qui nécessitent une activation explicite. L'attribut `names` expose la liste triée — `names[0]`, `names[1]`, `names[2]` correspondent aux trois AZs de la région dans l'ordre alphabétique.
+L'argument `state = "available"` restreint le résultat aux zones utilisables ; un filtre sur `opt-in-status` écarte les *Local Zones*, qui nécessitent une activation explicite. L'attribut `names` expose la liste triée : `names[0]`, `names[1]`, `names[2]` correspondent aux trois AZs de la région dans l'ordre alphabétique.
 
 ```hcl
 data "aws_availability_zones" "available" {
@@ -61,7 +61,7 @@ data "aws_availability_zones" "available" {
 
 Les noms d'AZ sont propres à chaque compte : AWS répartit aléatoirement la correspondance entre noms et zones physiques pour équilibrer la charge, si bien que `eu-west-3a` ne désigne pas forcément le même centre de données dans deux comptes. L'attribut `zone_ids` (`euw3-az1`, `euw3-az2`...) donne les identifiants physiques, stables d'un compte à l'autre ; ils servent lorsque des ressources de plusieurs comptes doivent être colocalisées.
 
-L'intérêt réel n'est pas de remplacer `eu-west-3a` par `names[0]` — c'est équivalent. C'est de répartir des ressources sur plusieurs AZs sans connaître leurs noms à l'avance :
+L'intérêt n'est pas de remplacer `eu-west-3a` par `names[0]`, ce qui revient au même, mais de répartir des ressources sur plusieurs AZs sans connaître leurs noms à l'avance :
 
 ```hcl
 resource "aws_subnet" "public" {
@@ -77,7 +77,7 @@ resource "aws_subnet" "private" {
 }
 ```
 
-Les deux subnets atterrissent dans des AZs distinctes quelle que soit la région — la même configuration fonctionne en `eu-west-3` ou `us-east-1` sans modification.
+Les deux subnets atterrissent dans des AZs distinctes quelle que soit la région : la même configuration fonctionne en `eu-west-3` ou `us-east-1` sans modification.
 
 ## Consommer le contexte d'exécution
 
@@ -87,7 +87,7 @@ Certains data sources n'interrogent pas une ressource spécifique mais l'environ
 data "aws_caller_identity" "current" {}
 ```
 
-Les attributs exposés sont `account_id`, `arn` et `user_id`. L'account ID est particulièrement utile pour construire des noms de ressources uniques — les buckets S3 ont un espace de nommage global sur AWS, deux comptes différents ne peuvent pas partager le même nom :
+Les attributs exposés sont `account_id`, `arn` et `user_id`. L'account ID est particulièrement utile pour construire des noms de ressources uniques, car les buckets S3 ont un espace de nommage global sur AWS, deux comptes différents ne peuvent pas partager le même nom :
 
 ```hcl
 resource "aws_s3_bucket" "assets" {
@@ -122,7 +122,7 @@ data "aws_ami" "ubuntu" {
 }
 ```
 
-`most_recent = true` sélectionne la dernière version publiée parmi les résultats. `owners` restreint la recherche aux AMIs publiées par Canonical — sans ce filtre, une AMI tierce portant un nom similaire pourrait être sélectionnée. Le bloc `filter` affine par pattern de nom ; le wildcard `*` correspond à n'importe quelle date de publication. Le motif doit suivre exactement le nommage de l'éditeur : depuis Ubuntu 23.10, Canonical publie ses images sous le préfixe `hvm-ssd-gp3` (volume racine `gp3`), et un filtre sur l'ancien préfixe `hvm-ssd` ne trouve aucune image 24.04. `aws ec2 describe-images --owners 099720109477 --filters "Name=name,Values=*24.04*" --query 'Images[].Name'` permet de vérifier le motif. Canonical publie aussi l'identifiant de la dernière image dans un paramètre SSM public (`/aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id`), lisible avec le data source `aws_ssm_parameter`.
+`most_recent = true` sélectionne la dernière version publiée parmi les résultats. `owners` restreint la recherche aux AMIs publiées par Canonical ; sans ce filtre, une AMI tierce portant un nom similaire pourrait être sélectionnée. Le bloc `filter` affine par pattern de nom ; le wildcard `*` correspond à n'importe quelle date de publication. Le motif doit suivre exactement le nommage de l'éditeur : depuis Ubuntu 23.10, Canonical publie ses images sous le préfixe `hvm-ssd-gp3` (volume racine `gp3`), et un filtre sur l'ancien préfixe `hvm-ssd` ne trouve aucune image 24.04. `aws ec2 describe-images --owners 099720109477 --filters "Name=name,Values=*24.04*" --query 'Images[].Name'` permet de vérifier le motif. Canonical publie aussi l'identifiant de la dernière image dans un paramètre SSM public (`/aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id`), lisible avec le data source `aws_ssm_parameter`.
 
 ```hcl
 resource "aws_instance" "web" {
@@ -135,13 +135,13 @@ resource "aws_instance" "web" {
 
 ## Quand le plan échoue
 
-Un data source qui ne trouve pas de résultat fait échouer le `plan` — pas l'`apply`. C'est une distinction importante : Terraform détecte l'absence avant d'exécuter quoi que ce soit.
+Un data source qui ne trouve pas de résultat fait échouer le `plan`, pas l'`apply`. La nuance compte : Terraform détecte l'absence avant d'exécuter quoi que ce soit.
 
 ```text
 Error: Your query returned no results. Please change your search criteria and try again.
 ```
 
-Ce comportement est intentionnel. Si un data source cible une ressource externe qui doit exister avant le déploiement — un VPC partagé, un certificat TLS géré par une autre équipe — l'échec au `plan` signale explicitement que la précondition n'est pas remplie, plutôt que de laisser l'`apply` échouer à mi-chemin sur une ressource dépendante.
+Ce comportement est intentionnel. Si un data source cible une ressource externe qui doit exister avant le déploiement (un VPC partagé, un certificat TLS géré par une autre équipe), l'échec au `plan` signale explicitement que la précondition n'est pas remplie, plutôt que de laisser l'`apply` échouer à mi-chemin sur une ressource dépendante.
 
 Cette règle vaut pour les data sources qui désignent un objet unique (`aws_vpc`, `aws_ami`, `aws_acm_certificate`). Les data sources au pluriel (`aws_subnets`, `aws_instances`) renvoient une liste, éventuellement vide, sans erreur : une contrainte explicite (`postcondition` dans un bloc `lifecycle`, ou `length(...) > 0` dans une validation) est alors nécessaire pour transformer une absence en échec.
 

@@ -4,7 +4,7 @@ description: "Déployer Actions Runner Controller (ARC) sur Kubernetes pour des 
 tags: [cicd, devops]
 ---
 
-Un [runner auto-hébergé](./2024-12-20-self-host-runner.md) classique est une machine fixe qui exécute les jobs séquentiellement. Si dix workflows se déclenchent simultanément, neuf attendent. Actions Runner Controller (ARC) est un opérateur Kubernetes qui provisionne des pods runner à la demande — un pod par job — et les supprime à la fin de l'exécution. La capacité s'adapte automatiquement à la charge.
+Un [runner auto-hébergé](./2024-12-20-self-host-runner.md) classique est une machine fixe qui exécute les jobs séquentiellement. Si dix workflows se déclenchent simultanément, neuf attendent. Actions Runner Controller (ARC) est un opérateur Kubernetes qui provisionne des pods runner à la demande (un pod par job) et les supprime à la fin de l'exécution. La capacité s'adapte automatiquement à la charge.
 
 <!--truncate-->
 
@@ -12,9 +12,9 @@ Un [runner auto-hébergé](./2024-12-20-self-host-runner.md) classique est une m
 
 ARC (mode *runner scale sets*, chart `gha-runner-scale-set`) repose sur trois composants déployés dans le cluster :
 
-- **Le controller** (`arc-systems`) — réconcilie les ressources personnalisées d'ARC (`AutoscalingRunnerSet`, `EphemeralRunnerSet`, `EphemeralRunner`) et crée les pods correspondants.
-- **Le listener** (`arc-systems`) — un pod par scale set, qui maintient une session de long polling auprès du service GitHub Actions. Il reçoit les messages « job disponible » et ajuste le nombre de runners désiré, entre `minRunners` et `maxRunners`.
-- **Les runners éphémères** (`arc-runners`) — un pod par job. Chaque pod s'enregistre comme runner *just-in-time*, exécute un seul job puis se termine. Il contient le binaire runner GitHub Actions et, optionnellement, un sidecar Docker-in-Docker pour les jobs qui construisent des images.
+- **Le controller** (`arc-systems`) : réconcilie les ressources personnalisées d'ARC (`AutoscalingRunnerSet`, `EphemeralRunnerSet`, `EphemeralRunner`) et crée les pods correspondants.
+- **Le listener** (`arc-systems`) : un pod par scale set, qui maintient une session de long polling auprès du service GitHub Actions. Il reçoit les messages « job disponible » et ajuste le nombre de runners désiré, entre `minRunners` et `maxRunners`.
+- **Les runners éphémères** (`arc-runners`) : un pod par job. Chaque pod s'enregistre comme runner *just-in-time*, exécute un seul job puis se termine. Il contient le binaire runner GitHub Actions et, optionnellement, un sidecar Docker-in-Docker pour les jobs qui construisent des images.
 
 ```text
 GitHub Actions
@@ -97,7 +97,7 @@ helm install arc-runners \
 ```
 
 :::warning Nommage
-Le nom d'installation Helm (`arc-runners` ici), sauf surcharge par la valeur `runnerScaleSetName`, devient l'identifiant du scale set dans GitHub. C'est la valeur à utiliser dans `runs-on` des workflows. Choisir un nom stable — le renommer casse tous les workflows qui le référencent.
+Le nom d'installation Helm (`arc-runners` ici), sauf surcharge par la valeur `runnerScaleSetName`, devient l'identifiant du scale set dans GitHub. C'est la valeur à utiliser dans `runs-on` des workflows. Choisir un nom stable : le renommer casse tous les workflows qui le référencent.
 :::
 
 ## Utilisation dans un workflow

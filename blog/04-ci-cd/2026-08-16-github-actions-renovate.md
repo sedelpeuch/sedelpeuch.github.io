@@ -32,7 +32,7 @@ Deux modes d'exécution coexistent :
 | Accès au dépôt | Service tiers avec droits d'écriture | Token généré dans le workflow |
 | Registres privés | Identifiants chiffrés avec la clé publique du service | Secrets GitHub injectés en variables d'environnement |
 
-L'action `renovatebot/github-action` exécute l'image officielle de Renovate dans un job, ce qui permet de chaîner Renovate à la CI existante — point déterminant pour l'automerge.
+L'action `renovatebot/github-action` exécute l'image officielle de Renovate dans un job, ce qui permet de chaîner Renovate à la CI existante, point déterminant pour l'automerge.
 
 ## Authentification : GitHub App plutôt que PAT ou GITHUB_TOKEN
 
@@ -74,8 +74,8 @@ Les règles sont évaluées dans l'ordre et **une règle ultérieure écrase les
 
 Une classification des dépendances en deux niveaux de risque se traduit directement en `packageRules` :
 
-- **niveau 1 — revue manuelle** (`automerge: false`) : services d'infrastructure dont la panne coupe l'accès au reste (reverse proxy, authentification, sauvegarde) et applications dont les migrations de schéma touchent des données irremplaçables ;
-- **niveau 2 — automerge** (`automerge: true`) : tout le reste, dès lors qu'une casse est soit détectée par la CI, soit rattrapable sans perte de données.
+- **niveau 1, revue manuelle** (`automerge: false`) : services d'infrastructure dont la panne coupe l'accès au reste (reverse proxy, authentification, sauvegarde) et applications dont les migrations de schéma touchent des données irremplaçables ;
+- **niveau 2, automerge** (`automerge: true`) : tout le reste, dès lors qu'une casse est soit détectée par la CI, soit rattrapable sans perte de données.
 
 Avec `automerge: true`, Renovate ne fusionne une PR que si **tous les checks** sont au vert. Par défaut (`platformAutomerge: true`), il délègue la fusion à l'auto-merge natif de GitHub quand il est activé sur le dépôt : une règle de protection de branche exigeant le check de validation devient alors indispensable, sans quoi GitHub peut fusionner avant la fin des tests. L'option `minimumReleaseAge` (par exemple `"3 days"`) ajoute un délai entre la publication d'une version et sa fusion automatique, le temps que d'éventuelles régressions soient signalées en amont.
 

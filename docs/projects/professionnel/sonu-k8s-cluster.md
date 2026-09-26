@@ -46,7 +46,7 @@ flowchart LR
     repo --> gha{{GitHub\nActions}}
     gha -->|deploy-helm\ngeneric_workflows| chart{{Helm\nChart}}
 
-    subgraph cluster["Cluster — 7 nœuds"]
+    subgraph cluster["Cluster (7 nœuds)"]
         chart --> pod{{Pod}}
         pod --- svc{{Service\nNodePort}}
         pod --- pv{{PersistentVolume\nlocal-storage}}
@@ -63,21 +63,21 @@ Au-delà de la chaîne d'observabilité, le cluster héberge les outils du quoti
 <Tabs>
   <TabItem value="observabilite" label="Observabilité">
 
-La chaîne d'observabilité couvre trois couches. **Prometheus** collecte les métriques des workloads, des composants Kubernetes et des nœuds, via un node exporter déployé sur chacun. **Grafana** visualise ces données — son volume persistant est configuré en `Retain` pour que les dashboards survivent aux redéploiements. **Smokeping** mesure la latence réseau vers des cibles externes et internes : c'est ce qui permet de distinguer une panne applicative d'une dégradation réseau en amont.
+La chaîne d'observabilité couvre trois couches. **Prometheus** collecte les métriques des workloads, des composants Kubernetes et des nœuds, via un node exporter déployé sur chacun. **Grafana** visualise ces données ; son volume persistant est configuré en `Retain` pour que les dashboards survivent aux redéploiements. **Smokeping** mesure la latence réseau vers des cibles externes et internes : c'est ce qui permet de distinguer une panne applicative d'une dégradation réseau en amont.
 
 **Loki** centralise les logs de l'ensemble du cluster. Promtail tourne comme DaemonSet sur chaque nœud et pousse les logs vers Loki. Avoir les logs applicatifs et système au même endroit que les métriques permet de corréler un pic Prometheus avec les lignes de logs correspondantes sans changer d'outil. **Uptime Kuma** complète le tableau en donnant une vue binaire de la disponibilité de chaque service.
 
   </TabItem>
   <TabItem value="services" label="Services internes">
 
-Le cluster héberge une palette de services qui reflète les outils du quotidien de l'équipe. **Dashy** centralise tous les accès. **Portainer** offre une vue visuelle des workloads, utile pour les collègues qui n'ont pas `kubectl` en réflexe. **n8n** sert de colle entre des systèmes qui n'ont pas d'intégration native — notifications, synchronisations, déclencheurs.
+Le cluster héberge une palette de services qui reflète les outils du quotidien de l'équipe. **Dashy** centralise tous les accès. **Portainer** offre une vue visuelle des workloads, utile pour les collègues qui n'ont pas `kubectl` en réflexe. **n8n** sert de colle entre des systèmes qui n'ont pas d'intégration native (notifications, synchronisations, déclencheurs).
 
 Plusieurs [outils internes](outils-internes.md) automatisent des tâches répétitives : un bot surveille les mouvements de stock Dolibarr et envoie des alertes, un autre traite les demandes de téléchargement du site 6TRON, un troisième suit les contributions GitHub. Ces petits services tournent depuis des centaines de jours sans intervention. **MARP** permet de générer des présentations depuis des fichiers Markdown en CI/CD. **jira-dashboard** expose des métriques Jira à l'équipe.
 
   </TabItem>
   <TabItem value="iot" label="IoT & projets">
 
-**Thingsboard** tourne avec PostgreSQL sur des volumes persistants : c'est la plateforme de collecte et de visualisation de données capteurs. **IoT Gateway** gère la connectivité avec des équipements industriels via Modbus — ce chart a été principalement développé par un collègue, avec ma contribution sur l'intégration infrastructure.
+**Thingsboard** tourne avec PostgreSQL sur des volumes persistants : c'est la plateforme de collecte et de visualisation de données capteurs. **IoT Gateway** gère la connectivité avec des équipements industriels via Modbus ; ce chart a été principalement développé par un collègue, avec ma contribution sur l'intégration infrastructure.
 
 Le cluster sert également de terrain de déploiement pour de nouveaux projets avant qu'ils ne trouvent leur hébergement définitif. Des namespaces dédiés apparaissent et disparaissent au rythme des prototypes en cours.
 
@@ -94,7 +94,7 @@ L'incident a aussi mis en évidence une dépendance : les [runners GitHub ARC](g
 
 ## Limites connues
 
-**Le stockage est manuel et fragile.** Il n'y a pas de storage provisioner dynamique. Chaque PersistentVolume est créé à la main, lié à un nœud spécifique, avec un chemin local explicite. Un volume inutilisé peut rester bloqué en état `Terminating` pendant des centaines de jours si ses finalizers ne sont pas retirés à la main — c'est un état actuel du cluster, pas une hypothèse.
+**Le stockage est manuel et fragile.** Il n'y a pas de storage provisioner dynamique. Chaque PersistentVolume est créé à la main, lié à un nœud spécifique, avec un chemin local explicite. Un volume inutilisé peut rester bloqué en état `Terminating` pendant des centaines de jours si ses finalizers ne sont pas retirés à la main. C'est un état actuel du cluster, pas une hypothèse.
 
 **Un composant est en CrashLoopBackOff.** Au moment de la rédaction, le pod Tailscale associé au controller ingress-nginx redémarre en boucle depuis plusieurs semaines, sans bloquer le reste : les services ont leurs propres proxys Tailscale et restent accessibles. Ce dysfonctionnement est toléré faute de temps ; il ne bloque rien de critique, mais il pollue les logs et génère du bruit dans la supervision.
 

@@ -48,7 +48,7 @@ Un template qui n'évolue pas devient vite obsolète. Cruft propage les mises à
 
 ## Limites connues
 
-L'adoption de Cruft n'est pas universelle — certains projets anciens ne l'ont pas activé, ce qui crée une dérive progressive avec le template. Les projets de type script n'ont pas de tests par convention, ce qui peut encourager la mauvaise habitude de ne jamais en écrire même quand ça serait utile. La frontière entre « module » et « application » n'est pas toujours évidente pour les contributeurs, ce qui génère parfois des choix de type inadaptés.
+L'adoption de Cruft n'est pas universelle : certains projets anciens ne l'ont pas activé, ce qui crée une dérive progressive avec le template. Les projets de type script n'ont pas de tests par convention, ce qui peut encourager la mauvaise habitude de ne jamais en écrire même quand ça serait utile. La frontière entre « module » et « application » n'est pas toujours évidente pour les contributeurs, ce qui génère parfois des choix de type inadaptés.
 
 ## Liens
 

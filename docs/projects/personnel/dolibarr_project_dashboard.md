@@ -15,7 +15,7 @@ tags: [fastapi, react, typescript, dolibarr, erp, docker, python]
 
 ## Contexte
 
-Dolibarr est un ERP open source complet, mais son interface native est pensée pour naviguer dans un projet à la fois. Pour un coordinateur qui suit plusieurs projets simultanément, avoir une vue consolidée — tâches, temps passé par utilisateur, factures, propositions commerciales, clients — demande de naviguer entre des dizaines d'écrans. Ce dashboard agrège ces informations en une seule page, en interrogeant directement l'API REST de l'instance Dolibarr, complétée par une API Rails interne (Gaaspard) pour les opportunités commerciales.
+Dolibarr est un ERP open source complet, mais son interface native est pensée pour naviguer dans un projet à la fois. Pour un coordinateur qui suit plusieurs projets simultanément, avoir une vue consolidée (tâches, temps passé par utilisateur, factures, propositions commerciales, clients) demande de naviguer entre des dizaines d'écrans. Ce dashboard agrège ces informations en une seule page, en interrogeant directement l'API REST de l'instance Dolibarr, complétée par une API Rails interne (Gaaspard) pour les opportunités commerciales.
 
 Projet expérimental, développé pour mon usage de coordinateur au CATIE et comme terrain d'expérimentation pour le développement assisté par agents IA.
 
@@ -33,7 +33,7 @@ S'y ajoutent le suivi du pointage par utilisateur, une vue de gestion de charge 
 
 ## Architecture
 
-Le backend FastAPI est organisé en trois couches strictement séparées. La couche routes est fine : elle gère la validation HTTP et délègue immédiatement. La couche services contient toute la logique métier — agrégation des données multi-projets, transformations, orchestration des appels. La couche infrastructure isole les détails d'intégration : clients HTTP (httpx) vers Dolibarr et Gaaspard, stockage JSON, cache, logging.
+Le backend FastAPI est organisé en trois couches strictement séparées. La couche routes est fine : elle gère la validation HTTP et délègue immédiatement. La couche services contient toute la logique métier : agrégation des données multi-projets, transformations, orchestration des appels. La couche infrastructure isole les détails d'intégration : clients HTTP (httpx) vers Dolibarr et Gaaspard, stockage JSON, cache, logging.
 
 Pour un backend d'environ 1 800 lignes, cette séparation reste justifiée : elle rend les services testables indépendamment de l'infrastructure, et l'infrastructure remplaçable sans toucher à la logique métier.
 
@@ -43,7 +43,7 @@ Le frontend est React + TypeScript + Vite + Tailwind. Les appels API passent par
 
 ### Un cache thread-safe générique
 
-Certaines données Dolibarr changent rarement — les noms de clients, les informations de tiers. Les récupérer à chaque requête de dashboard serait inutilement lent. Le cache `ThreadSafeCache[T]` est une classe générique avec un `RLock` Python, exposant une méthode `get_or_set` pour le calcul paresseux : si la valeur est absente, la fonction de calcul est appelée et son résultat mis en cache. Le `RLock` (reentrant lock) permet les appels imbriqués depuis le même thread sans deadlock.
+Certaines données Dolibarr changent rarement, comme les noms de clients, les informations de tiers. Les récupérer à chaque requête de dashboard serait inutilement lent. Le cache `ThreadSafeCache[T]` est une classe générique avec un `RLock` Python, exposant une méthode `get_or_set` pour le calcul paresseux : si la valeur est absente, la fonction de calcul est appelée et son résultat mis en cache. Le `RLock` (reentrant lock) permet les appels imbriqués depuis le même thread sans deadlock.
 
 ### JSON plutôt qu'une base de données
 

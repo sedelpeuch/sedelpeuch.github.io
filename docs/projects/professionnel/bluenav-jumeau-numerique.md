@@ -49,5 +49,5 @@ Les algorithmes de navigation, de maintien de cap et de positionnement dynamique
 
 ## Liens
 
-- [Article CATIE – BlueNav](https://www.catie.fr/language/fr/bluenav-2/)
+- [Article CATIE : BlueNav](https://www.catie.fr/language/fr/bluenav-2/)
 - [bluenav.com](https://bluenav.com/)

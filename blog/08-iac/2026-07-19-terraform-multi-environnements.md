@@ -191,14 +191,14 @@ Cette approche fonctionne aussi bien avec des workspaces qu'avec des répertoire
 | Critère | Workspaces | Répertoires séparés |
 |---------|-----------|---------------------|
 | Isolation du state | Oui | Oui |
-| Isolation de la configuration | Non — même code pour tous | Oui — code indépendant par environnement |
-| Comptes / credentials AWS distincts | Non — `provider` partagé | Oui — un `provider` par répertoire |
+| Isolation de la configuration | Non : même code pour tous | Oui : code indépendant par environnement |
+| Comptes / credentials AWS distincts | Non : `provider` partagé | Oui : un `provider` par répertoire |
 | Divergence structurelle entre environnements | Difficile (conditionnelles) | Native |
 | Risque d'erreur (mauvais environnement ciblé) | Élevé (sélection implicite) | Faible (répertoire explicite) |
 | Duplication de code | Aucune | Boilerplate racine dupliqué |
 | Cas d'usage adapté | Environnements proches, projet modeste | Environnements divergents, production critique |
 
-La structuration par répertoires est l'approche la plus répandue dès qu'un environnement de production est en jeu : l'isolation explicite réduit le risque d'appliquer une modification destinée à dev sur prod, et la possibilité de cibler des comptes AWS distincts limite l'ampleur d'une erreur. Les workspaces couvrent un besoin plus restreint — des environnements éphémères de test (une stack par pull request, par exemple), où la légèreté de `terraform workspace new` compense l'absence de divergence structurelle et le partage des credentials.
+La structuration par répertoires est l'approche la plus répandue dès qu'un environnement de production est en jeu : l'isolation explicite réduit le risque d'appliquer une modification destinée à dev sur prod, et la possibilité de cibler des comptes AWS distincts limite l'ampleur d'une erreur. Les workspaces couvrent un besoin plus restreint : des environnements éphémères de test (une stack par pull request, par exemple), où la légèreté de `terraform workspace new` compense l'absence de divergence structurelle et le partage des credentials.
 
 ## Application / Projet lié
 

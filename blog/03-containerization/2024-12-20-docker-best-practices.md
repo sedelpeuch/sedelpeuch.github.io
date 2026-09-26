@@ -16,10 +16,10 @@ Les images officielles proposent plusieurs variantes. La taille impacte le temps
 # À éviter : image complète avec des centaines de paquets inutiles
 FROM python:3.12
 
-# Préférer : Slim (Debian sans paquets non-essentiels) — bon compromis compatibilité/taille
+# Préférer : Slim (Debian sans paquets non-essentiels) : bon compromis compatibilité/taille
 FROM python:3.12-slim
 
-# Ou : Alpine (musl libc) — minimal, mais parfois incompatible avec des libs C
+# Ou : Alpine (musl libc) : minimal, mais parfois incompatible avec des libs C
 FROM python:3.12-alpine
 ```
 
@@ -83,7 +83,7 @@ COPY --from=builder /app/server /server
 CMD ["/server"]
 ```
 
-L'image finale contient uniquement le binaire compilé et les certificats CA — pas le compilateur Go, pas les sources, pas le cache du module. Une image Go complète pèse ~1 Go ; l'image finale avec ce pattern pèse ~15 Mo. `CGO_ENABLED=0` produit un binaire statique, indépendant de la glibc de l'étage de compilation : sans cette option, le binaire lié dynamiquement échouerait au démarrage sur Alpine (musl).
+L'image finale contient uniquement le binaire compilé et les certificats CA, sans le compilateur Go, les sources ni le cache du module. Une image Go complète pèse ~1 Go ; l'image finale avec ce pattern pèse ~15 Mo. `CGO_ENABLED=0` produit un binaire statique, indépendant de la glibc de l'étage de compilation : sans cette option, le binaire lié dynamiquement échouerait au démarrage sur Alpine (musl).
 
 ## Exécuter en utilisateur non-root
 
@@ -114,7 +114,7 @@ Chaque instruction `RUN` ou `COPY` crée une couche, et `ENV` ou `ARG` sont enre
 ```dockerfile
 # À éviter : le secret reste dans les couches même si supprimé ensuite
 RUN echo "API_KEY=secret" > /app/.env    # couche 1
-RUN rm /app/.env                          # couche 2 — secret toujours visible dans couche 1
+RUN rm /app/.env                          # couche 2 : secret toujours visible dans couche 1
 
 # Correct : passer les secrets via BuildKit (ne persistent pas dans l'image)
 RUN --mount=type=secret,id=api_key \
@@ -128,7 +128,7 @@ docker build --secret id=api_key,src=./api_key.txt -t myapp .
 
 Le fichier est monté en tmpfs dans `/run/secrets/api_key` uniquement pendant l'exécution de ce `RUN` : il n'apparaît ni dans les couches, ni dans l'historique, ni dans le cache de build.
 
-Les secrets applicatifs (mots de passe DB, tokens) ne doivent jamais être embarqués dans l'image — ils doivent être injectés à l'exécution via des variables d'environnement ou un gestionnaire de secrets (Vault, AWS Secrets Manager, Kubernetes Secrets).
+Les secrets applicatifs (mots de passe DB, tokens) ne doivent jamais être embarqués dans l'image : ils doivent être injectés à l'exécution via des variables d'environnement ou un gestionnaire de secrets (Vault, AWS Secrets Manager, Kubernetes Secrets).
 
 ## Épingler les versions des paquets
 
@@ -150,7 +150,7 @@ Pour Python, `pip-compile` (pip-tools) ou `poetry.lock` / `uv.lock` génèrent d
 
 ## Limiter les paquets installés
 
-Chaque paquet installé ajoute de la surface d'attaque. `apt-get` installe les paquets recommandés par défaut — `--no-install-recommends` réduit le nombre de paquets réellement installés.
+Chaque paquet installé ajoute de la surface d'attaque. `apt-get` installe les paquets recommandés par défaut ; `--no-install-recommends` réduit le nombre de paquets réellement installés.
 
 ```dockerfile
 RUN apt-get update && apt-get install -y \
@@ -159,11 +159,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 ```
 
-`rm -rf /var/lib/apt/lists/*` supprime le cache apt dans la même instruction que l'installation — sinon le cache reste dans la couche et continue d'occuper de l'espace dans l'image finale.
+`rm -rf /var/lib/apt/lists/*` supprime le cache apt dans la même instruction que l'installation, sinon le cache reste dans la couche et continue d'occuper de l'espace dans l'image finale.
 
 ## Utiliser .dockerignore
 
-Un `.dockerignore` à la racine du projet liste les fichiers et répertoires à exclure du contexte de build. Sans ce fichier, `COPY . /app` transfère tout le projet au daemon Docker — y compris `node_modules`, `.git`, les fichiers de log, les caches.
+Un `.dockerignore` à la racine du projet liste les fichiers et répertoires à exclure du contexte de build. Sans ce fichier, `COPY . /app` transfère tout le projet au daemon Docker, y compris `node_modules`, `.git`, les fichiers de log, les caches.
 
 ```text
 .git

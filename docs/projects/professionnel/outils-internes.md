@@ -1,5 +1,5 @@
 ---
-title: Automatisation du quotidien — outils internes SONU
+title: "Automatisation du quotidien : outils internes SONU"
 description: "Bots Slack, dashboard Jira, alertes ERP et site de documentation interne. Outils développés et déployés sur Kubernetes pour automatiser les tâches répétitives de l'équipe SONU au CATIE."
 tags: [python, fastapi, react, slack, kubernetes, helm, automation]
 ---
@@ -59,7 +59,7 @@ flowchart LR
     repo --> gha{{GitHub Actions\ndeploy-helm}}
     gha --> cluster
 
-    subgraph cluster["Cluster sonu — namespace sonu"]
+    subgraph cluster["Cluster sonu, namespace sonu"]
         pod{{Pod}} --- pvc{{PVC\noptionnel}}
     end
 

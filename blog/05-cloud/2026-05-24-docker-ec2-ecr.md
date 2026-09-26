@@ -5,7 +5,7 @@ series: aws
 tags: [cloud, devops]
 ---
 
-Déployer une application conteneurisée sur AWS implique de connecter plusieurs services : une instance EC2 qui fait tourner les conteneurs, ECR comme registre privé d'images, et RDS pour la base de données. Chacun de ces services a ses propres règles réseau, son modèle d'authentification, et ses bonnes pratiques. Cet article couvre l'ensemble du pipeline — de l'installation de Docker sur l'instance jusqu'au déploiement depuis un registre privé, en passant par l'authentification sans credentials en clair.
+Déployer une application conteneurisée sur AWS implique de connecter plusieurs services : une instance EC2 qui fait tourner les conteneurs, ECR comme registre privé d'images, et RDS pour la base de données. Chacun de ces services a ses propres règles réseau, son modèle d'authentification, et ses bonnes pratiques. Cet article couvre l'ensemble du pipeline, de l'installation de Docker sur l'instance jusqu'au déploiement depuis un registre privé, en passant par l'authentification sans credentials en clair.
 
 <!--truncate-->
 
@@ -59,15 +59,15 @@ UFW (pare-feu Ubuntu) ← côté OS, dans l'instance
 Application
 ```
 
-Les **Security Groups** s'appliquent avant que le paquet touche l'instance et sont stateful — autoriser l'entrant suffit, la réponse sort automatiquement. Ils se configurent dans la console AWS et s'appliquent à toutes les instances du groupe.
+Les **Security Groups** s'appliquent avant que le paquet touche l'instance et sont stateful : autoriser l'entrant suffit, la réponse sort automatiquement. Ils se configurent dans la console AWS et s'appliquent à toutes les instances du groupe.
 
-**UFW** est inactif par défaut sur Ubuntu. L'activer ajoute une deuxième couche de défense : si une autre ressource du VPC est compromise (mouvement latéral), UFW peut bloquer les connexions non autorisées même si le Security Group est trop permissif. L'activation se résume à `ufw allow 22 && ufw enable` — l'ordre compte : autoriser SSH avant d'activer pour ne pas se couper l'accès.
+**UFW** est inactif par défaut sur Ubuntu. L'activer ajoute une deuxième couche de défense : si une autre ressource du VPC est compromise (mouvement latéral), UFW peut bloquer les connexions non autorisées même si le Security Group est trop permissif. L'activation se résume à `ufw allow 22 && ufw enable`, et l'ordre compte : autoriser SSH avant d'activer pour ne pas se couper l'accès.
 
 UFW ne filtre cependant pas les ports publiés par Docker. Un `-p 8000:8000` (ou `ports:` dans Compose) fait insérer par Docker des règles de NAT dans iptables : le trafic vers le conteneur est redirigé dans la chaîne `PREROUTING` puis traverse la chaîne `FORWARD` (via `DOCKER-USER` et `DOCKER`), sans passer par la chaîne `INPUT` où UFW applique ses règles. Un port publié reste donc joignable même en l'absence de `ufw allow`. Pour limiter l'exposition, un port peut être publié sur la seule interface locale (`127.0.0.1:8000:8000`, derrière un reverse proxy), ou filtré par des règles ajoutées dans la chaîne `DOCKER-USER` ; le Security Group reste la barrière effective pour le trafic venant de l'extérieur.
 
-## ECR — Registre privé AWS
+## ECR, le registre privé d'AWS
 
-ECR (Elastic Container Registry) est l'équivalent AWS de GHCR : un registre privé d'images Docker. La différence clé avec GHCR est l'intégration native avec IAM — l'authentification passe par les mêmes mécanismes que tous les autres services AWS, pas par un Personal Access Token à rotation manuelle.
+ECR (Elastic Container Registry) est l'équivalent AWS de GHCR : un registre privé d'images Docker. Ce qui le distingue de GHCR est l'intégration native avec IAM : l'authentification passe par les mêmes mécanismes que tous les autres services AWS, pas par un Personal Access Token à rotation manuelle.
 
 Le workflow respecte une séparation des rôles : le build et le push se font depuis le poste dev ou la CI/CD, l'EC2 ne fait que puller.
 
@@ -108,11 +108,11 @@ mon-app:abc1234          ← traçable jusqu'au commit
 
 En pratique, une CI/CD pousse le tag SHA à chaque build, y ajoute la version sémantique lorsqu'il s'agit d'une release, et maintient éventuellement un tag mobile (`latest` ou `main`) pour la commodité en développement ; seuls les tags immuables sont référencés par les déploiements. Le pipeline décrit dans l'article [pipeline CI/CD vers EKS](../04-ci-cd/2026-07-19-pipeline-cicd-eks.md) applique ce schéma. ECR peut rendre les tags immuables au niveau du dépôt (`imageTagMutability=IMMUTABLE`) : toute tentative de repousser un tag existant est alors refusée.
 
-### Lifecycle policies — ne pas laisser s'accumuler les images
+### Lifecycle policies
 
 ECR facture le stockage. Sans politique de rétention, chaque build pousse une nouvelle image qui s'accumule indéfiniment. ECR propose des **lifecycle policies** : des règles qui suppriment automatiquement les images selon des critères (âge, nombre, tag).
 
-Une politique courante : garder les 10 dernières images taguées et supprimer automatiquement toutes les images non taguées de plus de 7 jours. Les images non taguées (`untagged`) sont les images « orphelines » créées quand un tag existant est réassigné à une nouvelle image — elles ne servent plus à rien mais occupent de l'espace.
+Une politique courante : garder les 10 dernières images taguées et supprimer automatiquement toutes les images non taguées de plus de 7 jours. Les images non taguées (`untagged`) sont les images « orphelines » créées quand un tag existant est réassigné à une nouvelle image ; elles ne servent plus à rien mais occupent de l'espace.
 
 ```json
 {
@@ -149,11 +149,11 @@ aws ecr put-lifecycle-policy --repository-name mon-app \
 
 ECR propose aussi le **scan de vulnérabilités** à la publication (`scanOnPush`, à activer par dépôt ou au niveau du registre) : chaque image poussée est analysée contre une base CVE, les résultats sont visibles dans la console. Le scan « amélioré », fondé sur Amazon Inspector, analyse aussi les paquets des langages et réévalue les images en continu lorsque de nouvelles CVE sont publiées. Il ne remplace pas un scanner intégré à la CI/CD, qui bloque une image vulnérable avant sa publication.
 
-### Authentification sur l'EC2 — IAM Role et IMDS
+### Authentification sur l'EC2 : rôle IAM et IMDS
 
-L'erreur la plus fréquente consiste à exécuter `aws configure` sur l'instance avec des clés IAM permanentes — elles atterrissent dans `~/.aws/credentials` en clair sur disque. Si l'instance est compromise, les clés le sont aussi et elles restent valides jusqu'à révocation manuelle.
+L'erreur la plus fréquente consiste à exécuter `aws configure` sur l'instance avec des clés IAM permanentes, qui atterrissent dans `~/.aws/credentials` en clair sur disque. Si l'instance est compromise, les clés le sont aussi et elles restent valides jusqu'à révocation manuelle.
 
-L'approche recommandée est le **rôle IAM** attaché à l'instance (via un *instance profile*). AWS met à disposition des credentials temporaires via l'**Instance Metadata Service** (IMDS), accessible depuis l'intérieur de l'instance à l'adresse `169.254.169.254`. Ce sont des identifiants STS (Security Token Service) de durée limitée, renouvelés automatiquement avant leur expiration — jamais écrits sur le disque, jamais visibles dans un fichier de configuration.
+L'approche recommandée est le **rôle IAM** attaché à l'instance (via un *instance profile*). AWS met à disposition des credentials temporaires via l'**Instance Metadata Service** (IMDS), accessible depuis l'intérieur de l'instance à l'adresse `169.254.169.254`. Ce sont des identifiants STS (Security Token Service) de durée limitée, renouvelés automatiquement avant leur expiration ; ils ne sont jamais écrits sur le disque ni visibles dans un fichier de configuration.
 
 AWS CLI les consomme automatiquement via la chaîne de credentials providers : il interroge l'IMDS si aucune variable d'environnement ni fichier de credentials n'est présent. La policy `AmazonEC2ContainerRegistryReadOnly` attachée au rôle suffit pour puller.
 
@@ -185,9 +185,9 @@ Configuration dans `~/.docker/config.json` :
 
 Avec cette configuration, `docker pull` fonctionne directement sans aucun `docker login` préalable.
 
-## RDS — Déléguer la base de données
+## RDS pour la base de données
 
-En développement, PostgreSQL dans un conteneur Compose suffit. En production, gérer les sauvegardes, la haute disponibilité et les mises à jour du moteur à la main sur une EC2 n'a pas de sens — c'est le problème que RDS résout.
+En développement, PostgreSQL dans un conteneur Compose suffit. En production, gérer les sauvegardes, la haute disponibilité et les mises à jour du moteur à la main sur une EC2 n'a pas de sens : RDS prend ces tâches en charge.
 
 L'architecture passe de tout-en-un à une séparation claire des responsabilités :
 
@@ -200,7 +200,7 @@ EC2                          EC2
    └─ volume pgdata
 ```
 
-RDS doit être dans le **même VPC** que l'EC2 avec l'accès public désactivé — la communication passe par le réseau privé AWS. Le Security Group RDS autorise le port 5432 depuis le Security Group de l'EC2, pas depuis une IP fixe qui changerait si l'instance est recréée. L'endpoint RDS est un nom DNS stable, indépendant du cycle de vie de l'instance sous-jacente.
+RDS doit être dans le **même VPC** que l'EC2 avec l'accès public désactivé : la communication passe par le réseau privé AWS. Le Security Group RDS autorise le port 5432 depuis le Security Group de l'EC2, pas depuis une IP fixe qui changerait si l'instance est recréée. L'endpoint RDS est un nom DNS stable, indépendant du cycle de vie de l'instance sous-jacente.
 
 Le `docker-compose.yml` de production reflète cette simplification : plus de service `db`, plus de volume, plus de `build: .`. L'image vient d'ECR, la base vient de RDS.
 
@@ -215,7 +215,7 @@ services:
       DATABASE_URL: postgresql://user:password@mon-app-db.xxxxxxxx.eu-west-3.rds.amazonaws.com:5432/postgres
 ```
 
-`${IMAGE_TAG:?...}` impose de fournir le tag à déployer (par exemple `IMAGE_TAG=abc1234 docker compose up -d`) et fait échouer la commande s'il manque, plutôt que de retomber silencieusement sur `latest`. La `DATABASE_URL` contient en revanche le mot de passe en clair. C'est acceptable en dev, problématique en prod. La solution AWS est **SSM Parameter Store** ou **Secrets Manager** — le secret est stocké chiffré dans AWS, l'instance le lit via son rôle IAM, il ne transite jamais dans le Compose ni dans le versioning.
+`${IMAGE_TAG:?...}` impose de fournir le tag à déployer (par exemple `IMAGE_TAG=abc1234 docker compose up -d`) et fait échouer la commande s'il manque, plutôt que de retomber silencieusement sur `latest`. La `DATABASE_URL` contient en revanche le mot de passe en clair. C'est acceptable en dev, problématique en prod. La solution AWS est **SSM Parameter Store** ou **Secrets Manager** : le secret est stocké chiffré dans AWS, l'instance le lit via son rôle IAM, il ne transite jamais dans le Compose ni dans le versioning.
 
 ## Vers l'automatisation
 
@@ -229,7 +229,7 @@ Il y a trois niveaux d'automatisation à empiler, chacun avec un périmètre dis
 
 **[Ansible](../08-iac/2025-06-09-ansible-introduction.md)** complète User Data pour les configurations plus complexes ou les mises à jour sur des instances existantes. Là où User Data s'exécute une seule fois au boot, Ansible peut être rejoué autant de fois que nécessaire de manière idempotente. Il peut aussi gérer un parc de plusieurs instances en parallèle.
 
-**GitHub Actions** (ou toute CI/CD) automatise le cycle build/push : à chaque merge sur `main`, l'image est buildée, taguée avec le SHA du commit, poussée sur ECR. Le déploiement sur l'EC2 peut être déclenché ensuite — soit par SSH avec `docker compose pull && docker compose up -d`, soit via un service comme AWS CodeDeploy.
+**GitHub Actions** (ou toute CI/CD) automatise le cycle build/push : à chaque merge sur `main`, l'image est buildée, taguée avec le SHA du commit, poussée sur ECR. Le déploiement sur l'EC2 peut être déclenché ensuite, soit par SSH avec `docker compose pull && docker compose up -d`, soit via un service comme AWS CodeDeploy.
 
 ```text
 git push
@@ -241,7 +241,7 @@ build → tag (SHA) → push ECR
 EC2 : docker compose pull + up -d
 ```
 
-La combinaison des trois — Terraform pour l'infra, User Data/Ansible pour la config, CI/CD pour les déploiements — donne un pipeline où aucune étape manuelle n'est nécessaire entre un `git push` et une mise en production.
+La combinaison des trois (Terraform pour l'infra, User Data/Ansible pour la config, CI/CD pour les déploiements) donne un pipeline où aucune étape manuelle n'est nécessaire entre un `git push` et une mise en production.
 
 ## Limites du déploiement manuel
 

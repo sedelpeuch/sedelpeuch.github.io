@@ -1,10 +1,10 @@
 ---
-title: "Python : FastAPI — CRUD et authentification"
+title: "Python : CRUD et authentification avec FastAPI"
 description: "Bonnes pratiques pour structurer des endpoints CRUD avec FastAPI, et comment protéger une API avec un token Bearer statique ou des tokens JWT avec gestion des rôles."
 tags: [scripting, devops]
 ---
 
-Une API REST expose des ressources que des clients peuvent créer, lire, modifier et supprimer. La structuration de ces opérations — les codes HTTP à retourner, la forme des corps de requête et de réponse, la gestion des erreurs — détermine la qualité et la prévisibilité de l'interface. FastAPI fournit les outils pour formaliser cette structure, et son système de dépendances permet d'y adjoindre une couche d'authentification de manière composable.
+Une API REST expose des ressources que des clients peuvent créer, lire, modifier et supprimer. La structuration de ces opérations (codes HTTP à retourner, forme des corps de requête et de réponse, gestion des erreurs) détermine la qualité et la prévisibilité de l'interface. FastAPI fournit les outils pour formaliser cette structure, et son système de dépendances permet d'y adjoindre une couche d'authentification de manière composable.
 
 <!--truncate-->
 
@@ -14,7 +14,7 @@ Cet article suppose une connaissance de base de FastAPI. Pour une introduction a
 
 ### Les verbes HTTP et leurs codes de retour
 
-Chaque opération CRUD correspond à une convention HTTP précise. Le respect de ces conventions permet à n'importe quel client — navigateur, CLI, autre service — d'interpréter les réponses sans documentation supplémentaire.
+Chaque opération CRUD correspond à une convention HTTP précise. Le respect de ces conventions permet à n'importe quel client (navigateur, CLI, autre service) d'interpréter les réponses sans documentation supplémentaire.
 
 La création utilise `POST` et retourne `201 Created`. La lecture utilise `GET` et retourne `200 OK`. La modification utilise `PUT` (remplacement complet) ou `PATCH` (modification partielle) et retourne `200 OK`. La suppression utilise `DELETE` et retourne `204 No Content`, sans corps de réponse. Lorsqu'une ressource n'est pas trouvée, la convention est de retourner `404 Not Found`, et non `200` avec un corps vide.
 
@@ -34,7 +34,7 @@ Cette déclaration sert à la fois de documentation dans Swagger UI et de valida
 
 ### Séparer les schémas d'entrée et de sortie
 
-Une erreur courante est d'utiliser le même schéma Pydantic pour la création, la mise à jour et la réponse. Ces trois opérations ont des besoins différents. À la création, certains champs sont obligatoires et d'autres ont des valeurs par défaut. À la mise à jour partielle, tous les champs sont optionnels. En réponse, des champs générés par le serveur — identifiant, dates — doivent apparaître.
+Une erreur courante est d'utiliser le même schéma Pydantic pour la création, la mise à jour et la réponse. Ces trois opérations ont des besoins différents. À la création, certains champs sont obligatoires et d'autres ont des valeurs par défaut. À la mise à jour partielle, tous les champs sont optionnels. En réponse, des champs générés par le serveur (identifiant, dates) doivent apparaître.
 
 ```python
 class TaskCreate(BaseModel):
@@ -93,7 +93,7 @@ Le préfixe est cumulatif : les routes définies dans le router sont accessibles
 
 FastAPI résout l'authentification via son mécanisme de dépendances (`Depends`). Une dépendance est une fonction Python ordinaire que FastAPI exécute avant le handler. Si la dépendance lève une exception, le handler n'est pas appelé. Ce mécanisme permet d'injecter la vérification d'authentification sans modifier le corps des handlers.
 
-La dépendance reçoit les credentials extraits de la requête, les vérifie, et retourne une valeur utile — l'identité de l'appelant — ou lève une `HTTPException` :
+La dépendance reçoit les credentials extraits de la requête, les vérifie, et retourne une valeur utile (l'identité de l'appelant) ou lève une `HTTPException` :
 
 ```python
 from fastapi import Depends, HTTPException, status
@@ -118,7 +118,7 @@ L'en-tête `WWW-Authenticate: Bearer` dans la réponse 401 est une convention HT
 
 ### Appliquer la dépendance sur les routes protégées
 
-La dépendance s'ajoute comme paramètre du handler. La convention `_: str` signale que la valeur retournée par la dépendance n'est pas utilisée dans le corps du handler — seul l'effet de bord (la vérification) est nécessaire :
+La dépendance s'ajoute comme paramètre du handler. La convention `_: str` signale que la valeur retournée par la dépendance n'est pas utilisée dans le corps du handler : seul l'effet de bord (la vérification) est nécessaire :
 
 ```python
 @router.post("", response_model=TaskResponse, status_code=status.HTTP_201_CREATED)
@@ -151,9 +151,9 @@ Dès qu'une application doit gérer plusieurs utilisateurs avec des identités d
 
 ### Ce qu'est un JWT
 
-Un JSON Web Token est un token autonome qui encode une charge utile JSON — typiquement l'identifiant de l'utilisateur, son rôle, et une date d'expiration — et la signe cryptographiquement avec un secret côté serveur. Le serveur vérifie la signature à chaque requête sans consulter la base de données. Si le token a été altéré, la vérification échoue.
+Un JSON Web Token est un token autonome qui encode une charge utile JSON (typiquement l'identifiant de l'utilisateur, son rôle et une date d'expiration) et la signe cryptographiquement avec un secret côté serveur. Le serveur vérifie la signature à chaque requête sans consulter la base de données. Si le token a été altéré, la vérification échoue.
 
-Un JWT est composé de trois parties séparées par des points : l'algorithme de signature (`header`), la charge utile (`payload`) et la signature. La charge utile est encodée en Base64 et lisible par n'importe qui — elle ne doit donc contenir aucune donnée sensible.
+Un JWT est composé de trois parties séparées par des points : l'algorithme de signature (`header`), la charge utile (`payload`) et la signature. La charge utile est encodée en Base64 et lisible par n'importe qui : elle ne doit donc contenir aucune donnée sensible.
 
 ### Hacher les mots de passe
 
@@ -268,7 +268,7 @@ def update_user(user_id: str, data: UserUpdate, db: Session = Depends(get_db), c
 
 ## Ce que FastAPI expose automatiquement
 
-Déclarer les schémas, les codes de retour et les dépendances de sécurité sur les routes permet à FastAPI de générer une documentation Swagger UI complète et précise. Chaque endpoint y est documenté avec ses paramètres, ses codes de réponse possibles, et le schéma de sécurité requis — y compris le formulaire de login OAuth2 et le champ Bearer. La documentation reste ainsi synchronisée avec le code sans effort supplémentaire.
+Déclarer les schémas, les codes de retour et les dépendances de sécurité sur les routes permet à FastAPI de générer une documentation Swagger UI complète et précise. Chaque endpoint y est documenté avec ses paramètres, ses codes de réponse possibles, et le schéma de sécurité requis, y compris le formulaire de login OAuth2 et le champ Bearer. La documentation reste ainsi synchronisée avec le code sans effort supplémentaire.
 
 ## Application / Projet lié
 

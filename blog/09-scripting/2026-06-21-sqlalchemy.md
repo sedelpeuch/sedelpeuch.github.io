@@ -10,9 +10,9 @@ tags: [scripting, devops]
 
 ## Ce que SQLAlchemy apporte réellement
 
-L'idée centrale de SQLAlchemy est de permettre au développeur de raisonner en termes d'objets Python plutôt qu'en termes de lignes et de colonnes. Une table `users` devient une classe `User`. Une ligne devient une instance. Modifier un attribut de l'instance — `user.email = "nouveau@example.com"` — et valider la transaction suffit à générer et exécuter l'`UPDATE` correspondant.
+L'idée centrale de SQLAlchemy est de permettre au développeur de raisonner en termes d'objets Python plutôt qu'en termes de lignes et de colonnes. Une table `users` devient une classe `User`. Une ligne devient une instance. Modifier un attribut de l'instance (`user.email = "nouveau@example.com"`) et valider la transaction suffit à générer et exécuter l'`UPDATE` correspondant.
 
-Cela résout plusieurs problèmes concrets. La construction manuelle de requêtes SQL est source d'erreurs et d'injections. La conversion des résultats en objets est répétitive. La gestion des transactions — savoir quand ouvrir, valider ou annuler — est difficile à centraliser proprement. SQLAlchemy prend en charge ces trois aspects.
+Cela résout plusieurs problèmes concrets. La construction manuelle de requêtes SQL est source d'erreurs et d'injections. La conversion des résultats en objets est répétitive. La gestion des transactions (savoir quand ouvrir, valider ou annuler) est difficile à centraliser proprement. SQLAlchemy prend en charge ces trois aspects.
 
 SQLAlchemy est organisé en deux couches. La couche basse, appelée Core, permet de construire et d'exécuter du SQL de manière programmatique sans quitter Python. La couche haute, l'ORM, ajoute le mapping entre classes et tables. La majorité des applications n'utilisent que l'ORM, qui repose sur Core en interne.
 
@@ -86,7 +86,7 @@ engine = create_engine(
 )
 ```
 
-L'engine ne se connecte pas immédiatement à sa création. Il maintient un pool de connexions réutilisables, ce qui évite d'en ouvrir une nouvelle à chaque requête — opération coûteuse en réseau et en ressources.
+L'engine ne se connecte pas immédiatement à sa création. Il maintient un pool de connexions réutilisables, ce qui évite d'en ouvrir une nouvelle à chaque requête, opération coûteuse en réseau et en ressources.
 
 ## Les sessions comme unité de travail
 
@@ -98,7 +98,7 @@ from sqlalchemy.orm import sessionmaker
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 ```
 
-En pratique, dans une application web comme FastAPI, chaque requête HTTP reçoit sa propre session, ouverte en début de traitement et fermée à la fin — qu'il y ait eu une erreur ou non :
+En pratique, dans une application web comme FastAPI, chaque requête HTTP reçoit sa propre session, ouverte en début de traitement et fermée à la fin, qu'il y ait eu une erreur ou non :
 
 ```python
 def get_db():
@@ -125,11 +125,11 @@ Cela signifie que le développeur n'a pas à construire de requête `UPDATE` : i
 Base.metadata.create_all(bind=engine)
 ```
 
-Cette instruction inspecte tous les modèles enregistrés sur `Base` et émet les `CREATE TABLE IF NOT EXISTS` correspondants. Cette approche convient au développement et aux tests. En production, l'évolution du schéma sur une base existante — ajouter une colonne, modifier un index, renommer une table — nécessite des migrations contrôlées, ce qu'Alembic apporte au-dessus de SQLAlchemy.
+Cette instruction inspecte tous les modèles enregistrés sur `Base` et émet les `CREATE TABLE IF NOT EXISTS` correspondants. Cette approche convient au développement et aux tests. En production, l'évolution du schéma sur une base existante (ajouter une colonne, modifier un index, renommer une table) nécessite des migrations contrôlées, ce qu'Alembic apporte au-dessus de SQLAlchemy.
 
 ## Quand utiliser le SQL brut
 
-SQLAlchemy ne cherche pas à remplacer SQL dans tous les cas. Certaines opérations — des requêtes analytiques complexes, des instructions DDL spécifiques à un moteur, ou des opérations en masse optimisées — s'expriment plus clairement et plus efficacement en SQL direct. SQLAlchemy expose `text()` pour exécuter du SQL littéral tout en restant dans le contexte de l'engine et des sessions :
+SQLAlchemy ne cherche pas à remplacer SQL dans tous les cas. Certaines opérations (requêtes analytiques complexes, instructions DDL spécifiques à un moteur, opérations en masse optimisées) s'expriment plus clairement et plus efficacement en SQL direct. SQLAlchemy expose `text()` pour exécuter du SQL littéral tout en restant dans le contexte de l'engine et des sessions :
 
 ```python
 from sqlalchemy import text
