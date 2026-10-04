@@ -1,6 +1,6 @@
 ---
 title: "GitHub Actions : Renovate"
-description: "Renovate self-hosted sur GitHub Actions pour maintenir à jour les images Docker de fichiers Compose et Dockerfile : GitHub App, pin par digest, packageRules par niveau de risque, automerge conditionné aux checks et déclenchement par workflow_run."
+description: "Renovate self-hosted sur GitHub Actions pour maintenir à jour les images Docker de fichiers Compose et Dockerfile : GitHub App, pin par digest, packageRules par niveau de risque et par type de mise à jour, automerge conditionné aux checks et déclenchement par workflow_run."
 series: homelab
 tags: [cicd, devops]
 ---
@@ -57,6 +57,8 @@ services:
 
 Docker ignore le tag quand un digest est présent : le déploiement devient reproductible. Renovate propose alors des mises à jour de **version** (tag et digest) et de **digest** seul, quand l'image d'un même tag a été reconstruite. Pour un tag flottant (`latest`, `stable`), chaque reconstruction devient ainsi une PR visible.
 
+Le digest règle aussi un problème de déploiement. Sans lui, `docker compose up -d` réutilise l'image `latest` déjà présente sur l'hôte (la `pull_policy` par défaut, `missing`, ne télécharge que les images absentes) : une nouvelle version publiée sous le même tag n'est jamais tirée. Avec `image: registry.example.com/app:latest@sha256:…`, la nouvelle image arrive par une PR de mise à jour du digest, puis par le déploiement habituel, puisque le fichier Compose a changé.
+
 ## packageRules : adapter le comportement par dépendance
 
 Les `packageRules` appliquent des options à un sous-ensemble de dépendances, sélectionné par des critères `match*` combinés en ET :
@@ -78,6 +80,33 @@ Une classification des dépendances en deux niveaux de risque se traduit directe
 - **niveau 2, automerge** (`automerge: true`) : tout le reste, dès lors qu'une casse est soit détectée par la CI, soit rattrapable sans perte de données.
 
 Avec `automerge: true`, Renovate ne fusionne une PR que si **tous les checks** sont au vert. Par défaut (`platformAutomerge: true`), il délègue la fusion à l'auto-merge natif de GitHub quand il est activé sur le dépôt : une règle de protection de branche exigeant le check de validation devient alors indispensable, sans quoi GitHub peut fusionner avant la fin des tests. L'option `minimumReleaseAge` (par exemple `"3 days"`) ajoute un délai entre la publication d'une version et sa fusion automatique, le temps que d'éventuelles régressions soient signalées en amont.
+
+## Automerge par type de mise à jour
+
+Un classement par fichier applique la même politique à toutes les mises à jour d'une dépendance, du correctif de sécurité au changement de version majeure. Le risque dépend pourtant surtout du **type** de mise à jour : dans un projet qui respecte semver, une version minor ou patch n'introduit pas de changement incompatible, et c'est par elles qu'arrivent les correctifs de sécurité. Placer en revue manuelle toutes les mises à jour des services les plus sensibles revient à leur appliquer ces correctifs en dernier. `matchUpdateTypes` croise les deux axes :
+
+| Type de mise à jour | Niveau 1 | Niveau 2 |
+|---|---|---|
+| `major` | PR relue à la main | Automerge |
+| `minor`, `patch`, `digest`, `pinDigest` | Automerge | Automerge |
+
+La traduction en configuration repose sur l'ordre des `packageRules` :
+
+1. les réglages globaux décrivent le niveau 2 (`automerge: true` à la racine), si bien qu'une stack ajoutée au dépôt sans classement explicite tombe dans le niveau par défaut ;
+2. une règle `matchFileNames` liste les fichiers du niveau 1 et pose `automerge: false` ;
+3. une règle `matchUpdateTypes: ["minor", "patch", "digest", "pinDigest"]` placée **après** remet `automerge: true` pour ces types, quel que soit le niveau.
+
+Seules les majeures du niveau 1 conservent `automerge: false`. Renovate sépare par défaut les mises à jour majeures des autres (`separateMajorMinor: true`) : une PR majeure en attente de relecture ne retient donc pas les correctifs de la même dépendance, qui arrivent dans leur propre PR.
+
+### Versions qui ne suivent pas semver
+
+Le type est déduit du numéro de version, et certains schémas trompent ce classement :
+
+- **Versionnement calendaire** (`2026.9.4`) : Renovate lit l'année comme majeure et le mois comme minor, alors que chaque mois est une version de fonctionnalités. Pour ces images, `separateMinorPatch: true` place minor et patch dans des PR distinctes, et une règle `matchUpdateTypes: ["minor"]` avec `automerge: false` traite la minor comme une majeure ; les patchs restent automatiques.
+- **Majeure figée** : un projet resté en `1.x` dont chaque minor apporte des fonctionnalités et une migration de base relève du même traitement.
+- **Tags de build** : une image qui publie, à côté de ses versions `12.1`, des tags quotidiens (`2026092110`) ou composés (`12.1.20260915-…`) fausse la comparaison. Un versioning `regex:^(?<major>\\d+)\\.(?<minor>\\d+)$` ne retient que les tags de la forme `x.y`, les autres étant rejetés comme versions invalides.
+
+La configuration résolue se vérifie sans rien pousser : `LOG_LEVEL=debug renovate --platform=local --dry-run=full`, lancé dans le clone, détaille dans ses logs la configuration retenue pour chaque branche prévue, dont `automerge`.
 
 ## Une PR par dépendance ou des groupes
 
@@ -111,6 +140,10 @@ Le fichier `renovate.json` à la racine du dépôt :
   "pinDigests": true,
   "prHourlyLimit": 10,
   "prConcurrentLimit": 0,
+  "automerge": true,
+  "labels": ["renovate/tier-2"],
+  "minimumReleaseAge": "3 days",
+  "minimumReleaseAgeBehaviour": "timestamp-optional",
   "packageRules": [
     {
       "description": "Bases de données : montées de version manuelles uniquement",
@@ -118,21 +151,25 @@ Le fichier `renovate.json` à la racine du dépôt :
       "enabled": false
     },
     {
-      "description": "Patchs ignorés, seules les versions minor/major remontent",
-      "matchUpdateTypes": ["patch"],
-      "enabled": false
-    },
-    {
-      "description": "Niveau 2 (règle générique) : automerge si la validation passe",
-      "matchFileNames": ["**/compose.yml", "**/Dockerfile"],
-      "automerge": true,
-      "labels": ["renovate/tier-2"]
-    },
-    {
-      "description": "Niveau 1 (exception, placée après) : revue manuelle",
-      "matchFileNames": ["proxy/compose.yml", "auth/compose.yml", "backup/compose.yml"],
+      "description": "Niveau 1 : pas d'automerge (les réglages globaux décrivent le niveau 2)",
+      "matchFileNames": ["proxy/**", "auth/**", "backup/**"],
       "automerge": false,
       "labels": ["renovate/tier-1"]
+    },
+    {
+      "description": "Tous niveaux (placée après) : minor, patch et digest automergés",
+      "matchUpdateTypes": ["minor", "patch", "digest", "pinDigest"],
+      "automerge": true
+    },
+    {
+      "description": "Versionnement calendaire : la minor est relue comme une majeure",
+      "matchPackageNames": ["example/calver-app"],
+      "separateMinorPatch": true
+    },
+    {
+      "matchPackageNames": ["example/calver-app"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": false
     }
   ]
 }
@@ -184,6 +221,7 @@ Le workflow `Validate` se déclenche sur `pull_request` et démarre réellement 
 - **`RENOVATE_REPOSITORIES` obligatoire.** L'autodécouverte (`autodiscover`) est désactivée par défaut en self-hosted : sans liste de dépôts, Renovate s'exécute sans erreur et ne fait rien.
 - **`configurationFile` n'est pas la configuration du dépôt.** L'input `configurationFile` de l'action désigne la configuration *globale* du bot ; le `renovate.json` du dépôt est lu automatiquement. La documentation de l'action déconseille de donner au fichier global le nom d'un fichier de configuration de dépôt.
 - **Version de l'action.** `renovatebot/github-action` ne publie que des tags complets (`v46.3.3`), sans tag majeur flottant : la forme `@v46`, courante pour d'autres actions, ne se résout pas et fait échouer le workflow avant toute exécution. Il faut épingler une release existante.
+- **`minimumReleaseAge` et registres sans date de publication.** Le délai se calcule à partir de la date de publication fournie par le registre. Docker Hub la fournit ; GHCR, Quay ou ECR non. Depuis Renovate 42, `minimumReleaseAgeBehaviour` vaut `timestamp-required` par défaut : une version sans date n'est jamais considérée comme assez ancienne, et les mises à jour de ces registres restent bloquées indéfiniment, sans erreur. `timestamp-optional` les laisse passer sans délai, ce qui revient à n'appliquer la période d'attente qu'aux registres capables de la mesurer.
 - **Les digests échappent aux règles de version.** Une règle `matchUpdateTypes: ["patch"]` avec `enabled: false` n'empêche pas les mises à jour de type `digest` : les images suivies par un tag flottant (`latest`, `stable`) continuent de produire des PR à chaque reconstruction.
 - **Registres privés.** Renovate crée automatiquement une `hostRule` pour `ghcr.io` à partir de son token de plateforme, mais ce token n'a pas forcément accès aux images privées publiées depuis un autre dépôt. Symptôme : `No docker auth found` dans les logs et aucune mise à jour proposée pour ces images. Une `hostRule` explicite (`matchHost: "ghcr.io"`, `hostType: "docker"`, identifiants d'un token ayant `read:packages`), injectée par exemple via la variable `RENOVATE_HOST_RULES`, lève le blocage. Le même problème touche le workflow de validation : le `GITHUB_TOKEN` n'accède qu'aux packages qui ont accordé l'accès au dépôt dans leurs paramètres, un `docker login` avec un autre token est sinon nécessaire. Le fonctionnement de GHCR est décrit dans l'article [GitHub Container Registry](../03-containerization/2024-12-20-ghcr.md).
 - **L'automerge ne détecte que ce que la CI teste.** Un contrôle « le conteneur démarre et reste sain » détecte un crash, pas une régression silencieuse : application qui répond en HTTP mais reste bloquée sur un écran de migration, option par défaut modifiée. Le niveau 2 suppose que ce type de régression soit rattrapable.
@@ -192,7 +230,7 @@ Le workflow `Validate` se déclenche sur `pull_request` et démarre réellement 
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Renovate self-hosted authentifié par une GitHub App maintient les images de près de trente stacks Docker Compose, avec deux niveaux (revue manuelle pour le périmètre d'accès et les données irremplaçables, automerge avec pin par digest pour le reste), bases de données exclues, et relance par `workflow_run` après chaque validation de branche Renovate.</ProjectLink>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Renovate self-hosted authentifié par une GitHub App maintient les images de près de trente stacks Docker Compose, avec deux niveaux (majeures relues à la main pour le périmètre d'accès et les données irremplaçables, tout automergé pour le reste ; minor, patch et digest automergés partout après trois jours), bases de données exclues, et relance par `workflow_run` après chaque validation de branche Renovate.</ProjectLink>
 </ProjectLinks>
 
 ## Conclusion

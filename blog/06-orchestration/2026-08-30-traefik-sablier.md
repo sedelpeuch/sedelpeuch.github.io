@@ -72,7 +72,7 @@ Un groupe rassemble les conteneurs qui dorment et se réveillent ensemble. Le la
 
 Le label doit figurer sur **tous** les conteneurs du groupe, pas uniquement sur celui qui reçoit le trafic HTTP. Endormir l'application en laissant tourner sa base PostgreSQL et son cache ne libère qu'une partie des ressources.
 
-Sablier démarre les conteneurs par l'API Docker, sans passer par Compose : les conditions `depends_on` ne sont pas évaluées au réveil. L'application doit tolérer une base de données pas encore prête au moment de son démarrage (reconnexion ou politique de redémarrage).
+Sablier démarre les conteneurs par l'API Docker, sans passer par Compose. Depuis la version 1.15, le provider Docker lit toutefois le label `com.docker.compose.depends_on` que Compose pose sur chaque conteneur : au réveil, les dépendances sont démarrées en premier et doivent atteindre leur condition (`service_started`, `service_healthy`, `service_completed_successfully`) avant le démarrage du conteneur qui en dépend. Une dépendance en erreur, c'est-à-dire un conteneur sorti avec un code non nul, bloque le réveil de tout ce qui en dépend (`dependency "..." is in error state`). Sans `depends_on`, l'application doit tolérer une base de données pas encore prête au moment de son démarrage (reconnexion ou politique de redémarrage).
 
 ### Le middleware sur le routeur
 
@@ -92,6 +92,8 @@ Les deux stratégies sont exclusives :
 - **`blocking`** retient la requête jusqu'à ce que le groupe soit prêt ou que le délai expire, puis la transmet. Adaptée aux appels serveur-à-serveur (API, webhook, contenu chargé en iframe), pour lesquels une page HTML d'attente serait une réponse erronée.
 
 Les labels Docker lus par Traefik sont insensibles à la casse : `sablierUrl` et `sablierurl` sont équivalents.
+
+La page d'attente est un template Go. Des thèmes personnalisés (fichiers `.html`, avec leurs CSS et images relatives inlinées au chargement) se déposent dans le dossier `--strategy.dynamic.custom-themes-path` (`/etc/sablier/themes` par défaut) et `--strategy.dynamic.default-theme` désigne le thème appliqué quand le middleware n'en précise aucun. Sablier relit un thème existant modifié, mais ne découvre un nouveau fichier qu'à son redémarrage : un dépôt qui versionne ses thèmes doit forcer la recréation du conteneur Sablier à chaque ajout (voir le hash de configuration dans l'article [déploiement Compose par GitHub Actions](../04-ci-cd/2026-08-23-github-actions-deploiement-compose.md)).
 
 ### Ordre des middlewares
 
@@ -212,6 +214,15 @@ Deux critères cumulatifs :
 
 Un troisième critère élimine les services qui travaillent en arrière-plan : tâches planifiées, évaluation d'alertes, synchronisation périodique. Un outil de dashboards peut dormir si l'alerting est porté par un autre composant (Prometheus et Alertmanager) ; s'il évalue lui-même les règles d'alerte, l'endormir suspend la détection des pannes.
 
+Un travail de fond périodique et tolérant au retard reste compatible, à deux conditions. La durée de session doit couvrir ce travail : une application qui planifie une collecte de données une heure après le démarrage de son processus ne l'exécute jamais avec une session de 30 minutes, alors qu'une session de 70 minutes la déclenche à chaque visite. Et un réveil planifié garantit une exécution minimale quand personne ne visite le service : l'API de Sablier accepte une durée de session par requête, et un conteneur de cron léger (supercronic, par exemple), placé hors de Sablier sur le même réseau, l'appelle chaque nuit :
+
+```text
+# crontab lue par supercronic : réveil quotidien du groupe pour 90 minutes
+45 2 * * * wget -q -O /dev/null "http://sablier:10000/api/strategies/blocking?group=finance&session_duration=90m&timeout=5m"
+```
+
+La stratégie `blocking` attend que le groupe soit prêt (au plus `timeout`) ; la session ouverte suit ensuite le cycle normal et expire 90 minutes après ce dernier appel. Le même réveil peut couvrir une fenêtre de sauvegarde, pour que le dump d'une base endormie soit régénéré (voir [Docker : sauvegarde des volumes](../03-containerization/2026-09-13-docker-volume-backup.md)).
+
 ## Pièges
 
 ### Les prunes suppriment les conteneurs endormis
@@ -222,7 +233,32 @@ Pour Docker, un conteneur endormi par Sablier est un conteneur `exited` comme un
 
 ### Les conteneurs démarrés hors de Sablier
 
-Un `docker compose up -d` lancé par un déploiement démarre aussi les conteneurs endormis du groupe. Au démarrage de Sablier, `--provider.auto-stop-on-startup` (activé par défaut) arrête les conteneurs gérés qu'il n'a pas lui-même démarrés. En fonctionnement, `--provider.auto-stop-externally-started` les arrête immédiatement, et `--provider.auto-warm-externally-started` leur attribue à la place une session de durée par défaut.
+Un `docker compose up -d` lancé par un déploiement démarre aussi les conteneurs endormis du groupe. Or Sablier n'arrête un conteneur qu'à l'expiration d'une session, et seule une requête en ouvre une : un conteneur démarré hors de Sablier n'a pas de session et tourne jusqu'à la prochaine visite du service, éventuellement des semaines. Au démarrage de Sablier, `--provider.auto-stop-on-startup` (activé par défaut) arrête les conteneurs gérés qu'il n'a pas lui-même démarrés, ce qui ne couvre pas un déploiement ultérieur. En fonctionnement, deux options désactivées par défaut traitent ce cas : `--provider.auto-stop-externally-started` arrête un tel conteneur dès son événement `start`, et `--provider.auto-warm-externally-started` lui attribue à la place une session de durée par défaut.
+
+L'autre approche confie l'arrêt au pipeline de déploiement : après le `up -d` d'une stack, ses conteneurs portant `sablier.enable=true` sont arrêtés, et Sablier les relancera à la première requête. Le moment de l'arrêt compte. Un `docker stop` envoie `SIGTERM`, puis `SIGKILL` après 10 secondes. Le processus PID 1 d'un conteneur ignore les signaux pour lesquels il n'a pas installé de gestionnaire : une application encore en phase d'initialisation (serveur Python en plein import de ses modules, par exemple) ne réagit pas au `SIGTERM` et finit tuée par `SIGKILL`, avec le code de sortie 137. Deux conséquences :
+
+- l'initialisation est interrompue en cours de route, y compris une migration de schéma lancée au démarrage ;
+- le conteneur est sorti avec un code non nul, que Sablier interprète comme un état d'erreur : au prochain réveil, les conteneurs qui en dépendent par `depends_on` refusent de démarrer.
+
+`init: true` (un init minimal en PID 1 qui relaie les signaux) rend l'application sensible au `SIGTERM`, mais l'arrête alors tout aussi brutalement au milieu de son initialisation. L'arrêt doit donc attendre que les conteneurs soient `healthy`, avec un délai maximal :
+
+```bash
+# Après "docker compose up -d" dans le dossier de la stack
+IDS=$(docker compose ps -q | xargs -r docker inspect \
+  -f '{{if eq (index .Config.Labels "sablier.enable") "true"}}{{.Id}}{{end}}')
+if [ -n "$(echo $IDS)" ]; then
+  for _ in $(seq 60); do   # 2 minutes au plus
+    # Un conteneur sans healthcheck compte comme prêt
+    PENDING=$(docker inspect -f '{{if .State.Health}}{{.State.Health.Status}}{{else}}healthy{{end}}' $IDS \
+      | grep -vcx healthy || true)
+    [ "$PENDING" = 0 ] && break
+    sleep 2
+  done
+  docker stop $IDS
+fi
+```
+
+L'option `auto-stop-externally-started` réagit à l'événement `start`, donc avant tout healthcheck : elle expose au même risque d'interruption pendant l'initialisation. Le pipeline de déploiement complet est décrit dans l'article [déploiement Compose par GitHub Actions](../04-ci-cd/2026-08-23-github-actions-deploiement-compose.md), qui évite par ailleurs de relancer une stack dont seule la documentation a changé, ce qui réveillerait ses conteneurs pour rien.
 
 ### Plusieurs conteneurs arrêtés pour un même routeur
 

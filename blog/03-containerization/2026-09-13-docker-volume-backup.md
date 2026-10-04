@@ -53,11 +53,25 @@ Avec plusieurs instances, les labels de la section suivante sont vus par **toute
 
 ## Cohérence des bases de données
 
-Archiver le datadir d'un PostgreSQL ou d'un MariaDB en cours d'écriture produit une copie de fichiers pris à des instants différents. La base de production n'est pas affectée, mais l'**archive** peut être incohérente et la base restaurée refuser de démarrer ou contenir des pages corrompues. Deux mécanismes, pilotés par labels posés sur le conteneur de la base, l'évitent. Tous deux exigent que le conteneur de sauvegarde accède à l'API Docker (socket monté ou `DOCKER_HOST`).
+### Pourquoi une copie à chaud est incohérente
 
-**Arrêt pendant la sauvegarde.** Le label `docker-volume-backup.stop-during-backup=true` arrête le conteneur avant l'archivage et le redémarre ensuite. La copie est cohérente, au prix d'une interruption de service pendant la durée du `tar`.
+Un moteur de base de données ne garantit la cohérence de ses fichiers qu'à un instant donné. PostgreSQL et InnoDB écrivent d'abord chaque modification dans un journal (WAL, redo log), puis la reportent plus tard dans les fichiers de tables. Après une coupure de courant, le rejeu de ce journal remet les fichiers d'aplomb, car tous ont été figés au **même instant**. `tar` lit au contraire les fichiers un par un, pendant plusieurs secondes ou minutes : le fichier d'une table est copié avant une écriture, le journal après, un index entre les deux. L'archive contient un état qui n'a jamais existé, et la récupération après crash au démarrage de la base restaurée réussit souvent, sans aucune garantie. Hors archivage continu du WAL, la documentation de PostgreSQL réserve la sauvegarde au niveau fichiers à un serveur arrêté ou à un instantané atomique du système de fichiers.
 
-**Dump avant archivage.** Les labels `docker-volume-backup.<étape>-pre` / `-post` (étapes `archive`, `process`, `copy`, `prune`) exécutent une commande dans le conteneur ciblé. Un `pg_dump` en `archive-pre` écrit un dump cohérent dans un volume dédié, et c'est ce volume qui est sauvegardé à la place du datadir :
+La base de production n'est pas affectée : seule l'**archive** est suspecte, et le défaut n'apparaît qu'à la restauration. Il se détecte pourtant à froid dans une archive extraite : `pg_controldata` sur le datadir copié indique `Database cluster state: in production` (au lieu de `shut down`) et un `postmaster.pid` est présent ; côté MariaDB, la présence d'`ibtmp1` signale un serveur en marche pendant la copie.
+
+SQLite, très répandu dans les applications auto-hébergées, est concerné de la même façon : en mode WAL, les transactions validées résident dans le fichier `-wal` tant qu'un checkpoint ne les a pas reportées dans la base, et les deux fichiers peuvent être copiés à des instants différents. La commande `sqlite3 app.db ".backup /dumps/app.db"` (API de sauvegarde en ligne) ou `VACUUM INTO '/dumps/app.db'` produit une copie cohérente, à condition que le client `sqlite3` soit présent dans l'image. Un `PRAGMA integrity_check` sur la copie extraite vérifie l'intégrité structurelle de la base.
+
+Deux mécanismes, pilotés par labels posés sur le conteneur concerné, évitent la copie à chaud. Tous deux exigent que le conteneur de sauvegarde accède à l'API Docker (socket monté ou `DOCKER_HOST`).
+
+### Arrêt pendant la sauvegarde
+
+Le label `docker-volume-backup.stop-during-backup=true` arrête le conteneur avant l'archivage et le redémarre dès l'archive créée, avant le chiffrement et l'envoi. La copie est cohérente, au prix d'une interruption de service pendant la durée du `tar`.
+
+Le mécanisme ne se limite pas aux bases. Un processus qui crée et supprime des fichiers dans un volume pendant sa lecture, par exemple un outil de synchronisation de messagerie qui pose des verrous temporaires toutes les cinq minutes, peut faire disparaître un fichier entre le moment où l'archiveur le liste et celui où il le lit : tout le run échoue. Arrêter ce seul conteneur pendant la minute d'archivage, et non l'application entière, rend aussi l'archive cohérente entre les données et l'état de synchronisation.
+
+### Dump avant archivage
+
+Les labels `docker-volume-backup.<étape>-pre` / `-post` (étapes `archive`, `process`, `copy`, `prune`) exécutent une commande dans le conteneur ciblé. Un `pg_dump` en `archive-pre` écrit un dump cohérent dans un volume dédié, archivé avec les autres :
 
 ```yaml
 services:
@@ -67,12 +81,28 @@ services:
       - db_data:/var/lib/postgresql/data
       - db_dumps:/dumps
     labels:
-      # Redirection : la commande doit passer par un shell
-      - docker-volume-backup.archive-pre=/bin/sh -c 'pg_dump -U app -Fc app > /dumps/app.dump'
+      # Redirection et enchaînement : la commande doit passer par un shell.
+      # $$ échappe le $ pour Compose : la variable est lue dans le conteneur.
+      - docker-volume-backup.archive-pre=/bin/sh -c 'pg_dump -U "$$POSTGRES_USER" -d "$$POSTGRES_DB" -Fc -f /dumps/app.dump.tmp && mv /dumps/app.dump.tmp /dumps/app.dump'
       - docker-volume-backup.exec-label=offsite
 ```
 
-L'équivalent MariaDB utilise `mariadb-dump --single-transaction`. Le dump ne bloque pas l'application et reste portable entre versions majeures, contrairement à un datadir.
+| Moteur | Commande de dump | Restauration |
+|---|---|---|
+| PostgreSQL, une base | `pg_dump -Fc` | `pg_restore --clean --if-exists` |
+| PostgreSQL, toute l'instance | `pg_dumpall --clean --if-exists` | `psql -d postgres < dump.sql` |
+| MariaDB / MySQL | `mariadb-dump --single-transaction --all-databases` (`mysqldump` sur MySQL) | `mariadb < dump.sql` |
+| SQLite | `sqlite3 app.db ".backup /dumps/app.db"` | copie du fichier |
+
+`pg_dump` lit la base dans une seule transaction et `--single-transaction` obtient le même résultat pour les tables InnoDB : l'image est cohérente sans bloquer les écritures, donc sans interruption de service. Le dump reste en outre portable entre versions majeures, contrairement à un datadir.
+
+Plusieurs détails conditionnent la fiabilité du dispositif :
+
+- **Écriture atomique.** Le dump est écrit dans un fichier temporaire puis renommé : un dump interrompu ne remplace jamais le précédent et une archive ne contient jamais de dump tronqué.
+- **Échec visible.** Un hook qui sort avec un code non nul fait échouer tout le run : aucune archive n'est produite cette nuit-là et la notification d'échec part. Le dernier dump réussi reste dans le volume.
+- **Conteneurs en marche uniquement.** Les hooks ne s'exécutent que dans les conteneurs démarrés. Une base arrêtée au moment du backup, par exemple mise en veille par [Sablier](../06-orchestration/2026-08-30-traefik-sablier.md), ne produit pas de dump : son datadir, arrêté proprement, est alors cohérent, et le dump précédent reste disponible. Un réveil planifié couvrant la fenêtre de sauvegarde régénère le dump.
+- **Datadir conservé.** Garder le volume de données dans l'archive, à côté du dump, fournit une solution de repli, mais la restauration passe en priorité par le dump, dans une base neuve.
+- **Un hook par instance.** Sans `EXEC_LABEL`, chaque instance de sauvegarde exécute tous les hooks : avec deux instances décalées d'une heure, chaque archive embarque un dump frais, au prix de deux dumps par nuit.
 
 Monter `/var/run/docker.sock` donne au conteneur un contrôle équivalent à root sur l'hôte. Un proxy de socket (`tecnativa/docker-socket-proxy` ou équivalent) limite l'exposition aux permissions requises : `INFO` et `CONTAINERS`, plus `POST` pour arrêter des conteneurs ou lancer des commandes, et `EXEC` pour les hooks.
 
@@ -205,7 +235,7 @@ Vider la cible avant la copie évite de mélanger d'anciens fichiers avec ceux d
 
 ## Tester la restauration
 
-Une sauvegarde jamais restaurée n'est qu'une hypothèse. Passphrase erronée, volume oublié, archive tronquée, dump vide parce que le hook a échoué en silence (sa sortie est masquée sauf avec `EXEC_FORWARD_OUTPUT=true`) : ces défauts n'apparaissent qu'à la restauration. Un test périodique restaure une archive récente dans un volume temporaire, démarre le service dessus et vérifie une donnée connue. Les notifications `info` confirment l'exécution des runs, pas la validité des archives.
+Une sauvegarde jamais restaurée n'est qu'une hypothèse. Passphrase erronée, volume oublié, archive tronquée, dump vide d'un hook pourtant sorti en succès, par exemple une commande dont seul le dernier maillon fixe le code de retour (sa sortie est masquée sauf avec `EXEC_FORWARD_OUTPUT=true`) : ces défauts n'apparaissent qu'à la restauration. Un test périodique restaure une archive récente dans un volume temporaire, démarre le service dessus et vérifie une donnée connue. Les notifications `info` confirment l'exécution des runs, pas la validité des archives.
 
 ## Application / Projet lié
 
