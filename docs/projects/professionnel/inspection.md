@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 <ProjectMeta
   start="2023"
-  end="2025"
+  end="2026"
   role="Contributeur sur deux sous-systèmes"
   domain="Vision par ordinateur, pipeline d'images, inférence embarquée sur NPU"
   stack={["Python", "multiprocessing"]}
