@@ -1,6 +1,6 @@
 ---
 title: "GitHub Actions : déploiement Docker Compose"
-description: "Déployer automatiquement un monorepo de stacks Docker Compose sur un hôte unique à chaque push avec GitHub Actions : calcul des stacks modifiées, SSH via réseau privé, ordre de déploiement, nettoyage sûr, hash de configuration et validation en pull request."
+description: "Déployer automatiquement un monorepo de stacks Docker Compose sur un hôte unique à chaque push avec GitHub Actions : calcul des stacks modifiées depuis le dernier déploiement réussi, SSH via réseau privé, ordre de déploiement, nettoyage sûr, hash de configuration et validation en pull request."
 series: homelab
 tags: [cicd, orchestration, devops]
 ---
@@ -37,6 +37,23 @@ Trois cas particuliers :
 - **Historique complet requis** : `actions/checkout` ne récupère par défaut qu'un commit (`fetch-depth: 1`). Sans `fetch-depth: 0`, le commit `before` est absent du clone et `git diff` échoue.
 - **Dossier supprimé** : un dossier présent dans le diff mais sans `compose.yml` après le push correspond à une stack retirée du dépôt. Elle doit être arrêtée par `docker compose down`, faute de quoi ses conteneurs tournent indéfiniment sans définition dans Git. Vérifier que `compose.yml` existait dans le commit `before` (`git cat-file -e`) évite de classer en suppression des dossiers qui n'ont jamais été des stacks, comme `.github/`.
 
+### Filtrer les fichiers non déployables
+
+Tout fichier modifié dans le dossier d'une stack ne justifie pas un redéploiement. Une stack dont seule la documentation (`*.md`) a changé peut être écartée : Compose ne recréerait aucun conteneur, mais `up -d` n'est pas pour autant neutre. Il démarre les conteneurs arrêtés de la stack, y compris ceux qu'un outil de scale-to-zero comme [Sablier](../06-orchestration/2026-08-30-traefik-sablier.md) a mis en veille, et `--build` relance la construction des images locales. À l'inverse, si un site de documentation est construit à partir des `.md` de tout le dépôt, sa stack doit être ajoutée à la liste dès qu'un `.md` change, même hors de son dossier, faute de quoi le site ne se reconstruit pas :
+
+```bash
+# CHANGED : fichiers modifiés (git diff --name-only), TARGET : commit à déployer
+for d in $(printf '%s\n' "$CHANGED" | grep / | cut -d/ -f1 | sort -u || true); do
+  if git cat-file -e "$TARGET:$d/compose.yml" 2>/dev/null; then
+    # Seuls des .md ont changé dans ce dossier : la stack n'est pas relancée
+    [ "$d" != docs ] && ! printf '%s\n' "$CHANGED" | grep "^$d/" | grep -qv '\.md$' && continue
+    UP="$UP $d"
+  fi
+done
+# Site de documentation construit à partir de tous les .md du dépôt
+printf '%s\n' "$CHANGED" | grep -qE '(^|/)[^/]+\.md$' && case " $UP " in *" docs "*) ;; *) UP="$UP docs";; esac
+```
+
 ### Redéploiement manuel
 
 Le déclencheur `workflow_dispatch` accepte des `inputs` typés (`string`, `choice`, `boolean`, `number`, `environment`). Un input `stack` permet de redéployer une stack sans commit, cas utile après une panne ou pour forcer la recréation d'un conteneur :
@@ -59,7 +76,7 @@ concurrency:
   queue: max                 # conserver tous les runs en attente
 ```
 
-`cancel-in-progress: true` interromprait un déploiement au milieu de la boucle, laissant une partie des stacks à jour et l'autre non. Avec `false`, le run en cours se termine. Le comportement par défaut (`queue: single`) ne conserve toutefois qu'**un seul** run en attente : un troisième push annule le deuxième, encore en attente. Or chaque run ne déploie que le diff `before..sha` de son propre push : les stacks modifiées par le run annulé ne sont jamais déployées. `queue: max` conserve jusqu'à 100 runs en attente, dans l'ordre d'arrivée ; la combinaison avec `cancel-in-progress: true` est refusée à la validation du workflow.
+`cancel-in-progress: true` interromprait un déploiement au milieu de la boucle, laissant une partie des stacks à jour et l'autre non. Avec `false`, le run en cours se termine. Le comportement par défaut (`queue: single`) ne conserve toutefois qu'**un seul** run en attente : un troisième push annule le deuxième, encore en attente. Or chaque run ne déploie que le diff `before..sha` de son propre push : les stacks modifiées par le run annulé ne sont jamais déployées. `queue: max` conserve jusqu'à 100 runs en attente, dans l'ordre d'arrivée ; la combinaison avec `cancel-in-progress: true` est refusée à la validation du workflow. Une alternative supprime la cause du problème plutôt que l'annulation : calculer le diff sur l'hôte, depuis le dernier déploiement réussi (voir [plus bas](#calculer-le-diff-sur-lhôte)). Un run annulé n'a alors plus de conséquence, puisque le suivant reprend tout ce qui n'a pas été déployé.
 
 ## Atteindre un hôte privé
 
@@ -203,6 +220,57 @@ jobs:
           REMOTE
 ```
 
+## Calculer le diff sur l'hôte
+
+### Ce que le diff par événement ne voit pas
+
+`before..sha` décrit ce que le push a apporté, pas ce qui manque à l'hôte. Les deux coïncident tant que chaque run réussit, et divergent dans trois cas :
+
+- **Run en échec** : une stack qui ne démarre pas, un hôte injoignable le temps du run. Le push suivant ne déploie que ses propres changements ; la stack en échec reste à l'ancienne version jusqu'à ce qu'un commit la touche de nouveau, et rien ne le signale.
+- **Run annulé** : un run en attente supprimé par la file de `concurrency` emporte son diff avec lui.
+- **Historique réécrit** : après un force-push, `before` désigne un commit qui n'existe plus dans le clone.
+
+### Un marqueur du dernier déploiement réussi
+
+La correction consiste à calculer le diff sur l'hôte, entre le dernier commit **déployé avec succès** et la cible. Le clone de l'hôte conserve ce commit dans une ref locale, jamais poussée, par exemple `refs/deploy/last-deployed`. Une ref plutôt qu'un fichier contenant un SHA : elle se manipule avec les commandes Git (`git update-ref`, `git show-ref`) et protège le commit du garbage collector, même après une réécriture de l'historique distant.
+
+```bash
+MARKER=refs/deploy/last-deployed
+git fetch --quiet origin main
+TARGET=$(git rev-parse origin/main)
+LAST=$(git rev-parse -q --verify "$MARKER^{commit}" || true)
+if [ -z "$LAST" ]; then
+  # Premier run : point de départ = état actuel du clone, posé avant toute mise à jour
+  # pour qu'un échec de ce run soit retenté au suivant
+  LAST=$(git rev-parse HEAD)
+  git update-ref "$MARKER" "$LAST"
+fi
+CHANGED=$(git diff --name-only "$LAST" "$TARGET")
+
+# ... calcul de UP et DOWN à partir de CHANGED, arrêt des stacks supprimées ...
+
+git merge --ff-only --quiet "$TARGET"
+
+FAILED=""
+for d in $UP; do   # dans l'ordre FIRST / reste / LAST
+  # Une stack en échec n'empêche pas le déploiement des suivantes
+  (cd "$d" && docker compose up -d --build --remove-orphans) || FAILED="$FAILED $d"
+done
+
+if [ -n "$FAILED" ]; then
+  # exit ne déclenche pas le trap ERR : notification explicite
+  curl -fsS -d "Stacks en échec :$FAILED" https://ntfy.example.com/deploy || true
+  exit 1   # le marqueur n'avance pas : tout le diff est retenté au prochain run
+fi
+git update-ref "$MARKER" "$TARGET"
+```
+
+Le marqueur n'avance que si tout le diff a été appliqué. Après un échec, le run suivant reprend l'intégralité de `LAST..TARGET` : les stacks déjà à jour passent par un `up -d` sans effet, celles qui ont échoué sont retentées. Un redéploiement manuel d'une seule stack (`workflow_dispatch`) ne fait pas avancer le marqueur, puisqu'il ne couvre pas le reste du diff.
+
+Dans la même boucle, juste après le `up -d` d'une stack, se place l'arrêt des conteneurs gérés par un outil de scale-to-zero : démarrés par le déploiement, ils n'ont pas de session et ne s'endormiraient jamais. Les arrêter avant qu'ils soient `healthy` interromprait leur initialisation ; le détail figure dans l'article [Traefik : Sablier](../06-orchestration/2026-08-30-traefik-sablier.md).
+
+Côté workflow, le job se simplifie : plus de `actions/checkout` ni de `fetch-depth: 0`, le runner se contente de rejoindre le réseau privé et d'ouvrir la session SSH. Le nom de stack d'un déploiement manuel est validé sur le runner contre un motif strict (`^[a-z0-9][a-z0-9-]*$`) avant d'être transmis au shell distant, puis son `compose.yml` est vérifié sur l'hôte (`git cat-file -e "$TARGET:$STACK/compose.yml"`).
+
 ## Le piège des fichiers de configuration en bind mount
 
 ### Compose ne voit que le fichier Compose
@@ -251,6 +319,55 @@ repos:
 
 `compose.yml` faisant alors partie des fichiers modifiés, le diff du workflow sélectionne la stack. Quand le hook modifie un fichier, pre-commit fait échouer le commit : il faut ajouter le fichier modifié et recommencer. Limite : le hook ne s'exécute que là où `pre-commit install` a été lancé ; un commit depuis l'interface web ou par un bot contourne le recalcul.
 
+### Un script pour tout le dépôt
+
+Un script et un hook par stack se multiplient vite. Un script unique à la racine, appelé par un seul hook (`always_run: true`, `pass_filenames: false`), décrit toutes les associations en une ligne chacune :
+
+```bash
+#!/usr/bin/env bash
+# conf-hash.sh : une ligne par variable de hash, pour tout le dépôt
+set -euo pipefail
+cd "$(dirname "$0")"
+
+# conf_hash <stack> <variable> <fichiers...> : hash de la concaténation des fichiers,
+# reporté dans <variable> (syntaxe liste VAR=... ou map VAR: ...) de <stack>/compose.yml
+conf_hash() {
+  local stack=$1 var=$2; shift 2
+  local h; h=$(cat "$@" | sha256sum | cut -d' ' -f1)
+  sed -i -E "s/\b(${var}[=:] *\"?)[0-9a-f]{64}/\1${h}/g" "$stack/compose.yml"
+}
+
+conf_hash wiki    CONFIG_HASH  wiki/config.yml
+conf_hash proxy   DYNAMIC_HASH proxy/dynamic.yml
+conf_hash monitor CONF_HASH    monitor/{prometheus,rules,alertmanager}.yml
+conf_hash sablier THEMES_HASH  sablier/themes/*.html
+```
+
+Le hash couvre plusieurs fichiers, voire un dossier entier : le conteneur est recréé dès que l'un d'eux change. Une variable distincte par service limite la recréation au seul service concerné ; une même variable posée sur deux services les recrée ensemble. La substitution ne remplace qu'une valeur de 64 caractères hexadécimaux, ce qui évite de réécrire par erreur une autre variable au nom proche ; une nouvelle variable s'initialise donc avec 64 zéros.
+
+### Applications qui n'agissent qu'au démarrage
+
+Le hash n'est pas réservé aux applications qui lisent leur configuration une seule fois. Monter un **dossier** plutôt qu'un fichier règle le problème d'inode : le dossier monté reflète les fichiers remplacés par `git pull`, et une application qui relit sa configuration voit la nouvelle version. Reste le moment où la configuration produit un effet :
+
+- un outil de synchronisation qui applique sa configuration au démarrage puis selon un planning quotidien n'applique une modification qu'à l'échéance suivante, jusqu'à 24 heures plus tard ;
+- un conteneur ponctuel (`restart: "no"`) qui pousse une configuration vers l'API d'un autre service ne s'exécute de nouveau que s'il est recréé ;
+- un serveur qui découvre ses fichiers (thèmes, plugins) au démarrage ignore les nouveaux fichiers jusqu'au redémarrage.
+
+Dans ces trois cas, la variable de hash transforme une modification de configuration en recréation du conteneur au déploiement suivant. Si l'image n'exécute sa tâche qu'à la première échéance de son planificateur interne, une surcharge de l'entrypoint lance la tâche une fois avant l'entrypoint d'origine (chemins propres à l'image) :
+
+```yaml
+services:
+  sync:
+    image: example/sync-tool:8.7
+    # Tâche exécutée immédiatement, puis planificateur habituel
+    entrypoint: ["/sbin/tini", "--", "bash", "-c", "/cron.sh; exec /entrypoint.sh"]
+    environment:
+      CRON_SCHEDULE: "@daily"
+      SYNC_HASH: "9fc322a6212d9468084367e136c32bdc892961f774039a7efe9ddf8943622963"
+    volumes:
+      - ./sync:/config/sync:ro # dossier, pas fichier : nouvel inode visible après git pull
+```
+
 ## Valider en pull request
 
 ### Démarrage réel sur runner éphémère
@@ -292,7 +409,7 @@ Le workflow `validate` ne s'exécute que sur les pull requests. Un push direct s
 
 ## Pièges et limites
 
-- **Diff fondé sur l'événement** : un force-push fait pointer `before` vers un commit qui n'est plus atteignable, donc absent du clone, et `git diff` échoue. Une variante plus robuste calcule le diff sur l'hôte, entre le commit actuellement déployé (`git rev-parse HEAD`) et la cible après `git fetch` : le résultat reste correct même si des runs ont été annulés.
+- **Diff fondé sur l'événement** : un run en échec ou annulé laisse des stacks à l'ancienne version sans que les runs suivants les rattrapent, et un force-push fait pointer `before` vers un commit absent du clone. Le diff calculé sur l'hôte depuis le dernier déploiement réussi (section [Calculer le diff sur l'hôte](#calculer-le-diff-sur-lhôte)) lève ces trois limites.
 - **Interruption de service** : Compose arrête puis recrée le conteneur, sans rolling update.
 - **Ordre codé en dur** : toute nouvelle dépendance de volume externe exige de mettre à jour les listes.
 - **Clé SSH en CI** : l'utilisateur de déploiement accède au socket Docker, soit un accès équivalent à root sur l'hôte.
@@ -300,7 +417,7 @@ Le workflow `validate` ne s'exécute que sur les pull requests. Un push direct s
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Déploiement continu d'une trentaine de stacks Docker Compose sur un hôte unique, via un runner GitHub hébergé qui rejoint un réseau Tailscale, avec validation des pull requests (dont celles de Renovate) et hash de configuration recalculé par pre-commit.</ProjectLink>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Déploiement continu d'une trentaine de stacks Docker Compose sur un hôte unique, via un runner GitHub hébergé qui rejoint un réseau Tailscale, avec diff calculé sur l'hôte depuis le dernier déploiement réussi, validation des pull requests (dont celles de Renovate) et hash de configuration recalculé par pre-commit.</ProjectLink>
   <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD - Workflows GitHub Actions mutualisés">Le dépôt `generic_workflows` propose un workflow réutilisable de déploiement Docker Compose, à côté du déploiement Helm, pour les dépôts de l'organisation.</ProjectLink>
 </ProjectLinks>
 
