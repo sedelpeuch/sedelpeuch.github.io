@@ -9,6 +9,7 @@ import TabItem from '@theme/TabItem';
 
 <ProjectMeta
   start="Décembre 2023"
+  end="2026"
   role="Auteur principal et mainteneur"
   domain="Standardisation des projets Python"
   stack={["Python", "uv", "Ruff", "pytest", "Cookiecutter", "GitHub Actions"]}

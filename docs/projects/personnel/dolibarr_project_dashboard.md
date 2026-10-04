@@ -8,6 +8,7 @@ tags: [fastapi, react, typescript, dolibarr, erp, docker, python]
 
 <ProjectMeta
   start="2026"
+  end="2026"
   role="Auteur (projet solo)"
   domain="Tableau de bord, ERP, pilotage multi-projets"
   stack={["FastAPI", "React", "TypeScript", "Tailwind", "Docker"]}
