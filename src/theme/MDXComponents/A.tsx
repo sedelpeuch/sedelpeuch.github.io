@@ -9,6 +9,13 @@ export default function MDXA(props: Props): JSX.Element {
 
   if (!href) return <Link {...props} />;
 
+  // Fichier statique (PDF, archive…) : <Link> lui ajouterait la barre finale de
+  // trailingSlash (fichier.pdf/ → 404). Son href inclut déjà le baseUrl.
+  const pathname = href.split(/[?#]/)[0];
+  if (href.startsWith("/") && /\.[a-z0-9]{1,5}$/i.test(pathname)) {
+    return <a {...props} />;
+  }
+
   const iconMappings = {
     "github.com": "simple-icons:github",
     "twitter.com": "logos:twitter",
