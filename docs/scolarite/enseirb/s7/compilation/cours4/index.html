@@ -16,16 +16,17 @@
 
 
 
-<link rel="icon" href="/img/logo.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/img/logo.svg">
 <meta name="theme-color" content="#12affa">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" integrity="sha384-nH0MfJ44wi1dd7w6jinlyBgljjS8EJAh2JBoRad8a3VDw2K69vfaaqm4WnR+gXtA" crossorigin="anonymous">
-<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
-<script src="/assets/js/runtime~main.43bab3a9.js" defer="defer"></script>
-<script src="/assets/js/main.7c81658f.js" defer="defer"></script>
+<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d" data-domains="delpeuch.net" data-performance="true"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
+<script src="/assets/js/runtime~main.ed4b0556.js" defer="defer"></script>
+<script src="/assets/js/main.cc9128bd.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -35,10 +36,10 @@
 <p>Question du jour : que faire avec les arbres de dérivation ?</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="évaluation-sur-un-arbre-de-dérivation">Évaluation sur un arbre de dérivation<a href="#évaluation-sur-un-arbre-de-dérivation" class="hash-link" aria-label="Lien direct vers Évaluation sur un arbre de dérivation" title="Lien direct vers Évaluation sur un arbre de dérivation" translate="no">​</a></h2>
 <p>Sur un exemple, les expressions arithmétiques :</p>
-<p><img decoding="async" loading="lazy" src="/assets/images/arbre3-b99db1ae9feacfefa377b0d2abadcd3d.png" width="1020" height="646" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="/assets/images/arbre3-57d21a0570039a4f818faccebfe76c49.png" width="1020" height="646" class="img_ev3q"></p>
 <p>Comment évaluer cette expression ? Il suffit d&#x27;effectuer une évaluation des
 feuilles vers la racine :</p>
-<p><img decoding="async" loading="lazy" src="/assets/images/arbre4-66df62260527747318bae428d2ccf9b6.png" width="1152" height="626" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="/assets/images/arbre4-49cdaec216db4fda3217d3a1c85da0a4.png" width="1152" height="626" class="img_ev3q"></p>
 <p>Les valeurs sont obtenues par application d&#x27;une règle de calcul : la valeur
 d&#x27;un nœud interne dépend des valeurs (tout ou partie) portées par ses enfants.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="attributs">Attributs<a href="#attributs" class="hash-link" aria-label="Lien direct vers Attributs" title="Lien direct vers Attributs" translate="no">​</a></h2>
@@ -69,7 +70,7 @@ leur nœud. Un attribut pourra aussi être :</p>
 </ul>
 <p>ou une combinaison des éléments ci-dessus, en définissant les valeurs
 d&#x27;attributs comme des <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">n</span></span></span></span>-uplets (<code>struct</code> en C).</p>
-<p><img decoding="async" loading="lazy" src="/assets/images/dessin-84201146a5e7b43b2d704845976bee3c.png" width="1102" height="576" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="/assets/images/dessin-e2f3368187588a427e27c49921ad019b.png" width="1102" height="576" class="img_ev3q"></p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="actions-sémantiques-en-yacc">Actions sémantiques en Yacc<a href="#actions-sémantiques-en-yacc" class="hash-link" aria-label="Lien direct vers Actions sémantiques en Yacc" title="Lien direct vers Actions sémantiques en Yacc" translate="no">​</a></h2>
 <p>En Yacc, trois points sont à retenir :</p>
 <ol>

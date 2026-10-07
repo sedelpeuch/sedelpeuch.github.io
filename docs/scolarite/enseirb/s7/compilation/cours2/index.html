@@ -16,16 +16,17 @@
 
 
 
-<link rel="icon" href="/img/logo.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/img/logo.svg">
 <meta name="theme-color" content="#12affa">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" integrity="sha384-nH0MfJ44wi1dd7w6jinlyBgljjS8EJAh2JBoRad8a3VDw2K69vfaaqm4WnR+gXtA" crossorigin="anonymous">
-<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
-<script src="/assets/js/runtime~main.43bab3a9.js" defer="defer"></script>
-<script src="/assets/js/main.7c81658f.js" defer="defer"></script>
+<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d" data-domains="delpeuch.net" data-performance="true"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
+<script src="/assets/js/runtime~main.ed4b0556.js" defer="defer"></script>
+<script src="/assets/js/main.cc9128bd.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -49,14 +50,14 @@ les opérateurs <span class="katex"><span class="katex-mathml"><math xmlns="http
 finis (théorème de Kleene). Les automates déterministes et non déterministes
 reconnaissent la même classe de langages, mais présentent des différences
 (taille, coût de la reconnaissance) importantes durant ce cours.</p>
-<p><img decoding="async" loading="lazy" src="/assets/images/rappel-0ade3312a64e9e844a411377f822dbb7.png" width="618" height="418" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="/assets/images/rappel-6829211715648f394d9e62b2b1c27e43.png" width="618" height="418" class="img_ev3q"></p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="rappel--construction-de-thompson">Rappel : construction de Thompson<a href="#rappel--construction-de-thompson" class="hash-link" aria-label="Lien direct vers Rappel : construction de Thompson" title="Lien direct vers Rappel : construction de Thompson" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="r1r2">R1.R2<a href="#r1r2" class="hash-link" aria-label="Lien direct vers R1.R2" title="Lien direct vers R1.R2" translate="no">​</a></h3>
-<p><img decoding="async" loading="lazy" src="/assets/images/r1.r2-58d93b9f0dd7be01dabf1c9d9f97a779.png" width="742" height="280" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="/assets/images/r1.r2-1b9b56dd38484c5fa63e87216ce91ee8.png" width="742" height="280" class="img_ev3q"></p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="r1--r2">R1 | R2<a href="#r1--r2" class="hash-link" aria-label="Lien direct vers R1 | R2" title="Lien direct vers R1 | R2" translate="no">​</a></h3>
-<p><img decoding="async" loading="lazy" src="/assets/images/r1|r2-16f9d46b34ec47818ebe99a7a6776ed5.png" width="490" height="416" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="/assets/images/r1|r2-1be5cce0277a9f2b305487dd0cf51619.png" width="490" height="416" class="img_ev3q"></p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="r">R*<a href="#r" class="hash-link" aria-label="Lien direct vers R*" title="Lien direct vers R*" translate="no">​</a></h3>
-<p><img decoding="async" loading="lazy" src="/assets/images/r-94b240352ebdf663b5716b626080f1a4.png" width="742" height="308" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="/assets/images/r-2b7ab5b0bfddb6ab15cf8c21cad39bb0.png" width="742" height="308" class="img_ev3q"></p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="algorithme-de-déterminisation">Algorithme de déterminisation<a href="#algorithme-de-déterminisation" class="hash-link" aria-label="Lien direct vers Algorithme de déterminisation" title="Lien direct vers Algorithme de déterminisation" translate="no">​</a></h2>
 <ul>
 <li class="">On part d&#x27;un automate <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>N</mi><mo separator="true">,</mo><mi mathvariant="normal">Σ</mi><mo separator="true">,</mo><mi mathvariant="normal">Δ</mi><mo separator="true">,</mo><msub><mi>n</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>N</mi><mi>F</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(N,\Sigma,\Delta,n_0,N_F)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.109em">N</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">Σ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">Δ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em">N</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>

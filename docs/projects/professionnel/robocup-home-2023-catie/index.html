@@ -16,16 +16,17 @@
 
 
 
-<link rel="icon" href="/img/logo.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/img/logo.svg">
 <meta name="theme-color" content="#12affa">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" integrity="sha384-nH0MfJ44wi1dd7w6jinlyBgljjS8EJAh2JBoRad8a3VDw2K69vfaaqm4WnR+gXtA" crossorigin="anonymous">
-<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
-<script src="/assets/js/runtime~main.43bab3a9.js" defer="defer"></script>
-<script src="/assets/js/main.7c81658f.js" defer="defer"></script>
+<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d" data-domains="delpeuch.net" data-performance="true"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
+<script src="/assets/js/runtime~main.ed4b0556.js" defer="defer"></script>
+<script src="/assets/js/main.cc9128bd.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -44,7 +45,7 @@
 <li class=""><strong>Description de personnes</strong> : ResNet entraîné sur CUHK-PEDES pour décrire l&#x27;apparence (couleur de cheveux, vêtements…).</li>
 <li class=""><strong>Pose</strong> : MoveNet pour détecter en temps réel si une personne est assise, debout ou lève la main, utilisé comme filtre peu coûteux avant de lancer des algorithmes plus lourds.</li>
 <li class=""><strong>Localisation précise d&#x27;objets</strong> : reconnaissance de formes LiDAR pour repositionner le robot face à un objet connu avec une précision que la localisation globale seule ne permet pas.</li>
-</ul></div><div role="tabpanel" class="tabItem_Ymn6" hidden=""><p>La chaîne de communication fonctionne entièrement hors ligne : transcription par Whisper (reconnaissance vocale entraînée sur 680 000 heures de données) et compréhension de l&#x27;intention par Snips NLU. C&#x27;est un choix délibéré : en compétition, toute dépendance réseau est un risque. La latence reste acceptable et l&#x27;ensemble fonctionne sans connexion Internet.</p><p>Le principal problème rencontré lors des éditions précédentes était la sur-activation : la chaîne interprétait le bruit ambiant comme de la parole. La solution adoptée corrèle l&#x27;activation du microphone avec les états du robot : le système n&#x27;écoute que lorsqu&#x27;il est dans un état qui l&#x27;y autorise, jamais en continu.</p></div><div role="tabpanel" class="tabItem_Ymn6" hidden=""><p>Chaque épreuve est une machine à états dédiée qui orchestre les appels aux modules de navigation, perception et langage selon les points atteignables et l&#x27;avancement réel : Receptionist, Storing Groceries, Restaurant, Carry My Luggage, Stickler of the Rules. La stratégie de points, qui consiste à décider quelles sous-tâches tenter et dans quel ordre, est une partie à part entière du travail de préparation.</p></div></div></div>
+</ul></div><div role="tabpanel" class="tabItem_Ymn6" hidden=""><p>La chaîne de communication fonctionne entièrement hors ligne : transcription par Whisper (reconnaissance vocale entraînée sur 680 000 heures de données) et compréhension de l&#x27;intention par Snips NLU. C&#x27;est un choix délibéré : en compétition, toute dépendance réseau est un risque. La latence reste acceptable et l&#x27;ensemble fonctionne sans connexion Internet.</p><p>Le principal problème rencontré lors des éditions précédentes était la sur-activation : la chaîne interprétait le bruit ambiant comme de la parole. La solution adoptée corrèle l&#x27;activation du microphone avec les états du robot : le système n&#x27;écoute que lorsqu&#x27;il est dans un état qui l&#x27;y autorise, jamais en continu.</p></div><div role="tabpanel" class="tabItem_Ymn6" hidden=""><p>Chaque épreuve est une machine à états dédiée qui orchestre les appels aux modules de navigation, perception et langage selon les points atteignables et l&#x27;avancement réel : Receptionist, Storing Groceries, Restaurant, Carry My Luggage, Stickler for the Rules. La stratégie de points, qui consiste à décider quelles sous-tâches tenter et dans quel ordre, est une partie à part entière du travail de préparation.</p></div></div></div>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="mon-rôle">Mon rôle<a href="#mon-rôle" class="hash-link" aria-label="Lien direct vers Mon rôle" title="Lien direct vers Mon rôle" translate="no">​</a></h2>
 <p>Le rôle de Team Leader sur ce type de projet couvre deux dimensions. La coordination : définir les priorités techniques dans les semaines qui précèdent, arbitrer les choix d&#x27;architecture, organiser les sessions de test, piloter la rédaction du Team Description Paper, dont je suis le premier auteur. La dimension technique : j&#x27;ai été le principal contributeur sur <strong>robot-manager</strong>, le middleware central qui expose les capacités du robot à toutes les tâches : navigation, synthèse vocale, perception, bras, retours visuels (LEDs, écran). J&#x27;ai notamment conçu la gestion des états visuels du robot pour l&#x27;interaction avec le public, le système TTS, et contribué à plusieurs tâches dont Receptionist et Carry My Luggage.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="résultats">Résultats<a href="#résultats" class="hash-link" aria-label="Lien direct vers Résultats" title="Lien direct vers Résultats" translate="no">​</a></h2>

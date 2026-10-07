@@ -16,16 +16,17 @@
 
 
 
-<link rel="icon" href="/img/logo.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/img/logo.svg">
 <meta name="theme-color" content="#12affa">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" integrity="sha384-nH0MfJ44wi1dd7w6jinlyBgljjS8EJAh2JBoRad8a3VDw2K69vfaaqm4WnR+gXtA" crossorigin="anonymous">
-<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
-<script src="/assets/js/runtime~main.43bab3a9.js" defer="defer"></script>
-<script src="/assets/js/main.7c81658f.js" defer="defer"></script>
+<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d" data-domains="delpeuch.net" data-performance="true"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
+<script src="/assets/js/runtime~main.ed4b0556.js" defer="defer"></script>
+<script src="/assets/js/main.cc9128bd.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -101,12 +102,12 @@
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-logiciel">4. Logiciel<a href="#4-logiciel" class="hash-link" aria-label="Lien direct vers 4. Logiciel" title="Lien direct vers 4. Logiciel" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-mathématiques">4.1. Mathématiques<a href="#41-mathématiques" class="hash-link" aria-label="Lien direct vers 4.1. Mathématiques" title="Lien direct vers 4.1. Mathématiques" translate="no">​</a></h3>
 <p>Pour réussir à dessiner, la première étape est de trouver les équations mathématiques permettant de convertir un déplacement en un nombre de tours pour chaque moteur. Pour ce faire, commençons par définir le problème.</p>
-<p><img decoding="async" loading="lazy" alt="Schéma du plotter" src="/assets/images/PlotterSchema-a9ed1e77d94d58c2c858217fceca4cf1.png" width="487" height="586" class="img_ev3q">
-<img decoding="async" loading="lazy" alt="Équations du plotter" src="/assets/images/PlotterMath-0ca3fcabf63167ef2d632ab77ec6ea5f.png" width="1334" height="762" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Schéma du plotter" src="/assets/images/PlotterSchema-ac1e0c35aefedd408115322ed143c7d9.png" width="487" height="586" class="img_ev3q">
+<img decoding="async" loading="lazy" alt="Équations du plotter" src="/assets/images/PlotterMath-d3849c1b2d86515822c4668ba33aed68.png" width="1334" height="762" class="img_ev3q"></p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-programme">4.2. Programme<a href="#42-programme" class="hash-link" aria-label="Lien direct vers 4.2. Programme" title="Lien direct vers 4.2. Programme" translate="no">​</a></h3>
 <p>Maintenant que nous avons à notre disposition tous les éléments physiques et mathématiques permettant de mettre en place le plotter vertical, nous allons nous attarder sur la réalisation du contrôle et du logiciel permettant de dessiner.</p>
 <p>Pour réaliser le logiciel, nous utilisons le langage C++ ; le logiciel se décompose en 3 parties. D&#x27;une part, la définition d&#x27;un tableau (classe <code>Board</code>) ; ensuite, le contrôle de &quot;bas niveau&quot; (classe <code>Control</code>), c&#x27;est-à-dire la transformation entre un ordre de déplacement et un nombre de tours à appliquer aux moteurs ; enfin, le contrôle &quot;haut niveau&quot; (classe <code>Drawer</code>), permettant de transformer un dessin en une succession de mouvements. Une classe <code>Position</code> a été mise en place pour simplifier les manipulations mathématiques sur les couples <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(x,y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.0359em">y</span><span class="mclose">)</span></span></span></span>. Ce découpage est résumé dans le diagramme de classes suivant. Le diagramme ne représente ni les constructeurs et destructeurs, ni les accesseurs et mutateurs.</p>
-<p><img decoding="async" loading="lazy" alt="Diagramme de classes du logiciel" src="/assets/images/PlotterClasse-d29cae4f95d9aea2341bf54e2828c05f.png" width="777" height="1348" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Diagramme de classes du logiciel" src="/assets/images/PlotterClasse-501a5af81494ed42cce07962c29f8422.png" width="777" height="1348" class="img_ev3q"></p>
 <p>La classe <code>Board</code> définit physiquement un tableau, principalement par sa taille et la position initiale du module sur le tableau (classiquement au centre). Les champs <code>_a</code> et <code>_b</code> sont des artefacts de la première version mécanique ; il convient de les mettre à 0 dorénavant. Les tableaux d&#x27;EirLab sont préprogrammés : il suffit d&#x27;utiliser la méthode <code>generateBoard(Little)</code> pour obtenir un objet de classe <code>Board</code> correspondant à l&#x27;un des petits tableaux d&#x27;EirLab.</p>
 <p>La classe <code>Control</code> met en œuvre les équations mathématiques vues en 4.1. Elle est composée de deux fonctions principales : <code>simpleMove(Position objective)</code>, qui permet de réaliser un déplacement unitaire, et <code>complexMove</code>, qui permet de réaliser un chemin (c&#x27;est-à-dire une succession de points qui sont transformés en une succession de déplacements unitaires par interpolation).</p>
 <p>La classe <code>Drawer</code> est la classe qui permet de transformer un dessin en une succession de chemins, tout en prenant en compte les moments où il faut relever et baisser le stylo.</p>

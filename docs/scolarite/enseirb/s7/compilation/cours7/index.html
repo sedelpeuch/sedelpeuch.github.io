@@ -16,16 +16,17 @@
 
 
 
-<link rel="icon" href="/img/logo.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/img/logo.svg">
 <meta name="theme-color" content="#12affa">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" integrity="sha384-nH0MfJ44wi1dd7w6jinlyBgljjS8EJAh2JBoRad8a3VDw2K69vfaaqm4WnR+gXtA" crossorigin="anonymous">
-<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
-<script src="/assets/js/runtime~main.43bab3a9.js" defer="defer"></script>
-<script src="/assets/js/main.7c81658f.js" defer="defer"></script>
+<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d" data-domains="delpeuch.net" data-performance="true"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
+<script src="/assets/js/runtime~main.ed4b0556.js" defer="defer"></script>
+<script src="/assets/js/main.cc9128bd.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -41,7 +42,7 @@ simultanées d&#x27;un même bloc doit alors être borné et connu à la compila
 qui interdit la compilation de fonctions récursives.</p>
 <p>Une deuxième solution est d&#x27;utiliser la pile : on stocke les variables locales
 dans la pile.</p>
-<p><img decoding="async" loading="lazy" src="/assets/images/71-f818beb6828638310f4c3833068cdfab.png" width="576" height="438" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="/assets/images/71-57661cb9190020a7d1f795c72f141bf3.png" width="576" height="438" class="img_ev3q"></p>
 <p>La question est : comment accéder (en lecture ou en écriture) à <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em"></span><span class="mord mathnormal">x</span></span></span></span> ou <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em"></span><span class="mord mathnormal" style="margin-right:0.0359em">g</span></span></span></span> ?</p>
 <p>La solution est d&#x27;utiliser un pointeur d&#x27;environnement (frame pointer) <code>fp</code>
 qui désigne, dans la pile, un emplacement fixe pendant toute la durée de vie du

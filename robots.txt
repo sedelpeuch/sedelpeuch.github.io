@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://delpeuch.net/sitemap.xml

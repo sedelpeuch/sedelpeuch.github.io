@@ -16,16 +16,17 @@
 
 
 
-<link rel="icon" href="/img/logo.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/img/logo.svg">
 <meta name="theme-color" content="#12affa">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" integrity="sha384-nH0MfJ44wi1dd7w6jinlyBgljjS8EJAh2JBoRad8a3VDw2K69vfaaqm4WnR+gXtA" crossorigin="anonymous">
-<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
-<script src="/assets/js/runtime~main.43bab3a9.js" defer="defer"></script>
-<script src="/assets/js/main.7c81658f.js" defer="defer"></script>
+<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d" data-domains="delpeuch.net" data-performance="true"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
+<script src="/assets/js/runtime~main.ed4b0556.js" defer="defer"></script>
+<script src="/assets/js/main.cc9128bd.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -46,11 +47,11 @@
 <p>Ensuite, nous avons introduit le concept simple de l&#x27;ordonnancement manuel, mais le microcontrôleur passera toujours beaucoup de temps à exécuter des tests qui sont pour la plupart faux.</p>
 <p>Une caractéristique des microcontrôleurs peut nous aider ici : les interruptions. Il s&#x27;agit simplement de routines exécutées lorsqu&#x27;un événement quelconque se produit. Le processeur &quot;saute&quot; alors automatiquement à une fonction donnée (routine d&#x27;interruption, ou ISR).</p>
 <p>Le code binaire que nous téléchargeons commence par une table de vecteurs d&#x27;interruption. Chaque entrée de cette table correspond à un type d&#x27;interruption et donne une adresse cible pour la routine à exécuter.</p>
-<p><img decoding="async" loading="lazy" alt="Table des vecteurs d&amp;#39;interruption" src="/assets/images/6-3aa589468ccd14cd8f49dece274c1138.png" width="927" height="762" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Table des vecteurs d&amp;#39;interruption" src="/assets/images/6-4d57d9c1814cf2d7df092c0d90b0e09e.png" width="927" height="762" class="img_ev3q"></p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="ring-buffer">Ring buffer<a href="#ring-buffer" class="hash-link" aria-label="Lien direct vers Ring buffer" title="Lien direct vers Ring buffer" translate="no">​</a></h2>
 <p>Pour gérer l&#x27;envoi et la réception de données à l&#x27;aide d&#x27;un bus comme l&#x27;UART, nous pouvons utiliser un buffer en anneau, permettant de stocker les données qui ne sont pas encore traitées.</p>
 <p>Il peut s&#x27;agir soit de données TX qui n&#x27;ont pas encore été envoyées, soit de données RX qui n&#x27;ont pas été lues par le code.</p>
-<p><img decoding="async" loading="lazy" alt="Buffer circulaire" src="/assets/images/7-5d6c172b895b5a956929a75e7d51a9a3.png" width="826" height="642" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Buffer circulaire" src="/assets/images/7-9b307cf466f66138459d3de9603378df.png" width="826" height="642" class="img_ev3q"></p>
 <p>Le principe est de stocker un tableau en mémoire avec deux index, le premier étant le prochain élément à lire, et le second le prochain élément à écrire.</p>
 <p>Lorsque les index sont incrémentés, ils reviennent au début du tableau lorsqu&#x27;ils atteignent la fin (arithmétique modulo la taille du buffer).</p>
 <p>Nous pouvons vérifier s&#x27;il y a des données à lire en comparant les index : le buffer est vide lorsqu&#x27;ils sont égaux.</p></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Pages de documentation"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/scolarite/enseirb/s9/SE/2"><span class="pagination-nav__ring" aria-hidden="true"></span><span class="pagination-nav__text"><span class="pagination-nav__sublabel">Précédent</span><span class="pagination-nav__label">Bus de communication</span></span></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/scolarite/enseirb/s9/controle"><span class="pagination-nav__ring" aria-hidden="true"></span><span class="pagination-nav__text"><span class="pagination-nav__sublabel">Suivant</span><span class="pagination-nav__label">Contrôle-commande</span></span></a></nav></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop" style="opacity:0;transform:translateX(100px) translateZ(0)"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#problème" class="table-of-contents__link toc-highlight">Problème</a></li><li><a href="#ordonnancement" class="table-of-contents__link toc-highlight">Ordonnancement</a><ul><li><a href="#comment-réaliser-différentes-tâches-simultanément" class="table-of-contents__link toc-highlight">Comment réaliser différentes tâches simultanément</a></li></ul></li><li><a href="#polling-et-interruptions" class="table-of-contents__link toc-highlight">Polling et interruptions</a></li><li><a href="#ring-buffer" class="table-of-contents__link toc-highlight">Ring buffer</a></li></ul><hr class="hr_UhE0"><span class="percent_H6RK">0%<!-- --> </span></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Social</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/sedelpeuch" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div></div></footer></div>

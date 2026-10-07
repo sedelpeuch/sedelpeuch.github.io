@@ -16,16 +16,17 @@
 
 
 
-<link rel="icon" href="/img/logo.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/img/logo.svg">
 <meta name="theme-color" content="#12affa">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" integrity="sha384-nH0MfJ44wi1dd7w6jinlyBgljjS8EJAh2JBoRad8a3VDw2K69vfaaqm4WnR+gXtA" crossorigin="anonymous">
-<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
-<script src="/assets/js/runtime~main.43bab3a9.js" defer="defer"></script>
-<script src="/assets/js/main.7c81658f.js" defer="defer"></script>
+<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d" data-domains="delpeuch.net" data-performance="true"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
+<script src="/assets/js/runtime~main.ed4b0556.js" defer="defer"></script>
+<script src="/assets/js/main.cc9128bd.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -72,7 +73,7 @@ de domaine peut donc être associé à</p>
 <li class="">une zone de responsabilité d&#x27;administration.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="hiérarchie-du-dns-et-sa-structure-arborescente">Hiérarchie du DNS et sa structure arborescente<a href="#hiérarchie-du-dns-et-sa-structure-arborescente" class="hash-link" aria-label="Lien direct vers Hiérarchie du DNS et sa structure arborescente" title="Lien direct vers Hiérarchie du DNS et sa structure arborescente" translate="no">​</a></h2>
-<p><img decoding="async" loading="lazy" alt="Arborescence du DNS" src="/assets/images/5-4294870da9c8464d5cb543cc9ff3690c.png" width="900" height="536" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Arborescence du DNS" src="/assets/images/5-fe075da570af4eb7fe764f22b9e7d22b.png" width="900" height="536" class="img_ev3q"></p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="principe-de-la-résolution-de-noms">Principe de la résolution de noms<a href="#principe-de-la-résolution-de-noms" class="hash-link" aria-label="Lien direct vers Principe de la résolution de noms" title="Lien direct vers Principe de la résolution de noms" translate="no">​</a></h2>
 <p>Le but de la résolution de noms est d&#x27;obtenir l&#x27;adresse IP associée à un
 nom de domaine. Pour ce faire, on utilise un système client-serveur distribué :</p>
@@ -82,7 +83,7 @@ nom de domaine. Pour ce faire, on utilise un système client-serveur distribué 
 </ul>
 <p>Cela est possible via l&#x27;utilisation d&#x27;un ensemble hiérarchisé de serveurs de
 noms communiquant par un réseau TCP/IP.</p>
-<p><img decoding="async" loading="lazy" alt="Principe de la résolution de noms" src="/assets/images/6-33b3f97091bc28038174c15ac94805b4.png" width="1120" height="568" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Principe de la résolution de noms" src="/assets/images/6-b210f141e2f65047a3f152d5b48e1510.png" width="1120" height="568" class="img_ev3q"></p>
 <p>Les solveurs et serveurs de noms peuvent gérer des caches contenant des entrées
 à durée de vie limitée (TTL). La fraîcheur des réponses est indiquée au client. En
 principe, un solveur s&#x27;adresse au serveur de noms de son domaine. Un serveur de
@@ -92,7 +93,7 @@ noms qui n&#x27;est pas capable de répondre à une requête s&#x27;adresse :</p
 <li class="">ou au serveur racine.</li>
 </ul>
 <p>Deux modes existent : en résolution <strong>récursive</strong>, le serveur interrogé mène lui-même toute la recherche et renvoie la réponse finale ; en résolution <strong>itérative</strong>, il renvoie seulement l&#x27;adresse du serveur suivant à interroger (référence), et c&#x27;est le demandeur qui poursuit.</p>
-<p><img decoding="async" loading="lazy" alt="Résolution itérative et récursive" src="/assets/images/7-6cbecf24bbeeb46631d18a3e7ce48ccd.png" width="744" height="444" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Résolution itérative et récursive" src="/assets/images/7-ce53fdda2f0ff93a5a61f0511d264ccd.png" width="744" height="444" class="img_ev3q"></p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="ressources-dns">Ressources DNS<a href="#ressources-dns" class="hash-link" aria-label="Lien direct vers Ressources DNS" title="Lien direct vers Ressources DNS" translate="no">​</a></h2>
 <ul>
 <li class="">Chaque nœud de l&#x27;arbre contient une ou plusieurs ressources</li>

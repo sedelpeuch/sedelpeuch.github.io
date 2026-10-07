@@ -16,16 +16,17 @@
 
 
 
-<link rel="icon" href="/img/logo.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/img/logo.svg">
 <meta name="theme-color" content="#12affa">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Normal.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" integrity="sha384-nH0MfJ44wi1dd7w6jinlyBgljjS8EJAh2JBoRad8a3VDw2K69vfaaqm4WnR+gXtA" crossorigin="anonymous">
-<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
-<script src="/assets/js/runtime~main.43bab3a9.js" defer="defer"></script>
-<script src="/assets/js/main.7c81658f.js" defer="defer"></script>
+<script src="https://cloud.umami.is/script.js" defer="defer" data-website-id="a249df0c-9eb1-4242-adf8-084b8163ae7d" data-domains="delpeuch.net" data-performance="true"></script><link rel="stylesheet" href="/assets/css/styles.fe9fc530.css">
+<script src="/assets/js/runtime~main.ed4b0556.js" defer="defer"></script>
+<script src="/assets/js/main.cc9128bd.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -45,10 +46,10 @@ on tombe sur un sommet déjà marqué, on teste si sa couleur est différente de
 sommet courant : si ce n&#x27;est pas le cas, le graphe n&#x27;est pas biparti. L&#x27;implémentation repose sur un parcours en largeur, en <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n+m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord mathnormal" style="margin-right:0.0278em">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord mathnormal">m</span><span class="mclose">)</span></span></span></span>.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="problème-du-labyrinthe">Problème du Labyrinthe<a href="#problème-du-labyrinthe" class="hash-link" aria-label="Lien direct vers Problème du Labyrinthe" title="Lien direct vers Problème du Labyrinthe" translate="no">​</a></h2>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="modélisation">Modélisation<a href="#modélisation" class="hash-link" aria-label="Lien direct vers Modélisation" title="Lien direct vers Modélisation" translate="no">​</a></h3>
-<table><thead><tr><th style="text-align:center">Labyrinthe initial</th></tr></thead><tbody><tr><td style="text-align:center"><img decoding="async" loading="lazy" alt="labyrinthe initial" src="/assets/images/labyrinthe-cbe11f855120770dc566bf9f7d0ca65c.png" width="408" height="368" class="img_ev3q"></td></tr></tbody></table>
+<table><thead><tr><th style="text-align:center">Labyrinthe initial</th></tr></thead><tbody><tr><td style="text-align:center"><img decoding="async" loading="lazy" alt="labyrinthe initial" src="/assets/images/labyrinthe-92e9ae01c4eae14fdf2ef477577016a8.png" width="408" height="368" class="img_ev3q"></td></tr></tbody></table>
 <p>L&#x27;idée est de trouver une modélisation simple pour pouvoir se déplacer sur le
 graphe : la modélisation se base sur les chemins possibles.</p>
-<table><thead><tr><th style="text-align:center">Modélisation des différents chemins</th><th style="text-align:center">Modélisation des sommets</th><th style="text-align:center">Modèle final</th></tr></thead><tbody><tr><td style="text-align:center"><img decoding="async" loading="lazy" alt="Modélisation des chemins" src="/assets/images/labyrinthe1-af53c9747592eb750ddaae88ea1a7e75.png" width="332" height="297" class="img_ev3q"></td><td style="text-align:center"><img decoding="async" loading="lazy" alt="Modélisation des sommets" src="/assets/images/labyrinthe2-3860152375af05382072e5f0597c8c9d.png" width="409" height="369" class="img_ev3q"></td><td style="text-align:center"><img decoding="async" loading="lazy" alt="Modèle final" src="/assets/images/labyrinthe3-8907ff86b26fe794662fe9b7a3dbc170.png" width="368" height="295" class="img_ev3q"></td></tr></tbody></table>
+<table><thead><tr><th style="text-align:center">Modélisation des différents chemins</th><th style="text-align:center">Modélisation des sommets</th><th style="text-align:center">Modèle final</th></tr></thead><tbody><tr><td style="text-align:center"><img decoding="async" loading="lazy" alt="Modélisation des chemins" src="/assets/images/labyrinthe1-b3bf3b3f3f3a7496fb68b7eacbe3d68b.png" width="332" height="297" class="img_ev3q"></td><td style="text-align:center"><img decoding="async" loading="lazy" alt="Modélisation des sommets" src="/assets/images/labyrinthe2-75dea0d9f6cbeb565be1915b28e96c27.png" width="409" height="369" class="img_ev3q"></td><td style="text-align:center"><img decoding="async" loading="lazy" alt="Modèle final" src="/assets/images/labyrinthe3-9e266e8ddf56f90966c133a3ed5172d8.png" width="368" height="295" class="img_ev3q"></td></tr></tbody></table>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="résolution-du-problème">Résolution du problème<a href="#résolution-du-problème" class="hash-link" aria-label="Lien direct vers Résolution du problème" title="Lien direct vers Résolution du problème" translate="no">​</a></h3>
 <p>On peut trouver la sortie d&#x27;un labyrinthe avec 2 couleurs en &quot;simulant&quot; un
 parcours en profondeur (<strong>DFS</strong>) : au lieu d&#x27;utiliser une mémoire globale de taille <code>n</code>
