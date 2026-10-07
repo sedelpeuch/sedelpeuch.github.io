@@ -1,5 +1,6 @@
 ---
 title: "Algèbre relationnelle"
+description: "Cours de bases de données : opérateurs de l'algèbre relationnelle (sélection, projection, union, différence, produit cartésien, jointures, division)."
 ---
 
 ## Introduction

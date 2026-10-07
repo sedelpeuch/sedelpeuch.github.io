@@ -1,5 +1,6 @@
 ---
-title: Langage SQL
+title: "Langage SQL"
+description: "Cours de bases de données : langage SQL et ses catégories d'instructions, PostgreSQL, définition de tables (CREATE TABLE), types et contraintes d'intégrité."
 ---
 
 Notes inspirées du [cours](https://moodle.bordeaux-inp.fr/pluginfile.php/96806/mod_resource/content/4/cours_conception-20.pdf) de M. Mosbah et S. Lombardy.

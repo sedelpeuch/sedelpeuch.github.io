@@ -1,5 +1,6 @@
 ---
 title: "TD5 - Algèbre relationnelle"
+description: "Corrigé du TD5 de bases de données : requêtes en algèbre relationnelle (sélection, projection, jointure naturelle, division) et arbres algébriques."
 ---
 
 ## Produit fournisseur

@@ -1,6 +1,6 @@
 ---
 title: "DevOps Roadmap 2024"
-description: "Présentation de ma roadmap DevOps personnelle 2024"
+description: "Ma roadmap DevOps 2024 : réseau et sécurité Linux, stacks Docker Compose et Swarm, pipelines GitHub Actions réutilisables, et le bilan de 2023."
 tags: [devops]
 ---
 

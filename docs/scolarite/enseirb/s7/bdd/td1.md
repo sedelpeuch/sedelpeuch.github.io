@@ -1,5 +1,6 @@
 ---
 title: "TD1 - Modèle conceptuel"
+description: "Corrigé du TD1 de bases de données : schémas entités-associations (voitures, facturation, classes, personnel), entités, associations et cardinalités."
 ---
 
 ## Cours - élèves
