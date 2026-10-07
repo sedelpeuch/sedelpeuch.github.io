@@ -1,6 +1,6 @@
 ---
 title: "DevOps Roadmap 2026"
-description: "Présentation de ma roadmap DevOps personnelle 2026"
+description: "Ma roadmap DevOps 2026 : cloud AWS (IAM, VPC, EC2), Terraform multi-environnements, et le bilan de 2025 sur Kubernetes, l'observabilité et Ansible."
 tags: [devops]
 ---
 

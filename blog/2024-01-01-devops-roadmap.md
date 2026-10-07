@@ -1,6 +1,6 @@
 ---
 title: "DevOps Roadmap"
-description: "Présentation de ma roadmap DevOps personnelle"
+description: "Les dix domaines de ma roadmap DevOps : Linux, Docker, CI/CD, cloud, Kubernetes, monitoring, Infrastructure as Code, scripts Python et Git."
 tags: [devops]
 ---
 Ingénieur en informatique au [CATIE](https://www.catie.fr/) spécialisé en Robotique, je travaille sur des projets de développement logiciel et d'intégration sur différentes plateformes. Intrigué par l'intégration et l'automatisation, j'ai décidé d'approfondir mes connaissances en DevOps.

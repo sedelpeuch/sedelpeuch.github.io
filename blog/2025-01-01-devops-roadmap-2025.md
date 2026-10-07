@@ -1,6 +1,6 @@
 ---
 title: "DevOps Roadmap 2025"
-description: "Présentation de ma roadmap DevOps personnelle 2025"
+description: "Ma roadmap DevOps 2025 : Kubernetes (Deployment, Ingress, volumes), observabilité Prometheus, Grafana et Loki, Ansible et Terraform, et le bilan de 2024."
 tags: [devops]
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "TD4 - Normalisation"
+description: "Corrigé du TD4 de bases de données : dépendances fonctionnelles, fermeture transitive, clés candidates et décomposition en troisième forme normale (3FN)."
 ---
 
 ## Entraînement sur les DF

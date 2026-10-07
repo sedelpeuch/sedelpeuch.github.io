@@ -1,5 +1,6 @@
 ---
 title: "Conception d'une base de données"
+description: "Cours de bases de données : rôle et architecture d'un SGBD, modèle entités-associations (entités, associations, cardinalités), règles de bonne formation."
 ---
 
 ## Introduction

@@ -1,5 +1,6 @@
 ---
 title: "Base de données relationnelles"
+description: "Cours de bases de données : modèle relationnel, passage depuis le modèle entités-associations, dépendances fonctionnelles et formes normales de 1FN à 5FN."
 ---
 
 ## Introduction au modèle relationnel

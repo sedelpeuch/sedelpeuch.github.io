@@ -277,6 +277,7 @@ const config: Config = {
   organizationName: "sedelpeuch",
   projectName: "sedelpeuch.net",
   onBrokenLinks: "warn",
+  clientModules: ["./src/clientModules/umamiEvents.ts"],
   customFields: {
     description:
       "Portfolio de Sébastien Delpeuch, ingénieur en robotique et DevOps au CATIE (Bordeaux). Articles techniques sur Kubernetes, Python, CI/CD, ROS2 et projets professionnels.",
@@ -483,6 +484,10 @@ const config: Config = {
         },
         blog: {
           showReadingTime: true,
+          // <title> et meta description de /blog (et de ses pages /blog/page/N).
+          blogTitle: "Blog DevOps",
+          blogDescription:
+            "Articles techniques DevOps : réseau, conteneurs Docker, CI/CD GitHub Actions, cloud AWS, Kubernetes, Infrastructure as Code, monitoring et scripts Python.",
           // $ seul reste du texte (prix en dollars) : formules entre $$ ... $$.
           remarkPlugins: [[remarkMath, { singleDollarTextMath: false }]],
           rehypePlugins: [rehypeKatex],
@@ -551,6 +556,10 @@ const config: Config = {
       src: "https://cloud.umami.is/script.js",
       defer: true,
       "data-website-id": "a249df0c-9eb1-4242-adf8-084b8163ae7d",
+      // Le serveur de dev (localhost) n'est pas compté.
+      "data-domains": "delpeuch.net",
+      // Core Web Vitals (LCP, INP, CLS, FCP, TTFB).
+      "data-performance": "true",
     },
   ],
   stylesheets: [
@@ -577,6 +586,19 @@ const config: Config = {
         docsRouteBasePath: "/",
         hashed: true,
         searchBarPosition: "right",
+        // Un index par section, chargé seulement à la première recherche dans
+        // cette section (l'index unique pesait ~13 Mo).
+        searchContextByPaths: [
+          { label: "Blog", path: "blog" },
+          { label: "Projets", path: "docs/projects" },
+          { label: "Scolarité", path: "docs/scolarite" },
+        ],
+        // Hors section (accueil, /search...) : recherche dans tout le site.
+        useAllContextsWithNoSearchContext: true,
+        // Pages de liste du blog : doublons des billets.
+        ignoreFiles: [/^blog\/page\//, "blog/archive", /^blog\/authors/],
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
       },
     ],
   ],
