@@ -1,5 +1,5 @@
 ---
-title: MegaBot
+title: "MegaBot"
 tags: [robotique, quadrupede, eirlab, stm32, pybullet, open-source]
 description: "Robot quadrupède d'environ 250 kg capable de porter un passager, conçu par Julien Allali et conservé au fablab de Bordeaux INP : électronique STM32, cinématique inverse, simulation PyBullet."
 ---
@@ -20,12 +20,18 @@ MegaBot est un robot quadrupède de grande envergure, conçu et construit par Ju
 
 ## Réalisations
 
-Les travaux menés sur le robot couvrent plusieurs axes :
+Les travaux menés sur le robot par les membres d'EirLab couvrent plusieurs axes :
 
 - **Électronique embarquée** : distribution de puissance depuis des batteries au plomb, contrôle indépendant de chaque patte par un microcontrôleur STM32.
 - **Contrôle et marche** : cinématique inverse résolue par optimisation quadratique à partir de la matrice jacobienne, gestion du centre de gravité par le polygone de sustentation, marche en courbe par discrétisation des trajectoires.
 - **Simulation** : modèle URDF sous PyBullet, avec prise en compte des contraintes de fermeture géométrique des pattes.
 - **Évolutions 2023** : nouveaux vérins à potentiomètres intégrés, contrôleurs moteurs 100 A, carte Nucleo L476RG et multiplexage des liaisons série.
+
+Côté logiciel, j'ai travaillé sur l'organisation du code. En 2022, j'ai versé le code du pilote dans le dépôt du planificateur de marche. En avril 2023, j'ai restructuré le logiciel dans l'organisation GitHub d'EirLab : un dépôt principal qui agrège en sous-modules trois dépôts séparés (pilote, contrôleur, planificateur), avec une documentation Sphinx et des workflows GitHub Actions de vérification du code (pylint, formatage black).
+
+## Résultats
+
+Le robot est présenté lors d'événements robotiques (vidéos en lien) et ses travaux sont documentés publiquement. Après ce découpage, le dépôt du pilote a continué d'évoluer jusqu'en 2025 avec d'autres contributeurs.
 
 ## Liens
 

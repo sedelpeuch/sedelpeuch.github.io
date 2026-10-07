@@ -1,6 +1,6 @@
 ---
 title: "Python : async/await"
-description: "Maîtrisez la programmation asynchrone en Python pour créer des applications performantes et réactives."
+description: "Programmation asynchrone en Python avec async/await et asyncio : coroutines, boucle d'événements, exécution concurrente, timeouts, requêtes HTTP, intégration avec FastAPI et erreurs courantes."
 tags: [scripting, devops]
 ---
 
@@ -14,7 +14,7 @@ Une application qui passe l'essentiel de son temps à attendre des entrées/sort
 
 Dans un programme synchrone classique, chaque opération attend la fin de la précédente, même si elle ne fait rien d'utile pendant ce temps. C'est comme faire la queue au supermarché : si la caissière attend que le client précédent range ses courses dans son sac, tout le monde attend inutilement.
 
-**Exemple concret :** Imaginez une application qui doit récupérer des données depuis 3 APIs différentes. En mode synchrone, le programme attend la réponse de l'API 1 (2 secondes), puis attend l'API 2 (2 secondes), puis l'API 3 (2 secondes) = **6 secondes au total**.
+**Exemple concret :** une application doit récupérer des données depuis 3 APIs différentes. En mode synchrone, le programme attend la réponse de l'API 1 (2 secondes), puis attend l'API 2 (2 secondes), puis l'API 3 (2 secondes) = **6 secondes au total**.
 
 ### La solution : l'asynchrone
 
@@ -30,7 +30,7 @@ async def faire_requete(url):
     return f"Données de {url}"
 
 async def main():
-    # Les 3 requêtes s'exécutent en parallèle
+    # Les 3 requêtes s'exécutent de façon concurrente
     resultats = await asyncio.gather(
         faire_requete("api.example.com/1"),
         faire_requete("api.example.com/2"),
@@ -45,19 +45,19 @@ asyncio.run(main())
 
 L'asynchrone est efficace uniquement pour les opérations **I/O-bound** (limitées par les entrées/sorties), pas pour les calculs **CPU-bound**.
 
-✅ **Bon pour (I/O-bound) :**
+**Adapté aux opérations I/O-bound :**
 
 - Requêtes HTTP/API : attente réseau
 - Opérations de base de données : attente disque/réseau
-- Lecture/écriture de fichiers : attente disque
+- Lecture/écriture de fichiers : attente disque (asyncio ne fournit pas d'I/O fichier non bloquante : passer par `asyncio.to_thread()` ou une bibliothèque comme `aiofiles`)
 - WebSockets : attente de messages
 
-❌ **Pas adapté pour (CPU-bound) :**
+**Inadapté aux opérations CPU-bound :**
 
 - Calculs mathématiques complexes
 - Traitement d'images/vidéos
 - Compression de données
-- Pour ces cas, utiliser `multiprocessing` ou `threading`
+- Pour ces cas, utiliser des processus séparés (`multiprocessing`, `ProcessPoolExecutor`) : à cause du GIL, `threading` ne parallélise pas le calcul
 
 ## Les bases d'async/await
 
@@ -71,10 +71,10 @@ Une **coroutine** est une fonction spéciale qui peut être suspendue et reprise
 async def fonction_async():
     return "Hello"
 
-# ❌ Ceci ne fait RIEN, retourne juste un objet coroutine
+# Incorrect : ne lance rien, retourne seulement un objet coroutine
 resultat = fonction_async()
 
-# ✅ Pour exécuter, il faut await dans un contexte async
+# Pour exécuter la coroutine, il faut await dans un contexte async
 async def main():
     resultat = await fonction_async()  # Maintenant ça s'exécute
     print(resultat)
@@ -84,9 +84,9 @@ asyncio.run(main())  # Point d'entrée pour démarrer l'async
 
 ### Le mot-clé `await` : point de suspension
 
-`await` signifie "attends que cette opération se termine, mais pendant ce temps, laisse d'autres tâches s'exécuter".
+`await` suspend la coroutine jusqu'à la fin de l'opération attendue et, pendant ce temps, rend la main à la boucle d'événements pour que d'autres tâches s'exécutent.
 
-**Analogie :** C'est comme dire "je mets cette tâche en pause, fais autre chose en attendant, et reviens me voir quand c'est prêt".
+**Analogie :** une tâche mise en pause libère l'exécutant, qui passe à une autre activité et ne revient à la première que lorsque son résultat est prêt.
 
 ```python
 async def operation_longue():
@@ -96,11 +96,11 @@ async def operation_longue():
     return "Terminé"
 ```
 
-### Exécuter plusieurs coroutines en parallèle
+### Exécuter plusieurs coroutines de façon concurrente
 
 **Le problème :** Comment lancer plusieurs tâches asynchrones en même temps ?
 
-**Solution 1 : `asyncio.gather()`** - Lance tout en parallèle et attend tous les résultats
+**Solution 1 : `asyncio.gather()`** - Lance toutes les coroutines de façon concurrente et attend tous les résultats
 
 ```python
 async def tache(nom, duree):
@@ -114,7 +114,7 @@ async def main():
         tache("Tâche 2", 1),
         tache("Tâche 3", 3)
     )
-    # Attend que TOUTES soient finies
+    # Attend que toutes soient finies
     print(resultats)  # ['Tâche 1 terminée', 'Tâche 2 terminée', 'Tâche 3 terminée']
 ```
 
@@ -153,19 +153,19 @@ asyncio.run(hello())
 
 ### Gestion des erreurs : ne pas tout casser
 
-**Le problème :** Si une tâche échoue avec `gather()`, par défaut toutes les autres sont annulées.
+**Le problème :** Si une tâche échoue avec `gather()`, par défaut la première exception est propagée immédiatement à l'appelant. Les autres tâches ne sont pas annulées et continuent de s'exécuter, mais leurs résultats sont perdus.
 
 **La solution :** `return_exceptions=True` capture les erreurs comme des résultats normaux.
 
 ```python
-# Sans return_exceptions : si operation_risquee(2) échoue, tout s'arrête
+# Sans return_exceptions : l'exception de operation_risquee(2) remonte immédiatement
 resultats = await asyncio.gather(
     operation_risquee(1),  # Réussit
-    operation_risquee(2),  # Échoue
-    operation_risquee(3),  # Ne s'exécute jamais
+    operation_risquee(2),  # Échoue : l'exception est levée par gather()
+    operation_risquee(3),  # Continue de s'exécuter, mais son résultat est perdu
 )
 
-# Avec return_exceptions : toutes s'exécutent, les erreurs sont dans les résultats
+# Avec return_exceptions : toutes vont à leur terme, les erreurs sont dans les résultats
 resultats = await asyncio.gather(
     operation_risquee(1),
     operation_risquee(2),
@@ -174,6 +174,8 @@ resultats = await asyncio.gather(
 )
 # resultats = ["Succès 1", Exception(...), "Succès 3"]
 ```
+
+Pour annuler au contraire les tâches restantes dès qu'une échoue, `asyncio.TaskGroup` (Python 3.11+) annule les autres tâches du groupe et lève un `ExceptionGroup` regroupant les erreurs.
 
 ### Timeouts : limiter le temps d'attente
 
@@ -191,13 +193,13 @@ except asyncio.TimeoutError:
 
 ### Le cas d'usage type de l'asynchrone
 
-Les requêtes HTTP sont le meilleur exemple d'opération I/O-bound : le programme passe la majorité du temps à attendre la réponse du serveur, sans rien faire.
+Les requêtes HTTP sont l'exemple type d'opération I/O-bound : le programme passe la majorité du temps à attendre la réponse du serveur, sans rien faire.
 
 **Avantage de l'async :** pendant qu'une requête attend sa réponse, la boucle d'événements en lance d'autres. Dix requêtes indépendantes prennent alors à peu près le temps de la plus lente, et non la somme des dix.
 
 ### Avec httpx : le client HTTP asynchrone
 
-`httpx` est l'équivalent moderne et asynchrone de `requests`.
+`httpx` propose une API proche de celle de `requests`, avec un client synchrone et un client asynchrone (`AsyncClient`).
 
 ```python
 import httpx
@@ -211,27 +213,27 @@ async def fetch_users(usernames: list[str]) -> list[dict]:
             client.get(f"https://api.github.com/users/{username}")
             for username in usernames
         ]
-        # Lance toutes les requêtes en parallèle
+        # Lance toutes les requêtes de façon concurrente
         responses = await asyncio.gather(*tasks)
         return [response.json() for response in responses]
 
-# 10 utilisateurs récupérés en parallèle = temps d'une seule requête
-users = await fetch_users(["python", "microsoft", "google", "facebook", "apple"])
+# 5 utilisateurs récupérés de façon concurrente ≈ temps de la requête la plus lente
+users = asyncio.run(fetch_users(["python", "microsoft", "google", "facebook", "apple"]))
 ```
 
-**Gain de performance :** Sans async, 10 requêtes de 200ms = 2 secondes. Avec async = 200ms !
+**Gain de performance :** sans async, 5 requêtes de 200 ms prennent environ 1 seconde ; avec async, environ 200 ms.
 
 ## Intégration avec FastAPI
 
-### Pourquoi FastAPI et async sont faits l'un pour l'autre
+### FastAPI et l'asynchrone
 
 FastAPI est conçu dès le départ pour l'asynchrone. Une API web est un exemple typique d'application I/O-bound : la plupart du temps est passé à attendre des bases de données, des APIs externes, ou des fichiers.
 
-**Avantage :** Avec async, un serveur FastAPI peut gérer des milliers de requêtes simultanées sans créer de threads, simplement en utilisant l'event loop.
+**Avantage :** avec async, un serveur FastAPI peut maintenir des milliers de requêtes en attente simultanément sans créer de threads, en s'appuyant sur l'event loop.
 
 ### Routes asynchrones
 
-Déclarer une route avec `async def` permet à FastAPI de gérer plusieurs requêtes en parallèle sans blocage.
+Une route déclarée avec `async def` s'exécute directement dans la boucle d'événements : pendant chacun de ses `await`, d'autres requêtes progressent.
 
 ```python
 from fastapi import FastAPI
@@ -248,11 +250,11 @@ async def get_user(username: str):
         return response.json()
 ```
 
-**Sans async :** Chaque requête bloque le serveur pendant l'appel à GitHub (100-200ms). Avec async : des centaines de requêtes peuvent attendre en parallèle.
+**Sans async :** une route `def` est exécutée dans un pool de threads de taille limitée (40 par défaut), et chaque appel à GitHub (100-200 ms) y immobilise un thread. Une route `async def` qui utiliserait un client synchrone comme `requests` bloquerait, elle, toute la boucle d'événements. Avec un client asynchrone, des centaines de requêtes peuvent attendre simultanément.
 
 ### Base de données asynchrone avec SQLAlchemy
 
-Les requêtes SQL sont des opérations I/O qui bénéficient énormément de l'async.
+Les requêtes SQL sont des opérations I/O qui bénéficient elles aussi de l'async.
 
 ```python
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
@@ -275,12 +277,16 @@ async def get_users(db: AsyncSession = Depends(get_db)):
 Redis est souvent utilisé comme cache pour accélérer les réponses. L'async permet de ne pas bloquer pendant les accès Redis.
 
 ```python
-import aioredis
+import json
+
+import redis.asyncio as redis
+
+r = redis.Redis()  # localhost:6379 par défaut
 
 @app.get("/users/{user_id}")
 async def get_user_cached(user_id: int):
     # Vérifie le cache (opération réseau)
-    cached = await redis.get(f"user:{user_id}")
+    cached = await r.get(f"user:{user_id}")
     if cached:
         return json.loads(cached)
 
@@ -288,7 +294,7 @@ async def get_user_cached(user_id: int):
     user = await fetch_user_from_db(user_id)
 
     # Met en cache pour 1h
-    await redis.setex(f"user:{user_id}", 3600, json.dumps(user))
+    await r.setex(f"user:{user_id}", 3600, json.dumps(user))
     return user
 ```
 
@@ -340,7 +346,7 @@ async def retry_with_backoff(coro, max_retries=3, initial_delay=1.0, backoff_fac
             delay *= backoff_factor  # Double le délai : 1s, 2s, 4s...
 
 # Utilisation
-resultat = await retry_with_backoff(lambda: fetch_data("api.com"))
+resultat = await retry_with_backoff(lambda: fetch_data("https://api.example.com"))
 ```
 
 **Avantage :** Résilience face aux erreurs temporaires sans surcharger le serveur avec des réessais trop fréquents.
@@ -371,48 +377,48 @@ async with AsyncResource() as resource:
 
 #### 1. Oublier le `await`
 
-**Erreur fréquente :** Appeler une coroutine sans `await` ne fait rien, elle ne s'exécute pas !
+**Erreur fréquente :** appeler une coroutine sans `await` ne l'exécute pas, l'appel retourne seulement un objet coroutine.
 
 ```python
-# ❌ Mauvais : la fonction ne s'exécute jamais
+# Incorrect : la fonction ne s'exécute jamais
 result = async_function()  # Retourne un objet coroutine non exécuté
 print(result)  # <coroutine object async_function at 0x...>
 
-# ✅ Bon : la fonction s'exécute vraiment
+# Correct : la fonction s'exécute
 result = await async_function()
 print(result)  # Résultat attendu
 ```
 
 #### 2. Bloquer l'event loop
 
-**Le problème le plus grave :** Utiliser des fonctions bloquantes (`time.sleep`, `requests.get`, opérations CPU lourdes) dans une coroutine paralyse tout le système asynchrone.
+**Le problème :** utiliser des fonctions bloquantes (`time.sleep`, `requests.get`, opérations CPU lourdes) dans une coroutine paralyse tout le système asynchrone.
 
 ```python
-# ❌ CATASTROPHIQUE : bloque TOUT pendant 10 secondes
+# Incorrect : bloque toute la boucle d'événements pendant 10 secondes
 async def bad():
-    time.sleep(10)  # Aucune autre coroutine ne peut s'exécuter !
+    time.sleep(10)  # Aucune autre coroutine ne peut s'exécuter
     return "Done"
 
-# ✅ Bon : suspend seulement cette coroutine
+# Correct : suspend seulement cette coroutine
 async def good():
     await asyncio.sleep(10)  # Les autres coroutines continuent
     return "Done"
 ```
 
-**Règle d'or :** Dans une fonction `async`, toutes les opérations I/O doivent être async (avec `await`).
+**Règle :** dans une fonction `async`, toutes les opérations I/O doivent être async (avec `await`).
 
 #### 3. Négliger la gestion des ressources
 
 **Problème :** Les connexions DB, HTTP clients, fichiers doivent être fermés proprement.
 
 ```python
-# ❌ Risque de fuite de connexions
+# Incorrect : risque de fuite de connexions
 async def bad():
     client = httpx.AsyncClient()
     response = await client.get(url)
-    # Oubli de fermer le client !
+    # Le client n'est jamais fermé
 
-# ✅ Bon : fermeture automatique
+# Correct : fermeture automatique
 async def good():
     async with httpx.AsyncClient() as client:
         response = await client.get(url)
@@ -434,7 +440,7 @@ asyncio.run(main(), debug=True)
 
 ## Conclusion
 
-La programmation asynchrone en Python avec `async`/`await` et `asyncio` permet de traiter de nombreuses opérations d'entrée/sortie en parallèle dans un seul thread. Elle n'accélère pas le calcul : une tâche CPU-bound bloque la boucle d'événements et relève plutôt de processus séparés (`ProcessPoolExecutor`, multiprocessing).
+La programmation asynchrone en Python avec `async`/`await` et `asyncio` permet de traiter de nombreuses opérations d'entrée/sortie de façon concurrente dans un seul thread. Elle n'accélère pas le calcul : une tâche CPU-bound bloque la boucle d'événements et relève plutôt de processus séparés (`ProcessPoolExecutor`, multiprocessing).
 
 Points clés à retenir :
 
@@ -442,11 +448,18 @@ Points clés à retenir :
 - **asyncio** : boucle d'événements et primitives de la bibliothèque standard
 - **I/O-bound** : domaine d'application de l'asynchrone (réseau, base de données, disque)
 - **FastAPI** : routes `async def` exécutées dans la boucle, routes `def` dans un pool de threads
-- **Patterns** : queue, semaphore, retry, etc.
+- **Patterns** : semaphore, retry avec backoff, context manager asynchrone
 
 ## Ressources utiles
 
 - [Documentation asyncio](https://docs.python.org/3/library/asyncio.html)
 - [Real Python - Async IO](https://realpython.com/async-io-python/)
 - [FastAPI Async](https://fastapi.tiangolo.com/async/)
-- [aiohttp Documentation](https://docs.aiohttp.org/)
+- [HTTPX - Async Support](https://www.python-httpx.org/async/)
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/colis-tracker" title="Colis Tracker">Client httpx asynchrone qui interroge l'endpoint de suivi de La Poste depuis le backend FastAPI, en respectant l'en-tête `Retry-After` d'une réponse 429.</ProjectLink>
+  <ProjectLink to="/docs/projects/personnel/body_analysis" title="Body Analysis">Backend FastAPI dont l'accès à la base de données passe par SQLAlchemy en mode asynchrone.</ProjectLink>
+</ProjectLinks>

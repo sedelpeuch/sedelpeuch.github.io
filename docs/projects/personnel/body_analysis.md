@@ -1,5 +1,5 @@
 ---
-title: Body Analysis
+title: "Body Analysis"
 tags: [fastapi, react, postgresql, minio, docker, python, data-analysis, quantified-self]
 description: "Application de suivi et d'analyse corporelle (FastAPI, React, PostgreSQL, MinIO) : ingestion des exports Samsung Health, analytics d'entraînement (TRIMP, ACWR, dérive cardiaque), récupération et sommeil, galerie photo confidentielle."
 ---
@@ -146,7 +146,7 @@ L'application se compose de quatre services orchestrés par Docker Compose : Pos
 
 Le conteneur de l'API applique les migrations Alembic à son démarrage, avant de lancer le serveur. Ce n'était pas le cas au départ : une nouvelle image déployée sur une base restée à l'ancien schéma échouait sur ses nouvelles tables. Lier la migration au démarrage garantit que le schéma suit toujours la version du code déployée.
 
-Le workflow GitHub Actions construit et publie les deux images (API et frontend) sur GitHub Container Registry à chaque push sur `master`, chacune taguée à la fois `latest` et par SHA de commit. En production, l'application a tourné sur mon [homelab](homelab.md) : utilisée quelques minutes par semaine, elle était arrêtée par Sablier après 30 minutes d'inactivité et redémarrée à la première requête, ce qui libérait la mémoire occupée au repos par ses conteneurs.
+Le workflow GitHub Actions construit et publie les deux images (API et frontend) sur GitHub Container Registry à chaque push sur `master`, chacune taguée à la fois `latest` et par SHA de commit. En production, l'application tourne sur mon [homelab](homelab.md) : utilisée quelques minutes par semaine, elle est arrêtée par Sablier après 30 minutes d'inactivité et redémarrée à la première requête, ce qui libère la mémoire occupée au repos par ses conteneurs.
 
 L'interface suit la charte graphique commune aux applications de mon homelab : thème sombre, un seul accent de couleur, nom de l'application en deux tons, libellés en français.
 
@@ -154,7 +154,16 @@ L'interface suit la charte graphique commune aux applications de mon homelab : t
 
 La suite de tests backend compte 58 fichiers et près de 350 fonctions de test, réparties entre tests unitaires (calcul des métriques d'analytics, traitement d'image, sécurité de l'extraction ZIP) et tests d'intégration sur les services exposés par l'API. Le frontend dispose de sa propre suite Vitest.
 
+## Résultats
+
+- **Données de santé gardées sur mon infrastructure** : les exports Samsung Health sont ingérés et analysés sans passer par un service tiers, photos de suivi comprises.
+- **Ingestion d'un export réel de 1,3 Go** (environ 88 000 fichiers) par une extraction protégée contre l'évasion de répertoire et les bombes de décompression.
+- **Pertes de données silencieuses supprimées** : les écarts entre l'export réel et les fixtures (dossier racine horodaté, colonnes préfixées, fichiers mal identifiés) sont corrigés et couverts par des fixtures conformes, et un import sans source reconnue échoue au lieu de réussir à vide.
+- **Signaux auparavant ignorés exploités** : sommeil, récupération, routines de musculation regroupées en une séance, détail longueur par longueur de la natation.
+- **Déploiement sans intervention manuelle** : images publiées par la CI à chaque push, migrations appliquées au démarrage de l'API, conteneurs arrêtés au repos grâce à la mise en veille.
+
 ## Liens
 
-- 💻 Code source : [github.com/sedelpeuch/body_analysis](https://github.com/sedelpeuch/body_analysis)
 - [HomeLab](homelab.md) : infrastructure qui héberge l'application
+
+Le dépôt est privé.

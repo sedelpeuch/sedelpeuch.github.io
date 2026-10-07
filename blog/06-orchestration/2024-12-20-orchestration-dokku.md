@@ -48,7 +48,7 @@ dokku postgres:create mon-app-db
 dokku postgres:link mon-app-db mon-app
 ```
 
-`postgres:link` démarre la base dans un conteneur dédié, la relie au réseau de l'application et définit la variable d'environnement `DATABASE_URL` (`postgres://user:password@dokku-postgres-mon-app-db:5432/mon_app_db`). L'application lit cette variable, comme sur Heroku, sans configuration spécifique à Dokku.
+`postgres:create` démarre la base dans un conteneur dédié ; `postgres:link` la relie à l'application, définit la variable d'environnement `DATABASE_URL` (`postgres://user:password@dokku-postgres-mon-app-db:5432/mon_app_db`) et redémarre l'application. Celle-ci lit cette variable, comme sur Heroku, sans configuration spécifique à Dokku.
 
 Sur la machine de développement :
 
@@ -95,14 +95,14 @@ jobs:
           fetch-depth: 0          # historique complet : Dokku refuse un push superficiel
 
       - name: Tailscale
-        uses: tailscale/github-action@v2
+        uses: tailscale/github-action@d1b6cd204f8dceda5b3eaad7f1f767be390056cd  # v4.2.0
         with:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:server
 
       - name: Push to dokku
-        uses: dokku/github-action@master
+        uses: dokku/github-action@823c08b33e974704528c7c7f3d3d8002426e7634  # v1.9.0
         with:
           git_remote_url: "ssh://dokku@100.64.0.10:22/mon-app"
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -110,7 +110,7 @@ jobs:
           git_push_flags: "--force"
 ```
 
-`--force` permet de redéployer un historique réécrit (rebase, amend) sans conflit avec le dépôt du serveur, qui n'a pas vocation à diverger. La clé privée stockée dans `SSH_PRIVATE_KEY` doit correspondre à une clé ajoutée par `dokku ssh-keys:add`. Les mécanismes de `workflow_run` et de l'épinglage des actions sont détaillés dans l'article [GitHub Actions](../04-ci-cd/2024-12-20-github-actions.md).
+`--force` permet de redéployer un historique réécrit (rebase, amend) sans conflit avec le dépôt du serveur, qui n'a pas vocation à diverger. La clé privée stockée dans `SSH_PRIVATE_KEY` doit correspondre à une clé ajoutée par `dokku ssh-keys:add`. Les actions tierces, qui reçoivent la clé SSH et l'accès au réseau privé, sont épinglées sur le SHA complet d'un commit plutôt que sur une branche ou un tag mobile. Les mécanismes de `workflow_run` et de l'épinglage des actions sont détaillés dans l'article [GitHub Actions](../04-ci-cd/2024-12-20-github-actions.md).
 
 ## Routage et ports
 
@@ -153,3 +153,7 @@ sudo systemctl reload nginx     # recharger sans couper les connexions en cours
 ```
 
 Une redirection change l'URL visible par le client. Pour conserver l'URL `/mon-app`, un `proxy_pass http://127.0.0.1:8080/;` remplace le `return 301`, à condition que l'application sache générer ses liens sous ce préfixe. Le fonctionnement des blocs `location` et de `proxy_pass` est détaillé dans l'article [Nginx](../02-network/2024-12-20-nginx.md).
+
+## Conclusion
+
+Dokku reproduit le modèle de déploiement de Heroku sur un serveur unique : un `git push` déclenche la construction de l'image par le builder adapté, le remplacement du conteneur après vérification, puis la reconfiguration du proxy Nginx. Les services annexes s'y rattachent par des plugins qui injectent leurs paramètres de connexion en variables d'environnement. Le périmètre reste celui d'un hôte : la répartition sur plusieurs machines et la replanification en cas de panne relèvent d'un orchestrateur comme [Kubernetes](./2025-01-12-k8s-introduction.md).

@@ -169,3 +169,9 @@ Internet → Service (LoadBalancer)
 ```
 
 Chaque couche est indépendante : le Deployment se met à l'échelle sans modification du Service, et l'image de l'API se met à jour sans toucher au StatefulSet.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Chart Helm composé de deux Deployments (API et frontend web) exposés par des Services, et d'un StatefulSet PostgreSQL adossé à un PVC et à un Service headless, activable en option.</ProjectLink>
+</ProjectLinks>

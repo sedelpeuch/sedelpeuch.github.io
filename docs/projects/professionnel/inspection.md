@@ -1,6 +1,6 @@
 ---
-title: Inspection visuelle automatisée de véhicules
-description: Pipeline de vision par ordinateur embarqué pour la détection automatique de dommages sur véhicules neufs en parcs portuaires, jusqu'à 20 000 images en 3 secondes par véhicule. Traitement parallélisé des images brutes et inférence sur NPU.
+title: "Inspection visuelle automatisée de véhicules"
+description: "Pipeline de vision par ordinateur embarqué pour la détection automatique de dommages sur véhicules neufs en parcs portuaires, jusqu'à 20 000 images en 3 secondes par véhicule. Traitement parallélisé des images brutes et inférence sur NPU."
 tags: [vision, python, ia-embarquee, npu, industrie]
 ---
 
@@ -27,14 +27,14 @@ Le CATIE a accompagné une entreprise internationale spécialisée dans le contr
 
 <Tabs>
   <TabItem value="trans" label="Pipeline de transformation">
-    Chaque véhicule traversant le couloir d'inspection génère un volume d'images brutes considérable en quelques secondes. Ce composant prend en charge leur transformation pour les rendre exploitables par la suite de la chaîne : conversion du format brut des capteurs (dématriçage), découpe en zones d'analyse, orientation selon la position de chaque caméra, et compression pour le stockage et le transfert.
+    Chaque véhicule traversant le couloir d'inspection génère un volume d'images brutes considérable en quelques secondes. Je suis le principal contributeur de ce composant, qui prend en charge leur transformation pour les rendre exploitables par la suite de la chaîne : conversion du format brut des capteurs (dématriçage), découpe en zones d'analyse, orientation selon la position de chaque caméra, et compression pour le stockage et le transfert.
 
     Le traitement est parallélisé sur plusieurs processus pour absorber le débit imposé par le rythme industriel, et le système attend que le logiciel de capture ait terminé d'écrire ses fichiers avant de démarrer, ce qui évite de traiter des données incomplètes. À l'issue du traitement, les résultats sont transmis à l'orchestrateur central et les archives sont gérées selon le statut de chaque scan.
   </TabItem>
   <TabItem value="hailo" label="Inférence embarquée">
     L'inférence de détection de défauts tourne directement dans les conteneurs d'inspection installés sur site, sans dépendance à un serveur distant, grâce à un accélérateur IA dédié (NPU). Le modèle de détection, développé par les collègues en charge de la partie IA, doit être compilé et quantifié spécifiquement pour ce matériel avant déploiement.
 
-    Ma contribution porte sur l'infrastructure d'exécution : chargement du modèle compilé sur l'accélérateur, mise en place de la communication entre le pipeline de traitement des images et la puce via deux processus séparés (envoi / réception), et intégration avec l'API REST du Core qui orchestre l'ensemble du système.
+    Ma contribution porte sur l'infrastructure d'exécution : chargement du modèle compilé sur l'accélérateur, mise en place de la communication entre le pipeline de traitement des images et la puce via deux processus séparés (envoi / réception), et intégration avec l'API REST de l'orchestrateur central.
 
     :::info Choix d'architecture
     Le traitement local sur accélérateur n'est pas uniquement motivé par la latence : les images de véhicules constituent des données industrielles sensibles pour le client. L'inférence de production reste sur site, sans transfert des images vers un service tiers.

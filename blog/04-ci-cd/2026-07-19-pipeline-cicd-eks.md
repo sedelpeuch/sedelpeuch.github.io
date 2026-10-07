@@ -1,5 +1,5 @@
 ---
-title: "Pipeline CI/CD de bout en bout : de git push au déploiement sur EKS"
+title: "GitHub Actions : pipeline CI/CD de bout en bout vers EKS"
 description: "Chaîne CI/CD complète pour une application web front + back : build et publication d'images sur GHCR, provisionnement Terraform, déploiement Helm sur AWS EKS. Première partie : l'environnement de test."
 tags: [cicd, devops, cloud, iac]
 ---
@@ -26,11 +26,11 @@ flowchart LR
 Deux événements alimentent la chaîne :
 
 - un **push sur `master`** produit des images `:main` et déploie sur test uniquement ;
-- un **tag `vX.Y.Z`** produit des images versionnées et parcourt la chaîne jusqu'au staging, la production étant l'objet de la suite.
+- un **tag `vX.Y.Z`** produit des images versionnées et parcourt la chaîne jusqu'au staging ; staging et production sont l'objet de la suite.
 
 ## Étape 1 (Publish) : construire et publier les images
 
-Le workflow `publish.yaml` construit les images du backend et du frontend et les pousse sur GitHub Container Registry (GHCR). Il se déclenche sur les push `master` et les tags `v*.*.*`.
+Le workflow `publish.yaml` construit les images du backend et du frontend et les pousse sur GitHub Container Registry ([GHCR](../03-containerization/2024-12-20-ghcr.md)). Il se déclenche sur les push `master` et les tags `v*.*.*`.
 
 Le tag appliqué aux images dépend du déclencheur : un tag mobile `main` pour une branche, un tag figé pour une version :
 
@@ -43,11 +43,13 @@ Le tag appliqué aux images dépend du déclencheur : un tag mobile `main` pour 
     else
       echo "value=main" >> $GITHUB_OUTPUT
     fi
+    # Tag unique par commit, publié en plus du précédent
+    echo "sha=sha-${{ github.sha }}" >> $GITHUB_OUTPUT
 ```
 
-Cette distinction est structurante : `:main` est réécrit à chaque push et sert le test, tandis que `:vX.Y.Z` est immuable et sert staging et prod ; une version déployée en production correspond ainsi toujours à un artefact figé.
+Cette distinction est structurante : `:main` est réécrit à chaque push et suit la branche, tandis que `:vX.Y.Z` est immuable et sert staging et prod ; une version déployée en production correspond ainsi toujours à un artefact figé.
 
-Un tag mobile a toutefois une conséquence sur le déploiement : si le chart référence `image: ghcr.io/...:main` et que ce tag est seulement réécrit dans le registry, un `helm upgrade` produit un manifeste de Deployment identique au précédent. Kubernetes ne détecte aucun changement dans le template de pod et ne déclenche **aucun rollout** : les pods existants continuent d'exécuter l'ancienne image, même avec `imagePullPolicy: Always` (qui ne s'applique qu'à la création d'un pod). Pour que chaque push produise un déploiement effectif, l'image est également taguée avec le SHA du commit (`:sha-<commit>` ou `:${{ github.sha }}`), et c'est ce tag unique qui est transmis au chart ; `:main` ne reste qu'un alias pratique pour un usage manuel.
+Un tag mobile a toutefois une conséquence sur le déploiement : si le chart référence `image: ghcr.io/...:main` et que ce tag est seulement réécrit dans le registry, un `helm upgrade` produit un manifeste de Deployment identique au précédent. Kubernetes ne détecte aucun changement dans le template de pod et ne déclenche **aucun rollout** : les pods existants continuent d'exécuter l'ancienne image, même avec `imagePullPolicy: Always` (qui ne s'applique qu'à la création d'un pod). Pour que chaque push produise un déploiement effectif, l'image est également taguée avec le SHA complet du commit (`:sha-<commit>`, sortie `sha` de l'étape ci-dessus), et c'est ce tag unique qui est transmis au chart ; `:main` ne reste qu'un alias pratique pour un usage manuel. L'article [Helm : déploiement par tag immuable](./2026-09-24-helm-tag-immuable.md) détaille ce mécanisme et sa mise en œuvre avec `docker/metadata-action`.
 
 Le build lui-même utilise `docker/build-push-action`, avec `cache-from`/`cache-to` en `type=gha` : le cache de Buildx est branché sur celui de GitHub Actions, et les couches inchangées ne sont pas reconstruites. L'authentification à GHCR passe par le `GITHUB_TOKEN` du workflow, sans secret à gérer, dès lors que le job a la permission `packages: write`.
 
@@ -79,23 +81,23 @@ Le job enchaîne ensuite trois temps.
 
 Chaque environnement a sa clé de state (`envs/test/backend.hcl`) et ses variables (`envs/test/terraform.tfvars`, avec `enable_rds = false` en test : une base éphémère suffit). Une seule configuration racine sert ainsi tous les environnements, le fichier passé à `-backend-config` sélectionnant le state : ce mécanisme de configuration partielle est détaillé dans l'article [Terraform remote state](../08-iac/2026-07-11-terraform-remote-state.md#configuration-partielle-avec--backend-config). L'article [multi-environnements Terraform](../08-iac/2026-07-19-terraform-multi-environnements.md) compare cette approche aux workspaces et aux répertoires séparés par environnement.
 
-**La connexion au cluster** se fait avec `aws eks update-kubeconfig --name task-horizon-eks --region eu-west-3`, à partir des credentials AWS configurés en amont, les mêmes qui ont autorisé le `terraform apply`.
+**La connexion au cluster** [EKS](../05-cloud/2026-06-28-eks.md) se fait avec `aws eks update-kubeconfig --name task-horizon-eks --region eu-west-3`, à partir des credentials AWS configurés en amont, les mêmes qui ont autorisé le `terraform apply`.
 
 **Helm** déploie enfin l'application. `upgrade --install` installe la release ou la met à jour : l'opération est idempotente et rejouable.
 
 ```yaml
 - env:
     AUTH_JWT_SECRET: ${{ secrets.AUTH_JWT_SECRET }}
-    IMAGE_TAG: ${{ github.event.workflow_run.head_sha }}
+    IMAGE_TAG: sha-${{ github.event.workflow_run.head_sha }}
   run: |
     helm upgrade --install taskhorizon-test ./helm/taskhorizon \
       -f helm/taskhorizon/values-test.yaml \
       --set image.tag="$IMAGE_TAG" \
-      --set auth.jwtSecret="$AUTH_JWT_SECRET" \
+      --set-literal "auth.jwtSecret=${AUTH_JWT_SECRET}" \
       --namespace taskhorizon --create-namespace --wait
 ```
 
-`--set image.tag` transmet le tag unique de l'image construite, ce qui modifie le template de pod à chaque commit et déclenche le rollout. Les secrets applicatifs sont injectés par `--set` depuis les secrets GitHub Actions, via des variables d'environnement plutôt que par interpolation directe dans le script : ils ne passent jamais par le dépôt. Ils ne restent pas pour autant confinés au runner : Helm enregistre les valeurs de chaque révision dans un Secret Kubernetes de release (`sh.helm.release.v1.<release>.v<révision>`), où elles sont lisibles par quiconque peut lire les Secrets du namespace, notamment via `helm get values taskhorizon-test`. L'accès RBAC aux Secrets du namespace délimite donc l'exposition réelle de ces valeurs. `--wait` bloque jusqu'à ce que les pods soient réellement prêts, sans quoi le workflow réussirait avant que le déploiement n'aboutisse. En amont, un secret Kubernetes `docker-registry` autorise le cluster à tirer les images depuis GHCR, registre privé.
+`--set image.tag` transmet le tag unique de l'image construite, ce qui modifie le template de pod à chaque commit et déclenche le rollout. Les secrets applicatifs sont injectés par `--set-literal` depuis les secrets GitHub Actions, via des variables d'environnement plutôt que par interpolation directe dans le script : ils ne passent jamais par le dépôt. Ils ne restent pas pour autant confinés au runner : Helm enregistre les valeurs de chaque révision dans un Secret Kubernetes de release (`sh.helm.release.v1.<release>.v<révision>`), où elles sont lisibles par quiconque peut lire les Secrets du namespace, notamment via `helm get values taskhorizon-test`. L'accès RBAC aux Secrets du namespace délimite donc l'exposition réelle de ces valeurs. Contrairement à `--set`, `--set-literal` ne découpe pas la valeur aux virgules et n'interprète pas les barres obliques inverses (voir la [comparaison de `--set`, `--set-string` et `--set-literal`](./2026-09-24-helm-tag-immuable.md#--set---set-string-et---set-literal) dans l'article Helm : déploiement par tag immuable). `--wait` bloque jusqu'à ce que les pods soient réellement prêts, sans quoi le workflow réussirait avant que le déploiement n'aboutisse. En amont, un secret Kubernetes `docker-registry` autorise le cluster à tirer les images depuis GHCR, registre privé.
 
 ## Ce que couvre la suite
 

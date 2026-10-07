@@ -2,6 +2,7 @@
 title: "GitHub Actions : ARC"
 description: "Déployer Actions Runner Controller (ARC) sur Kubernetes pour des runners GitHub Actions auto-hébergés et autoscalables."
 tags: [cicd, devops]
+series_order: 6
 ---
 
 Un [runner auto-hébergé](./2024-12-20-self-host-runner.md) classique est une machine fixe qui exécute les jobs séquentiellement. Si dix workflows se déclenchent simultanément, neuf attendent. Actions Runner Controller (ARC) est un opérateur Kubernetes qui provisionne des pods runner à la demande (un pod par job) et les supprime à la fin de l'exécution. La capacité s'adapte automatiquement à la charge.
@@ -13,12 +14,12 @@ Un [runner auto-hébergé](./2024-12-20-self-host-runner.md) classique est une m
 ARC (mode *runner scale sets*, chart `gha-runner-scale-set`) repose sur trois composants déployés dans le cluster :
 
 - **Le controller** (`arc-systems`) : réconcilie les ressources personnalisées d'ARC (`AutoscalingRunnerSet`, `EphemeralRunnerSet`, `EphemeralRunner`) et crée les pods correspondants.
-- **Le listener** (`arc-systems`) : un pod par scale set, qui maintient une session de long polling auprès du service GitHub Actions. Il reçoit les messages « job disponible » et ajuste le nombre de runners désiré, entre `minRunners` et `maxRunners`.
+- **Le listener** (`arc-systems`) : un pod par scale set, qui maintient une session de long polling auprès du service GitHub Actions. Il reçoit les messages "job disponible" et ajuste le nombre de runners désiré, entre `minRunners` et `maxRunners`.
 - **Les runners éphémères** (`arc-runners`) : un pod par job. Chaque pod s'enregistre comme runner *just-in-time*, exécute un seul job puis se termine. Il contient le binaire runner GitHub Actions et, optionnellement, un sidecar Docker-in-Docker pour les jobs qui construisent des images.
 
 ```text
 GitHub Actions
-      ↓ message « job disponible » (long polling)
+      ↓ message "job disponible" (long polling)
 Listener (arc-systems)
       ↓ met à jour le nombre de runners désiré
 ARC Controller (arc-systems)
@@ -107,7 +108,7 @@ jobs:
   build:
     runs-on: arc-runners    # nom du scale set installé
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: make build
 ```
 
@@ -127,7 +128,7 @@ Toute personnalisation plus poussée (image, ressources du sidecar) impose de la
 Chaque pod runner démarre avec un daemon Docker vide : les couches sont téléchargées et reconstruites à chaque job. Monter le répertoire `/var/lib/docker` d'un nœud (via `hostPath`) dans plusieurs sidecars DinD n'est pas une solution fiable : le démon Docker suppose un accès exclusif à son répertoire de données, et deux pods programmés sur le même nœud corrompent les métadonnées de stockage. Le cache se déporte plutôt hors du démon, dans un emplacement conçu pour être partagé :
 
 ```yaml
-- uses: docker/build-push-action@v6
+- uses: docker/build-push-action@v7
   with:
     push: true
     tags: ghcr.io/org/app:${{ github.sha }}

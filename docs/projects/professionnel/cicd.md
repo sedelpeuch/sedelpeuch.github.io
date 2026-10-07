@@ -1,5 +1,5 @@
 ---
-title: CI/CD - Workflows GitHub Actions mutualisés
+title: "CI/CD - Workflows GitHub Actions mutualisés"
 tags: [cicd, github-actions, python, ros, zephyr, docker, helm]
 description: "Bibliothèque de workflows GitHub Actions réutilisables (générique, Python, ROS, Mbed, Zephyr) appelée par plusieurs dizaines de dépôts de l'organisation CATIE, du test au déploiement Helm ou Compose, documentée et vérifiée contre son code."
 ---
@@ -50,7 +50,7 @@ Les workflows de famille ne réimplémentent pas les briques transverses : le pr
 
 <Tabs>
   <TabItem value="generic" label="Generic">
-    Le dépôt générique couvre les besoins transverses à toute technologie : publication d'images Docker sur GHCR et Nexus, déploiement via Helm ou Docker Compose, versionnage automatique par tag, exécution et mise à jour des hooks pre-commit, synchronisation des projets avec leur [template Cookiecutter](standards-python.md) via Cruft, et génération de PDF depuis Markdown avec Pandoc. Le workflow `docker-test` passe les Dockerfile au linter hadolint, qui échoue dès le niveau `warning` ; les règles trop strictes pour un contexte donné s'ignorent une par une plutôt qu'en baissant le seuil. Depuis octobre 2026, `docker-ghcr` peut publier en plus un tag immuable `sha-<commit>`, que le [cluster interne](sonu-k8s-cluster.md) utilise pour déployer un build précis au lieu du tag de branche.
+    Le dépôt générique couvre les besoins transverses à toute technologie : publication d'images Docker sur GHCR et Nexus, déploiement via Helm ou Docker Compose, versionnage automatique par tag, exécution et mise à jour des hooks pre-commit, test de génération des [templates Cookiecutter](standards-python.md), et génération de PDF depuis Markdown avec Pandoc. Le workflow `docker-test` passe les Dockerfile au linter hadolint, qui échoue dès le niveau `warning` ; les règles trop strictes pour un contexte donné s'ignorent une par une plutôt qu'en baissant le seuil. Depuis octobre 2026, `docker-ghcr` peut publier en plus un tag immuable `sha-<commit>`, que le [cluster interne](sonu-k8s-cluster.md) utilise pour déployer un build précis au lieu du tag de branche.
   </TabItem>
   <TabItem value="python" label="Python">
     Les workflows Python couvrent le cycle de vie d'un package : tests avec pytest, publication sur un serveur SFTPGo interne, et tag automatique à partir de la version déclarée dans le manifeste. Le dépôt a évolué avec les pratiques de l'équipe : des équivalents uv des workflows Poetry ont été ajoutés au fil de la migration des projets Python.

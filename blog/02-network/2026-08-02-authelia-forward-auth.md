@@ -259,10 +259,12 @@ Traefik applique les middlewares dans l'ordre de la liste. Un middleware à effe
 
 Le forward-auth contrôle l'**accès** au service, pas l'**identité** dans le service : une application qui ne lit pas `Remote-User` affiche son propre formulaire après le portail et ignore les groupes Authelia. Pour les applications qui implémentent OpenID Connect, Authelia peut agir comme fournisseur d'identité et leur transmettre identité et groupes : c'est l'objet de l'article [Authelia : fournisseur OpenID Connect](./2026-08-09-authelia-oidc.md). Le chiffrement des échanges entre client et proxy, prérequis à tout cookie de session, est détaillé dans l'article [SSL/TLS](./2026-02-21-ssl-tls.md).
 
+## Conclusion
+
+Le forward-auth centralise la décision d'accès au niveau du proxy avec une configuration réduite : un middleware, un cookie de domaine et une liste ordonnée de règles. Sa fiabilité dépend surtout de la précision des exceptions, c'est-à-dire des regex `resources` et des chemins réseau qui ne traversent pas le proxy.
+
 ## Application / Projet lié
 
 <ProjectLinks>
   <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Authelia en forward-auth devant l'ensemble des services web exposés par Traefik, avec une règle de repli `default_policy: deny`, des bypass ciblés sur les chemins d'API des applications mobiles et des sous-domaines dédiés pour les clients natifs.</ProjectLink>
 </ProjectLinks>
-
-Le forward-auth centralise la décision d'accès au niveau du proxy avec une configuration réduite : un middleware, un cookie de domaine et une liste ordonnée de règles. Sa fiabilité dépend surtout de la précision des exceptions, c'est-à-dire des regex `resources` et des chemins réseau qui ne traversent pas le proxy.

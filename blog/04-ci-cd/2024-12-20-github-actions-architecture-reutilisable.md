@@ -2,6 +2,7 @@
 title: "GitHub Actions : architecture CI/CD réutilisable"
 description: "Structurer une architecture CI/CD mutualisée avec des workflows réutilisables et des actions composites pour plusieurs dépôts."
 tags: [cicd, devops]
+series_order: 4
 ---
 
 Quand plusieurs dépôts partagent la même stack technique, chacun maintient souvent une copie quasi-identique de ses workflows CI/CD. Une modification (nouvelle version d'un outil, changement de runner, ajout d'une étape de sécurité) doit être répercutée manuellement dans chaque dépôt. Un dépôt centralisé de workflows mutualisés résout ce problème : les dépôts consommateurs appellent les workflows du dépôt central, qui devient le seul point de maintenance.
@@ -78,14 +79,14 @@ jobs:
     container:
       image: python:${{ matrix.python-version }}-slim
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: pip install -e ".[dev]" && pytest
 
   build:
     needs: [pre-commit, test]
     runs-on: ubuntu-latest     # sans container : le démon Docker du runner est requis pour le build
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Build and push image
         uses: org/shared_workflows/.github/actions/docker-build@v1
@@ -137,24 +138,27 @@ description: "Build a Docker image and push it to GHCR"
 
 inputs:
   image:
+    description: "Image name (e.g. ghcr.io/org/app)"
     required: true
   tag:
+    description: "Image tag"
     required: true
   registry-token:
+    description: "Registry authentication token"
     required: true
 
 runs:
   using: "composite"
   steps:
-    - uses: docker/setup-buildx-action@v3
+    - uses: docker/setup-buildx-action@v4
 
-    - uses: docker/login-action@v3
+    - uses: docker/login-action@v4
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ inputs.registry-token }}
 
-    - uses: docker/build-push-action@v6
+    - uses: docker/build-push-action@v7
       with:
         push: true
         tags: ${{ inputs.image }}:${{ inputs.tag }}

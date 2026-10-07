@@ -1,5 +1,5 @@
 ---
-title: "Conteneurisation vs Virtualisation"
+title: "Conteneurisation : conteneurs et machines virtuelles"
 description: "Différences architecturales entre conteneurs Docker et machines virtuelles : isolation, taille, démarrage et cas d'usage."
 tags: [containerization, devops]
 ---
@@ -12,7 +12,7 @@ Conteneurs et machines virtuelles répondent au même besoin d'isolation des app
 
 Une machine virtuelle émule un ordinateur complet. L'hyperviseur expose des ressources virtualisées (CPU, mémoire, disques, cartes réseau) à chaque VM. Un hyperviseur de type 1 s'exécute directement sur le matériel (VMware ESXi, Xen, KVM intégré au noyau Linux) ; un hyperviseur de type 2 s'exécute comme une application sur un OS hôte (VirtualBox, VMware Workstation). Les extensions matérielles de virtualisation (Intel VT-x, AMD-V) permettent d'exécuter le code des VM directement sur le processeur, l'hyperviseur n'intervenant que sur les instructions privilégiées. Chaque VM embarque son propre noyau OS, ses pilotes, et l'ensemble des processus système, comme si c'était une machine physique indépendante.
 
-Un conteneur ne virtualise pas le matériel. Il partage le noyau de la machine hôte et isole les processus via les namespaces Linux (réseau, PID, filesystem, utilisateurs) et les cgroups (limites de ressources). Le conteneur voit son propre système de fichiers, ses interfaces réseau et ses processus, mais tous s'exécutent sur le même noyau.
+Un conteneur ne virtualise pas le matériel. Il partage le noyau de la machine hôte et isole les processus via les namespaces Linux (réseau, PID, filesystem, utilisateurs) et les cgroups (limites de ressources). Le conteneur voit son propre système de fichiers, ses interfaces réseau et ses processus, mais tous s'exécutent sur le même noyau. Le fonctionnement de Docker, l'outil de conteneurisation le plus répandu, est présenté dans [Docker](./2024-12-20-docker.md).
 
 Ce partage se vérifie directement : un conteneur rapporte la version du noyau de l'hôte, quelle que soit la distribution de son image, et ses processus apparaissent dans la table des processus de l'hôte.
 
@@ -60,7 +60,7 @@ Machine physique
 | Isolation | Noyau partagé | Noyau isolé |
 | Sécurité | Moindre (kernel partagé) | Forte (hyperviseur entre les VMs) |
 | Portabilité | Images légères, registry standard | Images lourdes, formats propriétaires |
-| Compatibilité OS | Limité au noyau hôte | N'importe quel OS sur n'importe quel hôte |
+| Compatibilité OS | Limité au noyau hôte | N'importe quel OS de même architecture CPU (sans émulation) |
 
 ## Isolation et sécurité
 
@@ -78,7 +78,7 @@ Plusieurs technologies occupent l'espace intermédiaire en conservant l'interfac
 
 Un conteneur Linux nécessite un noyau Linux pour s'exécuter. Sur Windows et macOS, Docker Desktop contourne cette contrainte en démarrant une VM Linux légère (Apple Virtualization Framework sur macOS, HyperKit dans les anciennes versions ; WSL2 sur Windows) qui héberge le daemon Docker. Les conteneurs s'exécutent dans cette VM, pas directement sur l'OS hôte.
 
-Cette distinction a une conséquence pratique : une image Docker construite sur Linux ARM64 ne peut pas s'exécuter sur un hôte Linux AMD64 sans émulation (QEMU via `binfmt_misc`, avec un coût important en performances). Le flag `--platform` de `docker build` et les manifests multi-architecture (`buildx`) permettent de produire des images compatibles avec plusieurs architectures depuis un seul pipeline.
+L'architecture CPU impose une contrainte supplémentaire, commune aux conteneurs et aux VM accélérées matériellement : une image Docker construite sur Linux ARM64 ne peut pas s'exécuter sur un hôte Linux AMD64 sans émulation (QEMU via `binfmt_misc`, avec un coût important en performances), de même qu'une VM ARM64 ne bénéficie pas de VT-x ou AMD-V sur un hôte AMD64. Le flag `--platform` de `docker build` et les manifests multi-architecture (`buildx`) permettent de produire des images compatibles avec plusieurs architectures depuis un seul pipeline.
 
 ## Quand utiliser quoi
 

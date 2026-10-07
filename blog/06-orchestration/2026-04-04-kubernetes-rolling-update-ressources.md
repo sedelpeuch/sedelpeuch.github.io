@@ -25,7 +25,7 @@ spec:
       maxUnavailable: 0  # pods indisponibles autorisés pendant la mise à jour
 ```
 
-`maxUnavailable: 0` garantit zéro interruption : Kubernetes ne supprime un pod v1 qu'après qu'un pod v2 soit déclaré prêt par sa readinessProbe.
+`maxUnavailable: 0` garantit zéro interruption : Kubernetes ne supprime un pod v1 qu'une fois un pod v2 déclaré prêt par sa readinessProbe.
 
 `maxSurge: 1` autorise temporairement un pod supplémentaire. Avec 3 réplicas, Kubernetes peut monter à 4 pods pendant la transition. Les deux paramètres acceptent aussi un pourcentage ; leur valeur par défaut est `25%` chacun, arrondi au supérieur pour `maxSurge` et à l'inférieur pour `maxUnavailable`. Pour 3 réplicas, les valeurs par défaut donnent donc `maxSurge: 1` et `maxUnavailable: 0`.
 

@@ -1,5 +1,5 @@
 ---
-title: MiniPock - Robot mobile ROS 2
+title: "MiniPock - Robot mobile ROS 2"
 description: "MiniPock, plateforme robotique mobile modulaire du CATIE (versions différentielle et holonome) : pile ROS 2 Jazzy, Nav2, simulation multi-robots sous Gazebo Harmonic, micro-ROS en Wi-Fi, mise à jour du firmware par ROS 2, planification de missions avec Open-RMF, CI et images Docker."
 tags: [ros2, robotique, nav2, gazebo, micro-ros, open-rmf, multi-robots, docker]
 ---

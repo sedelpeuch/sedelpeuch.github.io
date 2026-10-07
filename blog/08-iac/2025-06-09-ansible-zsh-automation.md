@@ -82,7 +82,7 @@ cd zsh_ansible
 
 ### 2. Exécution locale
 
-Les playbooks ciblent `hosts: all`. Sans fichier d'inventaire, Ansible ne connaît que l'hôte implicite `localhost`, qui **n'appartient pas** au groupe `all` : le playbook serait ignoré avec l'avertissement « provided hosts list is empty ». L'option `-i localhost,` (la virgule finale indique une liste d'hôtes et non un fichier) crée un inventaire contenant `localhost`, et `-c local` exécute les tâches directement, sans SSH :
+Les playbooks ciblent `hosts: all`. Sans fichier d'inventaire, Ansible ne connaît que l'hôte implicite `localhost`, qui **n'appartient pas** au groupe `all` : le playbook serait ignoré avec l'avertissement "provided hosts list is empty". L'option `-i localhost,` (la virgule finale indique une liste d'hôtes et non un fichier) crée un inventaire contenant `localhost`, et `-c local` exécute les tâches directement, sans SSH :
 
 ```bash
 # Inventaire en ligne + connexion locale ; -K demande le mot de passe sudo pour les tâches become
@@ -256,7 +256,7 @@ Le projet se prête à plusieurs extensions :
 ## Bonnes pratiques et conseils
 
 1. **Tester les changements dans un conteneur** avant de les appliquer sur l'environnement principal
-2. **Ne pas placer d'informations sensibles dans un gist** : un gist « secret » n'est pas privé, il est seulement non référencé, et reste lisible par quiconque connaît son URL. Les secrets relèvent d'[Ansible Vault](./2025-11-28-ansible-vault.md) ou d'un gestionnaire de secrets
+2. **Ne pas placer d'informations sensibles dans un gist** : un gist "secret" n'est pas privé, il est seulement non référencé, et reste lisible par quiconque connaît son URL. Les secrets relèvent d'[Ansible Vault](./2025-11-28-ansible-vault.md) ou d'un gestionnaire de secrets
 3. **Créer un fork** du projet pour l'adapter à ses besoins
 4. **Maintenir son propre dépôt** pour suivre l'évolution de sa configuration
 5. **Documenter les personnalisations** pour faciliter leur partage
@@ -271,14 +271,14 @@ L'utilisation d'Ansible pour configurer un environnement zsh apporte :
 - **Maintenance** : une modification se propage par une nouvelle exécution des playbooks
 - **Documentation** : les playbooks décrivent précisément l'installation
 
-## Application / Projet lié
-
-<ProjectLinks>
-  <ProjectLink to="/docs/projects/personnel/zsh_ansible" title="zsh_ansible">Cet article documente le projet zsh_ansible, une automatisation complète de la configuration du shell de développement.</ProjectLink>
-</ProjectLinks>
-
 ## Conclusion
 
 Le projet zsh_ansible applique les mécanismes d'Ansible (modules idempotents, conditions, exécution locale) à un poste de travail plutôt qu'à un serveur. Les points d'attention sont ceux de tout playbook : garantir l'idempotence des tâches `shell`, construire un inventaire valide pour l'exécution locale, et tenir les données sensibles hors des fichiers publics.
 
 Le [dépôt GitHub du projet](https://github.com/sedelpeuch/zsh_ansible) contient l'ensemble des playbooks.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/zsh_ansible" title="zsh_ansible">Cet article documente le projet zsh_ansible, une automatisation complète de la configuration du shell de développement.</ProjectLink>
+</ProjectLinks>

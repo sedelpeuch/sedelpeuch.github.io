@@ -1,5 +1,5 @@
 ---
-title: Standards Python - Template Cookiecutter
+title: "Standards Python - Template Cookiecutter"
 tags: [python, standards, cookiecutter, uv, ruff, pytest, github-actions]
 description: "Template Cookiecutter Python normalisé pour l'organisation CATIE : trois types de projets (script, module, application), uv, Ruff, pre-commit, pytest, CI/CD GitHub Actions et synchronisation des projets par Cruft."
 ---
@@ -37,7 +37,7 @@ Le template distingue trois niveaux de complexité correspondant aux cas réels 
 
 ## Choix techniques
 
-**uv** remplace Poetry. La résolution et l'installation des dépendances sont nettement plus rapides, et l'outil couvre aussi la gestion des versions de Python. La migration depuis Poetry a été faite en cours de vie du template, avec mise à jour des projets existants via Cruft, et les [workflows Python mutualisés](cicd.md) ont reçu leurs équivalents uv.
+**uv** remplace Poetry. La résolution et l'installation des dépendances sont nettement plus rapides, et l'outil couvre aussi la gestion des versions de Python. La migration depuis Poetry a été faite en cours de vie du template, en décembre 2025, et les [workflows Python mutualisés](cicd.md) ont reçu leurs équivalents uv. Les projets générés auparavant restent sous Poetry tant qu'ils ne sont pas resynchronisés avec le template.
 
 **Ruff** remplace le trio Black, isort et flake8 : un seul outil, une seule configuration, une exécution nettement plus rapide. Il couvre le formatage, le tri des imports et le linting.
 
@@ -45,11 +45,15 @@ Le template distingue trois niveaux de complexité correspondant aux cas réels 
 
 ## La maintenance dans le temps
 
-Un template qui n'évolue pas devient vite obsolète. Cruft propage les mises à jour du template vers les projets qui en sont issus, en ouvrant automatiquement une pull request de synchronisation ; le workflow `cruft` du dépôt `generic_workflows` s'en charge. Quand une dépendance ou une configuration évolue dans le template, les projets qui en sont issus intègrent la mise à jour sans repartir de zéro.
+Un template qui n'évolue pas devient vite obsolète. Cruft propage les mises à jour du template vers les projets qui en sont issus : `cruft update` applique dans un projet le diff entre la version du template qui l'a généré et la version courante. Quand une dépendance ou une configuration évolue dans le template, les projets qui en sont issus intègrent la mise à jour sans repartir de zéro.
+
+## Résultats
+
+Le template sert de point de départ aux projets Python de l'organisation depuis décembre 2023. Les [outils internes](outils-internes.md) de l'équipe SONU (bot 6TRON, alertes de stock, bot de documentation) en sont issus : ils partagent la même structure de dépôt, les mêmes hooks pre-commit et un Dockerfile bâti sur le même modèle. Un nouveau projet démarre avec sa CI et son devcontainer déjà en place.
 
 ## Limites connues
 
-L'adoption de Cruft n'est pas universelle : certains projets anciens ne l'ont pas activé, ce qui crée une dérive progressive avec le template. Les projets de type script n'ont pas de tests par convention, ce qui peut encourager la mauvaise habitude de ne jamais en écrire même quand ça serait utile. La frontière entre « module » et « application » n'est pas toujours évidente pour les contributeurs, ce qui génère parfois des choix de type inadaptés.
+L'adoption de Cruft n'est pas universelle : certains projets anciens ne l'ont pas activé, ce qui crée une dérive progressive avec le template. La synchronisation n'est pas non plus automatique : le workflow mutualisé qui ouvrait une pull request de mise à jour Cruft a été retiré de `generic_workflows`, et `cruft update` se lance désormais à la main dans chaque projet. Les projets de type script n'ont pas de tests par convention, ce qui peut encourager la mauvaise habitude de ne jamais en écrire même lorsque cela serait utile. La frontière entre "module" et "application" n'est pas toujours évidente pour les contributeurs, ce qui génère parfois des choix de type inadaptés.
 
 ## Liens
 

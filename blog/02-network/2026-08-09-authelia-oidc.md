@@ -143,7 +143,7 @@ identity_providers:
 
 ### client_secret_basic ou client_secret_post
 
-L'endpoint token accepte deux méthodes courantes d'authentification par secret : `client_secret_basic` (en-tête `Authorization: Basic base64(client_id:client_secret)`) et `client_secret_post` (paramètres `client_id` et `client_secret` dans le corps du `POST`). Authelia n'accepte que la méthode déclarée pour le client et répond sinon `invalid_client` (« Client authentication failed »), le journal d'Authelia précisant la méthode reçue et la méthode enregistrée.
+L'endpoint token accepte deux méthodes courantes d'authentification par secret : `client_secret_basic` (en-tête `Authorization: Basic base64(client_id:client_secret)`) et `client_secret_post` (paramètres `client_id` et `client_secret` dans le corps du `POST`). Authelia n'accepte que la méthode déclarée pour le client et répond sinon `invalid_client` ("Client authentication failed"), le journal d'Authelia précisant la méthode reçue et la méthode enregistrée.
 
 Deux situations produisent ce décalage :
 
@@ -207,7 +207,7 @@ identity_providers:
         key: {{ secret "/secrets/oidc/private.pem" | mindent 10 "|" | msquote }}
 ```
 
-`mindent` indente le contenu multiligne en bloc littéral YAML, `msquote` ne quote que les valeurs sur une seule ligne. Le fichier se monte en volume ou en secret Docker. Lorsque la clé n'existe que sous forme de variable d'environnement, par exemple dans un `.env` chiffré avec [git-crypt](../08-iac/2026-07-26-git-crypt.md), un point d'entrée l'écrit dans un fichier au démarrage :
+`mindent` indente le contenu multiligne en bloc littéral YAML, `msquote` ne quote que les valeurs sur une seule ligne. Le fichier se monte en volume ou en secret Docker. Lorsque la clé n'existe que sous forme de variable d'environnement, par exemple dans un `.env` chiffré avec [git-crypt](../08-iac/2026-07-26-git-crypt.md), un point d'entrée l'écrit dans un fichier au démarrage, dont le chemin remplace alors celui du template (`secret "/tmp/oidc_private.pem"`) :
 
 ```yaml
 services:
@@ -230,7 +230,7 @@ Le `$$` échappe l'interpolation de Compose pour que la variable soit résolue p
 
 | Symptôme | Cause probable | Correction |
 |---|---|---|
-| `invalid_client`, « Client authentication failed » | Méthode d'authentification du client différente de `token_endpoint_auth_method` | Aligner la méthode des deux côtés (`client_secret_post` ou `client_secret_basic`) |
+| `invalid_client`, "Client authentication failed" | Méthode d'authentification du client différente de `token_endpoint_auth_method` | Aligner la méthode des deux côtés (`client_secret_post` ou `client_secret_basic`) |
 | Erreur générique de connexion sociale côté application | Librairie qui choisit `client_secret_basic` d'après le discovery | Fixer la méthode dans la librairie (`token_auth_method` pour django-allauth) |
 | `redirect_uri` ne correspond à aucune URI enregistrée | URL racine de l'application non définie, ou URI non identique | Définir la variable d'URL publique ; copier l'URI exacte depuis l'erreur |
 | Code PKCE manquant ou invalide | `require_pkce: true` avec un client qui n'envoie pas de `code_challenge` | Activer PKCE dans l'application, ou retirer l'exigence pour ce client |
@@ -239,10 +239,12 @@ Le `$$` échappe l'interpolation de Compose pour que la variable soit résolue p
 | Client TV ou mobile en échec, navigateur fonctionnel | Forward-auth conservé devant une application cliente OIDC | Retirer le middleware ou ajouter des exceptions ciblées |
 | Authelia refuse de démarrer : clé `jwks` vide ou invalide | Clé PEM lue via `env` sur un nom filtré | Lire la clé depuis un fichier avec `secret` |
 
+## Conclusion
+
+OpenID Connect transfère l'identité jusque dans l'application là où le forward-auth s'arrête au proxy. La plupart des échecs d'intégration tiennent à trois paramètres qui doivent concorder exactement entre Authelia et l'application : la méthode d'authentification du client, l'URI de redirection et les claims attendus.
+
 ## Application / Projet lié
 
 <ProjectLinks>
   <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Authelia comme fournisseur OpenID Connect d'une dizaine d'applications (gestionnaire de mots de passe, photothèque, gestion documentaire, supervision, médiathèque), avec PKCE, méthodes d'authentification de client alignées application par application et mapping du groupe `admins` en rôle administrateur.</ProjectLink>
 </ProjectLinks>
-
-OpenID Connect transfère l'identité jusque dans l'application là où le forward-auth s'arrête au proxy. La plupart des échecs d'intégration tiennent à trois paramètres qui doivent concorder exactement entre Authelia et l'application : la méthode d'authentification du client, l'URI de redirection et les claims attendus.

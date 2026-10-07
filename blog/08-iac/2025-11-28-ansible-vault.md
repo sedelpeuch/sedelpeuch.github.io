@@ -198,13 +198,13 @@ Le mécanisme des secrets GitHub Actions est décrit dans l'article [GitHub Acti
 - Changer le mot de passe (`ansible-vault rekey`) lors du départ d'une personne qui y avait accès, et renouveler dans ce cas les secrets eux-mêmes : l'ancien mot de passe permet toujours de déchiffrer les versions passées présentes dans l'historique Git
 - Marquer `no_log: true` les tâches qui manipulent des secrets
 
+## Pour aller plus loin
+
+Ansible Vault chiffre des secrets statiques, versionnés avec le code. Lorsque les secrets doivent être renouvelés automatiquement ou partagés entre plusieurs outils, un gestionnaire de secrets externe (HashiCorp Vault, AWS Secrets Manager) peut être interrogé directement depuis les playbooks par des *lookup plugins* (`community.hashi_vault.hashi_vault`, `amazon.aws.secretsmanager_secret`), sans que le secret ne soit jamais stocké dans le dépôt. L'article [Ansible : avancé](./2025-11-21-ansible-playbooks-avances.md) situe Vault dans l'organisation d'un projet Ansible complet.
+
 ## Application / Projet lié
 
 <ProjectLinks>
   <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Gestion sécurisée des secrets d'infrastructure (mots de passe, tokens, clés SSH) dans les playbooks Ansible.</ProjectLink>
   <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC Kubeadm">Stockage chiffré des tokens GitHub et des identifiants lors du provisionnement d'ARC via Ansible.</ProjectLink>
 </ProjectLinks>
-
-## Pour aller plus loin
-
-Ansible Vault chiffre des secrets statiques, versionnés avec le code. Lorsque les secrets doivent être renouvelés automatiquement ou partagés entre plusieurs outils, un gestionnaire de secrets externe (HashiCorp Vault, AWS Secrets Manager) peut être interrogé directement depuis les playbooks par des *lookup plugins* (`community.hashi_vault.hashi_vault`, `amazon.aws.aws_secret`), sans que le secret ne soit jamais stocké dans le dépôt. L'article [Ansible : avancé](./2025-11-21-ansible-playbooks-avances.md) situe Vault dans l'organisation d'un projet Ansible complet.

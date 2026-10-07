@@ -1,5 +1,5 @@
 ---
-title: Wolf
+title: "Wolf"
 tags: [gestion, flask, dolibarr, association, python, eirlab]
 description: "Application Flask de gestion interne d'EirLab Community reliant les adhérents à Dolibarr : identification par carte, attribution des formations, gestion du stock par code-barres."
 ---
@@ -27,6 +27,10 @@ Wolf est une application Flask développée à partir de juillet 2022 avec Lilia
 - **Stock** : recherche d'articles, ajout par référence ou par lecture de code-barres.
 
 Le projet a ensuite évolué vers un environnement d'interconnexion plus général entre outils de gestion (Dolibarr, Notion, GitHub), structuré en deux paquets Python : Wolf Core, qui définit et exécute les applications, et Wolf.
+
+## Résultats
+
+À la publication de l'article en octobre 2022, Wolf était en service au fablab : identification des adhérents par carte, attribution des formations et gestion du stock se faisaient depuis l'application, sans passer par l'interface de Dolibarr. Une documentation était publiée en parallèle. Le code a ensuite servi de base à la version généralisée décrite ci-dessus.
 
 ## Liens
 

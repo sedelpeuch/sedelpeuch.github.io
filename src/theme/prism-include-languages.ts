@@ -20,7 +20,7 @@ export default function prismIncludeLanguages(PrismObject: typeof PrismNamespace
   globalThis.Prism = PrismObject
 
   additionalLanguages.forEach(lang => {
-    if (lang === 'php') {
+    if (lang === 'php' || lang === 'django') {
       require('prismjs/components/prism-markup-templating.js')
     }
 

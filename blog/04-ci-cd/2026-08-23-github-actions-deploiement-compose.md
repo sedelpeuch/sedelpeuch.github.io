@@ -301,7 +301,7 @@ Le calcul est confié à un script et à un hook [pre-commit](https://pre-commit
 set -euo pipefail
 cd "$(dirname "$0")"
 HASH=$(sha256sum config.yml | cut -d' ' -f1)
-sed -i "s/CONFIG_HASH=.*/CONFIG_HASH=$HASH/" compose.yml
+sed -i -E "s/(CONFIG_HASH=)[0-9a-f]+/\1$HASH/" compose.yml
 ```
 
 ```yaml
@@ -400,7 +400,7 @@ Si les fichiers `.env` sont chiffrés dans le dépôt, ils doivent être déchif
 
 - Le routage réel n'est pas testé : ni reverse proxy partagé, ni DNS public, ni certificat, ni SSO.
 - Les volumes externes sont vides : une stack qui dépend des données d'une autre démarre sans elles.
-- Sans healthcheck, le contrôle se réduit à « le conteneur tourne ».
+- Sans healthcheck, le contrôle se réduit à "le conteneur tourne".
 - Une image publiée uniquement pour l'architecture de l'hôte (ARM, par exemple) ne démarre pas sur un runner x86-64.
 
 ### La validation ne protège que ce qui passe par elle
@@ -414,13 +414,13 @@ Le workflow `validate` ne s'exécute que sur les pull requests. Un push direct s
 - **Ordre codé en dur** : toute nouvelle dépendance de volume externe exige de mettre à jour les listes.
 - **Clé SSH en CI** : l'utilisateur de déploiement accède au socket Docker, soit un accès équivalent à root sur l'hôte.
 
+## Conclusion
+
+Diff par dossier, file d'attente sans annulation, SSH à travers un réseau privé, ordre explicite et nettoyage limité aux images suffisent à un déploiement continu traçable sur un hôte unique. Les points délicats relèvent moins de GitHub Actions que de Docker : les prunes qui suppriment des conteneurs volontairement arrêtés, et les bind mounts dont le contenu échappe à la détection de changements de Compose.
+
 ## Application / Projet lié
 
 <ProjectLinks>
   <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Déploiement continu d'une trentaine de stacks Docker Compose sur un hôte unique, via un runner GitHub hébergé qui rejoint un réseau Tailscale, avec diff calculé sur l'hôte depuis le dernier déploiement réussi, validation des pull requests (dont celles de Renovate) et hash de configuration recalculé par pre-commit.</ProjectLink>
   <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD - Workflows GitHub Actions mutualisés">Le dépôt `generic_workflows` propose un workflow réutilisable de déploiement Docker Compose, à côté du déploiement Helm, pour les dépôts de l'organisation.</ProjectLink>
 </ProjectLinks>
-
-## Conclusion
-
-Diff par dossier, file d'attente sans annulation, SSH à travers un réseau privé, ordre explicite et nettoyage limité aux images suffisent à un déploiement continu traçable sur un hôte unique. Les points délicats relèvent moins de GitHub Actions que de Docker : les prunes qui suppriment des conteneurs volontairement arrêtés, et les bind mounts dont le contenu échappe à la détection de changements de Compose.

@@ -106,7 +106,7 @@ Le type est déduit du numéro de version, et certains schémas trompent ce clas
 - **Majeure figée** : un projet resté en `1.x` dont chaque minor apporte des fonctionnalités et une migration de base relève du même traitement.
 - **Tags de build** : une image qui publie, à côté de ses versions `12.1`, des tags quotidiens (`2026092110`) ou composés (`12.1.20260915-…`) fausse la comparaison. Un versioning `regex:^(?<major>\\d+)\\.(?<minor>\\d+)$` ne retient que les tags de la forme `x.y`, les autres étant rejetés comme versions invalides.
 
-La configuration résolue se vérifie sans rien pousser : `LOG_LEVEL=debug renovate --platform=local --dry-run=full`, lancé dans le clone, détaille dans ses logs la configuration retenue pour chaque branche prévue, dont `automerge`.
+La configuration résolue se vérifie sans rien pousser : `LOG_LEVEL=debug renovate --platform=local`, lancé dans le clone, s'exécute en mode `dryRun=lookup` (la plateforme `local` ne supporte que `lookup` et `extract`, toute autre valeur comme `full` retombe sur `lookup`) et détaille dans ses logs la configuration retenue pour chaque branche prévue, dont `automerge`.
 
 ## Une PR par dépendance ou des groupes
 
@@ -214,7 +214,7 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
 ```
 
-Le workflow `Validate` se déclenche sur `pull_request` et démarre réellement les services modifiés (`docker compose config`, `docker compose up -d`, contrôle de l'état et du healthcheck de chaque conteneur) ; sa construction est détaillée dans l'article [déploiement Compose par GitHub Actions](./2026-08-23-github-actions-deploiement-compose.md). Les bases de GitHub Actions sont rappelées dans [GitHub Actions : Workflow](./2024-12-20-workflow.md).
+Le workflow `Validate` se déclenche sur `pull_request` et démarre réellement les services modifiés (`docker compose config`, `docker compose up -d`, contrôle de l'état et du healthcheck de chaque conteneur) ; sa construction est détaillée dans l'article [déploiement Compose par GitHub Actions](./2026-08-23-github-actions-deploiement-compose.md). Les bases de GitHub Actions sont rappelées dans [GitHub Actions : workflow](./2024-12-20-workflow.md).
 
 ## Pièges et limites
 
@@ -224,15 +224,15 @@ Le workflow `Validate` se déclenche sur `pull_request` et démarre réellement 
 - **`minimumReleaseAge` et registres sans date de publication.** Le délai se calcule à partir de la date de publication fournie par le registre. Docker Hub la fournit ; GHCR, Quay ou ECR non. Depuis Renovate 42, `minimumReleaseAgeBehaviour` vaut `timestamp-required` par défaut : une version sans date n'est jamais considérée comme assez ancienne, et les mises à jour de ces registres restent bloquées indéfiniment, sans erreur. `timestamp-optional` les laisse passer sans délai, ce qui revient à n'appliquer la période d'attente qu'aux registres capables de la mesurer.
 - **Les digests échappent aux règles de version.** Une règle `matchUpdateTypes: ["patch"]` avec `enabled: false` n'empêche pas les mises à jour de type `digest` : les images suivies par un tag flottant (`latest`, `stable`) continuent de produire des PR à chaque reconstruction.
 - **Registres privés.** Renovate crée automatiquement une `hostRule` pour `ghcr.io` à partir de son token de plateforme, mais ce token n'a pas forcément accès aux images privées publiées depuis un autre dépôt. Symptôme : `No docker auth found` dans les logs et aucune mise à jour proposée pour ces images. Une `hostRule` explicite (`matchHost: "ghcr.io"`, `hostType: "docker"`, identifiants d'un token ayant `read:packages`), injectée par exemple via la variable `RENOVATE_HOST_RULES`, lève le blocage. Le même problème touche le workflow de validation : le `GITHUB_TOKEN` n'accède qu'aux packages qui ont accordé l'accès au dépôt dans leurs paramètres, un `docker login` avec un autre token est sinon nécessaire. Le fonctionnement de GHCR est décrit dans l'article [GitHub Container Registry](../03-containerization/2024-12-20-ghcr.md).
-- **L'automerge ne détecte que ce que la CI teste.** Un contrôle « le conteneur démarre et reste sain » détecte un crash, pas une régression silencieuse : application qui répond en HTTP mais reste bloquée sur un écran de migration, option par défaut modifiée. Le niveau 2 suppose que ce type de régression soit rattrapable.
+- **L'automerge ne détecte que ce que la CI teste.** Un contrôle "le conteneur démarre et reste sain" détecte un crash, pas une régression silencieuse : application qui répond en HTTP mais reste bloquée sur un écran de migration, option par défaut modifiée. Le niveau 2 suppose que ce type de régression soit rattrapable.
 - **Push direct sur la branche par défaut.** Un commit poussé hors PR ne déclenche pas `Validate`, donc pas Renovate : les branches Renovate en retard ne sont rebasées qu'au prochain cron ou à la prochaine activité sur une branche `renovate/*`.
+
+## Conclusion
+
+Renovate transforme la mise à jour des images en flux de PR validées par la CI. La valeur du dispositif dépend moins de Renovate lui-même que de ce qui l'entoure : un token qui déclenche réellement la validation, une CI qui démarre vraiment les services, une classification explicite des dépendances selon le risque, et un déclenchement qui suit le rythme des validations plutôt qu'un cron.
 
 ## Application / Projet lié
 
 <ProjectLinks>
   <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Renovate self-hosted authentifié par une GitHub App maintient les images de près de trente stacks Docker Compose, avec deux niveaux (majeures relues à la main pour le périmètre d'accès et les données irremplaçables, tout automergé pour le reste ; minor, patch et digest automergés partout après trois jours), bases de données exclues, et relance par `workflow_run` après chaque validation de branche Renovate.</ProjectLink>
 </ProjectLinks>
-
-## Conclusion
-
-Renovate transforme la mise à jour des images en flux de PR validées par la CI. La valeur du dispositif dépend moins de Renovate lui-même que de ce qui l'entoure : un token qui déclenche réellement la validation, une CI qui démarre vraiment les services, une classification explicite des dépendances selon le risque, et un déclenchement qui suit le rythme des validations plutôt qu'un cron.

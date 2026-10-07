@@ -1,5 +1,5 @@
 ---
-title: Cluster Kubernetes interne SONU
+title: "Cluster Kubernetes interne SONU"
 tags: [kubernetes, kubeadm, devops, infrastructure, helm, tailscale, traefik, authentik, longhorn, prometheus, grafana, loki]
 description: "Cluster Kubernetes bare-metal monté avec kubeadm sur 7 nœuds. Déploiement GitOps via Helm, entrée unique Traefik exposée sur Tailscale, SSO Authentik, stockage répliqué Longhorn, chaîne d'observabilité Prometheus, Grafana et Loki. Infrastructure interne de l'équipe SONU au CATIE."
 ---
@@ -61,7 +61,7 @@ Avant ce chantier, chaque application gérait ses comptes, ou n'en avait pas. J'
 
 La connexion passe par GitHub : à chaque login, l'appartenance aux équipes de l'organisation est relue et convertie en groupes Authentik (équipe SONU, reste de l'organisation, administrateurs de l'infrastructure). Retirer quelqu'un d'une équipe GitHub lui retire donc ses droits au login suivant, sans intervention dans Authentik. Grafana dérive aussi ses rôles de ces groupes.
 
-Toute la configuration d'Authentik (fournisseurs, applications, droits par groupe) est déclarée dans le `values.yaml` et appliquée par des blueprints : protéger une nouvelle application revient à ajouter une entrée dans une liste. Deux pièges rencontrés en route : Traefik refuse par défaut les références de middleware entre namespaces, ce qui impose de dupliquer le middleware dans le namespace de l'application ; et la route vers l'outpost d'authentification doit être déclarée prioritaire, sinon la priorité par défaut de Traefik, calculée sur la longueur de la règle, l'envoie à l'application protégée.
+Toute la configuration d'Authentik (fournisseurs, applications, droits par groupe) est déclarée dans le `values.yaml` et appliquée par des blueprints : protéger une nouvelle application revient à ajouter une entrée dans une liste. Deux pièges rencontrés en route : Traefik refuse par défaut les références de middleware entre namespaces, ce qui impose de dupliquer le middleware dans le namespace de l'application ; et la route vers l'outpost d'authentification ne doit pas recevoir de petite priorité explicite. Traefik calcule la priorité par défaut sur la longueur de la règle : la route de l'outpost, plus longue, passe naturellement avant celle de l'application, alors qu'une priorité explicite de 15, comme dans l'exemple de la documentation d'Authentik, la fait passer après et provoque une boucle de redirection.
 
 ## Stockage : de local-storage à Longhorn
 
@@ -94,7 +94,7 @@ Presque chaque service déployé sur le cluster a son propre dépôt Helm dans l
 
 Conséquence directe : la configuration du cluster est lisible depuis GitHub. Pour savoir ce qui tourne et comment, il suffit de lire les dépôts. Les rares exceptions (quelques composants installés à la main et les secrets d'amorçage) sont recensées dans la documentation d'exploitation.
 
-En septembre 2026, j'ai mené une campagne de mise à niveau de l'ensemble des charts :
+En septembre et début octobre 2026, j'ai mené une campagne de mise à niveau de l'ensemble des charts :
 
 - **Déploiement par tag immuable.** Les outils internes étaient déployés sur le tag `main`, avec une annotation aléatoire et `--recreate-pods` pour forcer le redémarrage. Chaque déploiement redémarrait donc les pods, même sans changement, et rien n'indiquait quel build tournait. La quasi-totalité est désormais déployée par le tag `sha-<commit>` publié par la CI : le pod ne redémarre que si l'image change, et la version en production se lit dans le manifeste. Les changements de configuration déclenchent le redémarrage par une somme de contrôle de la ConfigMap.
 - **Hardening.** `securityContext` (escalade de privilèges interdite, capabilities retirées, système de fichiers racine en lecture seule quand l'image le permet), sondes de vivacité et de disponibilité, `resources` déclarées, tags d'image figés plutôt que `latest`.
@@ -129,12 +129,12 @@ La chaîne d'observabilité couvre trois couches. **Prometheus** collecte les m�
 
 Le cluster héberge une palette de services qui reflète les outils du quotidien de l'équipe. **Dashy** centralise tous les accès. **Portainer** offre une vue visuelle des workloads, utile pour les collègues qui n'ont pas `kubectl` en réflexe. **Dolibarr**, l'ERP de l'équipe, a été rapatrié d'un serveur Apache isolé vers le cluster : j'ai écrit son chart (Dolibarr, MariaDB, sauvegardes quotidiennes par dump transactionnel et archive des documents, vérifiées avant publication, en plus des snapshots Longhorn), migré la base et raccordé la connexion à Authentik en OIDC.
 
-Plusieurs [outils internes](outils-internes.md) automatisent des tâches répétitives : un bot surveille les mouvements de stock Dolibarr et envoie des alertes, un autre traite les demandes de téléchargement du site 6TRON, un troisième suit les contributions GitHub. Ces petits services ont longtemps tourné sans intervention, avant d'être migrés sur Longhorn et durcis en septembre 2026. **TS341** sert les supports d'un cours d'imagerie, rédigés en Markdown et rendus en diaporamas Marp. Le **plan de charge** de l'équipe, qui a remplacé l'ancien tableau de bord Jira, est alimenté directement par les fichiers de suivi de l'équipe.
+Plusieurs [outils internes](outils-internes.md) automatisent des tâches répétitives : un bot surveille les mouvements de stock Dolibarr et envoie des alertes, un autre traite les demandes de téléchargement du site 6TRON, un troisième recherche des composants chez les distributeurs, et une application suit l'activité GitHub de l'équipe. Ces petits services ont longtemps tourné sans intervention, avant d'être migrés sur Longhorn et durcis en septembre 2026. **TS341** sert les supports d'un cours d'imagerie, rédigés en Markdown et rendus en diaporamas Marp. Le **plan de charge** de l'équipe, qui a remplacé l'ancien tableau de bord Jira, est alimenté directement par les fichiers de suivi de l'équipe.
 
   </TabItem>
   <TabItem value="iot" label="IoT & projets">
 
-**Thingsboard** tourne avec PostgreSQL sur des volumes persistants : c'est la plateforme de collecte et de visualisation de données capteurs. **IoT Gateway** gère la connectivité avec des équipements industriels via Modbus ; ce chart a été principalement développé par un collègue, avec ma contribution sur l'intégration infrastructure.
+**ThingsBoard** tourne avec PostgreSQL sur des volumes persistants : c'est la plateforme de collecte et de visualisation de données capteurs. **IoT Gateway** gère la connectivité avec des équipements industriels via Modbus ; ce chart a été principalement développé par un collègue, avec ma contribution sur l'intégration infrastructure.
 
 Le cluster sert également de terrain de déploiement pour de nouveaux projets avant qu'ils ne trouvent leur hébergement définitif. Des namespaces dédiés apparaissent et disparaissent au rythme des prototypes en cours.
 
@@ -155,6 +155,10 @@ La procédure de renouvellement est `kubeadm certs renew all` sur le nœud de pl
 
 L'incident a aussi mis en évidence une dépendance : les [runners GitHub ARC](github-arc-kubeadm.md) tournent sur ce même cluster, donc son indisponibilité affecte aussi la CI. Il n'existe pas de bascule automatique des runners, mais un déploiement manuel de secours est documenté ; c'est une limite assumée pour une infrastructure interne sans engagement de niveau de service.
 
+## Résultats
+
+Le cluster fait tourner sur sept nœuds les services du quotidien de l'équipe, les outils internes et les [runners CI](github-arc-kubeadm.md) de l'organisation, sans ressource cloud louée. Sa configuration est lisible dans les dépôts Helm et se déploie par la CI, sans accès SSH. Depuis le chantier de septembre 2026, toutes les applications web passent par une entrée unique en HTTPS valide, derrière une authentification commune dont les droits suivent les équipes GitHub ; les services avec état sont sur un stockage répliqué en trois exemplaires, hors stockage objet, et la restauration de la base la plus critique a été testée. Une dizaine de modes opératoires permettent à un autre membre de l'équipe d'intervenir sur les situations d'exploitation courantes.
+
 ## Limites connues
 
 **Les sauvegardes restent sur le cluster.** Les snapshots Longhorn et les sauvegardes de Dolibarr sont stockés sur les disques du cluster lui-même : ils protègent d'une erreur de manipulation ou de la perte d'un disque, pas de la perte du cluster. La sauvegarde hors cluster est le prochain chantier.
@@ -162,6 +166,8 @@ L'incident a aussi mis en évidence une dépendance : les [runners GitHub ARC](g
 **Les mises à jour Kubernetes sont incomplètes.** La branche Kubernetes installée n'est plus maintenue, et les nœuds ne sont pas tous au même niveau de correctif. Mettre à jour un cluster kubeadm en production nécessite, nœud par nœud, de drainer le nœud, de mettre à jour kubeadm, puis kubelet et kubectl. La procédure est rédigée en mode opératoire et la montée de version est planifiée.
 
 **La surveillance des certificats n'est pas automatisée.** Une alerte Prometheus sur les dates d'expiration, routée par [Alertmanager](/blog/2026/09/20/07-monitoring/prometheus-alertmanager), aurait permis d'anticiper l'incident ; elle n'est pas encore en place. La prochaine échéance est relevée dans le mode opératoire de renouvellement, avec une date d'intervention préventive.
+
+**Promtail est en fin de vie.** Grafana a déprécié Promtail au profit de Grafana Alloy, et ne le maintient plus depuis mars 2026 : l'agent de collecte des logs ne reçoit plus de correctifs. La migration vers Alloy, qui fournit une commande de conversion des configurations Promtail, reste à faire.
 
 ## Liens
 

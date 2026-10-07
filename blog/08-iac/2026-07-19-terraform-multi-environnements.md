@@ -65,10 +65,14 @@ L'alternative consiste à donner à chaque environnement son propre répertoire 
     ├── dev/
     │   ├── main.tf
     │   ├── backend.tf
+    │   ├── provider.tf
+    │   ├── variables.tf
     │   └── dev.tfvars
     └── prod/
         ├── main.tf
         ├── backend.tf
+        ├── provider.tf
+        ├── variables.tf
         └── prod.tfvars
 ```
 
@@ -93,6 +97,7 @@ module "network" {
   source   = "../../modules/network"
   vpc_cidr = "10.1.0.0/16"
   project  = "mon-projet-prod"
+  subnets  = { /* ... */ }
 }
 
 module "database" {
@@ -108,6 +113,7 @@ module "network" {
   source   = "../../modules/network"
   vpc_cidr = "10.0.0.0/16"
   project  = "mon-projet-dev"
+  subnets  = { /* ... */ }
 }
 
 module "database" {
@@ -177,6 +183,8 @@ instance_class = "db.t4g.micro"
 multi_az       = false
 vpc_cidr       = "10.0.0.0/16"
 ```
+
+Les appels de modules de `main.tf` référencent alors ces valeurs (`instance_class = var.instance_class`, `vpc_cidr = var.vpc_cidr`) au lieu de littéraux, et chaque variable est déclarée dans le `variables.tf` de l'environnement.
 
 Un fichier `.tfvars` nommé n'est pas chargé automatiquement : Terraform n'auto-charge que `terraform.tfvars` et les fichiers `*.auto.tfvars`. Tout autre fichier doit être passé explicitement à `plan` et `apply` :
 

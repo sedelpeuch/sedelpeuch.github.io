@@ -1,6 +1,6 @@
 ---
-title: Roadmap Terraform
-description: Progression pédagogique Terraform, un article par notion, pratiqué sur task_horizon.
+title: "Roadmap Terraform"
+description: "Progression pédagogique Terraform, un article par notion, pratiqué sur task_horizon."
 tags: [iac, devops]
 ---
 

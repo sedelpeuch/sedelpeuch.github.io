@@ -2,6 +2,7 @@
 title: "Terraform : depends_on et lifecycle"
 description: "Contrôler l'ordre de création avec depends_on et le comportement lors des modifications avec lifecycle : prevent_destroy, ignore_changes et create_before_destroy."
 series: terraform
+series_order: 3
 tags: [iac, devops]
 ---
 
@@ -160,9 +161,9 @@ Autres cas courants d'`ignore_changes` :
 
 ### create_before_destroy
 
-Le comportement par défaut de Terraform lors du remplacement d'une ressource est de la détruire, puis d'en créer une nouvelle. Pour certaines ressources, cet ordre produit une interruption de service.
+Le comportement par défaut de Terraform lors du remplacement d'une ressource est de la détruire, puis d'en créer une nouvelle. Pour certaines ressources, cet ordre produit une interruption de service, ou un échec lorsque AWS refuse de supprimer une ressource encore utilisée.
 
-Exemple : un certificat TLS attaché à un listener ALB. Si le certificat doit être remplacé (renouvellement, changement de domaine), Terraform détache et supprime l'ancien certificat, puis crée le nouveau. Entre les deux opérations, le listener n'a plus de certificat valide et les connexions HTTPS échouent.
+Exemple : un certificat ACM attaché à un listener ALB. Si le certificat doit être remplacé (changement de domaine, par exemple ; le renouvellement géré par ACM, lui, ne remplace pas la ressource), Terraform tente d'abord de supprimer l'ancien certificat. AWS refuse la suppression d'un certificat encore utilisé par un listener (`ResourceInUseException`) : le remplacement échoue et l'`apply` s'interrompt.
 
 `create_before_destroy = true` inverse l'ordre : Terraform crée d'abord la nouvelle ressource, met à jour toutes les références vers elle, puis supprime l'ancienne :
 
@@ -231,3 +232,9 @@ Ici : la base ne peut pas être détruite accidentellement, et les changements d
 | `ignore_changes` | Drift intentionnel géré en dehors de Terraform | Terraform n'essaie pas de corriger les attributs listés |
 | `create_before_destroy` | Interruption de service lors du remplacement | Crée la nouvelle ressource avant de supprimer l'ancienne |
 | `replace_triggered_by` | Remplacement lié au changement d'une autre ressource | Remplace la ressource quand la référence change |
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">`prevent_destroy` sur l'instance RDS, `ignore_changes` sur les tags du bucket S3 des avatars, et `depends_on` explicites : Elastic IP et NAT Gateway après l'internet gateway, politique du bucket après son bloc d'accès public.</ProjectLink>
+</ProjectLinks>

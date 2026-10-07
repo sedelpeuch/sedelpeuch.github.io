@@ -23,7 +23,7 @@ Passer à 3 réplicas réduit l'impact d'un événement isolé, mais ne suffit p
 
 ## TopologySpreadConstraints
 
-Sans contrainte de distribution, le scheduler peut placer plusieurs réplicas sur un même nœud. La perte de ce nœud emporte alors toutes les réplicas simultanément.
+Sans contrainte de distribution, le scheduler peut placer plusieurs réplicas sur un même nœud. La perte de ce nœud emporte alors tous les réplicas simultanément.
 
 `topologySpreadConstraints` force une distribution homogène selon un critère topologique (nœud, zone de disponibilité, région) :
 
@@ -46,7 +46,7 @@ spec:
 
 `maxSkew: 1` signifie que l'écart entre le nœud le plus chargé et le moins chargé ne peut pas dépasser 1. Avec 3 réplicas et 3 nœuds, chaque nœud en héberge exactement 1.
 
-`whenUnsatisfiable: DoNotSchedule` refuse le placement si la contrainte ne peut pas être respectée : le pod reste `Pending`, par exemple si deux nœuds seulement sont disponibles pour trois réplicas et qu'un troisième réplica sur l'un d'eux porterait l'écart à 2. `ScheduleAnyway` traite la contrainte comme une préférence : le scheduler favorise la répartition, mais place le pod quand même.
+`whenUnsatisfiable: DoNotSchedule` refuse le placement si la contrainte ne peut pas être respectée : le pod reste `Pending`, par exemple si, sur trois nœuds, celui qui n'héberge encore aucun réplica manque de ressources pour le troisième ; le placer sur l'un des deux autres nœuds porterait l'écart à 2 avec le nœud vide. `ScheduleAnyway` traite la contrainte comme une préférence : le scheduler favorise la répartition, mais place le pod quand même.
 
 Pour une distribution multi-AZ :
 
@@ -146,7 +146,7 @@ replicas_désiré = ⌈ replicas_actuels × (métrique_actuelle / métrique_cibl
 Le HPA n'agit que si le rapport `métrique_actuelle / métrique_cible` s'écarte de 1 de plus de la tolérance (10 % par défaut). Exemple avec 3 réplicas et une cible CPU à 80 % :
 
 ```text
-CPU à 85%  → rapport 1,06, dans la tolérance de 10 % → aucun changement, reste à 3
+CPU à 85%  → rapport 1.06, dans la tolérance de 10 % → aucun changement, reste à 3
 CPU à 100% → ceil(3 × 100/80) = ceil(3.75) = 4 réplicas
 CPU à 30%  → ceil(3 × 30/80) = ceil(1.13) = 2, mais limité par minReplicas → reste à 3
 ```

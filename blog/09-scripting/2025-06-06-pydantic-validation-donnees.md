@@ -8,27 +8,30 @@ Les données qui entrent dans une application (requêtes HTTP, fichiers de confi
 
 <!--truncate-->
 
-## Qu'est-ce que Pydantic?
+## Qu'est-ce que Pydantic ?
 
 Pydantic est une bibliothèque Python qui permet de valider des données et de gérer les paramètres de configuration en utilisant les annotations de type Python. Elle offre plusieurs avantages :
 
 - **Validation forte basée sur les types Python**
 - **Conversion automatique des données d'entrée**
 - **Génération de documentation JSON Schema**
-- **Sérialisation et désérialisation faciles**
+- **Sérialisation et désérialisation** vers des dictionnaires et du JSON
 - **Performances optimisées** grâce à l'utilisation de code compilé en Rust
 
 Pydantic est notamment le système de modèles utilisé par [FastAPI](./2024-12-20-fastapi.md), qui s'appuie sur lui pour valider les requêtes et sérialiser les réponses.
 
 ## Installation de Pydantic
 
-L'installation de Pydantic est simple avec pip :
+Pydantic s'installe avec pip :
 
 ```bash
 pip install pydantic
 
 # Pour la version 2.x avec des performances optimisées
 pip install "pydantic>=2.0.0"
+
+# Avec email-validator, requis par le type EmailStr
+pip install "pydantic[email]"
 ```
 
 Avec Poetry (voir l'article [Python : Poetry](./2025-06-06-poetry-python-dependency.md)) :
@@ -75,9 +78,10 @@ user = User(
 # Validation échouée
 try:
     User(
-        id="not_an_integer",  # Erreur: la valeur n'est pas un entier
-        name=123,             # Sera converti en string automatiquement
-        email="invalid_email" # Pas d'erreur par défaut: ce n'est pas une validation de format
+        id="not_an_integer",  # Erreur : la valeur n'est pas un entier
+        name=123,             # Erreur : en v2, un int n'est pas converti en str (sauf coerce_numbers_to_str)
+        email="invalid_email" # Pas d'erreur par défaut : ce n'est pas une validation de format
+        # birth_date absent : erreur "Field required"
     )
 except ValueError as e:
     print(f"Erreur de validation: {e}")
@@ -85,7 +89,7 @@ except ValueError as e:
 
 ### Sérialisation et désérialisation
 
-Pydantic simplifie la conversion des modèles en dictionnaires, JSON ou d'autres formats :
+Pydantic convertit les modèles en dictionnaires ou en JSON, et inversement :
 
 ```python
 # Conversion en dictionnaire
@@ -144,7 +148,7 @@ Pydantic prend en charge une variété de types complexes :
 
 ```python
 from pydantic import BaseModel, HttpUrl, conlist, constr
-from typing import Dict, Union
+from typing import Dict, Optional, Union
 
 class Product(BaseModel):
     name: str
@@ -170,11 +174,11 @@ Pydantic offre de nombreuses options de configuration pour contrôler le comport
 ```python
 class Settings(BaseModel):
     model_config = {
-        # Permettre les champs supplémentaires
+        # Refuser les champs non déclarés
         "extra": "forbid",
         # Valider également les attributs lors de l'assignation
         "validate_assignment": True,
-        # Aliases pour les noms de champs JSON
+        # Accepter le nom Python du champ en plus de son alias
         "populate_by_name": True,
         # Noms JSON en format camelCase
         "alias_generator": lambda s: ''.join(
@@ -196,15 +200,15 @@ FastAPI utilise les modèles Pydantic pour valider les corps de requête et filt
 ```python
 from fastapi import FastAPI, Path
 from pydantic import BaseModel, Field
-from typing import List
+from typing import Optional
 
 app = FastAPI()
 
 class Item(BaseModel):
-    name: str = Field(..., example="Smartphone")
-    description: Optional[str] = Field(None, example="Un téléphone dernier cri")
-    price: float = Field(..., gt=0, example=899.99)
-    tax: Optional[float] = Field(None, example=20.0)
+    name: str = Field(..., examples=["Smartphone"])
+    description: Optional[str] = Field(None, examples=["Un téléphone dernier cri"])
+    price: float = Field(..., gt=0, examples=[899.99])
+    tax: Optional[float] = Field(None, examples=[20.0])
 
     model_config = {
         "json_schema_extra": {
@@ -244,7 +248,7 @@ Pydantic v2 (sorti en 2023) a introduit plusieurs changements importants :
 
 | Fonctionnalité | v1 | v2 |
 |----------------|-----|-----|
-| Moteur de validation | Python pur | Core en Rust (10-50x plus rapide) |
+| Moteur de validation | Python pur | Core en Rust (jusqu'à 50x plus rapide) |
 | API | `.dict()`, `.json()` | `.model_dump()`, `.model_dump_json()` |
 | Validateurs | `@validator`, `@root_validator` | `@field_validator`, `@model_validator` |
 | Types génériques | Support limité | Support amélioré |
@@ -266,9 +270,10 @@ class UserV1(BaseModel):
             raise ValueError('Doit être majeur')
         return v
 
-    # Conversion en dict/json
-    data = user.dict()
-    json_data = user.json()
+user = UserV1(name="Alice", age=30)
+# Conversion en dict/json
+data = user.dict()
+json_data = user.json()
 
 # Pydantic v2
 from pydantic import BaseModel, field_validator
@@ -278,22 +283,23 @@ class UserV2(BaseModel):
     age: int
 
     @field_validator('age')
-    @classmethod  # Maintenant obligatoire
+    @classmethod  # Recommandé (typage) ; ajouté implicitement s'il est omis
     def check_age(cls, v):
         if v < 18:
             raise ValueError('Doit être majeur')
         return v
 
-    # Conversion en dict/json
-    data = user.model_dump()
-    json_data = user.model_dump_json()
+user = UserV2(name="Alice", age=30)
+# Conversion en dict/json
+data = user.model_dump()
+json_data = user.model_dump_json()
 ```
 
 ## Bonnes pratiques avec Pydantic
 
-1. **Utilisez des types précis**: Les types comme `EmailStr`, `HttpUrl`, `conint`, etc. améliorent la validation
+1. **Types précis** : les types comme `EmailStr`, `HttpUrl`, `conint`, etc. améliorent la validation
 
-2. **Créez une hiérarchie de modèles**: Utilisez l'héritage pour les structures complexes
+2. **Hiérarchie de modèles** : l'héritage factorise les champs communs des structures complexes
 
    ```python
    class BaseUser(BaseModel):
@@ -307,7 +313,7 @@ class UserV2(BaseModel):
        is_active: bool
    ```
 
-3. **Exploitez les validators pour les règles métier complexes**:
+3. **Validateurs pour les règles métier complexes** :
 
    ```python
    @field_validator("reservation_date")
@@ -318,7 +324,7 @@ class UserV2(BaseModel):
        return v
    ```
 
-4. **Utilisez FrozenModel pour l'immutabilité**:
+4. **Modèle immuable avec `ConfigDict(frozen=True)`** :
 
    ```python
    from pydantic import BaseModel, ConfigDict
@@ -329,7 +335,7 @@ class UserV2(BaseModel):
        debug: bool = False
    ```
 
-5. **Ajoutez des exemples pour améliorer la documentation**:
+5. **Exemples dans le schéma JSON** pour la documentation :
 
    ```python
    class Item(BaseModel):
@@ -427,3 +433,9 @@ Pydantic est largement utilisé dans l'écosystème Python, en particulier pour 
 - **Modèles déclaratifs** composables pour décrire des structures imbriquées
 - **Performances** : depuis la v2, le cœur de validation (`pydantic-core`) est écrit en Rust
 - **Intégration** avec FastAPI, SQLModel et de nombreux autres frameworks
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Schémas Pydantic de l'API FastAPI, séparés des modèles SQLAlchemy : validation des requêtes et sérialisation des réponses sans jamais retourner un objet ORM.</ProjectLink>
+</ProjectLinks>

@@ -10,7 +10,7 @@ Ici, il s'agit d'un projet réalisé à l'aide de [Docusaurus 3](https://docusau
 
 ### Prérequis
 
-- Il est nécessaire d'avoir Node.js version >= 12.13.0 ou supérieure. On peut vérifier cela en exécutant `node -v`.
+- Il est nécessaire d'avoir Node.js version >= 20 (Docusaurus 3.10 l'exige ; la CI utilise Node 22). On peut vérifier cela en exécutant `node -v`.
 - Il est recommandé d'avoir Yarn version >= 1.5. On peut vérifier cela en exécutant `yarn --version`. Yarn est un gestionnaire de paquets performant pour JavaScript et remplace le client `npm`.
 
 ### Installation

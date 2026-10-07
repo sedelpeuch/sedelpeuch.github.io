@@ -204,14 +204,6 @@ Ansible et [Terraform](./2026-06-21-terraform.md) se combinent souvent : Terrafo
 5. **Tester avec `--check`** avant d'exécuter réellement les changements
 6. **Structurer logiquement l'inventaire** en groupes et sous-groupes
 
-## Application / Projet lié
-
-<ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Automatisation complète de la configuration et de la maintenance des nœuds Kubernetes avec Ansible.</ProjectLink>
-  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC Kubeadm">Provisionnement automatique du cluster Kubernetes et installation d'ARC via des playbooks Ansible.</ProjectLink>
-  <ProjectLink to="/docs/projects/personnel/zsh_ansible" title="zsh_ansible">Cas pratique d'automatisation shell avec Ansible pour la gestion d'infrastructure personnelle.</ProjectLink>
-</ProjectLinks>
-
 ## Conclusion
 
 Ansible applique à un parc de machines une configuration décrite en YAML, par SSH et sans agent. Son modèle repose sur des modules idempotents exécutés dans l'ordre des tâches, des handlers pour les actions consécutives à un changement, et des rôles pour la réutilisation. Les articles [playbooks avancés](./2025-11-21-ansible-playbooks-avances.md) et [Ansible Vault](./2025-11-28-ansible-vault.md) prolongent ces bases.
@@ -221,3 +213,11 @@ Ansible applique à un parc de machines une configuration décrite en YAML, par 
 - [Documentation officielle Ansible](https://docs.ansible.com/)
 - [Ansible Galaxy](https://galaxy.ansible.com/) - Dépôt de rôles communautaires
 - [Red Hat Ansible Automation Platform](https://www.redhat.com/fr/technologies/management/ansible) - Version entreprise
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Automatisation complète de la configuration et de la maintenance des nœuds Kubernetes avec Ansible.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC Kubeadm">Provisionnement automatique du cluster Kubernetes et installation d'ARC via des playbooks Ansible.</ProjectLink>
+  <ProjectLink to="/docs/projects/personnel/zsh_ansible" title="zsh_ansible">Cas pratique d'automatisation shell avec Ansible pour la gestion d'infrastructure personnelle.</ProjectLink>
+</ProjectLinks>

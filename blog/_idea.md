@@ -1,5 +1,5 @@
 ---
-title: Idées de posts
+title: "Idées de posts"
 description: "Liste d'idées de posts pour le blog. Ces idées couvrent divers sujets liés au développement, à l'orchestration, au scripting et à d'autres domaines pertinents."
 hidden: true
 ---

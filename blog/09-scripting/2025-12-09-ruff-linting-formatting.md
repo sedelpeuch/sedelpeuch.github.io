@@ -1,6 +1,6 @@
 ---
 title: "Python : Ruff"
-description: Découvrir Ruff, l'outil Python ultra-rapide écrit en Rust pour remplacer flake8, black et isort.
+description: "Ruff, linter et formateur Python écrit en Rust qui remplace flake8, black et isort : configuration, ligne de commande, VSCode, pre-commit et CI."
 tags: [scripting, devops]
 ---
 
@@ -17,7 +17,7 @@ Ruff est un outil tout-en-un pour la qualité du code Python :
 - **isort** (import sorting)
 - **pylint** (linting avancé)
 
-Le principal avantage : une performance exceptionnelle grâce à son implémentation en Rust.
+Ces outils, écrits en Python, sont remplacés par un binaire unique compilé depuis Rust, ce qui explique l'écart de temps d'exécution mentionné en introduction.
 
 ## Installation
 
@@ -51,7 +51,6 @@ select = [
 # Règles ignorées
 ignore = [
     "E501",  # line-too-long (géré par formatter)
-    "W503",  # line-break-before-binary-operator
 ]
 
 [tool.ruff.format]
@@ -69,7 +68,7 @@ ruff check .
 
 # Auto-corriger les erreurs détectables
 ruff check --fix .
-# Corrige automatiquement les problèmes qui peuvent l'être (imports, formatting, etc.).
+# Corrige automatiquement les violations qui disposent d'un correctif (imports inutilisés ou mal triés, syntaxe obsolète, etc.).
 
 # Formater le code
 ruff format .
@@ -105,8 +104,7 @@ ruff format --check .
       "source.organizeImports.ruff": "explicit"
     }
   },
-  "ruff.importStrategy": "fromEnvironment",
-  "ruff.showNotifications": "onWarning"
+  "ruff.importStrategy": "fromEnvironment"
 }
 ```
 
@@ -125,9 +123,9 @@ Ajouter Ruff comme vérification automatique avant chaque commit :
 # .pre-commit-config.yaml
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.0
+    rev: v0.16.10
     hooks:
-      - id: ruff
+      - id: ruff-check
         args: [--fix]
       - id: ruff-format
 ```
@@ -191,27 +189,24 @@ unused_var = 42
 Après `ruff check --fix . && ruff format .` :
 
 ```python
-import json
-import os
-import sys
-
 def calculate(x, y):
     result = x + y
     return result
+
+
+unused_var = 42
 ```
 
 Ruff a automatiquement :
 
-- Trié les imports (isort)
-- Ajouté les espaces autour des opérateurs (black)
-- Supprimé la variable non utilisée (avec `--fix`)
+- Supprimé les trois imports non utilisés (règle F401, corrigée par `--fix`)
+- Ajouté les espaces autour des opérateurs et les deux lignes vides entre définitions de niveau module (`ruff format`)
 
-## Application / Projet lié
+La variable `unused_var` est conservée : la règle F841 ne vise que les variables locales non utilisées, pas les affectations au niveau du module.
 
-<ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/standards-python" title="standards-python">Ruff configuré comme linter et formatter standard pour l'ensemble du projet Python.</ProjectLink>
-  <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD">Vérifications Ruff intégrées dans les pipelines CI/CD pour la qualité du code.</ProjectLink>
-</ProjectLinks>
+## Conclusion
+
+Ruff regroupe le linting, le tri des imports et le formatage dans un seul binaire configuré depuis `pyproject.toml`. Le même outil, avec la même configuration, s'exécute dans l'éditeur, dans un hook pre-commit et en CI, ce qui garantit que les trois étapes appliquent les mêmes règles.
 
 ## Ressources
 
@@ -219,4 +214,9 @@ Ruff a automatiquement :
 - [Extension VSCode](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff)
 - [Liste complète des règles](https://docs.astral.sh/ruff/rules/)
 
-Ruff représente une évolution majeure dans l'écosystème Python, combinant performance et simplicité. Son adoption améliore significativement la productivité des développeurs et la qualité du code.
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/standards-python" title="Standards Python">Ruff configuré comme linter et formateur standard du template Python, à la place de black, isort et flake8.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD">Workflow générique d'exécution des hooks pre-commit en CI, qui applique les vérifications Ruff des projets issus du template Python.</ProjectLink>
+</ProjectLinks>

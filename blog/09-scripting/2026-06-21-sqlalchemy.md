@@ -32,7 +32,7 @@ class Base(DeclarativeBase):
 Chaque modèle hérite ensuite de cette base et décrit ses colonnes via des annotations de type combinées à `mapped_column()` :
 
 ```python
-from sqlalchemy import String, DateTime
+from sqlalchemy import String, DateTime, func
 from sqlalchemy.orm import Mapped, mapped_column
 from datetime import datetime
 
@@ -42,7 +42,7 @@ class User(Base):
     id: Mapped[str] = mapped_column(String(36), primary_key=True)
     email: Mapped[str] = mapped_column(String(255), unique=True, index=True)
     name: Mapped[str] = mapped_column(String(255))
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 ```
 
 L'annotation `Mapped[str]` exprime le type Python de l'attribut. SQLAlchemy en déduit automatiquement la nullabilité : `Mapped[str]` produit une colonne `NOT NULL`, `Mapped[str | None]` produit une colonne nullable. Cette approche rend la déclaration lisible et cohérente avec le reste du typage Python.
@@ -113,7 +113,7 @@ Ce pattern garantit qu'une connexion n'est jamais laissée ouverte accidentellem
 
 ## Le suivi automatique des modifications
 
-L'un des apports les plus discrets mais les plus utiles de l'ORM est le *dirty tracking*. SQLAlchemy observe les objets chargés dans une session. Lorsqu'un attribut est modifié, l'ORM le détecte automatiquement et génère un `UPDATE` minimal lors du `commit`, portant uniquement sur les colonnes effectivement modifiées.
+L'ORM assure également le *dirty tracking*. SQLAlchemy observe les objets chargés dans une session. Lorsqu'un attribut est modifié, l'ORM le détecte automatiquement et génère un `UPDATE` minimal lors du `commit`, portant uniquement sur les colonnes effectivement modifiées.
 
 Cela signifie que le développeur n'a pas à construire de requête `UPDATE` : il modifie l'objet comme n'importe quelle variable Python, et SQLAlchemy s'occupe de la synchronisation avec la base.
 
@@ -125,7 +125,7 @@ Cela signifie que le développeur n'a pas à construire de requête `UPDATE` : i
 Base.metadata.create_all(bind=engine)
 ```
 
-Cette instruction inspecte tous les modèles enregistrés sur `Base` et émet les `CREATE TABLE IF NOT EXISTS` correspondants. Cette approche convient au développement et aux tests. En production, l'évolution du schéma sur une base existante (ajouter une colonne, modifier un index, renommer une table) nécessite des migrations contrôlées, ce qu'Alembic apporte au-dessus de SQLAlchemy.
+Cette instruction inspecte tous les modèles enregistrés sur `Base`, vérifie quelles tables existent déjà en base, puis émet un `CREATE TABLE` (et les `CREATE INDEX` associés) pour chaque table absente. Cette approche convient au développement et aux tests. En production, l'évolution du schéma sur une base existante (ajouter une colonne, modifier un index, renommer une table) nécessite des migrations contrôlées, ce qu'Alembic apporte au-dessus de SQLAlchemy.
 
 ## Quand utiliser le SQL brut
 
@@ -139,7 +139,7 @@ with engine.connect() as conn:
     conn.commit()
 ```
 
-L'ORM est un outil, pas une obligation. La capacité de mélanger ORM et SQL brut selon le contexte est précisément ce qui rend SQLAlchemy adapté aux applications réelles.
+ORM et SQL brut peuvent ainsi coexister dans une même application, chacun utilisé pour les opérations qu'il exprime le plus directement.
 
 ## Application / Projet lié
 

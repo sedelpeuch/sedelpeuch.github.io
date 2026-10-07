@@ -4,13 +4,13 @@ description: "Loki, système d'agrégation de logs inspiré de Prometheus : inde
 tags: [monitoring, devops]
 ---
 
-Loki est un système d'agrégation de logs horizontalement scalable, hautement disponible et multi-tenant, inspiré par Prometheus. Créé par Grafana Labs, il se distingue par un choix d'architecture : plutôt que d'indexer le contenu des logs, il n'indexe que leurs métadonnées (labels), ce qui réduit fortement le coût de stockage et d'ingestion au prix de requêtes plus coûteuses sur le texte.
+Sur une infrastructure de dizaines de conteneurs répartis sur plusieurs nœuds, retrouver les lignes de logs liées à un incident impose de les consulter machine par machine, et les logs d'un conteneur supprimé disparaissent avec lui. Centraliser ces logs dans un moteur à indexation plein texte résout la dispersion, mais le coût de l'index, en stockage comme en mémoire, croît avec le volume ingéré. Loki est un système d'agrégation de logs horizontalement scalable, hautement disponible et multi-tenant, inspiré par Prometheus. Créé par Grafana Labs, il se distingue par un choix d'architecture : plutôt que d'indexer le contenu des logs, il n'indexe que leurs métadonnées (labels), ce qui réduit fortement le coût de stockage et d'ingestion au prix de requêtes plus coûteuses sur le texte.
 
 <!--truncate-->
 
 ## Qu'est-ce que Loki ?
 
-Loki est souvent décrit comme « Prometheus, mais pour les logs ». Il partage plusieurs concepts avec [Prometheus](./2025-11-21-prometheus-introduction.md) :
+Loki est souvent décrit comme "Prometheus, mais pour les logs". Il partage plusieurs concepts avec [Prometheus](./2025-11-21-prometheus-introduction.md) :
 
 - **Modèle de données basé sur les labels** : identification des flux de logs par des labels
 - **Langage de requête dédié** : LogQL, inspiré de PromQL
@@ -200,7 +200,7 @@ Promtail, l'agent historique de Loki, est déprécié et a atteint sa fin de vie
 
 Alloy se configure par des composants reliés entre eux : chaque composant expose des sorties que d'autres consomment (`forward_to`, `targets`).
 
-```alloy
+```text
 // config.alloy : lire /var/log/*.log et pousser vers Loki
 local.file_match "system" {
   path_targets = [{
@@ -346,7 +346,7 @@ LogQL est le langage de requête de Loki, inspiré de PromQL. Une requête comme
 
 ### Sélecteurs de flux de logs
 
-```logql
+```text
 # Sélectionner par label exact
 {job="nginx"}
 
@@ -356,14 +356,14 @@ LogQL est le langage de requête de Loki, inspiré de PromQL. Une requête comme
 # Opérateurs de correspondance
 {job=~"nginx|apache"}              # Regex : nginx OU apache
 {job="nginx", status!="200"}       # status différent de 200
-{job="nginx", path=~"/api/.+"}     # path commence par /api/
+{job="nginx", method=~"POST|PUT"}  # method vaut POST ou PUT
 ```
 
 Un sélecteur doit contenir au moins un matcher positif qui ne correspond pas à la chaîne vide : `{status!="200"}` seul est refusé, pour éviter de parcourir toute la base. Les regex utilisent `.+` plutôt que `.*` pour la même raison.
 
 ### Filtres de lignes
 
-```logql
+```text
 # Rechercher une chaîne de caractères
 {job="nginx"} |= "error"
 
@@ -381,7 +381,7 @@ Les filtres de lignes sont les opérations les moins coûteuses après le sélec
 
 ### Parsers
 
-```logql
+```text
 # Parser JSON
 {job="myapp"} | json
 
@@ -400,7 +400,7 @@ Les filtres de lignes sont les opérations les moins coûteuses après le sélec
 
 ### Filtres de labels extraits
 
-```logql
+```text
 # Après parsing, filtrer sur les labels extraits
 {job="myapp"} | json | level="error"
 
@@ -415,7 +415,7 @@ Les labels extraits par un parser n'existent qu'au moment de la requête : ils n
 
 ### Agrégations et fonctions
 
-```logql
+```text
 # Compter le nombre de lignes
 count_over_time({job="nginx"}[5m])
 
@@ -439,7 +439,7 @@ quantile_over_time(0.95, {job="myapp"} | json | unwrap duration [5m])
 
 ### Exemples pratiques
 
-```logql
+```text
 # Logs d'erreur (période choisie dans Grafana ou via les paramètres start/end de l'API)
 {job="myapp"} |= "error"
 
@@ -531,7 +531,7 @@ spec:
 
 ### Requêtes LogQL pour Kubernetes
 
-```logql
+```text
 # Logs d'un pod spécifique
 {pod="myapp-5d8f7c8b9-abc12"}
 
@@ -598,7 +598,7 @@ Un log structuré se parse avec `| json` sans expression régulière, et chaque 
 
 ### 3. Optimiser les requêtes LogQL
 
-```logql
+```text
 # Préférable : restreindre les flux par les labels
 {job="nginx", status="500"}
 
@@ -672,7 +672,7 @@ groups:
 
 Utiliser le trace ID dans les logs pour corréler les logs entre microservices :
 
-```logql
+```text
 # Rechercher tous les logs d'une trace
 {job="myapp"} | json | trace_id="abc123"
 ```
@@ -683,7 +683,7 @@ Grafana peut transformer automatiquement ce champ en lien vers la trace correspo
 
 LogQL ne dispose pas des sous-requêtes de PromQL, mais accepte le modificateur `offset` : le taux actuel se compare à celui de la même période la veille.
 
-```logql
+```text
 # Taux actuel deux fois supérieur à celui de la veille à la même heure
 sum(rate({job="myapp"}[5m]))
   /
@@ -692,13 +692,6 @@ sum(rate({job="myapp"}[5m] offset 1d))
 ```
 
 Pour une référence plus élaborée (moyenne mobile sur plusieurs heures), une règle d'enregistrement écrit le taux dans Prometheus, où les sous-requêtes PromQL sont disponibles.
-
-## Application / Projet lié
-
-<ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Loki comme système d'agrégation de logs pour tous les services hébergés dans le cluster.</ProjectLink>
-  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC Kubeadm">Collecte centralisée des logs des runners ARC pour le débogage et l'audit.</ProjectLink>
-</ProjectLinks>
 
 ## Conclusion
 
@@ -718,3 +711,10 @@ Les points clés à retenir :
 - [Référence LogQL](https://grafana.com/docs/loki/latest/query/)
 - [Bonnes pratiques sur les labels](https://grafana.com/docs/loki/latest/get-started/labels/bp-labels/)
 - [Grafana Alloy](https://grafana.com/docs/alloy/latest/)
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Loki comme système d'agrégation de logs pour tous les services hébergés dans le cluster.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC Kubeadm">Collecte centralisée des logs des runners ARC pour le débogage et l'audit.</ProjectLink>
+</ProjectLinks>

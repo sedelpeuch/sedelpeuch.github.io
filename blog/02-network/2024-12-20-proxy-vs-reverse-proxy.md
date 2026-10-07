@@ -53,7 +53,7 @@ Cas d'usage typiques :
 
 **Load balancing** : distribuer le trafic entre plusieurs instances d'une application. Si un backend tombe, le reverse proxy cesse de lui envoyer des requêtes.
 
-**Terminaison TLS** : centraliser la gestion des certificats SSL sur le reverse proxy. Les backends communiquent en HTTP clair sur le réseau interne, ce qui est plus simple à gérer, et les backends n'ont pas besoin de connaître les certificats.
+**Terminaison TLS** : centraliser la gestion des certificats SSL sur le reverse proxy. Les backends communiquent en HTTP clair sur le réseau interne : seul le proxy détient les certificats et les clés privées.
 
 **Masquage de l'infrastructure** : les clients ne connaissent pas les IPs ni les ports des backends. Toute la surface exposée publiquement se réduit au reverse proxy.
 
@@ -107,7 +107,7 @@ stream {
 
 La terminaison TLS et le SSL passthrough sont deux approches distinctes :
 
-**Terminaison TLS** (L7) : le reverse proxy décrypte le trafic TLS, lit la requête HTTP, puis se reconnecte au backend en HTTP clair (ou en TLS séparé). Le proxy doit posséder le certificat et la clé privée. Il peut inspecter et modifier les requêtes.
+**Terminaison TLS** (L7) : le reverse proxy déchiffre le trafic TLS, lit la requête HTTP, puis se reconnecte au backend en HTTP clair (ou en TLS séparé). Le proxy doit posséder le certificat et la clé privée. Il peut inspecter et modifier les requêtes.
 
 ```text
 Client → [TLS] → Nginx (terminaison) → [HTTP] → Backend
@@ -171,3 +171,13 @@ HAProxy est spécialisé dans le load balancing et opère nativement en L4 et L7
 | Algorithmes LB | round-robin, `least_conn`, `ip_hash`, `hash`, `random` | `roundrobin`, `static-rr`, `leastconn`, `first`, `source`, `uri`, `hdr`, `random` |
 
 Pour une infrastructure exposant uniquement du trafic HTTP/HTTPS avec besoin de servir des assets, Nginx est souvent suffisant. Pour un load balancer L4 gérant du trafic TCP arbitraire avec health checks avancés, HAProxy est plus adapté.
+
+## Conclusion
+
+Proxy direct et reverse proxy reposent sur le même mécanisme d'intermédiaire, mais pas du même côté de la connexion : le premier est configuré par le client et le représente, le second est configuré côté serveur et masque les backends. Le choix entre L4 et L7, puis entre passthrough et terminaison TLS, détermine ce que le proxy peut lire et modifier. La mise en œuvre d'un reverse proxy L7 est détaillée dans les articles [Nginx](./2024-12-20-nginx.md) et [Traefik](./2025-06-09-traefik.md).
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Traefik en reverse proxy unique devant toutes les stacks : terminaison TLS avec certificats wildcard, routage par nom de domaine vers des backends joignables uniquement par le réseau Docker interne.</ProjectLink>
+</ProjectLinks>

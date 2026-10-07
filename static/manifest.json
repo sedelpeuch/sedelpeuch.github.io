@@ -1,0 +1,31 @@
+{
+  "name": "Sébastien Delpeuch",
+  "short_name": "Delpeuch",
+  "description": "Portfolio, blog DevOps et archives de scolarité de Sébastien Delpeuch.",
+  "lang": "fr",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "theme_color": "#12affa",
+  "background_color": "#18181b",
+  "icons": [
+    {
+      "src": "img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

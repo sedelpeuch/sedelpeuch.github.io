@@ -18,7 +18,7 @@ Chaque opération CRUD correspond à une convention HTTP précise. Le respect de
 
 La création utilise `POST` et retourne `201 Created`. La lecture utilise `GET` et retourne `200 OK`. La modification utilise `PUT` (remplacement complet) ou `PATCH` (modification partielle) et retourne `200 OK`. La suppression utilise `DELETE` et retourne `204 No Content`, sans corps de réponse. Lorsqu'une ressource n'est pas trouvée, la convention est de retourner `404 Not Found`, et non `200` avec un corps vide.
 
-FastAPI permet de déclarer le code de retour attendu directement sur le décorateur :
+FastAPI permet de déclarer le code de retour directement sur le décorateur :
 
 ```python
 @router.post("", response_model=TaskResponse, status_code=status.HTTP_201_CREATED)
@@ -30,7 +30,7 @@ def delete_task(task_id: str, db: Session = Depends(get_db)):
     ...
 ```
 
-Cette déclaration sert à la fois de documentation dans Swagger UI et de validation : FastAPI lèvera une erreur si le handler retourne un code différent.
+Cette déclaration fixe le code utilisé par défaut pour la réponse et le documente dans le schéma OpenAPI (Swagger UI). Elle ne constitue pas une validation : un handler qui retourne une `Response` explicite (par exemple `JSONResponse(..., status_code=200)`) envoie ce code sans erreur.
 
 ### Séparer les schémas d'entrée et de sortie
 
@@ -56,7 +56,7 @@ class TaskResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 ```
 
-`from_attributes=True` dans la configuration permet à Pydantic de construire la réponse directement depuis un objet SQLAlchemy, sans conversion intermédiaire.
+`from_attributes=True` dans la configuration permet à [Pydantic](./2025-06-06-pydantic-validation-donnees.md) de construire la réponse directement depuis un objet [SQLAlchemy](./2026-06-21-sqlalchemy.md), sans conversion intermédiaire.
 
 ### Gérer les ressources inexistantes
 
@@ -96,6 +96,9 @@ FastAPI résout l'authentification via son mécanisme de dépendances (`Depends`
 La dépendance reçoit les credentials extraits de la requête, les vérifie, et retourne une valeur utile (l'identité de l'appelant) ou lève une `HTTPException` :
 
 ```python
+import secrets
+from os import getenv
+
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
@@ -103,7 +106,9 @@ security = HTTPBearer()
 
 def require_auth(credentials: HTTPAuthorizationCredentials = Depends(security)) -> str:
     expected = getenv("API_SECRET_TOKEN")
-    if credentials.credentials != expected:
+    if not expected or not secrets.compare_digest(
+        credentials.credentials.encode(), expected.encode()
+    ):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid token",
@@ -112,7 +117,9 @@ def require_auth(credentials: HTTPAuthorizationCredentials = Depends(security)) 
     return credentials.credentials
 ```
 
-`HTTPBearer` est un schéma de sécurité fourni par FastAPI. Il extrait automatiquement le token du header `Authorization: Bearer <token>` et retourne les credentials sous forme structurée. Si le header est absent ou malformé, FastAPI retourne `403 Forbidden` avant même d'appeler `require_auth`.
+`HTTPBearer` est un schéma de sécurité fourni par FastAPI. Il extrait automatiquement le token du header `Authorization: Bearer <token>` et retourne les credentials sous forme structurée. Si le header est absent ou malformé, FastAPI retourne `401 Unauthorized` avant même d'appeler `require_auth` (`403 Forbidden` avant la version 0.122).
+
+`secrets.compare_digest` compare les deux valeurs en temps constant : une comparaison `!=` s'arrête au premier caractère différent, et la durée de la réponse renseigne alors sur la longueur du préfixe correct. Le test `not expected` refuse toute requête si la variable d'environnement n'est pas définie.
 
 L'en-tête `WWW-Authenticate: Bearer` dans la réponse 401 est une convention HTTP : il indique au client le schéma d'authentification attendu.
 
@@ -143,7 +150,7 @@ router = APIRouter(prefix="/admin", dependencies=[Depends(require_auth)])
 
 ### Bearer statique : limites
 
-L'approche avec un token statique comparé à une variable d'environnement est simple à mettre en place. Elle convient aux communications service-à-service dans un environnement contrôlé, où l'appelant est un service tiers connu et le secret est partagé en dehors du flux HTTP. Elle présente cependant des limites structurelles : il n'existe qu'un seul secret valide, il est impossible de distinguer plusieurs appelants, et la révocation implique de changer la variable d'environnement et de redéployer.
+L'approche avec un token statique comparé à une variable d'environnement ne requiert qu'une variable et une dépendance. Elle convient aux communications service-à-service dans un environnement contrôlé, où l'appelant est un service tiers connu et le secret est partagé en dehors du flux HTTP. Elle présente cependant des limites structurelles : il n'existe qu'un seul secret valide, il est impossible de distinguer plusieurs appelants, et la révocation implique de changer la variable d'environnement et de redéployer.
 
 Dès qu'une application doit gérer plusieurs utilisateurs avec des identités distinctes, des rôles différents, ou une expiration des accès, un mécanisme basé sur JWT devient nécessaire.
 
@@ -153,32 +160,34 @@ Dès qu'une application doit gérer plusieurs utilisateurs avec des identités d
 
 Un JSON Web Token est un token autonome qui encode une charge utile JSON (typiquement l'identifiant de l'utilisateur, son rôle et une date d'expiration) et la signe cryptographiquement avec un secret côté serveur. Le serveur vérifie la signature à chaque requête sans consulter la base de données. Si le token a été altéré, la vérification échoue.
 
-Un JWT est composé de trois parties séparées par des points : l'algorithme de signature (`header`), la charge utile (`payload`) et la signature. La charge utile est encodée en Base64 et lisible par n'importe qui : elle ne doit donc contenir aucune donnée sensible.
+Un JWT est composé de trois parties séparées par des points : l'algorithme de signature (`header`), la charge utile (`payload`) et la signature. La charge utile est encodée en Base64URL (sans chiffrement) et lisible par n'importe qui : elle ne doit donc contenir aucune donnée sensible.
 
 ### Hacher les mots de passe
 
-Stocker des mots de passe en clair est une faute de sécurité fondamentale. Un mot de passe doit être haché avec un algorithme conçu pour être lent (bcrypt, argon2) avant d'être stocké, de sorte qu'une fuite de base de données ne compromette pas les comptes. La bibliothèque `passlib` expose ces algorithmes de manière unifiée :
+Stocker des mots de passe en clair est une faute de sécurité fondamentale. Un mot de passe doit être haché avec un algorithme conçu pour être lent (bcrypt, argon2) avant d'être stocké, de sorte qu'une fuite de base de données ne compromette pas les comptes. La bibliothèque `bcrypt` s'utilise directement :
 
 ```python
-from passlib.context import CryptContext
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+import bcrypt
 
 def hash_password(password: str) -> str:
-    return pwd_context.hash(password)
+    return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
 def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_context.verify(plain, hashed)
+    return bcrypt.checkpw(plain.encode(), hashed.encode())
 ```
 
-`verify_password` compare le mot de passe fourni à la valeur hachée stockée en base. L'opération est à sens unique : il est impossible de retrouver le mot de passe original depuis le hash.
+`bcrypt.gensalt()` génère un sel aléatoire, stocké dans le hash lui-même. `verify_password` compare le mot de passe fourni à la valeur hachée stockée en base. L'opération est à sens unique : il est impossible de retrouver le mot de passe original depuis le hash.
+
+bcrypt ne prend en compte que les 72 premiers octets du mot de passe, et `bcrypt` 5 lève une `ValueError` au-delà : la longueur doit être bornée à la validation de l'entrée. `passlib`, longtemps utilisé comme surcouche (`CryptContext`), n'est plus maintenu et échoue avec `bcrypt` 5 ; `pwdlib` (Argon2 par défaut) en est l'alternative maintenue.
 
 ### Générer et vérifier un JWT
 
 La bibliothèque `PyJWT` implémente la création et la vérification des tokens JWT :
 
 ```python
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+from os import getenv
+
 import jwt
 
 SECRET_KEY = getenv("JWT_SECRET_KEY")
@@ -186,7 +195,7 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 def create_access_token(subject: str, role: str) -> str:
-    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     payload = {"sub": subject, "role": role, "exp": expire}
     return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
@@ -207,7 +216,7 @@ def decode_token(token: str) -> dict:
         )
 ```
 
-`sub` (subject) est le champ standard JWT pour l'identifiant de l'utilisateur. `exp` déclenche automatiquement une `ExpiredSignatureError` lors du décodage si le token est expiré. PyJWT >= 2.0 retourne directement une chaîne depuis `encode()`, sans encodage bytes intermédiaire.
+`sub` (subject) est le champ standard JWT pour l'identifiant de l'utilisateur. `exp` déclenche automatiquement une `ExpiredSignatureError` lors du décodage si le token est expiré. PyJWT >= 2.0 retourne directement une chaîne depuis `encode()`, sans encodage bytes intermédiaire. `datetime.utcnow()`, déprécié depuis Python 3.12, est remplacé par `datetime.now(timezone.utc)`, qui produit une date avec fuseau explicite.
 
 ### Endpoint de login
 

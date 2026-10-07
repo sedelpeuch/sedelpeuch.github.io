@@ -1,14 +1,14 @@
 ---
 title: "Python : Pytest"
-description: "Maîtrisez Pytest, le framework de testing le plus populaire en Python. Fixtures, parametrization, mocking et bonnes pratiques."
+description: "Pytest, framework de test Python : assertions, fixtures, paramétrage, mocking, marqueurs, plugins et bonnes pratiques."
 tags: [scripting, devops]
 ---
 
-Pytest est le framework de test le plus utilisé en Python. Il repose sur de simples fonctions et l'instruction `assert` standard, et fournit des mécanismes de fixtures, de paramétrage et d'extension par plugins pour structurer des suites de tests maintenables.
+Sans tests automatisés, chaque modification d'un code Python doit être vérifiée à la main, et une régression peut passer inaperçue jusqu'en production. Pytest, le framework de test le plus utilisé en Python, repose sur de simples fonctions et l'instruction `assert` standard, et fournit des mécanismes de fixtures, de paramétrage et d'extension par plugins pour structurer des suites de tests maintenables.
 
 <!--truncate-->
 
-## Installation et Configuration
+## Installation et configuration
 
 ### Installer pytest
 
@@ -35,7 +35,7 @@ project/
 └── pytest.ini
 ```
 
-## Tests Simples
+## Tests simples
 
 ### Première fonction
 
@@ -79,7 +79,7 @@ pytest tests/test_calculator.py::test_add
 # Verbose
 pytest -v
 
-# Avec couverture
+# Avec couverture (plugin pytest-cov, voir plus bas)
 pytest --cov=src
 ```
 
@@ -195,7 +195,7 @@ def temp_file():
     file.close()
 ```
 
-## Parametrization
+## Paramétrage
 
 Tester une fonction avec plusieurs jeux de données.
 
@@ -212,7 +212,7 @@ def test_square(input, expected):
     assert input ** 2 == expected
 ```
 
-### Parametrization multiple
+### Paramétrage multiple
 
 ```python
 @pytest.mark.parametrize("a,b,expected", [
@@ -279,9 +279,9 @@ def test_api_called_correctly(mock_get):
     assert mock_get.call_count == 1
 ```
 
-## pytest-mock (recommandé)
+## pytest-mock
 
-Plugin qui simplifie le mocking.
+Plugin qui expose `unittest.mock` sous la forme d'une fixture `mocker`, dont les patchs sont annulés automatiquement à la fin du test.
 
 ```bash
 pip install pytest-mock
@@ -296,7 +296,7 @@ def test_with_mocker(mocker):
     assert result["status"] == "ok"
 ```
 
-## Marqueurs (Markers)
+## Marqueurs (markers)
 
 Organiser et filtrer les tests.
 
@@ -318,15 +318,19 @@ def test_buggy_feature():
 
 ### Marqueurs personnalisés
 
-```python
-# pytest.ini
+Les marqueurs se déclarent dans `pytest.ini` :
+
+```ini
 [pytest]
 markers =
     slow: tests lents
     integration: tests d'intégration
     db: tests utilisant la base de données
+```
 
-# Tests
+Ils s'appliquent ensuite aux tests :
+
+```python
 @pytest.mark.slow
 def test_heavy_computation():
     pass
@@ -334,16 +338,19 @@ def test_heavy_computation():
 @pytest.mark.integration
 def test_api_integration():
     pass
-
-# Exécution
-# pytest -m slow
-# pytest -m "not slow"
-# pytest -m "integration or db"
 ```
 
-## Plugins Utiles
+L'option `-m` filtre les tests à exécuter selon leurs marqueurs :
 
-### pytest-cov (Couverture)
+```bash
+pytest -m slow
+pytest -m "not slow"
+pytest -m "integration or db"
+```
+
+## Plugins utiles
+
+### pytest-cov (couverture)
 
 ```bash
 pip install pytest-cov
@@ -353,7 +360,7 @@ pip install pytest-cov
 pytest --cov=src --cov-report=html
 ```
 
-### pytest-asyncio (Tests async)
+### pytest-asyncio (tests asynchrones)
 
 ```bash
 pip install pytest-asyncio
@@ -366,7 +373,7 @@ async def test_async_function():
     assert result == 5
 ```
 
-### pytest-timeout (Timeout)
+### pytest-timeout (délai maximal)
 
 ```bash
 pip install pytest-timeout
@@ -382,9 +389,9 @@ def test_performance():
     pass
 ```
 
-## Structure d'un Bon Test
+## Structure d'un test
 
-### AAA Pattern (Arrange, Act, Assert)
+### Motif AAA (Arrange, Act, Assert)
 
 ```python
 def test_user_registration():
@@ -428,24 +435,24 @@ testpaths = ["tests"]
 pythonpath = ["."]
 ```
 
-## Bonnes Pratiques
+## Bonnes pratiques
 
-✅ **À faire**
+**À faire**
 - Nommer les tests clairement : `test_<fonction>_<condition>`
 - Un test = une responsabilité
 - Utiliser des fixtures plutôt que du setup/teardown
-- Tester les cas normaux et les edge cases
+- Tester les cas normaux et les cas limites
 - Viser 80%+ de couverture de code
 - Garder les tests rapides
 
-❌ **À éviter**
+**À éviter**
 - Tests dépendants l'un de l'autre
 - Tests flaky (non-déterministes)
 - Assertions multiples et sans rapport
 - Tests trop complexes
 - Ignorer les erreurs
 
-## Exemple Complet
+## Exemple complet
 
 ```python
 # src/user_service.py
@@ -493,13 +500,13 @@ def test_create_user_missing_email(service):
         service.create_user("alice", "")
 ```
 
-## Application / Projet lié
-
-<ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/standards-python" title="standards-python">Framework de test principal avec configuration pytest.ini et intégration CI/CD.</ProjectLink>
-  <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD">Exécution automatisée des tests pytest lors des push et pull requests.</ProjectLink>
-</ProjectLinks>
-
 ## Conclusion
 
 Pytest permet d'écrire des tests maintenables avec peu de code : les fixtures factorisent la préparation et le nettoyage, le paramétrage multiplie les cas sans dupliquer les tests, et le mocking isole le code testé de ses dépendances externes. Une suite de tests fiable conditionne la sécurité des refactorings et des mises à jour de dépendances.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/standards-python" title="standards-python">Framework de test du template : suite pytest avec couverture pour les projets de type module, exécutée en CI/CD.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD">Exécution automatisée des tests pytest lors des push et pull requests.</ProjectLink>
+</ProjectLinks>

@@ -8,6 +8,7 @@ repos:
       - id: pretty-format-json
         args: [ --autofix, --indent=2, --no-ensure-ascii, --no-sort-keys ]
       - id: detect-private-key
+        exclude: ^blog/02-network/2026-08-09-authelia-oidc\.md$  # exemple de bloc PEM factice
       - id: end-of-file-fixer
       - id: trailing-whitespace
   - repo: https://github.com/psf/black-pre-commit-mirror

@@ -4,7 +4,7 @@ description: "Bonnes pratiques Dockerfile pour des images légères, reproductib
 tags: [containerization, devops]
 ---
 
-Une image Docker mal construite peut peser plusieurs gigaoctets, exposer des secrets dans ses couches, ou s'exécuter en root sans raison valable. Ces problèmes découlent directement du fonctionnement des couches et du cache de build, décrits dans l'article [Docker : conteneurs et images](./2024-12-20-docker-containers.md), et s'évitent avec quelques principes de construction appliqués systématiquement.
+Une image Docker mal construite peut peser plusieurs gigaoctets, exposer des secrets dans ses couches, ou s'exécuter en root sans raison valable. Ces problèmes découlent directement du fonctionnement des couches, décrites dans [Docker : conteneurs et images](./2024-12-20-docker-containers.md), et du cache de build, présenté dans [Docker](./2024-12-20-docker.md), et s'évitent avec quelques principes de construction appliqués systématiquement.
 
 <!--truncate-->
 
@@ -69,7 +69,7 @@ Le multi-stage build sépare l'environnement de compilation de l'environnement d
 
 ```dockerfile
 # Stage 1 : compilation
-FROM golang:1.22 AS builder
+FROM golang:1.27 AS builder
 WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
@@ -77,7 +77,7 @@ COPY . .
 RUN CGO_ENABLED=0 go build -o /app/server .
 
 # Stage 2 : image finale
-FROM alpine:3.20
+FROM alpine:3.24
 RUN apk add --no-cache ca-certificates
 COPY --from=builder /app/server /server
 CMD ["/server"]
@@ -113,8 +113,10 @@ Chaque instruction `RUN` ou `COPY` crée une couche, et `ENV` ou `ARG` sont enre
 
 ```dockerfile
 # À éviter : le secret reste dans les couches même si supprimé ensuite
-RUN echo "API_KEY=secret" > /app/.env    # couche 1
-RUN rm /app/.env                          # couche 2 : secret toujours visible dans couche 1
+# Couche 1
+RUN echo "API_KEY=secret" > /app/.env
+# Couche 2 : secret toujours visible dans couche 1
+RUN rm /app/.env
 
 # Correct : passer les secrets via BuildKit (ne persistent pas dans l'image)
 RUN --mount=type=secret,id=api_key \
