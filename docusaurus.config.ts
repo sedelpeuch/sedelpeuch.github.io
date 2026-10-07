@@ -277,6 +277,10 @@ const config: Config = {
   organizationName: "sedelpeuch",
   projectName: "sedelpeuch.net",
   onBrokenLinks: "warn",
+  // Une seule forme d'URL (celle que sert GitHub Pages) : canonical et sitemap sans redirection.
+  trailingSlash: true,
+  // Les aperçus de PR (/pr-preview/...) ne doivent pas être indexés.
+  noIndex: baseUrl !== "/",
   clientModules: ["./src/clientModules/umamiEvents.ts"],
   customFields: {
     description:
@@ -474,16 +478,26 @@ const config: Config = {
         docs: {
           path: "docs",
           sidebarPath: "sidebars.json",
+          showLastUpdateTime: true,
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
         },
         sitemap: {
-          changefreq: "weekly",
-          priority: 0.5,
-          ignorePatterns: ["/tags/**"],
+          lastmod: "date",
+          changefreq: null,
+          priority: null,
+          ignorePatterns: [
+            "/docs/tags/**",
+            "/blog/tags/**",
+            "/blog/page/**",
+            "/blog/archive/**",
+            "/blog/authors/**",
+            "/search/**",
+          ],
         },
         blog: {
           showReadingTime: true,
+          showLastUpdateTime: true,
           // <title> et meta description de /blog (et de ses pages /blog/page/N).
           blogTitle: "Blog DevOps",
           blogDescription:
@@ -514,14 +528,18 @@ const config: Config = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
-          ...Object.entries(movedPages).map(([to, from]) => ({ from, to })),
+          // trailingSlash: true → les cibles doivent porter la barre finale des routes.
+          ...Object.entries(movedPages).map(([to, from]) => ({
+            from,
+            to: to.endsWith("/") ? to : `${to}/`,
+          })),
           {
             from: removedBlogTags.map((tag) => `/blog/tags/${tag}`),
-            to: "/blog/tags",
+            to: "/blog/tags/",
           },
           {
             from: removedDocTags.map((tag) => `/docs/tags/${tag}`),
-            to: "/docs/tags",
+            to: "/docs/tags/",
           },
         ],
         // Réorganisation des docs : enseirb et cpbx sont passés sous scolarite.
