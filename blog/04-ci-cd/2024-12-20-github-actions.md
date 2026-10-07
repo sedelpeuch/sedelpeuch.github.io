@@ -2,6 +2,7 @@
 title: "GitHub Actions"
 description: "CI/CD avec GitHub Actions : événements, workflows, jobs, steps et runners."
 tags: [cicd, devops]
+series_order: 1
 ---
 
 Sans automatisation, livrer du code en production est un processus manuel : un développeur fusionne une branche, lance les tests à la main, construit l'image Docker, se connecte au serveur, déploie. Chaque étape est une occasion d'oublier quelque chose, de sauter un test, ou de déployer une version qui n'a pas été vérifiée. À mesure que l'équipe et le rythme de livraison augmentent, ce processus ne tient plus.
@@ -56,10 +57,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
@@ -117,22 +118,22 @@ Une step `uses` appelle une action externe. Les actions du [GitHub Marketplace](
 
 ```yaml
 steps:
-  - uses: actions/checkout@v4              # checkout du dépôt
-  - uses: actions/setup-node@v4            # setup Node.js
+  - uses: actions/checkout@v7              # checkout du dépôt
+  - uses: actions/setup-node@v7            # setup Node.js
     with:
       node-version: "22"
-  - uses: docker/build-push-action@v6      # build et push d'une image Docker
+  - uses: docker/build-push-action@v7      # build et push d'une image Docker
     with:
       push: true
       tags: ghcr.io/org/app:latest
 ```
 
-Le tag `@v4` désigne une version majeure. Une référence de branche comme `@main` expose le workflow aux changements incompatibles, mais un tag Git reste lui aussi mobile : le mainteneur d'une action, ou un attaquant ayant compromis son dépôt, peut le déplacer vers un autre commit. C'est ce qui s'est produit en mars 2025 avec `tj-actions/changed-files`, dont les tags ont été redirigés vers un commit qui exfiltrait les secrets dans les logs. Seul l'épinglage sur le SHA complet d'un commit est immuable :
+Le tag `@v7` désigne une version majeure. Une référence de branche comme `@main` expose le workflow aux changements incompatibles, mais un tag Git reste lui aussi mobile : le mainteneur d'une action, ou un attaquant ayant compromis son dépôt, peut le déplacer vers un autre commit. C'est ce qui s'est produit en mars 2025 avec `tj-actions/changed-files`, dont les tags ont été redirigés vers un commit qui exfiltrait les secrets dans les logs. Seul l'épinglage sur le SHA complet d'un commit est immuable :
 
 ```yaml
 steps:
   # SHA complet du commit, version lisible en commentaire (mis à jour par Dependabot ou Renovate)
-  - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+  - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
 ```
 
 L'usage courant consiste à épingler par SHA les actions tierces et à conserver des tags pour les actions publiées par GitHub (`actions/*`) ou par des éditeurs vérifiés.
@@ -202,7 +203,7 @@ jobs:
 
 GitHub fournit des runners hébergés (`ubuntu-latest`, `windows-latest`, `macos-latest`). Leur usage est gratuit et illimité pour les dépôts publics (runners standard). Pour les dépôts privés, chaque plan inclut un quota mensuel (2 000 minutes sur le plan Free) ; les minutes Windows et macOS sont décomptées avec un multiplicateur (×2 et ×10), et le dépassement est facturé à la minute.
 
-Les runners auto-hébergés (`self-hosted`) tournent sur des machines contrôlées : serveur on-premise, VM cloud, cluster Kubernetes via ARC. Ils ne consomment pas le quota de minutes des runners hébergés et donnent accès à des ressources spécifiques (GPU, réseau privé, caches locaux). Les articles [runner auto-hébergé](./2024-12-20-self-host-runner.md) et [Actions Runner Controller](./2024-12-20-github-arc.md) détaillent leur mise en place, et l'article [GitHub Actions : Workflow](./2024-12-20-workflow.md) les primitives avancées d'un workflow (matrix, artefacts, conteneurs).
+Les runners auto-hébergés (`self-hosted`) tournent sur des machines contrôlées : serveur on-premise, VM cloud, cluster Kubernetes via ARC. Ils ne consomment pas le quota de minutes des runners hébergés et donnent accès à des ressources spécifiques (GPU, réseau privé, caches locaux). Les articles [runner auto-hébergé](./2024-12-20-self-host-runner.md) et [Actions Runner Controller](./2024-12-20-github-arc.md) détaillent leur mise en place, et l'article [GitHub Actions : workflow](./2024-12-20-workflow.md) les primitives avancées d'un workflow (matrix, artefacts, conteneurs).
 
 ```yaml
 jobs:
@@ -211,3 +212,10 @@ jobs:
   gpu-job:
     runs-on: [self-hosted, gpu]   # runner self-hosted avec le label "gpu"
 ```
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD - Workflows GitHub Actions mutualisés">Événements, jobs, dépendances entre jobs et secrets mis en œuvre dans une bibliothèque de workflows mutualisés (tests, compilation, publication d'images Docker, déploiement) appelée par les dépôts de l'organisation.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC - Runners CI/CD auto-hébergés sur Kubernetes">Runners auto-hébergés déployés avec ARC sur un cluster Kubernetes interne, ciblés par `runs-on` dans les workflows de l'organisation.</ProjectLink>
+</ProjectLinks>

@@ -1,6 +1,6 @@
 ---
-title: Dolibarr Project Dashboard
-description: Tableau de bord FastAPI + React qui agrège les données de plusieurs projets Dolibarr (tâches, temps passé, factures, opportunités) pour le pilotage multi-projets, livré en image Docker unique.
+title: "Dolibarr Project Dashboard"
+description: "Tableau de bord FastAPI + React qui agrège les données de plusieurs projets Dolibarr (tâches, temps passé, factures, opportunités) pour le pilotage multi-projets, livré en image Docker unique."
 tags: [fastapi, react, typescript, dolibarr, erp, docker, python]
 ---
 
@@ -16,7 +16,7 @@ tags: [fastapi, react, typescript, dolibarr, erp, docker, python]
 
 ## Contexte
 
-Dolibarr est un ERP open source complet, mais son interface native est pensée pour naviguer dans un projet à la fois. Pour un coordinateur qui suit plusieurs projets simultanément, avoir une vue consolidée (tâches, temps passé par utilisateur, factures, propositions commerciales, clients) demande de naviguer entre des dizaines d'écrans. Ce dashboard agrège ces informations en une seule page, en interrogeant directement l'API REST de l'instance Dolibarr, complétée par une API Rails interne (Gaaspard) pour les opportunités commerciales.
+Dolibarr est un ERP open source complet, mais son interface native est pensée pour naviguer dans un projet à la fois. Pour un coordinateur qui suit plusieurs projets simultanément, avoir une vue consolidée (tâches, temps passé par utilisateur, factures, propositions commerciales, clients) demande de naviguer entre des dizaines d'écrans. Ce dashboard agrège ces informations en une seule page, en interrogeant directement l'API REST de l'instance Dolibarr, complétée par une API interne pour les opportunités commerciales.
 
 Projet expérimental, développé pour mon usage de coordinateur au CATIE et comme terrain d'expérimentation pour le développement assisté par agents IA.
 
@@ -34,9 +34,9 @@ S'y ajoutent le suivi du pointage par utilisateur, une vue de gestion de charge 
 
 ## Architecture
 
-Le backend FastAPI est organisé en trois couches strictement séparées. La couche routes est fine : elle gère la validation HTTP et délègue immédiatement. La couche services contient toute la logique métier : agrégation des données multi-projets, transformations, orchestration des appels. La couche infrastructure isole les détails d'intégration : clients HTTP (httpx) vers Dolibarr et Gaaspard, stockage JSON, cache, logging.
+Le backend FastAPI est organisé en trois couches strictement séparées. La couche routes est fine : elle gère la validation HTTP et délègue immédiatement. La couche services contient toute la logique métier : agrégation des données multi-projets, transformations, orchestration des appels. La couche infrastructure isole les détails d'intégration : clients HTTP (httpx) vers Dolibarr et l'API interne des opportunités, stockage JSON, cache, logging.
 
-Pour un backend d'environ 1 800 lignes, cette séparation reste justifiée : elle rend les services testables indépendamment de l'infrastructure, et l'infrastructure remplaçable sans toucher à la logique métier.
+Pour un backend d'environ 1 900 lignes, cette séparation reste justifiée : elle rend les services testables indépendamment de l'infrastructure, et l'infrastructure remplaçable sans toucher à la logique métier.
 
 Le frontend est React + TypeScript + Vite + Tailwind. Les appels API passent par Axios, l'état est géré en hooks React sans bibliothèque de gestion d'état : la complexité ne le justifie pas encore.
 
@@ -62,12 +62,17 @@ L'URL de l'instance Dolibarr et la clé API sont lues depuis les variables d'env
 
 L'application est livrée sous la forme d'une image Docker unique, construite en trois étapes : installation des dépendances Python avec uv, build statique du frontend avec Vite, puis image d'exécution qui lance l'API (uvicorn) et sert le frontend compilé. Un workflow GitHub Actions publie l'image sur GitHub Container Registry à chaque push sur `main`, taguée `latest` et par SHA de commit. Un fichier Docker Compose suffit ensuite pour la faire tourner, avec un volume pour `data.json`.
 
+## Résultats
+
+- **Une vue consolidée en une page** des projets suivis (tâches, temps passé, factures, propositions, clients), là où l'interface native de Dolibarr demande de naviguer entre des dizaines d'écrans.
+- **Un pilotage au-delà du projet isolé** : programmes regroupés en méta-projets, pipeline commercial, charge par personne et feuille de route R&D sur un même outil.
+- **Un déploiement en une image et un fichier Compose**, avec une configuration qui survit aux mises à jour de l'image.
+- **Un terrain d'expérimentation du développement assisté par agents IA**, sur une base de code découpée en couches qui rend chaque service remplaçable.
+
 ## Limites connues
 
 Le projet est explicitement expérimental. Il n'y a pas d'authentification côté dashboard : toute personne ayant un accès réseau peut le consulter. La clé API Dolibarr est fournie par variable d'environnement, mais aucun audit de sécurité formel n'a été mené. Une exposition sur une infrastructure ouverte demanderait un travail supplémentaire, par exemple une authentification déléguée à un [reverse proxy avec forward auth](/blog/2026/08/02/02-network/authelia-forward-auth).
 
 Il n'y a pas non plus de tests automatisés. L'architecture les rend possibles (services remplaçables par des doubles de test) et pytest figure dans les dépendances de développement, mais les tests n'ont pas encore été écrits.
 
-## Liens
-
-- 💻 Code source : [github.com/sedelpeuch/dolibarr_project_dashboard](https://github.com/sedelpeuch/dolibarr_project_dashboard)
+Le dépôt est privé.

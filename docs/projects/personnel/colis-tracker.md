@@ -1,5 +1,5 @@
 ---
-title: Colis Tracker
+title: "Colis Tracker"
 description: "Suivi de colis Colissimo et Chronopost auto-hébergé, sans clé API ni service tiers : interrogation de l'endpoint de suivi public de La Poste, import automatique des numéros depuis les mails d'expédition (IMAP), notifications ntfy."
 tags: [python, fastapi, htmx, sqlite, docker, github-actions, self-hosting]
 ---
@@ -126,6 +126,14 @@ L'analyse des mails est écrite en fonctions pures (liste blanche, extraction, d
 La CI GitHub Actions vérifie les types, exécute les tests et construit l'image à chaque push et pull request ; un second workflow publie l'image sur GitHub Container Registry. Sur le homelab, l'image est épinglée par digest, comme celle des autres services.
 
 L'intégration au homelab a fait évoluer la relève des mails : l'application interrogeait d'abord directement la boîte du fournisseur ; elle relève désormais le hub mail local du homelab, qui centralise toutes les boîtes. Les identifiants du fournisseur ne sont ainsi stockés qu'à un seul endroit. L'interface suit la charte graphique commune aux applications du homelab.
+
+## Résultats
+
+- **Plus de saisie manuelle** : un mail d'expédition La Poste suffit à créer le colis et à lancer son suivi.
+- **Suivi Colissimo et Chronopost sans compte ni clé API**, avec l'historique complet de chaque colis et non les seuls changements observés.
+- **Notification à chaque changement de statut** sur ntfy, avec une fréquence d'interrogation adaptée à l'état du colis.
+- **Code-barres présentable en point relais** depuis le téléphone, lisible par les scanners.
+- **Intégration au homelab** : image épinglée par digest, relève sur le hub mail local, identifiants du fournisseur stockés à un seul endroit.
 
 ## Limites connues
 

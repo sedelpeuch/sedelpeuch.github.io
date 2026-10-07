@@ -169,12 +169,12 @@ Les tranches deviennent mutuellement exclusives : une seule règle vraie par poi
 
 ### Calibrer les seuils et alerter sur les symptômes
 
-Un seuil fixé a priori (« un conteneur ne dépasse pas 1,5 cœur ») se déclenche sur des charges légitimes : transcodage, inférence, compilation. Les maxima réels relevés sur plusieurs semaines (`max_over_time(...[30d])`) fixent le seuil au-dessus des pics normaux, et un `for` plus long ne retient que les charges soutenues, par exemple `sum by (name, image) (rate(container_cpu_usage_seconds_total{name!=""}[5m])) > 4` avec `for: 15m`.
+Un seuil fixé a priori ("un conteneur ne dépasse pas 1,5 cœur") se déclenche sur des charges légitimes : transcodage, inférence, compilation. Les maxima réels relevés sur plusieurs semaines (`max_over_time(...[30d])`) fixent le seuil au-dessus des pics normaux, et un `for` plus long ne retient que les charges soutenues, par exemple `sum by (name, image) (rate(container_cpu_usage_seconds_total{name!=""}[5m])) > 4` avec `for: 15m`.
 
 Une alerte utile décrit un effet observable plutôt qu'une cause supposée. Deux absences volontaires en découlent :
 
 - **Pas de règle `up == 0`** lorsqu'un outil d'uptime externe sonde déjà les services : la détection dupliquée produit deux notifications par panne sans information supplémentaire.
-- **Pas d'alerte « canal de notification en panne »** acheminée par ce même canal : elle ne serait jamais délivrée. Cette surveillance exige un canal secondaire indépendant (email, service de type dead man's switch).
+- **Pas d'alerte "canal de notification en panne"** acheminée par ce même canal : elle ne serait jamais délivrée. Cette surveillance exige un canal secondaire indépendant (email, service de type dead man's switch).
 
 ## Notification unique ou rappels
 
@@ -262,7 +262,7 @@ Le label `severity` devient la priorité ntfy, et `generator-url-label` ajoute u
 
 ### En-têtes HTTP et caractères non ASCII
 
-Le bridge place titre, tags et boutons d'action dans des en-têtes (`X-Title`, `X-Tags`, `Actions`) et le texte de l'alerte dans le corps. Un label de bouton accentué (`"Voir dans Prometheus"`) a pour effet observé l'échec de toute la publication, en `403`. La RFC 7230 (§3.2.4) rappelle que les valeurs d'en-têtes étaient historiquement en ISO-8859-1, que les nouveaux champs devraient se limiter à l'US-ASCII et que les autres octets sont opaques : un caractère UTF-8 multi-octet n'a pas d'interprétation garantie. Trois options fiables :
+Le bridge place titre, tags et boutons d'action dans des en-têtes (`X-Title`, `X-Tags`, `Actions`) et le texte de l'alerte dans le corps. Un label de bouton accentué (`"Accéder à Prometheus"`) a pour effet observé l'échec de toute la publication, en `403`. La RFC 9110 (§5.5, qui remplace la RFC 7230 §3.2.4) rappelle que les valeurs d'en-têtes étaient historiquement en ISO-8859-1, que les nouveaux champs devraient se limiter à l'US-ASCII et que les autres octets sont opaques : un caractère UTF-8 multi-octet n'a pas d'interprétation garantie. Trois options fiables :
 
 - des valeurs ASCII pour tout ce qui part en en-tête (titres, tags, labels d'action) ;
 - l'encodage RFC 2047 (`=?UTF-8?B?...?=`), que ntfy décode depuis la version 2.4.0 ;
@@ -283,12 +283,12 @@ docker kill --signal=HUP alertmanager
 
 Une configuration invalide n'est pas appliquée et l'erreur est journalisée. Tous les composants n'offrent pas ce mécanisme : ntfy-alertmanager ne traite que `SIGINT` et `SIGTERM` et lit son fichier une seule fois au démarrage. Modifier le fichier monté ne change rien au processus ; seule la recréation du conteneur applique la nouvelle configuration. Avec Docker Compose, une variable d'environnement contenant un hash des fichiers de configuration (`CONF_HASH=<sha256>`) modifie la définition du service à chaque changement, ce qui suffit à ce que `docker compose up -d` le recrée. D'autres producteurs peuvent partager le même serveur ntfy, comme les rapports de [docker-volume-backup](../03-containerization/2026-09-13-docker-volume-backup.md).
 
+## Conclusion
+
+Prometheus décide *quand* une situation est anormale ; Alertmanager décide *qui* prévenir, *combien de fois* et *par quel canal*. La qualité de la chaîne tient surtout à la conception des règles : tranches exclusives, expressions indépendantes de l'historique, seuils calibrés sur l'observé, absence délibérée des alertes redondantes. Le reste relève de l'intégration : un bridge pour les canaux non supportés, des en-têtes en ASCII et un rechargement vérifié pour chaque composant.
+
 ## Application / Projet lié
 
 <ProjectLinks>
   <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Prometheus, Alertmanager et ntfy-alertmanager surveillent l'hôte et ses conteneurs (node_exporter, cAdvisor via containerd, smartctl_exporter, blackbox_exporter), avec paliers disque bornés, détection de redémarrage et notification push unique.</ProjectLink>
 </ProjectLinks>
-
-## Conclusion
-
-Prometheus décide *quand* une situation est anormale ; Alertmanager décide *qui* prévenir, *combien de fois* et *par quel canal*. La qualité de la chaîne tient surtout à la conception des règles : tranches exclusives, expressions indépendantes de l'historique, seuils calibrés sur l'observé, absence délibérée des alertes redondantes. Le reste relève de l'intégration : un bridge pour les canaux non supportés, des en-têtes en ASCII et un rechargement vérifié pour chaque composant.

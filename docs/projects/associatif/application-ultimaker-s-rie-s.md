@@ -1,7 +1,7 @@
 ---
-title: Application de suivi - Ultimaker série S
+title: "Application de suivi Ultimaker série S"
 tags: [ultimaker, monitoring, fabrication, javascript, raspberry-pi, eirlab]
-description: Écran de supervision des imprimantes 3D Ultimaker série S du fablab EirLab, affiché sur une télévision de l'open space via leur API locale.
+description: "Écran de supervision des imprimantes 3D Ultimaker série S du fablab EirLab, affiché sur une télévision de l'open space via leur API locale."
 ---
 
 <img src="https://www.eirlab.net/wp-content/uploads/2021/11/20211104_143102-1024x576.jpg" alt="Aperçu Application Ultimaker" style={{maxWidth: '400px', margin: '2rem auto', display: 'block'}} />
@@ -22,9 +22,11 @@ Depuis septembre 2021, EirLab Community dispose de deux imprimantes Ultimaker s�
 
 Avec Antoine Pringalle, j'ai développé ultimaker-screen, une application JavaScript qui interroge l'API des imprimantes et s'affiche sur une télévision de l'open space, pilotée par un Raspberry Pi 3B+. L'écran alterne entre une vue générale de l'état de toutes les imprimantes et une vue détaillée par impression en cours : temps restant, températures et flux de la caméra intégrée.
 
-Le Raspberry Pi est configuré pour relancer l'affichage automatiquement, de sorte que l'écran reste opérationnel sans intervention après une coupure.
+J'ai écrit la première version de l'application, reprise d'un prototype personnel, puis préparé sa publication (documentation, licence GPL 3). Antoine Pringalle a ensuite réécrit la partie serveur et ajouté un script qui redémarre le Raspberry Pi lorsqu'il ne parvient plus à se connecter au réseau, de sorte que l'écran reste opérationnel sans intervention.
 
-## Suites du projet
+## Résultats
+
+À sa publication en novembre 2021, l'application tournait sur une des télévisions d'EirLab : l'état des imprimantes se lisait depuis l'open space, sans se déplacer jusqu'aux machines.
 
 En 2023, un autre membre du fablab a repris le principe dans Ultiwatcher, une réécriture en Python avec Flask présentée comme la suite d'ultimaker-screen.
 

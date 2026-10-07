@@ -1,9 +1,9 @@
 ---
-title: DevOps Roadmap
-description: Présentation de ma roadmap DevOps personnelle
+title: "DevOps Roadmap"
+description: "Présentation de ma roadmap DevOps personnelle"
 tags: [devops]
 ---
-Ingénieur en informatique au [CATIE](http://catie.fr/) spécialisé en Robotique, je travaille sur des projets de développement logiciel et d'intégration sur différentes plateformes. Intrigué par l'intégration et l'automatisation, j'ai décidé d'approfondir mes connaissances en DevOps.
+Ingénieur en informatique au [CATIE](https://www.catie.fr/) spécialisé en Robotique, je travaille sur des projets de développement logiciel et d'intégration sur différentes plateformes. Intrigué par l'intégration et l'automatisation, j'ai décidé d'approfondir mes connaissances en DevOps.
 
 <!--truncate-->
 
@@ -50,6 +50,12 @@ import IconTitle from '@site/src/components/IconTitle';
 
 [Scripting](/blog/tags/scripting) L'automatisation des tâches de développement et d'opérations passe souvent par l'écriture de scripts. Python, accessible et polyvalent, permet de créer des utilitaires pour gérer les builds, les déploiements ou le nettoyage des environnements.
 
-<IconTitle logo="skill-icons:git" name="10 Contrôle de version - Git"/>
+## <IconTitle logo="skill-icons:git" name="10 Contrôle de version - Git"/>
 
 [Git](/blog/tags/devops) Le contrôle de version est indispensable pour collaborer sur du code, suivre les modifications et gérer les branches. Git, via des plateformes comme GitHub ou GitLab, offre une base solide pour organiser et partager les projets, qu'ils soient applicatifs ou liés à l'automatisation.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/delpeuch-net-blog" title="Blog">Roadmap de référence qui définit les dix domaines (du développement logiciel au contrôle de version) dont découlent les catégories du blog et les roadmaps annuelles.</ProjectLink>
+</ProjectLinks>

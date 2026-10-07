@@ -15,7 +15,7 @@ L'outil est un conteneur Go léger, configuré entièrement par variables d'envi
 
 ```mermaid
 flowchart LR
-    A[archive<br/>tar de /backup] --> P[process<br/>compression + chiffrement]
+    A[archive<br/>tar compressé de /backup] --> P[process<br/>chiffrement]
     P --> C[copy<br/>upload vers les destinations]
     C --> R[prune<br/>suppression des anciennes archives]
     R --> N[notification]
@@ -37,7 +37,7 @@ Le service de sauvegarde vit en général dans son propre projet Compose, alors 
 volumes:
   app_db_dumps:
     external: true
-    name: app_app_db_dumps   # <projet>_<volume>
+    name: app_db_dumps   # <projet>_<volume>
 ```
 
 `external: true` signifie que Compose ne crée pas le volume et échoue au démarrage s'il n'existe pas. Conséquence sur l'ordre de déploiement : les projets propriétaires doivent avoir été démarrés au moins une fois avant le projet de sauvegarde. Un pipeline qui déploie plusieurs projets place donc la sauvegarde **en dernier**. Les volumes Docker eux-mêmes sont présentés dans [Docker : conteneurs et images](2024-12-20-docker-containers.md) et la notion de projet dans [Docker Compose](../06-orchestration/2024-12-20-docker-compose.md).
@@ -49,7 +49,7 @@ Le jeu de variables `AWS_*` décrit **une seule** destination S3 par configurati
 - **Deux services** qui montent les mêmes volumes avec des variables différentes. Leurs crons sont décalés pour ne pas archiver simultanément, et leurs préfixes distincts (`BACKUP_FILENAME`, `BACKUP_PRUNING_PREFIX`) évitent qu'un pruning touche les archives de l'autre si les destinations se recoupent.
 - **Un service, plusieurs fichiers** `.env` montés dans `/etc/dockervolumebackup/conf.d` : un cron par fichier, exécutions sérialisées par un verrou exclusif.
 
-Avec plusieurs instances, les labels de la section suivante sont vus par **toutes** : sans `EXEC_LABEL` distinct par instance, chaque hook s'exécute autant de fois qu'il y a d'instances, et un conteneur marqué `stop-during-backup=true` est arrêté par chacune.
+Avec plusieurs instances, les labels de la section suivante sont vus par **toutes** : sans `EXEC_LABEL` distinct par instance, chaque hook s'exécute autant de fois qu'il y a d'instances ; de même, sans `BACKUP_STOP_DURING_BACKUP_LABEL` propre à chaque instance (valeur attendue du label `docker-volume-backup.stop-during-backup`, `true` par défaut), un conteneur marqué est arrêté par chacune.
 
 ## Cohérence des bases de données
 
@@ -110,7 +110,7 @@ Monter `/var/run/docker.sock` donne au conteneur un contrôle équivalent à roo
 
 Le pruning applicatif émet des `DeleteObject`. Sur un bucket où le versioning est actif, une suppression ne détruit rien : elle pose un *delete marker* (AWS) ou un *hide marker* (Backblaze B2) et la version précédente reste stockée. La liste des objets affiche bien N jours d'archives, pendant que l'espace facturé croît sans limite.
 
-Le cas se présente notamment sur Backblaze B2, dont les buckets sont créés en « Keep all versions ». La correction consiste à passer la lifecycle du bucket en « Keep only the last version », qui supprime les versions masquées après un court délai (`daysFromHidingToDeleting`). Sur AWS S3, l'équivalent est une règle lifecycle `NoncurrentVersionExpiration`. Garage n'implémente pas le versioning : une suppression y libère directement l'espace.
+Le cas se présente notamment sur Backblaze B2, dont les buckets sont créés en "Keep all versions". La correction consiste à passer la lifecycle du bucket en "Keep only the last version", qui supprime les versions masquées après un court délai (`daysFromHidingToDeleting`). Sur AWS S3, l'équivalent est une règle lifecycle `NoncurrentVersionExpiration`. Garage n'implémente pas le versioning : une suppression y libère directement l'espace.
 
 La rétention doit donc être gérée à **un seul** endroit : soit par l'outil (`BACKUP_RETENTION_DAYS`, bucket non versionné), soit par le fournisseur (versioning + lifecycle, pruning applicatif désactivé).
 
@@ -148,6 +148,7 @@ x-common: &common
   volumes:
     - app_db_dumps:/backup/app_db_dumps:ro
     - app_uploads:/backup/app_uploads:ro
+    # accès direct au socket ; en production, préférer DOCKER_HOST vers un proxy de socket (voir plus haut)
     - /var/run/docker.sock:/var/run/docker.sock:ro
 
 services:
@@ -188,8 +189,8 @@ services:
     networks: [default, garage]
 
 volumes:
-  app_db_dumps: { external: true, name: app_app_db_dumps }
-  app_uploads:  { external: true, name: app_app_uploads }
+  app_db_dumps: { external: true, name: app_db_dumps }
+  app_uploads:  { external: true, name: app_uploads }
 
 networks:
   garage: { external: true, name: garage_default }
@@ -217,7 +218,7 @@ docker compose -p app stop web
 
 # 5. Remplacer le contenu du volume depuis un conteneur jetable
 docker run --rm \
-  -v app_app_uploads:/target \
+  -v app_uploads:/target \
   -v "$(pwd)/backup/app_uploads":/source:ro \
   alpine sh -c "find /target -mindepth 1 -delete && cp -a /source/. /target/"
 
@@ -237,10 +238,12 @@ Vider la cible avant la copie évite de mélanger d'anciens fichiers avec ceux d
 
 Une sauvegarde jamais restaurée n'est qu'une hypothèse. Passphrase erronée, volume oublié, archive tronquée, dump vide d'un hook pourtant sorti en succès, par exemple une commande dont seul le dernier maillon fixe le code de retour (sa sortie est masquée sauf avec `EXEC_FORWARD_OUTPUT=true`) : ces défauts n'apparaissent qu'à la restauration. Un test périodique restaure une archive récente dans un volume temporaire, démarre le service dessus et vérifie une donnée connue. Les notifications `info` confirment l'exécution des runs, pas la validité des archives.
 
+## Conclusion
+
+docker-volume-backup couvre l'archivage, le chiffrement, l'expédition et la rotation. La cohérence des bases, le choix des volumes, la conservation de la passphrase et les tests de restauration restent à la charge de l'exploitant, et déterminent si les archives sont réellement exploitables.
+
 ## Application / Projet lié
 
 <ProjectLinks>
   <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Sauvegarde quotidienne chiffrée des volumes critiques d'une vingtaine de projets Compose vers deux destinations (fournisseur S3 hors site et instance Garage locale sur un autre support), avec classification explicite des volumes par profil de protection.</ProjectLink>
 </ProjectLinks>
-
-docker-volume-backup couvre l'archivage, le chiffrement, l'expédition et la rotation. La cohérence des bases, le choix des volumes, la conservation de la passphrase et les tests de restauration restent à la charge de l'exploitant, et déterminent si les archives sont réellement exploitables.

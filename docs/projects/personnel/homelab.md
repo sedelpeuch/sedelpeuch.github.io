@@ -1,5 +1,5 @@
 ---
-title: HomeLab
+title: "HomeLab"
 tags: [homelab, docker, docker-compose, gitops, github-actions, traefik, authelia, renovate, prometheus, tailscale, pihole, self-hosting]
 description: "Homelab auto-hébergé versionné en GitOps (Docker Compose, reverse proxy et SSO, CI/CD GitHub Actions, mises à jour Renovate, secrets chiffrés en repo, sauvegardes 3-2-1 chiffrées, supervision et alerting, hub mail, DNS local, documentation générée depuis le code)."
 ---
@@ -56,7 +56,8 @@ Une trentaine de stacks, organisées en quatre familles :
     - **[Recallarr](recallarr.md)**, une application que j'ai développée, tient le journal de ce qui a été regardé et décide du devenir de chaque titre de la médiathèque.
     - **Calibre-Web** sert de bibliothèque d'ebooks.
     - **Samba** expose la médiathèque en partage réseau pour les appareils qui ne parlent pas HTTP.
-    - **qBittorrent** télécharge en tunnel VPN forcé, premier maillon d'une future chaîne d'automatisation média.
+    - **qBittorrent** télécharge en tunnel VPN forcé.
+    - **Radarr**, **Sonarr** et **Prowlarr** automatisent la chaîne média : un titre demandé dans **Seerr**, ou suggéré par **SuggestArr** à partir de l'historique Jellyfin, est recherché, téléchargé, renommé et rangé dans la médiathèque. **Recyclarr** synchronise les profils de qualité, **qbit_manage** et **cross-seed** entretiennent les téléchargements, et **Maintainerr** purge les titres vus et mal notés.
     - **Stirling PDF** rassemble les outils PDF (fusion, OCR, conversion) en une seule boîte à outils web.
   </TabItem>
   <TabItem value="perso" label="Domotique & productivité">
@@ -120,7 +121,7 @@ Les bases de données restent exclues de Renovate et sont montées de version à
 
 ## SSO centralisé, avec des exceptions assumées
 
-Traefik route le trafic HTTPS entrant, et [Authelia s'intercale devant en forward-auth](/blog/2026/08/02/02-network/authelia-forward-auth) : un service protégé redirige vers le portail si la session n'est pas authentifiée, sans que le service lui-même n'ait besoin de gérer l'authentification. La politique d'accès refuse tout par défaut et n'ouvre que ce qui est explicitement prévu.
+[Traefik](/blog/2025/06/09/02-network/traefik) route le trafic HTTPS entrant, et [Authelia s'intercale devant en forward-auth](/blog/2026/08/02/02-network/authelia-forward-auth) : un service protégé redirige vers le portail si la session n'est pas authentifiée, sans que le service lui-même n'ait besoin de gérer l'authentification. La politique d'accès refuse tout par défaut et n'ouvre que ce qui est explicitement prévu.
 
 ```mermaid
 flowchart LR
@@ -142,7 +143,7 @@ Pour les applications qui implémentent OpenID Connect (Vaultwarden, Immich, Pap
 
 Le niveau d'authentification dépend de ce que le service permet de faire. Ceux qui donnent la main sur l'hôte ou le réseau, ou qui permettraient de reprendre les autres comptes par réinitialisation de mot de passe (Portainer, le webmail, Pi-hole), exigent un second facteur par passkey WebAuthn ; le TOTP est désactivé. Deux passkeys sont enrôlées, chacune servant de secours à l'autre.
 
-Le contournement le plus discret d'un reverse proxy est un port publié directement sur l'hôte : Docker l'ouvre sur toutes les interfaces, Tailscale compris, sans passer par Traefik ni Authelia. J'ai fait la revue de tous les ports publiés : ceux qui ne servent qu'à une intégration locale (Home Assistant qui interroge Frigate, Mealie ou Gatus) sont désormais liés au loopback, les autres sont retirés au profit du routage par labels Traefik.
+Le contournement le plus discret d'un reverse proxy est un port publié directement sur l'hôte : Docker l'ouvre sur toutes les interfaces, Tailscale compris, sans passer par Traefik ni Authelia. J'ai fait la revue de tous les ports publiés : ceux qui ne servent qu'à une intégration locale (Home Assistant qui interroge Frigate, Mealie ou Gatus) sont désormais liés au loopback, les autres sont retirés au profit du routage par labels Traefik. Seuls restent publiés les ports qu'un protocole ou un client impose : SMB pour Samba, WebRTC pour Frigate, le port HTTP de Jellyfin pour les clients TV, ainsi que deux services qui tournent sur le réseau de l'hôte : Pi-hole, pour recevoir les requêtes DHCP, et Home Assistant, pour la découverte des appareils (mDNS, SSDP). Ils ne sont joignables que depuis le LAN et le tailnet, le routeur domestique n'en ouvrant aucun.
 
 ## Un hub mail local
 
@@ -154,13 +155,13 @@ Trois boîtes personnelles chez trois fournisseurs se lisaient dans trois interf
 - **SOGo** sert de webmail et de carnet de contacts, avec une connexion OIDC par Authelia et une mise en veille par Sablier ; les contacts Google y sont copiés pour en garder une version locale ;
 - l'envoi passe par un Postfix interne, isolé sur un réseau propre à la stack, qui relaie vers le SMTP du fournisseur selon l'expéditeur. Les notifications des autres services (Authelia, Vaultwarden, Paperless) empruntent le même chemin avec un compte limité à l'envoi.
 
-Le hub est aussi devenu une brique pour les autres services : [Colis Tracker](colis-tracker.md) y relève les mails d'expédition au lieu d'interroger une boîte du fournisseur, et Paperless y importe des mails entiers. Le hub est sauvegardé comme les autres données T1 ; la synchronisation est suspendue pendant l'archivage, pour qu'un verrou de mbsync ne soit pas supprimé en pleine lecture.
+Le hub est aussi devenu une brique pour les autres services : [Colis Tracker](colis-tracker.md) y relève les mails d'expédition au lieu d'interroger une boîte du fournisseur, et Paperless y importe des mails entiers. Le hub est sauvegardé comme les autres données critiques (classe T1, voir plus bas) ; la synchronisation est suspendue pendant l'archivage, pour qu'un verrou de mbsync ne soit pas supprimé en pleine lecture.
 
 ## Scale-to-zero pour les services lourds
 
 Plusieurs services consomment de la mémoire au repos pour un usage de quelques minutes par semaine : Grafana, Ghostfolio avec sa base et son cache, Body Analysis et ses quatre conteneurs, Stirling PDF et sa JVM. [Sablier](/blog/2026/08/30/06-orchestration/traefik-sablier), branché comme plugin Traefik, les arrête après 30 minutes d'inactivité et les redémarre à la première requête, derrière une page d'attente.
 
-La difficulté n'était pas la mise en veille mais la supervision : un service endormi apparaît « en panne » pour un check d'uptime classique. J'ai déplacé le calcul dans Prometheus, qui combine l'état du groupe Sablier et une sonde blackbox en une seule valeur (0 si le service dort ou répond, 1 s'il est réveillé mais ne répond pas), que Gatus n'a plus qu'à comparer à zéro. La mise en veille a aussi révélé qu'un `docker system prune` après déploiement supprimait les conteneurs endormis, rendant leur réveil impossible : le nettoyage est désormais limité aux images et au cache de build.
+La difficulté n'était pas la mise en veille mais la supervision : un service endormi apparaît "en panne" pour un check d'uptime classique. J'ai déplacé le calcul dans Prometheus, qui combine l'état du groupe Sablier et une sonde blackbox en une seule valeur (0 si le service dort ou répond, 1 s'il est réveillé mais ne répond pas), que Gatus n'a plus qu'à comparer à zéro. La mise en veille a aussi révélé qu'un `docker system prune` après déploiement supprimait les conteneurs endormis, rendant leur réveil impossible : le nettoyage est désormais limité aux images et au cache de build.
 
 ## Secrets versionnés, jamais en clair
 
@@ -195,7 +196,7 @@ Le fournisseur S3 commercial qui portait la copie hors site a été remplacé fi
 
 ## Supervision et alerting
 
-Prometheus collecte les métriques de l'hôte, des conteneurs (cAdvisor), des disques (smartctl_exporter) et de Traefik, et évalue une trentaine de règles d'alerte transmises à [Alertmanager](/blog/2026/09/20/07-monitoring/prometheus-alertmanager), puis à ntfy avec une priorité dépendant de la sévérité. La conception des règles a été revue à partir de l'usage réel. La première version alertait sur la consommation CPU et mémoire des conteneurs et sur chaque palier de 5 % d'usage disque : environ 140 notifications en 30 jours, dont aucune ne correspondait à un vrai problème. La mesure mémoire des conteneurs comptait en plus le cache de pages, que le noyau libère à la demande. Les règles ne portent plus que sur l'hôte et les événements qui demandent une action : deux seuils disque (85 et 95 %), RAID dégradé, attributs S.M.A.R.T., exporter injoignable, certificat proche de l'expiration, redémarrage inattendu du serveur. La disponibilité des services reste couverte par Gatus, sans doublon. cAdvisor a demandé une configuration spécifique pour lire les conteneurs via containerd, le handler Docker échouant avec le containerd snapshotter.
+Prometheus collecte les métriques de l'hôte, des conteneurs (cAdvisor), des disques (smartctl_exporter) et de Traefik, et évalue une trentaine de règles d'alerte transmises à [Alertmanager](/blog/2026/09/20/07-monitoring/prometheus-alertmanager), puis à ntfy avec une priorité dépendant de la sévérité. La conception des règles a été revue à partir de l'usage réel. La première version alertait sur la consommation CPU et mémoire des conteneurs et sur chaque palier de 5 % d'usage disque : environ 140 notifications en 30 jours, dont aucune ne correspondait à un vrai problème. La mesure mémoire des conteneurs comptait en plus le cache de pages, que le noyau libère à la demande. Les règles ne portent plus que sur l'hôte et les événements qui demandent une action : deux seuils disque (85 et 95 %), RAID dégradé, attributs S.M.A.R.T., exporter injoignable, certificat proche de l'expiration, redémarrage inattendu du serveur. La disponibilité des services reste couverte par [Gatus](/blog/2026/10/03/07-monitoring/gatus), sans doublon. cAdvisor a demandé une configuration spécifique pour lire les conteneurs via containerd, le handler Docker échouant avec le containerd snapshotter.
 
 ```mermaid
 flowchart LR
@@ -232,7 +233,7 @@ Une charte graphique commune, documentée sur ce même site, s'applique au site 
 - **Données critiques en double copie chiffrée hors production**, sur des supports et des sites distincts, bases comprises sous forme de dumps cohérents, et classement explicite de chaque volume selon sa valeur.
 - **Incidents diagnostiqués et absorbés** : un crash noyau redémarre désormais le serveur seul, notifie, et laisse une trace exploitable.
 - **Alertes utiles** : passage d'environ 140 notifications par mois sans action associée à des alertes qui correspondent chacune à une intervention.
-- **Surface d'exposition réduite** : aucun port de service publié hors loopback en dehors de Traefik, second facteur sur les services sensibles.
+- **Surface d'exposition réduite** : en dehors de Traefik, seuls les ports qu'un protocole impose (SMB, WebRTC, clients TV de Jellyfin, DNS et DHCP, découverte des appareils domotiques) sont publiés hors loopback, et les services sensibles exigent un second facteur.
 - **Dette technique documentée plutôt que cachée** : les compromis (rollback manuel, socket Docker monté pour les dumps, bypass d'authentification) sont écrits noir sur blanc dans le repo.
 
-Rien de tout ça n'est exposé publiquement : l'ensemble n'est accessible que via mon réseau privé Tailscale, sans port ouvert sur le routeur domestique.
+Rien de cela n'est exposé sur Internet : l'ensemble n'est accessible que depuis le réseau local ou le réseau privé Tailscale, sans port ouvert sur le routeur domestique.

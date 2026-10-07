@@ -1,6 +1,6 @@
 ---
-title: Roadmap Cloud 2026
-description: Roadmap complète pour apprendre les bases du cloud, d'AWS, de Docker, de Kubernetes et de Terraform.
+title: "Roadmap Cloud 2026"
+description: "Roadmap prévisionnelle pour apprendre les bases du cloud, d'AWS, de Docker, de Kubernetes et de Terraform."
 tags: [cloud, devops]
 ---
 
@@ -10,27 +10,27 @@ Roadmap prévisionnelle pour apprendre les bases du cloud avec AWS.
 
 ## Kubernetes managé avec EKS (pas à pas)
 
-Kubernetes est une technologie clé pour l'orchestration des conteneurs. Cette étape, vous allez découvrir EKS, le service Kubernetes managé d'AWS :
+Kubernetes est une technologie clé pour l'orchestration des conteneurs. Cette étape me fait découvrir EKS, le service Kubernetes managé d'AWS :
 
-- **Comprendre l’architecture EKS** : Familiarisez-vous avec les concepts de cluster Kubernetes managé.
-- **Créer un cluster EKS basique** : Utilisez la console AWS pour configurer un cluster.
-- **Installer kubectl** : Configurez l’accès à votre cluster.
-- **Déployer une application simple** : Par exemple, un serveur Nginx sur EKS.
-- **Découvrir les services Kubernetes** : Apprenez à utiliser Service et Ingress.
-- **Surveiller le cluster** : Utilisez kubectl pour observer l’état de votre cluster.
+- **Comprendre l'architecture EKS** : me familiariser avec les concepts de cluster Kubernetes managé.
+- **Créer un cluster EKS basique** : utiliser la console AWS pour configurer un cluster.
+- **Installer kubectl** : configurer l'accès au cluster.
+- **Déployer une première application** : par exemple, un serveur Nginx sur EKS.
+- **Découvrir les services Kubernetes** : apprendre à utiliser Service et Ingress.
+- **Surveiller le cluster** : utiliser kubectl pour observer l'état du cluster.
 
-**Objectif :** Premier contact avec Kubernetes managé et déploiement d’une application cloud-native.
+**Objectif :** premier contact avec Kubernetes managé et déploiement d'une application cloud-native.
 
 ## Introduction à Terraform
 
-Pour automatiser la gestion de votre infrastructure, Terraform est un outil incontournable. Cette étape, vous allez apprendre à l’utiliser :
+Pour automatiser la gestion de l'infrastructure, cette étape me fait apprendre Terraform :
 
-- **Installer Terraform** : Comprenez son workflow (init, plan, apply).
-- **Écrire un fichier Terraform simple** : Créez une instance EC2 avec Terraform.
-- **Gérer le réseau avec Terraform** : Ajoutez un VPC et un Security Group.
-- **Tester les modifications** : Expérimentez la création, modification et suppression de ressources.
-- **Versionner le code Terraform** : Publiez votre code sur GitHub.
+- **Installer Terraform** : comprendre son workflow (init, plan, apply).
+- **Écrire un premier fichier Terraform** : créer une instance EC2 avec Terraform.
+- **Gérer le réseau avec Terraform** : ajouter un VPC et un Security Group.
+- **Tester les modifications** : expérimenter la création, la modification et la suppression de ressources.
+- **Versionner le code Terraform** : publier le code sur GitHub.
 
-**Objectif :** Automatiser la création d’infrastructure AWS de base.
+**Objectif :** automatiser la création d'une infrastructure AWS de base.
 
-Avec cette roadmap, vous serez en mesure de maîtriser les bases du cloud computing et de l’infrastructure en tant que code. Bonne chance dans votre apprentissage du cloud et d’AWS !
+À l'issue de cette roadmap, je vise la maîtrise des bases du cloud computing et de l'infrastructure en tant que code sur AWS.

@@ -8,27 +8,27 @@ Docker Swarm (mode Swarm de Docker Engine) est le système d'orchestration inté
 
 <!--truncate-->
 
-## Qu'est-ce que Docker Swarm ?
+## Fonctionnalités
 
-Docker Swarm est un mode de clustering intégré directement dans Docker qui transforme plusieurs machines Docker en un seul cluster logique. Il offre :
+Le mode Swarm fournit :
 
-- **Gestion distribuée** : Coordination automatique des conteneurs sur plusieurs nœuds
-- **Haute disponibilité** : Réplication des services et basculement automatique
-- **Load balancing** : Distribution automatique du trafic
+- **Gestion distribuée** : coordination automatique des conteneurs sur plusieurs nœuds
+- **Haute disponibilité** : réplication des services et basculement automatique
+- **Load balancing** : distribution automatique du trafic
 - **Sécurité native** : TLS mutuel automatique entre nœuds (avec rotation des certificats) et gestion des secrets
 
 ## Architecture de Docker Swarm
 
 ### Composants principaux
 
-**Manager Nodes** (Nœuds gestionnaires)
+**Nœuds managers**
 
 - Gèrent l'état du cluster
 - Maintiennent la base de données distribuée, répliquée par l'algorithme de consensus Raft
 - Orchestrent les services et planifient les tâches
 - Élisent automatiquement un leader parmi eux
 
-**Worker Nodes** (Nœuds de travail)
+**Nœuds workers**
 
 - Exécutent les conteneurs
 - Reçoivent les tâches du manager
@@ -44,7 +44,7 @@ Comme etcd pour Kubernetes, le journal Raft n'accepte une modification que si un
 docker swarm init
 ```
 
-Cela initie le swarm et retourne un token pour ajouter d'autres nœuds (sur une machine à plusieurs interfaces, `--advertise-addr <IP>` précise l'adresse annoncée aux autres nœuds) :
+Cette commande initialise le swarm et affiche un token pour ajouter d'autres nœuds (sur une machine à plusieurs interfaces, `--advertise-addr <IP>` précise l'adresse annoncée aux autres nœuds) :
 
 ```text
 Swarm initialized: current node (id) is now a manager.
@@ -73,7 +73,7 @@ docker swarm join-token manager
 
 Les nœuds doivent pouvoir communiquer sur les ports 2377/TCP (gestion du cluster, vers les managers), 7946/TCP et UDP (découverte entre nœuds) et 4789/UDP (trafic des réseaux overlay, encapsulé en VXLAN).
 
-## Déployer des Services
+## Déployer des services
 
 Les services Swarm remplacent les conteneurs simples dans un cluster. Un service décrit un état désiré (image, nombre de répliques, réseaux) ; le manager le décompose en **tâches**, chacune correspondant à un conteneur planifié sur un nœud. Si un conteneur s'arrête ou si un nœud disparaît, le manager crée une nouvelle tâche pour revenir au nombre de répliques demandé.
 
@@ -101,7 +101,7 @@ docker service ls
 docker service ps web-app
 ```
 
-## Gestion des Services
+## Gestion des services
 
 ### Mettre à jour un service
 
@@ -199,7 +199,7 @@ docker stack ls
 docker stack ps myapp
 ```
 
-## Gestion des Secrets
+## Gestion des secrets
 
 Docker Swarm offre une gestion native des secrets chiffrés. Un secret est stocké chiffré dans le journal Raft des managers, transmis par TLS aux seuls nœuds qui exécutent un service autorisé à le lire, et monté dans le conteneur sous `/run/secrets/<nom>` dans un système de fichiers en mémoire (`tmpfs`). Il n'est jamais écrit sur le disque des workers ni exposé comme variable d'environnement.
 
@@ -221,7 +221,7 @@ docker service create \
 
 Un secret est immuable : sa rotation passe par la création d'un nouveau secret (`db_password_v2`) et la mise à jour du service (`docker service update --secret-rm db_password --secret-add source=db_password_v2,target=db_password`). Avec `docker swarm init --autolock`, la clé de chiffrement du journal Raft est elle-même protégée par une clé à fournir (`docker swarm unlock`) à chaque redémarrage d'un manager.
 
-## Réseaux Overlay
+## Réseaux overlay
 
 Les réseaux overlay permettent la communication entre conteneurs sur différents nœuds.
 
@@ -245,7 +245,7 @@ docker service create \
   nginx
 ```
 
-## Avantages et Limitations
+## Avantages et limitations
 
 ### Avantages
 
@@ -269,12 +269,12 @@ docker service create \
 - **Équipes sans expertise Kubernetes**, pour qui le coût d'exploitation d'un cluster Kubernetes ne se justifie pas
 - **Prototypage** et environnements de démonstration
 
-## Application / Projet lié
-
-<ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Comparaison architecturale : le cluster utilise Kubernetes (kubeadm) plutôt que Swarm pour plus de fonctionnalités et scalabilité.</ProjectLink>
-</ProjectLinks>
-
 ## Conclusion
 
 Docker Swarm couvre les besoins essentiels d'orchestration (répliques, mises à jour progressives, secrets, réseau multi-hôte) avec un coût de mise en place et d'exploitation réduit. Kubernetes répond aux besoins plus larges : extensibilité par l'API, écosystème, stockage et réseau avancés, mise à l'échelle automatique. Le choix dépend donc du périmètre fonctionnel requis et de la capacité de l'équipe à exploiter la plateforme ; l'[architecture de Kubernetes](./2025-01-12-k8s-introduction.md) permet de comparer les deux modèles.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Stacks exploitées à l'origine sur un Swarm mono-nœud administré via Portainer, puis migrées vers Compose standalone : sur un seul nœud, réseau overlay, contraintes de placement et répartition multi-hôte restaient inutilisés, et la bascule a abandonné `docker secret` et le rollback automatique de `update_config`.</ProjectLink>
+</ProjectLinks>

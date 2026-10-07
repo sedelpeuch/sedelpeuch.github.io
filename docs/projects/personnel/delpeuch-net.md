@@ -1,6 +1,6 @@
 ---
-title: delpeuch.net
-description: Site personnel Docusaurus (portfolio, blog DevOps, archives de scolarité) avec composants swizzlés, support KaTeX et Mermaid, PWA, analytics sans cookies et déploiement GitHub Pages planifié.
+title: "delpeuch.net"
+description: "Site personnel Docusaurus (portfolio, blog DevOps, archives de scolarité) avec composants swizzlés, support KaTeX et Mermaid, PWA, analytics sans cookies et déploiement GitHub Pages planifié."
 tags: [docusaurus, react, typescript, github-actions, github-pages]
 ---
 
@@ -29,13 +29,17 @@ Docusaurus est conçu pour de la documentation technique, ce qui peut sembler un
 
 ### Les composants swizzlés
 
-Plusieurs composants Docusaurus sont remplacés localement dans `src/theme/` : la navbar, les pages de tags, les blocs de code, la table des matières, la pagination. Le swizzling est le mécanisme natif de Docusaurus pour cela : un composant déposé au bon chemin est résolu en priorité sur sa version interne, sans fork ni patch du framework.
+Plusieurs composants Docusaurus sont remplacés localement dans `src/theme/` : le menu mobile de la navbar, les pages de tags, les blocs de code, la table des matières, la pagination entre pages de docs, la barre latérale et le pied des billets du blog, le pied des pages de docs. Le swizzling est le mécanisme natif de Docusaurus pour cela : un composant déposé au bon chemin est résolu en priorité sur sa version interne, sans fork ni patch du framework.
 
 Le même mécanisme sert à enregistrer des composants MDX globaux : la fiche projet affichée en tête de chaque page de cette section est un composant React (`ProjectMeta`) disponible dans tout fichier MDX sans import, ce qui garantit une présentation identique d'une page à l'autre.
 
+### Les plugins de données
+
+Deux plugins Docusaurus maison lisent les fichiers au build et exposent des données globales aux composants. `projects-data` extrait la fiche `ProjectMeta` de chaque page projet, ce qui alimente l'index des projets et les encarts qui renvoient vers un projet depuis un billet ; il relève aussi, dans l'autre sens, les billets qui citent chaque projet, listés automatiquement en bas de sa page. `series-data` regroupe les billets par série déclarée dans leur frontmatter et par catégorie, pour la navigation entre billets. Chaque relation n'est ainsi écrite qu'à un seul endroit.
+
 ### Maths, diagrammes et PWA
 
-Les articles peuvent intégrer des formules LaTeX via `remark-math` (analyse) et `rehype-katex` (rendu), ainsi que des diagrammes Mermaid. Le site est aussi déclaré comme PWA via `@docusaurus/plugin-pwa`, ce qui permet l'installation sur mobile et un mode hors ligne via service worker.
+Les articles du blog comme les pages de documentation peuvent intégrer des formules LaTeX via `remark-math` (analyse) et `rehype-katex` (rendu), ainsi que des diagrammes Mermaid. Le site est aussi déclaré comme PWA via `@docusaurus/plugin-pwa`, ce qui permet l'installation sur mobile et un mode hors ligne via service worker.
 
 ### Analytics sans tracking
 
@@ -48,6 +52,14 @@ Le site est déployé sur GitHub Pages via deux workflows GitHub Actions.
 `gh-pages.yml` gère le déploiement principal, avec une logique de planification volontaire : un push pendant les heures de travail (de 8 h à 18 h UTC en semaine) ne déclenche pas de déploiement immédiat, il attend le cron de 18 h UTC. En dehors de ces plages (soir, week-end), le déploiement part immédiatement. Avant de construire, l'exécution planifiée vérifie qu'au moins un commit a été poussé dans les dernières 24 heures, pour éviter des builds inutiles. Le calcul se fait dans un script `actions/github-script` en tête de workflow, dont la sortie conditionne le job de déploiement.
 
 `pr_preview.yml` déploie une prévisualisation pour chaque pull request, accessible à une URL dédiée (`/pr-preview/pr-<numéro>/`) et construite avec le `BASE_URL` correspondant. La prévisualisation est supprimée automatiquement à la fermeture de la pull request. Le déploiement principal exclut ce répertoire de son nettoyage (`clean-exclude`), pour ne pas effacer les prévisualisations en cours.
+
+## Résultats
+
+- **Un point d'entrée unique** pour le portfolio, le blog DevOps et les archives de scolarité, sur un domaine personnel et sans dépendre d'une plateforme tierce.
+- **Projets et articles reliés sans double saisie** : la fiche d'un projet, son entrée dans l'index et la liste de ses articles proviennent d'une seule source.
+- **Déploiements regroupés** : les pushs des heures de travail partent en un seul build en fin de journée, et aucun build planifié n'est lancé sans nouveau commit.
+- **Chaque pull request prévisualisable** à sa propre URL avant fusion.
+- **Mesure d'audience sans cookies**, donc sans bandeau de consentement.
 
 ## Liens
 

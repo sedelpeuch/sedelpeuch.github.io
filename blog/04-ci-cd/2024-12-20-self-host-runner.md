@@ -1,7 +1,8 @@
 ---
-title: "GitHub Actions : Self-Host Runner"
+title: "GitHub Actions : runner auto-hébergé"
 description: "Installer et configurer un runner GitHub Actions auto-hébergé sur une machine Linux."
 tags: [cicd, devops]
+series_order: 5
 ---
 
 Les runners hébergés par GitHub (`ubuntu-latest`) sont éphémères, gérés par GitHub, et consomment le quota de minutes de l'organisation. Les runners auto-hébergés tournent sur des machines contrôlées (serveur on-premise, VM cloud, Raspberry Pi) et n'ont pas de quota. Ils donnent accès à des ressources locales : réseau privé, GPU, caches persistants, outils propriétaires.
@@ -13,7 +14,7 @@ Les runners hébergés par GitHub (`ubuntu-latest`) sont éphémères, gérés p
 | | GitHub-hosted | Self-hosted |
 |---|---|---|
 | Maintenance | GitHub | Soi-même |
-| Quota | 2 000 min/mois (privé) | Illimité |
+| Quota | Selon le plan (2 000 min/mois en Free, dépôts privés) | Illimité |
 | Environnement | Standardisé | Personnalisable |
 | Accès réseau privé | Non | Oui |
 | Coût à grande échelle | Élevé | Infrastructure propre |
@@ -26,7 +27,7 @@ L'installation se fait depuis *Settings → Actions → Runners → New self-hos
 mkdir actions-runner && cd actions-runner
 
 # Version à adapter : la page "New self-hosted runner" et github.com/actions/runner/releases indiquent la dernière
-RUNNER_VERSION="2.317.0"
+RUNNER_VERSION="2.338.0"
 curl -o "actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz" -L \
   "https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz"
 
@@ -35,6 +36,8 @@ echo "<sha256-publié>  actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz" | sha
 
 tar xzf "./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz"
 ```
+
+L'enregistrement exige une version minimale du runner (2.329.0), et un runner qui n'installe pas une nouvelle release dans les 30 jours suivant sa publication ne reçoit plus de jobs. La mise à jour automatique, active par défaut, couvre cette contrainte ; la désactiver (`--disableupdate`) impose de reconstruire l'image ou de réinstaller le runner à chaque release.
 
 Configuration et enregistrement :
 
@@ -93,7 +96,7 @@ jobs:
     container:
       image: python:3.12-slim
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: pip install pytest && pytest
 ```
 

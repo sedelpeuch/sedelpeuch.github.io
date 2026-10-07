@@ -80,10 +80,18 @@ tree roles/webserver
     state: link
   notify: reload nginx
 
+- name: Créer la racine du site
+  file:
+    path: "{{ document_root }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+
 - name: Déployer le contenu du site
-  template:
-    src: index.html.j2
-    dest: /var/www/{{ site_name }}/index.html
+  copy:
+    src: index.html
+    dest: "{{ document_root }}/index.html"
     owner: www-data
     group: www-data
     mode: '0644'
@@ -311,12 +319,6 @@ mon_namespace/
 
 Les rôles et les inventaires contiennent souvent des mots de passe ou des clés d'API. Ansible Vault les chiffre en AES-256, soit par fichier entier (`ansible-vault encrypt group_vars/all/vault.yml`), soit variable par variable (`ansible-vault encrypt_string`), et les déchiffre en mémoire au moment de l'exécution (`--ask-vault-pass`, `--vault-password-file` ou `--vault-id`). La convention consiste à préfixer les variables chiffrées par `vault_` et à les référencer depuis un fichier en clair (`db_password: "{{ vault_db_password }}"`), pour que les noms de variables restent lisibles et recherchables dans le dépôt. Le fonctionnement détaillé, la gestion des mots de passe et les identifiants de Vault font l'objet de l'article [Ansible Vault](./2025-11-28-ansible-vault.md).
 
-## Application / Projet lié
-
-<ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Playbooks avancés et structures de rôles pour la gestion complexe du cluster Kubernetes, configurations persistantes et secrets sécurisés.</ProjectLink>
-</ProjectLinks>
-
 ## Bonnes pratiques avancées
 
 ### 1. Structure de projet recommandée
@@ -399,7 +401,7 @@ ansible-playbook deploy.yml --list-tasks --list-tags
 
 Un handler notifié par une tâche taguée ne s'exécute que si sa propre tâche est retenue ; les tags spéciaux `always` et `never` forcent ou excluent une tâche indépendamment de la sélection.
 
-### 3. Gestion des erreurs robuste
+### 3. Gestion des erreurs
 
 ```yaml
 ---
@@ -446,3 +448,9 @@ Points clés à retenir :
 - [Ansible Galaxy](https://galaxy.ansible.com/)
 - [Ansible Vault Documentation](https://docs.ansible.com/ansible/latest/vault_guide/index.html)
 - [Ansible Collections](https://docs.ansible.com/ansible/latest/collections_guide/index.html)
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Playbooks avancés et structures de rôles pour la gestion complexe du cluster Kubernetes, configurations persistantes et secrets sécurisés.</ProjectLink>
+</ProjectLinks>

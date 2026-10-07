@@ -10,14 +10,15 @@ Terraform est un outil d'Infrastructure as Code qui permet de décrire des resso
 <!--truncate-->
 
 :::info Développement local avec LocalStack
-Les exemples de cet article peuvent être testés localement sans compte AWS via [LocalStack](https://www.localstack.cloud/), un serveur qui émule les APIs AWS sur `localhost:4566`. Les outils `tflocal` et `awslocal` sont des wrappers qui redirigent automatiquement vers LocalStack :
+Les exemples de cet article peuvent être testés localement sans compte AWS via [LocalStack](https://www.localstack.cloud/), un serveur qui émule les APIs AWS sur `localhost:4566`. Les versions récentes de LocalStack exigent un compte LocalStack (l'offre gratuite suffit) et son jeton d'authentification, fourni par la variable `LOCALSTACK_AUTH_TOKEN`. Les outils `tflocal` et `awslocal` sont des wrappers qui redirigent automatiquement vers LocalStack :
 
 ```bash
 pip install localstack terraform-local awscli-local
+export LOCALSTACK_AUTH_TOKEN="<jeton du compte LocalStack>"
 localstack start -d
 ```
 
-Les commandes `tflocal` et `awslocal` remplacent alors `terraform` et `aws` respectivement. Le code Terraform reste identique ; seule la cible change. Note : certains services comme RDS ne sont pas disponibles dans la version gratuite de LocalStack.
+Les commandes `tflocal` et `awslocal` remplacent alors `terraform` et `aws` respectivement. Le code Terraform reste identique ; seule la cible change. Note : certains services comme RDS ne sont pas inclus dans l'offre gratuite de LocalStack.
 :::
 
 ## Installation de Terraform
@@ -30,7 +31,7 @@ sudo apt install terraform             # Ubuntu/Debian, après ajout du dépôt 
 terraform version
 ```
 
-Terraform est distribué sous licence BSL depuis la version 1.6 (août 2023). OpenTofu, fork communautaire sous licence MPL maintenu par la Linux Foundation, reste compatible avec la syntaxe et les providers présentés ici (commande `tofu`).
+Terraform est distribué sous licence BSL depuis la version 1.6 (changement annoncé en août 2023). OpenTofu, fork communautaire sous licence MPL maintenu par la Linux Foundation, reste compatible avec la syntaxe et les providers présentés ici (commande `tofu`).
 
 ## Structure d'un fichier de configuration Terraform
 
@@ -42,7 +43,7 @@ Le bloc `terraform` définit les contraintes sur le moteur lui-même et les prov
 
 ```hcl
 terraform {
-  required_version = ">= 1.10"
+  required_version = ">= 1.11"
 
   required_providers {
     aws = {
@@ -76,7 +77,7 @@ provider "aws" {
 }
 ```
 
-Les trois directives `skip_*` désactivent les appels de validation que le provider AWS effectue normalement au démarrage contre les APIs IAM et STS. Sans elles, Terraform tenterait de vérifier les credentials contre les vrais serveurs AWS et échouerait. Le bloc `endpoints` redirige les appels S3 vers LocalStack au lieu d'`s3.amazonaws.com`.
+Les trois directives `skip_*` désactivent les appels que le provider AWS effectue normalement au démarrage : `skip_credentials_validation` et `skip_requesting_account_id` évitent les appels aux APIs STS et IAM, `skip_metadata_api_check` la requête vers le service de métadonnées des instances EC2 (IMDS). Sans elles, Terraform tenterait de vérifier les credentials contre les vrais serveurs AWS et échouerait. Le bloc `endpoints` redirige les appels S3 vers LocalStack au lieu d'`s3.amazonaws.com`.
 
 En production, ce bloc ne contient pas de credentials en dur. Le provider applique la même chaîne de résolution que la [CLI AWS](../05-cloud/2026-02-21-aws-cli.md) : variables d'environnement (`AWS_ACCESS_KEY_ID`, `AWS_PROFILE`...), fichiers `~/.aws`, puis rôle de l'instance ou identité OIDC en CI. Le bloc se réduit alors à `provider "aws" { region = "eu-west-3" }`.
 
@@ -142,7 +143,7 @@ Terraform génère trois types de fichiers qu'il faut traiter différemment selo
 
 En local, le fichier d'état est stocké sur le disque. Ce mode de fonctionnement ne convient pas à un usage en équipe ou en CI/CD : deux exécutions simultanées de Terraform peuvent corrompre l'état, et un développeur travaillant sur une autre machine n'a pas accès à l'état à jour.
 
-La solution standard est le backend remote : le fichier d'état est stocké dans un bucket S3 dédié, et un verrou empêche deux exécutions simultanées. Depuis Terraform 1.10, ce verrou est un simple fichier `.tflock` créé dans le bucket par écriture conditionnelle (`use_lockfile`) ; la table DynamoDB utilisée auparavant est dépréciée. Cette configuration se déclare dans le bloc `terraform` :
+La solution standard est le backend remote : le fichier d'état est stocké dans un bucket S3 dédié, et un verrou empêche deux exécutions simultanées. Ce verrou peut être un simple fichier `.tflock` créé dans le bucket par écriture conditionnelle (`use_lockfile`), introduit à titre expérimental en Terraform 1.10 et stable depuis la 1.11, qui déprécie la table DynamoDB utilisée auparavant. Cette configuration se déclare dans le bloc `terraform` :
 
 ```hcl
 terraform {
@@ -202,7 +203,7 @@ bucket_name = "prod-avatars"
 Lorsqu'une même variable est définie à plusieurs endroits, la dernière source lue l'emporte, dans cet ordre : valeur `default`, variables d'environnement `TF_VAR_<nom>`, fichier `terraform.tfvars`, fichiers `*.auto.tfvars` (par ordre alphabétique), puis options `-var` et `-var-file` dans l'ordre de la ligne de commande. Une variable sans `default` ni valeur fournie est demandée interactivement, ou provoque une erreur avec `-input=false`.
 
 :::warning Nommage S3
-S3 n'accepte pas les underscores dans les noms de buckets. Si `bucket_name` contenait un underscore et qu'on le corrige après un premier `apply`, Terraform détruirait le bucket existant pour en recréer un nouveau (`-/+` dans le plan). En production, cela signifie une perte de données. Le plan doit toujours être lu attentivement avant un `apply` sur une infrastructure existante.
+Le nom d'un bucket S3 ne peut pas être modifié. Changer `bucket_name` après un premier `apply` conduit Terraform à détruire le bucket existant pour en recréer un nouveau (`-/+` dans le plan). La suppression d'un bucket non vide échoue, sauf avec `force_destroy = true`, auquel cas son contenu est perdu. Le plan doit toujours être lu attentivement avant un `apply` sur une infrastructure existante.
 :::
 
 ## Outputs
@@ -295,7 +296,7 @@ resource "aws_db_instance" "task_horizon_db" {
 `skip_final_snapshot = true` indique à AWS de ne pas créer de snapshot de la base lors de la suppression. En production, ce paramètre doit être à `false` pour éviter la perte de données lors d'un `terraform destroy` accidentel.
 
 :::warning LocalStack
-LocalStack en version gratuite ne supporte pas RDS. VPC et subnets fonctionnent en local, mais l'instance RDS nécessite un vrai compte AWS. Le plan peut être validé localement ; l'`apply` doit cibler AWS directement.
+L'offre gratuite de LocalStack n'inclut pas RDS. VPC et subnets fonctionnent en local, mais l'instance RDS nécessite un vrai compte AWS. Le plan peut être validé localement ; l'`apply` doit cibler AWS directement.
 :::
 
 ### Variables sensibles
@@ -309,14 +310,17 @@ variable "db_password" {
 }
 ```
 
-Une variable `sensitive = true` sans `default` force l'injection explicite à chaque exécution. Dans le plan et les logs, la valeur apparaît comme `(sensitive value)`. En CI/CD, elle est injectée depuis les secrets du pipeline par une variable d'environnement `TF_VAR_<nom>`, plutôt que par `-var`, qui exposerait la valeur dans la liste des processus et l'historique du shell :
+Une variable `sensitive = true` sans `default` force l'injection explicite à chaque exécution. Dans le plan et les logs, la valeur apparaît comme `(sensitive value)`. En CI/CD, elle est injectée depuis les secrets du pipeline par une variable d'environnement `TF_VAR_<nom>`, plutôt que par `-var`, qui exposerait la valeur dans la liste des processus et l'historique du shell. Les valeurs des variables sont fixées au moment du plan : c'est l'étape `plan -out` qui les reçoit, et `apply tfplan` réutilise celles enregistrées dans le fichier de plan :
 
 ```yaml
-# Étape d'un workflow GitHub Actions
-- run: terraform apply -input=false tfplan
+# Étapes d'un workflow GitHub Actions
+- run: terraform plan -input=false -out=tfplan
   env:
     TF_VAR_db_password: ${{ secrets.DB_PASSWORD }}
+- run: terraform apply -input=false tfplan
 ```
+
+Le fichier `tfplan` contient alors la valeur en clair : s'il est conservé comme artefact entre deux jobs, cet artefact doit être protégé au même titre que le secret.
 
 `sensitive` ne fait que masquer l'affichage : la valeur est écrite **en clair** dans le fichier d'état, d'où l'importance de protéger le backend (chiffrement, accès restreint). Deux mécanismes évitent de stocker le mot de passe dans l'état : `manage_master_user_password = true` sur `aws_db_instance`, qui fait générer et stocker le mot de passe par AWS Secrets Manager, et les arguments *write-only* introduits par Terraform 1.11 (`password_wo`, accompagné de `password_wo_version`), transmis au fournisseur mais jamais enregistrés dans l'état.
 
@@ -330,7 +334,7 @@ aws_vpc → aws_subnet → aws_db_subnet_group → aws_db_instance
 
 Les ressources sans dépendance entre elles, comme les subnets public et private, sont créées en parallèle (10 opérations simultanées par défaut, option `-parallelism`). La suppression parcourt le graphe en sens inverse : l'instance RDS est détruite avant le subnet group, lui-même avant les subnets. `terraform graph` exporte ce graphe au format DOT. Les cas où une dépendance n'est pas visible dans les références relèvent de `depends_on`, présenté dans l'article [depends_on et lifecycle](./2026-07-11-terraform-depends-on-lifecycle.md).
 
-L'architecture réseau résultante pour TaskHorizon :
+L'architecture réseau de cet exemple :
 
 ```text
 VPC 10.0.0.0/16
@@ -339,18 +343,30 @@ VPC 10.0.0.0/16
 └── subnet private b 10.0.3.0/24 (eu-west-3b) : RDS PostgreSQL (subnet group), EKS nodes
 ```
 
+Cet exemple reste minimal : un Application Load Balancer exige des subnets dans au moins deux zones de disponibilité, de même qu'un cluster EKS. Une architecture de production répartit donc aussi les subnets publics sur deux zones, comme le détaille l'article [VPC](../05-cloud/2026-04-02-vpc.md).
+
 ## Intégration CI/CD
 
 Les outputs sont le point de jonction naturel entre un job d'infrastructure et un job de déploiement applicatif. Le premier job crée ou met à jour les ressources cloud ; le second utilise les valeurs produites pour configurer le déploiement :
 
 ```bash
-# Job 1 : infrastructure
-terraform apply -input=false -auto-approve -var="bucket_name=prod-avatars"
-S3_ARN=$(terraform output -raw task_horizon_avatar_data_arn)
+# Job 1 (infra) : infrastructure
+terraform plan -input=false -out=tfplan -var="bucket_name=prod-avatars"
+terraform apply -input=false tfplan
+echo "s3_arn=$(terraform output -raw task_horizon_avatar_data_arn)" >> "$GITHUB_OUTPUT"
 
-# Job 2 : déploiement
+# Job 2 (deploy, needs: infra) : déploiement
+# S3_ARN est fourni par le bloc env du job : ${{ needs.infra.outputs.s3_arn }}
 helm upgrade taskhorizon ./helm/taskhorizon \
   --set api.env.S3_BUCKET_ARN="$S3_ARN"
 ```
 
+Chaque job s'exécute sur un runner distinct : une variable shell ne survit pas à la fin du job. La valeur transite par une sortie d'étape (`$GITHUB_OUTPUT`), déclarée comme sortie du job (`outputs`), puis lue par le job suivant via `needs.<job>.outputs`.
+
 Cette séparation garantit que les valeurs transmises au déploiement sont celles effectivement provisionnées, et non des valeurs codées en dur susceptibles de diverger entre environnements. L'article [pipeline CI/CD vers EKS](../04-ci-cd/2026-07-19-pipeline-cicd-eks.md) décrit une chaîne complète construite sur ce principe, et les articles suivants de la série abordent les [data sources](./2026-06-28-terraform-data-sources.md), les [boucles et locals](./2026-07-11-terraform-count-foreach-locals.md) et les [modules](./2026-07-11-terraform-modules.md).
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Provisionnement par Terraform du bucket S3 des avatars, du VPC et de l'instance RDS, dont les outputs (endpoint RDS) sont injectés dans le déploiement Helm par le pipeline GitHub Actions.</ProjectLink>
+</ProjectLinks>

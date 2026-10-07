@@ -1,10 +1,10 @@
 ---
-title: DevOps Roadmap 2025
-description: Présentation de ma roadmap DevOps personnelle 2025
+title: "DevOps Roadmap 2025"
+description: "Présentation de ma roadmap DevOps personnelle 2025"
 tags: [devops]
 ---
 
-Voici un résumé de ma roadmap DevOps personnelle pour 2025. Cette roadmap s’appuie sur les réalisations de l’année précédente et vise à approfondir l’orchestration, l’observabilité et l’Infrastructure as Code. Elle évolue au fil des projets, des expérimentations et des apprentissages partagés sur le blog.
+Voici un résumé de ma roadmap DevOps personnelle pour 2025. Cette roadmap s'appuie sur les réalisations de l'année précédente et vise à approfondir l'orchestration, l'observabilité et l'Infrastructure as Code. Elle évolue au fil des projets, des expérimentations et des apprentissages partagés sur le blog.
 
 <!--truncate-->
 
@@ -17,25 +17,25 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ### <IconTitle logo="skill-icons:kubernetes" name="06 Orchestration de conteneurs - Kubernetes & Docker Swarm"/>
 
-[Orchestration](/blog/tags/orchestration) Maîtrise des composants de base (Deployment, Service, ConfigMap, Secret, StatefulSet), utilisation avancée de la CLI Kubernetes (kubectl), persistance des données avec les volumes, externalisation des configurations avec ConfigMap et Secret, gestion des accès via Ingress (Nginx). Objectif : piloter des clusters multi-applications, automatiser le déploiement et renforcer la sécurité.
+[Orchestration](/blog/tags/orchestration) Maîtrise des composants de base (Deployment, Service, ConfigMap, Secret, StatefulSet), utilisation avancée de la CLI Kubernetes (kubectl), persistance des données avec les volumes, externalisation des configurations avec ConfigMap et Secret, gestion des accès via Ingress (Nginx). Objectif : piloter des clusters multi-applications, automatiser le déploiement et renforcer la sécurité.
 
 ### <IconTitle logo="skill-icons:prometheus" name="07 Monitoring & Observabilité"/>
 
-[Observabilité](/blog/tags/monitoring) Intégration de Grafana pour l’analyse et la visualisation interactive, Prometheus pour la surveillance et l’alerte, Loki pour la gestion centralisée des logs. Mise en place de dashboards, alertes et supervision multi-environnements.
+[Observabilité](/blog/tags/monitoring) Intégration de Grafana pour l'analyse et la visualisation interactive, Prometheus pour la surveillance et l'alerte, Loki pour la gestion centralisée des logs. Mise en place de dashboards, alertes et supervision multi-environnements.
 
 ### <IconTitle logo="skill-icons:terraform-light" name="08 Infrastructure as Code"/>
 
-[Infrastructure as Code](/blog/tags/iac) Automatisation avancée de la configuration et du déploiement avec Ansible, exploration de Terraform pour la gestion d’infrastructures cloud et on-premise, documentation des workflows et partage des bonnes pratiques.
+[Infrastructure as Code](/blog/tags/iac) Automatisation avancée de la configuration et du déploiement avec Ansible, exploration de Terraform pour la gestion d'infrastructures cloud et on-premise, documentation des workflows et partage des bonnes pratiques.
 
 ## Bilan 2024
 
 ### <IconTitle logo="skill-icons:linux-light" name="02 OS & Linux"/>
 
-**Système & Linux** Les notions de réseau, sécurité, configuration des pare-feu, équilibreurs de charge, proxies, HTTP/HTTPS et virtualisation ont été approfondies et mises en œuvre dans des projets d’auto-hébergement et de sécurisation d’infrastructures. Voir [HomeLab](/docs/projects/personnel/homelab) et [delpeuch.net](/docs/projects/personnel/delpeuch-net).
+**Système & Linux** Les notions de réseau, sécurité, configuration des pare-feu, équilibreurs de charge, proxies, HTTP/HTTPS et virtualisation ont été approfondies et mises en œuvre dans des projets d'auto-hébergement et de sécurisation d'infrastructures. Voir [HomeLab](/docs/projects/personnel/homelab) et [delpeuch.net](/docs/projects/personnel/delpeuch-net).
 
 ### <IconTitle logo="skill-icons:docker" name="03 Conteneurisation - Docker"/>
 
-[Conteneurisation](/blog/tags/containerization) Déploiement et supervision de stacks Docker Compose et Swarm, gestion centralisée des configurations, automatisation des mises à jour, documentation des architectures modulaires. Expérimentation de l’orchestration à l’échelle domestique, avec un accent sur la reproductibilité et la sécurité. Voir [HomeLab](/docs/projects/personnel/homelab).
+[Conteneurisation](/blog/tags/containerization) Déploiement et supervision de stacks Docker Compose et Swarm, gestion centralisée des configurations, automatisation des mises à jour, documentation des architectures modulaires. Expérimentation de l'orchestration à l'échelle domestique, avec un accent sur la reproductibilité et la sécurité. Voir [HomeLab](/docs/projects/personnel/homelab).
 
 ### <IconTitle logo="skill-icons:githubactions-light" name="04 CI/CD Pipeline"/>
 

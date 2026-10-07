@@ -2,6 +2,7 @@
 title: "Terraform : state remote avec S3"
 description: "Stocker le state Terraform dans S3 et verrouiller les exécutions concurrentes avec use_lockfile : pourquoi le state local ne suffit pas en équipe ou en CI/CD, et comment migrer."
 series: terraform
+series_order: 4
 tags: [iac, devops]
 ---
 
@@ -37,8 +38,8 @@ terraform {
 
 - `bucket` : nom du bucket S3 qui stocke le state. Ce bucket doit exister avant que `terraform init` soit lancé.
 - `key` : chemin de l'objet dans le bucket. Plusieurs configurations peuvent coexister dans le même bucket si elles utilisent des `key` distincts (`infra/network.tfstate`, `infra/database.tfstate`, `app/prod.tfstate`).
-- `encrypt = true` : active le chiffrement côté serveur (SSE-S3) sur l'objet. Sans cette option, le state est stocké en clair dans S3.
-- `use_lockfile = true` : active le verrouillage natif S3 via un fichier `.tflock` stocké dans le même bucket. Disponible depuis Terraform 1.10.
+- `encrypt = true` : demande explicitement le chiffrement côté serveur du state et du fichier de verrou. S3 chiffre déjà par défaut tout nouvel objet en SSE-S3 ; l'argument complémentaire `kms_key_id` permet un chiffrement SSE-KMS, dont l'accès à la clé se contrôle par IAM.
+- `use_lockfile = true` : active le verrouillage natif S3 via un fichier `.tflock` stocké dans le même bucket. Introduit à titre expérimental en Terraform 1.10, stable depuis la 1.11.
 
 ## Le verrouillage avec use_lockfile
 

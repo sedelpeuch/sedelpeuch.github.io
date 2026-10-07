@@ -266,7 +266,7 @@ En CI, la publication *Trusted Publishing* de PyPI (jeton OIDC émis par GitHub 
    poetry export -f requirements.txt --output requirements.txt
    ```
 
-5. **Mettre à jour régulièrement** les dépendances pour les correctifs de sécurité, idéalement via un outil comme Renovate ou Dependabot qui propose des pull requests
+5. **Mettre à jour régulièrement** les dépendances pour les correctifs de sécurité, de façon automatisable via un outil comme Renovate ou Dependabot qui propose des pull requests
 
 ## Conclusion
 
@@ -275,5 +275,5 @@ Poetry réunit déclaration, résolution, verrouillage, environnement virtuel et
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/standards-python" title="standards-python">Project template Python utilisant Poetry pour la gestion des dépendances, les tests (pytest) et les releases.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/standards-python" title="Standards Python">Template Python fondé sur Poetry pour la gestion des dépendances, les tests (pytest) et les releases.</ProjectLink>
 </ProjectLinks>

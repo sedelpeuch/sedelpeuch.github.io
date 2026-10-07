@@ -8,6 +8,8 @@ Kubectl est l'outil en ligne de commande officiel pour interagir avec les cluste
 
 <!--truncate-->
 
+Les composants auxquels ces commandes s'adressent (API server, etcd, kubelet) sont présentés dans l'article [Kubernetes](./2025-01-12-k8s-introduction.md).
+
 ## Configuration et contextes
 
 Kubectl lit sa configuration dans `~/.kube/config` (ou dans les fichiers listés par la variable `KUBECONFIG`, fusionnés). Un **contexte** associe un cluster (URL et CA de l'API server), un utilisateur (identifiants) et un namespace par défaut :
@@ -59,7 +61,7 @@ kubectl explain deployment.spec.strategy
 # Lister les ressources
 kubectl get pods
 kubectl get pods -o wide          # avec IP et nœud
-kubectl get pod mon-pod -o yaml   # manifest complet
+kubectl get pod mon-pod -o yaml   # manifeste complet
 
 # Tous les namespaces
 kubectl get pods -A
@@ -191,3 +193,13 @@ kubectl get pods -o custom-columns=NAME:.metadata.name,STATUS:.status.phase,IP:.
 
 kubectl get deployments -o custom-columns=NAME:.metadata.name,DESIRED:.spec.replicas,CURRENT:.status.replicas
 ```
+
+## Conclusion
+
+Kubectl donne accès à l'API server sous forme de commandes : `apply` pour l'état déclaré, `get`, `describe` et `logs` pour l'observation, `exec`, `debug` et `port-forward` pour l'accès aux pods, `rollout` et `scale` pour le cycle de vie. Les sorties `-o yaml`, `jsonpath` et `custom-columns` rendent ces informations exploitables par des scripts et des pipelines de CI.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Création idempotente du namespace et du secret de pull du registre dans les workflows de déploiement, par génération d'un manifeste (`kubectl create ... --dry-run=client -o yaml`) transmis à `kubectl apply -f -`.</ProjectLink>
+</ProjectLinks>

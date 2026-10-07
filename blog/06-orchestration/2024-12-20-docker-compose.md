@@ -234,8 +234,14 @@ docker compose up --watch
 
 - **Développement** : le fichier Compose documente et démarre toutes les dépendances d'un projet (base, cache, file de messages) en une commande.
 - **Tests d'intégration** : un environnement éphémère se crée et se détruit (`docker compose up -d --wait`, puis `docker compose down -v`) à chaque exécution de la CI. L'option `--wait` attend que les services soient `running` ou `healthy`.
-- **Déploiement sur un hôte unique** : avec `restart: unless-stopped`, des healthchecks et un reverse proxy, Compose suffit pour des services auto-hébergés.
+- **Déploiement sur un hôte unique** : avec `restart: unless-stopped`, des healthchecks et un reverse proxy, Compose suffit pour des services auto-hébergés. Le déploiement automatisé d'un dépôt de stacks Compose par GitHub Actions est décrit dans l'article [GitHub Actions : déploiement Docker Compose](../04-ci-cd/2026-08-23-github-actions-deploiement-compose.md).
 
 Compose reste limité à un seul hôte : pas de répartition sur plusieurs machines, pas de replanification en cas de panne de l'hôte, pas de mise à jour progressive native. Ces besoins relèvent d'un orchestrateur : [Docker Swarm](./2026-02-15-docker-swarm.md), qui réutilise le format Compose, ou [Kubernetes](./2025-01-12-k8s-introduction.md).
 
 La [documentation officielle](https://docs.docker.com/compose/) et la [référence du format](https://docs.docker.com/reference/compose-file/) détaillent l'ensemble des clés disponibles.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Un dossier par stack avec son fichier Compose, déployé par `docker compose up -d` sur un hôte unique : healthchecks, réseaux externes partagés avec le reverse proxy, volumes `external: true` référencés entre stacks.</ProjectLink>
+</ProjectLinks>

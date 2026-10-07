@@ -35,7 +35,7 @@ La référence suit le même pattern que pour les ressources, avec le préfixe `
 data.<type>.<nom>.<attribut>
 ```
 
-Par convention, les data sources sont regroupés dans un fichier `data.tf` séparé, selon une convention communautaire établie, non imposée par HashiCorp, mais qui améliore la lisibilité dès que la configuration grossit.
+Les data sources sont souvent regroupés dans un fichier `data.tf` séparé : convention communautaire, non imposée par HashiCorp, qui améliore la lisibilité dès que la configuration grossit.
 
 ## Résoudre des dépendances dynamiques
 
@@ -98,7 +98,7 @@ resource "aws_s3_bucket" "assets" {
 Le nom effectif devient `123456789012-mon-bucket`. La même configuration déployée sur deux comptes AWS distincts produit deux buckets aux noms différents sans aucune modification.
 
 :::info LocalStack
-`skip_requesting_account_id = true` dans la configuration du provider LocalStack désactive la résolution de l'identité. `aws_caller_identity` retourne `000000000000` en local. Il faut également exposer le service STS dans les endpoints du provider et le démarrer via `SERVICES=sts localstack start`.
+`aws_caller_identity` interroge l'API STS (`GetCallerIdentity`) même lorsque `skip_requesting_account_id = true` est positionné dans la configuration du provider : cette option ne concerne que la résolution de l'identité au démarrage du provider. LocalStack répond avec le compte fictif `000000000000`. `tflocal` redirige STS vers LocalStack comme les autres services ; avec `terraform` seul, il faut ajouter `sts = "http://localhost:4566"` au bloc `endpoints` du provider.
 :::
 
 ## Filtrer parmi des ressources existantes
@@ -146,3 +146,9 @@ Ce comportement est intentionnel. Si un data source cible une ressource externe 
 Cette règle vaut pour les data sources qui désignent un objet unique (`aws_vpc`, `aws_ami`, `aws_acm_certificate`). Les data sources au pluriel (`aws_subnets`, `aws_instances`) renvoient une liste, éventuellement vide, sans erreur : une contrainte explicite (`postcondition` dans un bloc `lifecycle`, ou `length(...) > 0` dans une validation) est alors nécessaire pour transformer une absence en échec.
 
 Les data sources permettent aussi de lire les sorties d'une autre configuration Terraform (`terraform_remote_state`), décrites dans l'article [Terraform remote state](./2026-07-11-terraform-remote-state.md).
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Fichier `data.tf` regroupant `aws_availability_zones`, qui répartit les subnets sur deux AZs sans nom codé en dur, et `aws_caller_identity`, dont l'identifiant de compte préfixe le nom du bucket S3 des avatars et désigne le compte dans la politique d'approbation d'un rôle IAM.</ProjectLink>
+</ProjectLinks>

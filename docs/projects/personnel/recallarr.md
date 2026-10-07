@@ -1,5 +1,5 @@
 ---
-title: Recallarr
+title: "Recallarr"
 description: "Journal personnel de ce qui a été regardé dans Jellyfin, qui survit au nettoyage de la médiathèque : synchronisation par webhook et réconciliation quotidienne, règles de note et de favori, devenir de chaque titre, interface HTMX."
 tags: [python, fastapi, htmx, sqlite, docker, jellyfin, self-hosting]
 ---
@@ -132,5 +132,12 @@ Le journal sert aussi de filtre : toutes les 15 minutes, les suggestions automat
 L'application tourne en conteneur sur le homelab, à côté de Jellyfin, et ne dépend d'aucune base externe. La CI GitHub Actions vérifie les types, exécute la centaine de tests (règles, synchronisation, clients d'API remplacés par des doubles, routes web) et publie l'image sur GitHub Container Registry. L'interface suit la charte graphique commune aux applications du homelab : thème sombre, un seul accent de couleur, nom en deux tons.
 
 Un client d'API tiers reste une dépendance mouvante : une montée de version de l'outil de demandes a rendu obligatoire l'auteur d'un blocage, ce qui a cassé le blocage automatique jusqu'à la correction du client.
+
+## Résultats
+
+- **Mémoire du vu qui survit au nettoyage** : un titre purgé de la médiathèque reste dans le journal avec sa note, et peut être redemandé ou bloqué.
+- **Plus de titre mal noté qui revient** : un titre noté 1 ou 2 étoiles est bloqué dans l'outil de demandes, et les suggestions qui portent sur un titre déjà vu ou bloqué sont écartées automatiquement.
+- **Note et favori cohérents** entre Jellyfin, le journal et le nettoyage, y compris depuis les clients TV qui n'affichent pas les notes.
+- **Livrée en une journée**, en trois versions successives, avec une centaine de tests exécutés par la CI.
 
 Le dépôt est privé.

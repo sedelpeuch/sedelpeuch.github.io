@@ -1,5 +1,5 @@
 ---
-title: RoboCup@Home 2023 - CATIE Robotics
+title: "RoboCup@Home 2023 - CATIE Robotics"
 tags: [robotique, robocup, ros, ia, vision, nlu]
 description: "3e place mondiale à la RoboCup@Home 2023 à Bordeaux avec Epock, robot TIAGo de CATIE Robotics : rôle de Team Leader, middleware central du robot sous ROS, interaction et chaîne vocale 100 % hors ligne."
 ---
@@ -46,7 +46,7 @@ La difficulté de la RoboCup@Home ne vient pas seulement de la complexité des �
     Le principal problème rencontré lors des éditions précédentes était la sur-activation : la chaîne interprétait le bruit ambiant comme de la parole. La solution adoptée corrèle l'activation du microphone avec les états du robot : le système n'écoute que lorsqu'il est dans un état qui l'y autorise, jamais en continu.
   </TabItem>
   <TabItem value="taches" label="Tâches">
-    Chaque épreuve est une machine à états dédiée qui orchestre les appels aux modules de navigation, perception et langage selon les points atteignables et l'avancement réel : Receptionist, Storing Groceries, Restaurant, Carry My Luggage, Stickler of the Rules. La stratégie de points, qui consiste à décider quelles sous-tâches tenter et dans quel ordre, est une partie à part entière du travail de préparation.
+    Chaque épreuve est une machine à états dédiée qui orchestre les appels aux modules de navigation, perception et langage selon les points atteignables et l'avancement réel : Receptionist, Storing Groceries, Restaurant, Carry My Luggage, Stickler for the Rules. La stratégie de points, qui consiste à décider quelles sous-tâches tenter et dans quel ordre, est une partie à part entière du travail de préparation.
   </TabItem>
 </Tabs>
 

@@ -1,5 +1,5 @@
 ---
-title: BlueNav - Jumeau numérique bateau autonome
+title: "BlueNav - Jumeau numérique bateau autonome"
 description: "Jumeau numérique du BlueBoat, navire autonome de 12 tonnes destiné aux voies fluviales : modèle physique, environnement fluvial et capteurs simulés sous ROS 2 et Gazebo, pour valider les algorithmes de navigation de BlueNav avant la mise à l'eau."
 tags: [ros2, gazebo, simulation, docker, robotique]
 ---
@@ -31,7 +31,7 @@ J'ai développé l'environnement de simulation en trois axes indépendants :
 
 <Tabs>
   <TabItem value="navire" label="Modèle du navire">
-    La modélisation physique du navire en URDF, construite à partir des plans fournis par BlueNav, reproduit la géométrie et les propriétés dynamiques de l'embarcation. Un collègue a ensuite contribué à la description du second bateau modélisé, le Spirit.
+    La modélisation physique du navire en URDF, construite à partir des plans fournis par BlueNav, reproduit la géométrie et les propriétés dynamiques de l'embarcation. Le simulateur permet de choisir le bateau au lancement : un collègue y a ajouté un second modèle de bateau, le Spirit.
   </TabItem>
   <TabItem value="environnement" label="Environnement fluvial">
     La simulation de l'environnement fluvial couvre les vagues, le vent et les courants, avec des paramètres configurables pour mettre les algorithmes face à des conditions représentatives du terrain d'opération de BlueNav.

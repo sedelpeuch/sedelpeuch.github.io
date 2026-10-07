@@ -4,7 +4,7 @@ description: "Gérer la configuration et les credentials dans Kubernetes : Confi
 tags: [orchestration, devops]
 ---
 
-Une image Docker doit être identique entre les environnements : dev, staging, prod. Ce qui change entre environnements, c'est la configuration : URL de base de données, niveau de log, clés API. Kubernetes fournit deux ressources pour externaliser cette configuration : ConfigMap pour les données non sensibles, Secret pour les credentials.
+Une image Docker doit être identique entre les environnements : dev, staging, prod. Ce qui change entre environnements, c'est la configuration : URL de base de données, niveau de log, clés API. Kubernetes fournit deux ressources pour externaliser cette configuration, en complément des [composants de base](./2025-01-12-k8s-basic-components.md) : ConfigMap pour les données non sensibles, Secret pour les credentials.
 
 <!--truncate-->
 
@@ -98,7 +98,7 @@ kubectl create secret generic db-credentials \
   --from-literal=password=secret123
 ```
 
-Le champ `stringData` d'un manifeste accepte aussi des valeurs en clair, que l'API server encode lui-même. Dans les deux cas, un manifeste de Secret ne doit pas être versionné tel quel dans Git : des outils comme Sealed Secrets (Secret chiffré pour une clé détenue par le cluster), SOPS (fichier chiffré avec une clé KMS ou age) ou External Secrets Operator (synchronisation depuis Vault, AWS Secrets Manager...) permettent de gérer les Secrets de façon déclarative sans exposer leur valeur.
+Le champ `stringData` d'un manifeste accepte aussi des valeurs en clair, que l'API server encode lui-même. Dans les deux cas, un manifeste de Secret ne doit pas être versionné tel quel dans Git : des outils comme Sealed Secrets (Secret chiffré pour une clé détenue par le cluster), SOPS (fichier chiffré avec une clé KMS ou age), [git-crypt](../08-iac/2026-07-26-git-crypt.md) (fichiers chiffrés de façon transparente dans le dépôt) ou External Secrets Operator (synchronisation depuis Vault, AWS Secrets Manager...) permettent de gérer les Secrets de façon déclarative sans exposer leur valeur.
 
 ### Injection dans un pod
 
@@ -145,3 +145,9 @@ Monter un Secret en volume est préférable pour les certificats TLS ou les fich
 | Visibilité | `kubectl get configmap -o yaml` | `kubectl get secret -o yaml` (base64) |
 
 Critère de choix : tout ce qui ne doit pas apparaître dans un log ou un diff Git va dans un Secret, le reste dans un ConfigMap. Les deux ressources acceptent le champ `immutable: true`, qui interdit toute modification ultérieure : le kubelet cesse alors de surveiller l'objet, ce qui réduit la charge sur l'API server dans les grands clusters, et une modification accidentelle devient impossible (il faut créer un nouvel objet, sous un nouveau nom).
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Configuration nginx du frontend générée dans un ConfigMap, avec une annotation de checksum sur le Deployment qui déclenche un rolling update à chaque modification, et mot de passe de la base lu depuis un Secret, jamais depuis un ConfigMap.</ProjectLink>
+</ProjectLinks>

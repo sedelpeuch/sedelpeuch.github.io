@@ -108,7 +108,7 @@ old.example.com → https://new.example.com/path  (302 temporaire)
 | Domain Names | domaine source |
 | Scheme | `https` |
 | Forward Domain Name / IP | domaine ou IP de destination |
-| HTTP Code | `301` (SEO) ou `302` (temporaire) |
+| HTTP Code | `301` (permanent) ou `302` (temporaire) |
 
 ## Stream Hosts (proxy TCP/UDP)
 
@@ -127,7 +127,7 @@ Exemple : exposer PostgreSQL sur le port 5432 de la machine hôte tout en gardan
 
 ## Configuration avancée
 
-L'onglet **Advanced** de chaque Proxy Host permet d'injecter des directives Nginx brutes. Nginx Proxy Manager les insère au niveau du bloc `server` généré : des blocs `location` supplémentaires peuvent y être déclarés, mais pas un second `location /`, déjà créé par NPM (Nginx refuse deux `location` identiques dans un même `server`). Le bloc `server` généré définit les variables `$forward_scheme`, `$server` et `$port` à partir des champs du Proxy Host ; toute `location` personnalisée doit les réutiliser dans son `proxy_pass`, sinon Nginx tente de servir les fichiers depuis son propre système de fichiers.
+L'onglet **Advanced** de chaque Proxy Host permet d'injecter des directives Nginx brutes. Nginx Proxy Manager les insère au niveau du bloc `server` généré : des blocs `location` supplémentaires peuvent y être déclarés. Si la configuration avancée contient un `location /` (ou si une Custom Location porte le chemin `/`), NPM n'ajoute pas sa propre `location /` : le bloc personnalisé remplace alors entièrement celui par défaut et doit reprendre lui-même le `proxy_pass` et les en-têtes de proxy (`include conf.d/include/proxy.conf;`). Le bloc `server` généré définit les variables `$forward_scheme`, `$server` et `$port` à partir des champs du Proxy Host ; toute `location` personnalisée doit les réutiliser dans son `proxy_pass`, sinon Nginx tente de servir les fichiers depuis son propre système de fichiers.
 
 ```nginx
 # Exemple : en-têtes de cache longue durée pour les assets versionnés
@@ -135,6 +135,9 @@ location ~* \.(js|css|png|jpg|jpeg|gif|ico|woff2|svg)$ {
     proxy_pass $forward_scheme://$server:$port;
     expires 1y;
     add_header Cache-Control "public, immutable";
+    # add_header local : ceux du niveau server ne sont plus hérités, il faut les répéter
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header Content-Security-Policy "default-src 'self'";
     access_log off;
 }
 
@@ -145,6 +148,8 @@ client_max_body_size 100M;
 add_header X-Frame-Options "SAMEORIGIN";
 add_header Content-Security-Policy "default-src 'self'";
 ```
+
+Les directives `add_header` ne sont héritées du niveau `server` que si la `location` n'en déclare aucune (voir [Nginx](./2024-12-20-nginx.md#terminaison-ssl)) : dès que la `location` des assets ajoute `Cache-Control`, les en-têtes de sécurité déclarés au niveau `server` disparaissent de ses réponses, d'où leur répétition dans le bloc. Le même mécanisme touche la `location /` générée : lorsque HSTS est activé, NPM y place un `add_header Strict-Transport-Security`, et les en-têtes déclarés dans l'onglet Advanced ne s'appliquent plus aux réponses proxifiées par cette `location`.
 
 La configuration générée par NPM est stockée dans `./data/nginx/`. Elle est lisible, mais ne doit pas être modifiée directement, car elle est régénérée à chaque modification via l'UI.
 
@@ -177,3 +182,7 @@ Nginx Proxy Manager simplifie les cas courants mais n'expose pas toutes les dire
 - Configurations multi-tenant complexes
 
 Pour ces cas, utiliser [Nginx](./2024-12-20-nginx.md) directement, ou [Traefik](./2025-06-09-traefik.md) qui offre une découverte dynamique des services.
+
+## Conclusion
+
+Nginx Proxy Manager couvre les besoins courants d'un reverse proxy (proxy hosts, certificats Let's Encrypt, access lists et redirections) sans écriture de configuration Nginx. Les cas qui sortent de ce cadre se traitent par l'onglet Advanced, en tenant compte des règles d'héritage de Nginx, ou par un passage à une configuration Nginx écrite à la main.

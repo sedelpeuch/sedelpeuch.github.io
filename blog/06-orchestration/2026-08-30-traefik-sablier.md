@@ -5,7 +5,7 @@ series: homelab
 tags: [orchestration, devops]
 ---
 
-Sur un hôte Docker, certains services consomment des ressources en permanence pour un usage de quelques minutes par semaine : une application JVM embarquant un moteur de conversion bureautique occupe environ 1 Go de RAM au repos, une application web accompagnée de sa base PostgreSQL et de son cache Redis mobilise trois conteneurs pour une consultation mensuelle. Kubernetes traite ce cas par le scale-to-zero ; avec Docker seul, aucun mécanisme natif n'arrête un conteneur inactif ni ne le redémarre à la requête suivante. Sablier comble ce manque : il arrête un groupe de conteneurs après une période sans trafic et le redémarre à la première requête entrante, en s'intégrant au reverse proxy.
+Sur un hôte Docker, certains services consomment des ressources en permanence pour un usage de quelques minutes par semaine : une application JVM embarquant un moteur de conversion bureautique occupe environ 1 Go de RAM au repos, une application web accompagnée de sa base PostgreSQL et de son cache Redis mobilise trois conteneurs pour une consultation mensuelle. Dans l'écosystème Kubernetes, Knative ou KEDA traitent ce cas par le scale-to-zero ; avec Docker seul, aucun mécanisme natif n'arrête un conteneur inactif ni ne le redémarre à la requête suivante. Sablier comble ce manque : il arrête un groupe de conteneurs après une période sans trafic et le redémarre à la première requête entrante, en s'intégrant au reverse proxy.
 
 <!--truncate-->
 
@@ -13,7 +13,7 @@ Sur un hôte Docker, certains services consomment des ressources en permanence p
 
 ### Principe
 
-Le scale-to-zero ramène à zéro le nombre d'instances d'un service inactif, puis le relance à la demande. Deux mécanismes sont nécessaires : un **compteur d'activité** qui décide de l'arrêt, et un **point d'interception** des requêtes qui déclenche le réveil et fait patienter le client pendant le démarrage (le « cold start »).
+Le scale-to-zero ramène à zéro le nombre d'instances d'un service inactif, puis le relance à la demande. Deux mécanismes sont nécessaires : un **compteur d'activité** qui décide de l'arrêt, et un **point d'interception** des requêtes qui déclenche le réveil et fait patienter le client pendant le démarrage (le *cold start*).
 
 En Kubernetes, **Knative Serving** place un activator devant les services réduits à zéro, qui met les requêtes en tampon pendant le démarrage des pods ; **KEDA** ramène un Deployment à zéro selon des sources d'événements, et son add-on HTTP ajoute un intercepteur équivalent.
 
@@ -225,7 +225,7 @@ La stratégie `blocking` attend que le groupe soit prêt (au plus `timeout`) ; l
 
 ## Pièges
 
-### Les prunes suppriment les conteneurs endormis
+### Les commandes prune suppriment les conteneurs endormis
 
 Pour Docker, un conteneur endormi par Sablier est un conteneur `exited` comme un autre. `docker container prune` et `docker system prune` suppriment tous les conteneurs arrêtés : après un nettoyage, `docker start` échoue sur un conteneur qui n'existe plus et le service ne peut plus se réveiller. Le symptôme apparaît de façon différée et sans lien apparent, par exemple après le déploiement d'une autre stack qui se termine par un prune.
 
@@ -302,7 +302,11 @@ La sonde doit viser l'URL **interne** du conteneur (nom de service sur le résea
       replacement: blackbox-exporter:9115
 ```
 
-L'expression sert ensuite de règle d'alerte (`expr: ... > 0` avec un `for:` de quelques minutes, qui absorbe la fenêtre de démarrage pendant laquelle le groupe peut être compté actif sans que l'application réponde encore ; voir l'article [Alertmanager](../07-monitoring/2026-09-20-prometheus-alertmanager.md)), ou d'endpoint pour un outil d'uptime qui compare le résultat de l'API Prometheus à 0. Limite : si la série `probe_success` disparaît (exporter arrêté, cible retirée), le produit est vide et aucune alerte ne se déclenche. Sablier lui-même doit rester surveillé par un check classique : s'il tombe, plus aucun service ne se réveille.
+L'expression sert ensuite de règle d'alerte (`expr: ... > 0` avec un `for:` de quelques minutes, qui absorbe la fenêtre de démarrage pendant laquelle le groupe peut être compté actif sans que l'application réponde encore ; voir l'article [Alertmanager](../07-monitoring/2026-09-20-prometheus-alertmanager.md)), ou d'endpoint pour un outil d'uptime (comme [Gatus](../07-monitoring/2026-10-03-gatus.md)) qui compare le résultat de l'API Prometheus à 0. Limite : si la série `probe_success` disparaît (exporter arrêté, cible retirée), le produit est vide et aucune alerte ne se déclenche. Sablier lui-même doit rester surveillé par un check classique : s'il tombe, plus aucun service ne se réveille.
+
+## Conclusion
+
+Sablier apporte à Docker le scale-to-zero que Knative et KEDA fournissent à Kubernetes, au prix de quatre prérequis : Traefik v3.6 ou plus récent avec `allownonrunning`, un healthcheck sur chaque conteneur du groupe, un middleware d'authentification placé avant lui, et un monitoring qui tient compte de l'état de sommeil. Le risque principal ne vient pas de Sablier mais de l'hôte : tout outil qui considère un conteneur arrêté ou un réseau sans conteneur actif comme un déchet rend le réveil impossible.
 
 ## Application / Projet lié
 
@@ -310,7 +314,3 @@ L'expression sert ensuite de règle d'alerte (`expr: ... > 0` avec un `for:` de 
   <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Scale-to-zero de plusieurs stacks à usage sporadique (application web avec base de données, stockage objet et cache, outil de dashboards, boîte à outils PDF sur JVM), derrière un middleware d'authentification, avec détection des pannes réelles par Prometheus et blackbox_exporter.</ProjectLink>
   <ProjectLink to="/docs/projects/personnel/body_analysis" title="Body Analysis">Application utilisée quelques minutes par semaine, arrêtée après 30 minutes d'inactivité et redémarrée à la première requête, ce qui libère la mémoire occupée au repos par ses conteneurs.</ProjectLink>
 </ProjectLinks>
-
-## Conclusion
-
-Sablier apporte à Docker le scale-to-zero que Knative et KEDA fournissent à Kubernetes, au prix de quatre prérequis : Traefik v3.6 ou plus récent avec `allownonrunning`, un healthcheck sur chaque conteneur du groupe, un middleware d'authentification placé avant lui, et un monitoring qui tient compte de l'état de sommeil. Le risque principal ne vient pas de Sablier mais de l'hôte : tout outil qui considère un conteneur arrêté ou un réseau sans conteneur actif comme un déchet rend le réveil impossible.

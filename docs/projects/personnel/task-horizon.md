@@ -1,7 +1,7 @@
 ---
-title: TaskHorizon
+title: "TaskHorizon"
 tags: [fastapi, kubernetes, helm, terraform, aws, eks, cicd, github-actions, python, react]
-description: Application Kanban FastAPI + React déployée sur AWS EKS via Terraform, avec un chart Helm multi-environnement et un pipeline CI/CD GitHub Actions du commit au cluster.
+description: "Application Kanban FastAPI + React déployée sur AWS EKS via Terraform, avec un chart Helm multi-environnement et un pipeline CI/CD GitHub Actions du commit au cluster."
 ---
 
 <ProjectMeta
@@ -73,7 +73,7 @@ Le secret de signature JWT et le mot de passe du compte administrateur ne sont j
 
 ## Déploiement Kubernetes
 
-Un chart Helm unique gère trois environnements (`taskhorizon-test`, `taskhorizon-staging`, `taskhorizon-prod`) cohabitant dans le même namespace. Chaque ressource porte le nom de la release en préfixe, et les `selectorLabels` incluent `app.kubernetes.io/instance` : sans cette discipline, un Service d'un environnement pourrait router du trafic vers les pods d'un autre.
+Un chart Helm unique gère trois environnements, chacun déployé comme une release distincte (`taskhorizon-test`, `taskhorizon-staging`, `taskhorizon-prod`). Les pipelines installent test dans le namespace `taskhorizon` et staging dans `taskhorizon-staging`, mais le chart ne compte pas sur cette séparation : chaque ressource porte le nom de la release en préfixe, et les `selectorLabels` incluent `app.kubernetes.io/instance`. Sans cette discipline, deux releases installées dans le même namespace entreraient en conflit de noms, et un Service d'un environnement pourrait router du trafic vers les pods d'un autre.
 
 La divergence la plus structurante entre environnements porte sur la persistance des données et la disponibilité :
 
@@ -95,7 +95,7 @@ Le frontend nginx proxifie `/api/` vers le service API interne, dont l'adresse d
 
 Le cluster tourne sur AWS EKS (région `eu-west-3`), provisionné par Terraform plutôt que créé manuellement dans la console. Le réseau comprend un VPC dédié avec quatre sous-réseaux répartis sur deux zones de disponibilité (deux publics, deux privés), condition requise pour la haute disponibilité d'EKS et de RDS. Les sous-réseaux publics portent les tags `kubernetes.io/role/elb` et les privés `kubernetes.io/role/internal-elb`, qui indiquent au contrôleur de Load Balancer AWS où créer les répartiteurs de charge externes ou internes. Une NAT Gateway unique permet aux nœuds situés en sous-réseau privé de sortir vers Internet sans y être exposés directement.
 
-L'accès aux avatars utilisateurs illustre le choix d'éviter les identifiants statiques : ils sont stockés dans un bucket S3 dont l'accès public est bloqué à quatre niveaux (ACL, policy de bucket, et leurs équivalents « ignore »), et dont la policy n'autorise qu'un unique rôle IAM. Ce rôle est assumé par les pods de l'API via IRSA (IAM Roles for Service Accounts) : le ServiceAccount Kubernetes de l'API est fédéré à ce rôle par le fournisseur OIDC du cluster, ce qui permet aux pods d'obtenir des permissions S3 sans qu'aucune clé d'accès ne soit stockée dans le cluster.
+L'accès aux avatars utilisateurs illustre le choix d'éviter les identifiants statiques : ils sont stockés dans un bucket S3 dont l'accès public est bloqué par les quatre réglages S3 Block Public Access (blocage et ignorance des ACL publiques, blocage des policies publiques, restriction des buckets publics), et dont la policy n'autorise qu'un unique rôle IAM. Ce rôle est assumé par les pods de l'API via IRSA (IAM Roles for Service Accounts) : le ServiceAccount Kubernetes de l'API est fédéré à ce rôle par le fournisseur OIDC du cluster, ce qui permet aux pods d'obtenir des permissions S3 sans qu'aucune clé d'accès ne soit stockée dans le cluster.
 
 L'instance RDS est provisionnée de façon conditionnelle (`enable_rds`), chiffrée au repos, avec une politique `prevent_destroy` pour éviter une suppression accidentelle par un `terraform apply` mal ciblé.
 
@@ -110,6 +110,14 @@ Trois workflows GitHub Actions couvrent le cycle du commit à la production :
 **`deploy-staging`** se déclenche sur un tag sémantique (`vX.Y.Z`) : construction des images versionnées, application Terraform sur l'environnement staging, récupération de l'endpoint RDS en sortie Terraform, puis déploiement Helm avec injection des secrets (JWT, mot de passe administrateur, mot de passe de base de données) via `--set`. Le passage par un tag plutôt qu'un déclenchement automatique sur `master` fait de la promotion vers staging un acte volontaire.
 
 Il n'existe pas de workflow `deploy-prod` : le déploiement en production reste manuel, ce qui est cohérent avec le choix de provisionner l'instance RDS et les secrets de production hors du pipeline plutôt que de les faire transiter par GitHub Actions.
+
+## Résultats
+
+- **Deux environnements livrés automatiquement sur AWS EKS** : test à chaque push sur `master`, staging à chaque tag sémantique, infrastructure Terraform et release Helm comprises.
+- **Un chart unique pour trois topologies**, de la base jetable de test à la production autoscalée sur RDS, sans collision possible entre releases.
+- **Aucune clé d'accès statique ni secret versionné** : accès S3 par IRSA, secrets injectés au déploiement ou provisionnés hors bande.
+- **Des pull requests vérifiées avant fusion** (tests, migrations en attente, types, build), avec un résultat lisible directement sur la pull request.
+- **Une vingtaine d'articles du blog** tirés des concepts AWS, Terraform, Kubernetes et CI/CD mis en pratique sur le projet.
 
 ## Liens
 

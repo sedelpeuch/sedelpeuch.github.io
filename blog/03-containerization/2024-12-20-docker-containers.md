@@ -13,8 +13,8 @@ Une image Docker est un artefact statique. Un conteneur est une image en cours d
 Une image est une pile de couches en lecture seule. Chaque instruction qui modifie le système de fichiers (`RUN`, `COPY`, `ADD`) ajoute une couche ; `CMD`, `ENV` ou `EXPOSE` ne modifient que les métadonnées de l'image :
 
 ```dockerfile
-# Image de base : ~7 Mo
-FROM alpine:3.20
+# Image de base : ~8 Mo
+FROM alpine:3.24
 # Couche de ~50 Mo
 RUN apk add --no-cache python3
 # Couche de quelques Ko
@@ -74,7 +74,7 @@ docker run \
 | `-v postgres_data:/var/lib/postgresql/data` | montage d'un volume nommé |
 | `--restart unless-stopped` | redémarrage automatique, sauf après un `docker stop` explicite |
 
-Un commentaire ne peut pas suivre la barre oblique inverse de continuation de ligne en shell : `\` doit être le dernier caractère de la ligne, sinon la commande est interrompue.
+Les options sont décrites dans ce tableau plutôt qu'en commentaire dans la commande : en shell, un commentaire ne peut pas suivre la barre oblique inverse de continuation de ligne, car `\` doit être le dernier caractère de la ligne, sinon la commande est interrompue.
 
 Le signal `SIGTERM` envoyé par `docker stop` est reçu par le processus de PID 1 du conteneur. Si ce processus est un shell (`CMD python app.py` en forme *shell*, exécutée via `/bin/sh -c`), le signal n'est pas relayé à l'application, qui est tuée par `SIGKILL` à l'expiration du délai. La forme *exec* (`CMD ["python", "app.py"]`) ou l'option `--init` évitent ce problème.
 
@@ -93,7 +93,7 @@ docker run -d --network myapp --name api myapp:latest
 # "api" peut joindre "db" via db:5432
 ```
 
-`docker network ls` liste les réseaux, `docker inspect <conteneur>` montre les détails réseau d'un conteneur.
+`docker network ls` liste les réseaux, `docker inspect <conteneur>` montre les détails réseau d'un conteneur. [Docker Compose](../06-orchestration/2024-12-20-docker-compose.md) crée automatiquement un réseau dédié par projet, sur lequel chaque service est joignable par son nom.
 
 ## Volumes
 
@@ -111,7 +111,7 @@ docker run -v /home/user/data:/data myapp:latest
 docker run --tmpfs /tmp myapp:latest
 ```
 
-Les volumes nommés sont préférés en production : Docker gère leur emplacement (`/var/lib/docker/volumes/`), ils survivent aux `docker rm`, et ils sont plus performants que les bind mounts sur macOS et Windows.
+Les volumes nommés sont préférés en production : Docker gère leur emplacement (`/var/lib/docker/volumes/`), ils survivent aux `docker rm`, et ils sont plus performants que les bind mounts sur macOS et Windows. Docker ne fournit en revanche aucune commande d'export : leur sauvegarde est traitée dans [Docker : sauvegarde des volumes](./2026-09-13-docker-volume-backup.md).
 
 ## Commandes de gestion courantes
 
@@ -132,3 +132,9 @@ docker volume prune -a      # inclure aussi les volumes nommés non utilisés
 `docker system prune` ne touche pas aux volumes sans l'option `--volumes`. Depuis Docker Engine 23, `docker volume prune` ne supprime plus que les volumes anonymes : un volume nommé non monté (par exemple `postgres_data` après un `docker compose down`) n'est supprimé qu'avec `-a`.
 
 `docker system df` affiche l'espace disque utilisé par Docker (images, conteneurs, volumes, cache de build).
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Conteneurs d'une trentaine de stacks Docker Compose reliés par des réseaux définis explicitement, état persistant dans des volumes nommés, dont les plus critiques sont sauvegardés hors de l'hôte.</ProjectLink>
+</ProjectLinks>

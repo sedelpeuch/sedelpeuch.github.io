@@ -4,7 +4,7 @@ description: "Prometheus, système de monitoring et d'alerting open source de l'
 tags: [monitoring, devops]
 ---
 
-Prometheus est un système de monitoring et d'alerting open source, standard de fait pour les métriques dans l'écosystème Cloud Native. Conçu initialement chez SoundCloud en 2012, il est aujourd'hui un projet gradué de la Cloud Native Computing Foundation (CNCF). Cet article couvre son architecture, son installation, son modèle de données et les bases du langage de requête PromQL.
+Détecter une dégradation (latence qui augmente, disque qui se remplit, taux d'erreur qui grimpe) avant qu'elle n'atteigne les utilisateurs suppose de mesurer en continu l'état de dizaines de services et de machines, puis d'interroger ces mesures dans le temps pour les comparer et les agréger. Prometheus, système de monitoring et d'alerting open source, est le standard de fait pour ces métriques dans l'écosystème Cloud Native. Conçu initialement chez SoundCloud en 2012, il est aujourd'hui un projet gradué de la Cloud Native Computing Foundation (CNCF). Cet article couvre son architecture, son installation, son modèle de données et les bases du langage de requête PromQL.
 
 <!--truncate-->
 
@@ -79,7 +79,7 @@ wget "https://github.com/prometheus/prometheus/releases/download/v${VERSION}/pro
 tar xvfz "prometheus-${VERSION}.linux-amd64.tar.gz"
 cd "prometheus-${VERSION}.linux-amd64"
 
-# Lancer Prometheus (données dans ./data, rétention de 15 jours par défaut)
+# Lancer Prometheus (données dans ./data, rétention portée à 30 jours au lieu des 15 par défaut)
 ./prometheus --config.file=prometheus.yml --storage.tsdb.retention.time=30d
 ```
 
@@ -393,20 +393,20 @@ predict_linear(node_filesystem_avail_bytes[1h], 4*3600) < 0
 
 Prometheus embarque une interface web accessible sur `http://localhost:9090` :
 
-### Onglet Graph
+### Page Query
 
-Permet d'exécuter des requêtes PromQL et de visualiser les résultats sous forme de graphique ou de tableau.
+Permet d'exécuter des requêtes PromQL et de visualiser les résultats dans la vue Table (valeurs instantanées) ou Graph (évolution sur une plage de temps).
 
-### Onglet Alerts
+### Page Alerts
 
 Affiche l'état des règles d'alerting et les alertes actives.
 
-### Onglet Status
+### Menu Status
 
-- **Targets** : état des cibles scrapées (up/down)
+- **Target health** : état des cibles scrapées (up/down)
 - **Configuration** : configuration actuelle de Prometheus
-- **Rules** : règles d'alerting et d'enregistrement chargées
-- **Service Discovery** : cibles découvertes dynamiquement
+- **Rule health** : règles d'alerting et d'enregistrement chargées
+- **Service discovery** : cibles découvertes dynamiquement
 
 ## Découverte de services
 
@@ -490,7 +490,7 @@ groups:
           severity: warning
 ```
 
-Une alerte dont l'expression renvoie un résultat passe à l'état `pending` ; si elle reste vraie pendant la durée `for`, elle passe à `firing` et Prometheus l'envoie à Alertmanager, qui se charge du groupage et des notifications. `promtool check rules rules/alerts.yml` valide la syntaxe avant rechargement.
+Une alerte dont l'expression renvoie un résultat passe à l'état `pending` ; si elle reste vraie pendant la durée `for`, elle passe à `firing` et Prometheus l'envoie à Alertmanager, qui se charge du groupage et des notifications (voir [Prometheus : Alertmanager](./2026-09-20-prometheus-alertmanager.md)). `promtool check rules rules/alerts.yml` valide la syntaxe avant rechargement.
 
 ## Bonnes pratiques
 
@@ -517,13 +517,6 @@ Une alerte dont l'expression renvoie un résultat passe à l'état `pending` ; s
    - Éviter les alertes redondantes
    - Utiliser `for` pour ignorer les pics transitoires, et les silences d'Alertmanager pour les maintenances planifiées
 
-## Application / Projet lié
-
-<ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Prometheus comme backend métrique du cluster pour monitorer tous les services hébergés (Grafana, Portainer, nodes Kubernetes).</ProjectLink>
-  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC - Runners CI/CD auto-hébergés sur Kubernetes">Collecte par le Prometheus du cluster des métriques du listener et du contrôleur ARC (jobs, runners occupés et inactifs, durées de démarrage et d'exécution), qui ont guidé le relèvement du plafond de 20 à 60 runners.</ProjectLink>
-</ProjectLinks>
-
 ## Conclusion
 
 Prometheus repose sur quelques principes : collecte en mode pull, séries temporelles identifiées par des labels, stockage local et requêtes PromQL. Leur compréhension, en particulier le fonctionnement de `rate()` et le coût de la cardinalité, conditionne la pertinence des tableaux de bord et des alertes. Les logs, complémentaires des métriques, sont traités dans l'article [Loki](./2025-11-21-loki-logs-management.md).
@@ -531,7 +524,7 @@ Prometheus repose sur quelques principes : collecte en mode pull, séries tempor
 Sujets complémentaires :
 
 - La création de dashboards avec Grafana
-- La configuration d'alertes avec Alertmanager
+- La configuration d'alertes avec Alertmanager : [Prometheus : Alertmanager](./2026-09-20-prometheus-alertmanager.md)
 - Le monitoring d'applications Kubernetes
 - L'optimisation des performances et du stockage
 
@@ -541,3 +534,10 @@ Sujets complémentaires :
 - [PromQL Cheat Sheet](https://promlabs.com/promql-cheat-sheet/)
 - [Awesome Prometheus](https://github.com/roaldnefs/awesome-prometheus)
 - [Prometheus Exporters](https://prometheus.io/docs/instrumenting/exporters/)
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Prometheus comme backend métrique du cluster pour monitorer tous les services hébergés (Grafana, Portainer, nodes Kubernetes).</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC - Runners CI/CD auto-hébergés sur Kubernetes">Collecte par le Prometheus du cluster des métriques du listener et du contrôleur ARC (jobs, runners occupés et inactifs, durées de démarrage et d'exécution), qui ont guidé le relèvement du plafond de 20 à 60 runners.</ProjectLink>
+</ProjectLinks>

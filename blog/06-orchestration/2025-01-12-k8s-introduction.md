@@ -86,3 +86,9 @@ kubectl get pods -l app=web --watch
 ```
 
 Les ressources manipulées par ce modèle (Pod, Deployment, StatefulSet, Service) sont présentées dans l'article [Kubernetes : composants de base](./2025-01-12-k8s-basic-components.md).
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Cluster bare-metal monté avec kubeadm sur un nœud de control plane et six workers, avec le CNI Calico : installation et exploitation directes des composants du control plane, sans service managé qui les masque.</ProjectLink>
+</ProjectLinks>

@@ -1,6 +1,6 @@
 ---
-title: GitHub ARC - Runners CI/CD auto-hébergés sur Kubernetes
-description: Déploiement de GitHub Actions Runner Controller (ARC) sur le cluster Kubernetes kubeadm du CATIE. Runners éphémères Docker-in-Docker de 10 à 60 pods, métriques Prometheus, caches CI partagés et correction des problèmes de MTU.
+title: "GitHub ARC - Runners CI/CD auto-hébergés sur Kubernetes"
+description: "Déploiement de GitHub Actions Runner Controller (ARC) sur le cluster Kubernetes kubeadm du CATIE. Runners éphémères Docker-in-Docker de 10 à 60 pods, métriques Prometheus, caches CI partagés et correction des problèmes de MTU."
 tags: [kubernetes, github-actions, cicd, helm, docker, prometheus]
 ---
 
@@ -26,7 +26,7 @@ Un runner auto-hébergé classique s'enregistre manuellement sur une machine et 
 
 ## Architecture : contrôleur et scale set
 
-Le déploiement repose sur les deux charts Helm officiels du mode « runner scale set » (version 0.13.0), dans deux namespaces séparés :
+Le déploiement repose sur les deux charts Helm officiels du mode "runner scale set" (version 0.13.0), dans deux namespaces séparés :
 
 <Tabs>
   <TabItem value="controller" label="Contrôleur (arc-systems)">
@@ -51,6 +51,10 @@ L'observation des durées de job a fait apparaître plusieurs goulets d'étrangl
 - **Miroir de paquets.** Le miroir Ubuntu générique, non géolocalisé, était environ 200 fois plus lent depuis le réseau du CATIE que le miroir français. Une redirection DNS seule ne suffisait pas, le miroir français servant ses fichiers par hôte virtuel : chaque pod embarque un petit reverse proxy nginx qui réécrit l'en-tête `Host`. Mesuré sur un pod isolé, `apt update` suivi de l'installation de curl passe de plus de 170 s à 12,6 s.
 - **Caches partagés.** Les pods passent par un cache APT (apt-cacher-ng) et un miroir de registre Docker Hub mutualisés dans le cluster, avec repli automatique vers les sources publiques si le cache est indisponible.
 - **Parallélisme des téléchargements.** Le démon Docker télécharge par défaut trois couches en parallèle, ce qui bridait les images volumineuses (une image Zephyr de 4,4 Go et 11 couches demandait environ deux minutes d'initialisation). La limite est passée à dix.
+
+## Résultats
+
+Les runners ARC exécutent les pipelines GitHub Actions de l'organisation, appelés par les [workflows mutualisés](cicd.md) de plusieurs dizaines de dépôts, sans runner à enregistrer ni à nettoyer à la main. Le pool garde 10 runners disponibles et monte jusqu'à 60 selon la file d'attente ; son plafond a été relevé deux fois à partir des métriques collectées. Les corrections réseau ont supprimé les blocages de téléchargement liés au MTU, et le proxy de miroir ramène `apt update` suivi d'une installation de plus de 170 s à 12,6 s sur un pod isolé.
 
 ## Liens
 

@@ -2,6 +2,7 @@
 title: "Terraform : modules"
 description: "Factoriser et réutiliser de la configuration Terraform avec les modules locaux et le registry public. Structure, inputs, outputs, sources et quand ne pas créer un module."
 series: terraform
+series_order: 2
 tags: [iac, devops]
 ---
 
@@ -17,7 +18,7 @@ La motivation principale n'est pas la réduction de code : c'est la séparation 
 
 ## Structure d'un module
 
-Un module est simplement un répertoire contenant des fichiers `.tf`. Par convention :
+Un module est un répertoire contenant des fichiers `.tf`. Par convention :
 
 ```text
 modules/
@@ -195,7 +196,7 @@ module "vpc" {
 }
 ```
 
-`~> 6.0` signifie « toute version >= 6.0 et < 7.0 ». C'est la contrainte de version la plus courante : elle accepte les versions mineures et correctives, censées rester compatibles selon le versionnement sémantique, mais pas les versions majeures qui peuvent casser l'interface. `~> 6.0.0` restreindrait aux seules versions correctives (6.0.x). La version majeure 6 de ce module accompagne la version 6 du provider AWS ; les versions de module et de provider doivent être choisies ensemble.
+`~> 6.0` signifie "toute version >= 6.0 et < 7.0". C'est la contrainte de version la plus courante : elle accepte les versions mineures et correctives, censées rester compatibles selon le versionnement sémantique, mais pas les versions majeures qui peuvent casser l'interface. `~> 6.0.0` restreindrait aux seules versions correctives (6.0.x). La version majeure 6 de ce module accompagne la version 6 du provider AWS ; les versions de module et de provider doivent être choisies ensemble.
 
 **Git** : pour des modules internes hébergés dans un dépôt privé.
 
@@ -231,7 +232,7 @@ Deux signaux qui indiquent qu'un module est prématuré :
 
 **Une seule instance.** Si le module n'est appelé qu'une fois dans toute la codebase, la factorisation n'apporte rien. La configuration directe dans `main.tf` est plus lisible.
 
-**Un module avec une seule ressource.** Encapsuler `aws_vpc` seul dans un module n'ajoute pas de valeur. Un module utile regroupe plusieurs ressources qui ont un sens ensemble : VPC + subnets + route tables + internet gateway forment un réseau : c'est un module cohérent.
+**Un module avec une seule ressource.** Encapsuler `aws_vpc` seul dans un module n'ajoute pas de valeur. Un module utile regroupe plusieurs ressources qui ont un sens ensemble : VPC + subnets + route tables + internet gateway forment un réseau, ce qui en fait un module cohérent.
 
 La règle pratique : créer un module quand il sera appelé au moins deux fois, ou quand il regroupe un ensemble de ressources suffisamment complexe pour mériter une interface documentée.
 
@@ -245,3 +246,9 @@ La règle pratique : créer un module quand il sera appelé au moins deux fois, 
 | `source = "namespace/module/provider"` | Module du registry public |
 | `version = "~> x.y"` | Contrainte de version pour les modules registry |
 | `module.<nom>.<output>` | Accéder aux outputs d'un module depuis la racine |
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Cluster EKS provisionné par le module du registry `terraform-aws-modules/eks/aws`, avec une contrainte de version `~> 20.0`, alimenté par le VPC et les subnets déclarés dans la configuration racine.</ProjectLink>
+</ProjectLinks>

@@ -210,9 +210,9 @@ finally:
 
 ### Facturation RDS
 
-- **Par instance-heure** : un `db.t3.micro` coûte ~$0.02/heure (~$15/mois selon la région), le double en Multi-AZ
-- **Stockage** : ~$0.12 par Go/mois en `gp2`/`gp3` (pour 20 Go = ~$2.40/mois)
-- **Sauvegardes** : gratuites jusqu'à la taille de la base, ~$0.095/Go/mois au-delà
+- **Par instance-heure** : un `db.t3.micro` coûte ~0,02 USD/heure (~15 USD/mois selon la région), le double en Multi-AZ
+- **Stockage** : ~0,12 USD par Go/mois en `gp2`/`gp3` (pour 20 Go = ~2,40 USD/mois)
+- **Sauvegardes** : gratuites jusqu'à la taille de la base, ~0,095 USD/Go/mois au-delà
 - **Transfert de données sortantes** : payant (transfert entrant gratuit)
 - **Offre gratuite (ancien modèle 12 mois)** : 750 h/mois de `db.t3.micro` (ou `db.t2.micro`/`db.t4g.micro`) + 20 Go de stockage ; avec le plan *Free* à crédits, la consommation est déduite des crédits
 
@@ -241,7 +241,7 @@ Amazon Simple Storage Service (S3) est un service de stockage d'objets hautement
 
 **Object** : fichier stocké dans un bucket, identifié par une clé, accompagné de métadonnées (type de contenu, métadonnées utilisateur). Exemple : l'objet de clé `dossier/fichier.txt` dans le bucket `mon-bucket`.
 
-**Key** : identifiant unique de l'objet dans le bucket. S3 n'a **pas de dossiers réels** : l'espace de noms est plat, et les « dossiers » affichés par la console ne sont que des préfixes de clés délimités par `/`. Renommer un « dossier » revient donc à copier puis supprimer chaque objet.
+**Key** : identifiant unique de l'objet dans le bucket. S3 n'a **pas de dossiers réels** : l'espace de noms est plat, et les "dossiers" affichés par la console ne sont que des préfixes de clés délimités par `/`. Renommer un "dossier" revient donc à copier puis supprimer chaque objet.
 
 **Region** : zone géographique où le bucket est créé. Les données ne quittent pas la région, sauf réplication configurée explicitement.
 
@@ -250,7 +250,7 @@ Amazon Simple Storage Service (S3) est un service de stockage d'objets hautement
 Depuis la console AWS :
 
 1. **Naviguer vers S3** → **Create bucket**
-2. **Nom du bucket** : doit être unique mondialement (ex: `mon-app-storage-2026`)
+2. **Nom du bucket** : doit être unique mondialement (ex. : `mon-app-storage-2026`)
 3. **Région** : la plus proche des utilisateurs ou des services consommateurs
 4. **Object Ownership** : conserver *ACLs disabled* (par défaut depuis avril 2023) ; les droits sont alors gérés uniquement par des policies IAM et de bucket
 5. **Block Public Access** : conserver les quatre blocages activés (par défaut), sauf besoin explicite d'accès public
@@ -282,7 +282,7 @@ import boto3
 s3_client = boto3.client('s3')
 
 # Ou utiliser un profil spécifique
-s3_session = boto3.Session(profile_name='default')
+s3_session = boto3.Session(profile_name='dev')
 s3_client = s3_session.client('s3')
 ```
 
@@ -370,19 +370,19 @@ S3 propose plusieurs classes optimisées pour différents cas d'usage :
 
 Les prix indiqués sont ceux de la région `us-east-1`, à titre d'ordre de grandeur.
 
-**S3 Standard** : accès fréquent, latence de l'ordre de la dizaine de millisecondes. Prix : ~$0.023/Go/mois.
+**S3 Standard** : accès fréquent, latence de l'ordre de la dizaine de millisecondes. Prix : ~0,023 USD/Go/mois.
 
-**S3 Standard-IA** (Infrequent Access) : accès occasionnel, même latence que Standard. Prix : ~$0.0125/Go/mois, plus des frais par Go lu, une durée minimale facturée de 30 jours et une taille minimale facturée de 128 Ko par objet.
+**S3 Standard-IA** (Infrequent Access) : accès occasionnel, même latence que Standard. Prix : ~0,0125 USD/Go/mois, plus des frais par Go lu, une durée minimale facturée de 30 jours et une taille minimale facturée de 128 Ko par objet.
 
 **S3 One Zone-IA** : comme Standard-IA, mais stocké dans une seule zone de disponibilité : ~20 % moins cher, perdu en cas de destruction de la zone. Adapté aux données reproductibles.
 
 **S3 Intelligent-Tiering** : S3 déplace chaque objet entre des niveaux d'accès selon son usage réel (accès fréquent, puis peu fréquent après 30 jours sans lecture, puis archive instantanée après 90 jours), sans frais de lecture. Prix du niveau fréquent identique à Standard, plus des frais de suivi par objet. Adapté aux motifs d'accès imprévisibles.
 
-**S3 Glacier Instant Retrieval** : archive consultée rarement mais lue en millisecondes. Prix : ~$0.004/Go/mois, durée minimale de 90 jours.
+**S3 Glacier Instant Retrieval** : archive consultée rarement mais lue en millisecondes. Prix : ~0,004 USD/Go/mois, durée minimale de 90 jours.
 
-**S3 Glacier Flexible Retrieval** : archive dont la lecture nécessite une restauration préalable, de quelques minutes (expédiée) à 12 heures (en masse). Prix : ~$0.0036/Go/mois, durée minimale de 90 jours.
+**S3 Glacier Flexible Retrieval** : archive dont la lecture nécessite une restauration préalable, de quelques minutes (expédiée) à 12 heures (en masse). Prix : ~0,0036 USD/Go/mois, durée minimale de 90 jours.
 
-**S3 Glacier Deep Archive** : archivage longue durée, restauration sous 12 heures (standard) à 48 heures (en masse). Prix : ~$0.00099/Go/mois, durée minimale de 180 jours.
+**S3 Glacier Deep Archive** : archivage longue durée, restauration sous 12 heures (standard) à 48 heures (en masse). Prix : ~0,00099 USD/Go/mois, durée minimale de 180 jours.
 
 Les durées minimales signifient qu'un objet supprimé avant leur terme est facturé comme s'il avait été conservé jusqu'au bout : une classe froide peut coûter plus cher que Standard pour des données de courte durée de vie.
 
@@ -400,11 +400,11 @@ Les durées minimales signifient qu'un objet supprimé avant leur terme est fact
 
 ### Facturation S3
 
-- **Stockage** : ~$0.025/GB/mois pour Standard (varie par classe)
-- **Requêtes API** : ~$0.0004 par 1000 GET, ~$0.005 par 1000 PUT (varie selon l'opération)
-- **Transfert de données sortantes** : ~$0.09/GB au-delà du Free Tier
-- **Feature supplémentaires** : versioning, lifecycle, replication (tous payants)
-- **Free Tier** : 5 GB stocké + 20 000 GET + 2000 PUT pour 12 mois
+- **Stockage** : ~0,023 USD/Go/mois pour Standard (varie par classe)
+- **Requêtes API** : ~0,0004 USD par 1 000 GET, ~0,005 USD par 1 000 PUT (varie selon l'opération)
+- **Transfert de données sortantes** : ~0,09 USD/Go au-delà de l'offre gratuite
+- **Fonctionnalités supplémentaires** : versioning, lifecycle, réplication (toutes payantes)
+- **Offre gratuite (ancien modèle 12 mois)** : 5 Go de stockage Standard + 20 000 GET + 2 000 PUT par mois
 
 Les règles de cycle de vie (*lifecycle rules*) automatisent les transitions entre classes et l'expiration des objets :
 
@@ -437,7 +437,7 @@ Sur un bucket versionné, une suppression ne fait qu'ajouter un marqueur de supp
 
 ## EBS : stockage bloc attaché aux instances
 
-### Qu'est-ce que EBS ?
+### Qu'est-ce qu'EBS ?
 
 Amazon Elastic Block Store (EBS) est un service de stockage par bloc. Contrairement à S3, accessible par API depuis n'importe où, un volume EBS **s'attache à une instance EC2** et apparaît dans le système comme un disque (périphérique bloc) sur lequel créer un système de fichiers. Il s'agit d'un stockage réseau, répliqué au sein d'une seule zone de disponibilité : un volume ne peut être attaché qu'à une instance de la **même zone**.
 
@@ -456,14 +456,14 @@ Chaque instance EC2 a un **volume root** (le disque système). Des volumes suppl
 
 **SSD (haute performance) :**
 
-- **gp3** (General Purpose) : 3 000 IOPS et 125 Mo/s de base quelle que soit la taille, ajustables indépendamment de la capacité. ~$0.08/Go/mois.
-- **gp2** : génération précédente, dont les performances sont liées à la taille (3 IOPS par Go, avec un mécanisme de crédits de burst pour les petits volumes). ~$0.10/Go/mois.
-- **io1/io2** : IOPS provisionnées pour les bases exigeantes. ~$0.125/Go/mois + coûts par IOPS.
+- **gp3** (General Purpose) : 3 000 IOPS et 125 Mo/s de base quelle que soit la taille, ajustables indépendamment de la capacité. ~0,08 USD/Go/mois.
+- **gp2** : génération précédente, dont les performances sont liées à la taille (3 IOPS par Go, avec un mécanisme de crédits de burst pour les petits volumes). ~0,10 USD/Go/mois.
+- **io1/io2** : IOPS provisionnées pour les bases exigeantes. ~0,125 USD/Go/mois + coûts par IOPS.
 
 **HDD (stockage économique) :**
 
-- **st1** : débit élevé pour big data. ~$0.045/Go/mois.
-- **sc1** : archives économiques. ~$0.015/Go/mois.
+- **st1** : débit élevé pour big data. ~0,045 USD/Go/mois.
+- **sc1** : archives économiques. ~0,015 USD/Go/mois.
 
 Le type **gp3** convient à la plupart des usages : un petit volume `gp3` offre d'emblée 3 000 IOPS, là où un volume `gp2` de 100 Go n'en garantit que 300, pour un prix au Go inférieur de 20 %.
 
@@ -532,7 +532,7 @@ Cas d'usage :
 - **Migration** : copier un volume vers une autre région (via snapshots)
 - **Restauration** : récupérer un point-dans-le-temps
 
-Prix : ~$0.05 par GB/mois pour le stockage du snapshot.
+Prix : ~0,05 USD par Go/mois pour le stockage du snapshot.
 
 ### Cas d'usage EBS
 
@@ -553,7 +553,7 @@ Prix : ~$0.05 par GB/mois pour le stockage du snapshot.
 | **Latence** | Inférieure à la milliseconde | Dizaines de millisecondes | Millisecondes (requêtes SQL) |
 | **Scalabilité** | Jusqu'à 64 Tio par volume, dans une AZ | Illimitée | Dépend de l'instance |
 | **Persistance** | Survit à l'arrêt de l'instance | Permanent | Permanent |
-| **Prix** | ~$0.08/Go/mois (gp3) | ~$0.023/Go/mois | Instance-heure + stockage |
+| **Prix** | ~0,08 USD/Go/mois (gp3) | ~0,023 USD/Go/mois | Instance-heure + stockage |
 | **Données** | Non structurées (fichiers) | Non structurées (objets) | Relationnelles (tables) |
 
 **Résumé :**
@@ -563,8 +563,8 @@ Prix : ~$0.05 par GB/mois pour le stockage du snapshot.
 
 ### Facturation EBS
 
-- **Volume** : ~$0.08/Go/mois pour gp3, facturé sur la capacité provisionnée et non utilisée
-- **Snapshots** : ~$0.05 par Go/mois
+- **Volume** : ~0,08 USD/Go/mois pour gp3, facturé sur la capacité provisionnée, et non sur l'espace réellement utilisé
+- **Snapshots** : ~0,05 USD par Go/mois
 - **Performances provisionnées** : coûts additionnels pour les IOPS de io1/io2 et pour les IOPS ou le débit de gp3 au-delà du niveau de base
 - **Offre gratuite (ancien modèle 12 mois)** : 30 Go de stockage EBS SSD à usage général ou magnétique, et 1 Go de snapshots
 
@@ -586,10 +586,10 @@ Prix : ~$0.05 par GB/mois pour le stockage du snapshot.
 | **Type de données** | Structurées (tables, lignes, colonnes) | Non structurées (objets, blobs) |
 | **Accès** | Requêtes SQL, connexion persistante | API REST HTTP, sans connexion |
 | **Scalabilité** | verticale (augmenter instance) + répliques lecture | Horizontale infinie |
-| **Disponibilité** | 99.95% avec Multi-AZ | 99.99% |
+| **Disponibilité** | 99,95 % avec Multi-AZ | 99,99 % |
 | **Durabilité** | Sauvegardes automatiques | 11-9 (copie par défaut dans 3 AZ) |
 | **Coûts** | Instance-heure + stockage | Stockage + requêtes + transfert |
-| **Transactions** | ACID (atomicité, cohérence) | Opérations atomiques par objet, cohérence forte, écritures conditionnelles ; pas de transaction multi-objets |
+| **Transactions** | ACID (atomicité, cohérence, isolation, durabilité) | Opérations atomiques par objet, cohérence forte, écritures conditionnelles ; pas de transaction multi-objets |
 | **Latence** | Millisecondes (requêtes db) | Millisecondes (API) |
 | **Chiffrement** | TLS en transit, KMS au repos | TLS en transit, SSE au repos |
 | **Audit** | CloudTrail pour les appels d'API RDS ; audit des requêtes via les logs du moteur (pgAudit, audit plugin MySQL) ou Database Activity Streams | CloudTrail (API de gestion et, en option, événements de données) + access logs |
@@ -613,7 +613,7 @@ Prix : ~$0.05 par GB/mois pour le stockage du snapshot.
 
 ### Architecture hybride
 
-En pratique, une application moderne utilise **les deux** :
+En pratique, une application web utilise souvent **les deux** :
 
 ```text
 ┌─────────────────────────────────┐
@@ -623,7 +623,7 @@ En pratique, une application moderne utilise **les deux** :
     ┌────────────┐  ┌──────────┐
     │    RDS     │  │    S3    │
     │ Données    │  │ Fichiers,│
-    │ de app     │  │ logs,    │
+    │ de l'app   │  │ logs,    │
     │ (users,    │  │backup    │
     │  posts)    │  │          │
     └────────────┘  └──────────┘
@@ -637,7 +637,7 @@ Par exemple, une application de réseau social stocke les profils, posts, commen
 
 **Pour RDS :**
 - Toujours utiliser **Multi-AZ en production**
-- Activer **automated backups** avec retention de 7-35j
+- Activer **automated backups** avec une rétention de 7 à 35 jours
 - Utiliser **IAM database authentication** (jeton temporaire généré par `aws rds generate-db-auth-token`) ou le mot de passe géré par Secrets Manager plutôt que des mots de passe en dur
 - Auditer les **slow queries** et optimiser les index
 - Monitorer **CPU, mémoire, stockage** avec CloudWatch
@@ -651,3 +651,9 @@ Par exemple, une application de réseau social stocke les profils, posts, commen
 - Utiliser **CloudFront** comme CDN pour distribuer globalement
 
 RDS, S3 et EBS couvrent trois modèles d'accès distincts : requêtes relationnelles, objets adressés par clé via HTTP, et blocs montés par une instance. Combinés à des services de calcul comme [EC2](./2026-02-19-ec2.md), [Lambda](./2026-02-21-lambda.md) ou ECS, ils constituent la couche de persistance d'une application cloud.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Instance RDS PostgreSQL chiffrée au repos et protégée par `prevent_destroy`, provisionnée par Terraform pour l'environnement de staging, et bucket S3 d'avatars aux quatre réglages Block Public Access activés, dont la policy n'autorise qu'un rôle IAM assumé par les pods de l'API.</ProjectLink>
+</ProjectLinks>

@@ -2,6 +2,7 @@
 title: "Terraform : count, for_each, locals et expressions"
 description: "Créer plusieurs ressources sans duplication avec count et for_each, calculer des valeurs intermédiaires avec locals, et transformer des collections avec les for expressions."
 series: terraform
+series_order: 1
 tags: [iac, devops]
 ---
 
@@ -35,7 +36,7 @@ output "public_subnet_ids" {
 }
 ```
 
-Cet output passe directement à une ressource qui attend une liste d'IDs (un subnet group RDS, un load balancer, un cluster EKS) sans boucle explicite.
+L'expression `aws_subnet.public[*].id` se passe directement à un argument qui attend une liste d'IDs (un subnet group RDS, un load balancer, un cluster EKS), sans boucle explicite.
 
 ### count comme interrupteur conditionnel
 
@@ -55,9 +56,9 @@ resource "aws_db_instance" "main" {
 }
 ```
 
-C'est le pattern standard pour les ressources coûteuses ou non disponibles dans certains environnements (LocalStack ne supporte pas RDS, par exemple). La même configuration fonctionne en local avec `enable_rds = false` et en production avec `enable_rds = true`.
+C'est le pattern standard pour les ressources coûteuses ou non disponibles dans certains environnements (RDS ne fait pas partie de l'offre gratuite de LocalStack, par exemple). La même configuration fonctionne en local avec `enable_rds = false` et en production avec `enable_rds = true`.
 
-La conséquence à anticiper : toute ressource qui dépend d'une ressource conditionnelle doit elle aussi être conditionnelle. `aws_db_subnet_group.main[0].name` plante si `aws_db_subnet_group.main` n'existe pas (`count = 0`). La solution est de propager la condition :
+La conséquence à anticiper : toute ressource qui dépend d'une ressource conditionnelle doit elle aussi être conditionnelle. `aws_db_subnet_group.main[0].name` provoque une erreur d'index (`Invalid index`) si `aws_db_subnet_group.main` n'existe pas (`count = 0`). La solution est de propager la condition :
 
 ```hcl
 resource "aws_db_subnet_group" "main" {
@@ -113,9 +114,8 @@ Si `eu-west-3b` est retiré de la map, seule cette instance est détruite. Les d
 Pour récupérer la liste des IDs produits, la fonction `values()` extrait les valeurs d'une map de ressources, puis le splat `[*]` en extrait un attribut :
 
 ```hcl
-resource "aws_db_subnet_group" "main" {
-  name       = "main-db-subnet-group"
-  subnet_ids = values(aws_subnet.public)[*].id
+output "public_subnet_ids" {
+  value = values(aws_subnet.public)[*].id
 }
 ```
 
@@ -181,7 +181,7 @@ Le choix entre les deux dépend de la nature des ressources :
 
 La règle pratique : `count` pour les interrupteurs conditionnels (`count = var.flag ? 1 : 0`) et pour des ressources réellement interchangeables. `for_each` pour tout ce qui a un nom ou des attributs distincts.
 
-Passer de `count` à `for_each` sur des ressources existantes change leurs adresses (`aws_subnet.public[0]` devient `aws_subnet.public["eu-west-3a"]`) : sans précaution, Terraform planifie la destruction des anciennes instances et la création des nouvelles. Un bloc `moved` déclare la correspondance, et le plan se réduit à un renommage dans le state, sans aucune opération sur l'infrastructure :
+Passer de `count` à `for_each` sur des ressources existantes change leurs adresses (`aws_subnet.public[0]` devient `aws_subnet.public["eu-west-3a"]`) : sans précaution, Terraform planifie la destruction des anciennes instances et la création des nouvelles. Un bloc `moved` par instance déclare la correspondance. Le plan se réduit alors à un renommage dans le state, sans aucune opération sur l'infrastructure, à condition que la map passée à `for_each` reprenne exactement les attributs existants : ici les CIDR `10.0.0.0/24`, `10.0.1.0/24` et `10.0.2.0/24` produits par `count`, et non ceux de l'exemple `for_each` précédent. Un `cidr_block` différent forcerait le remplacement du subnet :
 
 ```hcl
 moved {
@@ -192,6 +192,11 @@ moved {
 moved {
   from = aws_subnet.public[1]
   to   = aws_subnet.public["eu-west-3b"]
+}
+
+moved {
+  from = aws_subnet.public[2]
+  to   = aws_subnet.public["eu-west-3c"]
 }
 ```
 
@@ -311,3 +316,9 @@ terraform/
 ```
 
 Les `locals` qui dépendent de data sources ne peuvent pas être évalués avant que le `plan` ne résolve ces data sources. Ce n'est pas une contrainte à contourner : Terraform résout la séquence automatiquement, comme il le fait pour les dépendances entre ressources. `terraform console` permet d'évaluer interactivement une expression (`local.az_subnet_map`, `cidrsubnet("10.0.0.0/16", 8, 2)`) avec les valeurs de la configuration et du state courants, ce qui facilite la mise au point des expressions `for`.
+
+## Application / Projet lié
+
+<ProjectLinks>
+  <ProjectLink to="/docs/projects/personnel/task-horizon" title="TaskHorizon">Interrupteur `enable_rds` (`count = var.enable_rds ? 1 : 0`) sur l'instance RDS et son subnet group, et création des quatre subnets du VPC par `for_each` sur une map déclarée dans `locals.tf`, chaque entrée portant son CIDR, l'index de son AZ et son niveau (public ou privé).</ProjectLink>
+</ProjectLinks>

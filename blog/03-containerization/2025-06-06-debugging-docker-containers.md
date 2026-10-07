@@ -62,7 +62,7 @@ ps aux
 tcpdump -i eth0 port 8000
 ```
 
-Le système de fichiers du conteneur cible reste accessible via `/proc/<pid>/root/`, le PID étant celui visible dans le namespace partagé. Kubernetes applique le même principe avec `kubectl debug` et les conteneurs éphémères.
+Le système de fichiers du conteneur cible reste accessible via `/proc/<pid>/root/`, le PID étant celui visible dans le namespace partagé. Kubernetes applique le même principe avec `kubectl debug` et les conteneurs éphémères, présentés dans [Kubernetes : kubectl](../06-orchestration/2025-11-21-kubectl-commandes-essentielles.md).
 
 ## Inspecter l'état du conteneur
 
@@ -94,7 +94,7 @@ Au-delà de 128, le code de sortie encode le signal reçu (128 + numéro du sign
 | `127` | commande introuvable (`CMD` ou `ENTRYPOINT` erroné, binaire absent de l'image) |
 | `137` | `SIGKILL` (9) : dépassement de la limite mémoire, `docker kill`, ou fin du délai de `docker stop` |
 | `139` | `SIGSEGV` (11) : erreur de segmentation, souvent une incompatibilité de bibliothèque native |
-| `143` | `SIGTERM` (15) : arrêt demandé, traité par l'application sans code de sortie propre |
+| `143` | `SIGTERM` (15) : arrêt demandé (`docker stop`), processus terminé par le signal |
 
 ## Monitorer les ressources
 
@@ -122,7 +122,7 @@ docker diff <conteneur>
 docker history <image>
 ```
 
-`docker diff` est utile pour vérifier qu'un job de migration n'a écrit que dans le répertoire attendu, ou pour identifier des fichiers créés de façon inattendue.
+La couche de lecture-écriture et l'empilement des couches sont décrits dans [Docker : conteneurs et images](./2024-12-20-docker-containers.md). `docker diff` est utile pour vérifier qu'un job de migration n'a écrit que dans le répertoire attendu, ou pour identifier des fichiers créés de façon inattendue.
 
 ## Problèmes réseau
 
@@ -138,7 +138,7 @@ docker exec <conteneur> ping db
 docker inspect <conteneur> | jq '.[0].NetworkSettings.Networks | keys'
 ```
 
-Les images minimales ne contiennent souvent ni `ss`, ni `nslookup`, ni `ping` : le conteneur `netshoot` décrit plus haut fournit ces outils sans modifier l'image. Un conteneur qui ne peut pas joindre un autre par son nom indique généralement qu'ils ne sont pas sur le même réseau Docker. Le réseau `bridge` par défaut n'active pas la résolution DNS par nom : il faut un réseau défini explicitement (`docker network create`) ou Docker Compose.
+Les images minimales ne contiennent souvent ni `ss`, ni `nslookup`, ni `ping` : le conteneur `netshoot` décrit plus haut fournit ces outils sans modifier l'image. Un conteneur qui ne peut pas joindre un autre par son nom indique généralement qu'ils ne sont pas sur le même réseau Docker. Le réseau `bridge` par défaut n'active pas la résolution DNS par nom : il faut un réseau défini explicitement (`docker network create`) ou Docker Compose (voir la section Réseau de [Docker : conteneurs et images](./2024-12-20-docker-containers.md)).
 
 ## Déboguer un conteneur qui crashe au démarrage
 
@@ -154,4 +154,8 @@ docker run -it <image> sh
 
 La seconde forme ne fonctionne que si l'image ne définit pas d'`ENTRYPOINT` : dans le cas contraire, `sh` est passé comme argument à l'entrypoint au lieu d'être exécuté.
 
-Une fois dans le shell, reproduire manuellement les commandes du Dockerfile pour identifier l'étape qui échoue : variables d'environnement manquantes, fichiers absents, permissions incorrectes.
+Depuis ce shell, la reproduction manuelle des commandes du Dockerfile et du démarrage identifie l'étape qui échoue : variables d'environnement manquantes, fichiers absents, permissions incorrectes.
+
+## Conclusion
+
+Le diagnostic d'un conteneur suit une progression : logs du processus principal, état et code de sortie via `docker inspect`, consommation de ressources, puis inspection interactive par `docker exec`, par un conteneur outillé qui partage ses namespaces, ou par un shell substitué à l'entrypoint lorsque le conteneur ne démarre pas. Ces outils s'appuient sur l'API du daemon Docker et ne demandent aucune modification de l'image.

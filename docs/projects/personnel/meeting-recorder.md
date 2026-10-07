@@ -1,5 +1,5 @@
 ---
-title: Meeting Recorder
+title: "Meeting Recorder"
 description: "Enregistreur de réunions entièrement local : capture deux pistes (micro et sortie son), transcription faster-whisper, synthèse par un LLM local via Ollama, notes de réunion fusionnées au compte rendu. Microservices Docker Compose, profils GPU 4 Go et CPU."
 tags: [python, fastapi, react, docker, docker-compose, whisper, ollama, llm, speech-to-text]
 ---
@@ -121,7 +121,7 @@ Les services s'appellent en HTTP JSON, mais les fichiers audio ne transitent jam
 
 ## Deux pistes plutôt qu'un modèle de diarisation
 
-Le recorder enregistre en parallèle le micro et le moniteur de la sortie son, c'est-à-dire les autres participants. Chaque piste est transcrite séparément, puis les segments sont fusionnés par ordre chronologique et étiquetés « Moi » ou « Autres ». Cette séparation physique remplace un modèle de diarisation (attribution des paroles à des locuteurs) : elle est exacte par construction pour la distinction qui compte dans un compte rendu, savoir qui a pris un engagement, sans ajouter un modèle supplémentaire à faire tenir en mémoire. Elle ne distingue pas les participants distants entre eux.
+Le recorder enregistre en parallèle le micro et le moniteur de la sortie son, c'est-à-dire les autres participants. Chaque piste est transcrite séparément, puis les segments sont fusionnés par ordre chronologique et étiquetés "Moi" ou "Autres". Cette séparation physique remplace un modèle de diarisation (attribution des paroles à des locuteurs) : elle est exacte par construction pour la distinction qui compte dans un compte rendu, savoir qui a pris un engagement, sans ajouter un modèle supplémentaire à faire tenir en mémoire. Elle ne distingue pas les participants distants entre eux.
 
 ## Pipeline et reprise sur erreur
 
@@ -133,22 +133,31 @@ La synthèse (résumé, décisions, actions attribuées) est éditable avant val
 
 Pendant la réunion et après, un éditeur de notes enregistre automatiquement ce qui est saisi. Les notes priment sur la transcription en cas de contradiction : un nom propre mal transcrit ou un chiffre mal entendu se corrige d'une ligne. À la validation, les notes ajoutées depuis la dernière synthèse y sont fusionnées en arrière-plan ; une fusion en échec ramène la session en relecture sans toucher à la synthèse existante.
 
-Deux points ont demandé un soin particulier. Côté interface, l'éditeur reste verrouillé tant que les notes déjà enregistrées ne sont pas chargées, sinon une saisie précoce aurait été écrasée, et l'indicateur d'enregistrement n'annonce jamais une sauvegarde avant la réponse du serveur. Côté prompt, les notes sont du texte libre insérées dans une instruction au modèle : elles sont délimitées par un séparateur qu'elles ne peuvent pas contenir, et leur taille est plafonnée.
+Deux points ont demandé un soin particulier. Côté interface, l'éditeur reste verrouillé tant que les notes déjà enregistrées ne sont pas chargées, sinon une saisie précoce aurait été écrasée, et l'indicateur d'enregistrement n'annonce jamais une sauvegarde avant la réponse du serveur. Côté prompt, les notes sont du texte libre inséré dans une instruction au modèle : elles sont délimitées par un séparateur qu'elles ne peuvent pas contenir, et leur taille est plafonnée.
 
 ## Faire tenir les modèles sur 4 Go de VRAM
 
 Le profil GPU vise une carte de portable à 4 Go de mémoire vidéo. La transcription (`large-v3-turbo` quantifié en `int8_float16`, environ 1 Go) et la synthèse (Qwen 2.5 7B, environ 4,7 Go de poids) ne tiennent pas ensemble sur la carte. Le pipeline étant séquentiel, chaque modèle libère la mémoire vidéo dès qu'il a fini : le service de transcription décharge Whisper après chaque piste, et Ollama décharge le modèle de langage après chaque requête. Le modèle 7B déborde malgré tout en partie sur la RAM ; c'est accepté, la synthèse arrivant après la réunion, et il résume nettement mieux que la version 3B. Un profil CPU, avec des modèles réduits, valide le pipeline de bout en bout sur une machine sans carte graphique ; les deux profils partagent le même code et ne diffèrent que par l'image de transcription, les variables d'environnement et les réservations de périphériques.
 
-Un piège est apparu en faisant tourner la pile sur une vraie réunion. Sans paramètre `num_ctx` explicite, Ollama utilisait une fenêtre de contexte d'environ 2 000 tokens : la transcription d'une réunion d'une heure, autour de 25 000 tokens, était tronquée sans erreur, et la synthèse ne portait que sur un fragment. La taille de contexte est désormais envoyée à chaque requête, et un prompt qui ne tient pas dans la fenêtre fait échouer l'étape de synthèse au lieu d'être tronqué en silence.
+Un piège est apparu en faisant tourner la pile sur une vraie réunion. Sans paramètre `num_ctx` explicite, Ollama applique sa fenêtre de contexte par défaut, dont la taille dépend de la version et de la mémoire vidéo disponible : quelques milliers de tokens sur une petite carte ou sans GPU. Le nombre de tokens réellement évalués (`prompt_eval_count`) plafonnait à environ 2 000 : la transcription, mesurée à environ 25 000 tokens, était tronquée sans erreur, et la synthèse ne portait que sur un fragment. La taille de contexte est désormais envoyée à chaque requête (16 384 tokens sur le profil GPU, borné par la mémoire vidéo, 32 768 sur le profil CPU), et un prompt qui ne tient pas dans la fenêtre fait échouer l'étape de synthèse au lieu d'être tronqué en silence.
 
 ## Tests
 
 Chaque service a sa suite pytest, le frontend la sienne avec Vitest et Testing Library, et un test vérifie la cohérence des fichiers Compose entre les deux profils : environ 235 tests au total. Le développement a été découpé en tâches indépendantes, chacune relue avant fusion ; plusieurs corrections viennent de ces revues (verrouillage de l'éditeur, sessions supprimées pendant un traitement, diffusion WebSocket bornée).
 
+## Résultats
+
+- **Aucune donnée de réunion ne quitte le poste** : capture, transcription et synthèse tournent en local, sans appel à un service tiers.
+- **Compte rendu prêt à relire après la réunion** : résumé, décisions et actions attribuées, avec les notes prises pendant la réunion fusionnées à la synthèse.
+- **Attribution "Moi" / "Autres" exacte par construction**, sans modèle de diarisation à faire tenir en mémoire.
+- **Pipeline qui ne perd pas l'audio** : une étape en échec se relance à l'endroit où elle s'est arrêtée, et une transcription trop longue pour la fenêtre de contexte fait échouer la synthèse au lieu d'être tronquée en silence.
+- **Environ 235 tests** couvrant chaque service, le frontend et la cohérence des deux profils Compose.
+
 ## Limites connues
 
 - Le profil GPU a été dimensionné et validé statiquement pour la carte cible, sans mesure de performance sur ce matériel.
-- La distinction des locuteurs s'arrête à « Moi » et « Autres ».
+- La distinction des locuteurs s'arrête à "Moi" et "Autres".
 - La qualité de synthèse est bornée par la taille du modèle qui tient en mémoire, pas par la puissance de calcul.
+- Sur le profil GPU, la fenêtre de contexte de 16 384 tokens borne la longueur de transcription résumable : au-delà, l'étape de synthèse échoue.
 
 Le dépôt est privé.

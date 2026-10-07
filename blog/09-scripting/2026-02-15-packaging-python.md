@@ -1,23 +1,23 @@
 ---
 title: "Python : Packaging"
-description: "Comprendre le packaging Python : qu'est-ce qu'un package, PyPI, wheel, distributions, setuptools, métadonnées et versioning."
+description: "Packaging Python : modules et packages, distributions wheel et sdist, métadonnées, setuptools, publication sur PyPI et versionnage."
 tags: [scripting, devops]
 ---
 
-Publier son code Python sur PyPI c'est le rendre accessible à des milliers de développeurs. Exploration des concepts fondamentaux du packaging Python.
+Un code Python réutilisable ne se diffuse pas en copiant des fichiers : pour qu'une commande `pip install` puisse l'installer avec ses dépendances, sa version et ses commandes, il doit être empaqueté dans un format standard (wheel ou sdist), décrit par des métadonnées et publié sur un index comme PyPI. Cet article détaille ces notions, de la structure d'un package à sa publication.
 
 <!--truncate-->
 
-## Qu'est-ce qu'un Package Python ?
+## Qu'est-ce qu'un package Python ?
 
-### Différence : Module vs Package
+### Différence : module et package
 
-**Module** : Un fichier Python unique
+**Module** : un fichier Python unique
 ```text
 calculator.py  # C'est un module
 ```
 
-**Package** : Un dossier contenant des modules
+**Package** : un dossier contenant des modules
 ```text
 calculator/
 ├── __init__.py        # Marque le dossier comme package
@@ -26,7 +26,7 @@ calculator/
 └── constants.py
 ```
 
-Le fichier `__init__.py` est crucial : c'est ce qui dit à Python "je suis un package".
+Le fichier `__init__.py` marque le dossier comme package "régulier" et s'exécute à l'import du package. Depuis Python 3.3 (PEP 420), un dossier sans `__init__.py` reste importable, mais comme namespace package (voir plus bas) ; `find_packages()` de setuptools ignore par ailleurs les dossiers qui n'en ont pas.
 
 ### Structure simple
 
@@ -54,11 +54,11 @@ from .utils import helper  # Dépendance interne
 
 Ces dépendances externes doivent être déclarées lors du packaging.
 
-## Distributions : Wheel vs Source
+## Distributions : wheel et source
 
-Quand on publie un package, on crée deux types de distribution :
+La publication d'un package produit deux types de distribution :
 
-### Source Distribution (sdist)
+### Distribution source (sdist)
 
 **Format** : `my_package-1.0.0.tar.gz` (ou `.zip`)
 
@@ -73,17 +73,17 @@ my_package-1.0.0/
 └── pyproject.toml
 ```
 
-**Avantages** ✅
+**Avantages**
 - Contient le code source complet
 - Portable sur tous les OS/architectures
-- Permet inspection du code
+- Permet l'inspection du code
 
-**Inconvénients** ❌
-- Installation lente (compilation nécessaire)
-- Requiert les build tools (compilateur C, etc.)
+**Inconvénients**
+- Installation plus lente : le wheel est construit localement, avec compilation si le package contient des extensions C
+- Requiert le backend de build, et un compilateur C pour les extensions compilées
 - Plus volumineux
 
-### Wheel Distribution (bdist_wheel)
+### Distribution wheel (bdist_wheel)
 
 **Format** : `my_package-1.0.0-py3-none-any.whl` (archive ZIP)
 
@@ -100,52 +100,62 @@ my_package/
 └── utils.py
 ```
 
-**Avantages** ✅
-- Installation ultra-rapide (pas de compilation)
+**Avantages**
+- Installation rapide (ni construction ni compilation)
 - Ne requiert que pip
 - Cohérent sur tous les environnements
 
-**Inconvénients** ❌
-- Spécifique à une version Python/plateforme
-- Code pré-compilé (moins d'inspection)
+**Inconvénients**
+- Pour un package à extensions compilées : un wheel par version de Python et par plateforme (`cp312-cp312-manylinux_2_17_x86_64`, etc.), contenant du code binaire. Un wheel pur Python (`py3-none-any`) est universel et contient les sources `.py`
 
-**Verdict** : Toujours publier les deux. Wheel en priorité, source en fallback.
+**Usage** : publier les deux. pip installe le wheel lorsqu'il est compatible avec l'environnement, et se replie sur la sdist sinon.
 
-## Métadonnées : Déclarer un Package
+## Métadonnées : déclarer un package
 
-Les métadonnées c'est tout ce qu'on doit savoir sur un package : nom, version, dépendances, auteur, licence, etc.
+Les métadonnées décrivent un package : nom, version, dépendances, auteur, licence, etc.
 
-### Configuration avec pyproject.toml (Modern)
+### Configuration avec pyproject.toml (moderne)
 
-Depuis PEP 517/518 (2015+), c'est l'approche moderne :
+Les PEP 517/518 définissent la table `[build-system]` (backend de build) et la PEP 621 la table `[project]` (métadonnées). C'est l'approche actuelle :
 
 ```toml
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=77.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "my-awesome-lib"
 version = "1.0.0"
-description = "Une libraire incroyable"
+description = "Une bibliothèque d'exemple"
 readme = "README.md"
 requires-python = ">=3.8"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "John Doe", email = "john@example.com"}
 ]
 keywords = ["awesome", "library", "python"]
+
+# Dépendances
+dependencies = [
+    "requests>=2.28.0",
+    "pydantic>=1.10",
+]
+
+# Classifiers
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
 
 # URLs
 [project.urls]
 Homepage = "https://github.com/user/my-awesome-lib"
 Documentation = "https://my-awesome-lib.readthedocs.io"
 Repository = "https://github.com/user/my-awesome-lib"
-
-# Dépendances
-[project.dependencies]
-requests = ">=2.28.0"
-pydantic = ">=1.10"
 
 # Dépendances optionnelles
 [project.optional-dependencies]
@@ -155,19 +165,11 @@ email = ["aiosmtplib>=2.0"]
 # Scripts CLI
 [project.scripts]
 my-cli = "my_lib.cli:main"
-
-# Classifiers
-[project.classifiers]
-"Development Status :: 4 - Beta"
-"Intended Audience :: Developers"
-"License :: OSI Approved :: MIT License"
-"Programming Language :: Python :: 3"
-"Programming Language :: Python :: 3.8"
-"Programming Language :: Python :: 3.9"
-"Programming Language :: Python :: 3.10"
 ```
 
-### Configuration avec setup.py (Legacy)
+`dependencies` et `classifiers` sont des tableaux de chaînes placés dans la table `[project]`, avant toute sous-table (`[project.urls]`, etc.) : en TOML, une clé écrite après l'en-tête d'une sous-table appartient à cette sous-table. `license` est une expression de licence SPDX (PEP 639, prise en charge à partir de setuptools 77) ; l'ancienne forme `license = {text = "MIT"}` et les classifiers `License ::` sont dépréciés, et setuptools refuse de construire un projet qui combine expression SPDX et classifier de licence.
+
+### Configuration avec setup.py (historique)
 
 Encore utilisé, particulièrement pour les extensions C :
 
@@ -177,7 +179,7 @@ from setuptools import setup, find_packages
 setup(
     name="my-awesome-lib",
     version="1.0.0",
-    description="Une libraire incroyable",
+    description="Une bibliothèque d'exemple",
     author="John Doe",
     author_email="john@example.com",
     url="https://github.com/user/my-awesome-lib",
@@ -208,15 +210,15 @@ setup(
 )
 ```
 
-### Configuration avec setup.cfg (Alternative)
+### Configuration avec setup.cfg (alternative)
 
-Format INI, utile pour projects complexes :
+Format INI, déclaratif, qui sépare les métadonnées du code :
 
 ```ini
 [metadata]
 name = my-awesome-lib
 version = 1.0.0
-description = Une libraire incroyable
+description = Une bibliothèque d'exemple
 author = John Doe
 author_email = john@example.com
 url = https://github.com/user/my-awesome-lib
@@ -243,7 +245,7 @@ console_scripts =
     my-cli = my_lib.cli:main
 ```
 
-## Building : Créer les Distributions
+## Construction : créer les distributions
 
 ### Installer les outils
 
@@ -251,7 +253,7 @@ console_scripts =
 pip install setuptools wheel build
 ```
 
-`build` est l'outil moderne et recommandé pour créer distributions.
+`build` est l'outil recommandé par la PyPA pour créer les distributions.
 
 ### Créer wheel + sdist
 
@@ -260,47 +262,47 @@ python -m build
 ```
 
 Génère dans le dossier `dist/` :
-- `my_package-1.0.0-py3-none-any.whl`
-- `my_package-1.0.0.tar.gz`
+- `my_awesome_lib-1.0.0-py3-none-any.whl`
+- `my_awesome_lib-1.0.0.tar.gz`
 
 ### Vérifier la distribution
 
 ```bash
 # Lister le contenu du wheel
-unzip -l dist/my_package-1.0.0-py3-none-any.whl
+unzip -l dist/my_awesome_lib-1.0.0-py3-none-any.whl
 
 # Lister le contenu du sdist
-tar -tzf dist/my_package-1.0.0.tar.gz
+tar -tzf dist/my_awesome_lib-1.0.0.tar.gz
 ```
 
-## PyPI : La Registry Centrale
+## PyPI : le registre central
 
 ### Qu'est-ce que PyPI ?
 
-**Python Package Index** : Registry centrale où vivent tous les packages Python publics.
+**Python Package Index** : registre central des packages Python publics.
 
 - **URL** : https://pypi.org
-- **Packages** : Environ 500k packages
-- **Téléchargements/jour** : Millions
+- **Packages** : environ 500k packages
+- **Téléchargements/jour** : plusieurs millions
 
-C'est là qu'on publie avec `pip install le-package`.
+C'est sur PyPI que les packages sont publiés (avec `twine` ou `uv publish`), et c'est là que `pip install le-package` va les chercher par défaut.
 
 ### Créer un compte
 
 1. Aller sur https://pypi.org/account/register/
 2. Vérifier l'email
-3. Activer 2FA (recommandé)
-4. Générer un token API : https://pypi.org/account/tokens/
+3. Activer la 2FA (obligatoire pour tous les comptes PyPI)
+4. Générer un token API : https://pypi.org/manage/account/token/
 
-### TestPyPI : Sandbox
+### TestPyPI : bac à sable
 
-Pour tester avant vraie publication.
+Index de test, distinct de PyPI, pour valider une publication.
 
 - **URL** : https://test.pypi.org
-- **Compté séparé** : Faut aussi s'y enregistrer
-- **Token séparé** : À générer sur https://test.pypi.org/account/tokens/
+- **Compte séparé** : il faut aussi s'y enregistrer
+- **Token séparé** : à générer sur https://test.pypi.org/manage/account/token/
 
-Utile pour tester le processus de publication sans polluer PyPI.
+Il permet de tester le processus de publication sans publier sur PyPI.
 
 ## Publication sur PyPI
 
@@ -310,14 +312,15 @@ Utile pour tester le processus de publication sans polluer PyPI.
 pip install twine
 ```
 
-`twine` est l'outil de publication, plus robust que `python setup.py upload` (dépréciée).
+`twine` est l'outil de publication ; il remplace `python setup.py upload` (déprécié) et envoie les fichiers via HTTPS après vérification des métadonnées.
 
-### Configuration des Credentials
+### Configuration des identifiants
 
-Option 1 : Token API (recommandé)
+PyPI n'accepte plus l'envoi authentifié par nom d'utilisateur et mot de passe : la publication passe par un token API (nom d'utilisateur `__token__`, token en mot de passe) ou, en CI, par le Trusted Publishing, où le workflow (GitHub Actions, GitLab CI…) obtient via OIDC un jeton éphémère sans qu'aucun secret ne soit stocké.
 
-```bash
-# Dans ~/.pypirc
+Fichier `~/.pypirc` :
+
+```ini
 [distutils]
 index-servers =
     pypi
@@ -325,22 +328,16 @@ index-servers =
 [pypi]
 repository = https://upload.pypi.org/legacy/
 username = __token__
-password = pypi-AgEIcHlwaS5vcmc...  # Votre token
+password = pypi-AgEIcHlwaS5vcmc...
 ```
 
-Option 2 : Username/password (moins sûr, legacy)
-
-```bash
-[pypi]
-username = john
-password = mon_mot_de_passe_clair  # Mauvaise idée !
-```
+Le format INI de `.pypirc` n'accepte pas de commentaire en fin de ligne : un `# ...` placé après la valeur ferait partie du mot de passe.
 
 ### Publier sur TestPyPI
 
 D'abord, ajouter TestPyPI à `~/.pypirc` :
 
-```text
+```ini
 [distutils]
 index-servers =
     pypi
@@ -368,7 +365,7 @@ pip install --index-url https://test.pypi.org/simple/ my-awesome-lib
 pip install my-awesome-lib
 ```
 
-### Publier sur PyPI Official
+### Publier sur PyPI
 
 ```bash
 python -m twine upload dist/*
@@ -377,30 +374,32 @@ python -m twine upload dist/*
 Ou avec version spécifique :
 
 ```bash
-python -m twine upload dist/my_package-1.0.0*
+python -m twine upload dist/my_awesome_lib-1.0.0*
 ```
 
-## Semantic Versioning
+## Versionnage sémantique
 
-Format : `MAJOR.MINOR.PATCH[-pre-release][+build]`
+Les versions Python suivent la PEP 440. Le schéma sémantique `MAJOR.MINOR.PATCH` s'y applique, mais les suffixes ont leur propre syntaxe (une notation SemVer comme `1.0.0-beta.1` est acceptée et normalisée en `1.0.0b1`) :
 
 ```text
 1.0.0          # Release stable
 1.0.1          # Bugfix (PATCH)
 1.1.0          # Feature (MINOR)
 2.0.0          # Breaking change (MAJOR)
-1.0.0-beta.1   # Pre-release (beta/alpha/rc)
-1.0.0+build.1  # Build metadata
+1.0.0a1        # Pre-release : a (alpha), b (beta), rc (release candidate)
+1.0.0.post1    # Post-release (correction sans changement de code)
+1.0.0.dev1     # Version de développement
+1.0.0+build.1  # Version locale : refusée par PyPI
 ```
 
 **Règles** :
-- `MAJOR` : Breaking change, code client doit changer
-- `MINOR` : Feature rétro-compatible
-- `PATCH` : Bugfix rétro-compatible
+- `MAJOR` : rupture de compatibilité, le code client doit changer
+- `MINOR` : fonctionnalité rétrocompatible
+- `PATCH` : correctif rétrocompatible
 
-## Metadata complètes
+## Métadonnées complètes
 
-### __init__.py
+### `__init__.py`
 
 ```python
 # my_lib/__init__.py
@@ -419,47 +418,47 @@ __all__ = ["main_function", "helper"]
 ### Classifiers importants
 
 ```toml
-[project.classifiers]
-# Status
-"Development Status :: 3 - Alpha"
-"Development Status :: 4 - Beta"
-"Development Status :: 5 - Production/Stable"
+[project]
+classifiers = [
+    # Status (un seul par projet)
+    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
 
-# Licence
-"License :: OSI Approved :: MIT License"
-"License :: OSI Approved :: Apache Software License"
+    # Public
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
 
-# Public
-"Intended Audience :: Developers"
-"Intended Audience :: System Administrators"
+    # Topics
+    "Topic :: Software Development",
+    "Topic :: System :: Monitoring",
 
-# Topics
-"Topic :: Software Development"
-"Topic :: System :: Monitoring"
-
-# Python versions
-"Programming Language :: Python :: 3"
-"Programming Language :: Python :: 3.8"
-"Programming Language :: Python :: 3.9"
-"Programming Language :: Python :: 3.10"
-"Programming Language :: Python :: 3.11"
+    # Python versions
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
 ```
 
-## Checklist Avant Publication
+Les classifiers `License :: ...` sont dépréciés au profit du champ `license` (expression SPDX, PEP 639).
 
-- ✅ Tests passent : `pytest`
-- ✅ Code formaté et linté
-- ✅ Version mise à jour (semantic versioning)
-- ✅ CHANGELOG.md complété
-- ✅ README.md avec instructions d'installation/usage
-- ✅ LICENSE.md présent
-- ✅ Métadonnées complètes dans pyproject.toml/setup.py
-- ✅ Testé sur TestPyPI d'abord
-- ✅ Tag Git : `git tag v1.0.0`
-- ✅ Commit des changements
-- ✅ Build généré : `python -m build`
+## Checklist avant publication
 
-## Workflow Complet avec setuptools
+- Tests passent : `pytest`
+- Code formaté et linté
+- Version mise à jour (versionnage sémantique)
+- CHANGELOG.md complété
+- README.md avec instructions d'installation/usage
+- LICENSE.md présent
+- Métadonnées complètes dans pyproject.toml/setup.py
+- Testé sur TestPyPI d'abord
+- Tag Git : `git tag v1.0.0`
+- Commit des changements
+- Build généré : `python -m build`
+
+## Workflow complet avec setuptools
 
 ```bash
 # 1. Initialiser la structure
@@ -475,7 +474,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "my-awesome-lib"
 version = "1.0.0"
-description = "Une libraire incroyable"
+description = "Une bibliothèque d'exemple"
 requires-python = ">=3.8"
 dependencies = ["requests>=2.28.0"]
 EOF
@@ -496,34 +495,33 @@ twine upload --repository test-pypi dist/*
 # 6. Tester installation
 pip install --index-url https://test.pypi.org/simple/ my-awesome-lib
 
-# 7. Publier sur PyPI official
+# 7. Publier sur PyPI
 twine upload dist/*
 ```
 
-## Bonnes Pratiques
+## Bonnes pratiques
 
 ### Dépendances
 
 ```toml
-# BON : Version mineure fixée
-requests = ">=2.28.0,<3.0"
-pydantic = ">=1.10,<2.0"
-
-# MAUVAIS : Pas de limite sup
-requests = ">=2.28.0"
-
-# BON : Version exacte pour stabilité
-some-critical-lib = "1.2.3"
+[project]
+dependencies = [
+    # Borne inférieure : version minimale qui fournit les API utilisées
+    "requests>=2.28.0",
+    # Borne supérieure sur la version majeure : rupture d'API connue ou annoncée
+    "pydantic>=2.0,<3.0",
+]
 ```
+
+Les dépendances d'une bibliothèque cohabitent dans le même environnement avec celles des autres packages installés : une version exacte (`==1.2.3`) ou une borne supérieure systématique réduit l'ensemble des combinaisons admissibles et provoque des conflits de résolution chez les utilisateurs. Le guide de packaging de la PyPA recommande donc de ne pas épingler de version exacte dans `dependencies`. L'épinglage exact relève du lock file ou du `requirements.txt` d'une application déployée (voir l'article [Python : uv](./2025-12-19-uv-python.md)).
 
 ### Namespace packages
 
-Utile si on maintient plusieurs packages liés :
+Ils servent à répartir plusieurs packages liés entre des distributions distinctes :
 
 ```text
 src/
-├── mycompany/
-│   ├── __init__.py          (empty!)
+├── mycompany/               (pas de __init__.py)
 │   ├── lib1/
 │   │   └── __init__.py
 │   └── lib2/
@@ -535,9 +533,9 @@ src/
 find = {where = ["src"]}
 ```
 
-Alors `from mycompany.lib1 import ...` ça marche.
+C'est l'absence de `__init__.py` dans `mycompany/` qui en fait un namespace package (PEP 420) : plusieurs distributions peuvent fournir chacune un sous-package de `mycompany`, et `from mycompany.lib1 import ...` fonctionne. Un `__init__.py` dans `mycompany/` en ferait un package régulier, fourni par une seule distribution. La découverte automatique de setuptools en `pyproject.toml` (`find`) inclut les namespace packages par défaut (`namespaces = true`).
 
-### Entry points / Scripts CLI
+### Entry points / scripts CLI
 
 ```toml
 [project.scripts]
@@ -549,11 +547,11 @@ L'installation du package rend ces commandes disponibles partout :
 
 ```bash
 pip install my-awesome-lib
-my-cli --help        # Fonctionne!
-magic-tool config    # Fonctionne!
+my-cli --help        # Commande disponible dans le PATH
+magic-tool config    # Commande disponible dans le PATH
 ```
 
-### Extras / Optional dependencies
+### Extras / dépendances optionnelles
 
 ```toml
 [project.optional-dependencies]
@@ -562,16 +560,16 @@ email = ["aiosmtplib>=2.0"]
 dev = ["pytest", "black", "mypy"]
 ```
 
-Installation sélective :
+Installation sélective (les crochets sont entre guillemets, sinon le shell, zsh notamment, les interprète comme un motif de fichiers) :
 
 ```bash
-pip install my-awesome-lib                    # Bare minimum
-pip install my-awesome-lib[database]          # + database
-pip install my-awesome-lib[database,email]    # + database et email
-pip install my-awesome-lib[dev]               # + all dev tools
+pip install my-awesome-lib                      # Dépendances de base
+pip install "my-awesome-lib[database]"          # + database
+pip install "my-awesome-lib[database,email]"    # + database et email
+pip install "my-awesome-lib[dev]"               # + outils de développement
 ```
 
-## Alternatives Modernes (Optionnel)
+## Alternatives : Poetry et uv
 
 ### Poetry
 
@@ -597,11 +595,11 @@ uv build && uv publish
 
 uv couvre la gestion des dépendances, le lock file, la construction et la publication, en s'appuyant sur le `[build-system]` déclaré dans `pyproject.toml`.
 
-**Les deux restent compatibles avec le système de packaging standard** (wheel, sdist, PyPI, PEP 517/621) : ils produisent les mêmes distributions que setuptools et twine, et un projet peut changer d'outil sans changer de format.
+Les deux restent compatibles avec le système de packaging standard (wheel, sdist, PyPI, PEP 517/621) : ils produisent les mêmes distributions que setuptools et twine, et un projet peut changer d'outil sans changer de format.
 
 ## Ressources
 
-- [Official Packaging Guide](https://packaging.python.org/tutorials/packaging-projects/)
+- [Python Packaging User Guide](https://packaging.python.org/tutorials/packaging-projects/)
 - [setuptools Documentation](https://setuptools.pypa.io/)
 - [PEP 427 - Wheel Format](https://peps.python.org/pep-0427/)
 - [PEP 440 - Versioning](https://peps.python.org/pep-0440/)

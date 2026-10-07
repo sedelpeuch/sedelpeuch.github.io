@@ -1,14 +1,14 @@
 ---
-title: Personnel
+title: "Personnel"
 ---
 
 :::info
-La plupart des projets personnels présentés sont liés au domaine DevOps, en lien avec une spécialisation en ingénierie DevOps en cours.
+La plupart des projets personnels présentés relèvent du DevOps, domaine de mon activité d'ingénieur.
 :::
 
 Cette section regroupe des projets réalisés à titre personnel, en dehors du cadre professionnel ou associatif. Ces projets sont principalement orientés vers l'exploration de technologies et d'outils liés au DevOps, mais peuvent également concerner d'autres domaines d'intérêt.
 
-**Types de projets :**
+**Types de projets :**
 
 - Expérimentations en automatisation, infrastructure ou cloud
 - Développement d'outils, scripts ou applications
