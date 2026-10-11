@@ -50,6 +50,8 @@ flowchart LR
     authentik -.->|login, équipes| github["GitHub<br/>organisation"]
 ```
 
+Le détail de l'accès LAN est dans l'article [Kubernetes : accès LAN par externalIPs et CoreDNS](/blog/2026/10/06/02-network/kubernetes-acces-lan-coredns).
+
 Le certificat est stocké sur un volume persistant à accès unique : Traefik ne tourne qu'en une réplique, et chaque déploiement le coupe quelques secondes, le temps que l'ancien pod libère le volume. C'est un compromis assumé pour un usage interne.
 
 ## Authentification unique : Authentik
@@ -88,6 +90,10 @@ Les bases critiques (PostgreSQL d'Authentik, dont la perte coupe l'accès à tou
 
 Pour les besoins de stockage objet, j'ai ajouté **Garage**, un stockage S3 auto-hébergé, avec son interface web derrière Authentik. Les objets sont sur un volume Longhorn à un seul réplica, local au nœud, et Garage ne les duplique pas ; il prend seulement un instantané de ses métadonnées toutes les six heures. Ce stockage est donc réservé à des données reproductibles ou sauvegardées ailleurs.
 
+## Calcul GPU
+
+En octobre 2026, j'ai mis en service deux nœuds GPU, équipés de cartes NVIDIA de générations différentes. Sur chaque hôte, j'ai installé le pilote et le container toolkit, avec le runtime `nvidia` par défaut. Côté cluster, le device plugin NVIDIA et GPU Feature Discovery sont déployés par la CI comme les autres charts. Une équipe demande une carte par `nvidia.com/gpu: 1` et choisit le modèle par les labels posés automatiquement sur les nœuds, selon un guide que j'ai ajouté à la documentation d'exploitation. Le GPU Operator de NVIDIA a été écarté, car sa matrice de support ne couvre ni ces cartes ni cette version de Kubernetes. Un exporter fondé sur `nvidia-smi` fournit l'utilisation, la mémoire et la température des cartes sans les réserver. Le durcissement du runtime, pour qu'une image ne puisse plus obtenir un GPU sans le demander, reste à faire. Le détail est dans l'article [Kubernetes : GPU NVIDIA](/blog/2026/10/09/06-orchestration/kubernetes-gpu-nvidia).
+
 ## GitOps : un dépôt par service
 
 Presque chaque service déployé sur le cluster a son propre dépôt Helm dans l'organisation `catie-aq`. La structure est systématique : un chart Helm, un `values.yaml` qui centralise la configuration, et un workflow GitHub Actions qui appelle le workflow réutilisable `deploy-helm` de [`generic_workflows`](cicd.md). Pousser sur `main` déclenche le déploiement, avec des identifiants de déploiement fournis par la CI.
@@ -121,6 +127,8 @@ Au-delà de la chaîne d'observabilité, le cluster héberge les outils du quoti
   <TabItem value="observabilite" label="Observabilité">
 
 La chaîne d'observabilité couvre trois couches. **Prometheus** collecte les métriques des workloads, des composants Kubernetes et des nœuds, via un node exporter déployé sur chacun. **Grafana** visualise ces données ; son volume persistant est configuré en `Retain` pour que les dashboards survivent aux redéploiements. **Smokeping** mesure la latence réseau vers des cibles externes et internes : c'est ce qui permet de distinguer une panne applicative d'une dégradation réseau en amont.
+
+En octobre 2026, j'ai posé un socle d'alertes Prometheus, envoyées sur Slack par Alertmanager : nœuds (disponibilité, disques, mémoire, redémarrage en attente après une mise à jour du noyau), workloads (CrashLoopBackOff, OOMKilled, rollouts incomplets, Jobs et CronJobs en échec), stockage (PVC, volumes Longhorn dégradés, Garage), certificats kubeadm et température des GPU. Les composants dont le chart n'expose pas d'annotation de collecte (Longhorn, Authentik, ARC) sont collectés par labels de pod sans redéployer leur release, et les alertes de CI indiquent le dépôt et le workflow concernés. Le détail et les pièges rencontrés sont dans l'article [Prometheus : alertes d'un cluster Kubernetes](/blog/2026/10/11/07-monitoring/prometheus-alertes-kubernetes).
 
 **Loki** centralise les logs de l'ensemble du cluster. Promtail tourne comme DaemonSet sur chaque nœud et pousse les logs vers Loki. Avoir les logs applicatifs et système au même endroit que les métriques permet de corréler un pic Prometheus avec les lignes de logs correspondantes sans changer d'outil. **Gatus** complète le tableau en donnant une vue binaire de la disponibilité de chaque service. Il a remplacé Uptime Kuma en septembre 2026 : ses sondes sont déclarées dans le `values.yaml` de son chart, donc versionnées et relues comme le reste de la configuration, au lieu d'être saisies dans une interface et stockées dans une base, et il expose ses résultats en métriques Prometheus.
 
@@ -164,8 +172,6 @@ Le cluster fait tourner sur sept nœuds les services du quotidien de l'équipe, 
 **Les sauvegardes restent sur le cluster.** Les snapshots Longhorn et les sauvegardes de Dolibarr sont stockés sur les disques du cluster lui-même : ils protègent d'une erreur de manipulation ou de la perte d'un disque, pas de la perte du cluster. La sauvegarde hors cluster est le prochain chantier.
 
 **Les mises à jour Kubernetes sont incomplètes.** La branche Kubernetes installée n'est plus maintenue, et les nœuds ne sont pas tous au même niveau de correctif. Mettre à jour un cluster kubeadm en production nécessite, nœud par nœud, de drainer le nœud, de mettre à jour kubeadm, puis kubelet et kubectl. La procédure est rédigée en mode opératoire et la montée de version est planifiée.
-
-**La surveillance des certificats n'est pas automatisée.** Une alerte Prometheus sur les dates d'expiration, routée par [Alertmanager](/blog/2026/09/20/07-monitoring/prometheus-alertmanager), aurait permis d'anticiper l'incident ; elle n'est pas encore en place. La prochaine échéance est relevée dans le mode opératoire de renouvellement, avec une date d'intervention préventive.
 
 **Promtail est en fin de vie.** Grafana a déprécié Promtail au profit de Grafana Alloy, et ne le maintient plus depuis mars 2026 : l'agent de collecte des logs ne reçoit plus de correctifs. La migration vers Alloy, qui fournit une commande de conversion des configurations Promtail, reste à faire.
 
