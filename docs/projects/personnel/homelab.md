@@ -54,6 +54,7 @@ Une trentaine de stacks, organisées en quatre familles :
     - **Immich** reprend le rôle de Google Photos, avec sauvegarde automatique de la pellicule mobile.
     - **Navidrome** sert la bibliothèque musicale aux clients Subsonic du téléphone et du PC, en remplacement d'un abonnement de streaming.
     - **[Recallarr](recallarr.md)**, une application que j'ai développée, tient le journal de ce qui a été regardé et décide du devenir de chaque titre de la médiathèque.
+    - **[ytdl-sub-ui](ytdl-sub-ui.md)**, une autre application que j'ai développée, pilote ytdl-sub, qui télécharge chaque soir les chaînes YouTube suivies vers Jellyfin : recherche et ajout de chaînes, rétention et suivi des passages depuis le navigateur.
     - **Calibre-Web** sert de bibliothèque d'ebooks.
     - **Samba** expose la médiathèque en partage réseau pour les appareils qui ne parlent pas HTTP.
     - **qBittorrent** télécharge en tunnel VPN forcé.
@@ -222,7 +223,7 @@ En septembre 2026, le serveur a planté trois fois en quelques jours, sans aucun
 
 Chaque service a son propre fichier de documentation dans le repo : rôle, architecture, domaine d'accès, volumes et leur classe de protection, variables d'environnement, tier de mise à jour, risques connus. Cette documentation est compilée en un site navigable (MkDocs), généré au build à partir de ces mêmes fichiers : aucune duplication, aucun contenu à maintenir à deux endroits. Le site est entièrement régénéré à chaque déploiement, à partir du repo qui fait foi. Les idées de services évaluées puis écartées y sont conservées avec la raison de leur rejet, pour ne pas rouvrir le même débat six mois plus tard.
 
-Une charte graphique commune, documentée sur ce même site, s'applique au site de documentation, au tableau de bord, aux applications que j'ai développées ([Body Analysis](body_analysis.md), [Colis Tracker](colis-tracker.md), [Recallarr](recallarr.md)) et aux applications tierces qui acceptent un thème (Sablier, Gatus, Mealie) : un thème sombre de type synoptique, un seul accent de couleur réservé à ce qui est actif, des libellés et des codes de repère identiques d'une interface à l'autre.
+Une charte graphique commune, documentée sur ce même site, s'applique au site de documentation, au tableau de bord, aux applications que j'ai développées ([Body Analysis](body_analysis.md), [Colis Tracker](colis-tracker.md), [Recallarr](recallarr.md), [ytdl-sub-ui](ytdl-sub-ui.md)) et aux applications tierces qui acceptent un thème (Sablier, Gatus, Mealie) : un thème sombre de type synoptique, un seul accent de couleur réservé à ce qui est actif, des libellés et des codes de repère identiques d'une interface à l'autre.
 
 ## Résultats
 
