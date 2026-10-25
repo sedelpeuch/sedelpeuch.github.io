@@ -28,6 +28,7 @@ jobs:
       - name: Install and Build
         env:
           BASE_URL: /pr-preview/pr-${{ github.event.pull_request.number }}/
+          NODE_OPTIONS: --max-old-space-size=8192
         run: |
           yarn install --frozen-lockfile
           apt update && apt install -y rsync jq
