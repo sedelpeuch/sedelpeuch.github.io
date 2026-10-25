@@ -24,3 +24,9 @@ iac:
 
 scripting:
   label: Scripting
+
+git:
+  label: Git
+
+security:
+  label: Sécurité

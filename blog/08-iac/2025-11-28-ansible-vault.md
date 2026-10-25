@@ -1,7 +1,7 @@
 ---
 title: "Ansible : Vault"
 description: "Ansible Vault : chiffrement des secrets dans un dépôt Ansible, fichiers et variables chiffrés, gestion des mots de passe, identifiants de Vault et intégration en CI."
-tags: [iac, devops]
+tags: [iac, security, devops]
 ---
 
 Un dépôt Ansible décrit l'intégralité d'une infrastructure, y compris les mots de passe de bases de données, les clés d'API et les certificats nécessaires aux services. Ansible Vault chiffre ces données sensibles pour qu'elles puissent être versionnées avec le reste du code, puis les déchiffre en mémoire au moment de l'exécution des playbooks.

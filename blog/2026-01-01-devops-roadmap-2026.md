@@ -1,10 +1,10 @@
 ---
 title: "DevOps Roadmap 2026"
-description: "Ma roadmap DevOps 2026 : cloud AWS (IAM, VPC, EC2), Terraform multi-environnements, et le bilan de 2025 sur Kubernetes, l'observabilité et Ansible."
+description: "Ma roadmap DevOps 2026 : cloud AWS (IAM, VPC, EC2), Terraform multi-environnements, sécurité (secrets, authentification, TLS), et le bilan de 2025 sur Kubernetes, l'observabilité et Ansible."
 tags: [devops]
 ---
 
-Voici un résumé de ma roadmap DevOps personnelle pour 2026. Cette roadmap s'appuie sur les réalisations de l'année précédente et vise à approfondir le cloud et l'Infrastructure as Code. Elle évolue au fil des projets, des expérimentations et des apprentissages partagés sur le blog.
+Voici un résumé de ma roadmap DevOps personnelle pour 2026. Cette roadmap s'appuie sur les réalisations de l'année précédente et vise à approfondir le cloud et l'Infrastructure as Code, et ajoute un onzième domaine : la sécurité. Elle évolue au fil des projets, des expérimentations et des apprentissages partagés sur le blog.
 
 <!--truncate-->
 
@@ -22,6 +22,10 @@ import IconTitle from '@site/src/components/IconTitle';
 ### <IconTitle logo="skill-icons:terraform-light" name="08 Infrastructure as Code - Terraform"/>
 
 [Infrastructure as Code](/blog/tags/iac) Automatisation avancée du provisionnement d'infrastructure avec Terraform, gestion multi-environnements (dev, test, prod), documentation des workflows et partage des bonnes pratiques.
+
+### <IconTitle logo="mdi:shield-lock-outline" name="11 Sécurité"/>
+
+[Sécurité](/blog/tags/security) Nouveau domaine de la roadmap : gestion des secrets hors du code source, authentification centralisée et contrôle d'accès aux services, chiffrement des échanges par TLS, analyse des images et des dépendances dans les pipelines CI/CD. Objectif : traiter la sécurité dès la conception de l'infrastructure, dans une approche DevSecOps.
 
 ## Bilan 2025
 

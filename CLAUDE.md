@@ -37,7 +37,7 @@ Docusaurus 3 site (French, single locale). Deployed to GitHub Pages at `delpeuch
 
 ## Content conventions
 
-Blog posts use frontmatter with `tags` matching navbar dropdown categories: `network`, `containerization`, `cicd`, `cloud`, `orchestration`, `monitoring`, `iac`, `scripting`, plus `devops` on every post.
+Blog posts use frontmatter with `tags` matching navbar dropdown categories: `network`, `containerization`, `cicd`, `cloud`, `orchestration`, `monitoring`, `iac`, `scripting`, `git`, `security`, plus `devops` on every post. A cross-cutting article keeps its folder (primary category, URL) and adds the tags of the other categories it belongs to.
 
 Blog permalinks look like `/blog/2025/06/09/08-iac/ansible-zsh-automation` (date + folder + slug without date). Relative `.md` links only resolve within the same plugin: blog ↔ blog is fine, but a link from `docs/` to a blog post (or the reverse) must use the permalink. Never rename or move a published file (blog or docs) without a redirect — URLs are public.
 

@@ -11,7 +11,7 @@ Objectif : alimenter le blog à partir du travail réel de Seb, sans fuite d'inf
 
 - **Sources** : GitHub uniquement, comptes `sedelpeuch` et organisation `catie-aq`. Pas de lecture des dépôts locaux.
 - **Contributions** : commits, PR et issues dont Seb est l'auteur ; dans `catie-aq`, seulement les dépôts où il a contribué.
-- **Focus DevOps** : catégories du blog (network, containerization, cicd, cloud, orchestration, monitoring, iac, scripting). Robotique (ROS2, Jetson…) acceptée si l'angle est l'outillage (CI, images, déploiement, bancs de test), pas l'algorithmie.
+- **Focus DevOps** : catégories du blog (network, containerization, cicd, cloud, orchestration, monitoring, iac, scripting, git, security). Robotique (ROS2, Jetson…) acceptée si l'angle est l'outillage (CI, images, déploiement, bancs de test), pas l'algorithmie.
 - **Projets clients** : lecture autorisée. Un travail fait sur un projet client (ex. déploiement en prod Scaleway avec Terraform) peut devenir un article, à condition qu'**aucun lecteur ne puisse deviner le projet ni le client** : pas de nom, de domaine, de métier reconnaissable, de chiffre ou d'architecture distinctive ; seul l'outil ou le mécanisme est gardé. Le signaler comme projet client dans la liste de candidats. Si l'anonymisation paraît impossible sans vider le sujet, le dire plutôt que de le proposer.
 - **Interne CATIE non client** (noms de nœuds, IP, architecture) : utilisable sans demander, mais toujours rendu générique dans l'article (`example.com`, IP fictives, `node-1`, modèles de matériel remplacés).
 - **Applicatif perso hors DevOps** (arr, Recallarr, body_analysis, ytdl-sub-ui…) : écarté.

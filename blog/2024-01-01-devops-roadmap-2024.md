@@ -15,9 +15,9 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ## Roadmap 2024
 
-### <IconTitle logo="skill-icons:linux-light" name="02 OS & Linux"/>
+### <IconTitle logo="mdi:lan" name="02 Réseau"/>
 
-**Système & Linux** Approfondissement des notions de réseau et de sécurité, configuration avancée des pare-feu, gestion des équilibreurs de charge et des proxies, maîtrise des protocoles HTTP/HTTPS et de la virtualisation. L'objectif est de fiabiliser l'infrastructure, d'automatiser la gestion des accès et d'optimiser la sécurité sur des environnements multi-plateformes.
+[Réseau](/blog/tags/network) Approfondissement des notions de réseau et de sécurité, configuration avancée des pare-feu, gestion des équilibreurs de charge et des proxies, maîtrise des protocoles HTTP/HTTPS et de la virtualisation. L'objectif est de fiabiliser l'infrastructure, d'automatiser la gestion des accès et d'optimiser la sécurité sur des environnements multi-plateformes.
 
 ### <IconTitle logo="skill-icons:docker" name="03 Conteneurisation - Docker"/>
 
@@ -33,9 +33,9 @@ import IconTitle from '@site/src/components/IconTitle';
 
 [Développement logiciel](/blog/tags/devops) La maîtrise des méthodes de collaboration (Agile, Jira), de la gestion de versions avec Git, de la configuration des applications via des outils de build, du cycle de vie du développement logiciel et des tests automatisés découle naturellement d'un parcours d'ingénieur informatique, enrichi par des expériences en entreprise et des projets personnels. Ces compétences sont mobilisées au quotidien dans la conduite de projets, la veille technologique et la rédaction d'articles.
 
-### <IconTitle logo="skill-icons:linux-light" name="02 OS & Linux"/>
+### <IconTitle logo="mdi:lan" name="02 Réseau"/>
 
-**Système & Linux** L'utilisation avancée des commandes Shell, la gestion du système de fichiers et des permissions, la gestion des clés SSH, la compréhension des adresses IP, ports et DNS sont des fondamentaux acquis lors de la formation d'ingénieur, puis consolidés par la pratique sur des serveurs, clusters et environnements cloud, notamment dans des projets comme HomeLab ou delpeuch.net.
+[Réseau](/blog/tags/network) L'utilisation avancée des commandes Shell, la gestion du système de fichiers et des permissions, la gestion des clés SSH, la compréhension des adresses IP, ports et DNS sont des fondamentaux acquis lors de la formation d'ingénieur, puis consolidés par la pratique sur des serveurs, clusters et environnements cloud, notamment dans des projets comme HomeLab ou delpeuch.net.
 
 ### <IconTitle logo="skill-icons:python-light" name="09 Langages de script - Python"/>
 
@@ -43,7 +43,7 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ### <IconTitle logo="skill-icons:git" name="10 Contrôle de version - Git"/>
 
-[Git](/blog/tags/devops) L'usage de Git pour organiser, collaborer et versionner les projets applicatifs et d'automatisation est une compétence essentielle pour tout ingénieur informatique. Elle est mise en œuvre dans la gestion de workflows, de pull requests et de revues de code sur GitHub et GitLab, aussi bien dans le cadre professionnel que pour les side-projects open source.
+[Git](/blog/tags/git) L'usage de Git pour organiser, collaborer et versionner les projets applicatifs et d'automatisation est une compétence essentielle pour tout ingénieur informatique. Elle est mise en œuvre dans la gestion de workflows, de pull requests et de revues de code sur GitHub et GitLab, aussi bien dans le cadre professionnel que pour les side-projects open source.
 
 ## Application / Projet lié
 
