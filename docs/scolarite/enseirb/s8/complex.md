@@ -3,7 +3,11 @@ title: "Calculabilité et complexité"
 description: "Supports de cours, sujet de TD et devoirs maison du module de calculabilité et complexité du semestre 8."
 ---
 
-<ResourceList type="cours" title="Slides du cours" ordered={false}>
+Le module de calculabilité et complexité est accompagné de trois devoirs maison rédigés à quatre. Le premier traite des propriétés de clôture et de l'énumération, le deuxième des réductions et de la décidabilité. Le troisième relie le problème de Post, les systèmes semi-thuéiens et les machines de Turing.
+
+## Ressources
+
+<ResourceList type="support" title="Slides de l'enseignant">
 
 - [Slides du cours](http://ctravers.vvv.enseirb-matmeca.fr/IF228/cc-tout.pdf)
 
@@ -15,7 +19,7 @@ description: "Supports de cours, sujet de TD et devoirs maison du module de calc
 
 </ResourceList>
 
-<ResourceList type="support" title="Devoirs maison">
+<ResourceList type="projet" title="Devoirs maison">
 
 - [DM1](./img/dm1.pdf)
 - [DM2](./img/dm2.pdf)

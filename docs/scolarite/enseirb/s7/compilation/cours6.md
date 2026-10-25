@@ -1,5 +1,5 @@
 ---
-title: "Vidéo 7.1"
+title: "Analyse sémantique et production de code"
 description: "Outils pour l'analyse sémantique et la production de code : actions sémantiques Lex/Yacc, table des symboles, récursion gauche, analyse de noms et de types."
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Automates finis et applications - TD5
+title: "TD 5 : non-déterminisme et déterminisation"
 description: "Notes du TD5 d'automates finis : simulation d'un AFN, construction par sous-ensembles, langage vide, universalité, inclusion et coût exponentiel de la déterminisation."
 ---
 

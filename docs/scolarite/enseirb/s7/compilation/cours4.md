@@ -1,5 +1,5 @@
 ---
-title: "Vidéo 5"
+title: "Grammaires attribuées"
 description: "Grammaires attribuées : attributs synthétisés et hérités, actions sémantiques Yacc et ordre d'évaluation postfixe sur l'arbre de dérivation."
 ---
 

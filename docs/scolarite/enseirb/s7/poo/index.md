@@ -3,18 +3,20 @@ title: "Programmation Orientée Objets"
 description: "Notes de cours de programmation orientée objet en Java (ENSEIRB-MATMECA, S7) : encapsulation, classes, polymorphisme, héritage, exceptions et types paramétrés, avec sujets, rapports et code des TD."
 ---
 
-## Ressources pédagogiques
+Le cours de programmation orientée objet du semestre 7 utilise Java. Il part de l'encapsulation, des objets et des classes, passe à la substitution d'objets (polymorphisme et hiérarchies de classes), puis termine par deux mécanismes extérieurs au modèle objet, les exceptions et les types paramétrés. D'une séance à l'autre, les TD font évoluer une simulation de transports en commun (autobus et passagers). Le projet en reprend deux variantes de conception, l'une par héritage (est-un), l'autre par composition (a-un).
 
-<ResourceList type="support">
+## Notes de cours
+
+<CourseGrid ordered />
+
+## Ressources
+
+<ResourceList type="support" title="Supports de l'enseignant">
 
 - [Polycopié de cours](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/poo-info-2021.pdf)
 - [Site contenant tous les TD](https://georgy.vvv.enseirb-matmeca.fr/PG202-203/)
 
 </ResourceList>
-
-<CourseGrid />
-
-## Travaux dirigés
 
 <ResourceList type="td" title="Sujets de TD" ordered>
 
@@ -29,7 +31,7 @@ description: "Notes de cours de programmation orientée objet en Java (ENSEIRB-M
 
 </ResourceList>
 
-<ResourceList type="td" title="Code des TD">
+<ResourceList type="correction" title="Code des TD">
 
 - [TD 1](./img/POOtd1.zip)
 - [TD 2](./img/POOtd2.zip)
@@ -45,7 +47,7 @@ description: "Notes de cours de programmation orientée objet en Java (ENSEIRB-M
 
 </ResourceList>
 
-<ResourceList type="support" title="Rapports de TD">
+<ResourceList type="correction" title="Rapports de TD">
 
 - [Rapport 0](./img/0.pdf)
 - [Rapport 1](./img/1.pdf)
@@ -57,10 +59,8 @@ description: "Notes de cours de programmation orientée objet en Java (ENSEIRB-M
 
 </ResourceList>
 
-## Projet
+<ResourceList type="projet" title="Projet">
 
-<ResourceList type="projet">
-
-- [Projet](./img/POOprojet.zip)
+- [Simulation de transports en commun (Java)](./img/POOprojet.zip)
 
 </ResourceList>

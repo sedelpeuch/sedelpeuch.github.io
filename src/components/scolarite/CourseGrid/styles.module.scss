@@ -73,6 +73,16 @@
   font-variant-numeric: tabular-nums;
 }
 
+// Description d'une note dans la séquence (mode `ordered`), alignée sur le
+// texte du lien, après son icône.
+.stepDescription {
+  display: block;
+  margin: 0.1rem 0 0.35rem 1.45rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--ifm-color-emphasis-700);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tile {
     transition: none;

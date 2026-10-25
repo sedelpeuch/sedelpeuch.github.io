@@ -1,5 +1,5 @@
 ---
-title: Programmation fonctionnelle - Introduction
+title: Introduction
 description: "Concepts de la programmation fonctionnelle (transparence référentielle, fonctions de première classe, typage dynamique), bases du lambda-calcul et lien avec la syntaxe Lisp."
 ---
 

@@ -3,6 +3,8 @@ title: "Management de la qualité"
 description: "Notions de management de la qualité : définitions, démarche qualité, PDCA, norme ISO 9001, approche processus, amélioration continue et normes QSE."
 ---
 
+Ces notes de management de la qualité partent de la définition de la qualité et des principes de la démarche qualité, avec la roue de Deming. Elles présentent ensuite la norme ISO 9001, l'approche processus et l'amélioration continue, puis le parallèle avec les normes d'environnement et de santé-sécurité au travail.
+
 ## Définition de la qualité
 
 La qualité est une notion vaste et floue : quel que soit le domaine abordé, la

@@ -3,21 +3,21 @@ title: Programmation fonctionnelle
 description: "Cours d'initiation à la programmation fonctionnelle en Scheme/Racket du semestre 6 : lambda-calcul, environnements, récursivité, listes, fonctionnelles, macro-expansions."
 ---
 
-<CourseGrid />
+Ce cours initie à la programmation fonctionnelle en Scheme/Racket. Il part des concepts du paradigme et des bases du lambda-calcul, présente les constructions de base du langage, puis les symboles, liaisons et environnements. Suivent la récursivité, les listes, le système de type de Typed Racket et les fonctionnelles d'ordre supérieur, avant les formes impératives et les macro-expansions.
 
-## Objectif du cours
+## Notes de cours
 
-Initiation à la programmation fonctionnelle (évaluation, environnements, récursivité, listes, fonctionnelles, macro-expansion).
+<CourseGrid ordered />
 
-## Ressources pédagogiques
+## Ressources
 
-<ResourceList type="cours" ordered={false}>
+<ResourceList type="support" title="Support de l'enseignant">
 
-- [Support de cours](https://www.labri.fr/perso/myriam/Enseignement/Scheme/scheme.pdf)
+- [Polycopié Scheme](https://www.labri.fr/perso/myriam/Enseignement/Scheme/scheme.pdf)
 
 </ResourceList>
 
-<ResourceList type="td">
+<ResourceList type="td" title="Sujets de TD">
 
 - [TD 1](https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td1.pdf)
 - [TD 2](https://www.labri.fr/perso/renault/working/teaching/schemeprog/files/td2.pdf)
@@ -30,7 +30,7 @@ Initiation à la programmation fonctionnelle (évaluation, environnements, récu
 
 </ResourceList>
 
-<ResourceList type="correction">
+<ResourceList type="correction" title="Corrigés des TD (Racket)">
 
 - [Corrigé 1](./img/1.rkt)
 - [Corrigé 2](./img/2.rkt)

@@ -1,5 +1,5 @@
 ---
-title: "TD1 - Modèle conceptuel"
+title: "TD 1 : modèle conceptuel"
 description: "Corrigé du TD1 de bases de données : schémas entités-associations (voitures, facturation, classes, personnel), entités, associations et cardinalités."
 ---
 

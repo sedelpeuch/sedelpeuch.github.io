@@ -1,6 +1,7 @@
 ---
-title: Graphe - Plus court chemin
+title: Plus court chemin
 description: "Plus courts chemins dans un graphe orienté pondéré : relâchement, algorithme de Bellman-Ford (poids négatifs, détection de cycle absorbant) et algorithme de Dijkstra."
+sidebar_position: 6
 ---
 
 Le problème du plus court chemin considéré ici porte sur des graphes orientés à

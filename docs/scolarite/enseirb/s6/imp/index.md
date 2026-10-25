@@ -3,21 +3,15 @@ title: Programmation impérative
 description: "Cours de programmation impérative avancée en C du semestre 6 : conventions de codage, GDB, Valgrind, CMake, Doxygen, diff/patch, SVN, tests et code legacy."
 ---
 
-<CourseGrid />
+Ce cours approfondit la programmation en C et l'usage des outils associés. Les constructions avancées du langage (typage, pointeurs de fonctions) servent à appliquer des principes de génie logiciel. Les TD abordent dans l'ordre les conventions de codage, la simulation mémoire, le débogage avec GDB et Valgrind, CMake et Doxygen, diff et patch, la gestion de sources avec SVN et les tests, puis la reprise d'un code legacy. Les notes couvrent les trois derniers TD.
 
-## Objectif du cours
+## Notes de cours
 
-L'objectif de ce cours est d'approfondir l'étude de la programmation en langage
-C et l'usage des outils associés. On y aborde l'utilisation de constructions
-avancées du langage (typage, pointeurs de fonctions) permettant de mettre en
-application certains principes de génie logiciel, et on y présente plusieurs
-outils (débogueurs, outils de gestion de sources, de documentation automatique
-et de mesure de performance) permettant d'augmenter l'efficacité de la
-programmation.
+<CourseGrid ordered />
 
-## Ressources pédagogiques
+## Ressources
 
-<ResourceList type="cours">
+<ResourceList type="support" title="Supports de l'enseignant" ordered>
 
 - [Cours 1](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours1.pdf)
 - [Cours 2](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/pg106_cours2.pdf)
@@ -35,14 +29,14 @@ programmation.
 - [Simulation mémoire](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/Exercices-de-simulation-m%C3%A9moire.pdf)
 - [GDB](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td_gdb_valgrind-sujet.pdf)
 - [Valgrind](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td_valgrind-sujet.pdf)
-- [CMake IDE Doxygen](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td_cmake-ide-doxygen-sujet.pdf)
+- [CMake, IDE et Doxygen](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td_cmake-ide-doxygen-sujet.pdf)
 - [Diff et patch](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-diff-patch-svn-git-sujet.pdf)
 - [SVN](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-svn-tests-sujet.pdf)
 - [Code legacy](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/td-code-legacy-sujet.pdf)
 
 </ResourceList>
 
-<ResourceList type="support" title="Sources">
+<ResourceList type="support" title="Fichiers sources des TD">
 
 - [Convention de codage, hash.c](http://www.labri.fr/perso/allali/wp-content/uploads/2015/01/hash.c.gz)
 - [Simulation mémoire, CI-memoire](https://www.labri.fr/perso/allali/wp-content/uploads/2015/01/CI-memoire.pdf)

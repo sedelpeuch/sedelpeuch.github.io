@@ -1,6 +1,9 @@
 ---
-title: Impératif - diff, patch, SVN et Git
+title: "TD 6 : diff, patch, SVN et Git"
 description: "Notes de TD sur l'installation d'une bibliothèque CMake, la génération et l'application de correctifs avec diff et patch, et les bases de SVN."
+sidebar_position: 1
+sidebar_custom_props:
+  kind: td
 ---
 
 ## Une nouvelle bibliothèque

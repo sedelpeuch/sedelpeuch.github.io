@@ -1,5 +1,5 @@
 ---
-title: Automates finis et applications - TD6
+title: "TD 6 : automate minimal"
 description: "Notes du TD6 d'automates finis : calcul de l'automate minimal par suppression des états inaccessibles et fusion des états équivalents."
 ---
 

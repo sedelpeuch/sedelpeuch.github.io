@@ -3,10 +3,9 @@ title: Algorithmique numérique
 description: Projets du module d'algorithmique numérique du semestre 6 (calcul flottant, systèmes linéaires, SVD, Newton-Raphson, splines, équations différentielles).
 ---
 
-## Objectif du cours
+Le module d'algorithmique numérique présente des méthodes et des algorithmes adaptés à la modélisation de problèmes numériques. Il s'organise autour de six projets réalisés en équipe : limites du calcul flottant, résolution de systèmes linéaires appliquée à l'équation de la chaleur, compression d'image par décomposition en valeurs singulières, méthode de Newton-Raphson, interpolation par splines cubiques et résolution approchée d'équations différentielles. Les sujets sont publiés sur le site de l'enseignant et chaque projet a donné lieu à un rapport.
 
-Le module d'algorithmique numérique décrit un ensemble de méthodes et
-d'algorithmes adaptés à la modélisation de problèmes numériques.
+## Ressources
 
 <ResourceList type="projet" title="Sujets de projet">
 

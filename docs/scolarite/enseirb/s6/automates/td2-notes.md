@@ -1,5 +1,5 @@
 ---
-title: Automates finis et applications - TD2
+title: "TD 2 : expressions régulières"
 description: "Notes du TD2 d'automates finis : syntaxe et langage des expressions régulières, construction de Kleene, utilisation de grep."
 ---
 

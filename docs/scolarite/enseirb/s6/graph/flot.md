@@ -1,6 +1,7 @@
 ---
-title: Graphe - Le problème du flot maximal
+title: Flot maximal
 description: "Flot maximal dans un réseau : réseau résiduel, chemins améliorants, théorème flot maximal / coupe minimale, algorithmes de Ford-Fulkerson et d'Edmonds-Karp, théorèmes de Menger."
+sidebar_position: 7
 ---
 
 Un système dans lequel un matériau s'écoule, tel l'eau ou l'électricité, peut

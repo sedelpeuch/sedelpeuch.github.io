@@ -1,6 +1,7 @@
 ---
-title: Graphe - Couplage
+title: Couplage
 description: "Problème du couplage maximum : chemins alternés augmentants, théorème de Berge, arbres alternés et contraction des orbites (fleurs)."
+sidebar_position: 8
 ---
 
 Cours inspiré des cours intégrés dispensés par [Nicolas

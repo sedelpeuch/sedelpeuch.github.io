@@ -1,5 +1,5 @@
 ---
-title: "Vidéo 6.2"
+title: "Analyse ascendante"
 description: "Analyse ascendante par décalage-réduction : déroulé sur un exemple, conflits, table d'actions et manipulation des attributs sur la pile d'analyse."
 ---
 

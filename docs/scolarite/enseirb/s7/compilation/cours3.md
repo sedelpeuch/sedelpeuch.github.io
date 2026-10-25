@@ -1,5 +1,5 @@
 ---
-title: "Vidéo 4"
+title: "Grammaires algébriques"
 description: "Grammaires algébriques : règles de production, plus petit point fixe, dérivations gauches, arbres de dérivation, ambiguïté et grammaire ETF des expressions arithmétiques."
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "Cours - Analyse lexicale"
+title: "Analyse lexicale"
 description: "Analyse lexicale : langages réguliers, construction de Thompson, déterminisation et minimisation d'automates, reconnaissance des lexèmes."
 ---
 

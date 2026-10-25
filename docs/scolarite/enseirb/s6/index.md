@@ -10,8 +10,6 @@ Lorsqu'elles ont été prises, mes notes de cours sont disponibles.
 
 <CourseGrid />
 
-## Projets 2
-
 <ResourceList type="projet">
 
 - [Projet Actor](https://thor.enseirb-matmeca.fr/ruby/projects/projetss6-actor-1920)

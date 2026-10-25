@@ -1,5 +1,5 @@
 ---
-title: "TD2 - Modélisation des données"
+title: "TD 2 : modélisation des données"
 ---
 
 Corrections sous forme de diagrammes des trois exercices de modélisation

@@ -1,6 +1,7 @@
 ---
-title: Introduction aux réseaux - Historique et notions de base
+title: Historique et notions de base
 description: "Définition et classification des réseaux de communication : télécommunications, réseaux téléinformatiques, télédiffusion, modes connecté et non connecté, techniques de commutation."
+sidebar_position: 1
 ---
 
 ## Qu'est-ce qu'un réseau de communication ?
