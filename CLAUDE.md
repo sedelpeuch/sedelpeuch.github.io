@@ -72,6 +72,7 @@ Un article peut être antidaté pour combler un trou dans le rythme de publicati
 - Pas de H1 dans le corps (le `title` en tient lieu), pas d'emoji dans les titres
 - Sections H2/H3 progressives : concept → mécanisme → exemple pratique → pièges / limites → conclusion
 - Analogies concrètes bienvenues pour illustrer les concepts abstraits
+- **Pas de pavé de code** : l'article explique le mécanisme en prose, le code ne fait qu'illustrer. Un extrait se limite à quelques lignes (cinq environ) qui portent le point expliqué juste avant ou après ; jamais de manifeste, workflow, unité systemd ou script complet recopié. Un réglage se décrit dans le texte (`concurrencyPolicy: Forbid` saute un passage…) plutôt que dans un bloc YAML.
 - Blocs de code toujours avec un langage ; `text` pour les schémas ASCII et pseudo-code (le langage par défaut du site est `python`). Langages Prism additionnels déclarés dans `docusaurus.config.ts` (`hcl`, `nginx`, `docker`, `ini`, `powershell`, `promql`…) ; `logql` n'existe pas dans Prism
 - Liens relatifs `.md` vers les articles prérequis ou liés (maillage des séries)
 - Section finale `## Application / Projet lié` contenant un encart par projet concerné :
