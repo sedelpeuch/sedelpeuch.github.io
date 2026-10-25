@@ -47,7 +47,7 @@ Le dernier playbook configure la barre d'état de Claude Code dans `~/.claude/se
 
 ## Le bureau GNOME
 
-Depuis octobre 2026, un dernier playbook applique aussi la personnalisation du bureau GNOME : une dizaine d'extensions, leurs réglages et l'allure des terminaux. Ces réglages ne sont pas des fichiers mais des clés de la base dconf de la session, et l'installation d'une extension passe par le bus D-Bus de la session graphique. Le playbook vérifie donc d'abord qu'il tourne dans une session GNOME, et s'arrête sans erreur dans un conteneur ou en SSH : le même `main.yml` reste utilisable partout.
+Depuis octobre 2026, un dernier playbook applique aussi la personnalisation du bureau GNOME : une dizaine d'extensions, leurs réglages et l'allure des terminaux. Ces réglages sont des clés de la base dconf de la session, et l'installation d'une extension passe par le bus D-Bus de la session graphique. Le playbook vérifie donc d'abord qu'il tourne dans une session GNOME, et s'arrête sans erreur dans un conteneur ou en SSH : le même `main.yml` reste utilisable partout.
 
 La même règle d'idempotence s'applique. Les extensions absentes sont installées par l'appel D-Bus `InstallRemoteExtension` de GNOME Shell, qui les active sans fermer la session mais ouvre une boîte de confirmation par extension ; seules celles qui manquent sont demandées, et seules celles qui sont désactivées sont activées. Pour dconf, chaque clé est lue puis écrite seulement si sa valeur diffère. Les valeurs sont déclarées dans `group_vars/all.yml` exactement comme `dconf read` les affiche, en syntaxe GVariant : la comparaison se fait sur le texte, sans conversion. La liste des extensions retenues et celles essayées puis retirées est tenue dans le README.
 

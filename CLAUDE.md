@@ -85,6 +85,8 @@ Un article peut être antidaté pour combler un trou dans le rythme de publicati
 
 **Typographie :** espace simple avant `:`, apostrophes et guillemets droits, pas de « vous » / « nous ». Exception : les roadmaps annuelles (`blog/*-devops-roadmap-*.md`) sont écrites à la première personne.
 
+**Relecture :** tout texte rédigé ou réécrit (article de blog, page projet, page de scolarité) passe par le skill `humanizer` avant d'être livré, en lui rappelant les conventions de ton de la section concernée (impersonnel pour le blog, première personne pour les projets) : il retire les tics d'écriture IA sans toucher au fond, aux liens ni aux blocs de code.
+
 ## Scolarité (`docs/scolarite/`)
 
 Pages d'index : `<CourseTimeline />` (page Scolarité et pages d'école : frise des semestres avec leurs matières) et `<CourseGrid />` (semestres et matières : une tuile par sous-page, description du frontmatter, nombre de pages), tous deux lus depuis la sidebar. Icônes de matière au trait déduites du libellé (`src/components/scolarite/icons.ts`, ordre du plus spécifique au plus générique), surchargeables par `sidebar_custom_props.icon`.
