@@ -56,6 +56,8 @@ module.exports = function seriesDataPlugin(context) {
           .sort((a, b) => a.sortKey.localeCompare(b.sortKey))
           .map(({ sortKey, ...p }) => p);
       return {
+        // Date de génération : référence de l'« activité récente » de la roadmap.
+        generatedAt: Date.now(),
         categories: Object.fromEntries(
           Object.entries(categories).map(([id, posts]) => [id, sorted([...posts])]),
         ),

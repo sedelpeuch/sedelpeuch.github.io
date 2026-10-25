@@ -37,7 +37,7 @@ Depuis 2024, des assistants IA font partie de la démarche de rédaction : GitHu
 
 ## Résultats
 
-- **Environ 70 articles techniques publiés depuis 2024**, auxquels s'ajoutent les roadmaps annuelles, répartis en huit domaines : réseau, conteneurisation, CI/CD, cloud (AWS), orchestration, observabilité, infrastructure as code (Ansible, Terraform) et scripting Python.
+- **Environ 70 articles techniques publiés depuis 2024**, auxquels s'ajoute une [roadmap](/roadmap) avec une page par année, répartis en huit domaines : réseau, conteneurisation, CI/CD, cloud (AWS), orchestration, observabilité, infrastructure as code (Ansible, Terraform) et scripting Python.
 - **Un maillage entre blog et portfolio** : chaque page projet liste les articles qui s'y rattachent, et les articles tirés d'un projet y renvoient.
 - **Un référentiel de tags unique**, sans variantes accumulées au fil des publications.
 

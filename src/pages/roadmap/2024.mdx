@@ -1,0 +1,55 @@
+---
+title: "Roadmap 2024"
+description: "Roadmap DevOps 2024 : objectifs (réseau, Docker Compose et Swarm, GitHub Actions) et rétrospective de l'année."
+hide_table_of_contents: true
+---
+
+import { YearSummary, Objectives, Objective, Retrospective, Retro } from "@site/src/components/Roadmap/Year";
+
+# Roadmap 2024
+
+<YearSummary year={2024} />
+
+## Objectifs
+
+En 2024, je veux consolider ce qui fait tourner mes projets au quotidien : le réseau devant les services, les conteneurs qui les hébergent et les pipelines qui les livrent.
+
+<Objectives year={2024}>
+  <Objective domain="02">
+
+Comprendre ce qui distingue un reverse proxy d'un proxy classique et savoir en configurer un avec Nginx.
+
+  </Objective>
+  <Objective domain="03">
+
+Prendre Docker en main de bout en bout : images et bonnes pratiques, publication sur un registre, puis déploiement avec Docker Compose et Dokku.
+
+  </Objective>
+  <Objective domain="04">
+
+Construire au travail une bibliothèque de workflows GitHub Actions réutilisables (build, tests, publication, déploiement), avec publication automatique des releases et des tags, et des runners auto-hébergés sur Kubernetes avec ARC.
+
+  </Objective>
+</Objectives>
+
+## Rétrospective
+
+Tous les articles de 2024 datent de décembre.
+
+<Retrospective year={2024}>
+  <Retro domain="02">
+
+Deux articles posent les bases : la différence entre proxy et reverse proxy, puis la configuration de Nginx.
+
+  </Retro>
+  <Retro domain="03">
+
+J'ai écrit une série d'introduction à Docker, des conteneurs face aux machines virtuelles jusqu'à la publication d'images sur GHCR, puis le déploiement avec Docker Compose et Dokku.
+
+  </Retro>
+  <Retro domain="04">
+
+Au travail, j'ai mis en place des workflows réutilisables, la publication automatique des releases et des tags, des runners personnalisés et des matrices de jobs ([CI/CD GitHub Actions](/docs/projects/professionnel/cicd), [GitHub ARC Kubeadm](/docs/projects/professionnel/github-arc-kubeadm)). Six articles détaillent GitHub Actions, du premier workflow aux runners auto-hébergés sur Kubernetes avec ARC.
+
+  </Retro>
+</Retrospective>
