@@ -1,0 +1,103 @@
+// Encart d'association : photo et présentation côte à côte (empilées sur
+// mobile), rôles sur un rail vertical d'anneaux (anneau 14 px, rail 2,5 px).
+
+.association {
+  --as-accent: var(--ifm-color-primary);
+  --as-muted: var(--ifm-color-emphasis-600);
+  --as-ring: 14px;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: 1.5rem;
+  align-items: start;
+  margin: 1.25rem 0 2.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+}
+
+.photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.body {
+  min-width: 0;
+}
+
+.text > :last-child {
+  margin-bottom: 0;
+}
+
+.rolesTitle {
+  margin: 1.1rem 0 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--as-muted);
+}
+
+.rail {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 2rem;
+  list-style: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: calc(0.5rem - 1.25px);
+    top: 0.45rem;
+    bottom: 0.45rem;
+    width: 2.5px;
+    background: var(--as-accent);
+  }
+}
+
+.item {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.75rem;
+  margin: 0 0 0.7rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: calc(-2rem + 0.5rem - var(--as-ring) / 2);
+    top: 0.3rem;
+    width: var(--as-ring);
+    height: var(--as-ring);
+    box-sizing: border-box;
+    border: 2.5px solid var(--as-accent);
+    border-radius: 50%;
+    background: var(--ifm-background-color);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.role {
+  font-weight: 520;
+  color: var(--ifm-heading-color);
+}
+
+.period {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: var(--as-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 768px) {
+  .association {
+    grid-template-columns: 1fr;
+  }
+}
