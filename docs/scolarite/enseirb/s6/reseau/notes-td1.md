@@ -1,6 +1,7 @@
 ---
-title: Introduction aux réseaux - TD1
+title: "TD 1 : temps de transmission et débit"
 description: "Calculs de temps d'émission, de propagation et de débit utile pour des réseaux en étoile, en bus et en anneau, et taille minimale de trame."
+sidebar_position: 4
 ---
 
 ## Exercice 1

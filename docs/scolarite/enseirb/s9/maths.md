@@ -3,6 +3,8 @@ title: "Mathématiques pour la robotique"
 description: "Mathématiques pour la robotique : changements de repère, modèles géométriques direct et inverse, méthode de Newton, triangulation par goniomètres, décomposition SVD et pseudo-inverse."
 ---
 
+Les notes rassemblent les outils mathématiques utilisés pour positionner un robot et résoudre ses modèles. Elles enchaînent la composition des déplacements d'un robot mobile, les modèles direct et inverse d'un bras plan à trois articulations avec leur résolution numérique par la méthode de Newton, la localisation par deux goniomètres résolue par décomposition en valeurs singulières, puis les systèmes sous-contraints et la pseudo-inverse.
+
 À partir d'une position initiale, le robot tourne de $\theta$ puis avance de $t$ puis tourne de $\alpha$ puis avance de $d$. Donner son positionnement dans le repère $(x,y,\theta)$.
 
 - Le robot tourne de $\theta$ puis avance de $t$. Dans le repère $\Omega_O = (O, \vec{i}, \vec{j})$ :

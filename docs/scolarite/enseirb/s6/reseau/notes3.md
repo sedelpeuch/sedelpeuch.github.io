@@ -1,6 +1,7 @@
 ---
-title: Introduction aux réseaux - Le modèle TCP/IP
+title: Modèle TCP/IP
 description: "Architecture TCP/IP en quatre couches, encapsulation, adressage physique et logique, adressage IPv4, classes d'adresses et adresses privées."
+sidebar_position: 3
 ---
 
 TCP/IP est souvent considéré comme une simplification d'OSI. Il y a deux visions différentes :

@@ -10,6 +10,8 @@ interface Props {
   title?: string;
   /** Présentation en séquence (rail et anneaux) plutôt qu'en grille. */
   ordered?: boolean;
+  /** Unité du compteur : « document » par défaut, « page » pour des notes du site. */
+  unit?: string;
   /** Liste markdown de liens, laissée telle quelle dans la page. */
   children?: React.ReactNode;
 }
@@ -34,6 +36,7 @@ export default function ResourceList({
   type = "support",
   title,
   ordered = type === "cours",
+  unit = "document",
   children,
 }: Props): JSX.Element {
   const meta = RESOURCE_TYPES[type] ?? RESOURCE_TYPES.support;
@@ -45,7 +48,8 @@ export default function ResourceList({
         <span className={styles.title}>{title ?? meta.label}</span>
         {count > 0 && (
           <span className={styles.count}>
-            {count} document{count > 1 ? "s" : ""}
+            {count} {unit}
+            {count > 1 ? "s" : ""}
           </span>
         )}
       </p>

@@ -1,5 +1,5 @@
 ---
-title: "Calcul quantique, algorithme de Deutsch"
+title: "Calcul quantique et algorithme de Deutsch"
 description: "Modèle de l'ordinateur quantique : registres, préparation et mesure, parallélisme quantique, opérateur U_f et énoncé du problème de Deutsch-Jozsa."
 ---
 

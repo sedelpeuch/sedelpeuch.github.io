@@ -1,5 +1,5 @@
 ---
-title: "Interaction entre la famille de protocoles TCP/IP et les supports de transmission"
+title: "Interconnexion, adressage IP et ARP"
 description: "Définitions et gouvernance d'Internet, interconnexion de niveau 3, commutation de paquets et de circuits, adressage IPv4 par classes et résolution d'adresses ARP."
 ---
 

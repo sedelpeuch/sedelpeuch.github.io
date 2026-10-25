@@ -3,9 +3,11 @@ title: "Théorie des jeux pour la modélisation informatique"
 description: "Supports de cours et devoir maison du module de théorie des jeux pour la modélisation informatique du semestre 8."
 ---
 
-[Le site du cours](https://www.labri.fr/perso/anca/Games.html)
+Le module de théorie des jeux pour la modélisation informatique étudie les jeux sur graphes, joués par deux joueurs sur une arène. Les notes de cours, manuscrites, sont regroupées en douze documents PDF. Le devoir maison, rédigé à trois, démontre des propriétés des stratégies gagnantes et des attracteurs.
 
-<ResourceList type="cours">
+## Ressources
+
+<ResourceList type="cours" title="Notes de cours manuscrites">
 
 - [Cours 1](./img/1.pdf)
 - [Cours 2](./img/2.pdf)
@@ -19,6 +21,12 @@ description: "Supports de cours et devoir maison du module de théorie des jeux 
 - [Cours 10](./img/19.pdf)
 - [Cours 11](./img/11.pdf)
 - [Cours 12](./img/12.pdf)
+
+</ResourceList>
+
+<ResourceList type="support" title="Site de l'enseignant">
+
+- [Le site du cours](https://www.labri.fr/perso/anca/Games.html)
 
 </ResourceList>
 

@@ -1,6 +1,7 @@
 ---
-title: Graphe - Chemins et arbres
+title: Chemins et arbres
 description: "Chemins, concaténation, distance, cycles, graphes acycliques, arborescences et arbres, avec un lexique des familles de graphes usuelles."
+sidebar_position: 4
 ---
 
 ## Chemins

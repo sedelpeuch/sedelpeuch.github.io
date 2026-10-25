@@ -1,6 +1,7 @@
 ---
-title: Graphe - Algorithmes de parcours
+title: Algorithmes de parcours
 description: "Parcours en largeur (BFS) et en profondeur (DFS) d'un graphe, détection de cycles et tri topologique."
+sidebar_position: 3
 ---
 
 Pour la plupart des problèmes sur des graphes, toute solution algorithmique doit

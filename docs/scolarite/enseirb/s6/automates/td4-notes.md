@@ -1,5 +1,5 @@
 ---
-title: Automates finis et applications - TD4
+title: "TD 4 : grammaires"
 description: "Notes du TD4 d'automates finis : lemme d'Arden, grammaires linéaires gauches et droites, arbres de dérivation, ambiguïté et construction de grammaires."
 ---
 

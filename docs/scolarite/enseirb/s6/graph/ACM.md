@@ -1,6 +1,7 @@
 ---
-title: Graphe - Arbre couvrant minimal
+title: Arbre couvrant minimal
 description: "Problème de l'arbre couvrant minimal : coupures, algorithme générique, algorithmes de Kruskal et de Prim."
+sidebar_position: 5
 ---
 
 Un **arbre couvrant** d'un graphe $G:=(V,E)$ est un ensemble d'arêtes $D

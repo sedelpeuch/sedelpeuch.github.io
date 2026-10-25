@@ -1,6 +1,9 @@
 ---
-title: Impératif - Code legacy
+title: "TD 8 : code legacy"
 description: "Reprise d'un code legacy en C : transformation d'un Makefile en projet CMake."
+sidebar_position: 3
+sidebar_custom_props:
+  kind: td
 ---
 
 ## Code Legacy

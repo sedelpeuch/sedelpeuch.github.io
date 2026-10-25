@@ -3,25 +3,17 @@ title: Automates finis et applications
 description: "Cours d'automates finis et applications du semestre 6 : langages réguliers, expressions régulières, grammaires, déterminisation et minimisation, avec notes de cours et de TD."
 ---
 
-<CourseGrid />
+Les automates finis modélisent des programmes à mémoire finie : ils permettent de résoudre un problème sans dépendre d'un langage de programmation, en raisonnant sur les invariants à maintenir. Le cours part des langages et des automates finis déterministes, établit avec le théorème de Kleene l'équivalence entre automates, langages réguliers et expressions régulières, puis montre par le lemme de l'étoile que certains langages ne sont pas réguliers. Viennent ensuite les grammaires, la déterminisation des automates non déterministes et le calcul de l'automate minimal. Les TD suivent les mêmes chapitres et se terminent par une introduction à l'analyse lexicale.
 
-## Objectif du cours
+## Notes de cours
 
-Les automates finis permettent de modéliser des programmes informatiques à
-mémoire finie. Ils permettent de résoudre des problèmes à un niveau
-d'abstraction élevé, sans s'encombrer des spécificités d'un langage donné, et en
-se concentrant sur les invariants à maintenir pour parvenir à une solution.
+<CourseGrid ordered />
 
-L'enseignement aborde des notions théoriques (automates finis, langages
-réguliers, expressions régulières, équivalence de ces trois formalismes,
-non-déterminisme, automate minimal, lemme de l'étoile) ainsi que leur
-utilisation pour la résolution de problèmes concrets.
+## Ressources
 
-## Ressources pédagogiques
+<ResourceList type="support" title="Support de l'enseignant (Moodle)">
 
-<ResourceList type="cours" ordered={false}>
-
-- [Support de cours](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/content/6/poly-if114-etd.pdf)
+- [Polycopié du cours](https://moodle.bordeaux-inp.fr/pluginfile.php/31498/mod_resource/content/6/poly-if114-etd.pdf)
 
 </ResourceList>
 

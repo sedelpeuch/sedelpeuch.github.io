@@ -1,6 +1,7 @@
 ---
-title: Graphe - Définition générale
+title: Définitions générales
 description: "Définitions de base de la théorie des graphes : graphes orientés et non orientés, degrés, planarité, isomorphisme, graphe partiel, sous-graphe, union et quotient."
+sidebar_position: 1
 ---
 
 ## Graphes

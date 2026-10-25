@@ -1,6 +1,7 @@
 ---
-title: Introduction aux réseaux - Le modèle de référence OSI
+title: Modèle de référence OSI
 description: "Les sept couches du modèle OSI, comparaison avec TCP/IP, couche physique (codages, ADSL, câbles), couche liaison et Ethernet (CSMA/CD, backoff, trame), équipements d'interconnexion et commutation."
+sidebar_position: 2
 ---
 
 Le principe de base est la représentation des réseaux sous la forme de couches de

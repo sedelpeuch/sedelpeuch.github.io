@@ -1,5 +1,5 @@
 ---
-title: "Architecture des réseaux TCP/IP - Exercices et TD"
+title: "Exercices : adressage et sous-réseaux"
 description: "Exercices et TD d'architecture des réseaux TCP/IP : décodage de trames ARP, fragmentation IP, adressage, subdivision en sous-réseaux et tables de routage."
 ---
 

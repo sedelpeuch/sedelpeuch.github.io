@@ -3,16 +3,10 @@ title: "Autonomie énergétique"
 description: "Module d'autonomie énergétique du semestre 9 : conversion de puissance (convertisseurs BUCK, BOOST, BUCK-BOOST) et actionneurs à machines tournantes."
 ---
 
-Ce module traite de la conversion et de la gestion d'énergie électrique pour les deux principaux besoins en robotique que sont l'alimentation électrique d'une part et le contrôle moteur de l'actionneur d'autre part. Bien qu'intimement liés, ces aspects de l'électronique de puissance font l'objet de deux parties distinctes.
+Le module traite de la conversion et de la gestion de l'énergie électrique pour les deux principaux besoins d'un robot : son alimentation électrique et la commande de ses actionneurs. Ces deux aspects de l'électronique de puissance, bien que liés, font l'objet de deux parties distinctes.
 
-## Conversion de puissance
-
-Il s'agit d'introduire les concepts de base de la conversion et la gestion de l'énergie électrique embarquée au travers des trois topologies de base que sont les convertisseurs BUCK, BOOST et BUCK-BOOST en expliquant le concept de l'aiguillage de l'énergie électrique, la notion d'interrupteur et sa commande. Par la suite, une utilisation de circuit spécifique de gestion de l'énergie électrique sera présentée dans le but de faciliter leur utilisation directe par des intégrateurs.
-
-## Actionneurs à machines tournantes
-
-L'objectif est de se familiariser avec la conversion électromécanique réalisée dans les machines tournantes pour aborder l'alimentation du moteur de manière à assurer le réglage du couple, de la vitesse ou de la position. On s'intéressera en particulier au mode de fonctionnement de l'étage de puissance en lien avec les capteurs associés.
+La partie conversion de puissance introduit la gestion de l'énergie électrique embarquée à travers les trois topologies de base, les convertisseurs BUCK, BOOST et BUCK-BOOST : aiguillage de l'énergie, notion d'interrupteur et commande de cet interrupteur. Elle présente ensuite un circuit spécifique de gestion de l'énergie, destiné à une utilisation directe par des intégrateurs. La partie actionneurs porte sur la conversion électromécanique dans les machines tournantes et sur l'alimentation du moteur pour régler son couple, sa vitesse ou sa position, en particulier sur le fonctionnement de l'étage de puissance en lien avec les capteurs associés. Les notes couvrent cette seconde partie.
 
 ## Notes de cours
 
-<CourseGrid />
+<CourseGrid ordered />

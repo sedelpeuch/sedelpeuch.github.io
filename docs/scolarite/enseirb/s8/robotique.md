@@ -3,6 +3,8 @@ title: "Initiation à la robotique"
 description: "Modèles géométriques direct et inverse d'une patte de robot à trois articulations : matrices de rotation, changement de repère et loi des cosinus."
 ---
 
+Ces notes établissent les modèles géométriques direct et inverse d'une patte de robot à trois articulations, à partir de matrices de rotation et de la loi des cosinus. Le projet, mené à cinq, applique ces modèles au contrôle d'un robot quadrupède puis d'un hexapode, en simulation avec PyBullet.
+
 ## Définition du problème
 
 ![Patte de robot à trois articulations](./img/robot_1.png)
@@ -78,7 +80,9 @@ $$
 
 ![Exemples de positions de la patte](./img/2.jpg)
 
-<ResourceList type="projet">
+## Ressources
+
+<ResourceList type="projet" title="Projet">
 
 - [Archive du projet](./img/projetRobotique.zip)
 

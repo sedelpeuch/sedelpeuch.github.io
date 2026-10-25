@@ -1,5 +1,5 @@
 ---
-title: "Vidéo 7.2"
+title: "Sous-blocs et appels de fonction"
 description: "Production de code pour les sous-blocs et les appels de fonction : variables locales en pile, pointeur d'environnement (frame pointer), adresse de retour."
 ---
 

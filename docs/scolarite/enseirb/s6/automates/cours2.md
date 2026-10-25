@@ -1,5 +1,5 @@
 ---
-title: Automates finis et langages - Expressions régulières et théorème de Kleene
+title: Expressions régulières et théorème de Kleene
 description: "Langages réguliers, expressions régulières et théorème de Kleene : équivalence entre automates finis, langages réguliers et expressions régulières."
 ---
 

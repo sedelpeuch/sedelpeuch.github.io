@@ -1,5 +1,5 @@
 ---
-title: Graphe - Devoir maison propagation du Covid-19
+title: "Devoir maison : propagation du Covid-19"
 description: "Devoir maison de théorie des graphes : simulation de la propagation du Covid-19 sur des graphes circulaires, aléatoires et mixtes, stratégies de tests et de confinement, modèle SIR et recherche de chemin A*."
 ---
 

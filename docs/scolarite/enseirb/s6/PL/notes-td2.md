@@ -1,6 +1,7 @@
 ---
-title: PL - Notes TD 2
+title: "TD 2 : résolution par le simplexe"
 description: "Résolution pas à pas d'un programme linéaire par l'algorithme du simplexe : choix des variables entrantes et sortantes, changements de base et vérification de l'optimalité."
+sidebar_position: 3
 ---
 
 ## Exercice 1

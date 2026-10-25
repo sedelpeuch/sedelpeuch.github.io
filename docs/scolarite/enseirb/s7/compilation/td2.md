@@ -1,5 +1,5 @@
 ---
-title: "TD - Feuille 2"
+title: "Feuille 2 : grammaires et ambiguïté"
 description: "TD de compilation : grammaires, ambiguïté, langage engendré, ambiguïté du « else pendant » et actions sémantiques Yacc produisant du code 3 adresses."
 tags: ["Compilation"]
 ---

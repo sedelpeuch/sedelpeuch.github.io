@@ -1,5 +1,5 @@
 ---
-title: Automates finis et applications - TD1
+title: "TD 1 : automates finis et langages"
 description: "Notes du TD1 d'automates finis : construction d'automates déterministes et non déterministes, algorithme d'acceptation d'un mot, jeu des portes bascules."
 ---
 

@@ -1,6 +1,9 @@
 ---
-title: Impératif - SVN et tests
+title: "TD 7 : SVN et tests"
 description: "Notes de TD sur SVN (dépôt local, trunk, branches, fusion) et sur la mesure de couverture de tests avec gcov."
+sidebar_position: 2
+sidebar_custom_props:
+  kind: td
 ---
 
 ## SVN

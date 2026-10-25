@@ -1,5 +1,5 @@
 ---
-title: Automates finis et applications - TD3
+title: "TD 3 : langages non réguliers"
 description: "Notes du TD3 d'automates finis : preuves de non-régularité par le lemme de l'étoile et propriétés de clôture des langages réguliers."
 ---
 

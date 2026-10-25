@@ -1,5 +1,5 @@
 ---
-title: "TD3 - Modèle relationnel"
+title: "TD 3 : modèle relationnel"
 description: "Corrigé du TD3 de bases de données : passage du modèle entités-associations au schéma relationnel (cinéma, bibliothèque), clés primaires et étrangères."
 ---
 

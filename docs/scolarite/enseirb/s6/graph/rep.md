@@ -1,6 +1,7 @@
 ---
-title: Graphe - Représentation des graphes
+title: Représentation des graphes
 description: "Représentation des graphes en mémoire : tableaux de listes d'adjacence et matrice d'adjacence, avantages et inconvénients."
+sidebar_position: 2
 ---
 
 Les graphes considérés ici auront pour ensemble de sommets des intervalles de la

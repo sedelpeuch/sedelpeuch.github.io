@@ -1,6 +1,7 @@
 ---
-title: PL - Cours 1
+title: Introduction à la programmation linéaire
 description: "Introduction à la programmation linéaire : modélisation par l'exemple, règles de réécriture, résolution graphique, points extrêmes et forme standard."
+sidebar_position: 1
 ---
 
 ## Introduction par l'exemple

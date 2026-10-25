@@ -1,6 +1,7 @@
 ---
-title: PL - Cours 2
+title: Algorithme du simplexe
 description: "Algorithme du simplexe : forme standard, dictionnaires, choix des variables entrante et sortante, pivotage, phase 1, dégénérescence et solutions multiples."
+sidebar_position: 2
 ---
 
 On dispose d'un formalisme pour modéliser des problèmes réels : la programmation

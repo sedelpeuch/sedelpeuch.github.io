@@ -3,13 +3,15 @@ title: "Évaluation des projets et maîtrise des coûts"
 description: "Fiches de synthèse et supports du module d'évaluation des projets et de maîtrise des coûts du semestre 8 (comptabilité, choix d'investissement, rentabilité, pilotage)."
 ---
 
+Le module d'évaluation des projets et de maîtrise des coûts suit quatre cours : le système d'organisation comptable, la décision de lancer un projet, la rentabilité d'exploitation, puis le pilotage économique et le contrôle. Chaque cours s'accompagne de cas d'application, dont une partie est corrigée. Les deux fiches de synthèse ci-dessous résument le module.
+
 ![Fiche de synthèse 1](./img/fiche1.jpg)
 
 ![Fiche de synthèse 2](./img/fiche2.jpg)
 
-## Ressources pédagogiques
+## Ressources
 
-<ResourceList type="cours" title="Diaporamas des cours">
+<ResourceList type="support" title="Diaporamas de l'enseignant (Moodle)" ordered>
 
 - [Cours 1, le système d'organisation comptable](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/4412/COURS%201%20LE%20SYSTE%CC%80ME%20DORGANISATION%20COMPTABLE.pdf?time=1614244473916)
 - [Cours 2, faire le choix de valider le démarrage d'un projet](https://moodle.bordeaux-inp.fr/pluginfile.php/17367/course/section/20024/COURS%202%20FAIRE%20LE%20CHOIX%20DE%20VALIDER%20LE%20DE%CC%81MARRAGE%20DUN%20PROJET.pdf)
@@ -27,7 +29,7 @@ description: "Fiches de synthèse et supports du module d'évaluation des projet
 
 </ResourceList>
 
-<ResourceList type="correction">
+<ResourceList type="correction" title="Corrections des cas">
 
 - [Cours 1, correction du cas 2](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=53055)
 - [Cours 1, correction du cas 3](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=53059)

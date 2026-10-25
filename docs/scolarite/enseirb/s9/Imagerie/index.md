@@ -3,11 +3,11 @@ title: "Outils d'imagerie pour la robotique"
 description: "Cours d'imagerie pour la robotique du semestre 9 : couleur et histogrammes, filtrage, contours, morphologie, points d'intérêt et classification, avec OpenCV."
 ---
 
-Il s'agit d'une introduction aux différentes méthodes existantes pour traiter les images et les vidéos dans le contexte de la robotique.
+Le cours introduit les méthodes de traitement des images et des vidéos utilisées en robotique. Après une présentation de la vision par ordinateur, il aborde les espaces couleur, l'histogramme et le seuillage, puis le filtrage et la détection de contours, les descripteurs de régions et la morphologie mathématique, les points d'intérêt, et enfin la classification d'images et l'apprentissage profond. Les chapitres 2 à 5 se terminent par une mise en pratique en C++ avec OpenCV ; les archives des TD 1 à 4 contiennent le code écrit lors des quatre premières séances.
 
-## Cours intégrés
+## Notes de cours
 
-<CourseGrid />
+<CourseGrid ordered />
 
 ## Ressources
 
@@ -19,10 +19,10 @@ Il s'agit d'une introduction aux différentes méthodes existantes pour traiter 
 
 <ResourceList type="correction" title="Tentatives de correction">
 
-- [TD 1 : Introduction](./img/TD1.zip)
-- [TD 2 : Bases](./img/TD2.zip)
-- [TD 3 : Filtrage](./img/TD3.zip)
-- [TD 4 : Descripteurs, traitements morphologiques](./img/TD4.zip)
+- [TD 1 : prise en main d'OpenCV](./img/TD1.zip)
+- [TD 2 : couleur, histogramme et seuillage](./img/TD2.zip)
+- [TD 3 : filtrage](./img/TD3.zip)
+- [TD 4 : descripteurs et morphologie](./img/TD4.zip)
 
 </ResourceList>
 
