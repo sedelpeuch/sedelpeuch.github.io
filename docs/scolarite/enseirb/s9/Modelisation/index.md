@@ -14,21 +14,9 @@ jacobienne).
 
 ## Ressources
 
-<ResourceList type="cours" title="Slides du cours">
+<ResourceList type="td" title="Exercices">
 
-- [Introduction](./img/1.pdf)
-- [Mouvements, changements de coordonnées](./img/2.pdf)
-- [Modèle géométrique](./img/3.pdf)
-- [Modèle cinématique](./img/4.pdf)
-
-</ResourceList>
-
-<ResourceList type="td" title="Sujets d'exercices">
-
-- [Mouvements, changements de coordonnées : application des transformations homogènes au modèle géométrique inverse](./img/exo1.pdf)
 - [Mouvements, changements de coordonnées : application](./img/exo1_application.pdf)
-- [Modèle géométrique : modèle géométrique inverse d'un robot SCARA](./img/exo2.1.pdf)
-- [Modèle géométrique : modèle géométrique inverse d'un robot ABB](./img/exo2.2.pdf)
 - [Modèle cinématique : modèle cinématique inverse d'un robot UR10](https://moodle.bordeaux-inp.fr/mod/resource/view.php?id=93385)
 
 </ResourceList>
@@ -39,8 +27,3 @@ jacobienne).
 
 </ResourceList>
 
-<ResourceList type="support" title="Annexes">
-
-- [Équations de Paul](./img/paul.pdf)
-
-</ResourceList>

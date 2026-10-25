@@ -28,7 +28,6 @@ Il s'agit d'une introduction aux différentes méthodes existantes pour traiter 
 
 <ResourceList type="support" title="Quelques outils">
 
-- [Aide-mémoire OpenCV](./img/opencv.pdf)
 - [Cours de C++](/docs/scolarite/enseirb/s7/cpp)
 
 </ResourceList>
