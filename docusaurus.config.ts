@@ -605,6 +605,8 @@ const config: Config = {
       "data-domains": "delpeuch.net",
       // Core Web Vitals (LCP, INP, CLS, FCP, TTFB).
       "data-performance": "true",
+      // Ignore les navigateurs automatisés (src/clientModules/umamiEvents.ts).
+      "data-before-send": "umamiBeforeSend",
     },
   ],
   stylesheets: [
