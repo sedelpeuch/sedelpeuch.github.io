@@ -51,7 +51,10 @@ export default function CourseTimeline(): JSX.Element {
   const items = visibleItems(category.items);
   // Sur la page Scolarité, chaque catégorie est une école dont les enfants
   // sont les semestres ; sur une page d'école, les enfants sont les semestres.
-  const semesterish = (item: CourseItem) => /semestre|\bs\d\b/i.test(`${item.label} ${item.href ?? ""}`);
+  // Seul le dernier segment de l'URL compte : une matière (`enseirb/s6/graph`)
+  // contient aussi un `s6`.
+  const semesterish = (item: CourseItem) =>
+    /semestre/i.test(item.label) || /^s\d$/i.test(item.href?.replace(/\/$/, "").split("/").pop() ?? "");
   const schools = items.filter(
     (item) => item.type === "category" && visibleItems(item.items).some(semesterish),
   );
