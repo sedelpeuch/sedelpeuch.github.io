@@ -9,7 +9,7 @@ décompose en 3 parties d'implémentation : tout d'abord, nous mettons en place 
 paramètres simples comme des tests sur la population, etc. Finalement, nous avons
 tenté de rajouter des facteurs plus réalistes et nous nous sommes un peu écartés du sujet pour proposer des compléments sur la propagation d'une épidémie et pour manipuler les notions de l'algorithmique des graphes.
 
-Avant de commencer, nous mettons à votre disposition la documentation de notre code et l'[archive contenant nos codes](code.tar.gz). La date de la dernière modification du site est présente en début de page pour vous assurer que nous n'avons pas dépassé la date limite.
+Avant de commencer, nous mettons à votre disposition l'[archive contenant nos codes](code.tar.gz). La date de la dernière modification du site est présente en début de page pour vous assurer que nous n'avons pas dépassé la date limite.
 
 ## Partie I - Implémentation d'une base (Nathan & Aurélien)
 
