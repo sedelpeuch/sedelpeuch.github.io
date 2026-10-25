@@ -8,6 +8,7 @@ export const TECH_ICONS: Record<string, string> = {
   authelia: "simple-icons:authelia",
   aws: "simple-icons:amazonwebservices",
   "aws eks": "simple-icons:amazoneks",
+  cloudwatch: "simple-icons:amazoncloudwatch",
   bibtex: "simple-icons:latex",
   c: "simple-icons:c",
   "c++": "simple-icons:cplusplus",
