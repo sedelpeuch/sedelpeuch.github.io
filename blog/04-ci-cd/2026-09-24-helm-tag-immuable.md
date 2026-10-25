@@ -305,6 +305,6 @@ Un tag d'image dérivé du commit fait porter au manifeste l'identité exacte du
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Migration des services du cluster vers un déploiement par tag d'image `sha-` suivi du SHA du commit : suppression de `rollme` et de `--recreate-pods`, annotations `checksum/config` et `checksum/secret`, `concurrency` sur les workflows de déploiement, secrets sortis des images et injectés par `--set-literal` dans un Secret Kubernetes.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne DiscoDiode">Migration des services du cluster vers un déploiement par tag d'image `sha-` suivi du SHA du commit : suppression de `rollme` et de `--recreate-pods`, annotations `checksum/config` et `checksum/secret`, `concurrency` sur les workflows de déploiement, secrets sortis des images et injectés par `--set-literal` dans un Secret Kubernetes.</ProjectLink>
   <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD - Workflows GitHub Actions mutualisés">Ajout d'un input optionnel `sha_tag` au workflow mutualisé de publication sur GHCR, qui publie le tag immuable consommé par le workflow de déploiement Helm.</ProjectLink>
 </ProjectLinks>

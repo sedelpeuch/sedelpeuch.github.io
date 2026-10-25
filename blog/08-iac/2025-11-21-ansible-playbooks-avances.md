@@ -452,5 +452,5 @@ Points clés à retenir :
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Playbooks avancés et structures de rôles pour la gestion complexe du cluster Kubernetes, configurations persistantes et secrets sécurisés.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes DiscoDiode">Playbooks avancés et structures de rôles pour la gestion complexe du cluster Kubernetes, configurations persistantes et secrets sécurisés.</ProjectLink>
 </ProjectLinks>

@@ -149,6 +149,6 @@ Brancher des simulations lourdes sur les pull requests revient surtout à décid
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Campagnes de simulation d'un projet lancées par la CI sous forme de Jobs sur le cluster, à côté des runs manuels, avec un plafond de capacité partagé.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne DiscoDiode">Campagnes de simulation d'un projet lancées par la CI sous forme de Jobs sur le cluster, à côté des runs manuels, avec un plafond de capacité partagé.</ProjectLink>
   <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC - Runners CI/CD auto-hébergés sur Kubernetes">Runners auto-hébergés dans le cluster, qui joignent directement l'API Kubernetes pour créer et suivre les Jobs de simulation.</ProjectLink>
 </ProjectLinks>

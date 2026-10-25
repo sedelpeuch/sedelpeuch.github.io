@@ -1,0 +1,54 @@
+---
+title: "Roadmap 2026"
+description: "Roadmap DevOps 2026 : objectifs (cloud AWS, Terraform, sécurité) et articles publiés depuis le début de l'année."
+hide_table_of_contents: true
+---
+
+import { YearSummary, Objectives, Objective, Retrospective, Retro } from "@site/src/components/Roadmap/Year";
+
+# Roadmap 2026
+
+<YearSummary year={2026} />
+
+## Objectifs
+
+En 2026, je déploie une application complète sur AWS et je provisionne son infrastructure avec Terraform, que je n'avais fait qu'explorer en 2025. En parallèle, j'exploite un cluster Kubernetes bare-metal et sa supervision, je passe mon HomeLab en GitOps, et la sécurité entre dans la roadmap comme onzième domaine.
+
+<Objectives year={2026}>
+  <Objective domain="05">
+
+Apprendre AWS en y déployant une application de bout en bout ([Task Horizon](/docs/projects/personnel/task-horizon)) : IAM, VPC, EC2, stockage managé, Lambda, puis EKS supervisé par CloudWatch.
+
+  </Objective>
+  <Objective domain="08">
+
+Provisionner cette infrastructure avec Terraform : modules, state distant, environnements séparés (dev, test, prod).
+
+  </Objective>
+  <Objective domain="04">
+
+Passer le [HomeLab](/docs/projects/personnel/homelab) en GitOps : stacks Docker Compose déployées par GitHub Actions, mises à jour proposées par Renovate.
+
+  </Objective>
+  <Objective domain="06">
+
+Exploiter un cluster Kubernetes bare-metal ([DiscoDiode](/docs/projects/professionnel/sonu-k8s-cluster)) : stockage répliqué avec Longhorn, GPU, sauvegardes, déploiements sans interruption.
+
+  </Objective>
+  <Objective domain="07">
+
+Compléter la supervision : alerting avec Alertmanager, dashboards Grafana versionnés, collecte avec Alloy sur le cluster, sondes de disponibilité sur le HomeLab.
+
+  </Objective>
+  <Objective domain="11">
+
+Ajouter la sécurité comme onzième domaine : TLS, authentification centralisée par forward-auth et OIDC, secrets chiffrés dans les dépôts.
+
+  </Objective>
+</Objectives>
+
+## Rétrospective
+
+L'année n'est pas finie : la rétrospective s'écrira en décembre. En attendant, voici ce qui a été publié.
+
+<Retrospective year={2026} />

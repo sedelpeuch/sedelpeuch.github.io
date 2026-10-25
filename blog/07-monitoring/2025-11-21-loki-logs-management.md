@@ -128,6 +128,6 @@ Loki fait un compromis explicite : un index réduit aux labels, peu coûteux à 
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Loki 3 monolithique sur volume Longhorn, avec 30 jours de rétention, pour les logs des pods et les événements Kubernetes de tout le cluster, consultés dans Grafana.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes DiscoDiode">Loki 3 monolithique sur volume Longhorn, avec 30 jours de rétention, pour les logs des pods et les événements Kubernetes de tout le cluster, consultés dans Grafana.</ProjectLink>
   <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC Kubeadm">Collecte centralisée des logs des runners ARC pour le débogage et l'audit.</ProjectLink>
 </ProjectLinks>

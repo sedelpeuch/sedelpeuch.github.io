@@ -217,7 +217,7 @@ Ansible applique à un parc de machines une configuration décrite en YAML, par 
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Automatisation complète de la configuration et de la maintenance des nœuds Kubernetes avec Ansible.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes DiscoDiode">Automatisation complète de la configuration et de la maintenance des nœuds Kubernetes avec Ansible.</ProjectLink>
   <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC Kubeadm">Provisionnement automatique du cluster Kubernetes et installation d'ARC via des playbooks Ansible.</ProjectLink>
   <ProjectLink to="/docs/projects/personnel/zsh_ansible" title="zsh_ansible">Cas pratique d'automatisation shell avec Ansible pour la gestion d'infrastructure personnelle.</ProjectLink>
 </ProjectLinks>

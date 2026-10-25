@@ -129,5 +129,5 @@ Le script ne recopie pas `admin.conf` vers les kubeconfig des utilisateurs : ceu
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Renouvellement par `kubeadm certs renew all` des certificats expirés du plan de contrôle, suivi de la recréation des pods statiques par déplacement temporaire de leurs manifestes.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne DiscoDiode">Renouvellement par `kubeadm certs renew all` des certificats expirés du plan de contrôle, suivi de la recréation des pods statiques par déplacement temporaire de leurs manifestes.</ProjectLink>
 </ProjectLinks>

@@ -1,5 +1,5 @@
 ---
-title: "Cluster Kubernetes interne SONU"
+title: "Cluster Kubernetes interne DiscoDiode"
 tags: [kubernetes, kubeadm, devops, infrastructure, helm, tailscale, traefik, authentik, longhorn, prometheus, grafana, loki]
 description: "Cluster Kubernetes bare-metal monté avec kubeadm sur 7 nœuds. Déploiement GitOps via Helm, entrée unique Traefik exposée sur Tailscale, SSO Authentik, stockage répliqué Longhorn, chaîne d'observabilité Prometheus, Grafana et Loki. Infrastructure interne de l'équipe SONU au CATIE."
 ---

@@ -250,5 +250,5 @@ Le dernier test atteint le reverse proxy par le chemin LAN sans dépendre du DNS
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Accès optionnel depuis le réseau local sans client Tailscale : Traefik sur les adresses de trois nœuds par `externalIPs`, CoreDNS dédié en deux réplicas avec PodDisruptionBudget, liste d'adresses unique relue par `tpl`, guide de configuration des postes Linux, Windows et macOS.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne DiscoDiode">Accès optionnel depuis le réseau local sans client Tailscale : Traefik sur les adresses de trois nœuds par `externalIPs`, CoreDNS dédié en deux réplicas avec PodDisruptionBudget, liste d'adresses unique relue par `tpl`, guide de configuration des postes Linux, Windows et macOS.</ProjectLink>
 </ProjectLinks>

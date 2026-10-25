@@ -84,9 +84,13 @@ Un article peut être antidaté pour combler un trou dans le rythme de publicati
   (plusieurs `<ProjectLink>` → grille de cartes ; période et stack sont lues dans la fiche du projet)
 - Série : un parcours pensé pour être lu dans l'ordre (Homelab, Terraform, AWS) se déclare par `series: <id>` dans le frontmatter (ordre = date, `series_order` pour départager une même date). Le billet affiche alors la piste de série ; sinon, une navigation précédent / suivant dans sa catégorie (dossier). Une catégorie n'est pas une série. Libellés des séries : `plugins/series-data/index.js`.
 
-**Typographie :** espace simple avant `:`, apostrophes et guillemets droits, pas de « vous » / « nous ». Exception : les roadmaps annuelles (`blog/*-devops-roadmap-*.md`) sont écrites à la première personne.
+**Typographie :** espace simple avant `:`, apostrophes et guillemets droits, pas de « vous » / « nous ». Exception : la roadmap (`src/pages/roadmap/`) est écrite à la première personne.
 
 **Relecture :** tout texte rédigé ou réécrit (article de blog, page projet, page de scolarité) passe par le skill `humanizer` avant d'être livré, en lui rappelant les conventions de ton de la section concernée (impersonnel pour le blog, première personne pour les projets) : il retire les tics d'écriture IA sans toucher au fond, aux liens ni aux blocs de code.
+
+## Roadmap (`src/pages/roadmap/`)
+
+`/roadmap` (entrée de la navbar entre Blog et Projets) : onze domaines détaillés en sujets, définis dans `data/roadmap.ts`. Un sujet est « pratiqué » dès qu'un article y est rattaché (référence `dossier/slug` sans date), « en cours » si son dernier article a moins de deux mois, « à venir » sinon ; `status` / `since` pour les compétences sans article. Jamais de ratio ni de barre de complétion : un domaine n'a pas de fin. Une page par année (`/roadmap/AAAA`) : objectifs écrits en janvier, rétrospective écrite en fin d'année, suivie de `<RoadmapYear year={AAAA} />` (articles de l'année par catégorie). Nouvel article : le rattacher à un sujet de `data/roadmap.ts`.
 
 ## Scolarité (`docs/scolarite/`)
 

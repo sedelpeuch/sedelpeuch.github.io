@@ -59,5 +59,5 @@ Les runners ARC exécutent les pipelines GitHub Actions de l'organisation, appel
 ## Liens
 
 - [Documentation ARC (GitHub)](https://docs.github.com/fr/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/quickstart-for-actions-runner-controller)
-- [Cluster Kubernetes interne SONU](sonu-k8s-cluster.md)
+- [Cluster Kubernetes interne DiscoDiode](sonu-k8s-cluster.md)
 - [Workflows GitHub Actions mutualisés](cicd.md)

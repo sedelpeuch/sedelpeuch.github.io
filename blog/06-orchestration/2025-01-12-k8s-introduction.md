@@ -90,5 +90,5 @@ Les ressources manipulées par ce modèle (Pod, Deployment, StatefulSet, Service
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Cluster bare-metal monté avec kubeadm sur un nœud de control plane et six workers, avec le CNI Calico : installation et exploitation directes des composants du control plane, sans service managé qui les masque.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne DiscoDiode">Cluster bare-metal monté avec kubeadm sur un nœud de control plane et six workers, avec le CNI Calico : installation et exploitation directes des composants du control plane, sans service managé qui les masque.</ProjectLink>
 </ProjectLinks>

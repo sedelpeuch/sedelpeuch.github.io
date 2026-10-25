@@ -132,5 +132,5 @@ Avec le provisioning, l'interface reste l'outil d'édition et la base de Grafana
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Passage d'un Grafana construit à la main, dont les dashboards dépendaient d'un unique volume, à des dashboards et datasources versionnés et provisionnés au déploiement : huit dashboards en JSON injectés par la CI, datasources reprises avec leurs uid d'origine, datasources obsolètes supprimées.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne DiscoDiode">Passage d'un Grafana construit à la main, dont les dashboards dépendaient d'un unique volume, à des dashboards et datasources versionnés et provisionnés au déploiement : huit dashboards en JSON injectés par la CI, datasources reprises avec leurs uid d'origine, datasources obsolètes supprimées.</ProjectLink>
 </ProjectLinks>

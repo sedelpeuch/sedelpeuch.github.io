@@ -367,5 +367,5 @@ Un socle d'alertes Kubernetes repose sur kube-state-metrics pour l'état des obj
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Socle d'alertes du cluster : nœuds, workloads, stockage Longhorn et Garage, certificats kubeadm, GPU, redémarrages en attente par textfile collector, collecte de Longhorn, Authentik et ARC sans redéployer leurs releases, alertes de CI enrichies du dépôt et du workflow, notifications Slack.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne DiscoDiode">Socle d'alertes du cluster : nœuds, workloads, stockage Longhorn et Garage, certificats kubeadm, GPU, redémarrages en attente par textfile collector, collecte de Longhorn, Authentik et ARC sans redéployer leurs releases, alertes de CI enrichies du dépôt et du workflow, notifications Slack.</ProjectLink>
 </ProjectLinks>

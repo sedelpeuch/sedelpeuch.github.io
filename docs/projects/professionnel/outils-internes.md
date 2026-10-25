@@ -63,7 +63,7 @@ flowchart LR
     repo --> gha{{GitHub Actions\ndeploy-helm}}
     gha --> cluster
 
-    subgraph cluster["Cluster sonu, namespace sonu"]
+    subgraph cluster["Cluster DiscoDiode, namespace sonu"]
         traefik{{Traefik}} --> pod{{Pod}}
         traefik <-->|forward-auth| authentik{{Authentik}}
         pod --- pvc{{PVC Longhorn\noptionnel}}
@@ -78,5 +78,5 @@ Chaque outil a supprimé une tâche manuelle ou un angle mort : les demandes de 
 
 ## Liens
 
-- [Cluster Kubernetes interne SONU](sonu-k8s-cluster.md)
+- [Cluster Kubernetes interne DiscoDiode](sonu-k8s-cluster.md)
 - [Workflows GitHub Actions mutualisés](cicd.md)

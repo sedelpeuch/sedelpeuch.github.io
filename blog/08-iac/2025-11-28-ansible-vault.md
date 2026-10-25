@@ -205,6 +205,6 @@ Ansible Vault chiffre des secrets statiques, versionnés avec le code. Lorsque l
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Gestion sécurisée des secrets d'infrastructure (mots de passe, tokens, clés SSH) dans les playbooks Ansible.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes DiscoDiode">Gestion sécurisée des secrets d'infrastructure (mots de passe, tokens, clés SSH) dans les playbooks Ansible.</ProjectLink>
   <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC Kubeadm">Stockage chiffré des tokens GitHub et des identifiants lors du provisionnement d'ARC via Ansible.</ProjectLink>
 </ProjectLinks>

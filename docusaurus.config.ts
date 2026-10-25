@@ -13,12 +13,14 @@ const baseUrl = process.env.BASE_URL || "/";
 // être une URL encore servie.
 const movedPages: Record<string, string[]> = {
   "/blog": ["/blog/idea"],
-  "/blog/2024/01/01/devops-roadmap": [
+  "/roadmap": [
+    "/blog/2024/01/01/devops-roadmap",
     "/blog/2024/02/02/devops-roadmap",
     "/blog/2024/03/24/devops-roadmap",
     "/blog/2024/12/20/devops-roadmap",
   ],
-  "/blog/2024/01/01/devops-roadmap-2024": [
+  "/roadmap/2024": [
+    "/blog/2024/01/01/devops-roadmap-2024",
     "/blog/2024/01/01/devops-roadmap-acquis",
     "/blog/2024/12/20/devops-roadmap-acquis",
     "/blog/2025/01/12/devops-roadmap-2024",
@@ -115,7 +117,8 @@ const movedPages: Record<string, string[]> = {
     "/blog/2024/08/26/python-fastapi",
     "/blog/2024/12/15/09-scripting/fastapi",
   ],
-  "/blog/2025/01/01/devops-roadmap-2025": [
+  "/roadmap/2025": [
+    "/blog/2025/01/01/devops-roadmap-2025",
     "/blog/2025/11/21/devops-roadmap-2025",
   ],
   "/blog/2025/01/12/06-orchestration/k8s-basic-components": [
@@ -183,7 +186,8 @@ const movedPages: Record<string, string[]> = {
   "/blog/2025/12/09/09-scripting/ruff-linting-formatting": [
     "/blog/2025/07/20/09-scripting/ruff-linting-formatting",
   ],
-  "/blog/2026/01/01/devops-roadmap-2026": [
+  "/roadmap/2026": [
+    "/blog/2026/01/01/devops-roadmap-2026",
     "/blog/2025/12/19/devops-roadmap-2026",
   ],
   "/docs/projects": [
@@ -349,6 +353,11 @@ const config: Config = {
               to: "blog/tags/security",
             },
           ],
+        },
+        {
+          label: "Roadmap",
+          position: "left",
+          to: "roadmap",
         },
         {
           label: "Projets",

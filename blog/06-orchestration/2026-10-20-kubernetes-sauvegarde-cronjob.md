@@ -119,5 +119,5 @@ Un CronJob suffit à produire une sauvegarde cohérente d'une base et de ses fic
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Sauvegardes quotidiennes de l'ERP de l'équipe après son rapatriement sur le cluster : dump transactionnel de MariaDB et archive des documents, vérifiés avant publication, rotation quotidienne et hebdomadaire, en plus des snapshots Longhorn.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne DiscoDiode">Sauvegardes quotidiennes de l'ERP de l'équipe après son rapatriement sur le cluster : dump transactionnel de MariaDB et archive des documents, vérifiés avant publication, rotation quotidienne et hebdomadaire, en plus des snapshots Longhorn.</ProjectLink>
 </ProjectLinks>

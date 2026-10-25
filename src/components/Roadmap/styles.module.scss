@@ -1,0 +1,389 @@
+// Roadmap DevOps : rail vertical bleu et anneaux de la timeline d'accueil.
+// Pastilles : pleine = pratiqué, pointillés bleus = en cours, gris = à venir.
+
+.roadmap {
+  --rm-ring: 14px;
+  --rm-rule: var(--ifm-color-emphasis-200);
+  margin: 1.5rem 0 3rem;
+}
+
+// Pastille d'état, partagée par les sous-sujets et la légende.
+.dot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  box-sizing: border-box;
+  border: 2px solid var(--ifm-color-primary);
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+}
+
+[data-status="en cours"] .dot {
+  border-style: dashed;
+  background: transparent;
+}
+
+[data-status="à venir"] .dot {
+  border: 2px dashed var(--ifm-color-emphasis-400);
+  background: transparent;
+}
+
+// En-tête : progression globale et acquisitions par année.
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1.5rem 2.5rem;
+  margin-bottom: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--rm-rule);
+  border-radius: 12px;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin: 0;
+
+  div {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  dt {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--ifm-color-emphasis-700);
+  }
+
+  dd {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--ifm-color-primary);
+  }
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  flex-basis: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0;
+  }
+}
+
+// L'histogramme occupe toute la largeur restante de l'encadré.
+.years {
+  flex: 1 1 260px;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.9rem;
+  height: 7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &[data-dense="true"] {
+    gap: 0.35rem;
+  }
+
+  li {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+  }
+}
+
+// Le nombre reste posé sur la barre, quelle que soit sa hauteur.
+.yearTrack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.yearBar {
+  width: 100%;
+  min-height: 4px;
+  border-radius: 4px 4px 0 0;
+  background: var(--ifm-color-primary);
+  opacity: 0.85;
+}
+
+.yearCount {
+  line-height: 1.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+}
+
+.yearLabel {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+// Rail des domaines.
+.rail {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 2.25rem;
+  list-style: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: calc(0.625rem - 1.25px);
+    top: 0.6rem;
+    bottom: 0.8rem;
+    width: 2.5px;
+    background: var(--ifm-color-primary);
+  }
+}
+
+.domain {
+  position: relative;
+  margin: 0 0 2.5rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: calc(-2.25rem + 0.625rem - var(--rm-ring) / 2);
+    top: 0.45rem;
+    width: var(--rm-ring);
+    height: var(--rm-ring);
+    box-sizing: border-box;
+    border: 2.5px solid var(--ifm-color-primary);
+    border-radius: 50%;
+    background: var(--ifm-color-primary);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.domainHead {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.domainIcon {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.domainTitle {
+  flex: 1;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 560;
+
+  a {
+    color: var(--ifm-heading-color);
+
+    &:hover {
+      color: var(--ifm-color-primary);
+      text-decoration: none;
+    }
+  }
+}
+
+.domainNumber {
+  margin-right: 0.5rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ifm-color-emphasis-500);
+}
+
+.description {
+  margin: 0.2rem 0 0;
+  font-size: 0.92rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+// Sous-sujets : tuiles en grille, une colonne sur mobile.
+.topics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.6rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.topic {
+  margin: 0;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--rm-rule);
+  border-radius: 10px;
+
+  &[data-status="en cours"] {
+    border-style: dashed;
+    border-color: var(--ifm-color-primary);
+  }
+
+  &[data-status="à venir"] {
+    border-style: dashed;
+
+    .topicLabel {
+      color: var(--ifm-color-emphasis-600);
+    }
+  }
+}
+
+.topicHead {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.topicLabel {
+  flex: 1;
+  font-size: 0.92rem;
+  font-weight: 520;
+  line-height: 1.3;
+}
+
+.topicMeta {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ifm-color-emphasis-600);
+  white-space: nowrap;
+}
+
+.posts {
+  margin: 0.4rem 0 0 1.05rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.82rem;
+  line-height: 1.35;
+
+  li {
+    margin: 0.2rem 0 0;
+  }
+
+  a {
+    color: var(--ifm-color-emphasis-800);
+
+    &:hover {
+      color: var(--ifm-color-primary);
+    }
+  }
+}
+
+// Pages année : navigation entre années et articles de l'année par catégorie.
+.yearNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 2rem;
+}
+
+.yearPill {
+  padding: 0.25rem 0.8rem;
+  border: 1px solid var(--rm-rule, var(--ifm-color-emphasis-200));
+  border-radius: 999px;
+  font-size: 0.88rem;
+  color: var(--ifm-font-color-base);
+
+  &:hover {
+    border-color: var(--ifm-color-primary);
+    color: var(--ifm-color-primary);
+    text-decoration: none;
+  }
+
+  &[data-current="true"] {
+    border-color: var(--ifm-color-primary);
+    background: var(--ifm-color-primary);
+    color: var(--ifm-color-white);
+  }
+}
+
+.years a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+
+    .yearBar {
+      opacity: 1;
+    }
+  }
+}
+
+// Objectifs : un encart par domaine visé, avec les sujets travaillés dans l'année.
+.objectives {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.9rem;
+  margin: 1rem 0 2.5rem;
+}
+
+.objective {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+
+  .domainTitle {
+    font-size: 1.05rem;
+  }
+}
+
+.objectiveText,
+.retroText {
+  margin: 0.5rem 0 0;
+  font-size: 0.92rem;
+  color: var(--ifm-color-emphasis-800);
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0.15rem 0.6rem;
+    border: 1px solid var(--ifm-color-emphasis-200);
+    border-radius: 999px;
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,63 @@
+---
+title: "Roadmap 2025"
+description: "Roadmap DevOps 2025 : objectifs (Kubernetes, Prometheus, Grafana et Loki, Ansible et Terraform) et rétrospective de l'année."
+hide_table_of_contents: true
+---
+
+import { YearSummary, Objectives, Objective, Retrospective, Retro } from "@site/src/components/Roadmap/Year";
+
+# Roadmap 2025
+
+<YearSummary year={2025} />
+
+## Objectifs
+
+En 2025, je passe à Kubernetes, je mets en place de la supervision et je configure mes machines par le code avec Ansible. Côté développement, je modernise mon outillage Python.
+
+<Objectives year={2025}>
+  <Objective domain="06">
+
+Apprendre Kubernetes sur le cluster kubeadm du travail : composants de base, kubectl, stockage, configuration par ConfigMap et Secret, accès par Ingress, renouvellement des certificats.
+
+  </Objective>
+  <Objective domain="07">
+
+Monter une supervision avec Prometheus pour les métriques, Loki pour les logs et Grafana pour les dashboards, sur le cluster kubeadm du travail.
+
+  </Objective>
+  <Objective domain="08">
+
+Configurer mes machines avec Ansible, secrets compris, et explorer Terraform.
+
+  </Objective>
+  <Objective domain="09">
+
+Moderniser mon outillage Python : dépendances avec Poetry puis uv, lint et formatage avec Ruff, validation avec Pydantic, async/await, API GraphQL.
+
+  </Objective>
+</Objectives>
+
+## Rétrospective
+
+<Retrospective year={2025}>
+  <Retro domain="06">
+
+J'ai appris Kubernetes en l'exploitant : composants de base, kubectl, stockage, configuration par ConfigMap et Secret, accès par Ingress, renouvellement des certificats du cluster. Le terrain principal est le cluster kubeadm du travail ([DiscoDiode](/docs/projects/professionnel/sonu-k8s-cluster)), qui héberge aussi les runners CI.
+
+  </Retro>
+  <Retro domain="07">
+
+Prometheus, Loki et Grafana tournent sur ce même cluster kubeadm ([DiscoDiode](/docs/projects/professionnel/sonu-k8s-cluster)). J'ai écrit sur Prometheus et sur Loki en fin d'année.
+
+  </Retro>
+  <Retro domain="08">
+
+Ansible configure désormais mes machines : introduction, cas pratique sur zsh, playbooks avancés, Ansible Vault pour les secrets. Terraform est resté au stade de l'exploration.
+
+  </Retro>
+  <Retro domain="09">
+
+L'année a beaucoup tourné autour de Python : outillage (Poetry, uv, Ruff), validation avec Pydantic, async/await, et une API GraphQL avec FastAPI et Strawberry.
+
+  </Retro>
+</Retrospective>

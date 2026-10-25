@@ -446,5 +446,5 @@ Authentik apporte, par rapport à Authelia, l'inscription en libre-service, les 
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Authentik déployé par Helm comme fournisseur d'identité du cluster : forward-auth Traefik devant les applications sans authentification propre, clients OIDC pour Grafana, Portainer et l'ERP, inscription limitée au domaine de l'entreprise, groupes alimentés par les équipes GitHub, configuration entièrement déclarée en blueprints et snapshot quotidien de la base.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne DiscoDiode">Authentik déployé par Helm comme fournisseur d'identité du cluster : forward-auth Traefik devant les applications sans authentification propre, clients OIDC pour Grafana, Portainer et l'ERP, inscription limitée au domaine de l'entreprise, groupes alimentés par les équipes GitHub, configuration entièrement déclarée en blueprints et snapshot quotidien de la base.</ProjectLink>
 </ProjectLinks>

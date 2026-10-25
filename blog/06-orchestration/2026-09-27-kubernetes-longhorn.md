@@ -305,5 +305,5 @@ Longhorn transforme des disques locaux en volumes répliqués et détache les ap
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Remplacement du stockage local épinglé à un nœud par Longhorn (3 réplicas, StorageClass en `Retain`), migration une à une des applications par copie rsync, Deployments passés en `Recreate`, snapshots quotidiens par RecurringJob des bases critiques et restauration testée sur un volume clone.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne DiscoDiode">Remplacement du stockage local épinglé à un nœud par Longhorn (3 réplicas, StorageClass en `Retain`), migration une à une des applications par copie rsync, Deployments passés en `Recreate`, snapshots quotidiens par RecurringJob des bases critiques et restauration testée sur un volume clone.</ProjectLink>
 </ProjectLinks>

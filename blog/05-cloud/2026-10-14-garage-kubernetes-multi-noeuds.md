@@ -129,5 +129,5 @@ Garage permet de dépasser le disque d'une machine en agrégeant ceux de plusieu
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Extension du stockage objet Garage d'un à quatre nœuds, de 500 Go à 2,4 Tio utiles, sans matériel supplémentaire : chart Helm à un pod par nœud, volumes Longhorn locaux, procédure d'ajout de nœud écrite après une coupure partielle, et métriques d'occupation par bucket.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne DiscoDiode">Extension du stockage objet Garage d'un à quatre nœuds, de 500 Go à 2,4 Tio utiles, sans matériel supplémentaire : chart Helm à un pod par nœud, volumes Longhorn locaux, procédure d'ajout de nœud écrite après une coupure partielle, et métriques d'occupation par bucket.</ProjectLink>
 </ProjectLinks>

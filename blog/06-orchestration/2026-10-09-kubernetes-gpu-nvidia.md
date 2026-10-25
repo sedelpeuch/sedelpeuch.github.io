@@ -233,5 +233,5 @@ Un GPU devient une ressource ordonnançable par l'empilement de quatre composant
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne SONU">Mise en service de deux nœuds GPU de générations différentes : préparation des hôtes, chart du device plugin avec GPU Feature Discovery déployé par la CI, CRD Node Feature Discovery appliquées à la main, guide de choix de la carte pour les équipes et exporter de métriques qui ne réserve pas la carte.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne DiscoDiode">Mise en service de deux nœuds GPU de générations différentes : préparation des hôtes, chart du device plugin avec GPU Feature Discovery déployé par la CI, CRD Node Feature Discovery appliquées à la main, guide de choix de la carte pour les équipes et exporter de métriques qui ne réserve pas la carte.</ProjectLink>
 </ProjectLinks>
