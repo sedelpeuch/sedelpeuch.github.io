@@ -1,7 +1,7 @@
 ---
 title: "Body Analysis"
-tags: [fastapi, react, postgresql, minio, docker, python, data-analysis, quantified-self]
-description: "Application de suivi et d'analyse corporelle (FastAPI, React, PostgreSQL, MinIO) : ingestion des exports Samsung Health, analytics d'entraînement (TRIMP, ACWR, dérive cardiaque), récupération et sommeil, galerie photo confidentielle."
+tags: [fastapi, react, postgresql, s3, docker, android, python, data-analysis, quantified-self]
+description: "Application de suivi et d'analyse corporelle (FastAPI, React, PostgreSQL, stockage S3) : ingestion des exports Samsung Health et synchronisation par une appli Android, analytics d'entraînement (TRIMP, ACWR, dérive cardiaque), récupération et sommeil, galerie photo confidentielle."
 ---
 
 import Tabs from '@theme/Tabs';
@@ -11,17 +11,16 @@ import TabItem from '@theme/TabItem';
 
 <ProjectMeta
   start="2023"
-  end="2026"
   role="Auteur (projet solo)"
   domain="Analyse de données, quantified self"
-  stack={["FastAPI", "React", "PostgreSQL", "MinIO", "Docker"]}
+  stack={["FastAPI", "React", "PostgreSQL", "Garage", "Docker", "Android"]}
 />
 
 ## Contexte
 
-Samsung Health exporte des CSV et fichiers d'activité bruts, sans aucune visualisation exploitable. Passer par une application tierce aurait signifié confier des données de santé (poids, composition corporelle, fréquence cardiaque, photos de suivi) à un service externe. J'ai construit la chaîne moi-même (ingestion, modélisation, analytics, interface), déployée sur mon infrastructure personnelle et alimentée en continu de 2023 à 2026.
+Samsung Health exporte des CSV et fichiers d'activité bruts, sans aucune visualisation exploitable. Passer par une application tierce aurait signifié confier des données de santé (poids, composition corporelle, fréquence cardiaque, photos de suivi) à un service externe. J'ai construit la chaîne moi-même (ingestion, modélisation, analytics, interface), déployée sur mon infrastructure personnelle et alimentée en continu depuis 2023.
 
-Le projet a été réécrit en 2026 : la version initiale était une application Streamlit monolithique ; la version finale sépare une API FastAPI et une SPA React, avec une persistance PostgreSQL et un stockage objet MinIO pour les photos.
+Le projet a été réécrit en 2026 : la version initiale était une application Streamlit monolithique ; la version actuelle sépare une API FastAPI et une SPA React, avec une persistance PostgreSQL et un stockage objet S3 pour les photos.
 
 ## Aperçu
 
@@ -67,8 +66,12 @@ Les captures ci-dessous ont été réalisées sur une instance locale alimentée
     <div className="tech-list-value">React, TypeScript, Vite</div>
   </div>
   <div className="tech-list-row">
+    <div className="tech-list-label">Mobile</div>
+    <div className="tech-list-value">Kotlin, Jetpack Compose, WorkManager, Samsung Health Data SDK</div>
+  </div>
+  <div className="tech-list-row">
     <div className="tech-list-label">Données</div>
-    <div className="tech-list-value">PostgreSQL, MinIO (stockage objet S3)</div>
+    <div className="tech-list-value">PostgreSQL, stockage objet S3 (MinIO en développement, Garage en production)</div>
   </div>
   <div className="tech-list-row">
     <div className="tech-list-label">Traitement d'image</div>
@@ -90,12 +93,13 @@ Les captures ci-dessous ont été réalisées sur une instance locale alimentée
 
 ## Architecture
 
-L'export ZIP est envoyé depuis le navigateur, ingéré en tâche de fond par l'API, puis restitué par le module d'analytics à la SPA.
+L'export ZIP est envoyé depuis le navigateur, ingéré en tâche de fond par l'API, puis restitué par le module d'analytics à la SPA. Depuis octobre 2026, une appli Android envoie aussi les nouvelles mesures deux fois par jour.
 
 ```mermaid
 flowchart LR
   export["Export Samsung Health (ZIP)"] --> user["Navigateur"]
   user -->|"upload, consultation"| traefik["Traefik + Sablier"]
+  phone["Appli Android<br/>Samsung Health Data SDK"] -->|"lots de mesures, 2 fois par jour"| traefik
   subgraph homelab["Homelab (Docker Compose)"]
     traefik --> web["SPA React (nginx)"]
     web -->|"/api"| api["API FastAPI"]
@@ -103,7 +107,7 @@ flowchart LR
     ingest --> pg[("PostgreSQL")]
     pg --> analytics["Analytics : TRIMP, ACWR, SWOLF, composition"]
     analytics --> api
-    api --> minio[("MinIO : photos")]
+    api --> s3[("Garage : photos")]
   end
   ci["GitHub Actions"] -->|"images API et front"| ghcr["GHCR"]
   ghcr --> homelab
@@ -116,6 +120,16 @@ L'export Samsung Health est une archive ZIP volumineuse (1,3 Go décompressés p
 Les CSV eux-mêmes varient selon la version de l'application source : champs absents, dates mal formées, types numériques instables. Chaque module d'ingestion valide et normalise sa source avant de la faire entrer dans le modèle relationnel, plutôt que de laisser une exception de parsing interrompre silencieusement le traitement d'une ligne.
 
 Le format réel de l'export s'est révélé différent de celui des fixtures de test sur plusieurs points, sans qu'aucune erreur ne le signale. Une archive zippée depuis le téléphone place tout son contenu sous un dossier racine horodaté : l'import ne trouvait aucun fichier reconnu et se terminait en succès avec zéro ligne. Il descend désormais dans ce dossier, et un import sans aucune source reconnue est marqué en échec plutôt qu'en succès vide. De même, des colonnes préfixées dans les CSV de fréquence cardiaque et de SpO₂, un fichier d'histogramme lu à la place du stress et des JSON de variabilité cardiaque cherchés hors de leur sous-dossier faisaient perdre ces signaux en entier. Les fixtures reprennent maintenant la structure exacte d'un export réel, pour que les tests échouent sur ce type d'écart.
+
+## Synchronisation depuis le téléphone
+
+L'export ZIP demande une manipulation sur le téléphone à chaque mise à jour. En octobre 2026, j'ai développé une appli Android (Kotlin, Jetpack Compose) qui lit Samsung Health par le Samsung Health Data SDK et envoie les nouvelles mesures à l'API deux fois par jour, plus à la demande, par une route d'ingestion dédiée protégée par jeton. La planification passe par WorkManager, qui laisse Android décaler l'exécution selon l'état de la batterie et du réseau.
+
+La difficulté est de ne jamais perdre de données sans en renvoyer inutilement. L'appli lit l'API de changements du SDK, qui liste les mesures modifiées depuis un instant donné, avec un curseur par type de donnée. Un curseur n'avance que lorsque tous les lots contenant son type ont été acceptés par le serveur : une coupure réseau ou une panne de l'API, quelle que soit sa durée, est rattrapée à la synchronisation suivante, et un échec durable déclenche une alerte locale sur le téléphone. Chaque lecture recouvre les deux jours précédant le curseur, et l'API rend l'ingestion idempotente en reprenant les identifiants de l'export ZIP : une mesure reçue deux fois, ou déjà importée par une archive, n'est pas dupliquée. La première synchronisation se limite ainsi à trois jours, l'historique étant déjà en base.
+
+Les lots réels ont révélé des écarts avec l'export ZIP, comme sur les fixtures avant eux : horodatages de l'export à interpréter en UTC, routines, score d'énergie et heures à la seconde absents de la première version du contrat. Des tests vérifient qu'une même mesure produit la même ligne par les deux chemins d'ingestion.
+
+L'application expose aussi un serveur MCP, protégé par jeton, qui permet à un assistant IA d'interroger les données. Son flux SSE traverse le nginx du frontend avec la mise en tampon désactivée, sans quoi les événements restent retenus par le proxy au lieu d'être transmis au fil de l'eau.
 
 ## Récupération et sommeil
 
@@ -136,17 +150,17 @@ Le détail de séance dépend du sport. Samsung Health enregistre chaque exercic
 
 ## Photos et confidentialité
 
-Les photos de suivi corporel sont par nature privées. Elles sont stockées dans MinIO plutôt que sur le système de fichiers de l'application, à travers un client dédié qui centralise tous les appels au SDK S3 : le reste du backend ne connaît jamais MinIO directement, ce qui permet de le substituer par un double de test dans la suite unitaire.
+Les photos de suivi corporel sont par nature privées. Elles sont stockées dans un stockage objet S3 plutôt que sur le système de fichiers de l'application, à travers un client dédié qui centralise tous les appels au SDK S3 : le reste du backend ne connaît jamais le stockage directement, ce qui permet de le substituer par un double de test dans la suite unitaire. Ce découplage a servi en octobre 2026 : l'image MinIO ayant été retirée de Docker Hub, la production est passée sur une instance Garage dédiée sans aucune modification du code de l'API.
 
 Le traitement d'image ne fait confiance ni à l'extension du fichier envoyé ni au `Content-Type` déclaré par le client : le type réel est déterminé en inspectant les premiers octets du fichier. L'orientation est corrigée à partir du tag EXIF plutôt que d'une heuristique sur les dimensions de l'image, ce qui corrige un bug de l'ancienne version qui retournait à tort toute photo réellement prise en format paysage. En mode confidentiel, chaque photo est floutée par filtre gaussien à la volée, sans jamais mettre en cache le rendu flouté : l'original stocké reste la seule version durable.
 
 ## Déploiement
 
-L'application se compose de quatre services orchestrés par Docker Compose : PostgreSQL, MinIO, l'API FastAPI et le frontend, complétés par une seconde instance PostgreSQL dédiée aux tests d'intégration, pour que la suite de tests ne touche jamais aux données réelles. Le frontend a deux profils distincts : un service de développement (Node + Vite, rechargement à chaud) actif par défaut, et une image de production (build statique servi par nginx, sans runtime Node) qui ne démarre que sur demande explicite via un profil Compose, pour valider l'image avant bascule sans interrompre l'environnement de développement.
+L'application se compose de quatre services orchestrés par Docker Compose : PostgreSQL, le stockage objet (MinIO en développement, Garage en production), l'API FastAPI et le frontend, complétés par une seconde instance PostgreSQL dédiée aux tests d'intégration, pour que la suite de tests ne touche jamais aux données réelles. Le frontend a deux profils distincts : un service de développement (Node + Vite, rechargement à chaud) actif par défaut, et une image de production (build statique servi par nginx, sans runtime Node) qui ne démarre que sur demande explicite via un profil Compose, pour valider l'image avant bascule sans interrompre l'environnement de développement.
 
 Le conteneur de l'API applique les migrations Alembic à son démarrage, avant de lancer le serveur. Ce n'était pas le cas au départ : une nouvelle image déployée sur une base restée à l'ancien schéma échouait sur ses nouvelles tables. Lier la migration au démarrage garantit que le schéma suit toujours la version du code déployée.
 
-Le workflow GitHub Actions construit et publie les deux images (API et frontend) sur GitHub Container Registry à chaque push sur `master`, chacune taguée à la fois `latest` et par SHA de commit. En production, l'application tourne sur mon [homelab](homelab.md) : utilisée quelques minutes par semaine, elle est arrêtée par Sablier après 30 minutes d'inactivité et redémarrée à la première requête, ce qui libère la mémoire occupée au repos par ses conteneurs.
+Le workflow GitHub Actions construit et publie les deux images (API et frontend) sur GitHub Container Registry à chaque push sur `master`, chacune taguée à la fois `latest` et par SHA de commit. Le build tourne depuis octobre 2026 sur le runner auto-hébergé de mon homelab, sans consommer les minutes GitHub Actions du dépôt privé. En production, l'application tourne sur mon [homelab](homelab.md) : utilisée quelques minutes par semaine, elle est arrêtée par Sablier après 30 minutes d'inactivité et redémarrée à la première requête, ce qui libère la mémoire occupée au repos par ses conteneurs.
 
 L'interface suit la charte graphique commune aux applications de mon homelab : thème sombre, un seul accent de couleur, nom de l'application en deux tons, libellés en français.
 
@@ -159,6 +173,7 @@ La suite de tests backend compte 58 fichiers et près de 350 fonctions de test, 
 - **Données de santé gardées sur mon infrastructure** : les exports Samsung Health sont ingérés et analysés sans passer par un service tiers, photos de suivi comprises.
 - **Ingestion d'un export réel de 1,3 Go** (environ 88 000 fichiers) par une extraction protégée contre l'évasion de répertoire et les bombes de décompression.
 - **Pertes de données silencieuses supprimées** : les écarts entre l'export réel et les fixtures (dossier racine horodaté, colonnes préfixées, fichiers mal identifiés) sont corrigés et couverts par des fixtures conformes, et un import sans source reconnue échoue au lieu de réussir à vide.
+- **Données à jour sans manipulation** : l'appli Android synchronise les mesures deux fois par jour, sans perte en cas de coupure et sans doublon avec les imports ZIP.
 - **Signaux auparavant ignorés exploités** : sommeil, récupération, routines de musculation regroupées en une séance, détail longueur par longueur de la natation.
 - **Déploiement sans intervention manuelle** : images publiées par la CI à chaque push, migrations appliquées au démarrage de l'API, conteneurs arrêtés au repos grâce à la mise en veille.
 

@@ -3,6 +3,7 @@
 // comme les illustrations au trait du site, au lieu d'une mosaïque de logos colorés.
 // Une techno absente de la table s'affiche sans icône.
 export const TECH_ICONS: Record<string, string> = {
+  android: "simple-icons:android",
   ansible: "simple-icons:ansible",
   authelia: "simple-icons:authelia",
   aws: "simple-icons:amazonwebservices",
@@ -25,6 +26,7 @@ export const TECH_ICONS: Record<string, string> = {
   "github arc": "simple-icons:githubactions",
   "github copilot": "simple-icons:githubcopilot",
   "github gists": "simple-icons:github",
+  gnome: "simple-icons:gnome",
   grafana: "simple-icons:grafana",
   helm: "simple-icons:helm",
   kubeadm: "simple-icons:kubernetes",
