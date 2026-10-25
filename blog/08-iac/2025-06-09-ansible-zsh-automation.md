@@ -2,6 +2,8 @@
 title: "Ansible : cas pratique zsh"
 description: "Automatiser et versionner un environnement shell zsh avec Ansible : structure du projet zsh_ansible, exécution locale, idempotence des tâches et tests en conteneur."
 tags: [iac, devops]
+series: ansible
+series_order: 2
 ---
 
 La configuration d'un environnement shell (zsh, oh-my-zsh, plugins, prompt, alias) s'accumule au fil des années sur un poste de travail, sans trace de sa construction. Le jour d'un changement de machine, elle doit être reconstituée de mémoire. Le projet [zsh_ansible](https://github.com/sedelpeuch/zsh_ansible) applique à ce problème les principes présentés dans l'article [Ansible](./2025-06-09-ansible-introduction.md) : la configuration devient un ensemble de playbooks versionnés, rejouables sur n'importe quelle machine Linux.

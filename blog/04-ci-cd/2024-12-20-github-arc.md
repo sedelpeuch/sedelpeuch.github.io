@@ -2,6 +2,7 @@
 title: "GitHub Actions : ARC"
 description: "Déployer Actions Runner Controller (ARC) sur Kubernetes pour des runners GitHub Actions auto-hébergés et autoscalables."
 tags: [cicd, devops]
+series: github-actions
 series_order: 6
 ---
 

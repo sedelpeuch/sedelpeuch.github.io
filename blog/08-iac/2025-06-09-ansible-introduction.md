@@ -2,6 +2,8 @@
 title: "Ansible"
 description: "Ansible, outil d'automatisation sans agent : fonctionnement par SSH, inventaire, playbooks, modules, handlers, rôles et comparaison avec les autres outils IaC."
 tags: [iac, devops]
+series: ansible
+series_order: 1
 ---
 
 Configurer une dizaine de serveurs à la main, par des connexions SSH successives, produit des machines qui divergent au fil des interventions et une configuration que personne ne sait reconstruire. Ansible décrit cette configuration dans des fichiers YAML versionnés et l'applique à un parc de machines, de façon reproductible, sans agent à installer sur les cibles.

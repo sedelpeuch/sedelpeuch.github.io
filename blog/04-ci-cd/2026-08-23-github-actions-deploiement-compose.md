@@ -1,7 +1,6 @@
 ---
 title: "GitHub Actions : déploiement Docker Compose"
 description: "Déployer automatiquement un monorepo de stacks Docker Compose sur un hôte unique à chaque push avec GitHub Actions : calcul des stacks modifiées depuis le dernier déploiement réussi, SSH via réseau privé, ordre de déploiement, nettoyage sûr, hash de configuration et validation en pull request."
-series: homelab
 tags: [cicd, orchestration, devops]
 ---
 

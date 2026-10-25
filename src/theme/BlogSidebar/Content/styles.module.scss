@@ -1,0 +1,33 @@
+// Raccourcis Roadmap et Séries, séparés des groupes par année par un filet.
+
+.shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+
+  // Menu mobile : même retrait que les liens du menu.
+  @media (max-width: 996px) {
+    padding: 0.5rem 0.75rem 0.9rem;
+  }
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 520;
+  color: var(--ifm-font-color-base);
+
+  &:hover {
+    color: var(--ifm-color-primary);
+    text-decoration: none;
+  }
+}
+
+.icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--ifm-color-primary);
+}

@@ -2,6 +2,7 @@
 title: "Prometheus : alertes d'un cluster Kubernetes"
 description: "Socle d'alertes Prometheus pour un cluster Kubernetes : sources de métriques (kube-state-metrics, kubelet, node-exporter, composants), collecte des composants sans annotation, règles nœuds, workloads, stockage, certificats et GPU, pièges des métriques persistantes, enrichissement par jointure, routage Alertmanager et validation avec promtool."
 tags: [monitoring, devops]
+series: prometheus
 ---
 
 Sur un hôte Docker, l'essentiel des pannes se lit dans les métriques de la machine et des conteneurs : disque, mémoire, redémarrages. Sur un cluster Kubernetes, une part importante des incidents ne se voit qu'au niveau des objets de l'API : un Deployment dont le rollout ne termine pas, un pod bloqué en `Pending` faute de ressources, un CronJob de sauvegarde qui échoue chaque nuit, un volume répliqué qui a perdu une copie, un certificat du plan de contrôle qui approche de son expiration. Ces états ne produisent ni pic de CPU ni erreur applicative. Cet article fait suite à l'article [Alertmanager](./2026-09-20-prometheus-alertmanager.md) et construit un socle d'alertes pour un cluster kubeadm déployé avec le chart `prometheus-community/prometheus` : sources de métriques, collecte, règles par domaine, pièges propres aux métriques d'état et routage.

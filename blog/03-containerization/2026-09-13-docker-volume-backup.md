@@ -1,8 +1,8 @@
 ---
 title: "Docker : sauvegarde des volumes"
 description: "Sauvegarder des volumes Docker nommés avec offen/docker-volume-backup : archive chiffrée GPG vers S3, rétention, cohérence des bases de données, pièges du versioning, stratégie 3-2-1 et restauration pas à pas."
-series: homelab
 tags: [containerization, devops]
+series: docker
 ---
 
 Dans un déploiement Docker Compose, l'état persistant des services (bases de données, fichiers utilisateurs, configuration générée) vit dans des volumes nommés, sous `/var/lib/docker/volumes`. La commande `docker volume` sait créer, inspecter, lister et supprimer ces volumes, mais n'offre aucune fonction d'export ni de sauvegarde. Sans mécanisme dédié, la perte du disque hôte, une suppression accidentelle (`docker compose down -v`) ou une migration applicative ratée emportent les données. `offen/docker-volume-backup` comble ce manque avec un conteneur qui archive, chiffre et expédie périodiquement le contenu des volumes vers un stockage distant.

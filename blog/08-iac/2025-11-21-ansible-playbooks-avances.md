@@ -2,6 +2,7 @@
 title: "Ansible : avancé"
 description: "Fonctionnalités avancées d'Ansible : rôles, priorité des variables, collections, secrets, organisation d'un projet, tags et gestion des erreurs."
 tags: [iac, devops]
+series: ansible
 ---
 
 L'[article d'introduction à Ansible](./2025-06-09-ansible-introduction.md) couvrait l'inventaire, les playbooks et les modules. Dès que le nombre de playbooks et d'environnements augmente, d'autres mécanismes deviennent nécessaires pour éviter la duplication : rôles, collections, gestion des secrets, organisation des inventaires et traitement des erreurs.
