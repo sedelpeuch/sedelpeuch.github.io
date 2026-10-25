@@ -4,24 +4,12 @@ sidebar_label: Semestre 1
 description: Supports de cours, TD et corrections du premier semestre du Cycle Préparatoire de Bordeaux (chimie, informatique, mathématiques, physique).
 ---
 
+Les cours, fiches et corrections de cette page ont été rédigés par Sébastien Delpeuch.
+
 ## Chimie
 
 Responsable du cours : [Frédéric
 Castet](http://theo.ism.u-bordeaux.fr/~castet/teaching.html)
-
-<ResourceList type="cours">
-
-- [1- L'avènement de la physique quantique](./img/chimie/cours/1.pdf)
-- [2- L'organisation des électrons dans l'atome](./img/chimie/cours/2.pdf)
-- [3- La classification périodique](./img/chimie/cours/3.pdf)
-- [4- Le modèle de Lewis](./img/chimie/cours/4.pdf)
-- [5- Le modèle VSEPR](./img/chimie/cours/5.pdf)
-- [6- Orbitales hybrides](./img/chimie/cours/6.pdf)
-- [7- Interactions intermoléculaires](./img/chimie/cours/7.pdf)
-- [8- Les différents états de la matière](./img/chimie/cours/8.pdf)
-- [9- Les cristaux](./img/chimie/cours/9.pdf)
-
-</ResourceList>
 
 <ResourceList type="td">
 
@@ -48,19 +36,6 @@ Une version des [TD](./img/chimie/TD.pdf) à utiliser avec précaution.
 ## Informatique
 
 Responsable : [Carole Blanc](https://dept-info.labri.fr/~blanc/)
-
-<ResourceList type="td">
-
-- [TD 1](./img/informatique/td1.pdf)
-- [TD 2](./img/informatique/td2.pdf)
-- [TD 3](./img/informatique/td3.pdf)
-- [TD 4](./img/informatique/td4.pdf)
-- [TD 5](./img/informatique/td5.pdf)
-- [TD 6](./img/informatique/td6.pdf)
-- [TD 7](./img/informatique/td7.pdf)
-- [TD 8](./img/informatique/td8.pdf)
-
-</ResourceList>
 
 Il faut manier les corrections de l'informatique avec précaution. Les codes
 demandés sont relativement simples en 1A, l'idée est de vous faire réfléchir et
@@ -120,20 +95,6 @@ Responsable : [Eric Charpentier](https://www.math.u-bordeaux.fr/imb/fiche-person
 ### Électrocinétique
 
 Responsable : Mourad Aiche
-
-<ResourceList type="cours">
-
-- [Introduction](./img/physique/electro/Introduction.pdf)
-- [Analyse de circuit](./img/physique/electro/analyse.pdf)
-
-</ResourceList>
-
-<ResourceList type="td" title="Sujets de TD">
-
-- [TD 1, sujet](./img/physique/electro/TD1.pdf)
-- [TD 2, sujet](./img/physique/electro/TD2.pdf)
-
-</ResourceList>
 
 <ResourceList type="correction">
 

@@ -7,21 +7,26 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import pdfRedirects from "@site/data/pdfRedirects.json";
 
 // Les fichiers sont servis sous [nom]-[hash du contenu].[ext] : recompresser un PDF
-// change son URL. Les anciennes adresses encore indexées renvoient vers la nouvelle.
+// change son URL. Les anciennes adresses encore indexées renvoient vers la nouvelle,
+// ou vers la page qui le présentait quand le fichier a été retiré (cible en "/…").
 const REDIRECTS: Record<string, string> = pdfRedirects;
 
 type Props = WrapperProps<typeof ContentType>;
 
 export default function ContentWrapper(props: Props): JSX.Element | null {
   const { pathname } = useLocation();
+  const base = useBaseUrl("/");
   const prefix = useBaseUrl("/assets/files/");
   const target = pathname.startsWith(prefix)
     ? REDIRECTS[decodeURIComponent(pathname.slice(prefix.length))]
     : undefined;
 
   useEffect(() => {
-    if (target) window.location.replace(prefix + target);
-  }, [prefix, target]);
+    if (!target) return;
+    window.location.replace(
+      target.startsWith("/") ? base + target.slice(1) : prefix + target,
+    );
+  }, [base, prefix, target]);
 
   return target ? null : <Content {...props} />;
 }

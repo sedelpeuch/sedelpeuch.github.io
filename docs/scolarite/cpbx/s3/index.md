@@ -4,6 +4,8 @@ sidebar_label: Semestre 3
 description: Notes de cours et de TD du troisième semestre du Cycle Préparatoire de Bordeaux (informatique, chimie, analyse, algèbre, physique).
 ---
 
+Les cours, fiches et corrections de cette page ont été rédigés par Sébastien Delpeuch.
+
 ## Informatique
 
 Responsable : [František Kardos](https://www.labri.fr/index.php?n=Annuaires.Profile&id=Kardos_ID1346656366)
