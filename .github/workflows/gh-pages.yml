@@ -102,6 +102,11 @@ jobs:
           # dernière mise à jour des pages et lastmod du sitemap.
           fetch-depth: 0
           filter: blob:none
+      # Le conteneur tourne en root, le dépôt appartient à l'UID du runner :
+      # sans exception, git refuse le dépôt (dubious ownership) et le build
+      # échoue sur le git log des dates de mise à jour.
+      - name: Mark workspace as safe for git
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Install dependencies
         run: |
           yarn install --frozen-lockfile --non-interactive
