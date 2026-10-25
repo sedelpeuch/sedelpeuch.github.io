@@ -1,720 +1,133 @@
 ---
 title: "Loki"
-description: "Loki, système d'agrégation de logs inspiré de Prometheus : indexation des seuls labels, architecture, collecte avec Alloy ou Promtail, LogQL, rétention et bonnes pratiques de cardinalité."
+description: "Loki, système d'agrégation de logs inspiré de Prometheus : indexation des seuls labels, flux et cardinalité, modes de déploiement, schéma et rétention, LogQL, et pièges d'exploitation d'une instance monolithique sur Kubernetes."
 tags: [monitoring, devops]
 ---
 
-Sur une infrastructure de dizaines de conteneurs répartis sur plusieurs nœuds, retrouver les lignes de logs liées à un incident impose de les consulter machine par machine, et les logs d'un conteneur supprimé disparaissent avec lui. Centraliser ces logs dans un moteur à indexation plein texte résout la dispersion, mais le coût de l'index, en stockage comme en mémoire, croît avec le volume ingéré. Loki est un système d'agrégation de logs horizontalement scalable, hautement disponible et multi-tenant, inspiré par Prometheus. Créé par Grafana Labs, il se distingue par un choix d'architecture : plutôt que d'indexer le contenu des logs, il n'indexe que leurs métadonnées (labels), ce qui réduit fortement le coût de stockage et d'ingestion au prix de requêtes plus coûteuses sur le texte.
+Sur une infrastructure de dizaines de conteneurs répartis sur plusieurs nœuds, retrouver les lignes de logs liées à un incident impose de les consulter machine par machine, et les logs d'un conteneur supprimé disparaissent avec lui. Un visualiseur en temps réel comme Dozzle affiche le flux `docker logs` dans un navigateur, mais il ne stocke rien : une fois le conteneur recréé, il n'y a plus rien à interroger, et rien à agréger ni sur quoi alerter. Centraliser les logs dans un moteur à indexation plein texte règle la dispersion, mais le coût de l'index, en disque comme en mémoire, augmente avec le volume ingéré. Loki, créé par Grafana Labs sur le modèle de Prometheus, fait un autre choix : il n'indexe que les métadonnées des logs, leurs labels, et parcourt le contenu au moment de la requête.
 
 <!--truncate-->
 
-## Qu'est-ce que Loki ?
+## Indexer les labels, pas le contenu
 
-Loki est souvent décrit comme "Prometheus, mais pour les logs". Il partage plusieurs concepts avec [Prometheus](./2025-11-21-prometheus-introduction.md) :
+Elasticsearch, OpenSearch et Splunk construisent un index inversé de chaque mot de chaque ligne. N'importe quelle recherche plein texte est alors rapide, mais l'index peut approcher la taille des données, et l'ingestion doit le tenir à jour en continu. Loki inverse ce compromis. Chaque ligne arrive avec un petit jeu de labels (`namespace`, `app`, `container`), et seuls ces labels sont indexés. Le contenu est compressé par blocs, les *chunks*, puis écrit sur disque ou dans un stockage objet.
 
-- **Modèle de données basé sur les labels** : identification des flux de logs par des labels
-- **Langage de requête dédié** : LogQL, inspiré de PromQL
-- **Intégration native avec Grafana** : visualisation conjointe des métriques et des logs, avec les mêmes labels
-- **Architecture cloud-native** : composants sans état et stockage objet, adaptés à Kubernetes
+L'unité de base est le **flux** (*stream*) : l'ensemble des lignes qui portent exactement le même jeu de labels. Une requête commence toujours par choisir des flux grâce à l'index, puis lit et filtre le contenu de leurs chunks. L'analogie est celle d'une bibliothèque classée par rayon et par étagère, sans catalogue des mots contenus dans les livres : trouver le bon rayon est immédiat, trouver une phrase oblige à feuilleter les livres de ce rayon.
 
-### Pourquoi Loki ?
+Le modèle reprend celui de [Prometheus](./2025-11-21-prometheus-introduction.md) : mêmes sélecteurs de labels, langage de requête calqué sur PromQL. Quand métriques et logs partagent les labels `namespace` et `app`, Grafana passe d'un pic sur un graphique aux lignes du même service sur la même période.
 
-Les systèmes de logs traditionnels (ELK/OpenSearch, Splunk) construisent un index inversé de tout le contenu des logs, ce qui :
+## Labels et cardinalité
 
-- **Coûte cher** en stockage (l'index peut approcher la taille des données) et en calcul à l'ingestion
-- **Accélère** en contrepartie la recherche plein texte arbitraire
-- **Nécessite** une infrastructure dimensionnée pour cet index (clusters Elasticsearch)
+Les performances de Loki dépendent presque entièrement du choix des labels. Chaque combinaison distincte de valeurs crée un flux, avec son propre chunk ouvert en mémoire et son entrée d'index. Un label `request_id` ou `user_id` produirait un flux par requête ou par utilisateur, chacun réduit à quelques lignes : la compression devient inefficace, l'index grossit et l'ingestion ralentit. À l'inverse, un seul label pour tout un cluster obligerait chaque requête à décompresser tout le volume de la période.
 
-Loki adopte une approche différente :
+La règle pratique est de réserver les labels aux dimensions bornées et stables, qui servent à choisir *où* chercher : namespace, application, conteneur, nœud, flux stdout ou stderr. Ce qui sert à choisir *quoi* chercher (niveau de log, code HTTP, chemin, identifiant) reste dans la ligne et se filtre à la requête. Recopier tous les labels Kubernetes d'un pod est le piège classique : `pod-template-hash` change à chaque déploiement et multiplie les flux sans rien apporter.
 
-- **N'indexe que les métadonnées** (labels), pas le contenu
-- **Stocke les logs compressés** par blocs (*chunks*), regroupés par flux
-- **Utilise le stockage objet** (S3, GCS, etc.) pour réduire les coûts
-- **Filtre le contenu à la lecture** : les labels sélectionnent les flux, puis le contenu des chunks correspondants est parcouru en parallèle
+Loki 3 ajoute deux mécanismes. Les métadonnées structurées (*structured metadata*) attachent à chaque ligne des champs à forte cardinalité, comme `trace_id`, sans créer de flux, et ces champs restent filtrables à la requête. Le label `service_name`, lui, est déduit automatiquement à l'ingestion d'un label existant (`service_name`, `app`, `app_kubernetes_io_name`, `container`…) et sert de point d'entrée à l'exploration des logs dans Grafana.
 
-Un **flux** (*stream*) est l'ensemble des lignes partageant exactement le même jeu de labels. Toute la performance de Loki dépend de ce découpage : trop peu de labels oblige à parcourir de gros volumes à chaque requête, trop de valeurs distinctes multiplie les petits flux et dégrade l'ingestion comme l'index.
+## Architecture et modes de déploiement
 
-## Architecture de Loki
+Le chemin d'écriture passe par le *distributor*, qui valide les lignes (débit, labels) et les répartit par hachage des labels du flux, puis par les *ingesters*, qui accumulent chaque flux en mémoire et écrivent un chunk sur le stockage quand il est plein ou trop ancien. Le chemin de lecture passe par les *queriers*, qui interrogent à la fois le stockage et les données encore en mémoire. Le *compactor* fusionne les index et applique la rétention.
 
-L'architecture de Loki se compose de plusieurs composants :
+Ces composants peuvent tourner de trois façons :
 
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                         Applications                         │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
-              ┌─────────────┐
-              │ Agent       │  (Alloy, Promtail, Fluent Bit…)
-              └──────┬──────┘
-                     │ push HTTP /loki/api/v1/push
-                     ▼
-         ┌───────────────────────┐
-         │   Loki Distributor    │  (Point d'entrée, validation)
-         └──────────┬────────────┘
-                    │
-         ┌──────────┴──────────┐
-         │                     │
-         ▼                     ▼
-    ┌─────────┐          ┌─────────┐
-    │ Ingester│          │ Ingester│  (Buffer + Écriture)
-    └────┬────┘          └────┬────┘
-         │                    │
-         └──────────┬─────────┘
-                    │
-                    ▼
-            ┌──────────────┐
-            │   Storage    │  (S3, GCS, Filesystem)
-            └──────┬───────┘
-                   │
-        ┌──────────┴──────────┐
-        │                     │
-        ▼                     ▼
-   ┌─────────┐          ┌─────────┐
-   │ Querier │          │ Querier │  (Lecture)
-   └────┬────┘          └────┬────┘
-        │                    │
-        └──────────┬─────────┘
-                   │
-                   ▼
-            ┌────────────┐
-            │  Grafana   │  (Visualisation)
-            └────────────┘
-```
+| Mode | Principe | Volume indicatif |
+| --- | --- | --- |
+| Monolithique | Un seul processus porte tous les composants | Jusqu'à environ 20 Go par jour |
+| Simple scalable | Trois groupes : lecture, écriture, backend | Jusqu'à près d'1 To par jour |
+| Microservices | Un déploiement par composant | Très gros clusters |
 
-### Composants principaux
+Le mode simple scalable est en cours de dépréciation : la documentation annonce son retrait avec Loki 4.0, au profit du monolithique (éventuellement répliqué) ou des microservices. Pour un cluster qui produit quelques centaines de mégaoctets de logs par jour, le monolithique suffit largement. Un seul pod, un volume persistant, et les caches, la passerelle nginx et le *canary* fournis par le chart peuvent tous être désactivés.
 
-1. **Agent de collecte** : lit les logs (fichiers, journald, API Kubernetes), leur attache des labels et les pousse vers Loki
-2. **Distributor** : reçoit les logs, les valide (limites de débit, labels) et les répartit entre les ingesters par hachage des labels du flux
-3. **Ingester** : accumule les lignes de chaque flux en mémoire dans des chunks compressés, puis les écrit dans le stockage lorsqu'ils sont pleins ou trop anciens ; chaque flux est répliqué sur plusieurs ingesters (facteur 3 par défaut)
-4. **Querier** : exécute les requêtes LogQL, en lisant à la fois le stockage et les données récentes encore en mémoire dans les ingesters
-5. **Storage** : chunks et index (TSDB), sur système de fichiers ou stockage objet
+Côté installation, le chart `grafana/loki` n'est plus maintenu que pour Grafana Enterprise Logs depuis le 16 mars 2026. La version open source est suivie par le dépôt `grafana-community/helm-charts`, avec une douzaine de versions majeures du chart entre les deux, chacune avec ses changements cassants. Le chart `loki-stack`, qui installait Loki 2.x et Promtail ensemble, est abandonné depuis plus longtemps encore.
 
-Ces composants peuvent tourner dans un seul processus (mode *monolithique*), en trois groupes lecture, écriture et backend (mode *simple scalable*), ou séparément (mode *microservices*).
+## Stockage, schéma et rétention
 
-## Installation de Loki
-
-### Installation avec Docker Compose
-
-Une stack de test locale :
+L'index et les chunks sont décrits par une entrée de schéma datée. Le schéma actuel est `tsdb` en version `v13`, qui remplace l'ancien index `boltdb-shipper`. La date `from` d'une entrée ne se modifie jamais après coup : Loki s'en sert pour savoir comment lire les données écrites à partir de ce jour. Changer de schéma revient à ajouter une nouvelle entrée datée dans le futur, l'ancienne continuant de servir pour les données plus anciennes.
 
 ```yaml
-# compose.yaml
-services:
-  loki:
-    image: grafana/loki:3.5.0
-    ports:
-      - "3100:3100"
-    command: -config.file=/etc/loki/local-config.yaml   # configuration monolithique fournie par l'image
-    volumes:
-      - loki-data:/loki
-
-  alloy:
-    image: grafana/alloy:latest
-    volumes:
-      - /var/log:/var/log:ro
-      - ./config.alloy:/etc/alloy/config.alloy:ro
-    command: run /etc/alloy/config.alloy
-
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    volumes:
-      - grafana-storage:/var/lib/grafana
-
-volumes:
-  loki-data:
-  grafana-storage:
+schemaConfig:
+  configs:
+    - from: "2026-10-01"
+      store: tsdb
+      schema: v13
 ```
 
-```bash
-# Démarrer la stack
-docker compose up -d
-```
+La rétention est appliquée par le compactor (`retention_enabled: true`, `retention_period: 720h` dans `limits_config`). Les données expirées sont d'abord marquées, puis supprimées après un délai (`retention_delete_delay`, 2 heures par défaut). Une durée plus courte peut être fixée par sélecteur de flux, par exemple pour un namespace de développement. Avec un stockage objet, une règle de cycle de vie sur le bucket, plus longue que la rétention de Loki, sert de filet de sécurité.
 
-### Installation sur Kubernetes avec Helm
+`auth_enabled: false` place Loki en mode mono-locataire : toutes les données vont dans le locataire implicite `fake`, et les clients n'ont pas à envoyer d'en-tête. En multi-locataire, chaque requête porte l'en-tête `X-Scope-OrgID`, que Loki croit sur parole. Un proxy placé devant lui doit l'authentifier.
 
-Le chart `grafana/loki` couvre les trois modes de déploiement. Les anciens charts `loki-stack` et `loki-distributed` sont dépréciés et ne suivent plus les versions 3.x de Loki.
+## LogQL
 
-```bash
-# Ajouter le repo Helm de Grafana
-helm repo add grafana https://grafana.github.io/helm-charts
-helm repo update
+Une requête LogQL commence par un sélecteur de flux, entre accolades, qui doit contenir au moins un matcher positif. `{status!="200"}` seul est refusé, pour ne pas balayer toute la base. Le sélecteur est suivi d'un pipeline, appliqué ligne à ligne, dans un ordre qui compte pour le coût :
 
-# Installer Loki
-helm install loki grafana/loki \
-  --namespace monitoring \
-  --create-namespace \
-  -f loki-values.yaml
-
-# Vérifier le déploiement
-kubectl get pods -n monitoring
-```
-
-```yaml
-# loki-values.yaml : mode monolithique, schéma TSDB v13, stockage S3
-deploymentMode: SingleBinary
-loki:
-  auth_enabled: false
-  commonConfig:
-    replication_factor: 1
-  schemaConfig:
-    configs:
-      - from: "2024-04-01"
-        store: tsdb
-        object_store: s3
-        schema: v13
-        index:
-          prefix: loki_index_
-          period: 24h
-  storage:
-    type: s3
-    bucketNames:
-      chunks: mon-bucket-loki-chunks
-      ruler: mon-bucket-loki-ruler
-    s3:
-      region: eu-west-3
-singleBinary:
-  replicas: 1
-# Désactiver les composants des autres modes
-read:
-  replicas: 0
-write:
-  replicas: 0
-backend:
-  replicas: 0
-```
-
-Pour la production, `deploymentMode: SimpleScalable` (ou `Distributed`) sépare les chemins de lecture et d'écriture pour les dimensionner indépendamment. Le schéma `tsdb`/`v13` remplace l'ancien stockage d'index `boltdb-shipper`, déprécié. La date `from` d'un schéma ne se modifie jamais après coup : un changement de schéma se fait en ajoutant une nouvelle entrée datée dans le futur.
-
-## Collecte des logs : Alloy et Promtail
-
-:::warning Promtail en fin de vie
-Promtail, l'agent historique de Loki, est déprécié et a atteint sa fin de vie le 2 mars 2026 : il ne reçoit plus ni correctif ni nouvelle fonctionnalité. Grafana Alloy (distribution de l'OpenTelemetry Collector par Grafana Labs) le remplace. `alloy convert --source-format=promtail` traduit une configuration Promtail existante. Les configurations Promtail ci-dessous restent présentées car elles sont encore très répandues, et leurs concepts (découverte, relabeling, étapes de pipeline) se retrouvent à l'identique dans Alloy.
-:::
-
-### Configuration Alloy
-
-Alloy se configure par des composants reliés entre eux : chaque composant expose des sorties que d'autres consomment (`forward_to`, `targets`).
+1. **filtres de lignes** (`|=`, `!=`, `|~`), les moins coûteux, à placer en premier ;
+2. **parsers** (`json`, `logfmt`, `pattern`, `regexp`), qui extraient des champs de la ligne ;
+3. **filtres sur les champs extraits** (`level="error"`, `status >= 500`).
 
 ```text
-// config.alloy : lire /var/log/*.log et pousser vers Loki
-local.file_match "system" {
-  path_targets = [{
-    "__path__" = "/var/log/*.log",
-    "job"      = "varlogs",
-    "host"     = "my-server",
-  }]
-}
-
-loki.source.file "system" {
-  targets    = local.file_match.system.targets
-  forward_to = [loki.write.default.receiver]
-}
-
-loki.write "default" {
-  endpoint {
-    url = "http://loki:3100/loki/api/v1/push"
-  }
-}
+{namespace="production", app="api"} |= "timeout" | json | status >= 500
 ```
 
-### Configuration Promtail de base
+Les champs extraits par un parser n'existent qu'au moment de la requête. Ils ne sont pas indexés et n'ont donc aucun coût de cardinalité : c'est là que vont les codes HTTP, les chemins et les identifiants.
 
-Configuration équivalente pour Promtail, dans un fichier `promtail-config.yml` :
-
-```yaml
-server:
-  http_listen_port: 9080
-  grpc_listen_port: 0
-
-# Position de lecture de chaque fichier, pour reprendre sans doublon après redémarrage
-positions:
-  filename: /tmp/positions.yaml
-
-clients:
-  - url: http://loki:3100/loki/api/v1/push
-
-scrape_configs:
-  # Collecter les logs système
-  - job_name: system
-    static_configs:
-      - targets:
-          - localhost
-        labels:
-          job: varlogs
-          host: my-server
-          __path__: /var/log/*.log
-
-  # Collecter les logs d'une application
-  - job_name: myapp
-    static_configs:
-      - targets:
-          - localhost
-        labels:
-          job: myapp
-          environment: production
-          __path__: /app/logs/*.log
-```
-
-### Configuration avancée avec pipeline
-
-L'agent peut parser et enrichir les logs avant de les envoyer :
-
-```yaml
-scrape_configs:
-  - job_name: nginx
-    static_configs:
-      - targets:
-          - localhost
-        labels:
-          job: nginx
-          __path__: /var/log/nginx/access.log
-
-    pipeline_stages:
-      # Parser le format de log nginx
-      - regex:
-          expression: '^(?P<ip>\S+) \S+ \S+ \[(?P<time>[^\]]+)\] "(?P<method>\S+) (?P<path>\S+) \S+" (?P<status>\d+) (?P<size>\d+)'
-
-      # Promouvoir en labels uniquement les champs à faible cardinalité.
-      # path (des milliers de valeurs) et ip restent dans la ligne : ils se filtrent à la requête.
-      - labels:
-          method:
-          status:
-
-      # Utiliser l'horodatage de la ligne plutôt que l'heure de lecture
-      - timestamp:
-          source: time
-          format: '02/Jan/2006:15:04:05 -0700'
-
-      # Filtrer certains logs (optionnel)
-      - match:
-          selector: '{status="200"}'
-          action: drop
-```
-
-Le format de `timestamp` suit la convention de Go : la date de référence `02/Jan/2006:15:04:05 -0700` sert de modèle, chaque composant de cette date représentant le champ correspondant.
-
-### Configuration pour Kubernetes
-
-L'agent, déployé en DaemonSet, découvre les pods du nœud et lit leurs fichiers de logs dans `/var/log/pods` :
-
-```yaml
-scrape_configs:
-  - job_name: kubernetes-pods
-    kubernetes_sd_configs:
-      - role: pod
-
-    relabel_configs:
-      # Ne garder que les pods du nœud courant
-      - source_labels:
-          - __meta_kubernetes_pod_node_name
-        target_label: __host__
-
-      - action: labelmap
-        regex: __meta_kubernetes_pod_label_(.+)
-
-      - source_labels:
-          - __meta_kubernetes_namespace
-        target_label: namespace
-
-      - source_labels:
-          - __meta_kubernetes_pod_name
-        target_label: pod
-
-      - source_labels:
-          - __meta_kubernetes_pod_container_name
-        target_label: container
-
-      # Chemin des fichiers : /var/log/pods/<namespace>_<pod>_<uid>/<conteneur>/*.log
-      - replacement: /var/log/pods/*$1/*.log
-        separator: /
-        source_labels:
-          - __meta_kubernetes_pod_uid
-          - __meta_kubernetes_pod_container_name
-        target_label: __path__
-```
-
-Recopier tous les labels des pods (`labelmap`) est pratique mais risqué : un label comme `pod-template-hash`, ou tout label à valeurs nombreuses, crée autant de flux distincts. En production, la liste des labels promus se restreint à quelques dimensions stables (`namespace`, `app`, `container`). Avec Alloy, le composant `discovery.kubernetes` suivi de `loki.source.kubernetes` lit directement les logs via l'API Kubernetes.
-
-## Introduction à LogQL
-
-LogQL est le langage de requête de Loki, inspiré de PromQL. Une requête commence toujours par un **sélecteur de flux** (labels), éventuellement suivi d'un **pipeline** de filtres et de parsers.
-
-### Sélecteurs de flux de logs
+Les requêtes de métriques transforment des lignes en séries temporelles. `count_over_time` et `rate` comptent des lignes sur une fenêtre, et `unwrap` convertit un champ numérique extrait en échantillons, sur lesquels s'appliquent `avg_over_time` ou `quantile_over_time`. Le taux d'erreurs par application s'écrit ainsi :
 
 ```text
-# Sélectionner par label exact
-{job="nginx"}
-
-# Combiner plusieurs labels
-{job="nginx", environment="production"}
-
-# Opérateurs de correspondance
-{job=~"nginx|apache"}              # Regex : nginx OU apache
-{job="nginx", status!="200"}       # status différent de 200
-{job="nginx", method=~"POST|PUT"}  # method vaut POST ou PUT
+sum by (app) (rate({namespace="production"} | json | level="error" [5m]))
 ```
 
-Un sélecteur doit contenir au moins un matcher positif qui ne correspond pas à la chaîne vide : `{status!="200"}` seul est refusé, pour éviter de parcourir toute la base. Les regex utilisent `.+` plutôt que `.*` pour la même raison.
+Le coût d'une requête est proportionnel au volume lu, c'est-à-dire au nombre de flux sélectionnés multiplié par la période couverte. Le sélecteur et la fenêtre pèsent donc plus sur ce coût que l'ordre des étapes du pipeline. Une recherche plein texte sur un mois de logs de tout un cluster reste possible, mais elle décompresse tout ce mois.
 
-### Filtres de lignes
+## Collecte
 
-```text
-# Rechercher une chaîne de caractères
-{job="nginx"} |= "error"
+Loki ne lit rien de lui-même : un agent lit les logs, leur attache des labels et les pousse en HTTP sur `/loki/api/v1/push`. Sur Kubernetes, cet agent tourne en DaemonSet et lit les fichiers que le runtime de conteneurs écrit dans `/var/log/pods`. Seules les sorties standard et d'erreur sont concernées : une application qui écrit dans un fichier interne au conteneur échappe à cette collecte.
 
-# Exclure une chaîne
-{job="nginx"} != "debug"
+Promtail, l'agent historique, est en fin de vie depuis le 2 mars 2026. Son remplaçant, Grafana Alloy, est une distribution de l'OpenTelemetry Collector qui collecte aussi métriques et traces. Sa configuration, la migration depuis Promtail et la collecte des événements Kubernetes font l'objet de l'article [Alloy](./2026-10-25-alloy.md).
 
-# Utiliser des regex
-{job="nginx"} |~ "error|ERROR|Error"
+## Pièges d'exploitation
 
-# Combiner plusieurs filtres
-{job="nginx"} |= "error" != "timeout"
-```
+### Loki qui ingère ses propres logs
 
-Les filtres de lignes sont les opérations les moins coûteuses après le sélecteur : les placer avant les parsers réduit le volume de lignes à analyser.
+Au niveau `info`, Loki journalise chacune des requêtes qu'il traite : querier, compactor, gestion des tables. Comme l'agent collecte aussi les logs du pod Loki, chaque consultation produit de nouvelles lignes à ingérer. Sur un petit cluster, ces lignes ont atteint environ 146 000 par heure, soit l'essentiel du volume du namespace où tournait Loki. `server.log_level: warn` coupe la boucle sans rien perdre d'utile : les avertissements et les erreurs restent journalisés.
 
-### Parsers
+### Le volume d'un StatefulSet ne se redimensionne pas par le chart
 
-```text
-# Parser JSON
-{job="myapp"} | json
+En mode monolithique, Loki tourne dans un StatefulSet dont le volume est déclaré par `volumeClaimTemplates`, un champ que Kubernetes refuse de modifier. Changer la taille ou la classe de stockage dans les values fait échouer le `helm upgrade`. Il faut supprimer le StatefulSet sans ses pods ni ses volumes (`kubectl delete sts loki --cascade=orphan`), puis redéployer : le nouveau StatefulSet reprend les pods existants. Agrandir un volume existant passe en revanche par la PVC elle-même, si la classe de stockage l'autorise.
 
-# Parser JSON et extraire des champs
-{job="myapp"} | json | level="error"
+### fsGroup et redémarrages lents
 
-# Parser avec regex
-{job="nginx"} | regexp "(?P<method>\\w+) (?P<path>\\S+)"
+Le chart fait tourner Loki sous un utilisateur non root et pose un `fsGroup` sur le pod. Par défaut, le kubelet réapplique alors propriétaire et droits à chaque fichier du volume à chaque démarrage. Sur un volume rempli de milliers de chunks, cette passe allonge chaque redémarrage. `fsGroupChangePolicy: OnRootMismatch` limite le travail au cas où la racine du volume n'a pas déjà les bons droits.
 
-# Parser logfmt
-{job="myapp"} | logfmt
+### Un seul réplica
 
-# Parser par motif, plus lisible qu'une regex
-{job="nginx"} | pattern "<ip> - - [<_>] \"<method> <path> <_>\" <status> <size>"
-```
+Le mode monolithique à un réplica n'a pas de haute disponibilité. Pendant un redémarrage, les agents mettent les lignes en tampon et réessaient, mais une indisponibilité qui dure plus longtemps que leur tampon fait perdre des logs. Une sonde de disponibilité sur `/ready` et une alerte sur le remplissage du volume couvrent les pannes les plus probables.
 
-### Filtres de labels extraits
+## Alerting et corrélation
 
-```text
-# Après parsing, filtrer sur les labels extraits
-{job="myapp"} | json | level="error"
+Le *ruler* de Loki évalue des règles LogQL au format des règles Prometheus. Les règles d'alerte partent vers Alertmanager, et les règles d'enregistrement écrivent leur résultat dans Prometheus par *remote write*, où il devient une série comme une autre. Une alerte sur un taux de lignes d'erreur reste toutefois un indicateur fragile, qui dépend du format et de la verbosité de chaque application. Quand une métrique exposée par l'application existe, elle est préférable.
 
-# Utiliser les opérateurs de comparaison
-{job="nginx"} | json | status >= 400
+La corrélation avec les traces passe par un identifiant commun. Si les applications écrivent un `trace_id` dans leurs logs, stocké en métadonnée structurée, un *derived field* de la datasource Loki dans Grafana transforme ce champ en lien vers la trace correspondante dans Tempo.
 
-# Combiner avec des filtres de lignes
-{job="myapp"} | json | level="error" |= "database"
-```
+## Limites
 
-Les labels extraits par un parser n'existent qu'au moment de la requête : ils ne sont pas indexés et n'ont aucun coût de cardinalité, contrairement aux labels attachés à l'ingestion.
-
-### Agrégations et fonctions
-
-```text
-# Compter le nombre de lignes
-count_over_time({job="nginx"}[5m])
-
-# Taux de logs par seconde
-rate({job="nginx"}[5m])
-
-# Octets transmis par seconde, à partir d'un champ numérique
-sum(rate({job="nginx"} | json | unwrap bytes [5m]))
-
-# Compter par label
-sum by (status) (count_over_time({job="nginx"} | json [5m]))
-
-# Moyenne d'une valeur numérique sur la fenêtre
-avg_over_time({job="myapp"} | json | unwrap response_time [5m])
-
-# Quantiles (p95, p99)
-quantile_over_time(0.95, {job="myapp"} | json | unwrap duration [5m])
-```
-
-`unwrap` transforme la valeur d'un label extrait en échantillon numérique, ce qui permet d'appliquer des fonctions statistiques au contenu des logs. Seules les fonctions `*_over_time` et `rate` opèrent sur une plage : une requête de logs brute (`{job="myapp"} |= "error"`) n'accepte pas de sélecteur `[5m]`, sa période étant définie par les paramètres de la requête (ou par le sélecteur de temps de Grafana).
-
-### Exemples pratiques
-
-```text
-# Logs d'erreur (période choisie dans Grafana ou via les paramètres start/end de l'API)
-{job="myapp"} |= "error"
-
-# Taux d'erreurs HTTP 5xx
-sum(rate({job="nginx"} | json | status >= 500 [5m]))
-
-# Top 5 des chemins les plus appelés
-topk(5, sum by (path) (rate({job="nginx"} | json [5m])))
-
-# Logs d'erreur dans un namespace Kubernetes spécifique
-{namespace="production"} |= "error" | json | level="error"
-
-# Durée moyenne des requêtes API, par service
-avg_over_time({job="api"} | json | unwrap duration [5m]) by (service)
-
-# Logs correspondant à un motif
-{job="myapp"} |~ "database.*timeout"
-
-# Grouper par niveau de log et compter
-sum by (level) (count_over_time({job="myapp"} | json [5m]))
-
-# Détecter les pics de logs
-sum(count_over_time({job="myapp"}[5m])) > 1000
-```
-
-## Visualisation avec Grafana
-
-### Ajouter Loki comme source de données
-
-1. Ouvrir Grafana : `http://localhost:3000`
-2. Aller dans **Connections > Data sources**
-3. Cliquer sur **Add data source**
-4. Sélectionner **Loki**
-5. Configurer l'URL : `http://loki:3100`
-6. Cliquer sur **Save & test**
-
-### Créer un dashboard
-
-```json
-{
-  "datasource": "Loki",
-  "targets": [
-    {
-      "expr": "sum by (level) (count_over_time({job=\"myapp\"} | json [5m]))",
-      "refId": "A"
-    }
-  ],
-  "title": "Logs par niveau",
-  "type": "timeseries"
-}
-```
-
-### Explorer les logs
-
-L'onglet **Explore** de Grafana permet d'explorer les logs interactivement :
-
-1. Sélectionner **Loki** comme source de données
-2. Utiliser le builder de requête ou écrire du LogQL
-3. Visualiser les résultats en temps réel (mode *live*)
-4. Filtrer, parser et agréger les logs
-
-Lorsque métriques et logs partagent les mêmes labels (`namespace`, `pod`, `app`), Grafana permet de passer d'un pic sur un graphique Prometheus aux logs de la même période et du même service.
-
-## Intégration avec Kubernetes
-
-### Collecter les logs de pods
-
-Avec un agent déployé en DaemonSet (Alloy, ou Promtail sur les installations existantes), les logs de tous les pods sont collectés à partir des fichiers écrits par le runtime de conteneurs dans `/var/log/pods`. Seules les sorties standard et d'erreur des conteneurs sont concernées : une application qui écrit dans un fichier interne au conteneur échappe à cette collecte.
-
-### Labels des pods et enrichissement
-
-Les labels Kubernetes des pods deviennent des labels Loki par les règles de relabeling de l'agent. Les annotations peuvent aussi piloter la collecte, mais uniquement si l'agent est configuré pour les lire : aucune annotation n'a de signification native pour Loki.
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: myapp
-  labels:
-    app: myapp               # promu en label Loki par la règle labelmap
-    version: v1.2.3
-  annotations:
-    logs.example.com/parser: "json"   # convention locale, exploitée par une règle de l'agent
-spec:
-  containers:
-    - name: myapp
-      image: myapp:1.2.3
-```
-
-### Requêtes LogQL pour Kubernetes
-
-```text
-# Logs d'un pod spécifique
-{pod="myapp-5d8f7c8b9-abc12"}
-
-# Logs d'un namespace
-{namespace="production"}
-
-# Logs d'une application (via label)
-{app="myapp"}
-
-# Logs d'erreur dans tous les pods d'une app
-{app="myapp"} |= "error"
-
-# Combiner plusieurs filtres Kubernetes
-{namespace="production", app="api"} | json | level="error"
-```
-
-## Bonnes pratiques
-
-### 1. Utiliser des labels efficacement
-
-```yaml
-# Labels à faible cardinalité : nombre de valeurs borné et stable
-labels:
-  environment: production
-  app: myapp
-  level: error
-
-# À éviter en labels : une valeur par utilisateur, par requête ou par instant
-labels:
-  user_id: "123456"
-  request_id: "abc-def"
-  timestamp: "..."
-```
-
-Chaque combinaison de valeurs de labels crée un flux, avec son propre chunk en mémoire dans les ingesters. Un label `request_id` produirait un flux par requête, chacun contenant une seule ligne : l'index explose et la compression devient inefficace. Depuis Loki 3.0, les **métadonnées structurées** (*structured metadata*) permettent d'attacher ce type de champ (`trace_id`, `user_id`) à chaque ligne sans créer de flux, tout en restant filtrable à la requête (`| trace_id="abc123"`).
-
-### 2. Structurer les logs en JSON
-
-```python
-# Python avec structlog
-import structlog
-
-structlog.configure(processors=[
-    structlog.processors.TimeStamper(fmt="iso"),
-    structlog.processors.JSONRenderer(),
-])
-
-log = structlog.get_logger()
-log.info(
-    "user_login",
-    user_id="12345",
-    ip="192.168.1.1",
-    status="success"
-)
-```
-
-Sortie :
-
-```json
-{"event": "user_login", "user_id": "12345", "ip": "192.168.1.1", "status": "success", "timestamp": "2025-11-15T10:00:00Z"}
-```
-
-Un log structuré se parse avec `| json` sans expression régulière, et chaque champ devient filtrable.
-
-### 3. Optimiser les requêtes LogQL
-
-```text
-# Préférable : restreindre les flux par les labels
-{job="nginx", status="500"}
-
-# Plus coûteux : parcourir tout le contenu du flux nginx
-{job="nginx"} |= " 500 "
-```
-
-Le coût d'une requête est proportionnel au volume de données lues : nombre de flux sélectionnés multiplié par la période couverte. Un sélecteur précis et une période courte limitent ce volume ; une requête sur 24 heures d'un flux volumineux sans filtre de labels peut lire des dizaines de gigaoctets.
-
-### 4. Configurer la rétention des logs
-
-Avec l'index TSDB, la rétention est appliquée par le **compactor**, qui supprime de façon asynchrone les entrées d'index et les chunks trop anciens :
-
-```yaml
-# loki-config.yaml
-compactor:
-  working_directory: /loki/compactor
-  retention_enabled: true
-  delete_request_store: s3      # stockage des demandes de suppression, requis avec la rétention
-
-limits_config:
-  retention_period: 744h        # 31 jours, valeur globale
-  retention_stream:
-    - selector: '{namespace="dev"}'
-      priority: 1
-      period: 72h               # rétention plus courte pour un flux donné
-```
-
-L'ancien paramètre `table_manager`, propre aux index `boltdb`, n'est plus utilisé avec le schéma TSDB. Une règle de cycle de vie sur le bucket S3 peut servir de filet de sécurité, avec une durée supérieure à celle de Loki.
-
-### 5. Utiliser le multi-tenancy
-
-```yaml
-# Configuration Loki pour multi-tenancy
-auth_enabled: true
-
-# Promtail avec tenant_id
-clients:
-  - url: http://loki:3100/loki/api/v1/push
-    tenant_id: team-a
-```
-
-Avec `auth_enabled: true`, chaque requête doit porter l'en-tête `X-Scope-OrgID` qui désigne le tenant ; les données de chaque tenant sont isolées, et les limites (débit, rétention) peuvent être définies par tenant. Loki n'authentifie pas lui-même cet en-tête : un reverse proxy ou une passerelle doit le contrôler.
-
-## Cas d'usage avancés
-
-### Alerting avec Loki et Prometheus
-
-Le composant *ruler* de Loki évalue des règles LogQL au format des règles Prometheus : des règles d'alerte, envoyées à Alertmanager, et des règles d'enregistrement, dont le résultat est écrit dans Prometheus par *remote write* :
-
-```yaml
-groups:
-  - name: logs
-    interval: 1m
-    rules:
-      # Règle d'enregistrement : la série log_error_rate est envoyée à Prometheus
-      - record: log_error_rate
-        expr: |
-          sum by (app) (rate({job="myapp"} |= "error" [5m]))
-
-      # Règle d'alerte
-      - alert: HighLogErrorRate
-        expr: |
-          sum by (app) (rate({job="myapp"} |= "error" [5m])) > 10
-        for: 10m
-        labels:
-          severity: warning
-```
-
-### Tracer les requêtes entre services
-
-Utiliser le trace ID dans les logs pour corréler les logs entre microservices :
-
-```text
-# Rechercher tous les logs d'une trace
-{job="myapp"} | json | trace_id="abc123"
-```
-
-Grafana peut transformer automatiquement ce champ en lien vers la trace correspondante dans Tempo (champ dérivé de la source de données Loki).
-
-### Détecter les anomalies
-
-LogQL ne dispose pas des sous-requêtes de PromQL, mais accepte le modificateur `offset` : le taux actuel se compare à celui de la même période la veille.
-
-```text
-# Taux actuel deux fois supérieur à celui de la veille à la même heure
-sum(rate({job="myapp"}[5m]))
-  /
-sum(rate({job="myapp"}[5m] offset 1d))
-  > 2
-```
-
-Pour une référence plus élaborée (moyenne mobile sur plusieurs heures), une règle d'enregistrement écrit le taux dans Prometheus, où les sous-requêtes PromQL sont disponibles.
+- **Recherche plein texte** : sans index du contenu, une recherche sans label sélectif sur une longue période est lente. Loki convient à la recherche ciblée (un service, une fenêtre d'incident), pas à l'analyse ad hoc de tout l'historique.
+- **Dépendance aux labels** : un mauvais choix de labels ne se corrige que pour les données à venir ; les flux déjà écrits gardent leur découpage.
+- **Format libre** : sans logs structurés (JSON ou logfmt), chaque requête doit reconstruire les champs par expression régulière ou par motif.
 
 ## Conclusion
 
-Loki fait un compromis explicite : un index limité aux labels, peu coûteux à maintenir, et un filtrage du contenu effectué au moment de la requête. Ce compromis fonctionne tant que les labels restent en nombre limité et à faible cardinalité ; les champs à forte cardinalité relèvent du contenu des lignes ou des métadonnées structurées.
-
-Les points clés à retenir :
-
-- **Coût** : pas d'indexation du contenu, stockage objet compressé
-- **Performance** : dépend du découpage en flux, donc du choix des labels
-- **Modèle** : labels et requêtes calqués sur Prometheus, ce qui facilite la corrélation métriques/logs
-- **Collecte** : Grafana Alloy remplace Promtail, en fin de vie depuis mars 2026
-- **LogQL** : filtres de lignes, parsers et agrégations pour tirer des métriques des logs
+Loki fait un compromis explicite : un index réduit aux labels, peu coûteux à maintenir, et un filtrage du contenu effectué à la lecture. Ce compromis tient tant que les labels restent peu nombreux et bornés ; les champs à forte cardinalité vont dans le contenu des lignes ou dans les métadonnées structurées. À l'échelle d'un cluster de quelques nœuds, une instance monolithique sur un volume persistant suffit, à condition de régler ses propres logs, la rétention et le comportement de son StatefulSet.
 
 ## Ressources utiles
 
 - [Documentation officielle Loki](https://grafana.com/docs/loki/)
+- [Modes de déploiement](https://grafana.com/docs/loki/latest/get-started/deployment-modes/)
 - [Référence LogQL](https://grafana.com/docs/loki/latest/query/)
 - [Bonnes pratiques sur les labels](https://grafana.com/docs/loki/latest/get-started/labels/bp-labels/)
-- [Grafana Alloy](https://grafana.com/docs/alloy/latest/)
 
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Loki comme système d'agrégation de logs pour tous les services hébergés dans le cluster.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes SONU">Loki 3 monolithique sur volume Longhorn, avec 30 jours de rétention, pour les logs des pods et les événements Kubernetes de tout le cluster, consultés dans Grafana.</ProjectLink>
   <ProjectLink to="/docs/projects/professionnel/github-arc-kubeadm" title="GitHub ARC Kubeadm">Collecte centralisée des logs des runners ARC pour le débogage et l'audit.</ProjectLink>
 </ProjectLinks>
