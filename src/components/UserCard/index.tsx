@@ -26,7 +26,7 @@ export default function UserCard({ isNavbar = false }: { isNavbar?: boolean }) {
     navbar: { title, logo = { src: "/img/logo.png" } },
   } = useThemeConfig();
 
-  const logoLink = "/img/sde.jpg";
+  const logoLink = "/img/sde-256.jpg";
 
   const blogData = usePluginData("docusaurus-plugin-content-blog") as {
     posts: BlogPost[];

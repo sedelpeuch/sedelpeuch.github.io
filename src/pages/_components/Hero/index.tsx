@@ -1,36 +1,23 @@
-import { motion, useScroll, useTransform, Variants } from "framer-motion"; // Import motion from framer-motion
-import HeroMain from "./img/background.svg";
+import React from "react";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 import styles from "./styles.module.scss";
 import SocialLinks from "@site/src/components/SocialLinks";
 
-const variants: Variants = {
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      damping: 25,
-      stiffness: 100,
-      duration: 0.3,
-      delay: i * 0.3,
-    },
-  }),
-  hidden: { opacity: 0, y: 30 },
-};
+// Apparition en CSS (classe `reveal`, rang `--i`) : elle démarre dès le premier
+// affichage du HTML statique, sans attendre le chargement de React.
+const reveal = (i: number) => ({ className: styles.reveal, style: { "--i": i } as React.CSSProperties });
 
 function Circle() {
   return <div className={styles.circle} />;
 }
 
 function Name() {
+  const { className, style } = reveal(1);
   return (
-    <motion.div
-      className={styles.hero_text}
-      custom={1}
-      initial="hidden"
-      animate="visible"
-      variants={variants}
+    <div
+      className={`${styles.hero_text} ${className}`}
+      style={style}
       onMouseMove={(e) => {
         e.currentTarget.style.setProperty("--x", `${e.clientX}px`);
         e.currentTarget.style.setProperty("--y", `${e.clientY}px`);
@@ -45,39 +32,23 @@ function Name() {
           e.currentTarget.style.setProperty("--mouse-y", `${bounding.y}px`);
         }}
       ></span>
-    </motion.div>
+    </div>
   );
 }
 
 export default function Hero() {
+  // Illustration servie comme fichier (et non compilée dans le JavaScript) :
+  // elle se met en cache et ne retarde plus le chargement de la page.
+  const background = useBaseUrl("/img/hero-background.svg");
   return (
-    <motion.div className={styles.hero}>
+    <div className={styles.hero}>
       <div className={styles.intro}>
         <Name />
-        <motion.p
-          custom={2}
-          initial="hidden"
-          animate="visible"
-          variants={variants}
-        >
-          Ingénieur en informatique au CATIE
-        </motion.p>
-        <motion.div
-          custom={3}
-          initial="hidden"
-          animate="visible"
-          variants={variants}
-        >
+        <p {...reveal(2)}>Ingénieur en informatique au CATIE</p>
+        <div {...reveal(3)}>
           <SocialLinks />
-        </motion.div>
-
-        <motion.div
-          className={styles.buttonGroup}
-          custom={4}
-          initial="hidden"
-          animate="visible"
-          variants={variants}
-        >
+        </div>
+        <div {...reveal(4)} className={`${styles.buttonGroup} ${styles.reveal}`}>
           <div className={styles.outer}>
             <div className={styles.gradient} />
             <a className={styles.button} href={"./about"}>
@@ -96,12 +67,12 @@ export default function Hero() {
               Blog
             </a>
           </div>
-        </motion.div>
+        </div>
       </div>
-      <motion.div className={styles.background}>
-        <HeroMain />
+      <div className={styles.background}>
+        <img src={background} alt="" width={1536} height={1024} fetchPriority="high" />
         <Circle />
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }

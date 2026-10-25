@@ -70,7 +70,8 @@
   align-self: flex-start;
 }
 
-.background svg {
+.background img {
+  object-fit: contain;
   width: 100%;
   height: 50vh;
 }
@@ -237,7 +238,7 @@ html[data-theme='dark'] {
     place-items: center;
   }
 
-  .background svg {
+  .background img {
     width: 90%;
     height: auto;
   }
@@ -265,7 +266,7 @@ html[data-theme='dark'] {
     padding-top: 2em;
   }
 
-  .background svg {
+  .background img {
     width: 100%;
     height: auto;
   }
@@ -293,5 +294,29 @@ html[data-theme='dark'] {
   }
   .button {
     width: 100%;
+  }
+}
+
+// Apparition des éléments du héros, décalée selon leur rang (--i).
+.reveal {
+  animation: heroReveal 0.45s ease-out both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
   }
 }
