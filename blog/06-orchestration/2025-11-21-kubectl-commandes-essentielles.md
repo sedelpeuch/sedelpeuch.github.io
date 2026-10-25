@@ -2,6 +2,7 @@
 title: "Kubernetes : kubectl"
 description: "Les commandes kubectl courantes pour gérer des clusters Kubernetes au quotidien : contextes, ressources, logs, débogage, rollouts et filtrage."
 tags: [orchestration, devops]
+series: kubernetes
 ---
 
 Kubectl est l'outil en ligne de commande officiel pour interagir avec les clusters Kubernetes. Chaque commande se traduit par une ou plusieurs requêtes REST vers l'API server (visibles avec `-v=6`) : kubectl ne dialogue jamais directement avec les nœuds. Il couvre l'intégralité des opérations courantes : déploiement, débogage, inspection, mise à l'échelle.

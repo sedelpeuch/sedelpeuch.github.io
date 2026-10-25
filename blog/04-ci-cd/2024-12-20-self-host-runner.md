@@ -2,6 +2,7 @@
 title: "GitHub Actions : runner auto-hébergé"
 description: "Installer et configurer un runner GitHub Actions auto-hébergé sur une machine Linux."
 tags: [cicd, devops]
+series: github-actions
 series_order: 5
 ---
 

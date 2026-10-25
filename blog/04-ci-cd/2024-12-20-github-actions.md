@@ -2,6 +2,7 @@
 title: "GitHub Actions"
 description: "CI/CD avec GitHub Actions : événements, workflows, jobs, steps et runners."
 tags: [cicd, devops]
+series: github-actions
 series_order: 1
 ---
 

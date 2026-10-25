@@ -352,6 +352,14 @@ const config: Config = {
               label: "Sécurité",
               to: "blog/tags/security",
             },
+            {
+              type: "html",
+              value: '<hr class="dropdown-separator">',
+            },
+            {
+              label: "Séries",
+              to: "blog/series",
+            },
           ],
         },
         {
@@ -514,7 +522,9 @@ const config: Config = {
         },
         blog: {
           showReadingTime: true,
-          showLastUpdateTime: true,
+          // Pas de « dernière mise à jour » : un billet est daté par sa publication,
+          // et les retouches de forme en masse (ton, typo) la décaleraient partout.
+          showLastUpdateTime: false,
           // <title> et meta description de /blog (et de ses pages /blog/page/N).
           blogTitle: "Blog DevOps",
           blogDescription:

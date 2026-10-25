@@ -2,6 +2,7 @@
 title: "Prometheus"
 description: "Prometheus, système de monitoring et d'alerting open source de l'écosystème Cloud Native : architecture pull, types de métriques, PromQL, règles d'alerte et découverte de services."
 tags: [monitoring, devops]
+series: prometheus
 ---
 
 Détecter une dégradation (latence qui augmente, disque qui se remplit, taux d'erreur qui grimpe) avant qu'elle n'atteigne les utilisateurs suppose de mesurer en continu l'état de dizaines de services et de machines, puis d'interroger ces mesures dans le temps pour les comparer et les agréger. Prometheus, système de monitoring et d'alerting open source, est le standard de fait pour ces métriques dans l'écosystème Cloud Native. Conçu initialement chez SoundCloud en 2012, il est aujourd'hui un projet gradué de la Cloud Native Computing Foundation (CNCF). Cet article couvre son architecture, son installation, son modèle de données et les bases du langage de requête PromQL.

@@ -2,6 +2,8 @@
 title: "Kubernetes"
 description: "Architecture de Kubernetes : control plane, data plane, composants essentiels et rôle de chacun."
 tags: [orchestration, devops]
+series: kubernetes
+series_order: 1
 ---
 
 Faire tourner quelques conteneurs sur une seule machine se gère avec Docker ou [Docker Compose](./2024-12-20-docker-compose.md). Gérer des centaines de conteneurs répartis sur des dizaines de machines, avec des contraintes de disponibilité, de mise à l'échelle et de mise à jour sans interruption, est un problème fondamentalement différent. Kubernetes répond à ce problème : un système d'orchestration qui prend en charge le placement, le redémarrage, la mise à l'échelle et la communication des conteneurs à l'échelle d'un cluster.

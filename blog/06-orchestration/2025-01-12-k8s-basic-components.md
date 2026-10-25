@@ -2,6 +2,8 @@
 title: "Kubernetes : composants de base"
 description: "Pod, Deployment, StatefulSet, Service : les ressources fondamentales de Kubernetes et quand utiliser chacune."
 tags: [orchestration, devops]
+series: kubernetes
+series_order: 2
 ---
 
 Kubernetes expose une API déclarative : l'utilisateur décrit l'état souhaité via des ressources YAML, et le cluster converge vers cet état (voir l'[architecture de Kubernetes](./2025-01-12-k8s-introduction.md)). Quatre ressources couvrent la majorité des besoins : Pod, Deployment, StatefulSet, Service. Comprendre pourquoi chacune existe, et pas seulement comment l'écrire, évite les mauvais choix d'architecture.

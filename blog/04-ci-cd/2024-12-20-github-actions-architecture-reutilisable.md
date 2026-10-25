@@ -2,6 +2,7 @@
 title: "GitHub Actions : architecture CI/CD réutilisable"
 description: "Structurer une architecture CI/CD mutualisée avec des workflows réutilisables et des actions composites pour plusieurs dépôts."
 tags: [cicd, devops]
+series: github-actions
 series_order: 4
 ---
 

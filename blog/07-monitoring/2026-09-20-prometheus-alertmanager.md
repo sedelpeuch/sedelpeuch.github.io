@@ -1,8 +1,8 @@
 ---
 title: "Prometheus : Alertmanager"
 description: "Chaîne d'alerting Prometheus de bout en bout : règles d'alerte, routage, groupage et inhibition avec Alertmanager, conception de règles robustes et notifications push via ntfy."
-series: homelab
 tags: [monitoring, devops]
+series: prometheus
 ---
 
 Collecter des métriques ne suffit pas : un disque saturé ou un conteneur qui redémarre en boucle n'est découvert qu'au prochain coup d'œil sur un dashboard. Une chaîne d'alerting mal conçue produit cependant l'effet inverse : cinq messages pour un seul incident, des déclenchements sur des pics légitimes, un canal si bruyant qu'il finit ignoré. Cet article fait suite à l'[introduction à Prometheus](./2025-11-21-prometheus-introduction.md) et décrit la chaîne complète : règles d'alerte, traitement par Alertmanager, conception de règles robustes et notifications push.

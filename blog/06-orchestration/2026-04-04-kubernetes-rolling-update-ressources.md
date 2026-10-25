@@ -2,6 +2,7 @@
 title: "Kubernetes : déploiements sans interruption et optimisation des ressources"
 description: "Stratégie RollingUpdate, requests/limits et security context pour des déploiements production-ready."
 tags: [orchestration, devops]
+series: kubernetes
 ---
 
 Mettre à jour une application en production sans interruption de service repose sur deux conditions : une stratégie de déploiement progressive qui maintient des pods sains pendant la transition, et des probes de santé correctement configurées pour que Kubernetes sache quand un pod est prêt à recevoir du trafic. À cela s'ajoutent les contraintes de ressources et de sécurité qui complètent une configuration production-ready.

@@ -2,6 +2,7 @@
 title: "Kubernetes : PodDisruptionBudget et haute disponibilité"
 description: "Implémenter la haute disponibilité avec réplication, autoscaling et protection contre les disruptions planifiées."
 tags: [orchestration, devops]
+series: kubernetes
 ---
 
 Une application Kubernetes avec un seul réplica a une disponibilité structurellement limitée. Un crash de nœud, une maintenance planifiée ou une mise à jour du cluster suffit à provoquer une interruption totale. Trois mécanismes combinés permettent de construire une infrastructure résiliente : la réplication multi-nœud via TopologySpreadConstraints, la protection contre les disruptions planifiées via PodDisruptionBudget, et l'adaptation dynamique à la charge via HorizontalPodAutoscaler.

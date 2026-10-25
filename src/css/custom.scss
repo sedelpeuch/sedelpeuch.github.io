@@ -486,3 +486,10 @@ div[class^='announcementBar_'] {
     }
   }
 }
+
+// Séparateur du menu Blog : catégories au-dessus, séries en dessous.
+.dropdown-separator {
+  margin: 0.3rem 0.5rem;
+  border: 0;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}

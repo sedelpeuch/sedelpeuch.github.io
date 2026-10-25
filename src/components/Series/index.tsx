@@ -38,7 +38,8 @@ export default function Series({ id, source }: Props): JSX.Element | null {
   return (
     <nav className={styles.series} aria-label={`Série ${data.label}`}>
       <p className={styles.head}>
-        Série {data.label}, article {index + 1} sur {data.posts.length}
+        Série <Link to={`/blog/series#${id}`}>{data.label}</Link>, article {index + 1} sur{" "}
+        {data.posts.length}
       </p>
       <ol className={styles.track}>
         {data.posts.map((post, i) => {
