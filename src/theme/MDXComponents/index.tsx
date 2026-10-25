@@ -5,6 +5,7 @@ import { ProjectLink, ProjectLinks } from "@site/src/components/ProjectLink";
 import CourseGrid from "@site/src/components/scolarite/CourseGrid";
 import CourseTimeline from "@site/src/components/scolarite/CourseTimeline";
 import ResourceList from "@site/src/components/scolarite/ResourceList";
+import Association from "@site/src/components/scolarite/Association";
 import Katex from "@site/src/components/Katex";
 
 // Composants disponibles dans tout fichier MDX sans import explicite.
@@ -17,5 +18,6 @@ export default {
   CourseGrid,
   CourseTimeline,
   ResourceList,
+  Association,
   Katex,
 };
