@@ -250,7 +250,12 @@ const movedPages: Record<string, string[]> = {
   "/docs/scolarite/cpbx/s4/": ["/cpbx/cpbx_semestre_4"],
   "/docs/scolarite/enseirb/s5/": ["/semestre5"],
   "/docs/scolarite/enseirb/s6/": ["/semestre6"],
-  "/docs/scolarite/enseirb/s7/": ["/semestre7"],
+  "/docs/scolarite/enseirb/s7/": [
+    "/semestre7",
+    // Page retirée avec les supports de génie logiciel.
+    "/docs/scolarite/enseirb/s7/GL",
+    "/docs/enseirb/s7/GL",
+  ],
   "/docs/scolarite/enseirb/s8/": ["/semestre8"],
   "/docs/scolarite/enseirb/s9/": ["/semestre9"],
 };

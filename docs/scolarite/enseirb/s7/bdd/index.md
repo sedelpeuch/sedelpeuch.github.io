@@ -1,11 +1,11 @@
 ---
 title: "SGBD"
-description: "Notes de cours, sujets et corrections de TD du module de bases de données (SGBD) du semestre 7 à l'ENSEIRB-MATMECA."
+description: "Notes de cours et sujets de TD du module de bases de données (SGBD) du semestre 7 à l'ENSEIRB-MATMECA."
 ---
 
 Ressources du module de systèmes de gestion de bases de données : notes de
 cours (modélisation entités-associations, modèle relationnel, normalisation,
-algèbre relationnelle, SQL), sujets et corrections de travaux dirigés.
+algèbre relationnelle, SQL), sujets de travaux dirigés.
 
 <CourseGrid />
 
@@ -38,15 +38,6 @@ algèbre relationnelle, SQL), sujets et corrections de travaux dirigés.
 - [TP 1](https://moodle.bordeaux-inp.fr/mod/page/view.php?id=9985)
 - [TP 2, JDBC](http://slombardy.vvv.enseirb-matmeca.fr/ens/sgbd/jdbc.php)
 - [TP 3](http://slombardy.vvv.enseirb-matmeca.fr/ens/sgbd/tdsqlav.php#sec1)
-
-</ResourceList>
-
-<ResourceList type="correction" title="Corrections de TD">
-
-- [Correction du TD 2](./img/td2.pdf)
-- [Correction du TD 3](./img/td3.pdf)
-- [Correction du TD 4](./img/td4.pdf)
-- [Correction du TD 5](./img/td5.pdf)
 
 </ResourceList>
 

@@ -82,7 +82,7 @@ A.S &= B
 \end{align*}
 $$
 
-Nous cherchons donc à résoudre l'équation $A.x = b$ ; cependant, la résolution par $x = A^{-1}.b$ peut s'avérer impossible ou numériquement instable dans certaines situations (matrice singulière ou mal conditionnée, par exemple si les deux droites sont presque parallèles). Nous allons donc utiliser une décomposition en valeurs singulières (SVD) pour résoudre l'équation : $A = U.S.V^{T}$, avec $U$ et $V$ orthogonales et $S$ diagonale. [Détails sur la décomposition SVD](./img/svd.pdf)
+Nous cherchons donc à résoudre l'équation $A.x = b$ ; cependant, la résolution par $x = A^{-1}.b$ peut s'avérer impossible ou numériquement instable dans certaines situations (matrice singulière ou mal conditionnée, par exemple si les deux droites sont presque parallèles). Nous allons donc utiliser une décomposition en valeurs singulières (SVD) pour résoudre l'équation : $A = U.S.V^{T}$, avec $U$ et $V$ orthogonales et $S$ diagonale.
 
 ### Résolution de systèmes sous-contraints
 

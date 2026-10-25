@@ -13,20 +13,6 @@ Il s'agit d'introduire les concepts de base de la conversion et la gestion de l'
 
 L'objectif est de se familiariser avec la conversion électromécanique réalisée dans les machines tournantes pour aborder l'alimentation du moteur de manière à assurer le réglage du couple, de la vitesse ou de la position. On s'intéressera en particulier au mode de fonctionnement de l'étage de puissance en lien avec les capteurs associés.
 
-## Documents
-
-<ResourceList type="cours" ordered={false}>
-
-- [Cours](./img/Cours.pdf)
-
-</ResourceList>
-
-<ResourceList type="td">
-
-- [TD](./img/TD.pdf)
-
-</ResourceList>
-
 ## Notes de cours
 
 <CourseGrid />

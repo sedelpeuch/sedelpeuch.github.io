@@ -53,12 +53,6 @@ Le cours d'analyse des données répond à deux objectifs :
 Pas de ressources pédagogiques... mais une alternative provenant de l'Institut de
 mathématiques de Toulouse qui résume parfaitement le cours (bonne chance).
 
-<ResourceList type="cours" ordered={false}>
-
-- [Cours de l'Institut de mathématiques de Toulouse](./img/asdm.pdf)
-
-</ResourceList>
-
 ### Probabilités et statistiques
 
 Dans la première partie, il s'agit d'étudier les notions de base du calcul des
@@ -66,12 +60,6 @@ probabilités, qui seront utilisées dans d'autres enseignements à l'ENSEIRB-MA
 recherche opérationnelle, traitement du signal, théorie de l'information,
 analyse des données, algorithmique probabiliste et surtout les statistiques
 étudiées dans la deuxième partie de ce module.
-
-<ResourceList type="cours" ordered={false}>
-
-- [Support de cours](./img/probas.pdf)
-
-</ResourceList>
 
 ### Logique et preuve
 
@@ -88,23 +76,6 @@ algorithmes.
 + la troisième partie traite de la preuve de programmes : spécification (pré et
   postconditions), terminaison, invariant de boucle, logique de Hoare.
 
-<ResourceList type="cours" ordered={false}>
-
-- [Support de cours](./img/poly-if107-etd.pdf)
-
-</ResourceList>
-
-<ResourceList type="td">
-
-- [Introduction](./img/td-induction.etd.pdf)
-- [Logique des prédicats](./img/td-logique-predicats.etd.pdf)
-- [Logique propositionnelle](./img/td-logique-propositionnelle.etd.pdf)
-- [Preuve formelle](./img/td-preuve-formelle.etd.pdf)
-- [Preuve de Hoare](./img/td-preuve-hoare.etd.pdf)
-- [Preuve de programme](./img/td-preuve-programme.etd.pdf)
-
-</ResourceList>
-
 ---
 
 ## Programmation et environnement 1
@@ -119,10 +90,6 @@ d'automatiser des tâches d'administration système.
 <ResourceList type="cours">
 
 - [00 - Introduction](http://mfaverge.vvv.enseirb-matmeca.fr/wordpress/wp-content/cours/IF104/00-introduction.pdf)
-- [01](./img/01.pdf)
-- [02](./img/02.pdf)
-- [03](./img/03.pdf)
-- [04](./img/04.pdf)
 
 </ResourceList>
 
@@ -144,18 +111,6 @@ différents éléments.
 + communication vers les périphériques, interruptions et exceptions ;
 + mémoire : structure et gestion de la mémoire, exécution de programme et système
   d'exploitation.
-
-<ResourceList type="cours">
-
-- [Archi 1](./img/archi-1.pdf)
-- [Archi 2](./img/archi-2.pdf)
-- [Archi 3](./img/archi-3.pdf)
-- [Archi 4](./img/archi-4.pdf)
-- [Archi 5](./img/archi-5.pdf)
-- [Archi 6](./img/archi-6.pdf)
-- [Archi 7](./img/archi-7.pdf)
-
-</ResourceList>
 
 ### Programmation impérative 1
 
