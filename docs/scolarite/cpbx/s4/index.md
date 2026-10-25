@@ -4,6 +4,8 @@ sidebar_label: Semestre 4
 description: Notes de cours, TD et exemples de projets du quatrième semestre du Cycle Préparatoire de Bordeaux (informatique, mathématiques, physique, projet).
 ---
 
+Les cours, fiches et corrections de cette page ont été rédigés par Sébastien Delpeuch.
+
 ## Informatique
 
 Responsable : [František Kardos](https://www.labri.fr/index.php?n=Annuaires.Profile&id=Kardos_ID1346656366)

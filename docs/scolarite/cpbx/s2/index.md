@@ -4,21 +4,13 @@ sidebar_label: Semestre 2
 description: Supports de cours, TD et fiches du deuxième semestre du Cycle Préparatoire de Bordeaux (chimie inorganique et organique, analyse, algèbre, physique).
 ---
 
+Les cours, fiches et corrections de cette page ont été rédigés par Sébastien Delpeuch.
+
 ## Chimie
 
 ### Chimie inorganique
 
 Responsable : [Dany Carlier-Larregaray](https://www.icmcb-bordeaux.cnrs.fr/carlier-larregaray-dany/)
-
-<ResourceList type="cours">
-
-- [Notions fondamentales 1](chimie/inorga/diapo/1.pdf)
-- [Notions fondamentales 2](chimie/inorga/diapo/2.pdf)
-- [Empilements compacts](chimie/inorga/diapo/3.pdf)
-- [Sites interstitiels](chimie/inorga/diapo/4.pdf)
-- [Limite de la stabilité](chimie/inorga/diapo/5.pdf)
-
-</ResourceList>
 
 <ResourceList type="cours" title="Notes de cours" ordered={false}>
 
@@ -37,14 +29,6 @@ Responsable : [Dany Carlier-Larregaray](https://www.icmcb-bordeaux.cnrs.fr/carli
 Responsable : [Denis
 Deffieux](http://www.sasn.u-bordeaux1.fr/annuaire/deffieux.html)
 
-<ResourceList type="cours">
-
-- [Partie A](chimie/orga/1.pdf)
-- [Partie B](chimie/orga/2.pdf)
-- [Partie C](chimie/orga/3.pdf)
-
-</ResourceList>
-
 <ResourceList type="cours" title="Notes de cours" ordered={false}>
 
 - [Notes de cours](chimie/orga/cours.pdf)
@@ -53,14 +37,7 @@ Deffieux](http://www.sasn.u-bordeaux1.fr/annuaire/deffieux.html)
 
 <ResourceList type="td">
 
-- [TD, énoncé](chimie/orga/td-enonce.pdf)
 - [TD, prise de notes](chimie/orga/td.pdf)
-
-</ResourceList>
-
-<ResourceList type="support">
-
-- [Aide de cours](chimie/orga/aide.pdf)
 
 </ResourceList>
 
@@ -104,18 +81,9 @@ Responsable : [Eric Charpentier](https://www.math.u-bordeaux.fr/~echarpen/)
 
 Responsable : Mourad Aiche
 
-<ResourceList type="cours">
+<ResourceList type="cours" title="Notes de cours" ordered={false}>
 
-- [Régime transitoire](physique/elec/1.pdf)
-- [AOP](physique/elec/2.pdf)
-- [Circuits électriques en régime transitoire](physique/elec/3.pdf)
 - [Cours](physique/elec/cours.pdf)
-
-</ResourceList>
-
-<ResourceList type="td" title="Sujets de TD">
-
-- [TD, sujet](physique/elec/td-sujet.pdf)
 
 </ResourceList>
 

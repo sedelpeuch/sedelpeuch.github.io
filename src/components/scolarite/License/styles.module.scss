@@ -1,0 +1,36 @@
+// Encart de licence en bas des pages Scolarité : icônes CC teintées de la
+// couleur primaire, texte discret.
+
+.license {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin: 2.5rem 0 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.badge {
+  display: inline-flex;
+  flex: none;
+  gap: 0.15rem;
+  font-size: 1.35rem;
+  color: var(--ifm-color-primary);
+
+  &:hover {
+    color: var(--ifm-color-primary-dark);
+  }
+}
+
+.text {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+@media (max-width: 576px) {
+  .license {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
