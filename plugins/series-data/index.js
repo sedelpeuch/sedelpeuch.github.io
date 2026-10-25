@@ -21,6 +21,7 @@ const LABELS = {
   docker: "Docker",
   ansible: "Ansible",
   python: "Python",
+  opentelemetry: "OpenTelemetry",
 };
 
 module.exports = function seriesDataPlugin(context) {
