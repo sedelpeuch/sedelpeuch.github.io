@@ -112,6 +112,10 @@ jobs:
           yarn install --frozen-lockfile --non-interactive
           apt update && apt install -y rsync
       - name: Build
+        # Des milliers de formules KaTeX rendues au build (cours de scolarité) :
+        # le tas par défaut de Node (~2 Go) ne suffit plus.
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
         run: yarn build
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

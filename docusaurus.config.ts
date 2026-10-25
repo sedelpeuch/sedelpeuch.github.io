@@ -5,6 +5,7 @@ import { themes } from "prism-react-renderer";
 import social from "./data/social";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import remarkKatexComponent from "./plugins/remark-katex-component.mjs";
 
 const baseUrl = process.env.BASE_URL || "/";
 
@@ -509,8 +510,9 @@ const config: Config = {
           path: "docs",
           sidebarPath: "sidebars.json",
           showLastUpdateTime: true,
-          remarkPlugins: [remarkMath],
-          rehypePlugins: [rehypeKatex],
+          // Formules rendues par le composant <Katex> (voir le plugin) et non
+          // par rehype-katex : trop de formules dans les cours de scolarité.
+          remarkPlugins: [remarkMath, remarkKatexComponent],
         },
         sitemap: {
           lastmod: "date",
