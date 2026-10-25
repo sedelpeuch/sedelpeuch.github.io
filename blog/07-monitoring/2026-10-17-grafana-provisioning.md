@@ -4,7 +4,7 @@ description: "Faire de Git la source des dashboards et datasources Grafana plut�
 tags: [monitoring, devops]
 ---
 
-Un Grafana construit à la main accumule un état que personne ne maîtrise vraiment. Dans le cas traité ici, l'inventaire d'un Grafana en service depuis la création du cluster a relevé une datasource pointant vers un serveur MySQL décommissionné, une autre créée pour un essai et jamais utilisée, des dashboards modifiés au fil des besoins sans trace de qui avait changé quoi ni pourquoi, et un écran d'affichage dont les liens dépendaient de dashboards qu'une fausse manipulation pouvait casser. Surtout, l'ensemble vivait dans la base SQLite de Grafana, sur un unique volume persistant : sa perte effaçait des mois de travail, sans aucune copie. Les manifests du cluster étaient tous versionnés et relus ; Grafana faisait exception. Cet article décrit comment faire de Git la source de ses dashboards et datasources, et les pièges de la transition.
+Un Grafana configuré à la main garde dans sa base un état que rien ne trace. Dans le cas traité ici, l'inventaire d'un Grafana en service depuis la création du cluster a relevé une datasource pointant vers un serveur MySQL décommissionné, une autre créée pour un essai et jamais utilisée, des dashboards modifiés au fil des besoins sans trace de qui avait changé quoi ni pourquoi, et un écran d'affichage dont les liens dépendaient de dashboards qu'une fausse manipulation pouvait casser. Surtout, l'ensemble vivait dans la base SQLite de Grafana, sur un unique volume persistant : sa perte effaçait des mois de travail, sans aucune copie. Les manifests du cluster étaient tous versionnés et relus ; Grafana faisait exception. Cet article décrit comment faire de Git la source de ses dashboards et datasources, et les pièges de la transition.
 
 <!--truncate-->
 
@@ -20,7 +20,7 @@ Par défaut, l'interface de Grafana est la source : on y construit un dashboard,
 | Modification | Immédiate, par quiconque est éditeur | Par commit, puis déploiement |
 | Réinstallation ou second Grafana | Export et import manuels | Identique par construction |
 
-Le dernier point de la colonne de droite est le coût : modifier un dashboard demande désormais un commit. La suite de l'article montre comment garder ce coût faible.
+La ligne « Modification » en donne le coût : changer un dashboard demande désormais un commit.
 
 ## Datasources : reprendre l'existant sans rien casser
 
@@ -91,7 +91,7 @@ dashboardProviders:
           path: /var/lib/grafana/dashboards/equipe
 ```
 
-`allowUiUpdates: false` empêche d'enregistrer un dashboard provisionné depuis l'interface. Sans cette option, une modification enregistrée dans l'interface vivrait dans la base, puis serait écrasée sans prévenir au déploiement suivant. Le refus explicite est plus sûr qu'une modification perdue.
+`allowUiUpdates: false` empêche d'enregistrer un dashboard provisionné depuis l'interface. Sans cette option, une modification enregistrée dans l'interface vivrait dans la base, puis serait écrasée sans prévenir au déploiement suivant.
 
 ## Modifier un dashboard
 
@@ -110,7 +110,7 @@ L'option *Export for sharing externally* remplace chaque datasource par une vari
 
 ### Piège : supprimer un fichier ne supprime pas toujours le dashboard
 
-`disableDeletion: true` semble n'interdire que la suppression depuis l'interface. D'après la documentation, il change aussi ce qui se passe quand un fichier disparaît du dépôt : Grafana conserve alors le dashboard en base, détaché du provisioning. Le dashboard retiré reste visible, redevient modifiable dans l'interface et sort de tout versionnement, soit exactement l'état que la démarche cherchait à éliminer. `disableDeletion: false` aligne le comportement sur le principe « le dépôt est la source » : fichier supprimé, dashboard supprimé.
+`disableDeletion: true` semble n'interdire que la suppression depuis l'interface. D'après la documentation, il change aussi ce qui se passe quand un fichier disparaît du dépôt : Grafana conserve alors le dashboard en base, détaché du provisioning. Le dashboard retiré reste visible, redevient modifiable dans l'interface et sort de tout versionnement. `disableDeletion: false` aligne le comportement sur le principe « le dépôt est la source » : fichier supprimé, dashboard supprimé.
 
 ## Dépôt central ou sidecar
 
@@ -127,7 +127,7 @@ Pour une dizaine de dashboards décrivant le cluster, un dépôt central offre u
 
 ## Conclusion
 
-Versionner Grafana ne change pas l'outil d'édition, mais déplace la source : la base devient un cache rechargé à chaque démarrage, et le dépôt porte l'historique, la revue et la reprise après perte. La bascule se joue sur les identifiants : reprendre les `uid` des datasources existantes, garder fixes ceux des dashboards. Elle se joue aussi sur trois réglages qui, laissés à leur valeur par défaut ou mal compris, réintroduisent un état non versionné : modifications enregistrables dans l'interface, export au format de partage, et dashboards conservés en base après suppression de leur fichier.
+Avec le provisioning, l'interface reste l'outil d'édition et la base de Grafana devient un cache rechargé à chaque démarrage ; le dépôt porte l'historique, la revue et la reprise après perte. Les identifiants demandent de l'attention lors de la bascule : reprendre les `uid` des datasources existantes, garder fixes ceux des dashboards. Trois points réintroduisent un état non versionné s'ils sont laissés par défaut ou mal compris : l'enregistrement depuis l'interface, l'export au format de partage, et `disableDeletion`, qui garde en base un dashboard dont le fichier a été supprimé.
 
 ## Application / Projet lié
 

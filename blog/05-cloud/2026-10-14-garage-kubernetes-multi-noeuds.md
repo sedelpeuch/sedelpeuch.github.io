@@ -8,7 +8,7 @@ Un stockage objet S3 hébergé sur un seul serveur finit par buter sur la taille
 
 <!--truncate-->
 
-## Agréger des disques plutôt qu'agrandir un disque
+## Agréger les disques de plusieurs nœuds
 
 | Option | Limite |
 | --- | --- |
@@ -29,7 +29,7 @@ Un Deployment repose sur une hypothèse simple : ses pods sont identiques, rempl
 | Données : ses blocs sont sur un disque précis | Un volume peut être placé n'importe où | Pod et données sur des machines différentes |
 | Appartenance : il ne sert les données qu'une fois intégré au layout | Un pod prêt reçoit du trafic | Requêtes servies par un nœud qui ne connaît rien |
 
-Chacune des sections suivantes traite l'une de ces propriétés. Les deux dernières ont provoqué une panne.
+Les deux dernières ont chacune provoqué une panne lors de l'extension.
 
 ## Identité : StatefulSet et Service headless
 
@@ -68,7 +68,7 @@ La première version de la StorageClass n'indiquait pas `volumeBindingMode`, don
 
 `WaitForFirstConsumer` inverse l'ordre : le scheduler place d'abord le pod en tenant compte de toutes ses contraintes, puis le volume est créé sur cette machine. C'est le mode attendu pour tout stockage local à un nœud. Les paramètres d'une StorageClass étant immuables, la correction impose de supprimer l'objet et de le recréer ; les volumes existants ne sont pas touchés.
 
-## Appartenance : prêt ne veut pas dire membre
+## Appartenance : le rôle dans le layout
 
 Un pod Garage qui démarre n'est pas encore un membre utile du cluster. Il doit être connecté aux autres nœuds, puis recevoir un rôle dans le layout. Cette dernière étape est une décision d'administration, faite par la CLI de Garage, que Kubernetes ne connaît pas.
 
@@ -76,9 +76,9 @@ La sonde de disponibilité ne peut pas refléter ce rôle. L'endpoint `/health` 
 
 ### Panne n° 2 : des requêtes servies par un nœud qui ne sait rien
 
-Lors d'un ajout de nœud, le nouveau pod a été déclaré prêt dès l'ouverture de son port, et le Service `garage` lui a aussitôt confié sa part des requêtes, réparties entre tous les pods prêts. Sans rôle dans le layout, ce nœud ne connaissait ni les clés ni les buckets : l'API S3 répondait `403 No such key` et l'API d'administration une erreur 500. Pendant environ 25 minutes, le temps de remarquer le problème et d'intégrer le nœud, une fraction des requêtes a échoué de façon apparemment aléatoire, le symptôme le plus difficile à diagnostiquer côté client.
+Lors d'un ajout de nœud, le nouveau pod a été déclaré prêt dès l'ouverture de son port, et le Service `garage` lui a aussitôt confié sa part des requêtes, réparties entre tous les pods prêts. Sans rôle dans le layout, ce nœud ne connaissait ni les clés ni les buckets : l'API S3 répondait `403 No such key` et l'API d'administration une erreur 500. Pendant environ 25 minutes, le temps de remarquer le problème et d'intégrer le nœud, une fraction des requêtes a échoué sans motif visible côté client.
 
-La correction tient dans l'ordre des opérations. Un nœud n'a pas besoin de stocker des données pour servir correctement les requêtes : le rôle de **passerelle** (`-g`) lui donne la connaissance des métadonnées du cluster sans lui attribuer de capacité. Ce rôle s'attribue dès que le pod tourne, et le rôle de stockage peut attendre :
+La correction porte sur l'ordre des opérations. Un nœud n'a pas besoin de stocker des données pour servir correctement les requêtes : le rôle de passerelle (`-g`) lui donne la connaissance des métadonnées du cluster sans lui attribuer de capacité. Ce rôle s'attribue dès que le pod tourne, et le rôle de stockage peut attendre :
 
 ```bash
 g() { kubectl -n storage exec garage-0 -- /garage "$@"; }
@@ -99,7 +99,7 @@ La capacité déclarée reste un peu inférieure à la taille du volume : elle s
 
 ## Ce que l'agrégation coûte
 
-Avec `replication_factor = 1`, chaque bloc n'existe qu'en un exemplaire : quatre nœuds apportent quatre fois la capacité, pas la moindre redondance. La documentation de Garage réserve cette valeur aux déploiements de test. Le risque augmente avec le nombre de nœuds : les blocs d'un objet volumineux (1 Mio chacun par défaut) se répartissent sur plusieurs disques, si bien que la perte d'un seul disque peut endommager une part des objets bien supérieure à sa part de la capacité.
+Avec `replication_factor = 1`, chaque bloc n'existe qu'en un exemplaire : quatre nœuds apportent quatre fois la capacité, sans aucune redondance. La documentation de Garage réserve cette valeur aux déploiements de test. Le risque augmente avec le nombre de nœuds : les blocs d'un objet volumineux (1 Mio chacun par défaut) se répartissent sur plusieurs disques, si bien que la perte d'un seul disque peut endommager une part des objets bien supérieure à sa part de la capacité.
 
 | `replication_factor` | Tolérance | Capacité utile sur 4 nœuds |
 | --- | --- | --- |
@@ -107,7 +107,7 @@ Avec `replication_factor = 1`, chaque bloc n'existe qu'en un exemplaire : quatre
 | 2 | Lecture pendant une panne, écritures bloquées | Moitié |
 | 3 | Lecture et écriture pendant une panne | Tiers |
 
-Le choix de 1 n'est défendable que pour des données reproductibles ou sauvegardées ailleurs, et doit être connu des utilisateurs du stockage. Il fixe aussi la limite de la démarche : agréger des disques sans réplication échange de la capacité contre de la fragilité.
+Le choix de 1 n'est défendable que pour des données reproductibles ou sauvegardées ailleurs, et doit être connu des utilisateurs du stockage.
 
 ## Savoir quand ajouter un nœud
 
@@ -124,7 +124,7 @@ Le rapport `garage_bucket_bytes / garage_bucket_quota_max_bytes` donne la part d
 
 ## Conclusion
 
-Garage permet de dépasser le disque d'une machine en agrégeant ceux de plusieurs nœuds, sans matériel de stockage dédié. Sous Kubernetes, l'essentiel du travail consiste à rendre au nœud Garage ce que Kubernetes ignore de lui : une identité fixe (StatefulSet et Service headless), des données liées à une machine (volume local en `WaitForFirstConsumer`) et une appartenance au cluster qui ne se résume pas à une sonde qui répond (rôle de passerelle attribué dès le démarrage). Les deux pannes rencontrées viennent de valeurs par défaut pensées pour des pods interchangeables. Le même raisonnement s'applique à tout système de stockage distribué exécuté sous Kubernetes : base répartie, moteur de recherche ou file de messages.
+Garage permet de dépasser le disque d'une machine en agrégeant ceux de plusieurs nœuds, sans matériel de stockage dédié. Sous Kubernetes, l'essentiel du travail consiste à rendre au nœud Garage ce que Kubernetes ignore de lui : une identité fixe (StatefulSet et Service headless), des données liées à une machine (volume local en `WaitForFirstConsumer`) et une appartenance au cluster qui ne se résume pas à une sonde qui répond (rôle de passerelle attribué dès le démarrage). Les deux pannes rencontrées viennent de valeurs par défaut pensées pour des pods interchangeables. Le même raisonnement vaut pour les autres systèmes de stockage distribué exécutés sous Kubernetes, comme les bases de données réparties.
 
 ## Application / Projet lié
 
