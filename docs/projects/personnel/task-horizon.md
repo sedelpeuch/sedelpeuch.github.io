@@ -9,7 +9,7 @@ description: "Application Kanban FastAPI + React déployée sur AWS EKS via Terr
   end="2026"
   role="Auteur (projet solo)"
   domain="Application web, Kubernetes multi-environnement, cloud AWS"
-  stack={["FastAPI", "React", "PostgreSQL", "Terraform", "Helm", "AWS EKS", "GitHub Actions"]}
+  stack={["FastAPI", "React", "PostgreSQL", "Terraform", "Helm", "AWS EKS", "CloudWatch", "GitHub Actions"]}
 />
 
 ## Contexte
@@ -98,6 +98,14 @@ Le cluster tourne sur AWS EKS (région `eu-west-3`), provisionné par Terraform 
 L'accès aux avatars utilisateurs illustre le choix d'éviter les identifiants statiques : ils sont stockés dans un bucket S3 dont l'accès public est bloqué par les quatre réglages S3 Block Public Access (blocage et ignorance des ACL publiques, blocage des policies publiques, restriction des buckets publics), et dont la policy n'autorise qu'un unique rôle IAM. Ce rôle est assumé par les pods de l'API via IRSA (IAM Roles for Service Accounts) : le ServiceAccount Kubernetes de l'API est fédéré à ce rôle par le fournisseur OIDC du cluster, ce qui permet aux pods d'obtenir des permissions S3 sans qu'aucune clé d'accès ne soit stockée dans le cluster.
 
 L'instance RDS est provisionnée de façon conditionnelle (`enable_rds`), chiffrée au repos, avec une politique `prevent_destroy` pour éviter une suppression accidentelle par un `terraform apply` mal ciblé.
+
+## Observabilité
+
+EKS Auto Mode gère les nœuds, mais pas la supervision des applications : sans configuration, CloudWatch ne voyait aucun pod. J'ai décrit l'observabilité du cluster en Terraform. L'add-on `amazon-cloudwatch-observability` collecte les métriques Container Insights et les logs des conteneurs, avec un rôle IAM obtenu par EKS Pod Identity plutôt que par le rôle des nœuds. J'ai corrigé deux réglages par défaut. Les groupes de logs sont créés par Terraform avant l'add-on, avec une rétention fixée, pour ne pas être conservés indéfiniment. Application Signals est désactivé : il aurait instrumenté l'API sans que je le demande, avec une facturation à la requête.
+
+Côté application, l'API écrit désormais une ligne JSON par requête (méthode, gabarit de route, statut, durée), à un niveau qui dépend du statut. Un metric filter compte les erreurs de l'API et alimente une alarme, avec une autre sur l'absence de pod en service, une sur la mémoire et une sur le stockage RDS, toutes envoyées sur un topic SNS. Un dashboard versionné complète l'ensemble, avec la latence p95 par route calculée par Logs Insights. Le détail est dans l'article [AWS : CloudWatch sur EKS](/blog/2026/10/25/05-cloud/cloudwatch-eks).
+
+Ce volet est écrit et validé hors ligne (`terraform validate`, tests de l'API), mais il n'a pas été appliqué : le compte AWS du projet n'a plus de crédits.
 
 ## Intégration et déploiement continus
 
