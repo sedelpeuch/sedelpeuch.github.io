@@ -340,6 +340,14 @@ const config: Config = {
               label: "Scripting",
               to: "blog/tags/scripting",
             },
+            {
+              label: "Git",
+              to: "blog/tags/git",
+            },
+            {
+              label: "Sécurité",
+              to: "blog/tags/security",
+            },
           ],
         },
         {

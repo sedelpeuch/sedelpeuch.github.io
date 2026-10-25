@@ -29,9 +29,9 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ## Bilan 2024
 
-### <IconTitle logo="skill-icons:linux-light" name="02 OS & Linux"/>
+### <IconTitle logo="mdi:lan" name="02 Réseau"/>
 
-**Système & Linux** Les notions de réseau, sécurité, configuration des pare-feu, équilibreurs de charge, proxies, HTTP/HTTPS et virtualisation ont été approfondies et mises en œuvre dans des projets d'auto-hébergement et de sécurisation d'infrastructures. Voir [HomeLab](/docs/projects/personnel/homelab) et [delpeuch.net](/docs/projects/personnel/delpeuch-net).
+[Réseau](/blog/tags/network) Les notions de réseau, sécurité, configuration des pare-feu, équilibreurs de charge, proxies, HTTP/HTTPS et virtualisation ont été approfondies et mises en œuvre dans des projets d'auto-hébergement et de sécurisation d'infrastructures. Voir [HomeLab](/docs/projects/personnel/homelab) et [delpeuch.net](/docs/projects/personnel/delpeuch-net).
 
 ### <IconTitle logo="skill-icons:docker" name="03 Conteneurisation - Docker"/>
 

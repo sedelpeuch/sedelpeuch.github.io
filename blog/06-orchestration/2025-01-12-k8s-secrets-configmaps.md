@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes : Secrets et ConfigMaps"
 description: "Gérer la configuration et les credentials dans Kubernetes : ConfigMap, Secret, injection en variables d'environnement ou en volume."
-tags: [orchestration, devops]
+tags: [orchestration, security, devops]
 ---
 
 Une image Docker doit être identique entre les environnements : dev, staging, prod. Ce qui change entre environnements, c'est la configuration : URL de base de données, niveau de log, clés API. Kubernetes fournit deux ressources pour externaliser cette configuration, en complément des [composants de base](./2025-01-12-k8s-basic-components.md) : ConfigMap pour les données non sensibles, Secret pour les credentials.

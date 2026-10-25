@@ -2,7 +2,7 @@
 title: "Authelia : fournisseur OpenID Connect"
 description: "Configurer Authelia 4.39 comme fournisseur OpenID Connect : flux authorization code avec PKCE, discovery, déclaration des clients, mapping des groupes en rôles et diagnostic des erreurs client_secret_basic, redirect_uri et clé de signature."
 series: homelab
-tags: [network, devops]
+tags: [network, security, devops]
 ---
 
 Un [forward-auth](./2026-08-02-authelia-forward-auth.md) décide au niveau du reverse proxy si une requête peut atteindre un service, mais l'application protégée n'en apprend rien : elle affiche son propre formulaire de connexion, gère ses propres comptes et ignore les groupes définis dans l'annuaire central. OpenID Connect (OIDC) résout ce problème au niveau applicatif. L'application délègue l'authentification à un fournisseur d'identité, reçoit en retour un jeton signé qui décrit l'utilisateur et ses groupes, et crée sa session locale à partir de ces informations. Authelia peut jouer ce rôle de fournisseur pour toute application compatible.

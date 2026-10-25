@@ -1,7 +1,7 @@
 ---
 title: "Authentik : forward-auth et OIDC sur Kubernetes"
 description: "Déployer Authentik avec Helm sur Kubernetes et le raccorder à Traefik : flows, providers et outposts, blueprints versionnés, forward-auth par IngressRoute, clients OIDC, groupes synchronisés depuis GitHub, priorité des routers et références cross-namespace."
-tags: [network, orchestration, devops]
+tags: [network, orchestration, security, devops]
 ---
 
 Sur un cluster Kubernetes, chaque application exposée par l'ingress controller pose la même question d'authentification : certaines n'en ont aucune (tableau de bord, interface de supervision, outil interne), d'autres gèrent leurs propres comptes et ignorent ceux des autres. Un fournisseur d'identité unique, interrogé par Traefik en forward-auth pour les premières et en OpenID Connect par les secondes, ramène ces décisions à un seul annuaire. Authentik remplit ce rôle avec deux capacités absentes d'une configuration minimale : l'inscription en libre-service et les connexions par fournisseur externe (GitHub, LDAP, SAML). Son déploiement sur Kubernetes ajoute des pièges propres à Traefik en mode CRD : priorité des routers, références entre namespaces et route de callback de l'outpost.

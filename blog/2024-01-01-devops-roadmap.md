@@ -1,6 +1,6 @@
 ---
 title: "DevOps Roadmap"
-description: "Les dix domaines de ma roadmap DevOps : Linux, Docker, CI/CD, cloud, Kubernetes, monitoring, Infrastructure as Code, scripts Python et Git."
+description: "Les dix domaines de ma roadmap DevOps : réseau, Docker, CI/CD, cloud, Kubernetes, monitoring, Infrastructure as Code, scripts Python et Git."
 tags: [devops]
 ---
 Ingénieur en informatique au [CATIE](https://www.catie.fr/) spécialisé en Robotique, je travaille sur des projets de développement logiciel et d'intégration sur différentes plateformes. Intrigué par l'intégration et l'automatisation, j'ai décidé d'approfondir mes connaissances en DevOps.
@@ -18,9 +18,9 @@ import IconTitle from '@site/src/components/IconTitle';
 
 [Développement logiciel](/blog/tags/devops) Pour collaborer efficacement avec une équipe de développement et automatiser les tâches, il est utile de comprendre les méthodes agiles, l'utilisation d'outils comme Jira, la gestion de versions avec Git, la configuration des applications via des outils de build, le cycle de vie du développement logiciel et l'intérêt des tests automatisés.
 
-## <IconTitle logo="skill-icons:linux-light" name="02 OS & Linux"/>
+## <IconTitle logo="mdi:lan" name="02 Réseau"/>
 
-**Système & Linux** Préparer et maintenir l'infrastructure sur laquelle une application est déployée implique de maîtriser l'administration d'un serveur, l'installation d'outils, la gestion des permissions et des clés SSH, la configuration des pare-feu, ainsi que les notions de réseau, sécurité, virtualisation et protocoles comme HTTP/HTTPS.
+[Réseau](/blog/tags/network) Préparer et maintenir l'infrastructure sur laquelle une application est déployée implique de maîtriser les notions de réseau (adressage IP, ports, DNS), les protocoles comme HTTP/HTTPS, les proxies et équilibreurs de charge, la configuration des pare-feu et la sécurisation des accès, notamment par clés SSH.
 
 ## <IconTitle logo="skill-icons:docker" name="03 Conteneurisation - Docker"/>
 
@@ -52,7 +52,7 @@ import IconTitle from '@site/src/components/IconTitle';
 
 ## <IconTitle logo="skill-icons:git" name="10 Contrôle de version - Git"/>
 
-[Git](/blog/tags/devops) Le contrôle de version est indispensable pour collaborer sur du code, suivre les modifications et gérer les branches. Git, via des plateformes comme GitHub ou GitLab, offre une base solide pour organiser et partager les projets, qu'ils soient applicatifs ou liés à l'automatisation.
+[Git](/blog/tags/git) Le contrôle de version est indispensable pour collaborer sur du code, suivre les modifications et gérer les branches. Git, via des plateformes comme GitHub ou GitLab, offre une base solide pour organiser et partager les projets, qu'ils soient applicatifs ou liés à l'automatisation.
 
 ## Application / Projet lié
 

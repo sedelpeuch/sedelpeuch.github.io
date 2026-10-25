@@ -9,6 +9,8 @@ export const BLOG_CATEGORIES: Record<string, { label: string; icon: string }> = 
   monitoring: { label: "Observabilité", icon: "tabler:activity-heartbeat" },
   iac: { label: "Infrastructure as Code", icon: "tabler:file-code" },
   scripting: { label: "Scripting", icon: "tabler:terminal-2" },
+  git: { label: "Git", icon: "tabler:git-branch" },
+  security: { label: "Sécurité", icon: "tabler:shield-lock" },
 };
 
 export const DEFAULT_CATEGORY = { label: "DevOps", icon: "tabler:route" };

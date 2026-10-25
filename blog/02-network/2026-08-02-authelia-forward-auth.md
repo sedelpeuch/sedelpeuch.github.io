@@ -2,7 +2,7 @@
 title: "Authelia : forward-auth"
 description: "Centraliser l'authentification de services web derrière Traefik avec le forward-auth d'Authelia : middleware forwardAuth, cookie de session, règles access_control, clients non-navigateur et pièges des regex de bypass."
 series: homelab
-tags: [network, devops]
+tags: [network, security, devops]
 ---
 
 Chaque application web auto-hébergée embarque sa propre gestion des comptes, ou n'en embarque aucune : un tableau de bord d'administration, une interface de supervision ou un outil interne se retrouvent exposés avec autant de formulaires de connexion, de politiques de mot de passe et de bases d'utilisateurs que de services. Le forward-auth déplace cette décision au niveau du reverse proxy : avant de transmettre une requête à l'application, le proxy interroge un service d'authentification central et ne laisse passer que les requêtes que ce dernier valide. Authelia implémente ce rôle, et Traefik le consomme via son middleware `forwardAuth`.
