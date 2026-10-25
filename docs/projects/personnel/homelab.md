@@ -37,6 +37,8 @@ Une trentaine de stacks, organisées en quatre familles :
     - **Garage** porte le stockage objet S3 auto-hébergé de la copie locale des sauvegardes, avec une interface web derrière Authelia.
     - **Pi-hole** est le DNS et le DHCP du réseau local : blocage de la publicité et du pistage pour tous les appareils, y compris ceux sans Tailscale, et résolution des sous-domaines du homelab vers l'adresse locale du serveur.
     - **VPN exit node** publie sur le réseau Tailscale un nœud de sortie dont tout le trafic passe par un VPN commercial (Gluetun) : n'importe quel appareil peut l'emprunter à la demande, sans perdre l'accès au homelab, là où un téléphone ne peut faire tourner qu'un seul VPN système à la fois.
+    - **Runner** exécute les workflows GitHub Actions du dépôt sur le serveur lui-même (section GitOps).
+    - **MCP** regroupe derrière une seule URL les serveurs MCP des services (médias, documents, photos, domotique, mail) : un assistant IA n'a qu'une entrée et un identifiant à configurer sur chaque poste, et les jetons des services restent sur le serveur.
     - **Portainer** donne une vue d'ensemble des conteneurs sans passer par le CLI.
     - **Docs** compile la documentation du repo en un site consultable.
   </TabItem>
@@ -84,19 +86,23 @@ La migration a aussi été l'occasion de rattraper une dette assumée depuis lon
 
 ## GitOps sans agent tiers
 
-Un push sur `master` déclenche un [workflow GitHub Actions](/blog/2026/08/23/04-ci-cd/github-actions-deploiement-compose) qui calcule les dossiers modifiés depuis le dernier déploiement réussi (un run annulé ou en échec est ainsi rattrapé par le suivant), rejoint le réseau **Tailscale** avec un nœud éphémère restreint par ACL, puis relance `docker compose up -d --build` (ou `down` si un dossier a été supprimé) pour chaque stack concernée, et elles seules. Chaque déploiement, réussi ou non, est notifié sur ntfy.
+Un push sur `master` déclenche un [workflow GitHub Actions](/blog/2026/08/23/04-ci-cd/github-actions-deploiement-compose) qui calcule les dossiers modifiés depuis le dernier déploiement réussi (un run annulé ou en échec est ainsi rattrapé par le suivant), se connecte en SSH à l'hôte, puis relance `docker compose up -d --build` (ou `down` si un dossier a été supprimé) pour chaque stack concernée, et elles seules. Chaque déploiement, réussi ou non, est notifié sur ntfy.
 
 ```mermaid
 flowchart LR
     dev["Poste<br/>hooks pre-commit"] -->|push| repo["Dépôt GitHub"]
     renovate["Renovate"] -->|PR de mise à jour| repo
-    repo -->|pull request| validate["Validation<br/>runner éphémère"]
-    validate -->|statut| repo
-    repo -->|push master| deploy["Workflow<br/>de déploiement"]
-    deploy -->|Tailscale + SSH| diff
     subgraph serveur["Serveur"]
+        subgraph runner["Runner éphémère"]
+            validate["Validation<br/>Docker isolé"]
+            deploy["Workflow<br/>de déploiement"]
+        end
         diff["Diff depuis le<br/>dernier déploiement"] --> up["docker compose up<br/>par stack modifiée"]
     end
+    repo -->|pull request| validate
+    validate -->|statut| repo
+    repo -->|push master| deploy
+    deploy -->|"SSH vers l'hôte"| diff
     up -->|résultat| ntfy["ntfy"]
 ```
 
@@ -105,7 +111,9 @@ Deux points techniques peu évidents ont structuré le workflow :
 - **L'ordre de déploiement.** Certaines stacks référencent le volume Docker d'une autre en `external: true` (le partage réseau référence la médiathèque, la sauvegarde référence les volumes de presque tout le monde). Le workflow encode un ordre explicite, les propriétaires de volumes en premier et la sauvegarde en dernier, plutôt que de laisser échouer un `up` sur un volume introuvable.
 - **Les fichiers de configuration montés en bind mount.** Docker Compose ne recrée pas un conteneur quand seul le contenu d'un fichier monté change : une modification de configuration poussée restait sans effet. Un hook pre-commit calcule le hash des fichiers de configuration de la stack et l'injecte en variable d'environnement dans son `compose.yml`, ce qui force la recréation, sur le même principe que l'annotation `checksum/config` des charts Helm.
 
-Chaque pull request est validée avant fusion sur un runner éphémère : syntaxe Compose, déchiffrement des secrets, démarrage réel des stacks modifiées et contrôle de leur état de santé.
+Chaque pull request est validée avant fusion : syntaxe Compose, déchiffrement des secrets, démarrage réel des stacks modifiées et contrôle de leur état de santé.
+
+Depuis octobre 2026, ces workflows ne tournent plus sur les runners de GitHub, dont les minutes sont comptées pour un dépôt privé, mais sur un runner auto-hébergé sur le serveur lui-même. Il est éphémère : il prend un seul job, puis se réenregistre avec un espace de travail vidé. Les jobs ne voient jamais le Docker de la production. La validation et Renovate passent par un démon Docker isolé (Docker in Docker), plafonné en mémoire pour qu'une stack trop gourmande échoue sa validation au lieu d'affamer la production ; seul le déploiement, qui porte la clé SSH, agit sur l'hôte. Le runner ne se déploie pas lui-même, un `up` lancé depuis un job recréant le conteneur qui l'exécute : sa mise à jour se fait à la main, rappelée par une notification quand sa configuration change.
 
 ## Mises à jour maîtrisées avec Renovate
 
@@ -117,6 +125,8 @@ La décision structurante est de classer chaque stack par niveau de risque plut�
 - **Tier 2, fusion automatique** : tout le reste, majeures comprises, dès que la validation de pull request passe au vert et trois jours après la publication de la version, ce qui laisse le temps à une version cassée d'être retirée. Une casse y est soit bloquée par la validation, soit rattrapable sans perte de données.
 
 La première version de cette politique gardait toutes les mises à jour du tier 1 en revue manuelle : les pull requests de correctifs s'accumulaient sans apporter d'information, puisque la relecture d'un changement de digest se résumait à vérifier que la validation était verte. Seules les majeures, susceptibles de changer la configuration ou le schéma, justifient une lecture humaine.
+
+Renovate ne fusionne qu'une pull request par passage. Pour ne pas attendre le passage quotidien, il est relancé à la fin de chaque validation d'une de ses branches et après chaque déploiement réussi : les pull requests vertes s'enchaînent (fusion, déploiement, passage suivant), et un passage sans fusion arrête la boucle. Sur un runner unique, rebaser toutes les branches à chaque avancée de `master` relançait autant de validations en série : elles ne sont plus rebasées qu'en cas de conflit. Les stacks à valider sont donc calculées depuis l'ancêtre commun avec `master`, et non depuis sa pointe, pour ne pas revalider les changements arrivés entre-temps.
 
 Les bases de données restent exclues de Renovate et sont montées de version à la main. La limite est assumée et documentée : la validation détecte un conteneur qui ne démarre pas, pas une régression silencieuse.
 
@@ -138,7 +148,7 @@ flowchart LR
 
 Le DNS public résout les sous-domaines vers l'adresse Tailscale du serveur, Pi-hole vers son adresse locale : le même nom fonctionne depuis le tailnet et depuis le LAN.
 
-Ce modèle a une limite connue : les applications mobiles (clients Bitwarden, Immich, Paperless) ne savent pas suivre une redirection vers un portail web, elles parlent directement à l'API du service. Plutôt que de casser ces clients, deux solutions sont employées selon le cas : un bypass ciblé sur les seules routes d'API concernées, ou un sous-domaine dédié aux clients natifs sans forward-auth. Chaque exception est justifiée par l'authentification applicative propre au service (chiffrement de bout en bout côté Vaultwarden, jetons côté Immich et Paperless), jamais par un service laissé nu par défaut. La mise au point de ces règles a demandé de relever les URL réellement appelées par chaque client, les expressions régulières de bypass échouant silencieusement sur des cas comme une query string ou une liste de valeurs dans un même segment.
+Ce modèle a une limite connue : les applications mobiles (clients Bitwarden, Immich, Paperless) ne savent pas suivre une redirection vers un portail web, elles parlent directement à l'API du service. Plutôt que de casser ces clients, deux solutions sont employées selon le cas : un bypass ciblé sur les seules routes d'API concernées, ou un sous-domaine dédié aux clients natifs sans forward-auth. Chaque exception est justifiée par l'authentification applicative propre au service (chiffrement de bout en bout côté Vaultwarden, jetons côté Immich et Paperless), jamais par un service laissé nu par défaut. La mise au point de ces règles a demandé de relever les URL réellement appelées par chaque client, les expressions régulières de bypass échouant silencieusement sur des cas comme une query string ou une liste de valeurs dans un même segment. L'agrégateur MCP, dont les clients ne savent pas davantage suivre un portail, passe par un point de contrôle forward-auth dédié, qui accepte un en-tête `Authorization: Basic` en plus du cookie de session et n'autorise qu'un compte de service ; les autres services restent en session seule.
 
 Pour les applications qui implémentent OpenID Connect (Vaultwarden, Immich, Paperless, Mealie, Grafana, Ghostfolio, Jellyfin, Portainer), [Authelia sert aussi de fournisseur d'identité](/blog/2026/08/09/02-network/authelia-oidc) : l'application connaît l'utilisateur et ses groupes, et Grafana en déduit le rôle administrateur. Pour un usage navigateur, le forward-auth est conservé devant l'OIDC natif : la double couche est transparente, la session Authelia étant déjà ouverte. Dozzle, SOGo et l'interface de Garage ont rejoint cette liste.
 
@@ -227,7 +237,7 @@ Une charte graphique commune, documentée sur ce même site, s'applique au site 
 
 ## Résultats
 
-- **Zéro déploiement manuel** : chaque changement passe par un commit et un push, jamais par une commande tapée à la main sur le serveur.
+- **Zéro déploiement manuel** : chaque changement passe par un commit et un push, jamais par une commande tapée à la main sur le serveur, à la seule exception du runner de CI, qui ne peut pas se redéployer lui-même.
 - **Zéro secret en clair versionné** : ni dans l'historique Git, ni sur le disque du repo distant.
 - **Mises à jour continues sans effort manuel** : les images des stacks à faible risque sont mises à jour et déployées automatiquement après validation, les stacks critiques passent par une revue.
 - **Migration Swarm vers Compose sans interruption de service perçue** : bascule progressive stack par stack, deux serveurs en parallèle le temps de la transition.

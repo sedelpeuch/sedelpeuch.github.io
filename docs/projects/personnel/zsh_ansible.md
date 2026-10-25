@@ -1,15 +1,14 @@
 ---
 title: "Zsh Ansible Automation"
-description: "Provisioning idempotent d'un environnement shell (zsh, oh-my-zsh, plugins, fzf, mise, Starship) par playbooks Ansible, avec dotfiles externalisés dans des Gists GitHub."
-tags: [ansible, iac, zsh, automation]
+description: "Provisioning idempotent d'un environnement shell (zsh, oh-my-zsh, plugins, fzf, mise, Starship) et du bureau GNOME (extensions, dconf) par playbooks Ansible, avec dotfiles externalisés dans des Gists GitHub."
+tags: [ansible, iac, zsh, gnome, automation]
 ---
 
 <ProjectMeta
   start="2025"
-  end="2026"
   role="Auteur (projet solo)"
   domain="Provisioning de poste, automatisation shell"
-  stack={["Ansible", "zsh", "oh-my-zsh", "Starship", "mise", "GitHub Gists"]}
+  stack={["Ansible", "zsh", "oh-my-zsh", "Starship", "mise", "GNOME", "GitHub Gists"]}
 />
 
 ## Contexte
@@ -20,7 +19,7 @@ J'aurais pu écrire un script bash. La raison de choisir Ansible plutôt qu'un e
 
 ## L'architecture : un playbook par préoccupation
 
-`main.yml` ne contient que six `import_playbook`, un par préoccupation : zsh et paquets de base (`install_zsh.yml`), oh-my-zsh et plugins (`install_oh_my_zsh.yml`), outils (`install_tools.yml` : fzf, mise, Node.js), Starship (`install_starship.yml`), dotfiles (`configure_dotfiles.yml`) et barre d'état de Claude Code (`configure_claude.yml`). `import_playbook` est statique : les playbooks sont chargés et validés au démarrage, pas à l'exécution. Chaque fichier reste aussi exécutable directement pour ne refaire qu'une étape, sans modification.
+`main.yml` ne contient que sept `import_playbook`, un par préoccupation : zsh et paquets de base (`install_zsh.yml`), oh-my-zsh et plugins (`install_oh_my_zsh.yml`), outils (`install_tools.yml` : fzf, mise, Node.js), Starship (`install_starship.yml`), dotfiles (`configure_dotfiles.yml`), barre d'état de Claude Code (`configure_claude.yml`) et bureau GNOME (`configure_gnome.yml`). `import_playbook` est statique : les playbooks sont chargés et validés au démarrage, pas à l'exécution. Chaque fichier reste aussi exécutable directement pour ne refaire qu'une étape, sans modification.
 
 L'ordre compte à un endroit. L'installateur d'oh-my-zsh génère un `.zshrc` à partir de son modèle quand il n'en trouve pas : il est lancé avec `--keep-zshrc` pour ne pas remplacer un fichier existant, et le déploiement des dotfiles passe après lui. Le `.zshrc` final est donc toujours celui du Gist, quel que soit l'état initial de la machine.
 
@@ -46,6 +45,12 @@ Les URLs des Gists, les versions de fzf et de Node.js et la liste des plugins so
 
 Le dernier playbook configure la barre d'état de Claude Code dans `~/.claude/settings.json`, un fichier que d'autres outils modifient aussi. Plutôt que de l'écraser, il le lit (`slurp`), le décode avec le filtre `from_json`, y fusionne la seule clé `statusLine` (filtre `combine`) et ne réécrit le fichier, avec une sauvegarde, que si cette clé diffère de la valeur attendue. Un JSON invalide fait échouer le décodage, donc la tâche, avant toute écriture : un fichier corrompu n'est jamais écrasé.
 
+## Le bureau GNOME
+
+Depuis octobre 2026, un dernier playbook applique aussi la personnalisation du bureau GNOME : une dizaine d'extensions, leurs réglages et l'allure des terminaux. Ces réglages ne sont pas des fichiers mais des clés de la base dconf de la session, et l'installation d'une extension passe par le bus D-Bus de la session graphique. Le playbook vérifie donc d'abord qu'il tourne dans une session GNOME, et s'arrête sans erreur dans un conteneur ou en SSH : le même `main.yml` reste utilisable partout.
+
+La même règle d'idempotence s'applique. Les extensions absentes sont installées par l'appel D-Bus `InstallRemoteExtension` de GNOME Shell, qui les active sans fermer la session mais ouvre une boîte de confirmation par extension ; seules celles qui manquent sont demandées, et seules celles qui sont désactivées sont activées. Pour dconf, chaque clé est lue puis écrite seulement si sa valeur diffère. Les valeurs sont déclarées dans `group_vars/all.yml` exactement comme `dconf read` les affiche, en syntaxe GVariant : la comparaison se fait sur le texte, sans conversion. La liste des extensions retenues et celles essayées puis retirées est tenue dans le README.
+
 ## Les plugins et outils installés
 
 Quatre plugins tiers sont clonés. `zsh-autosuggestions` suggère en gris une commande tirée de l'historique, acceptée avec la flèche droite. `zsh-syntax-highlighting` colore la commande en cours de frappe selon sa validité. `fzf-tab` remplace le menu de complétion de zsh par une sélection floue fzf. `you-should-use` rappelle l'alias existant quand une commande est tapée en entier. La recherche dans l'historique par sous-chaîne passe par `history-substring-search`, fourni avec oh-my-zsh.
@@ -58,7 +63,7 @@ Le README documente un test dans un conteneur `ubuntu:24.04` jetable : installat
 
 ## Résultats
 
-- **Un poste ou un conteneur configuré en une commande** : zsh comme shell de connexion, oh-my-zsh et ses plugins, fzf, Node.js, Starship, dotfiles et barre d'état de Claude Code.
+- **Un poste ou un conteneur configuré en une commande** : zsh comme shell de connexion, oh-my-zsh et ses plugins, fzf, Node.js, Starship, dotfiles, barre d'état de Claude Code et, sur un poste, bureau GNOME.
 - **Un provisioning idempotent vérifié** : un second passage sur la même machine se termine avec `changed=0`.
 - **Une configuration personnelle modifiable sans toucher aux playbooks** : dotfiles dans des Gists, versions et plugins dans `group_vars/all.yml`.
 - **Des privilèges root limités à trois tâches**, déclarés tâche par tâche.
@@ -69,7 +74,7 @@ Le support est limité à Debian/Ubuntu : tous les `apt` supposent un système c
 
 Les installateurs d'oh-my-zsh, de mise et de Starship sont téléchargés à chaque installation depuis leur source officielle, sans version figée, contrairement à fzf et Node.js. Et comme le paramètre `creates` saute la tâche dès que le binaire existe, relancer le provisioning ne met pas ces outils à jour.
 
-Le test d'idempotence reste manuel : aucun workflow de CI ne lance le provisioning dans un conteneur à chaque modification.
+Le test d'idempotence reste manuel : aucun workflow de CI ne lance le provisioning dans un conteneur à chaque modification. La partie GNOME n'est pas couverte par le test en conteneur, qui n'a pas de session graphique, et demande une confirmation par extension au premier passage : elle n'est testée que sur un poste réel (Ubuntu 26.04, GNOME 50 sous Wayland).
 
 Enfin, Ansible doit être installé avant que le provisioning puisse tourner. Pour un poste entièrement vierge, il faut une étape de bootstrap (`apt install ansible`) que le README ne mentionne que dans la commande de test en conteneur.
 
