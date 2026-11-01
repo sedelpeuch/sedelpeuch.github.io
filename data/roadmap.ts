@@ -61,7 +61,12 @@ export const ROADMAP: RoadmapDomain[] = [
       { label: "Conteneurs et machines virtuelles", articles: ["03-containerization/difference-conteneurisation-virtualisation"] },
       {
         label: "Images et Dockerfile",
-        articles: ["03-containerization/docker", "03-containerization/docker-containers", "03-containerization/docker-best-practices"],
+        articles: [
+          "03-containerization/docker",
+          "03-containerization/docker-containers",
+          "03-containerization/docker-best-practices",
+          "03-containerization/docker-cache-buildkit",
+        ],
       },
       { label: "Débogage de conteneurs", articles: ["03-containerization/debugging-docker-containers"] },
       { label: "Docker Compose", articles: ["06-orchestration/docker-compose"] },
@@ -219,7 +224,7 @@ export const ROADMAP: RoadmapDomain[] = [
     tag: "git",
     description: "Versionner, relire et partager le code comme l'infrastructure.",
     topics: [
-      { label: "Branches, pull requests et revue de code", status: "acquis", since: 2023 },
+      { label: "Branches, pull requests et revue de code", status: "acquis", since: 2023, articles: ["10-git/github-rulesets"] },
       { label: "Plateformes GitHub et GitLab", status: "acquis", since: 2023 },
       { label: "Chiffrement de fichiers dans un dépôt", articles: ["08-iac/git-crypt"] },
     ],
@@ -239,6 +244,7 @@ export const ROADMAP: RoadmapDomain[] = [
         label: "Authentification et SSO",
         articles: ["02-network/authelia-forward-auth", "02-network/authelia-oidc", "02-network/authentik-kubernetes"],
       },
+      { label: "Isolation des runners de CI", articles: ["11-security/docker-in-docker-securite"] },
       { label: "Coffres de secrets externes (Vault, SOPS)" },
       { label: "Analyse des images et des dépendances" },
       { label: "Contrôle d'accès Kubernetes (RBAC, NetworkPolicy)" },
