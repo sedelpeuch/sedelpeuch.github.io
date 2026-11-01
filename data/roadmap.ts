@@ -157,7 +157,7 @@ export const ROADMAP: RoadmapDomain[] = [
       { label: "Dashboards (Grafana)", articles: ["07-monitoring/grafana-provisioning"] },
       { label: "Supervision de disponibilité", articles: ["07-monitoring/gatus"] },
       { label: "Fiabilité de l'hôte", articles: ["07-monitoring/linux-kdump-watchdog"] },
-      { label: "Traces distribuées (OpenTelemetry)" },
+      { label: "Traces distribuées (OpenTelemetry)", articles: ["07-monitoring/opentelemetry"] },
     ],
   },
   {
