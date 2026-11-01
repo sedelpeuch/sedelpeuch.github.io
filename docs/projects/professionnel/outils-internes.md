@@ -49,6 +49,10 @@ Le bot de recherche de composants a été développé par un collègue. Il répo
 
 J'ai refondu sur Docusaurus le site de documentation de l'équipe SONU, qui tourne sur le cluster. Il agrège la documentation stockée dans le Dropbox de l'équipe : un bot suit les changements du dossier partagé, convertit les documents (Word, Paper, Markdown) en pages et publie chaque modification en une à deux minutes. Le site conserve l'historique des versions de chaque page, et affiche une page de fraîcheur par section et une carte des liens entre pages. La production du contenu reste collective.
 
+### Configuration des dépôts GitHub
+
+Les dépôts de l'organisation étaient créés et protégés à la main, chacun avec ses réglages. J'ai écrit une extension de la CLI GitHub (`gh catie`) qui crée un dépôt et le configure selon le process de l'équipe : réglages de fusion, équipes et droits selon un preset, et un [ruleset](/blog/2026/10/29/10-git/github-rulesets) de référence versionné en JSON. En octobre 2026, je l'ai refondue : la première version sautait les dépôts qui avaient déjà un ruleset, si bien qu'aucune évolution de la règle n'atteignait les dépôts existants. Le ruleset est désormais créé ou remis à niveau à chaque passage, l'ancienne protection de branche retirée, et un mode `check` liste les écarts d'un dépôt avec le process sans rien modifier. Contrairement aux autres outils de cette page, elle tourne sur le poste et non sur le cluster.
+
 ## Déploiement : une chaîne uniforme
 
 L'ensemble reste maintenable parce que tous ces services suivent le même modèle de déploiement. Les bots et les backends sont des applications Python gérées par Poetry, et le site de documentation une application Docusaurus ; chaque outil est packagé dans une image Docker publiée sur le registre `ghcr.io/catie-aq/`. Son dépôt contient un chart Helm qui décrit le déploiement Kubernetes : `Deployment`, `ServiceAccount`, `PersistentVolumeClaim` si nécessaire, et la configuration via `values.yaml`.
