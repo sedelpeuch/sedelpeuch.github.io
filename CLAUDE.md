@@ -50,7 +50,7 @@ Project docs live under `docs/projects/{professionnel,associatif,personnel}/`.
 Deux projets sources alimentent le blog :
 
 - `/home/sedelpeuch/dev/perso/task_horizon` — app portfolio (Terraform, Helm, FastAPI, Docker, EKS). Chaque concept cloud / CI/CD / IaC pratiqué donne lieu à un article (`05-cloud/`, `04-ci-cd/`, `08-iac/`). Page projet : `docs/projects/personnel/task-horizon.md`.
-- `/home/sedelpeuch/dev/perso/fervantfactory` — homelab GitOps Docker Compose (Traefik, Authelia, Renovate, Prometheus, sauvegardes S3…), doc complète dans ses `<stack>/<stack>.md`, `DAS.md`, `docs/pages/`. Page projet : `docs/projects/personnel/homelab.md`.
+- `/home/sedelpeuch/dev/perso/homelab` — homelab GitOps Docker Compose (Traefik, Authelia, Renovate, Prometheus, sauvegardes S3…), doc complète dans ses `<stack>/<stack>.md`, `DAS.md`, `docs/pages/`. Page projet : `docs/projects/personnel/homelab.md`.
 
 Flux : apprentissage terrain → article blog (outil ou concept isolé, impersonnel) → page projet (vue d'ensemble, résultats). Le blog est DevOps, pas homelab : on en extrait les outils et pièges réels, présentés de façon générique (`example.com`, jamais de domaine, IP, nom de personne ou matériel réels). Le lien vers le projet passe par la section finale `## Application / Projet lié`. Les notes des projets sources peuvent contenir des approximations : toujours vérifier contre la doc officielle.
 
