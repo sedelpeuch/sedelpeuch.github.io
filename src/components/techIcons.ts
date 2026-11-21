@@ -3,6 +3,7 @@
 // comme les illustrations au trait du site, au lieu d'une mosaïque de logos colorés.
 // Une techno absente de la table s'affiche sans icône.
 export const TECH_ICONS: Record<string, string> = {
+  alloy: "simple-icons:grafana",
   android: "simple-icons:android",
   ansible: "simple-icons:ansible",
   authelia: "simple-icons:authelia",
@@ -34,11 +35,13 @@ export const TECH_ICONS: Record<string, string> = {
   kubernetes: "simple-icons:kubernetes",
   latex: "simple-icons:latex",
   linux: "simple-icons:linux",
+  loki: "simple-icons:grafana",
   make: "simple-icons:gnu",
   mdx: "simple-icons:mdx",
   minio: "simple-icons:minio",
   "oh-my-zsh": "simple-icons:zsh",
   opencv: "simple-icons:opencv",
+  opentelemetry: "simple-icons:opentelemetry",
   pdflatex: "simple-icons:latex",
   php: "simple-icons:php",
   postgresql: "simple-icons:postgresql",
@@ -57,6 +60,7 @@ export const TECH_ICONS: Record<string, string> = {
   starship: "simple-icons:starship",
   tailscale: "simple-icons:tailscale",
   tailwind: "simple-icons:tailwindcss",
+  tempo: "simple-icons:grafana",
   terraform: "simple-icons:terraform",
   traefik: "simple-icons:traefikproxy",
   typescript: "simple-icons:typescript",
