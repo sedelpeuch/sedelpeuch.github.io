@@ -56,41 +56,29 @@ Flux : apprentissage terrain → article blog (outil ou concept isolé, imperson
 
 Un article peut être antidaté pour combler un trou dans le rythme de publication (dates hebdomadaires cohérentes avec l'ordre des dépendances entre articles).
 
-## Blog — objectif et ton
+## Blog : objectif et conventions
 
 **Pourquoi ce blog existe :** journal de notes techniques de Sébastien, ingénieur DevOps & robotique au CATIE. Sert à la fois de référence personnelle et de vitrine professionnelle. Public cible : ingénieurs DevOps francophones, recruteurs techniques, pairs de la communauté ROS2/Kubernetes.
 
-**Ton :** impersonnel, scientifique, sans jugement de valeur. Expose les faits et mécanismes, jamais d'opinion ni d'enthousiasme ("c'est génial", "c'est simple"). Pas de première personne. Suppose un lecteur qui sait coder et administrer des systèmes, mais découvre le sujet de l'article.
+**Rédaction :** tout article écrit, repris ou relu passe par le skill `blog-article` (`.claude/skills/blog-article/`) : ton impersonnel, structure, place du code, titres, relectures (script de contrôle, `humanizer`, lecteur neuf). Les règles ci-dessous sont les conventions techniques du dépôt, que le skill applique.
 
 **Nommage :** titre au format `"Famille : sujet"` (`"Terraform : modules"`, `"AWS : Lambda"`, `"Traefik : Sablier"`), ou le nom seul de l'outil pour l'article d'introduction (`"Prometheus"`). Le fichier suit `AAAA-MM-JJ-famille-sujet.md` dans le dossier de sa catégorie (`2026-07-11-terraform-modules.md`).
 
 **Frontmatter :** `title` et `description` toujours entre guillemets doubles (un `:` non quoté casse le YAML et fait tomber tout le plugin), `tags`. **Jamais de champ `authors`** : Sébastien est seul auteur, le champ afficherait sa photo sur chaque billet.
 
-**Structure type d'un article blog :**
-- Introduction d'un seul paragraphe qui pose le problème concret
-- `<!--truncate-->` juste après (requis pour l'aperçu sur la liste)
-- Pas de H1 dans le corps (le `title` en tient lieu), pas d'emoji dans les titres
-- Sections H2/H3 progressives : concept → mécanisme → exemple pratique → pièges / limites → conclusion
-- Analogies concrètes bienvenues pour illustrer les concepts abstraits
-- **Pas de pavé de code** : l'article explique le mécanisme en prose, le code ne fait qu'illustrer. Un extrait se limite à quelques lignes (cinq environ) qui portent le point expliqué juste avant ou après ; jamais de manifeste, workflow, unité systemd ou script complet recopié. Un réglage se décrit dans le texte (`concurrencyPolicy: Forbid` saute un passage…) plutôt que dans un bloc YAML.
-- Blocs de code toujours avec un langage ; `text` pour les schémas ASCII et pseudo-code (le langage par défaut du site est `python`). Langages Prism additionnels déclarés dans `docusaurus.config.ts` (`hcl`, `nginx`, `docker`, `ini`, `powershell`, `promql`…) ; `logql` n'existe pas dans Prism
-- Liens relatifs `.md` vers les articles prérequis ou liés (maillage des séries)
-- Section finale `## Application / Projet lié` contenant un encart par projet concerné :
-  ```mdx
-  <ProjectLinks>
-    <ProjectLink to="/docs/projects/personnel/homelab" title="HomeLab">Ce que l'article met en pratique dans ce projet.</ProjectLink>
-  </ProjectLinks>
-  ```
-  (plusieurs `<ProjectLink>` → grille de cartes ; période et stack sont lues dans la fiche du projet)
-- Série : un parcours pensé pour être lu dans l'ordre (Terraform, AWS, Kubernetes, GitHub Actions, Ansible, Docker, Prometheus ; pas de série par projet : le fil d'un projet passe par sa page et les encarts `ProjectLink`) se déclare par `series: <id>` dans le frontmatter (ordre = date, `series_order` pour départager une même date). Le billet affiche alors la piste de série ; sinon, une navigation précédent / suivant dans sa catégorie (dossier). Une catégorie n'est pas une série : la catégorie rassemble tous les articles d'un domaine (Observabilité, Réseau…), la série approfondit un seul outil (Terraform, Ansible, Prometheus…) et peut puiser dans plusieurs catégories si le parcours le justifie ; jamais de série par domaine. Libellés et présentations des séries : `plugins/series-data/index.js` (`LABELS`, `DESCRIPTIONS`). Catalogue : page `/blog/series` (`src/pages/blog/series.mdx`, entrée « Séries » du menu Blog), cible du titre de la piste ; une nouvelle série y apparaît d'elle-même, il suffit d'ajouter sa présentation.
+**Séries :** un outil trop vaste pour un seul article, parcouru dans l'ordre ; les outils voisins restent hors série (la série Kubernetes couvre les fondamentaux, pas Longhorn ni Kured) (Terraform, AWS, Kubernetes, GitHub Actions, Ansible, Docker, Prometheus ; pas de série par projet : le fil d'un projet passe par sa page et les encarts `ProjectLink`) se déclare par `series: <id>` dans le frontmatter (ordre = date, `series_order` pour départager une même date). Le billet affiche alors la piste de série ; sinon, une navigation précédent / suivant dans sa catégorie (dossier). Une catégorie n'est pas une série : la catégorie rassemble tous les articles d'un domaine (Observabilité, Réseau…), la série approfondit un seul outil (Terraform, Ansible, Prometheus…) et peut puiser dans plusieurs catégories si le parcours le justifie ; jamais de série par domaine. Libellés et présentations des séries : `plugins/series-data/index.js` (`LABELS`, `DESCRIPTIONS`). Catalogue : page `/blog/series` (`src/pages/blog/series.mdx`, entrée « Séries » du menu Blog), cible du titre de la piste ; une nouvelle série y apparaît d'elle-même, il suffit d'ajouter sa présentation.
+
+**Blocs de code :** toujours avec un langage (le langage par défaut du site est `python`). Langages Prism additionnels déclarés dans `docusaurus.config.ts` (`hcl`, `nginx`, `docker`, `ini`, `powershell`, `promql`…) ; `logql` n'existe pas dans Prism.
 
 **Typographie :** espace simple avant `:`, apostrophes et guillemets droits, pas de « vous » / « nous ». Exception : la roadmap (`src/pages/roadmap/`) est écrite à la première personne.
 
-**Relecture :** tout texte rédigé ou réécrit (article de blog, page projet, page de scolarité) passe par le skill `humanizer` avant d'être livré, en lui rappelant les conventions de ton de la section concernée (impersonnel pour le blog, première personne pour les projets) : il retire les tics d'écriture IA sans toucher au fond, aux liens ni aux blocs de code.
+**Relecture hors blog et projets :** une page de scolarité ou de roadmap rédigée ou réécrite passe par le skill `humanizer` avant livraison, en lui rappelant le ton de la page : il retire les tics d'écriture IA sans toucher au fond, aux liens ni aux composants MDX.
 
 ## Roadmap (`src/pages/roadmap/`)
 
-`/roadmap` (entrée de la navbar entre Blog et Projets) : onze domaines détaillés en sujets, définis dans `data/roadmap.ts`. Un sujet est « pratiqué » dès qu'un article y est rattaché (référence `dossier/slug` sans date), « en cours » si son dernier article a moins de deux mois, « à venir » sinon ; `status` / `since` pour les compétences sans article. Jamais de ratio ni de barre de complétion : un domaine n'a pas de fin. Une page par année (`/roadmap/AAAA`) : objectifs écrits en janvier, rétrospective écrite en fin d'année, suivie de `<RoadmapYear year={AAAA} />` (articles de l'année par catégorie). Nouvel article : le rattacher à un sujet de `data/roadmap.ts`.
+`/roadmap` (entrée de la navbar entre Blog et Projets) : onze domaines détaillés en sujets, définis dans `data/roadmap.ts`. Un sujet est « pratiqué » dès qu'un article y est rattaché (référence `dossier/slug` sans date), « en cours » si son dernier article a moins de deux mois, « à venir » sinon ; `status` / `since` pour les compétences sans article. Jamais de ratio ni de barre de complétion : un domaine n'a pas de fin. Une page par année (`/roadmap/AAAA`) : `<YearSummary>`, objectifs écrits en janvier (`<Objectives>` / `<Objective domain="NN">`, jamais réécrits ensuite), rétrospective écrite en décembre (`<Retrospective year={AAAA}>` avec un `<Retro domain="NN">` par domaine commenté). Nouvel article : le rattacher à un sujet de `data/roadmap.ts`.
+
+**Suivi :** point d'avancement, travail imprévu, nouvelle idée, rétrospective et objectifs passent par le skill `roadmap` (`.claude/skills/roadmap/`), son script d'état et son journal.
 
 ## Scolarité (`docs/scolarite/`)
 
@@ -98,18 +86,10 @@ Pages d'index : `<CourseTimeline />` (page Scolarité et pages d'école : frise 
 
 Pages de matière : les liens de ressources sont regroupés par type dans des `<ResourceList type="cours|td|tp|correction|projet|support" title="…" ordered>` contenant une liste markdown (ligne vide après la balise ouvrante et avant la fermante, sinon MDX ne parse pas la liste ; pas de tableau dedans). `ordered` (défaut pour `cours`) affiche la séquence en rail d'anneaux. Toute modification de ces blocs doit préserver les cibles de liens.
 
-## Projets (`docs/projects/`) — objectif et ton
+## Projets (`docs/projects/`)
 
 **Pourquoi cette section existe :** portfolio technique de projets réels (CATIE, associatif, personnel). Chaque page documente ce qui a été construit, le contexte métier, les décisions techniques, et les résultats concrets. Sert aux recruteurs et aux clients potentiels.
 
-**Ton :** professionnel, précis, à la première personne ("J'ai développé", "J'ai mis en place"). Orienté résultats et contraintes réelles plutôt que liste de technologies. Mettre en avant les décisions techniques non-triviales et leur justification.
+**Rédaction :** toute création, mise à jour ou relecture de page projet passe par le skill `page-projet` (`.claude/skills/page-projet/`) : première personne, faits sourcés, structure, mise à jour sans changelog, limites tenues à jour, relectures.
 
-**Structure type d'une page projet :**
-- Frontmatter : `title`, `description` (SEO), `tags` techniques
-- Bloc `project-meta-grid` : dates, rôle, stack (voir exemples existants)
-- Section contexte : problème métier avant la solution
-- Section réalisations : ce qui a été construit concrètement (Tabs Docusaurus si plusieurs axes)
-- Section résultats : impact mesurable ou qualitatif
-- La fiche en tête de page est le composant global `<ProjectMeta start="2023" end="2025" role="…" domain="…" stack={["Docker", "Traefik"]} />` (pas de `end` = en cours ; `end` égal à `start` = ponctuel ; `status="en pause"` si besoin). Elle est la source unique : `plugins/projects-data` en extrait les props (chaînes entre guillemets doubles et tableau `stack`, format à respecter) pour l'index `<ProjectIndex />` des pages d'index et pour les encarts `<ProjectLink>` du blog. Icônes de stack : `src/components/techIcons.ts` (simple-icons monochromes ; un nom absent s'affiche sans icône).
-- Liens externes si pertinents
-- MDX autorisé : `Tabs`, `TabItem`, `:::info` callouts, images avec style inline
+**Fiche :** le composant global `<ProjectMeta start="2023" end="2025" role="…" domain="…" stack={["Docker", "Traefik"]} />` en tête de page est la source unique : `plugins/projects-data` en extrait les props par expression régulière (chaînes entre guillemets doubles, `stack` en JSON) pour l'index `<ProjectIndex />` et pour les encarts `<ProjectLink>` du blog. Pas de `end` = en cours ou maintenu ; `end` égal à `start` = ponctuel ; `status="en pause"` si besoin. Icônes de stack : `src/components/techIcons.ts` (simple-icons monochromes ; un nom absent s'affiche sans icône).
