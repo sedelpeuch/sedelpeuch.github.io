@@ -140,6 +140,7 @@ export const ROADMAP: RoadmapDomain[] = [
           "06-orchestration/renouveler-certificats",
           "06-orchestration/kubernetes-sauvegarde-cronjob",
           "06-orchestration/kubernetes-gpu-nvidia",
+          "06-orchestration/kubernetes-kured",
         ],
       },
       { label: "Démarrage à la demande", articles: ["06-orchestration/traefik-sablier"] },
