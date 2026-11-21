@@ -1,0 +1,237 @@
+/* Page /about : même vocabulaire que l'accueil (anneau 14 px, rail 2,5 px,
+   pointillés = en cours, icônes monochromes teintées de la couleur primaire). */
+.about {
+  --about-muted: var(--ifm-color-emphasis-700);
+  --about-line: var(--ifm-color-emphasis-300);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+:global(html[data-theme="dark"]) .about {
+  --about-muted: #bfc7d5;
+  --about-line: #232b3b;
+}
+
+/* En-tête : photo cerclée à gauche, texte aligné à gauche. */
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  padding: 2rem 0 3rem;
+  border-bottom: 1px solid var(--about-line);
+}
+
+.photo {
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  object-fit: cover;
+  padding: 5px;
+  border: 2.5px solid var(--ifm-color-primary);
+}
+
+.intro {
+  min-width: 0;
+}
+
+.name {
+  margin: 0 0 0.35rem;
+  font-size: 2.4rem;
+  line-height: 1.1;
+}
+
+.role {
+  margin: 0 0 1rem;
+  color: var(--about-muted);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.lead {
+  max-width: 34em;
+  margin: 0 0 1.4rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.award {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 1.2rem 0 0;
+  font-size: 0.95rem;
+}
+
+.awardIcon {
+  flex: none;
+  font-size: 20px;
+  color: var(--ifm-color-primary);
+}
+
+/* Sections */
+.section {
+  padding-top: 2.5rem;
+}
+
+.sectionTitle {
+  margin-bottom: 1.6rem;
+}
+
+/* Parcours : rail vertical, un anneau par étape. */
+.rail {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  position: relative;
+  margin: 0;
+  padding: 0 0 3rem 2.4rem;
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: -2px;
+  left: 5.75px;
+  width: 2.5px;
+  background: var(--ifm-color-primary);
+  opacity: 0.35;
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+/* Le rail longe la stack jusqu'en bas et s'estompe à la fin. */
+.step:last-child::before {
+  bottom: 0;
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 3rem), transparent);
+}
+
+.ring {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  box-sizing: border-box;
+  border: 2.5px solid var(--ifm-color-primary);
+  border-radius: 50%;
+  background: var(--ifm-background-color);
+}
+
+.ring[data-ongoing] {
+  border-style: dashed;
+}
+
+.stepHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.8rem;
+}
+
+.stepTitle {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.stepDate {
+  color: var(--about-muted);
+  font-size: 0.95rem;
+}
+
+.stepBody {
+  margin-top: 1.2rem;
+}
+
+.stepText {
+  margin: 0.35rem 0 0;
+  color: var(--about-muted);
+}
+
+/* Domaines de l'étape en cours : grille sans cadre, icône teintée. */
+.domains {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem 2rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.domain {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.domainIcon {
+  flex: none;
+  margin-top: 2px;
+  font-size: 22px;
+  color: var(--ifm-color-primary);
+}
+
+.domainTitle {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+}
+
+.domainText {
+  margin: 0;
+  color: var(--about-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 800px) {
+  .header {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 1.4rem;
+    padding-top: 1rem;
+    text-align: center;
+  }
+
+  .photo {
+    width: 136px;
+    height: 136px;
+  }
+
+  .name {
+    font-size: 2rem;
+  }
+
+  .lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .award {
+    display: block;
+  }
+
+  .awardIcon {
+    margin-right: 0.35rem;
+    vertical-align: -4px;
+  }
+
+  .domains {
+    grid-template-columns: 1fr;
+  }
+}

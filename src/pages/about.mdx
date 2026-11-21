@@ -5,37 +5,6 @@ description: Ingénieur en informatique de l'ENSEIRB-MATMECA, spécialisé en De
 hide_table_of_contents: true
 ---
 
-import TechStack from "./_components/TechStack";
-import styles from './_components/Hero/styles.module.scss'
-import {motion} from 'framer-motion'
+import About from "./_components/About";
 
-<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-    <img src="/img/sde-640.jpg" alt="Sébastien Delpeuch" style={{width: '50%', borderRadius: '50%', boxShadow: '0px 0px 20px #338BFF'}}/>
-    <h1 style={{marginTop: '0px'}}>Sébastien Delpeuch</h1>
-    <h2 style={{textAlign: 'center'}}>Ingénieur en informatique de l'ENSEIRB-MATMECA, spécialisé en DevOps</h2>
-    <p style={{textAlign: 'center'}}> Passionné par le processus DevOps, je suis actuellement en train de renforcer mes compétences dans ce domaine  </p>
-    <p style={{textAlign: 'center'}}>:trophy: 3e à la Robocup @Home OPL 2023, Bordeaux</p>
-</div>
-
-<div className={styles.buttonGroup}>
-    <motion.div className={styles.buttonGroup} custom={4} initial="hidden" animate="visible">
-        <a className={styles.button} href="https://github.com/sedelpeuch" style={{marginBottom: 0, paddingBottom: 0}}>
-            GitHub
-        </a>
-        <a className={styles.button} href="mailto:sedelpeuch@gmail.com" style={{marginBottom: 0, paddingBottom: 0}}>
-            Mail
-        </a>
-    </motion.div>
-</div>
-
-<br/>
-
-## GitHub stats
-
-<div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-    <img src="https://raw.githubusercontent.com/sedelpeuch/sedelpeuch/master/github-metrics.svg" alt="image 2" style={{width: '100%'}}/>
-</div>
-
-## Tech stack
-
-<TechStack/>
+<About />

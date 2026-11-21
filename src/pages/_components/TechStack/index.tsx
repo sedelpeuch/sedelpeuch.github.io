@@ -1,86 +1,59 @@
 import { Icon } from "@iconify/react";
-
-// Composant individuel de Card
-function Card({ logo, techName }) {
-  return (
-    <div
-      style={{
-        margin: "10px",
-        boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
-        textAlign: "center",
-        minWidth: 120,
-      }}
-    >
-      <Icon icon={logo} style={{ fontSize: "100px" }} />
-      <div style={{ padding: "2px 16px" }}>
-        <h4>
-          <b>{techName}</b>
-        </h4>
-      </div>
-    </div>
-  );
-}
+import styles from "./styles.module.css";
 
 export const majors = [
   { name: "Python", logo: "skill-icons:python-light" },
-  { name: "ROS", logo: "skill-icons:ros-light" },
+  { name: "ROS 2", logo: "skill-icons:ros-light" },
   { name: "Docker", logo: "skill-icons:docker" },
   { name: "Kubernetes", logo: "skill-icons:kubernetes" },
-  { name: "Ansible", logo: "skill-icons:ansible" },
-  { name: "Linux", logo: "skill-icons:linux-light" },
-  { name: "Git", logo: "skill-icons:git" },
-  { name: "GitHub", logo: "skill-icons:github-light" },
+  { name: "Terraform", logo: "skill-icons:terraform-light" },
+  { name: "AWS", logo: "skill-icons:aws-light" },
   { name: "GitHub Actions", logo: "skill-icons:githubactions-light" },
-  { name: "Grafana", logo: "skill-icons:grafana-light" },
+  { name: "Prometheus", logo: "skill-icons:prometheus" },
 ];
 export const minors = [
-  { name: "Prometheus", logo: "skill-icons:prometheus" },
-  { name: "Nginx", logo: "skill-icons:nginx" },
-  { name: "FastAPI", logo: "skill-icons:fastapi" },
-  { name: "C", logo: "skill-icons:c" },
-  { name: "C++", logo: "skill-icons:cpp" },
-  { name: "VS Code", logo: "skill-icons:vscode-light" },
+  { name: "Ansible", logo: "skill-icons:ansible" },
+  { name: "Helm", logo: "devicon:helm" },
+  { name: "Traefik", logo: "devicon:traefikproxy" },
+  { name: "Grafana", logo: "skill-icons:grafana-light" },
+  { name: "Loki", logo: "devicon:grafanaloki" },
+  { name: "OpenTelemetry", logo: "logos:opentelemetry-icon" },
+  { name: "PostgreSQL", logo: "skill-icons:postgresql-light" },
+  { name: "Scaleway", logo: "devicon:scaleway" },
+  { name: "Authentik", logo: "selfhst:authentik" },
+  { name: "Tailscale", logo: "selfhst:tailscale-light" },
 ];
 
-function TechStack() {
+// Majeures en tuiles (mêmes que l'accueil), mineures en pastilles compactes.
+function TechStack(): JSX.Element {
   return (
-    <div>
-      <h3 style={{ textAlign: "center", marginBottom: 0 }}>Majeures</h3>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          marginBottom: 32,
-        }}
-      >
-        {majors.map((tech, index) => (
-          <Card key={index} logo={tech.logo} techName={tech.name} />
+    <div className={styles.stack}>
+      <h3 className={styles.groupTitle}>Majeures</h3>
+      <ul className={styles.majors}>
+        {majors.map((tech) => (
+          <li key={tech.name} className={styles.major}>
+            <Icon
+              icon={tech.logo}
+              className={styles.majorIcon}
+              aria-hidden="true"
+            />
+            <span>{tech.name}</span>
+          </li>
         ))}
-      </div>
-      <hr
-        style={{
-          maxWidth: 400,
-          margin: "32px auto",
-          border: 0,
-          borderTop: "2px dashed #bdbdbd",
-        }}
-      />
-      <h4
-        style={{
-          textAlign: "center",
-          marginTop: 0,
-        }}
-      >
-        Mineures
-      </h4>
-      <div
-        style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
-      >
-        {minors.map((tech, index) => (
-          <Card key={index} logo={tech.logo} techName={tech.name} />
+      </ul>
+      <h3 className={styles.groupTitle}>Mineures</h3>
+      <ul className={styles.minors}>
+        {minors.map((tech) => (
+          <li key={tech.name} className={styles.minor}>
+            <Icon
+              icon={tech.logo}
+              className={styles.minorIcon}
+              aria-hidden="true"
+            />
+            {tech.name}
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
