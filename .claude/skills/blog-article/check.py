@@ -15,7 +15,13 @@ FORBIDDEN_HEADINGS = re.compile(
     r"Exemple complet|Configuration complète|En résumé|Pour aller plus loin)",
     re.IGNORECASE,
 )
-PRONOUNS = re.compile(r"(?<![\w'])(je|j'|tu|vous|nous|on)(?![\w'])", re.IGNORECASE)
+PRONOUNS = re.compile(
+    r"(?<![\w'])(?i:(je|tu|vous|nous)(?![\w'])|j')"
+    # "on" as a pronoun; not "add-on", "on-premise", "on/off" nor an English
+    # title such as "Delete on Termination".
+    r"|(?<![\w'/-])[Oo][Nn](?![\w'/-])(?!\s+[A-Z])"
+)
+DIAGRAM = re.compile(r"[─│┌┐└┘├┤▶◀→←↓↑]|-->|->|==>")
 TICS = re.compile(
     r"(Il est important de|En résumé|En bref|génial|puissant|indispensable|"
     r"tout simplement|il suffit de)",
@@ -87,25 +93,29 @@ def main(path: Path) -> int:
     prose_no_inline = re.sub(r"<[^>]+>", "", prose_no_inline)
     prose_no_inline = re.sub(r"\]\([^)]*\)", "]", prose_no_inline)
 
+    # A text block counts as a diagram only if it draws boxes or arrows;
+    # otherwise it holds configuration, a query or a command: code.
     code_blocks = []
+    diagrams = 0
     for b in blocks:
         lang = b.group(1).strip()
         lines = b.group(2).rstrip("\n").count("\n") + 1
         if not lang:
             errors.append("code block without language")
-        if lang in ("text", "mermaid"):
+        if lang == "mermaid" or (lang == "text" and DIAGRAM.search(b.group(2))):
+            diagrams += 1
             continue
         code_blocks.append((lang, lines))
-    if len(code_blocks) > 1:
-        errors.append(f"{len(code_blocks)} code blocks (max 1): {code_blocks}")
     for lang, lines in code_blocks:
         if lines > 5:
             errors.append(f"{lang} block of {lines} lines (max 5)")
-    diagrams = len(blocks) - len(code_blocks)
-    if diagrams > 1:
-        errors.append(
-            f"{diagrams} text/mermaid blocks (max 1 diagram; options and regexps go in prose)"
+    total = sum(lines for _, lines in code_blocks)
+    if total > 20:
+        warns.append(
+            f"{total} lines of code in {len(code_blocks)} blocks (target 20 max)"
         )
+    if diagrams > 1:
+        errors.append(f"{diagrams} diagrams (max 1; options and regexps go in prose)")
 
     if "<!--truncate-->" not in body:
         errors.append("<!--truncate--> missing")
@@ -132,7 +142,7 @@ def main(path: Path) -> int:
     for line, raw in zip(prose_no_inline.splitlines(), raw_lines):
         if "—" in line or "–" in line:
             errors.append(f"dash: {line.strip()[:80]}")
-        for p in PRONOUNS.findall(line):
+        for p in (m.group(0) for m in PRONOUNS.finditer(line)):
             errors.append(f"pronoun '{p}': {line.strip()[:80]}")
         if re.match(r"^\s*[-*]\s+\*\*(?!`)", raw):
             warns.append(f"bold prose label in list: {raw.strip()[:80]}")

@@ -19,7 +19,6 @@ const LABELS = {
   "github-actions": "GitHub Actions",
   docker: "Docker",
   ansible: "Ansible",
-  python: "Python",
   prometheus: "Prometheus",
   opentelemetry: "OpenTelemetry",
 };

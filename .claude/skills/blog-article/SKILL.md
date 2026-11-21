@@ -56,11 +56,11 @@ Impersonnel et factuel. Le sujet des phrases est l'outil, le mécanisme, l'admin
 
 ## Code
 
-Le texte explique, le code n'illustre qu'une syntaxe. Un article contient **au plus un bloc de code, de 3 à 5 lignes**, et seulement quand la syntaxe elle-même est le point expliqué (une indentation qui change le sens d'une règle, le format d'une expression). Les options, champs et commandes se citent en code inline dans une phrase.
+Le texte explique, le code n'illustre qu'une syntaxe. Un bloc de code montre l'extrait dont parle la phrase qui le précède, quand la syntaxe elle-même est le point expliqué (une indentation qui change le sens d'une règle, le format d'une expression, la ligne qui active une option). **Chaque bloc fait 5 lignes au plus, et l'article en compte une vingtaine de lignes en tout au plus.** Les options, champs et commandes isolés se citent en code inline dans une phrase.
 
-N'entrent pas dans un article : manifeste Kubernetes, `values.yaml`, workflow, unité systemd, Dockerfile ou script complets, sortie de commande, commande d'installation, bloc suivi d'une paraphrase ligne à ligne.
+N'entrent pas dans un article : manifeste Kubernetes, `values.yaml`, workflow, unité systemd, Dockerfile ou script complets, sortie de commande, commande d'installation, bloc suivi d'une paraphrase ligne à ligne. Un fichier de configuration se réduit aux quelques lignes qui portent le mécanisme.
 
-En plus de ce bloc, un seul schéma est permis s'il montre un flux ou une séquence que la prose rend mal : bloc `text` ou Mermaid. Un bloc `text` qui contient des options, une expression régulière ou une commande est du code et compte comme tel. Les tableaux comparatifs sont permis. Tout bloc porte un langage (`text` pour un schéma ASCII).
+Un seul schéma est permis s'il montre un flux ou une séquence que la prose rend mal : bloc `text` ou Mermaid. Un bloc `text` qui contient une configuration, des options, une expression régulière ou une commande est du code et compte comme tel. Les tableaux comparatifs sont permis. Tout bloc porte un langage (`text` pour un schéma ASCII ou un langage absent de Prism).
 
 ## Tics à proscrire
 
