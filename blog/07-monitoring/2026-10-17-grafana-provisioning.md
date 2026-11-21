@@ -10,7 +10,7 @@ Un Grafana configuré à la main garde dans sa base un état que rien ne trace. 
 
 ## Inverser la source de vérité
 
-Par défaut, l'interface de Grafana est la source : on y construit un dashboard, Grafana l'enregistre dans sa base. Le *provisioning* inverse la relation. Grafana lit au démarrage des fichiers décrivant datasources et dashboards, et l'interface n'en est plus que le lecteur.
+Par défaut, l'interface de Grafana est la source : l'utilisateur y construit un dashboard, Grafana l'enregistre dans sa base. Le *provisioning* inverse la relation. Grafana lit au démarrage des fichiers décrivant datasources et dashboards, et l'interface n'en est plus que le lecteur.
 
 | | Construit dans l'interface | Provisionné depuis Git |
 | --- | --- | --- |
