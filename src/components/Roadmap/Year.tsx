@@ -26,8 +26,9 @@ function topicsOfYear(topics: ResolvedTopic[], year: number, currentYear: number
 
 // Navigation entre la vue d'ensemble et les pages année.
 export function RoadmapYears({ current }: { current?: number }): JSX.Element {
-  const { posts } = useRoadmap();
-  const last = Math.max(FIRST_YEAR, ...posts.map((p) => dateOf(p.permalink)?.getFullYear() ?? FIRST_YEAR));
+  const { posts, currentYear } = useRoadmap();
+  // L'année en cours apparaît dès janvier, avant son premier article.
+  const last = Math.max(FIRST_YEAR, currentYear, ...posts.map((p) => dateOf(p.permalink)?.getFullYear() ?? FIRST_YEAR));
   const years = Array.from({ length: last - FIRST_YEAR + 1 }, (_, i) => FIRST_YEAR + i);
   return (
     <nav className={styles.yearNav} aria-label="Roadmap par année">
