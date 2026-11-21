@@ -1,7 +1,7 @@
 ---
 title: "Cluster Kubernetes interne DiscoDiode"
-tags: [kubernetes, kubeadm, devops, infrastructure, helm, tailscale, traefik, authentik, longhorn, prometheus, grafana, loki]
-description: "Cluster Kubernetes bare-metal monté avec kubeadm sur 7 nœuds. Déploiement GitOps via Helm, entrée unique Traefik exposée sur Tailscale, SSO Authentik, stockage répliqué Longhorn, chaîne d'observabilité Prometheus, Grafana et Loki. Infrastructure interne de l'équipe SONU au CATIE."
+tags: [kubernetes, kubeadm, devops, infrastructure, helm, tailscale, traefik, authentik, longhorn, prometheus, grafana, loki, opentelemetry, tempo]
+description: "Cluster Kubernetes bare-metal monté avec kubeadm sur 7 nœuds. Déploiement GitOps via Helm, entrée unique Traefik exposée sur Tailscale, SSO Authentik, stockage répliqué Longhorn, chaîne d'observabilité Prometheus, Grafana, Loki et Tempo, avec des traces OpenTelemetry. Infrastructure interne de l'équipe SONU au CATIE."
 ---
 
 import Tabs from '@theme/Tabs';
@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
   start="2024"
   role="Ingénieur DevOps, conception et exploitation"
   domain="Infrastructure interne, Kubernetes bare-metal, observabilité"
-  stack={["Kubernetes", "kubeadm", "Calico", "Tailscale", "Traefik", "Authentik", "Longhorn", "Helm", "GitHub Actions", "Prometheus", "Grafana"]}
+  stack={["Kubernetes", "kubeadm", "Calico", "Tailscale", "Traefik", "Authentik", "Longhorn", "Helm", "GitHub Actions", "Prometheus", "Grafana", "Loki", "Alloy", "OpenTelemetry", "Tempo"]}
 />
 
 ## Contexte
@@ -132,7 +132,7 @@ La chaîne d'observabilité couvre trois couches. **Prometheus** collecte les m�
 
 En octobre 2026, j'ai posé un socle d'alertes Prometheus, envoyées sur Slack par Alertmanager : nœuds (disponibilité, disques, mémoire, redémarrage en attente après une mise à jour du noyau), workloads (CrashLoopBackOff, OOMKilled, rollouts incomplets, Jobs et CronJobs en échec), stockage (PVC, volumes Longhorn dégradés, Garage), certificats kubeadm et température des GPU. Les composants dont le chart n'expose pas d'annotation de collecte (Longhorn, Authentik, ARC) sont collectés par labels de pod sans redéployer leur release, et les alertes de CI indiquent le dépôt et le workflow concernés. Le détail et les pièges rencontrés sont dans l'article [Prometheus : alertes d'un cluster Kubernetes](/blog/2026/10/11/07-monitoring/prometheus-alertes-kubernetes).
 
-**Loki** centralise les logs de l'ensemble du cluster. En octobre 2026, je l'ai migré de Loki 2.6 vers Loki 3, avec Grafana Alloy à la place de Promtail, en fin de vie : un DaemonSet collecte les logs des pods, et une seconde instance verse les événements Kubernetes dans Loki, où ils restent 30 jours au lieu d'une heure dans l'API. J'ai repris les labels et les positions de lecture de Promtail pour que dashboards et requêtes continuent de fonctionner, et fait tourner les deux chaînes en parallèle avant de retirer l'ancienne ([Alloy](/blog/2026/10/25/07-monitoring/alloy)). Avoir les logs applicatifs et système au même endroit que les métriques permet de corréler un pic Prometheus avec les lignes de logs correspondantes sans changer d'outil. **Gatus** complète le tableau en donnant une vue binaire de la disponibilité de chaque service. Il a remplacé Uptime Kuma en septembre 2026 : ses sondes sont déclarées dans le `values.yaml` de son chart, donc versionnées et relues comme le reste de la configuration, au lieu d'être saisies dans une interface et stockées dans une base, et il expose ses résultats en métriques Prometheus.
+**Loki** centralise les logs de l'ensemble du cluster. En octobre 2026, je l'ai migré de Loki 2.6 vers Loki 3, avec Grafana Alloy à la place de Promtail, en fin de vie : un DaemonSet collecte les logs des pods, et une seconde instance verse les événements Kubernetes dans Loki, où ils restent 30 jours au lieu d'une heure dans l'API. J'ai repris les labels et les positions de lecture de Promtail pour que dashboards et requêtes continuent de fonctionner, et fait tourner les deux chaînes en parallèle avant de retirer l'ancienne ([Alloy](/blog/2026/10/25/07-monitoring/alloy)). Avoir les logs applicatifs et système au même endroit que les métriques permet de corréler un pic Prometheus avec les lignes de logs correspondantes sans changer d'outil. **Gatus** complète le tableau en donnant une vue binaire de la disponibilité de chaque service. Il a remplacé Uptime Kuma en septembre 2026 : ses sondes sont déclarées dans le `values.yaml` de son chart, donc versionnées et relues comme le reste de la configuration, au lieu d'être saisies dans une interface et stockées dans une base, et il expose ses résultats en métriques Prometheus. Depuis fin octobre 2026, **Tempo** stocke les traces des requêtes, décrites dans la section [Traces distribuées](#traces-distribuées).
 
   </TabItem>
   <TabItem value="services" label="Services internes">
@@ -150,6 +150,33 @@ Le cluster sert également de terrain de déploiement pour de nouveaux projets a
 
   </TabItem>
 </Tabs>
+
+## Traces distribuées
+
+Fin octobre 2026, j'ai ajouté les traces à la chaîne d'observabilité : une requête se suit maintenant de Traefik jusqu'à la base de données, span par span. Les principes sur lesquels repose cette chaîne sont présentés dans l'article [OpenTelemetry](/blog/2026/11/01/07-monitoring/opentelemetry).
+
+```mermaid
+flowchart LR
+    natifs["Traefik, Prometheus,<br/>Grafana, Garage"] -->|OTLP| gw["Passerelle<br/>alloy-traces"]
+    beyla["Beyla eBPF<br/>DaemonSet Alloy"] -->|OTLP| gw
+    tb["ThingsBoard<br/>agent Java"] -->|OTLP| gw
+    gw -->|tous les spans| conn["span metrics<br/>service graph"]
+    conn -->|remote write, exemplars| prom["Prometheus"]
+    gw -->|échantillonnage en fin de trace| tempo["Tempo"]
+    tempo --> garage["Bucket Garage"]
+    prom --> grafana["Grafana"]
+    tempo --> grafana
+```
+
+Les spans viennent de trois sources. Traefik, Prometheus, Grafana et Garage les produisent nativement en OTLP, Traefik pour toutes les requêtes. Les applications internes, dont aucune image n'embarque de SDK OpenTelemetry, sont tracées par **Beyla**, intégré à Alloy et déployé en DaemonSet : il observe par eBPF, depuis le noyau, les échanges HTTP, gRPC et SQL des pods de tous les namespaces hors `kube-system`, et injecte le contexte de trace dans leurs requêtes sortantes. J'ai écarté l'instrumentation par SDK pour ces applications, qui aurait demandé de modifier chaque image. Beyla tourne avec la capability `SYS_ADMIN` ; j'ai relevé sa limite mémoire à 2 Gio après des OOM kills pendant des rafales de CI, pour une consommation mesurée entre 610 et 819 Mio par nœud. Loki passe aussi par Beyla, son traçage natif échouant dans sa version 3.7.8. ThingsBoard, en Java, reçoit l'agent d'auto-instrumentation OpenTelemetry par un initContainer, pour ses traces seulement.
+
+Tous les spans convergent vers une passerelle Alloy, `alloy-traces`, en une réplique. Elle borne sa mémoire, ajoute à chaque span les métadonnées Kubernetes de son pod, puis écarte le bruit : sondes de santé, routes de métriques, collectes de Prometheus, watches de l'API Kubernetes, long-polls des runners ARC. Elle retire les paramètres d'URL et les en-têtes `authorization` et `cookie`, et renomme le service des pods de StatefulSet : sans cette règle, les spans de MariaDB étaient comptés sous Dolibarr et formaient 99,6 % des spans de sa p95.
+
+Les connecteurs span metrics et service graph de la passerelle calculent débit, erreurs, durées et appels entre services sur la totalité des spans, puis les écrivent dans Prometheus par remote write, avec leurs exemplars. Ces métriques ne gardent que le service et son namespace comme dimensions : le 27 octobre, les pods éphémères des runners ARC avaient ouvert 80 000 séries en une heure. L'échantillonnage vient ensuite. La passerelle attend 30 secondes la fin de chaque trace et ne transmet à Tempo que les traces en erreur, celles de plus d'une seconde et 10 % des autres. Les métriques restent ainsi calculées sur toutes les requêtes, alors que Tempo n'en stocke qu'une partie.
+
+**Tempo** 3 tourne en mode monolithique, en une réplique. Il écrit ses blocs dans un bucket Garage et son journal d'écriture sur un volume Longhorn, et garde les traces 30 jours. J'ai fixé sa limite mémoire à 3 Gio après une semaine de mesure (1,44 Gio au plus) : sans limite, une recherche TraceQL sur 30 jours pourrait épuiser la mémoire d'un nœud. Dans Grafana, un exemplar sur un graphe Prometheus ouvre la trace correspondante, et la datasource Tempo affiche la carte des services et mène d'un span aux logs Loki de son pod. Pendant la recette, j'ai arrêté la passerelle cinq minutes et demie sans effet sur les applications : un export de traces qui échoue ne bloque pas les requêtes. Gatus surveille sa disponibilité comme celle des autres services.
+
+Ces métriques alimentent aussi l'alerting. Depuis novembre 2026, `ServiceLatencyAnomaly` prévient sur Slack quand, pendant quinze minutes, la p95 d'un service dépasse trois fois sa référence, la moyenne de la p95 à la même heure sur les sept jours précédents. Un plancher de 0,5 s et un minimum de 50 requêtes sur cinq minutes évitent les alertes sur un service presque inactif ou très rapide, et un service de moins de huit jours, sans référence, n'en déclenche pas.
 
 ## Redémarrage automatique des nœuds
 
@@ -173,13 +200,19 @@ L'incident a aussi mis en évidence une dépendance : les [runners GitHub ARC](g
 
 ## Résultats
 
-Le cluster fait tourner sur sept nœuds les services du quotidien de l'équipe, les outils internes et les [runners CI](github-arc-kubeadm.md) de l'organisation, sans ressource cloud louée. Sa configuration est lisible dans les dépôts Helm et se déploie par la CI, sans accès SSH. Depuis le chantier de septembre 2026, toutes les applications web passent par une entrée unique en HTTPS valide, derrière une authentification commune dont les droits suivent les équipes GitHub ; les services avec état sont sur un stockage répliqué en trois exemplaires, hors stockage objet, et la restauration de la base la plus critique a été testée. Une dizaine de modes opératoires permettent à un autre membre de l'équipe d'intervenir sur les situations d'exploitation courantes.
+Le cluster fait tourner sur sept nœuds les services du quotidien de l'équipe, les outils internes et les [runners CI](github-arc-kubeadm.md) de l'organisation, sans ressource cloud louée. Sa configuration est lisible dans les dépôts Helm et se déploie par la CI, sans accès SSH. Depuis le chantier de septembre 2026, toutes les applications web passent par une entrée unique en HTTPS valide, derrière une authentification commune dont les droits suivent les équipes GitHub ; les services avec état sont sur un stockage répliqué en trois exemplaires, hors stockage objet, et la restauration de la base la plus critique a été testée. Depuis fin octobre 2026, chaque application web a un débit, un taux d'erreur et une latence calculés à partir de ses spans, sans ligne de code ajoutée, et une alerte prévient quand sa latence s'écarte de l'habitude. Une dizaine de modes opératoires permettent à un autre membre de l'équipe d'intervenir sur les situations d'exploitation courantes.
 
 ## Limites connues
 
 **Les sauvegardes restent sur le cluster.** Les snapshots Longhorn et les sauvegardes de Dolibarr sont stockés sur les disques du cluster lui-même : ils protègent d'une erreur de manipulation ou de la perte d'un disque, pas de la perte du cluster. La sauvegarde hors cluster est le prochain chantier.
 
 **Les mises à jour Kubernetes sont incomplètes.** La branche Kubernetes installée n'est plus maintenue, et les nœuds ne sont pas tous au même niveau de correctif. Mettre à jour un cluster kubeadm en production nécessite, nœud par nœud, de drainer le nœud, de mettre à jour kubeadm, puis kubelet et kubectl. La procédure est rédigée en mode opératoire et la montée de version est planifiée.
+
+**Les traces ne sont pas sauvegardées.** Ni le bucket Garage de Tempo ni son journal d'écriture ne sont sauvegardés : une perte de Garage efface l'historique des traces.
+
+**La propagation du contexte par Beyla est incomplète.** Sur les quatre nœuds en noyau 7.0, un bug du noyau désactive l'injection du contexte dans les requêtes sortantes : seul le lien de Traefik vers l'application est garanti, et l'appel d'un pod à un autre sur ces nœuds peut ouvrir une trace séparée. Le point est ouvert en novembre 2026.
+
+**Une partie des exemplars mène à une trace écartée.** Les exemplars sont posés avant l'échantillonnage : à la recette, 12 exemplars sur 80 ouvraient une trace, les autres désignant des traces que Tempo n'a pas gardées.
 
 ## Liens
 
