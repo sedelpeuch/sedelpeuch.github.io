@@ -292,7 +292,7 @@ const config: Config = {
     },
   },
   title: "Sébastien Delpeuch",
-  tagline: "Ingénieur DevOps & Robotique · CATIE Bordeaux",
+  tagline: "Ingénieur en informatique · CATIE Bordeaux",
   url: "https://delpeuch.net",
   baseUrl,
   favicon: "img/logo.svg",
