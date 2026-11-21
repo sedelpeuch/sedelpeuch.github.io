@@ -279,6 +279,18 @@ const removedDocTags = [
 ];
 
 const config: Config = {
+  future: {
+    faster: {
+      swcJsLoader: true,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: true,
+      lightningCssMinimizer: true,
+      rspackBundler: true,
+      rspackPersistentCache: true,
+      mdxCrossCompilerCache: true,
+      ssgWorkerThreads: false,
+    },
+  },
   title: "Sébastien Delpeuch",
   tagline: "Ingénieur DevOps & Robotique · CATIE Bordeaux",
   url: "https://delpeuch.net",
