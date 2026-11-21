@@ -1,43 +1,29 @@
 ---
 title: "OpenTelemetry : instrumentation Python"
-description: "Instrumenter une application Python avec OpenTelemetry : auto-instrumentation par opentelemetry-instrument et opentelemetry-bootstrap, configuration par variables OTEL_*, spans manuels, attributs, événements et exceptions, pièges des conventions sémantiques et des raccourcis non tracés."
-tags: [monitoring, scripting, devops]
+description: "L'auto-instrumentation OpenTelemetry trace une application Python sans modifier son code, mais seulement à travers les bibliothèques qu'elle connaît. Son fonctionnement, ses angles morts et les spans manuels qui les comblent."
+tags: [monitoring, devops]
 series: opentelemetry
 ---
 
-Une application FastAPI qui appelle une base de données et une API externe peut produire des [traces](./2026-11-08-opentelemetry-traces.md), des métriques et des logs OpenTelemetry sans qu'une ligne de son code mentionne OpenTelemetry. L'auto-instrumentation branche, au démarrage du processus, des sondes sur les bibliothèques déjà utilisées : le framework web, le client HTTP, le pilote de base de données. Elle couvre ce qui passe par ces bibliothèques, et rien d'autre. Cet article décrit son fonctionnement en Python, sa configuration, ses angles morts, puis l'instrumentation manuelle qui les complète.
+Une application FastAPI qui lit une base SQLite et appelle une API externe peut produire des [traces](./2026-11-08-opentelemetry-traces.md), des métriques et des logs OpenTelemetry sans qu'une ligne de son code mentionne OpenTelemetry. Écrire ces spans à la main dans chaque route serait long, et toujours incomplet : chaque appel HTTP sortant et chaque requête SQL demanderaient leur propre span et la transmission du contexte. L'auto-instrumentation branche ces sondes au démarrage du processus, sur les bibliothèques déjà utilisées : le framework web, le client HTTP, le pilote de base de données. Elle couvre ce qui passe par ces bibliothèques, et rien d'autre, ce qui laisse des angles morts à repérer trace en main.
 
 <!--truncate-->
 
-## Trois niveaux d'instrumentation
+## Ce que l'auto-instrumentation couvre
 
-L'effort d'instrumentation se répartit en trois niveaux, à combiner selon la question posée.
+Un reverse proxy instrumenté ou un agent eBPF produit déjà un span par requête entrante, mais ces spans mesurent la durée d'une requête sans en montrer la composition. L'auto-instrumentation descend d'un niveau : sans changer le code source, seulement la commande de démarrage, elle produit un span pour chaque passage dans une bibliothèque connue. Les étapes métier que ces bibliothèques ne voient pas restent à l'instrumentation manuelle, décrite plus bas.
 
-1. **Sans toucher à l'application** : un reverse proxy instrumenté produit un span par requête entrante, avec la route, le statut et la durée. Un agent eBPF peut aussi observer les appels réseau d'un processus depuis le noyau, quel que soit son langage. Ces spans restent en surface : ils mesurent la durée d'une requête sans en montrer la composition.
-2. **Auto-instrumentation** : des bibliothèques d'instrumentation s'accrochent aux frameworks et clients connus au lancement du processus. Le code source ne change pas, seule la commande de démarrage change.
-3. **Instrumentation manuelle** : le code crée lui-même des spans et des attributs pour les étapes métier que les bibliothèques ne voient pas.
+## Le mécanisme de l'auto-instrumentation
 
-## Auto-instrumentation
+Deux paquets forment la base : `opentelemetry-distro`, qui apporte l'API, le SDK et les outils de lancement, et `opentelemetry-exporter-otlp`. La commande `opentelemetry-bootstrap -a install`, exécutée une fois à la construction de l'image, inspecte les paquets installés et ajoute les bibliothèques d'instrumentation correspondantes. Pour une application qui utilise FastAPI, httpx et sqlite3, elle installe entre autres `opentelemetry-instrumentation-fastapi`, `-httpx` et `-sqlite3`, plus quelques instrumentations installées d'office (module `logging`, `threading`, `asyncio`). Avec un gestionnaire comme uv, `opentelemetry-bootstrap -a requirements` produit la liste au lieu de l'installer, pour l'ajouter aux dépendances déclarées du projet.
 
-Deux paquets suffisent : `opentelemetry-distro`, qui apporte le SDK et les outils de lancement, et `opentelemetry-exporter-otlp`. Une commande, exécutée une fois à la construction de l'image, inspecte les paquets installés et ajoute les bibliothèques d'instrumentation correspondantes :
+Le lancement passe ensuite par un préfixe : `opentelemetry-instrument uvicorn app:app` au lieu de `uvicorn app:app`. `opentelemetry-instrument` initialise le SDK, active chaque instrumentation installée, puis exécute la commande. Les instrumentations remplacent en mémoire certaines fonctions des bibliothèques (*monkey patching*) par des versions qui ouvrent un span, appellent la fonction d'origine, puis ferment le span. Le span `SERVER` de la requête entrante vient de FastAPI ; le span `CLIENT` de l'appel sortant vient de httpx, qui injecte au passage l'en-tête `traceparent` ; le span de la requête SQL vient de sqlite3.
 
-```bash
-opentelemetry-bootstrap -a install
-```
-
-Pour une application qui utilise FastAPI, httpx et sqlite3, elle installe entre autres `opentelemetry-instrumentation-fastapi`, `-httpx` et `-sqlite3`. Le lancement passe ensuite par un préfixe :
-
-```bash
-opentelemetry-instrument uvicorn app:app --host 0.0.0.0
-```
-
-`opentelemetry-instrument` initialise le SDK, active chaque instrumentation installée, puis lance la commande. Les fonctions de FastAPI, de httpx et de sqlite3 sont remplacées en mémoire par des versions qui ouvrent et ferment des spans autour de l'appel d'origine. Le span `SERVER` de la requête entrante vient de FastAPI, le span `CLIENT` de l'appel sortant vient de httpx, qui injecte au passage l'en-tête `traceparent`, et le span de la requête SQL vient de sqlite3.
-
-Sur Kubernetes, l'opérateur OpenTelemetry fait la même chose sans modifier l'image : une annotation sur le Deployment déclenche l'injection des bibliothèques et des variables d'environnement dans le pod.
+Seules les fonctions remplacées produisent des spans, et le remplacement doit avoir lieu avant que l'application ne les référence. Une bibliothèque importée et configurée avant l'initialisation du SDK, ou un objet créé par un chemin que l'instrumentation ne surveille pas, échappe à la trace.
 
 ## Configuration par l'environnement
 
-Toute la configuration passe par des variables `OTEL_*`, ce qui laisse le code et l'image inchangés d'un environnement à l'autre :
+Toute la configuration passe par des variables `OTEL_*`, ce qui laisse le code et l'image identiques d'un environnement à l'autre.
 
 | Variable | Rôle |
 |---|---|
@@ -46,81 +32,81 @@ Toute la configuration passe par des variables `OTEL_*`, ce qui laisse le code e
 | `OTEL_EXPORTER_OTLP_ENDPOINT` | adresse du Collector ou du backend |
 | `OTEL_EXPORTER_OTLP_PROTOCOL` | `grpc` ou `http/protobuf` |
 | `OTEL_TRACES_SAMPLER`, `OTEL_TRACES_SAMPLER_ARG` | échantillonnage |
-| `OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED` | branche le module `logging` sur le SDK |
+| `OTEL_SEMCONV_STABILITY_OPT_IN` | noms d'attributs émis (voir plus bas) |
 
-Les signaux exportés se choisissent avec `OTEL_TRACES_EXPORTER`, `OTEL_METRICS_EXPORTER` et `OTEL_LOGS_EXPORTER` (`otlp`, `console` ou `none`). L'exporteur `console`, qui écrit les données sur la sortie standard, permet de vérifier l'instrumentation sans backend.
+Les signaux exportés se choisissent avec `OTEL_TRACES_EXPORTER`, `OTEL_METRICS_EXPORTER` et `OTEL_LOGS_EXPORTER`. La valeur `otlp` envoie au Collector ou au backend, `none` coupe le signal, et `console` écrit les données sur la sortie standard, ce qui permet de vérifier l'instrumentation sans aucun backend.
 
-## Pièges de l'auto-instrumentation
-
-### Anciens noms d'attributs
-
-Plusieurs instrumentations Python émettent encore par défaut les attributs d'avant la stabilisation des conventions sémantiques : `http.method`, `http.status_code` et `db.system` au lieu de `http.request.method`, `http.response.status_code` et `db.system.name`. Les métriques changent aussi de nom (`http.server.duration` en millisecondes au lieu de `http.server.request.duration` en secondes). La variable `OTEL_SEMCONV_STABILITY_OPT_IN` règle ce comportement :
-
-- `http,database` : noms stables uniquement ;
-- `http/dup,database/dup` : les deux nomenclatures à la fois, le temps de migrer dashboards et alertes ;
-- absente : anciens noms.
-
-Positionner cette variable dès le premier déploiement évite d'avoir à migrer ensuite des requêtes écrites sur les anciens noms.
-
-### Raccourcis non tracés
-
-L'instrumentation de sqlite3 suit l'API DB-API : elle trace `cursor.execute()`. Le raccourci `connection.execute()`, qui crée un curseur en interne, échappe à l'instrumentation et la requête n'apparaît dans aucune trace, sans message d'erreur. D'autres bibliothèques ont des angles morts comparables : un appel fait par un client non instrumenté, un traitement lancé dans un thread ou une tâche dont le contexte n'est pas transmis. Une auto-instrumentation se vérifie trace en main, en comparant les spans reçus aux appels réellement faits par le code.
-
-### Modèle de processus
-
-`opentelemetry-instrument` initialise le SDK dans le processus qu'il lance. Un serveur qui crée ses processus de travail par *fork* (gunicorn, uvicorn avec `--workers`) ou qui recharge son code à chaud (`--reload`) peut se retrouver avec des processus dont l'exportation ne fonctionne pas, les threads d'export ne survivant pas au fork. La documentation recommande, dans ce cas, d'initialiser le SDK dans un hook post-fork du serveur plutôt qu'au lancement.
-
-### Spans parasites
-
-L'instrumentation ASGI de FastAPI produit, en plus du span `SERVER`, des spans internes pour chaque envoi de réponse (`http send`). Ils encombrent les cascades et multiplient les séries de métriques dérivées des spans. Ils se filtrent dans l'application ou dans le Collector.
+L'envoi des logs du module `logging` dépend de la version. Jusqu'à la version 1.40 du SDK, `OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true` ajoutait au logger racine un gestionnaire qui exporte chaque enregistrement en OTLP. Cette variable et ce gestionnaire sont dépréciés depuis, au profit de l'instrumentation `opentelemetry-instrumentation-logging`, que `opentelemetry-bootstrap` installe d'office. Avec les versions actuelles, l'ancienne variable reste donc absente : l'instrumentation branche son gestionnaire par défaut, et les logs partent en OTLP dès que `OTEL_LOGS_EXPORTER` vaut `otlp`. `OTEL_PYTHON_LOG_AUTO_INSTRUMENTATION=false` coupe cet envoi, `OTEL_PYTHON_LOG_HANDLER_LEVEL` fixe le niveau minimal exporté. Positionner les deux mécanismes à la fois ne double pas les logs : l'instrumentation détecte l'ancienne variable et s'efface, avec un avertissement.
 
 ## Instrumentation manuelle
 
 Quand une trace montre qu'un service a mis 700 ms sans dire à quoi, un span manuel découpe ce temps. Le code n'utilise que l'API ; le SDK branché par `opentelemetry-instrument` fait le reste.
 
 ```python
+from opentelemetry import trace
 tracer = trace.get_tracer("suivi")
-
 with tracer.start_as_current_span("interroger le transporteur") as span:
     span.set_attribute("suivi.colis.id", colis_id)
     reponse = transporteur.consulter(colis_id)
 ```
 
-`start_as_current_span` crée le span et le rend actif pendant le bloc : il devient l'enfant du span `SERVER` de FastAPI, et tout span créé à l'intérieur, comme celui d'un appel httpx, devient le sien. La sortie du bloc `with` ferme le span et fixe sa durée. Le nom passé à `get_tracer` devient le *scope* des spans, ce qui distingue dans le backend les spans écrits à la main de ceux des bibliothèques.
+`start_as_current_span` crée le span et le rend actif pendant le bloc `with`. Il devient l'enfant du span `SERVER` de FastAPI, et tout span créé à l'intérieur, comme celui d'un appel httpx, devient le sien. La sortie du bloc ferme le span et fixe sa durée. Le nom passé à `get_tracer` devient le *scope* des spans, ce qui distingue dans le backend les spans écrits à la main de ceux des bibliothèques.
 
-Les attributs métier prennent un préfixe propre à l'application (`suivi.colis.id`) pour ne pas entrer en collision avec les noms réservés des conventions sémantiques. Ils deviennent interrogeables : une recherche peut retrouver toutes les traces d'un colis donné.
+Les attributs métier prennent un préfixe propre à l'application (`suivi.colis.id`) pour ne pas entrer en collision avec les noms réservés des conventions sémantiques. Ils deviennent interrogeables : une recherche peut retrouver toutes les traces d'un colis donné, ce qu'une métrique ne permettrait qu'avec une série par colis.
 
-Un **événement** marque un instant dans la vie d'un span, avec ses propres attributs :
-
-```python
-span.add_event("statut déterminé", {"suivi.statut": statut})
-```
-
-Une exception qui sort du bloc `with` passe le span en `ERROR` et l'enregistre comme événement `exception`, avec son type, son message et sa pile d'appels. Un appel explicite à `span.set_status()` n'est utile que pour une erreur métier qui ne lève pas d'exception.
+`span.add_event()` marque un instant dans la vie du span, avec ses propres attributs, par exemple le moment où le statut d'un colis est déterminé. Une exception qui sort du bloc `with` passe le span en `ERROR` et l'enregistre comme événement `exception`, avec son type, son message et sa pile d'appels : c'est le comportement par défaut de `start_as_current_span`. Un appel explicite à `span.set_status()` ne sert que pour une erreur métier qui ne lève pas d'exception.
 
 Un span manuel se justifie par une question précise : une étape lente à isoler, une opération métier à mesurer, un attribut sur lequel filtrer. Instrumenter chaque fonction multiplie les spans sans rendre les traces plus lisibles.
 
-## Limites
+## Pièges et limites
 
-- **Couverture limitée aux bibliothèques connues** : un client maison, une bibliothèque sans instrumentation ou un raccourci non tracé n'apparaissent pas.
-- **Conventions en transition** : sans `OTEL_SEMCONV_STABILITY_OPT_IN`, les noms émis dépendent de la version de chaque instrumentation.
-- **Surcoût** : chaque span coûte quelques microsecondes et de la mémoire avant son export. Négligeable pour des requêtes HTTP, sensible dans une boucle serrée instrumentée à la main.
-- **Versions couplées** : `opentelemetry-distro` et les instrumentations suivent une numérotation commune (`0.66b1` pour un SDK `1.45.1`), à mettre à jour ensemble.
+### Anciens noms d'attributs
+
+Plusieurs instrumentations Python émettent encore par défaut les attributs d'avant la stabilisation des conventions sémantiques : `http.method`, `http.status_code` et `db.system` au lieu de `http.request.method`, `http.response.status_code` et `db.system.name`. Les métriques changent aussi : `http.server.duration`, en millisecondes, au lieu de `http.server.request.duration`, en secondes. Une alerte écrite sur l'un des noms ne voit rien quand l'autre est émis.
+
+`OTEL_SEMCONV_STABILITY_OPT_IN` règle ce comportement. La valeur `http,database` n'émet que les noms stables ; `http/dup,database/dup` émet les deux nomenclatures à la fois, le temps de migrer tableaux de bord et alertes ; sans la variable, les instrumentations gardent les anciens noms. Sans elle, les noms émis dépendent de la version de chaque instrumentation, et une mise à jour peut changer les attributs d'un service sans que son code ait bougé. Positionner `http,database` dès le premier déploiement évite d'avoir à migrer plus tard des requêtes écrites sur des noms condamnés.
+
+### Raccourcis non tracés
+
+L'instrumentation de sqlite3 suit l'interface DB-API de Python, et sa documentation précise que les curseurs doivent être créés explicitement pour être tracés. Le raccourci `connection.execute()`, qui crée un curseur en interne, ne produit aucun span : la requête n'apparaît dans aucune trace, sans le moindre message d'erreur. Avec l'exporteur `console`, une route qui lit la base par ce raccourci puis appelle l'API externe affiche son span `SERVER` et le span httpx, et rien entre les deux : la trace a l'air complète. D'autres bibliothèques ont des angles morts comparables : un appel fait par un client HTTP non instrumenté, un traitement lancé dans un thread ou une tâche dont le contexte n'est pas transmis. La couverture s'arrête aux bibliothèques connues, et rien ne signale l'absence d'un span. Une auto-instrumentation se vérifie donc trace en main, en comparant les spans reçus aux appels réellement faits par le code.
+
+### Serveurs à plusieurs processus
+
+`opentelemetry-instrument` initialise le SDK dans le processus qu'il lance. Un serveur qui crée ses processus de travail par *fork* duplique ce SDK déjà initialisé, alors que les threads qui exportent les données ne survivent pas au fork. La documentation signale que plusieurs workers peuvent casser la production des métriques : avec `uvicorn --workers`, traces et logs fonctionnent, les métriques non. Deux réponses sont proposées : lancer gunicorn avec des workers `uvicorn.workers.UvicornWorker`, ou initialiser le SDK après le fork, dans le hook `post_fork` de gunicorn. La seconde sort du mode sans code : le fichier de configuration de gunicorn crée lui-même les fournisseurs et les exporteurs, et le préfixe `opentelemetry-instrument` disparaît de la commande. Dans un conteneur, un seul worker par pod et une mise à l'échelle par le nombre de répliques évitent la question.
+
+### Spans parasites
+
+L'instrumentation ASGI, sur laquelle repose celle de FastAPI, produit en plus du span `SERVER` des spans internes pour chaque réception du corps de la requête et chaque envoi de la réponse. Une réponse envoyée en plusieurs morceaux en produit autant. Ils encombrent les cascades et multiplient les séries des métriques calculées à partir des spans. L'option `exclude_spans` de l'instrumentation (`["receive", "send"]`) les supprime à la source, mais elle ne se passe qu'en argument, dans le code. Pour la combiner avec le préfixe, `OTEL_PYTHON_DISABLED_INSTRUMENTATIONS=fastapi` désactive l'instrumentation automatique de FastAPI, l'application appelle elle-même `FastAPIInstrumentor.instrument_app()` avec l'option, et les autres bibliothèques restent instrumentées sans code. Un processeur de filtrage dans le Collector retire aussi ces spans, sans toucher à l'application.
+
+### Coût et versions
+
+Chaque span coûte quelques microsecondes et un peu de mémoire jusqu'à son export. Le surcoût reste négligeable devant une requête HTTP ou SQL, mais devient sensible dans une boucle serrée instrumentée à la main.
+
+Les paquets évoluent ensemble. `opentelemetry-distro` et les instrumentations suivent une numérotation commune en bêta (`0.66b1` pour un SDK en `1.45.1`), et chaque instrumentation épingle la version exacte de `opentelemetry-instrumentation` dont elle dépend : mélanger deux générations produit des conflits de dépendances. Ils se mettent à jour d'un bloc, en relançant `opentelemetry-bootstrap`.
+
+## Alternatives écartées
+
+L'initialisation du SDK dans le code de l'application (création explicite du `TracerProvider` et des exporteurs, appel à chaque instrumentation) donne un contrôle complet sur l'ordre d'initialisation et règle le cas des serveurs à plusieurs processus. Elle ajoute du code d'infrastructure dans chaque application, que l'auto-instrumentation réduit à un préfixe de commande.
+
+Sur Kubernetes, l'opérateur OpenTelemetry injecte les bibliothèques et les variables d'environnement dans le pod à partir d'une annotation du Deployment (`instrumentation.opentelemetry.io/inject-python`). L'image n'a plus à embarquer les paquets, mais l'instrumentation devient invisible depuis le dépôt de l'application, et l'opérateur s'ajoute aux composants à maintenir.
+
+Un agent eBPF (Beyla, versé au projet OpenTelemetry sous le nom d'OpenTelemetry eBPF Instrumentation) produit des spans sans toucher ni au code ni à l'image, pour tous les langages. Il voit les requêtes HTTP et SQL au niveau du réseau, mais pas les étapes internes d'un traitement, et demande des privilèges élevés sur le nœud.
 
 ## Conclusion
 
-En Python, l'auto-instrumentation se résume à deux paquets, une commande de bootstrap à la construction de l'image et un préfixe au lancement. Elle produit des spans, des métriques et des logs pour les bibliothèques qu'elle connaît, configurés entièrement par l'environnement. Ses angles morts se découvrent en lisant les traces : anciens noms d'attributs tant que les conventions stables ne sont pas activées, raccourcis non tracés, processus créés par fork. L'instrumentation manuelle comble les trous restants avec quelques spans et attributs placés là où une question reste sans réponse.
+Deux paquets, une commande à la construction de l'image et un préfixe au lancement donnent des spans, des métriques et des logs pour toutes les bibliothèques connues, ce qui suffit à la plupart des services Python. L'auto-instrumentation ne signale pas ses trous : raccourcis non tracés, noms d'attributs émis et comportement sous plusieurs workers se vérifient trace en main avant de s'y fier. Les spans manuels viennent ensuite, un par question restée sans réponse.
 
 ## Ressources utiles
 
 - [Python : auto-instrumentation sans code](https://opentelemetry.io/docs/zero-code/python/)
+- [Python : dépannage de l'auto-instrumentation](https://opentelemetry.io/docs/zero-code/python/troubleshooting/)
 - [Python : instrumentation manuelle](https://opentelemetry.io/docs/languages/python/instrumentation/)
 - [Variables d'environnement du SDK](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/)
 - [Migration des conventions HTTP](https://opentelemetry.io/docs/specs/semconv/non-normative/http-migration/)
-- [Bibliothèques d'instrumentation Python (opentelemetry-python-contrib)](https://github.com/open-telemetry/opentelemetry-python-contrib)
+- [Bibliothèques d'instrumentation Python (opentelemetry-python-contrib)](https://opentelemetry-python-contrib.readthedocs.io/)
 
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne cluster interne">Auto-instrumentation des applications internes FastAPI du cluster, conventions sémantiques stables activées dès le premier déploiement.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne cluster interne">Le cluster a retenu l'alternative eBPF : ses applications internes en Python sont tracées par Beyla, intégré à Alloy sur chaque nœud, sans paquet OpenTelemetry dans leurs images. Seul ThingsBoard embarque un agent d'auto-instrumentation, celui de Java.</ProjectLink>
 </ProjectLinks>
