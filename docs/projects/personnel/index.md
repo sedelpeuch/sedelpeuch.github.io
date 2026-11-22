@@ -3,7 +3,7 @@ title: "Personnel"
 ---
 
 :::info
-La plupart des projets personnels présentés relèvent du DevOps, domaine de mon activité d'ingénieur.
+La plupart des projets personnels présentés relèvent du DevOps, domaine d'activité de Sébastien.
 :::
 
 Cette section regroupe des projets réalisés à titre personnel, en dehors du cadre professionnel ou associatif. Ces projets sont principalement orientés vers l'exploration de technologies et d'outils liés au DevOps, mais peuvent également concerner d'autres domaines d'intérêt.

@@ -18,7 +18,7 @@ tags: [latex, documentation, make]
 
 Chaque nouveau rapport de stage ou de projet démarrait par la même chose : retrouver un ancien fichier `.tex`, effacer son contenu, coller un préambule générique, puis remettre les marges et les couleurs dans l'état voulu. Ce template est né de cette répétition. L'objectif était d'avoir un point de départ cohérent, compilable immédiatement, sans avoir à tout reconfigurer à chaque fois.
 
-Je l'ai assemblé en 2021 autour de la classe `rapportECL.cls`, adaptée d'un modèle de rapport de l'École Centrale de Lyon (d'où son nom), et je l'ai réutilisé depuis sur des rapports internes, des documents de projet et des livrables professionnels.
+Il a été assemblé en 2021 autour de la classe `rapportECL.cls`, adaptée d'un modèle de rapport de l'École Centrale de Lyon (d'où son nom), et réutilisé depuis sur des rapports internes, des documents de projet et des livrables professionnels.
 
 ## Structure du template
 
@@ -37,7 +37,7 @@ Le Makefile compile avec pdflatex vers `output/` pour ne pas encombrer la racine
 ## Résultats
 
 - **Un nouveau rapport démarre par un clone** : page de garde, en-têtes, styles de titres, blocs de code et bibliographie sont prêts sans reconfiguration.
-- **Une base commune** pour mes rapports de projet, documents internes et livrables, avec une mise en page identique d'un document à l'autre.
+- **Une base commune** pour les rapports de projet, documents internes et livrables, avec une mise en page identique d'un document à l'autre.
 - **Des diffs lisibles par section** dans Git, grâce au découpage du contenu en un fichier par section.
 
 ## Limites connues

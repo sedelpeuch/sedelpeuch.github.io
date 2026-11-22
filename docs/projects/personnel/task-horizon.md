@@ -14,7 +14,7 @@ description: "Application Kanban FastAPI + React déployée sur AWS EKS via Terr
 
 ## Contexte
 
-TaskHorizon est une application de gestion de tâches Kanban que j'ai développée seul, sans ambition produit. Son rôle est de servir de terrain d'expérimentation pour un ensemble de compétences DevOps et backend rarement réunies dans un même projet professionnel : conception d'API, modélisation de données, infrastructure as code, orchestration Kubernetes multi-environnement et automatisation CI/CD. Chaque décision (stack, stratégie de déploiement, gestion des secrets, résilience) est prise et assumée de bout en bout, sans contrainte organisationnelle héritée.
+TaskHorizon est une application de gestion de tâches Kanban développée seul, sans ambition produit. Son rôle est de servir de terrain d'expérimentation pour un ensemble de compétences DevOps et backend rarement réunies dans un même projet professionnel : conception d'API, modélisation de données, infrastructure as code, orchestration Kubernetes multi-environnement et automatisation CI/CD. Chaque décision (stack, stratégie de déploiement, gestion des secrets, résilience) est prise et assumée de bout en bout, sans contrainte organisationnelle héritée.
 
 L'API REST (FastAPI + PostgreSQL) et l'interface React constituent le support fonctionnel qui rend le projet concret. Le périmètre décrit ci-dessous porte sur ce qui l'entoure.
 
@@ -101,7 +101,7 @@ L'instance RDS est provisionnée de façon conditionnelle (`enable_rds`), chiffr
 
 ## Observabilité
 
-EKS Auto Mode gère les nœuds, mais pas la supervision des applications : sans configuration, CloudWatch ne voyait aucun pod. J'ai décrit l'observabilité du cluster en Terraform. L'add-on `amazon-cloudwatch-observability` collecte les métriques Container Insights et les logs des conteneurs, avec un rôle IAM obtenu par EKS Pod Identity plutôt que par le rôle des nœuds. J'ai corrigé deux réglages par défaut. Les groupes de logs sont créés par Terraform avant l'add-on, avec une rétention fixée, pour ne pas être conservés indéfiniment. Application Signals est désactivé : il aurait instrumenté l'API sans que je le demande, avec une facturation à la requête.
+EKS Auto Mode gère les nœuds, mais pas la supervision des applications : sans configuration, CloudWatch ne voyait aucun pod. L'observabilité du cluster est décrite en Terraform. L'add-on `amazon-cloudwatch-observability` collecte les métriques Container Insights et les logs des conteneurs, avec un rôle IAM obtenu par EKS Pod Identity plutôt que par le rôle des nœuds. Deux réglages par défaut sont corrigés. Les groupes de logs sont créés par Terraform avant l'add-on, avec une rétention fixée, pour ne pas être conservés indéfiniment. Application Signals est désactivé : il aurait instrumenté l'API sans demande explicite, avec une facturation à la requête.
 
 Côté application, l'API écrit désormais une ligne JSON par requête (méthode, gabarit de route, statut, durée), à un niveau qui dépend du statut. Un metric filter compte les erreurs de l'API et alimente une alarme, avec une autre sur l'absence de pod en service, une sur la mémoire et une sur le stockage RDS, toutes envoyées sur un topic SNS. Un dashboard versionné complète l'ensemble, avec la latence p95 par route calculée par Logs Insights. Le détail est dans l'article [AWS : CloudWatch sur EKS](/blog/2026/10/25/05-cloud/cloudwatch-eks).
 

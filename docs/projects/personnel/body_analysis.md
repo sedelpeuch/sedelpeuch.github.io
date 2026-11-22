@@ -1,181 +1,116 @@
 ---
 title: "Body Analysis"
-tags: [fastapi, react, postgresql, s3, docker, android, python, data-analysis, quantified-self]
-description: "Application de suivi et d'analyse corporelle (FastAPI, React, PostgreSQL, stockage S3) : ingestion des exports Samsung Health et synchronisation par une appli Android, analytics d'entraînement (TRIMP, ACWR, dérive cardiaque), récupération et sommeil, galerie photo confidentielle."
+tags: [fastapi, react, postgresql, s3, docker, android, python, mcp, data-analysis, quantified-self]
+description: "Application de suivi et d'analyse corporelle (FastAPI, React, PostgreSQL, stockage S3) : phases à règles dynamiques, séances de course, de natation et de musculation (montre et Hevy), mensurations, photos recalées automatiquement, synchronisation par une appli Android et serveur MCP."
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<img src="/img/project/body_analysis/dashboard.png" alt="Tableau de bord Body Analysis : objectifs de la phase en cours et courbes de poids, masse grasse et muscle" style={{maxWidth: '720px', width: '100%', margin: '2rem auto', display: 'block', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
+<img src="/img/project/body_analysis/phase.webp" alt="Page de phase de Body Analysis, avec des valeurs fictives : verdict de la prise de masse en cours, règle des calories, signaux de mini-sèche, courbes de poids et de masse grasse" style={{maxWidth: '800px', width: '100%', margin: '2rem auto', display: 'block', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
 
 <ProjectMeta
   start="2023"
   role="Auteur (projet solo)"
   domain="Analyse de données, quantified self"
-  stack={["FastAPI", "React", "PostgreSQL", "Garage", "Docker", "Android"]}
+  stack={["FastAPI", "React", "PostgreSQL", "Garage", "Docker", "Android", "MCP"]}
 />
 
 ## Contexte
 
-Samsung Health exporte des CSV et fichiers d'activité bruts, sans aucune visualisation exploitable. Passer par une application tierce aurait signifié confier des données de santé (poids, composition corporelle, fréquence cardiaque, photos de suivi) à un service externe. J'ai construit la chaîne moi-même (ingestion, modélisation, analytics, interface), déployée sur mon infrastructure personnelle et alimentée en continu depuis 2023.
+Samsung Health exporte des fichiers CSV et des fichiers d'activité bruts, sans visualisation exploitable. Passer par une application tierce aurait signifié confier des données de santé (poids, composition corporelle, fréquence cardiaque, photos de suivi) à un service externe. Toute la chaîne, de l'ingestion à l'interface, tourne donc sur l'infrastructure personnelle et reçoit des données en continu depuis 2023. Projet personnel, conçu et développé seul.
 
-Le projet a été réécrit en 2026 : la version initiale était une application Streamlit monolithique ; la version actuelle sépare une API FastAPI et une SPA React, avec une persistance PostgreSQL et un stockage objet S3 pour les photos.
-
-## Aperçu
-
-Les captures ci-dessous ont été réalisées sur une instance locale alimentée par un export Samsung Health fictif de quatre mois, importé par la même chaîne d'ingestion que les données réelles.
-
-<Tabs>
-  <TabItem value="dashboard" label="Aujourd'hui">
-    <img src="/img/project/body_analysis/dashboard.png" alt="Page Aujourd'hui : objectifs de la phase de sèche, calories moyennes, recomposition corporelle et courbes de composition" style={{width: '100%', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
-
-    Vue d'ensemble de la phase en cours : progression vers chaque objectif, calories moyennes et recomposition (masse grasse contre masse maigre).
-  </TabItem>
-  <TabItem value="entrainement" label="Entraînement">
-    <img src="/img/project/body_analysis/entrainement.png" alt="Page Entraînement : calendrier des séances, totaux, records et courbes de charge aiguë et chronique" style={{width: '100%', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
-
-    Calendrier, totaux, records personnels et charge d'entraînement : TRIMP cumulé sur 7 jours (charge aiguë) et sur 28 jours (charge chronique).
-  </TabItem>
-  <TabItem value="natation" label="Natation">
-    <img src="/img/project/body_analysis/natation.png" alt="Détail d'une séance de natation : SWOLF par nage et graphique des 82 longueurs colorées par nage avec les repos" style={{width: '100%', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
-
-    Détail d'une séance de natation : SWOLF moyen par nage, puis chaque longueur restituée avec sa durée, sa nage et les repos entre les séries.
-  </TabItem>
-  <TabItem value="recuperation" label="Récupération">
-    <img src="/img/project/body_analysis/recuperation.png" alt="Page Récupération : indicateurs de la dernière nuit, hypnogramme et phases de sommeil sur 90 jours" style={{width: '100%', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
-
-    Signaux nocturnes de la dernière nuit (FC, VFC, score d'énergie), hypnogramme et répartition des phases de sommeil sur 90 jours.
-  </TabItem>
-  <TabItem value="composition" label="Composition corporelle">
-    <img src="/img/project/body_analysis/composition.png" alt="Page Corps : variations du poids, calendrier des pesées et courbes de composition corporelle avec bandes de phases" style={{width: '100%', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
-
-    Poids, masse grasse, masse musculaire, masse maigre et eau, avec les phases (maintien puis sèche) superposées en bandes de couleur.
-  </TabItem>
-</Tabs>
-
-## Stack technique
-
-<div className="tech-list">
-  <div className="tech-list-row">
-    <div className="tech-list-label">Backend</div>
-    <div className="tech-list-value">Python, FastAPI, SQLAlchemy (async), Pydantic, Alembic, uv</div>
-  </div>
-  <div className="tech-list-row">
-    <div className="tech-list-label">Frontend</div>
-    <div className="tech-list-value">React, TypeScript, Vite</div>
-  </div>
-  <div className="tech-list-row">
-    <div className="tech-list-label">Mobile</div>
-    <div className="tech-list-value">Kotlin, Jetpack Compose, WorkManager, Samsung Health Data SDK</div>
-  </div>
-  <div className="tech-list-row">
-    <div className="tech-list-label">Données</div>
-    <div className="tech-list-value">PostgreSQL, stockage objet S3 (MinIO en développement, Garage en production)</div>
-  </div>
-  <div className="tech-list-row">
-    <div className="tech-list-label">Traitement d'image</div>
-    <div className="tech-list-value">Pillow</div>
-  </div>
-  <div className="tech-list-row">
-    <div className="tech-list-label">Conteneurisation</div>
-    <div className="tech-list-value">Docker, Docker Compose</div>
-  </div>
-  <div className="tech-list-row">
-    <div className="tech-list-label">CI/CD</div>
-    <div className="tech-list-value">GitHub Actions, GitHub Container Registry</div>
-  </div>
-  <div className="tech-list-row">
-    <div className="tech-list-label">Qualité</div>
-    <div className="tech-list-value">pytest, Vitest, Ruff, pre-commit</div>
-  </div>
-</div>
+La première version était une application Streamlit d'un seul bloc. Elle a été réécrite en 2026 en une API FastAPI et une interface React, avec une base PostgreSQL et un stockage objet S3 pour les photos. En novembre 2026, l'application a été refondue une seconde fois autour de trois questions : la phase avance-t-elle, est-ce que cela se voit, comment va l'entraînement. Elle répondait jusque-là à beaucoup de questions, sans répondre directement à aucune de celles-là.
 
 ## Architecture
 
-L'export ZIP est envoyé depuis le navigateur, ingéré en tâche de fond par l'API, puis restitué par le module d'analytics à la SPA. Depuis octobre 2026, une appli Android envoie aussi les nouvelles mesures deux fois par jour.
+Trois entrées mènent aux mêmes services du backend : la synchronisation de l'appli Android, l'interface web et le serveur MCP. Les mesures de la montre arrivent par l'appli Android, les séances de musculation par une synchronisation quotidienne avec Hevy, les phases et les photos par le navigateur.
 
 ```mermaid
-flowchart LR
-  export["Export Samsung Health (ZIP)"] --> user["Navigateur"]
-  user -->|"upload, consultation"| traefik["Traefik + Sablier"]
-  phone["Appli Android<br/>Samsung Health Data SDK"] -->|"lots de mesures, 2 fois par jour"| traefik
-  subgraph homelab["Homelab (Docker Compose)"]
-    traefik --> web["SPA React (nginx)"]
-    web -->|"/api"| api["API FastAPI"]
-    api --> ingest["Ingestion : extraction sûre, mapping CSV / JSON"]
-    ingest --> pg[("PostgreSQL")]
-    pg --> analytics["Analytics : TRIMP, ACWR, SWOLF, composition"]
-    analytics --> api
-    api --> s3[("Garage : photos")]
-  end
-  ci["GitHub Actions"] -->|"images API et front"| ghcr["GHCR"]
-  ghcr --> homelab
+flowchart TD
+  watch["Montre"] --> phone["Appli Android"]
+  phone -->|"mesures, jeton"| traefik["Traefik<br/>Sablier"]
+  user["Navigateur"] -->|Authelia| traefik
+  mcp["Client MCP"] -->|"jeton"| traefik
+  traefik --> web["Interface React"]
+  web --> api
+  traefik -->|"ingestion, MCP"| api["API<br/>FastAPI"]
+  hevy["Hevy"] -->|"1 fois par jour"| api
+  api --- pg[("PostgreSQL")]
+  api --- s3[("Garage<br/>photos")]
 ```
 
-## Ingestion des exports Samsung Health
+Les calculs (verdict de phase, règle des calories, progression des exercices, signal de récupération, découpage des séances, ratios des mensurations) vivent dans une partie du backend isolée de la base de données et du framework web : chaque calcul reçoit des données et renvoie un résultat, ce qui le rend testable sans infrastructure. Les services lisent la base avec SQLAlchemy, appellent ces calculs et renvoient le résultat. Rien ne tourne en tâche de fond : tout est calculé à la lecture ou à l'écriture.
 
-L'export Samsung Health est une archive ZIP volumineuse (1,3 Go décompressés pour l'export réel de ce projet, environ 88 000 fichiers) et non fiable par construction : c'est une entrée utilisateur, pas un format contrôlé. L'extraction vérifie donc les chemins de chaque entrée avant d'écrire le moindre octet, pour bloquer une évasion de répertoire (zip-slip), et suit le volume décompressé en continu pendant l'écriture plutôt que de se fier à la taille déclarée dans les métadonnées de l'archive, qu'un fichier malveillant contrôle entièrement. Le nombre d'entrées est également plafonné, pour se prémunir d'une bombe de décompression.
+## Refonte : supprimer pour répondre à trois questions
 
-Les CSV eux-mêmes varient selon la version de l'application source : champs absents, dates mal formées, types numériques instables. Chaque module d'ingestion valide et normalise sa source avant de la faire entrer dans le modèle relationnel, plutôt que de laisser une exception de parsing interrompre silencieusement le traitement d'une ligne.
+La refonte a d'abord été une suppression. L'application est passée de 32 tables à 25, de 51 outils MCP à 34 (en comptant ceux ajoutés depuis) et de neuf pages à quatre onglets. L'import de l'export ZIP de Samsung Health a été retiré : l'appli Android alimente désormais seule la base.
 
-Le format réel de l'export s'est révélé différent de celui des fixtures de test sur plusieurs points, sans qu'aucune erreur ne le signale. Une archive zippée depuis le téléphone place tout son contenu sous un dossier racine horodaté : l'import ne trouvait aucun fichier reconnu et se terminait en succès avec zéro ligne. Il descend désormais dans ce dossier, et un import sans aucune source reconnue est marqué en échec plutôt qu'en succès vide. De même, des colonnes préfixées dans les CSV de fréquence cardiaque et de SpO₂, un fichier d'histogramme lu à la place du stress et des JSON de variabilité cardiaque cherchés hors de leur sous-dossier faisaient perdre ces signaux en entier. Les fixtures reprennent maintenant la structure exacte d'un export réel, pour que les tests échouent sur ce type d'écart.
+La suppression des données passe par une migration Alembic sans retour arrière. Comme l'API applique les migrations à chaque démarrage, cette migration est verrouillée : elle refuse de s'exécuter tant qu'une variable d'environnement ne contient pas son identifiant exact. Sans cette variable, l'API ne démarre pas et la base reste intacte. Le retour en arrière est refusé par conception : la restauration passe par la sauvegarde. La procédure de production impose de sauvegarder la base et les photos, de vérifier que l'archive contient toutes les tables attendues, puis de compter les séances sur une restauration de cette sauvegarde, ce qui prouve en même temps qu'elle se restaure. La migration regroupe aussi chaque séance de musculation enregistrée par la montre en une seule séance, au lieu d'une par exercice.
 
 ## Synchronisation depuis le téléphone
 
-L'export ZIP demande une manipulation sur le téléphone à chaque mise à jour. En octobre 2026, j'ai développé une appli Android (Kotlin, Jetpack Compose) qui lit Samsung Health par le Samsung Health Data SDK et envoie les nouvelles mesures à l'API deux fois par jour, plus à la demande, par une route d'ingestion dédiée protégée par jeton. La planification passe par WorkManager, qui laisse Android décaler l'exécution selon l'état de la batterie et du réseau.
+L'export ZIP demandait une manipulation sur le téléphone à chaque mise à jour. En octobre 2026, une appli Android écrite en Kotlin avec Jetpack Compose l'a remplacé : elle lit Samsung Health par son SDK et envoie les nouvelles mesures à l'API, sur une entrée dédiée protégée par un jeton. Elle lit six types de données : composition corporelle, aliments, séances (avec tracé GPS et longueurs de bassin), sommeil, fréquence cardiaque et score d'énergie. Elle synchronise deux fois par jour, peu après chaque nouvelle séance ou pesée, et à la demande. Android peut décaler chaque passage selon l'état de la batterie et du réseau.
 
-Pour ne perdre aucune mesure sans tout renvoyer à chaque passage, l'appli lit l'API de changements du SDK, qui liste les mesures modifiées depuis un instant donné, avec un curseur par type de donnée. Un curseur n'avance que lorsque tous les lots contenant son type ont été acceptés par le serveur : une coupure réseau ou une panne de l'API, quelle que soit sa durée, est rattrapée à la synchronisation suivante, et un échec durable déclenche une alerte locale sur le téléphone. Chaque lecture recouvre les deux jours précédant le curseur, et l'API rend l'ingestion idempotente en reprenant les identifiants de l'export ZIP : une mesure reçue deux fois, ou déjà importée par une archive, n'est pas dupliquée. La première synchronisation se limite ainsi à trois jours, l'historique étant déjà en base.
+Pour ne perdre aucune mesure sans tout renvoyer à chaque passage, l'appli demande au SDK les mesures modifiées depuis la dernière synchronisation réussie, un repère par type de donnée. Ce repère n'avance que lorsque le serveur a accepté toutes les mesures de son type : une coupure réseau ou une panne de l'API, quelle que soit sa durée, est rattrapée au passage suivant, et un échec qui dure déclenche une alerte sur le téléphone. Chaque lecture reprend aussi les deux jours précédents, et l'API reconnaît chaque mesure à son identifiant, si bien qu'un envoi répété ne crée aucun doublon. Les types de données inconnus sont comptés puis ignorés, et une ancienne version de l'appli reçoit toujours une réponse positive, plutôt qu'un refus qu'elle renverrait en boucle. Après une séance de musculation, la synchronisation relance aussi le rapprochement avec les séances Hevy.
 
-Comme les fixtures avant eux, les premiers lots réels ont fait apparaître des écarts : les horodatages de l'export ZIP étaient à lire en UTC, et la première version du contrat ignorait les routines, le score d'énergie et les heures à la seconde. Des tests vérifient maintenant qu'une même mesure donne la même ligne par les deux chemins d'ingestion.
+## Entraînement : montre et Hevy
 
-L'application expose aussi un serveur MCP, protégé par jeton, qui permet à un assistant IA d'interroger les données. Son flux SSE traverse le nginx du frontend avec la mise en tampon désactivée, pour que les événements arrivent au fil de l'eau.
+La course et la natation viennent de la montre, la musculation de Hevy, qui reste l'outil de saisie : l'application n'écrit jamais dans Hevy. L'écran s'ouvre sur la semaine en cours, du lundi au dimanche, puis sur trois onglets : musculation, natation et course.
 
-## Récupération et sommeil
+**Synchronisation Hevy.** Les séances et les routines sont récupérées depuis Hevy une fois par jour, en lecture seule, au premier réveil de l'application ou tôt le matin si elle tourne déjà. L'export CSV de Hevy sert de secours et passe par le même import. Une séance y est reconnue à son heure de début, et son contenu est comparé à la version en base : réimporter un fichier n'ajoute rien, une séance modifiée est mise à jour, et une séance absente du fichier n'est jamais supprimée, pour qu'un export ancien ou partiel ne détruise rien. Chaque modification d'une routine dans Hevy en garde une version, pour conserver l'historique du programme. Une séance Hevy est rattachée à la séance de la montre qui la recoupe, à dix minutes près, quel que soit l'ordre d'arrivée des deux.
 
-Une page Récupération rassemble les signaux nocturnes et de repos que l'ingestion ignorait jusque-là : hypnogramme et phases de sommeil, fréquence cardiaque, SpO₂ et ronflement nocturnes, variabilité cardiaque, score d'énergie, fréquence cardiaque de récupération après effort. Chaque séance est aussi replacée dans son contexte (météo notamment) et comparée aux meilleures performances enregistrées.
+**Musculation.** Chaque exercice d'une routine porte un voyant de progression : « charger », « redescendre », « en cours » ou « à découvrir ». Il compare la charge conseillée à la dernière charge de travail, avec un objectif de trois séries de douze répétitions. L'application estime la charge maximale sur une répétition (formule d'Epley) et montre le volume hebdomadaire par muscle sur une silhouette, d'après une correspondance entre exercices et muscles réglable dans les Réglages.
 
-## Analytics d'entraînement
+**Course.** Le type d'une séance (fractionné, sortie longue ou hors programme) est déduit à l'affichage : la cadence enregistrée par la montre repère les blocs de course, dont le nombre est comparé à celui de l'étape en cours du programme. Rien n'est stocké, ce qui permet de changer la règle sans toucher à la base, et une correction manuelle l'emporte toujours. Le détail d'une séance affiche la fréquence cardiaque, la carte du parcours colorée selon la vitesse et, pour un fractionné, le découpage en répétitions et en récupérations.
 
-Le module `analytics/` du backend est délibérément isolé de la base de données et du framework web : chaque fonction prend des structures de données en entrée et retourne des structures en sortie, ce qui les rend testables sans infrastructure. Il couvre plusieurs métriques issues de la physiologie de l'effort :
+**Signal de récupération.** Quatre indicateurs sont évalués : la charge d'entraînement des sept derniers jours rapportée à celle des vingt-huit derniers (méthode TRIMP), la fréquence cardiaque de nuit, le sommeil et le score d'énergie. Une alerte ne se déclenche que lorsque deux indicateurs dépassent leur seuil, pour qu'elle ne sonne pas chaque semaine.
 
-- **TRIMP** (Training Impulse) : charge d'un entraînement calculée par intégration de la réserve de fréquence cardiaque sur la durée de la séance, pondérée par une fonction exponentielle qui accorde plus de poids aux efforts proches du maximum.
-- **Charge aiguë/chronique (ACWR)** : rapport entre la charge d'entraînement moyenne sur 7 jours et sur 28 jours, indicateur de risque de blessure par sur-sollicitation quand ce ratio s'éloigne trop de 1.
-- **Dérive cardiaque** : écart de fréquence cardiaque moyenne entre la première et la seconde moitié d'une séance à effort comparable, signe de fatigue ou de perte d'économie de course.
-- **Zones de fréquence cardiaque** : répartition du temps d'entraînement par zone (récupération à maximal), calculée à partir des échantillons de fréquence cardiaque et de la fréquence maximale de l'utilisateur.
+## Phases dynamiques
 
-D'autres modules du même dossier couvrent la composition corporelle, la nutrition, les records personnels et les phases (bulk, cut, maintien), chacun avec sa propre logique de calcul mais la même contrainte d'isolation. La VO₂max estimée par la montre est suivie dans le temps.
+Une phase (prise de masse, sèche, maintien) porte ses objectifs et, depuis novembre 2026, ses règles : une fourchette de rythme en kilos par semaine, une règle de calories, un seuil de tour de taille, une durée maximale et des pauses.
 
-Le détail de séance dépend du sport. Samsung Health enregistre chaque exercice d'une routine de musculation comme une séance distincte : une heure de salle apparaissait comme une dizaine de séances, ce qui faussait le calendrier et les statistiques. Les routines sont désormais ingérées et chaque exercice rattaché à la sienne ; une routine compte pour une séance, et sa page détaille échauffement, exercices, séries et volume. Pour la natation, chaque longueur est restituée (durée, nage, nombre de mouvements, SWOLF, repos) sous forme de barres colorées par nage. Pour la course, le bloc principal est isolé de l'échauffement et du retour au calme.
+**Moyennes sur sept jours.** Le verdict lit le poids, la masse grasse et le muscle en moyenne sur sept jours, pour qu'une pesée isolée ne fausse ni le départ ni la tendance. Avant quatorze jours de phase, l'application n'avance ni tendance ni conseil sur les calories, et la phase n'a pas de verdict tant que le poids n'est pas jugé.
+
+**Règle des calories proposée, jamais appliquée.** Tous les quatorze jours, la variation du poids moyen est comparée à deux seuils : en dessous du seuil bas, l'application propose d'ajouter un pas de calories, au-dessus du seuil haut d'en retirer un, et entre les deux de ne rien changer. La proposition reste bornée par un plancher et un plafond, et attend d'être appliquée, depuis l'interface ou par MCP. Chaque cible est une ligne datée de l'historique : rien n'est modifié en silence. Une pause pendant ces quatorze jours bloque l'ajustement.
+
+**Plafond de masse grasse et signaux.** Pendant une prise de masse, la masse grasse sert de plafond : l'atteindre déclenche le signal de mini-sèche, et ne compte jamais comme un objectif atteint. Un second signal suit la hausse du tour de taille depuis le début de la prise. L'application ne juge pas les photos : l'alerte renvoie vers leur comparaison, et la décision reste manuelle.
+
+**Plan et alertes.** La page de phase montre la phase en cours et les suivantes sur une frise. Avancer ou retarder la mini-sèche affiche les nouvelles dates avant de les enregistrer, avec les mêmes règles depuis l'interface et par MCP. Les alertes (signal, rythme hors fourchette, durée dépassée, ajustement à appliquer, fin de phase proche) apparaissent sur l'accueil, en haut de la page de phase et dans le bilan de phase exposé par MCP.
+
+## Mensurations
+
+Les relevés au ruban se saisissent, se corrigent et se suppriment depuis l'interface ou par MCP. Un relevé peut être partiel (le tour de taille chaque semaine, le reste chaque mois). L'écran montre les écarts depuis le début de la phase, une silhouette annotée avec la dernière valeur de chaque mesure, des ratios accompagnés chacun de son repère, de son sens et de sa source, et la symétrie entre gauche et droite. Ces relevés alimentent le signal de tour de taille des phases.
 
 ## Photos et confidentialité
 
-Les photos de suivi corporel sont par nature privées. Elles sont stockées dans un stockage objet S3 plutôt que sur le système de fichiers de l'application, à travers un client dédié qui centralise tous les appels au SDK S3 : le reste du backend ne connaît jamais le stockage directement, ce qui permet de le substituer par un double de test dans la suite unitaire. Ce découplage a servi en octobre 2026 : l'image MinIO ayant été retirée de Docker Hub, la production est passée sur une instance Garage dédiée sans aucune modification du code de l'API.
+Les photos de suivi corporel sont privées par nature. Elles sont rangées dans un stockage objet S3 plutôt que sur le disque de l'application, et un seul module du backend parle au stockage : le reste du code ne le connaît pas, et les tests le remplacent par une imitation. Ce découplage a servi en octobre 2026 : l'image MinIO ayant été retirée de Docker Hub, la production est passée sur une instance Garage dédiée sans modifier le code de l'API.
 
-Le traitement d'image ne fait confiance ni à l'extension du fichier envoyé ni au `Content-Type` déclaré par le client : le type réel est déterminé en inspectant les premiers octets du fichier. L'orientation est corrigée à partir du tag EXIF plutôt que d'une heuristique sur les dimensions de l'image, ce qui corrige un bug de l'ancienne version qui retournait à tort toute photo réellement prise en format paysage. En mode confidentiel, chaque photo est floutée par filtre gaussien à la volée, sans jamais mettre en cache le rendu flouté : l'original stocké reste la seule version durable.
+Le traitement des images repose sur Pillow et OpenCV. Le type réel d'un fichier envoyé est déterminé d'après son contenu, sans se fier à son extension ni à ce que déclare le navigateur. L'orientation est corrigée d'après les informations enregistrées par l'appareil photo. En mode confidentiel, chaque photo est floutée au moment de l'affichage, et la version floutée n'est jamais conservée : l'original reste la seule version stockée.
+
+Pour comparer deux photos d'un même angle de vue, l'API recale chaque photo sur la plus récente de cet angle. Le calcul travaille sur une copie réduite : il repère la peau et les contrastes, essaie plusieurs positions de départ, les affine chacune avec un algorithme d'alignement d'OpenCV, puis garde la meilleure. Le recalage se limite à une rotation, un agrandissement et un déplacement, puisqu'un corps ne se déforme pas autrement entre deux photos, et il est écarté si les deux images ne se ressemblent pas assez une fois alignées. Le résultat est enregistré sous forme de quelques nombres, que le navigateur applique à l'affichage, comme l'égalisation de la lumière : les images stockées ne sont jamais réécrites. Quand le calcul échoue, la galerie marque la photo « À recaler », et il suffit de désigner deux ou trois détails communs aux deux photos. Le serveur MCP permet aussi ce recalage manuel : il affiche chaque photo sous une grille pour relever la position d'un même détail, puis un aperçu des deux photos superposées avant d'enregistrer.
+
+## Serveur MCP
+
+Quand un jeton est configuré, l'API expose un serveur MCP ; sans jeton, il n'existe pas. Ses 34 outils passent par les mêmes services que l'interface : 21 en lecture (bilan de phase, courbes du corps, séances, progression d'un exercice, volume par muscle, signal de récupération, mensurations, photos) et 13 en écriture (phases, cibles de calories, report de la phase suivante, mensurations, photos, import Hevy, consignes d'exercice, correspondance des muscles). Les règles de validation sont celles de l'interface, y compris les bornes des objectifs et l'interdiction de faire se chevaucher deux phases. Les écritures se limitent volontairement à ce périmètre : supprimer une phase déjà commencée ou une photo passe par l'interface. En production, la synchronisation du téléphone et le serveur MCP contournent Authelia et s'authentifient par jeton. L'agrégateur MCP du [homelab](homelab.md) expose ces outils avec ceux des autres services.
 
 ## Déploiement
 
-L'application se compose de quatre services orchestrés par Docker Compose : PostgreSQL, le stockage objet (MinIO en développement, Garage en production), l'API FastAPI et le frontend, complétés par une seconde instance PostgreSQL dédiée aux tests d'intégration, pour que la suite de tests ne touche jamais aux données réelles. Le frontend a deux profils distincts : un service de développement (Node + Vite, rechargement à chaud) actif par défaut, et une image de production (build statique servi par nginx, sans runtime Node) qui ne démarre que sur demande explicite via un profil Compose, pour valider l'image avant bascule sans interrompre l'environnement de développement.
+L'application se compose de quatre services orchestrés par Docker Compose : PostgreSQL, le stockage objet (MinIO en développement, Garage en production), l'API et l'interface. Une seconde base PostgreSQL sert aux tests d'intégration, pour que les tests ne touchent jamais aux données réelles. L'interface a deux modes : un serveur de développement avec rechargement à chaud, actif par défaut, et une image de production, des fichiers statiques servis par nginx, que l'on démarre à la demande pour la valider avant la bascule sans interrompre le développement.
 
-Le conteneur de l'API applique les migrations Alembic à son démarrage, avant de lancer le serveur. Ce n'était pas le cas au départ : une nouvelle image déployée sur une base restée à l'ancien schéma échouait sur ses nouvelles tables. Lier la migration au démarrage garantit que le schéma suit toujours la version du code déployée.
+L'API applique les migrations Alembic à son démarrage, avant de servir la première requête : le schéma de la base suit toujours la version du code déployée.
 
-Le workflow GitHub Actions construit et publie les deux images (API et frontend) sur GitHub Container Registry à chaque push sur `master`, chacune taguée à la fois `latest` et par SHA de commit. Le build tourne depuis octobre 2026 sur le runner auto-hébergé de mon homelab, sans consommer les minutes GitHub Actions du dépôt privé. En production, l'application tourne sur mon [homelab](homelab.md) : utilisée quelques minutes par semaine, elle est arrêtée par Sablier après 30 minutes d'inactivité et redémarrée à la première requête, ce qui libère la mémoire occupée au repos par ses conteneurs.
+GitHub Actions construit les images de l'API et de l'interface et les publie sur GitHub Container Registry à chaque modification de la branche principale. Depuis octobre 2026, ce travail tourne sur le runner auto-hébergé du homelab. En production, l'application tourne sur le [homelab](homelab.md) : utilisée quelques minutes par semaine, elle est arrêtée par Sablier après 30 minutes d'inactivité et redémarrée à la première requête, ce qui libère la mémoire de ses conteneurs au repos. C'est aussi pourquoi la synchronisation Hevy se déclenche au réveil de l'API plutôt qu'à heure fixe.
 
-L'interface suit la charte graphique commune aux applications de mon homelab : thème sombre, un seul accent de couleur, nom de l'application en deux tons, libellés en français.
-
-## Tests
-
-La suite de tests backend compte 58 fichiers et près de 350 fonctions de test, réparties entre tests unitaires (calcul des métriques d'analytics, traitement d'image, sécurité de l'extraction ZIP) et tests d'intégration sur les services exposés par l'API. Le frontend dispose de sa propre suite Vitest.
+L'interface suit la charte graphique commune aux applications du homelab : thème sombre, un seul accent de couleur, nom de l'application en deux tons, libellés en français.
 
 ## Résultats
 
-- **Données de santé gardées sur mon infrastructure** : les exports Samsung Health sont ingérés et analysés sans passer par un service tiers, photos de suivi comprises.
-- **Ingestion d'un export réel de 1,3 Go** (environ 88 000 fichiers) par une extraction protégée contre l'évasion de répertoire et les bombes de décompression.
-- **Pertes de données silencieuses supprimées** : les écarts entre l'export réel et les fixtures (dossier racine horodaté, colonnes préfixées, fichiers mal identifiés) sont corrigés et couverts par des fixtures conformes, et un import sans source reconnue échoue au lieu de réussir à vide.
-- **Données à jour sans manipulation** : l'appli Android synchronise les mesures deux fois par jour, sans perte en cas de coupure et sans doublon avec les imports ZIP.
-- **Signaux auparavant ignorés exploités** : sommeil, récupération, routines de musculation regroupées en une séance, détail longueur par longueur de la natation.
-- **Déploiement sans intervention manuelle** : images publiées par la CI à chaque push, migrations appliquées au démarrage de l'API, conteneurs arrêtés au repos grâce à la mise en veille.
+Les mesures de la montre, les séances Hevy et les photos de suivi sont analysées sur l'infrastructure personnelle, sans service tiers. Les mesures arrivent du téléphone plusieurs fois par jour sans saisie ni export, et une coupure ne fait perdre aucune donnée.
+
+Depuis la refonte, l'application s'ouvre sur trois questions : où en est la phase, ce que montrent les photos, comment avance l'entraînement. Le rythme, les calories et les signaux d'une phase se recalculent à chaque consultation, et aucune cible ne change sans validation. Des photos prises à plusieurs semaines d'écart se comparent directement, sans retouche des originaux. Le serveur MCP lit les mêmes données et applique les mêmes règles que l'interface.
+
+## Limites connues
+
+- La synchronisation dépend de Hevy : quand la connexion échoue, les Réglages l'indiquent et l'export CSV prend le relais.
+- Seules la course, la natation et la musculation sont suivies. La refonte a supprimé les autres séances ainsi que la musculation antérieure à juin 2025, et l'historique de Samsung Health ne peut plus être importé.
 
 ## Liens
 

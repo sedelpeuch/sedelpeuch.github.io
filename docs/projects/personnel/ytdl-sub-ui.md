@@ -1,7 +1,7 @@
 ---
 title: "ytdl-sub-ui"
-description: "Interface web qui pilote ytdl-sub, le téléchargeur de chaînes YouTube vers Jellyfin : recherche et ajout de chaînes sans compte, rétention, réglages et suivi des passages, chaque écriture validée par ytdl-sub avant d'être mise en place."
-tags: [python, fastapi, htmx, docker, youtube, jellyfin, self-hosting]
+description: "Interface web qui pilote ytdl-sub, le téléchargeur de chaînes YouTube vers Jellyfin : recherche et ajout de chaînes sans compte, rétention, réglages et suivi des passages, serveur MCP, chaque écriture validée par ytdl-sub avant d'être mise en place."
+tags: [python, fastapi, htmx, docker, youtube, jellyfin, mcp, self-hosting]
 ---
 
 import Tabs from '@theme/Tabs';
@@ -11,21 +11,20 @@ import TabItem from '@theme/TabItem';
 
 <ProjectMeta
   start="2026"
-  end="2026"
   role="Auteur (projet solo)"
   domain="Vidéo auto-hébergée, application web d'administration"
-  stack={["Python", "FastAPI", "HTMX", "ytdl-sub", "Jellyfin", "Docker", "GitHub Actions"]}
+  stack={["Python", "FastAPI", "HTMX", "ytdl-sub", "Jellyfin", "MCP", "Docker", "GitHub Actions"]}
 />
 
 ## Contexte
 
-Mon [homelab](homelab.md) remplace YouTube par Jellyfin : chaque soir, ytdl-sub télécharge les nouvelles vidéos des chaînes suivies, sans publicité et sponsors coupés, et les range en séries. Le passage quotidien fait plus que télécharger : il supprime les vidéos déjà vues des chaînes "éphémères" et ajoute des recommandations calculées d'après ce qui a été regardé dans Jellyfin. Tout se règle dans des fichiers YAML : suivre une nouvelle chaîne demandait de retrouver son identifiant, d'éditer un fichier, de le versionner puis de redéployer. Ce qui manquait était une interface pour chercher une chaîne, l'ajouter, régler la rétention et voir ce que le passage du soir avait fait.
+Le [homelab](homelab.md) remplace YouTube par Jellyfin : chaque soir, ytdl-sub télécharge les nouvelles vidéos des chaînes suivies, sans publicité et sponsors coupés, et les range en séries. Ce passage quotidien fait plus que télécharger : il supprime les vidéos déjà vues des chaînes « éphémères » et ajoute des recommandations calculées d'après ce qui a été regardé dans Jellyfin. Tout se règle dans des fichiers YAML : suivre une nouvelle chaîne demandait de retrouver son identifiant, d'éditer un fichier, de le versionner, puis de redéployer. Il manquait une interface pour chercher une chaîne, l'ajouter, régler la rétention et voir ce que le passage du soir avait fait.
 
-Les applications existantes ont été évaluées puis écartées. L'interface officielle de ytdl-sub n'est qu'un éditeur de code dans le navigateur, sans recherche ni vue des abonnements. Pinchflat, TubeArchivist et MeTube remplaceraient ytdl-sub, et avec lui la purge des vidéos vues et les recommandations ; Pinchflat avait de plus un développement en pause et une rétention comptée depuis la date de téléchargement. J'ai donc écrit une application qui pilote ytdl-sub sans le remplacer : ytdl-sub télécharge, l'application édite ses fichiers.
+Les applications existantes ont été évaluées puis écartées. L'interface officielle de ytdl-sub n'est qu'un éditeur de texte dans le navigateur, sans recherche ni vue des abonnements. Pinchflat, TubeArchivist et MeTube remplaceraient ytdl-sub, et avec lui la purge des vidéos vues et les recommandations ; le développement de Pinchflat était de plus en pause, et sa rétention se comptait depuis la date de téléchargement. ytdl-sub-ui pilote donc ytdl-sub sans le remplacer : ytdl-sub télécharge, l'application édite ses fichiers. Écrite en octobre 2026, c'est un projet personnel, conçu et développé seul.
 
 ## Aperçu
 
-Captures réalisées sur une instance de démonstration : stack simulée, abonnements à des chaînes publiques de vulgarisation scientifique, passages fictifs.
+Les captures viennent d'une instance de démonstration : stack simulée, abonnements à des chaînes publiques de vulgarisation scientifique, passages fictifs.
 
 <Tabs>
   <TabItem value="modifier" label="Abonnements">
@@ -41,7 +40,7 @@ Captures réalisées sur une instance de démonstration : stack simulée, abonne
   <TabItem value="retention" label="Rétention">
     <img src="/img/project/ytdl-sub-ui/retention.png" alt="Rétention des groupes, avec l'avertissement : environ 68 vidéos seront effacées" style={{width: '100%', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
 
-    Nombre de vidéos et fenêtre de chaque groupe, avec l'héritage entre groupes et les surcharges par chaîne. Baisser une limite annonce combien de vidéos partiront au prochain passage.
+    Nombre de vidéos et fenêtre de chaque groupe, avec l'héritage entre groupes et les réglages propres à une chaîne. Baisser une limite annonce combien de vidéos partiront au prochain passage.
   </TabItem>
   <TabItem value="reglages" label="Réglages">
     <img src="/img/project/ytdl-sub-ui/reglages.png" alt="Réglages de l'heure du passage, de la résolution, de SponsorBlock et des recommandations" style={{width: '100%', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
@@ -53,7 +52,7 @@ Captures réalisées sur une instance de démonstration : stack simulée, abonne
 
     <img src="/img/project/ytdl-sub-ui/passage-detail.png" alt="Détail d'un passage : étapes, tableau par chaîne et erreurs d'une chaîne en échec" style={{width: '100%', marginTop: '1rem', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
 
-    L'historique donne le déclencheur, le statut et la durée de chaque passage, et le bandeau suit le passage en cours étape par étape. Le détail reprend le tableau "Download Summary" de ytdl-sub, une ligne par chaîne, avec les erreurs de téléchargement.
+    L'historique donne le déclencheur, le statut et la durée de chaque passage, et le bandeau suit le passage en cours étape par étape. Le détail reprend le résumé que ytdl-sub produit à chaque passage, une ligne par chaîne, avec les erreurs de téléchargement.
   </TabItem>
   <TabItem value="mobile" label="Vue mobile">
     <img src="/img/project/ytdl-sub-ui/mobile.png" alt="Écran Abonnements sur téléphone" style={{maxWidth: '320px', width: '100%', margin: '0 auto', display: 'block', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
@@ -62,96 +61,77 @@ Captures réalisées sur une instance de démonstration : stack simulée, abonne
   </TabItem>
 </Tabs>
 
-## Stack technique
-
-<div className="tech-list">
-  <div className="tech-list-row">
-    <div className="tech-list-label">Backend</div>
-    <div className="tech-list-value">Python, FastAPI, httpx, Jinja2, ruamel.yaml</div>
-  </div>
-  <div className="tech-list-row">
-    <div className="tech-list-label">Frontend</div>
-    <div className="tech-list-value">HTMX, rendu serveur, lisible sur téléphone</div>
-  </div>
-  <div className="tech-list-row">
-    <div className="tech-list-label">Données</div>
-    <div className="tech-list-value">Aucune base : l'état vit dans les fichiers de la stack (YAML, JSON, logs)</div>
-  </div>
-  <div className="tech-list-row">
-    <div className="tech-list-label">Intégrations</div>
-    <div className="tech-list-value">ytdl-sub (validation), API interne de YouTube, cron de la stack par fichiers et verrou partagé</div>
-  </div>
-  <div className="tech-list-row">
-    <div className="tech-list-label">CI/CD</div>
-    <div className="tech-list-value">GitHub Actions, GitHub Container Registry, Docker</div>
-  </div>
-  <div className="tech-list-row">
-    <div className="tech-list-label">Qualité</div>
-    <div className="tech-list-value">pytest, ty (vérification de types), ruff, uv</div>
-  </div>
-</div>
-
 ## Architecture
 
+ytdl-sub-ui est une application FastAPI dont les pages sont rendues par le serveur et mises à jour par HTMX. Elle n'a pas de base de données : tout l'état vit dans les fichiers de la stack de téléchargement, que l'application et la tâche planifiée de la stack se partagent.
+
 ```mermaid
-flowchart LR
-  user["Navigateur / mobile"] -->|recherche, ajout, réglages| app
-  subgraph homelab["Homelab"]
-    app["ytdl-sub-ui<br/>FastAPI + HTMX"]
-    app -->|écrit, après validation| settings[("Réglages<br/>config, abonnements,<br/>demande de passage")]
-    app -.->|lit| state[("État du cron<br/>verrou, passages, logs")]
-    app -->|effacement borné| videos[("Vidéos")]
-    cron["Cron de la stack<br/>chaque minute"] -->|lit| settings
-    cron -->|écrit| state
-    cron --> ytdl["ytdl-sub"]
-    ytdl --> videos
-    videos --> jf["Jellyfin"]
-  end
-  app -->|recherche sans compte| yt["YouTube"]
-  ci["GitHub Actions"] -->|image si tests verts| ghcr["GHCR"]
-  ghcr --> app
+flowchart TD
+  user["Navigateur"] -->|"recherche, réglages"| app["ytdl-sub-ui"]
+  mcp["Client MCP"] -->|jeton| app
+  gatus["Gatus"] -->|supervision| app
+  app -->|"écrit après validation"| settings[("Réglages<br/>abonnements<br/>demandes")]
+  app -.->|lit| state[("Verrou<br/>passages")]
+  cron["Tâche planifiée<br/>chaque minute"] -->|lit| settings
+  cron -->|écrit| state
+  cron --> ytdl["ytdl-sub"]
+  ytdl --> videos[("Vidéos")]
+  videos --> jf["Jellyfin"]
+  app -->|recherche| yt["YouTube"]
 ```
 
 ## Piloter sans remplacer
 
-L'application ne télécharge rien et ne lance jamais ytdl-sub pour un passage. Elle édite les fichiers que ytdl-sub lit déjà, et dépose une demande de passage que le cron de la stack consomme. Le cron tourne chaque minute : il lance un passage manuel si une demande est en attente, ou le passage planifié à l'heure réglée. Changer l'heure ne recrée donc jamais le conteneur, et "Lancer un passage" répond en moins d'une minute. Un battement de cœur écrit par le cron permet de signaler un planificateur arrêté en trois minutes.
+L'application ne télécharge rien et ne lance jamais un passage elle-même. Elle modifie les fichiers que ytdl-sub lit déjà, et dépose une demande de passage que la tâche planifiée de la stack prend en charge. Cette tâche tourne chaque minute : elle lance un passage si une demande attend, ou le passage du soir à l'heure réglée. Changer l'heure ne demande donc jamais de redémarrer un conteneur, et « Lancer un passage » démarre en moins d'une minute. La tâche laisse aussi un signe de vie à chaque minute, qui permet de repérer en trois minutes un planificateur arrêté.
 
-Tout l'état reste dans les fichiers de la stack : pas de base de données, un seul processus. L'historique des passages, le résumé par chaîne et les erreurs sont relus dans les fichiers et les logs que le cron écrit à chaque étape.
+L'historique des passages, le résumé par chaîne et les erreurs sont relus dans les fichiers et les journaux que la tâche écrit à chaque étape. L'application tourne en un seul processus.
 
 ## Un seul écrivain par fichier, un verrou partagé
 
-Le contrat entre l'application et la stack tient en une règle : chaque fichier a un seul écrivain. L'application écrit la configuration, les abonnements, ses réglages et la demande de passage ; le cron écrit le verrou, le battement et le compte rendu des passages. Toute écriture passe par un fichier temporaire, puis un renommage atomique.
+Le contrat entre l'application et la stack tient en une règle : chaque fichier n'a qu'un seul écrivain. L'application écrit la configuration, les abonnements, ses réglages et la demande de passage ; la tâche planifiée écrit le verrou, son signe de vie et le compte rendu des passages. Chaque écriture prépare d'abord un fichier complet à côté, puis le met en place d'un seul coup : un lecteur voit l'ancienne version ou la nouvelle, jamais un fichier à moitié écrit.
 
-Le cron tient un verrou pendant tout le passage, et l'application le prend, sans attente, pendant chacune de ses modifications. Une modification de la configuration ou des abonnements est donc refusée pendant un passage, et un passage ne peut pas démarrer en pleine écriture. Les réglages que ytdl-sub ne lit pas (heure, recommandations) restent modifiables pendant un passage, sans quoi le premier rattrapage, qui dure plusieurs soirs, bloquerait aussi le changement d'heure. Le bandeau d'état sonde ce même verrou toutes les cinq secondes ; la sonde est suspendue pendant les écritures de l'application, pour qu'elle ne fasse jamais échouer sa propre modification.
+La tâche tient un verrou pendant tout le passage, et l'application le prend, sans attendre, pendant chacune de ses modifications. Une modification de la configuration ou des abonnements est donc refusée pendant un passage, et un passage ne peut pas démarrer au milieu d'une écriture. Les réglages que ytdl-sub ne lit pas (heure, recommandations) restent modifiables pendant un passage : sans cela, le premier rattrapage, qui dure plusieurs soirs, bloquerait aussi le changement d'heure. Le bandeau d'état consulte ce verrou toutes les cinq secondes, sauf pendant les écritures de l'application, pour ne jamais faire échouer sa propre modification.
 
 ## Validation par ytdl-sub avant écriture
 
-Une erreur dans un fichier de configuration ne se verrait qu'à 20 h, par un passage en échec. Chaque modification est donc validée par ytdl-sub lui-même, épinglé à la même version que celle de la stack, avant d'être mise en place. Le simulateur intégré de ytdl-sub a été écarté : il contacte YouTube et dure environ une heure. La validation charge la configuration et les abonnements par l'API de ytdl-sub, dans un sous-processus isolé, hors ligne, en cinq secondes environ ; elle porte sur les octets exacts qui seront écrits. En cas de refus, rien n'est écrit et le message de ytdl-sub est affiché, nettoyé.
+Une erreur dans un fichier de configuration ne se verrait qu'à 20 h, par un passage en échec. Chaque modification est donc vérifiée par ytdl-sub lui-même, dans la version exacte qu'utilise la stack, avant d'être mise en place. Le mode de simulation de ytdl-sub a été écarté : il contacte YouTube et dure environ une heure. La vérification se contente de charger la configuration et les abonnements, à part, sans accès réseau, en cinq secondes environ, et porte sur le contenu exact qui sera écrit. En cas de refus, rien n'est écrit, et le message de ytdl-sub s'affiche.
 
-Le cycle complet d'une modification est fixe : verrou, relecture du fichier, contrôle de son empreinte contre celle du formulaire (pour ne pas écraser une modification faite ailleurs), modification, validation, copie de l'ancienne version dans un historique de vingt versions, puis remplacement atomique.
+Chaque modification suit le même cycle : prise du verrou, relecture du fichier, vérification qu'il n'a pas changé depuis l'ouverture du formulaire (pour ne pas écraser une modification faite ailleurs), modification, validation par ytdl-sub, copie de l'ancienne version dans un historique de vingt versions, puis mise en place.
 
 ## Préservation des commentaires YAML
 
-Les fichiers édités sont aussi lus et commentés à la main. L'écriture passe par ruamel.yaml en aller-retour : commentaires, ordre des clés, guillemets et accents sont conservés, et un aller-retour sans modification rend exactement les mêmes octets, ce qu'un test vérifie sur les fichiers de production. Une nouvelle chaîne est insérée à sa place alphabétique sans retrier l'existant, et une forme que l'application ne sait pas modifier est affichée en lecture seule et conservée telle quelle.
+Les fichiers modifiés par l'application sont aussi lus et commentés à la main. La bibliothèque ruamel.yaml a été retenue parce qu'elle réécrit un fichier sans le reformater : commentaires, ordre des clés, guillemets et accents sont conservés, et un fichier relu puis réécrit sans changement reste identique, ce qu'un test vérifie sur les fichiers de production. Une nouvelle chaîne s'insère à sa place alphabétique sans retrier les autres, et une entrée écrite sous une forme que l'application ne sait pas modifier s'affiche en lecture seule et reste intacte.
 
 ## Effacement borné
 
-Retirer une chaîne garde ses vidéos par défaut, car ytdl-sub n'efface jamais une série retirée. L'option "Effacer aussi les vidéos" annonce le nombre de vidéos et la taille, demande une confirmation, puis applique une série de contrôles : le dossier doit être directement dans le dossier des vidéos, ne pas être un lien symbolique, ni un dossier caché, ni la série des recommandations, contenir l'archive de la série (preuve de son identité), n'être utilisé par aucun autre abonnement, et le verrou doit être tenu. Le fichier d'abonnements est écrit d'abord, le dossier effacé ensuite : un échec laisse au pire une série orpheline, jamais un abonnement sans archive, qui relancerait le téléchargement de toute la chaîne.
+Retirer une chaîne garde ses vidéos par défaut, car ytdl-sub n'efface jamais une série retirée. L'option « Effacer aussi les vidéos » annonce le nombre de vidéos et la place occupée, demande une confirmation, puis vérifie une série de conditions. Le dossier doit se trouver directement dans le dossier des vidéos, ne pas être un raccourci vers un autre emplacement, ni un dossier caché, ni la série des recommandations. Il doit contenir l'archive de la série, qui prouve son identité, n'être utilisé par aucun autre abonnement, et l'application doit tenir le verrou. Le fichier d'abonnements est modifié d'abord, le dossier effacé ensuite : un échec laisse au pire une série orpheline, jamais un abonnement privé de son archive, qui relancerait le téléchargement de toute la chaîne.
 
-## Recherche YouTube sans compte
+## Recherche de chaînes sans compte
 
-La recherche de chaînes et l'aperçu des dernières vidéos passent par l'API interne qu'utilise la page web de YouTube, comme le calcul des recommandations de la stack. Aucun compte Google, aucune clé, aucun cookie : l'application ne porte aucun secret. Une URL collée ou un identifiant de chaîne est résolu vers l'adresse stable de la chaîne, qui ne change pas si son nom d'usage change. Les réponses de YouTube sont testées sur des fixtures enregistrées : la suite de tests n'ouvre aucun accès réseau.
+La recherche de chaînes et l'aperçu des dernières vidéos passent par la même source que le calcul des recommandations de la stack, sans compte Google ni clé d'accès : l'application ne détient aucun secret. Une URL collée ou un identifiant de chaîne est converti en adresse stable, qui ne change pas si la chaîne change de nom. Les tests rejouent des réponses enregistrées et ne font aucun appel réseau.
 
-## Spécification, puis développement par agents
+## Serveur MCP et supervision
 
-J'ai d'abord écrit le besoin, puis une spécification courte validée avant toute ligne de code : périmètre, contrat de fichiers avec la stack, maquettes de chaque écran, bornes de chaque réglage, et la liste des points à trancher avec ma recommandation pour chacun. Un plan découpait ensuite le travail en vagues de tâches indépendantes, menées par des agents de code. Chaque tâche se terminait par les tests, la vérification de types et le linter au vert, puis par une relecture contre la spécification avant de passer à la suivante ; une dernière tâche relisait l'ensemble du code contre la spécification. Pour développer sans toucher à la vraie stack, un simulateur reproduit le cron : battement, verrou, passages par étapes et comptes rendus au format de ytdl-sub.
+Quand un jeton est configuré, l'application expose un serveur MCP qui reprend les écrans sous forme d'outils ; sans jeton, il n'existe pas. En lecture, les outils couvrent les abonnements, les vidéos orphelines, la rétention, les réglages, l'état de la stack, les passages et leur journal, la recherche de chaînes et l'aperçu. En écriture, ils permettent d'ajouter, de modifier ou de retirer une chaîne, d'effacer une série orpheline, de régler la rétention d'un groupe, l'heure du passage, les recommandations et le téléchargement, et de demander un passage. Ils passent par les mêmes fonctions que les écrans, donc par le même verrou, la même validation par ytdl-sub, le même historique et le même effacement borné. Une modification de chaîne ou de rétention peut être simulée : l'outil annonce son effet, par exemple le nombre de vidéos qui seraient effacées, sans rien écrire. L'agrégateur MCP du [homelab](homelab.md) expose ces outils avec ceux des autres services.
+
+Gatus supervise l'application par deux accès : l'un vérifie qu'elle a démarré et lit ses fichiers, l'autre renvoie l'état de la stack, dont l'âge du dernier signe de vie de la tâche planifiée. Une sonde qui compare cet âge à un seuil repère une tâche arrêtée sans attendre le passage du soir. L'article [Gatus](/blog/2026/10/03/07-monitoring/gatus) décrit l'outil de supervision et son modèle de sondes.
+
+## Déploiement
+
+À chaque modification, GitHub Actions lance les tests et la vérification des types, et ne publie l'image sur GitHub Container Registry que si tout passe. L'application tourne en conteneur sur le homelab, à côté de la stack de téléchargement. Pour développer sans toucher à la vraie stack, un simulateur reproduit la tâche planifiée : signe de vie, verrou, passages par étapes et comptes rendus dans le format de ytdl-sub.
 
 ## Résultats
 
-- **Plus d'édition de YAML à la main** : chercher, ajouter, modifier ou retirer une chaîne se fait depuis le navigateur, y compris sur téléphone.
-- **Aucune écriture qui casse le passage du soir** : chaque modification est validée par ytdl-sub avant d'être mise en place, et l'ancienne version reste dans l'historique.
-- **Effets destructeurs annoncés et bornés** : le nombre de vidéos effacées est affiché avant l'envoi, et l'effacement ne peut viser que le dossier de la série retirée.
-- **ytdl-sub reste le moteur** : la purge des vidéos vues et les recommandations sont conservées, et l'application ne remplace aucun composant de la stack.
-- **Spécifiée et développée en une journée**, avec plus de six cents tests exécutés par la CI avant toute publication de l'image.
+Chercher, ajouter, modifier ou retirer une chaîne se fait depuis le navigateur, y compris sur téléphone, sans plus éditer de fichier à la main. Aucune modification ne peut casser le passage du soir, puisque ytdl-sub la valide avant sa mise en place, et l'ancienne version reste dans l'historique. Le nombre de vidéos effacées est annoncé avant l'envoi, et un effacement ne peut viser que le dossier de la série retirée. ytdl-sub reste le moteur : la purge des vidéos vues et les recommandations sont conservées.
+
+## Limites connues
+
+- La configuration et les abonnements ne se modifient pas pendant un passage ; pendant le premier rattrapage d'une nouvelle installation, qui dure plusieurs soirs, ils restent donc figés.
+- Une entrée écrite à la main sous une forme que l'interface ne sait pas modifier ne se change qu'en éditant le fichier.
+
+## Liens
+
+- [HomeLab](homelab.md) : infrastructure qui héberge la stack de téléchargement et l'application
+- [Gatus](/blog/2026/10/03/07-monitoring/gatus) : l'outil de supervision qui surveille l'application
 
 Le dépôt est privé.

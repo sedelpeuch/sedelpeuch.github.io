@@ -15,7 +15,7 @@ tags: [devops, docusaurus, documentation, veille]
 
 ## Contexte
 
-Ingénieur en informatique spécialisé robotique au CATIE, j'ai décidé en 2024 de me spécialiser en DevOps. Ce choix s'est accompagné d'un constat : expliquer un sujet est le test le plus fiable de sa compréhension. Écrire un article force à structurer, à trouver les bonnes formulations, à repérer ce que l'on croyait comprendre sans le maîtriser. Le blog est né de cette démarche : il sert d'abord à apprendre, ensuite à publier.
+Ingénieur en informatique spécialisé robotique au CATIE, Sébastien a décidé en 2024 de se spécialiser en DevOps. Ce choix s'est accompagné d'un constat : expliquer un sujet est le test le plus fiable de sa compréhension. Écrire un article force à structurer, à trouver les bonnes formulations, à repérer ce que l'on croyait comprendre sans le maîtriser. Le blog est né de cette démarche : il sert d'abord à apprendre, ensuite à publier.
 
 ## La roadmap comme fil directeur
 
@@ -33,7 +33,7 @@ Les articles sont aussi reliés aux projets qui les ont motivés : les articles 
 
 ## Écrire avec des assistants IA
 
-Depuis 2024, des assistants IA font partie de la démarche de rédaction : GitHub Copilot d'abord, puis Claude Code, dont les consignes de ton et de structure sont versionnées dans le dépôt (`CLAUDE.md`). Le processus type : notes brutes prises pendant l'exploration d'un outil ou d'un concept, puis structuration de ces notes en article, génération d'exemples de configuration, reformulation des passages trop denses, relecture. L'IA ne remplace pas le travail de compréhension : elle réduit le temps entre "j'ai compris" et "c'est lisible et structuré". Les articles dont je ne maîtrisais pas le sujet le montrent immédiatement à la relecture : la structure tient, mais le fond sonne creux.
+Depuis 2024, des assistants IA font partie de la démarche de rédaction : GitHub Copilot d'abord, puis Claude Code, dont les consignes de ton et de structure sont versionnées dans le dépôt (`CLAUDE.md`). Le processus type : notes brutes prises pendant l'exploration d'un outil ou d'un concept, puis structuration de ces notes en article, génération d'exemples de configuration, reformulation des passages trop denses, relecture. L'IA ne remplace pas le travail de compréhension : elle réduit le temps entre la compréhension d'un sujet et sa mise en forme lisible et structurée. Les articles dont le sujet n'était pas maîtrisé le montrent immédiatement à la relecture : la structure tient, mais le fond sonne creux.
 
 ## Résultats
 
