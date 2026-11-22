@@ -115,5 +115,5 @@ Kured convient aux clusters dont les nœuds reçoivent leurs mises à jour du ge
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne cluster interne">Redémarrage automatique des workers après les mises à jour du noyau, les nuits de semaine : alertes bloquantes limitées aux nœuds, à Longhorn et au stockage objet, sauvegardes de nuit protégées par sélecteur de pods, règle de drain Longhorn adaptée aux volumes à copie unique, notifications Slack.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne">Redémarrage automatique des workers après les mises à jour du noyau, les nuits de semaine : alertes bloquantes limitées aux nœuds, à Longhorn et au stockage objet, sauvegardes de nuit protégées par sélecteur de pods, règle de drain Longhorn adaptée aux volumes à copie unique, notifications Slack.</ProjectLink>
 </ProjectLinks>

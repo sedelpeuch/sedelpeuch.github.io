@@ -109,5 +109,5 @@ OpenTelemetry normalise la production et le transport de la télémétrie, sans 
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne cluster interne">Instrumentation OpenTelemetry du cluster : traces de Traefik et des applications internes envoyées en OTLP à Alloy, stockées dans Tempo et reliées aux métriques Prometheus et aux logs Loki dans Grafana.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne">Instrumentation OpenTelemetry du cluster : traces de Traefik et des applications internes envoyées en OTLP à Alloy, stockées dans Tempo et reliées aux métriques Prometheus et aux logs Loki dans Grafana.</ProjectLink>
 </ProjectLinks>

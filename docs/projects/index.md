@@ -6,6 +6,6 @@ Cette section regroupe l'ensemble des projets réalisés en contexte associatif,
 
 - Les projets associatifs concernent principalement des activités passées, réalisées durant la période étudiante.
 - Les projets personnels sont orientés vers l'exploration de technologies, principalement DevOps ([blog](/blog)), mais peuvent inclure tout autre centre d'intérêt.
-- Les projets professionnels sont issus du cadre professionnel : missions clients rendues publiques par l'employeur et outils internes, sans donnée client ni information confidentielle.
+- Les projets professionnels sont issus du cadre professionnel : missions pour des clients, publiques ou anonymisées, et outils internes.
 
 <ProjectIndex />

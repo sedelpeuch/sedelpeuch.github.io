@@ -3,10 +3,10 @@ title: "Professionnel"
 ---
 
 :::warning
-Les projets réalisés pour des clients ne sont présentés que s'ils ont fait l'objet d'une communication publique de l'employeur (rapports d'activité, site web, réseaux sociaux, etc.). Les projets d'outillage et d'infrastructure internes sont décrits sans donnée client ni information couverte par un accord de confidentialité. Les réalisations soumises à des restrictions de confidentialité ne figurent pas ici.
+Projets clients : présentés seulement s'ils sont publics ou sous forme anonymisée, sans nom, donnée ni élément permettant d'identifier le client. Les infrastructures et outils internes sont présentés par leur architecture et leur fonctionnement, sans détail sur leur sécurité.
 :::
 
-Cette section regroupe des projets réalisés dans le cadre professionnel. Les exemples présentés concernent des missions rendues publiques par l'employeur et des outils internes développés pour les équipes.
+Cette section regroupe des projets réalisés dans le cadre professionnel : missions pour des clients et outils internes développés pour les équipes.
 
 **Types de projets :**
 

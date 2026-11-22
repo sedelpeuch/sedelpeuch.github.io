@@ -108,5 +108,5 @@ Deux paquets, une commande à la construction de l'image et un préfixe au lance
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne cluster interne">Le cluster a retenu l'alternative eBPF : ses applications internes en Python sont tracées par Beyla, intégré à Alloy sur chaque nœud, sans paquet OpenTelemetry dans leurs images. Seul ThingsBoard embarque un agent d'auto-instrumentation, celui de Java.</ProjectLink>
+  <ProjectLink to="/docs/projects/professionnel/sonu-k8s-cluster" title="Cluster Kubernetes interne">Le cluster a retenu l'alternative eBPF : ses applications internes en Python sont tracées par Beyla, intégré à Alloy sur chaque nœud, sans paquet OpenTelemetry dans leurs images. Seul ThingsBoard embarque un agent d'auto-instrumentation, celui de Java.</ProjectLink>
 </ProjectLinks>
