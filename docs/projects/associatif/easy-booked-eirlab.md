@@ -20,13 +20,17 @@ EirLab propose des formations aux machines du fablab, réservées sur créneaux.
 
 ## Réalisations
 
-Plutôt que de développer un calendrier de zéro, je suis parti du plugin Easy Booked, créé par JoyDevs, et je l'ai adapté aux besoins d'EirLab :
+Plutôt que de développer un calendrier de zéro, le plugin Easy Booked, créé par JoyDevs, a servi de base et a été adapté aux besoins d'EirLab :
 
 - adaptation des couleurs et de la langue à l'identité du fablab ;
 - correction d'un bug d'affichage des rendez-vous ;
 - ajout d'un état "complet" pour les formations, qui restent visibles au lieu de disparaître du calendrier une fois pleines.
 
 Le développement s'est fait en lien avec les administrateurs et les formateurs, par cycles de tests et de corrections.
+
+## Rôle
+
+J'ai réalisé l'adaptation du plugin pour EirLab, en lien avec les administrateurs et les formateurs. Le plugin d'origine est l'œuvre de JoyDevs.
 
 ## Résultats
 

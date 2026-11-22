@@ -20,13 +20,17 @@ EirLab Community gère ses adhérents, ses formations et son stock dans Dolibarr
 
 ## Réalisations
 
-Wolf est une application Flask développée à partir de juillet 2022 avec Lilian Bonnet et Antoine Pringalle ; j'en suis le principal contributeur. Elle fait le lien entre les adhérents et Dolibarr :
+Wolf est une application Flask développée à partir de juillet 2022. Elle fait le lien entre les adhérents et Dolibarr :
 
 - **Adhérents** : identification par carte étudiante via un lecteur RFID, liaison du profil avec la fiche Dolibarr.
 - **Formations** : attribution des formations suivies aux membres.
 - **Stock** : recherche d'articles, ajout par référence ou par lecture de code-barres.
 
 Le projet a ensuite évolué vers un environnement d'interconnexion plus général entre outils de gestion (Dolibarr, Notion, GitHub), structuré en deux paquets Python : Wolf Core, qui définit et exécute les applications, et Wolf.
+
+## Rôle
+
+Wolf a été développée avec Lilian Bonnet et Antoine Pringalle ; j'en suis le principal contributeur.
 
 ## Résultats
 

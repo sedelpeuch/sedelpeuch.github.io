@@ -20,9 +20,13 @@ Depuis septembre 2021, EirLab Community dispose de deux imprimantes Ultimaker s�
 
 ## Réalisations
 
-Avec Antoine Pringalle, j'ai développé ultimaker-screen, une application JavaScript qui interroge l'API des imprimantes et s'affiche sur une télévision de l'open space, pilotée par un Raspberry Pi 3B+. L'écran alterne entre une vue générale de l'état de toutes les imprimantes et une vue détaillée par impression en cours : temps restant, températures et flux de la caméra intégrée.
+ultimaker-screen est une application JavaScript qui interroge l'API des imprimantes et s'affiche sur une télévision de l'open space, pilotée par un Raspberry Pi 3B+. L'écran alterne entre une vue générale de l'état de toutes les imprimantes et une vue détaillée par impression en cours : temps restant, températures et flux de la caméra intégrée.
 
-J'ai écrit la première version de l'application, reprise d'un prototype personnel, puis préparé sa publication (documentation, licence GPL 3). Antoine Pringalle a ensuite réécrit la partie serveur et ajouté un script qui redémarre le Raspberry Pi lorsqu'il ne parvient plus à se connecter au réseau, de sorte que l'écran reste opérationnel sans intervention.
+La première version de l'application est reprise d'un prototype personnel ; sa publication s'est accompagnée d'une documentation et d'une licence GPL 3. La partie serveur a ensuite été réécrite, et un script redémarre le Raspberry Pi lorsqu'il ne parvient plus à se connecter au réseau, de sorte que l'écran reste opérationnel sans intervention.
+
+## Rôle
+
+L'application a été développée avec Antoine Pringalle. J'ai écrit la première version et préparé sa publication (documentation, licence GPL 3) ; Antoine Pringalle a réécrit la partie serveur et ajouté le script de redémarrage du Raspberry Pi.
 
 ## Résultats
 

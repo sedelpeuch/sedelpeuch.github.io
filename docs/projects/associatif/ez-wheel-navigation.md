@@ -20,14 +20,18 @@ Le projet EZ Wheel Navigation constitue le volet "base mobile" de [Reachy Mobile
 
 ## Réalisations
 
-J'ai structuré le workspace ROS 1 et développé l'essentiel de ses paquets catkin (36 des 53 commits du dépôt) :
+Le workspace ROS 1 comprend les paquets catkin suivants :
 
 - `reachy_mobile_description` : modèle URDF de la base et du robot, visualisation dans RViz et simulation dans Gazebo ;
 - `reachy_mobile_slam` : cartographie avec `hector_mapping` à partir des scans laser ;
 - `reachy_mobile_navigation` : localisation AMCL sur la carte produite et planification avec `move_base`, plus un nœud Python qui expose l'envoi d'objectifs de navigation par une API Flask ;
 - `reachy_mobile_teleop` : téléopération de la base au clavier.
 
-J'ai réglé les paramètres de navigation au fil des essais sur la base réelle (portée de détection des obstacles, pondération des coûts, déplacement en marche avant uniquement) et relié le lancement de la navigation à l'API appelée depuis Reachy. Un autre membre de l'équipe a dessiné les pièces mécaniques (plaques d'adaptation de la base, pièce de maintien imprimée en 3D) et finalisé la configuration du planificateur local TEB. J'ai enfin rédigé le guide d'utilisation de la base pour les autres membres du fablab.
+Les paramètres de navigation ont été réglés au fil des essais sur la base réelle (portée de détection des obstacles, pondération des coûts, déplacement en marche avant uniquement), et le lancement de la navigation est relié à l'API appelée depuis Reachy. Un guide d'utilisation de la base est destiné aux autres membres du fablab.
+
+## Rôle
+
+J'ai structuré le workspace ROS 1 et développé l'essentiel de ses paquets catkin, réglé les paramètres de navigation, relié le lancement de la navigation à l'API appelée depuis Reachy et rédigé le guide d'utilisation. Un autre membre de l'équipe a dessiné les pièces mécaniques (plaques d'adaptation de la base, pièce de maintien imprimée en 3D) et finalisé la configuration du planificateur local TEB.
 
 ## Résultats
 

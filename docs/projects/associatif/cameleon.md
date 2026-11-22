@@ -20,10 +20,14 @@ Le fablab EirLab souhaitait pouvoir filmer ses ateliers et projets avec une cam�
 
 ## Réalisations
 
-J'ai développé Caméléon, un tableau de bord qui tient sur une clé USB : branché avec une caméra IP, il permet de rechercher les caméras disponibles sur le réseau, de choisir les options de capture, de lancer le flux vidéo, accessible en HTTP, et d'enregistrer les vidéos en MP4.
+Caméléon est un tableau de bord qui tient sur une clé USB : branché avec une caméra IP, il permet de rechercher les caméras disponibles sur le réseau, de choisir les options de capture, de lancer le flux vidéo, accessible en HTTP, et d'enregistrer les vidéos en MP4.
 
 - **Backend** : une API Flask qui pilote la caméra et s'appuie sur OpenCV pour la capture et le traitement d'image.
 - **Frontend** : une interface Bootstrap reprenant la base graphique du projet [Haricot](haricot-apringalle.md).
+
+## Rôle
+
+J'ai développé Caméléon.
 
 ## Résultats
 

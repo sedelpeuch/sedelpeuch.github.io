@@ -16,13 +16,13 @@ description: "Panneau lumineux animé au logo d'EirLab Community, en contreplaqu
 
 ## Contexte
 
-EirLab Community souhaitait un objet qui affiche son identité dans le fablab. J'ai réalisé en 2022 Luciole, un panneau lumineux à l'effigie de l'association, conçu pour réunir dans un même objet les trois compétences que le lieu met en avant : informatique, électronique et mécanique.
+EirLab Community souhaitait un objet qui affiche son identité dans le fablab. Luciole est un panneau lumineux à l'effigie de l'association, réalisé en 2022 et conçu pour réunir dans un même objet les trois compétences que le lieu met en avant : informatique, électronique et mécanique.
 
 ## Réalisations
 
-- **Structure** : j'ai découpé une base en contreplaqué de peuplier qui reproduit le contour du logo du fablab.
+- **Structure** : une base en contreplaqué de peuplier, découpée selon le contour du logo du fablab.
 - **Éclairage** : des LED RGB adressables, posées le long de ce contour, dessinent le logo.
-- **Animation** : j'ai programmé sur une carte Arduino les animations lumineuses ; l'ensemble est alimenté sur secteur.
+- **Animation** : les animations lumineuses sont programmées sur une carte Arduino ; l'ensemble est alimenté sur secteur.
 
 ## Résultats
 

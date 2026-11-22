@@ -22,7 +22,11 @@ Haricot est un projet d'Antoine Pringalle, membre d'EirLab : un boîtier qui aut
 
 Le boîtier repose sur un Raspberry Pi équipé de sa caméra. Une application web Flask, conçue par Antoine Pringalle, sert de tableau de bord : consultation des photos, réglage de l'intervalle de capture et génération de timelapses.
 
-J'ai écrit les scripts de génération des timelapses, crédités dans le README du dépôt : assemblage des photos en vidéo MP4 avec OpenCV, au nombre d'images par seconde choisi, et option d'interpolation qui insère entre deux photos leur image moyenne pour doubler le nombre d'images et lisser la vidéo.
+Les scripts de génération des timelapses, crédités dans le README du dépôt, assemblent les photos en vidéo MP4 avec OpenCV, au nombre d'images par seconde choisi, avec une option d'interpolation qui insère entre deux photos leur image moyenne pour doubler le nombre d'images et lisser la vidéo.
+
+## Rôle
+
+Le projet est celui d'Antoine Pringalle, qui a conçu le boîtier et l'application web Flask. J'ai écrit les scripts de génération des timelapses.
 
 ## Résultats
 

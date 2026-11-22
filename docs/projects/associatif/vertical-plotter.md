@@ -20,11 +20,13 @@ Le Vertical Plotter est le projet du groupe maker 2021 d'EirLab, mené avec Anto
 
 ## Réalisations
 
-Antoine Pringalle a pris en charge la mécanique et la préparation des dessins ; j'ai pris en charge l'électronique, le firmware et la documentation.
-
 - **Mécanique** : structure en matériaux accessibles (bois découpé au laser, pièces imprimées en 3D). Une seconde version a déplacé l'électronique, jusque-là centralisée sur la nacelle, pour corriger le centre de gravité de la première et stabiliser le tracé.
-- **Électronique** : j'ai conçu le shield de la carte (KiCad) qui relie deux moteurs pas à pas, pilotés par des drivers A4988, à un Arduino Uno ; un servomoteur MG90S lève et abaisse le feutre.
-- **Logiciel** : j'ai écrit le firmware C++ (PlatformIO), qui transforme les tracés vectoriels en trajectoires. L'Arduino Uno ne dispose que de 2 Ko de SRAM, trop peu pour charger un SVG : les points sont extraits en amont (outil web PathToPoints), puis un script Python, écrit par Antoine Pringalle, génère le code C++ qui les embarque directement dans le firmware.
+- **Électronique** : un shield de carte (KiCad) relie deux moteurs pas à pas, pilotés par des drivers A4988, à un Arduino Uno ; un servomoteur MG90S lève et abaisse le feutre.
+- **Logiciel** : le firmware C++ (PlatformIO) transforme les tracés vectoriels en trajectoires. L'Arduino Uno ne dispose que de 2 Ko de SRAM, trop peu pour charger un SVG : les points sont extraits en amont (outil web PathToPoints), puis un script Python génère le code C++ qui les embarque directement dans le firmware.
+
+## Rôle
+
+Antoine Pringalle a pris en charge la mécanique et la préparation des dessins, ainsi que le script Python de génération du code C++. J'ai pris en charge l'électronique (shield KiCad), le firmware et la documentation.
 
 ## Résultats
 

@@ -27,7 +27,11 @@ Les travaux menés sur le robot par les membres d'EirLab couvrent plusieurs axes
 - **Simulation** : modèle URDF sous PyBullet, avec prise en compte des contraintes de fermeture géométrique des pattes.
 - **Évolutions 2023** : nouveaux vérins à potentiomètres intégrés, contrôleurs moteurs 100 A, carte Nucleo L476RG et multiplexage des liaisons série.
 
-Côté logiciel, j'ai travaillé sur l'organisation du code. En 2022, j'ai versé le code du pilote dans le dépôt du planificateur de marche. En avril 2023, j'ai restructuré le logiciel dans l'organisation GitHub d'EirLab : un dépôt principal qui agrège en sous-modules trois dépôts séparés (pilote, contrôleur, planificateur), avec une documentation Sphinx et des workflows GitHub Actions de vérification du code (pylint, formatage black).
+Côté logiciel, le code a été réorganisé. En 2022, le code du pilote a été versé dans le dépôt du planificateur de marche. En avril 2023, le logiciel a été restructuré dans l'organisation GitHub d'EirLab : un dépôt principal qui agrège en sous-modules trois dépôts séparés (pilote, contrôleur, planificateur), avec une documentation Sphinx et des workflows GitHub Actions de vérification du code (pylint, formatage black).
+
+## Rôle
+
+Le robot a été conçu et construit par Julien Allali, et les membres d'EirLab ont contribué à ses évolutions. Ma part porte sur l'organisation du code : le versement du code du pilote dans le dépôt du planificateur de marche, puis la restructuration de 2023.
 
 ## Résultats
 
