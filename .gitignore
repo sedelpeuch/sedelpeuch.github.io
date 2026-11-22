@@ -13,3 +13,7 @@ devops
 
 # Brouillons privés de pages projet : jamais commités (dépôt public)
 docs/projects/prive/
+
+# Consignes et skills Claude : locaux, jamais commités (dépôt public)
+CLAUDE.md
+.claude/
