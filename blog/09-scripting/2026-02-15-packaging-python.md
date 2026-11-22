@@ -609,9 +609,3 @@ Les deux restent compatibles avec le système de packaging standard (wheel, sdis
 ## Conclusion
 
 Le packaging Python repose sur quelques notions : modules, packages, distributions (wheel et sdist), métadonnées et index (PyPI). setuptools et twine suffisent pour la plupart des cas ; Poetry et uv regroupent ces étapes dans un seul outil, mais produisent les mêmes distributions standard.
-
-## Application / Projet lié
-
-<ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/standards-python" title="standards-python">Templates et bonnes pratiques pour le packaging et la publication de packages Python.</ProjectLink>
-</ProjectLinks>

@@ -507,6 +507,5 @@ Pytest permet d'écrire des tests maintenables avec peu de code : les fixtures f
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/standards-python" title="standards-python">Framework de test du template : suite pytest avec couverture pour les projets de type module, exécutée en CI/CD.</ProjectLink>
   <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD">Exécution automatisée des tests pytest lors des push et pull requests.</ProjectLink>
 </ProjectLinks>

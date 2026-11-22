@@ -19,15 +19,15 @@ import TabItem from '@theme/TabItem';
 
 ## Contexte
 
-BlueNav conçoit des systèmes de propulsion électrique pour bateaux, incluant une suite logicielle Smart Navigation couvrant l'ancre virtuelle, le maintien dynamique de position (DPS) et l'autopilote. Dans le cadre d'un appel à projets de Voies Navigables de France, BlueNav développait le BlueBoat, un navire de 12 tonnes destiné à la navigation autonome sur voies fluviales. Le problème : les algorithmes de navigation et de positionnement dynamique ne pouvaient pas attendre la disponibilité du navire physique pour être testés. BlueNav a fait appel à l'équipe Systèmes Cyber-Physiques du CATIE pour construire un environnement de simulation permettant de travailler en amont. J'ai été l'ingénieur principal en charge de ce développement, mené du 15 juillet au 15 décembre 2023.
+BlueNav conçoit des systèmes de propulsion électrique pour bateaux, incluant une suite logicielle Smart Navigation couvrant l'ancre virtuelle, le maintien dynamique de position (DPS) et l'autopilote. Dans le cadre d'un appel à projets de Voies Navigables de France, BlueNav développait le BlueBoat, un navire de 12 tonnes destiné à la navigation autonome sur voies fluviales. Le problème : les algorithmes de navigation et de positionnement dynamique ne pouvaient pas attendre la disponibilité du navire physique pour être testés. BlueNav a fait appel à l'équipe Systèmes Cyber-Physiques du CATIE pour construire un environnement de simulation permettant de travailler en amont. Le développement a été mené du 15 juillet au 15 décembre 2023.
 
-## Ce que j'ai construit
+## Composants
 
 :::info Contrainte centrale
 Produire un environnement suffisamment fidèle pour que ses résultats servent à valider de vrais algorithmes, et pas seulement à une démonstration visuelle.
 :::
 
-J'ai développé l'environnement de simulation en trois axes indépendants :
+L'environnement de simulation se développe en trois axes indépendants :
 
 <Tabs>
   <TabItem value="navire" label="Modèle du navire">
@@ -37,11 +37,15 @@ J'ai développé l'environnement de simulation en trois axes indépendants :
     La simulation de l'environnement fluvial couvre les vagues, le vent et les courants, avec des paramètres configurables pour mettre les algorithmes face à des conditions représentatives du terrain d'opération de BlueNav.
   </TabItem>
   <TabItem value="capteurs" label="Suite de capteurs">
-    J'ai intégré la suite de capteurs embarqués en simulation : GPS, IMU, caméra thermique et LiDAR. Chaque capteur est paramétré pour produire des données proches du matériel réel, bruit et dérives inclus : c'est ce niveau de fidélité qui rend la simulation utile pour valider des algorithmes de fusion de données.
+    La suite de capteurs embarqués est intégrée en simulation : GPS, IMU, caméra thermique et LiDAR. Chaque capteur est paramétré pour produire des données proches du matériel réel, bruit et dérives inclus : c'est ce niveau de fidélité qui rend la simulation utile pour valider des algorithmes de fusion de données.
   </TabItem>
 </Tabs>
 
-J'ai également mis en place l'infrastructure Docker qui encapsule toute la pile logicielle (ROS 2 Humble, Gazebo, dépendances propriétaires), pour que l'environnement se lance à l'identique d'un poste à l'autre, ainsi que les ponts ROS-Gazebo qui permettent aux équipes BlueNav de brancher leur code de navigation sans modifier leur interface logicielle.
+L'infrastructure Docker encapsule toute la pile logicielle (ROS 2 Humble, Gazebo, dépendances propriétaires), pour que l'environnement se lance à l'identique d'un poste à l'autre ; les ponts ROS-Gazebo permettent aux équipes BlueNav de brancher leur code de navigation sans modifier leur interface logicielle.
+
+## Rôle
+
+L'équipe Systèmes Cyber-Physiques du CATIE a mené le projet pour BlueNav, qui a fourni les plans du navire. J'étais l'ingénieur principal en charge du développement : modèle du navire, environnement fluvial, suite de capteurs, infrastructure Docker et ponts ROS-Gazebo. Un collègue a ajouté le second modèle de bateau, le Spirit.
 
 ## Résultats
 

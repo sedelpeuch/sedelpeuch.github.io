@@ -4,9 +4,6 @@ description: "C-Rob, démonstrateur RoboCup@Home du CATIE conçu en interne : ba
 tags: [robotique, ros2, zephyr, micro-ros, nav2, gazebo, docker, architecture]
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 <img src="/img/project/crob/crob.png" alt="Le robot C-Rob : base mobile holonome et module central C2I avec écran et caméras" style={{maxWidth: '320px', width: '100%', margin: '2rem auto', display: 'block', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
 
 <ProjectMeta
@@ -22,118 +19,95 @@ Pendant six ans, l'équipe CATIE Robotics a concouru à la RoboCup@Home avec un 
 
 Le cahier des charges est issu de l'analyse des épreuves RoboCup@Home et des besoins du CATIE : navigation rapide et précise en intérieur (passage de portes de 70 cm, évitement d'obstacles dynamiques, suivi de personnes), perception de l'environnement à 360°, détection et ré-identification de personnes, et à terme manipulation d'objets. La plateforme est pensée comme un empilement de modules détachables :
 
-- **Base mobile** : trois roues omnidirectionnelles (cinématique holonome), trois LiDAR 2D en couronne, batteries et carte d'alimentation, calculateur temps réel (ECU) sous Zephyr.
+- **Base mobile** : trois roues omnidirectionnelles (cinématique holonome), trois LiDAR 2D en couronne, batteries et carte d'alimentation, calculateur temps réel sous Zephyr.
 - **Module central C2I** : PC embarqué sous ROS 2 Jazzy, caméras RGB-D OAK-D, écran, haut-parleur et bandeaux LED pour l'interaction.
 - **Module bras** : prévu dans la spécification, pas encore intégré.
 
-## Aperçu
-
-<Tabs>
-  <TabItem value="description" label="Description URDF">
-    <img src="/img/project/crob/urdf.png" alt="Rendu 3D de la description URDF de C-Rob : base mobile et module C2I" style={{maxWidth: '360px', width: '100%', margin: '0 auto', display: 'block', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
-
-    Rendu des maillages de la description URDF/XACRO (base mobile et module C2I), celle utilisée par RViz et par la simulation Gazebo.
-  </TabItem>
-  <TabItem value="materiel" label="Architecture matérielle">
-    <img src="/img/project/crob/architecture-materielle.png" alt="Schéma de l'architecture matérielle de C-Rob : réseau Ethernet, bus CAN, alimentation des modules" style={{width: '100%', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-300)'}} />
-
-    Schéma d'architecture issu de la phase de spécification (2024) : réseau Ethernet, liaisons capteurs et budget d'alimentation de chaque module.
-  </TabItem>
-</Tabs>
-
 ## Architecture
 
-L'architecture logicielle suit deux niveaux. Les microcontrôleurs de la base mobile, sous Zephyr RTOS, gèrent tout ce qui relève du temps réel et de la sûreté : commande des moteurs, odométrie, alimentation, arrêt d'urgence. Ils dialoguent entre eux sur bus CAN. L'ECU expose la base au reste du robot sous forme de nœud ROS 2 grâce à micro-ROS, sur UDP via Ethernet. Le PC embarqué exécute ROS 2 Jazzy : chaque bloc fonctionnel (bringup matériel, description, navigation, perception, interface web) est un paquet distinct livré dans sa propre image Docker.
+Le logiciel se répartit sur deux niveaux. Les microcontrôleurs de la base mobile, sous Zephyr, gèrent tout ce qui relève du temps réel et de la sûreté : commande des moteurs, odométrie, alimentation, arrêt d'urgence. Ils dialoguent entre eux sur un bus CAN. Le calculateur temps réel de la base se présente au reste du robot comme un nœud ROS 2 ordinaire, grâce à micro-ROS, par le réseau Ethernet interne. Le PC embarqué exécute ROS 2 : chaque bloc fonctionnel (pilotes matériels, description du robot, navigation, perception, interface web) est un paquet distinct, livré dans sa propre image Docker.
 
 ```mermaid
-flowchart LR
-    subgraph base["Base mobile - Zephyr"]
-        psu["Carte d'alimentation<br/>batteries, arrêt d'urgence"]
-        motors["3 contrôleurs moteur<br/>roues holonomes"]
-        ecu["ECU STM32<br/>micro-ROS"]
-        psu -- CAN --- ecu
-        motors -- CAN --- ecu
-    end
-    lidar["3 LiDAR 2D"]
-    oak["2 caméras OAK-D"]
-    led["Contrôleur LED"]
-    subgraph pc["PC embarqué - ROS 2 Jazzy, conteneurs Docker"]
-        agent["micro-ROS agent"]
-        bringup["crob_bringup<br/>pilotes, odométrie, arrêt"]
-        desc["crob_description<br/>URDF, TF"]
-        nav["crob_navigation<br/>Nav2, Cartographer"]
-        perc["crob_perception<br/>modèles IA à la demande"]
-        web["crob_webui<br/>supervision, téléopération"]
-    end
-    sim["Gazebo<br/>jumeau numérique"]
-    ecu -- "UDP, Ethernet" --> agent
-    agent --> bringup
-    lidar -- Ethernet --> bringup
-    oak -- USB --> bringup
-    bringup -- série --> led
-    bringup --> nav
-    bringup --> perc
-    desc --> nav
-    nav --> web
-    perc --> web
-    sim -. "remplace le matériel" .-> nav
+flowchart TD
+  subgraph base["Base mobile, Zephyr"]
+    psu["Carte d'alimentation"] -->|CAN| ecu["Calculateur<br/>temps réel"]
+    mot["3 contrôleurs<br/>moteur"] <-->|CAN| ecu
+  end
+  subgraph pc["PC embarqué, ROS 2"]
+    pilotes["Pilotes matériels"]
+    nav["Navigation"]
+    perc["Perception"]
+    web["Interface web"]
+  end
+  ecu -->|"micro-ROS,<br/>Ethernet"| pilotes
+  capteurs["3 LiDAR,<br/>2 caméras"] --> pilotes
+  pilotes --> nav
+  pilotes --> perc
+  nav --> web
+  perc --> web
+  sim["Jumeau numérique<br/>Gazebo"] -.->|"remplace<br/>le matériel"| nav
 ```
 
 ## Réalisations
 
-<Tabs>
-  <TabItem value="spec" label="Spécification">
-    J'ai animé la phase de spécification en 2024 : analyse des besoins par axe (navigation, perception, IA, manipulation), avec pour chaque axe ce qu'exige la RoboCup@Home, ce qui intéresse le CATIE au-delà de la compétition, et les dépendances entre axes. Les états de l'art (roues holonomes, bras collaboratifs, capteurs) ont été menés en équipe. J'ai produit les schémas d'architecture du robot (topologie réseau, liaisons capteurs, découpage en modules détachables), complétés par l'équipe électronique pour le budget d'alimentation. Cette phase a fixé les choix structurants : cinématique holonome, LiDAR en couronne, calculateur temps réel distinct du PC embarqué.
-  </TabItem>
-  <TabItem value="workspace" label="Workspace et déploiement">
-    J'ai conçu l'organisation logicielle : un dépôt par bloc fonctionnel (bringup, description, navigation, perception, messages, interface web), assemblés dans un workspace ROS 2 par sous-modules Git, et un dépôt racine qui référence aussi les firmwares. Le workspace fournit une image de base ROS 2 Jazzy en deux cibles (`dev` pour le devcontainer, `prod` pour le robot) ; chaque paquet construit sa propre image à partir de cette base et la publie sur le registre de conteneurs GitHub. Sur le robot, un fichier Docker Compose assemble les services, chacun doté d'un healthcheck sur son nœud principal et redémarré automatiquement.
+### Spécification
 
-    Toute la configuration du robot tient dans un seul fichier YAML (namespace, simulation ou matériel réel, carte, monde Gazebo, paramètres Nav2) monté dans chaque conteneur et désigné par une variable d'environnement. Il est validé par un schéma JSON au lancement : une clé absente ou mal typée arrête le démarrage au lieu de produire un comportement incohérent plus loin.
+La phase de spécification de 2024 a produit l'analyse des besoins par axe (navigation, perception, IA, manipulation) : pour chaque axe, ce qu'exige la RoboCup@Home, ce qui intéresse le CATIE au-delà de la compétition, et les dépendances avec les autres axes. Les états de l'art (roues holonomes, bras collaboratifs, capteurs) ont été menés en équipe. Les schémas d'architecture du robot (topologie réseau, liaisons des capteurs, découpage en modules détachables) ont été complétés par l'équipe électronique pour le budget d'alimentation. Cette phase a fixé les choix structurants : cinématique holonome, LiDAR en couronne, calculateur temps réel distinct du PC embarqué.
 
-    Chaque dépôt partage la même chaîne CI : pre-commit, build et tests ROS 2, lint et publication de l'image Docker, publication automatique d'un tag quand la version du paquet change, mise à jour hebdomadaire des hooks.
-  </TabItem>
-  <TabItem value="simulation" label="Description et simulation">
-    J'ai écrit la description du robot en XACRO modulaire : base, module C2I, roues omnidirectionnelles modélisées rouleau par rouleau, deux caméras OAK-D et trois LiDAR, chaque composant étant une macro paramétrée par sa position. Un module Python génère l'URDF puis le SDF à la volée selon le namespace du robot et remonte les erreurs XACRO de façon explicite.
+### Organisation et déploiement
 
-    Le paquet de simulation lance Gazebo, y insère le robot et configure les ponts ROS 2 - Gazebo (commande de vitesse, odométrie, TF, états des articulations, scans LiDAR). Un nœud de post-traitement republie les scans simulés sous les mêmes noms et repères que ceux du robot réel. La navigation se lance donc à l'identique en simulation et sur le robot : seul le fichier de configuration change.
-  </TabItem>
-  <TabItem value="bringup" label="Bringup matériel">
-    Le paquet de bringup regroupe tout ce qui parle au matériel : agent micro-ROS, pilote des LiDAR (acquisition et configuration à distance), pilote des caméras OAK-D, transformation de l'odométrie brute de l'ECU en odométrie ROS 2 avec sa TF, fusion des images des deux caméras en nuage de points, surveillance des caméras avec relance automatique quand un flux se fige. J'ai structuré le paquet, écrit le lancement unifié piloté par le fichier de configuration et la conversion d'odométrie, puis ajouté l'arrêt sécurisé (sur demande de la carte d'alimentation, tous les nœuds passent en état `shutdown`, puis le système s'éteint si l'option est activée) et le pilotage des bandeaux LED par un message ROS 2 dédié (effet, couleurs, luminosité, vitesse). La surveillance des caméras et la fusion d'images ont été développées pendant un stage.
-  </TabItem>
-  <TabItem value="navigation" label="Navigation">
-    J'ai intégré la pile Nav2 : localisation AMCL sur carte, planification globale, contrôleur MPPI, costmaps, collision monitor, navigation par waypoints, et Cartographer pour la cartographie 2D à partir des trois LiDAR et de l'odométrie. Le contrôleur MPPI a été retenu parce qu'il échantillonne directement des commandes en x, y et rotation : il exploite la cinématique holonome de la base, là où un contrôleur pensé pour une base différentielle la bride. Le paquet fournit aussi la téléopération au clavier pour les phases de cartographie.
-  </TabItem>
-  <TabItem value="perception" label="Perception">
-    La perception est un travail d'équipe, dont une large part a été développée lors d'un stage de fin d'études. Un nœud orchestrateur pilote des nœuds d'inférence spécialisés (objets, personnes), qui lancent à leur tour les modèles : YOLOv8 associé à SAM pour la détection et la segmentation d'objets, MoveNet pour la pose, un modèle de ré-identification qui maintient une bibliothèque de signatures des personnes rencontrées. Chaque modèle tourne dans son propre processus, avec ses propres dépendances, en nœud à cycle de vie relancé automatiquement en cas d'arrêt ; les requêtes passent par des actions ROS 2 qui renvoient un retour de progression. J'ai structuré le dépôt, centralisé les interfaces (actions et messages) dans un paquet dédié et mis en place sa CI.
-  </TabItem>
-  <TabItem value="embarque" label="Embarqué et interface">
-    Les firmwares sont le travail de l'équipe électronique et embarqué. L'ECU, sur un STM32H7 sous Zephyr, calcule la cinématique holonome, pilote les trois contrôleurs moteur par CAN, intègre l'odométrie et la publie via micro-ROS, avec les états des deux batteries remontés par la carte d'alimentation. La carte d'alimentation gère la sélection de batterie, l'arrêt d'urgence et la demande d'extinction ; le contrôleur LED pilote les bandeaux à partir de commandes sérialisées. Un module Zephyr commun définit le protocole CAN entre ces cartes. Côté opérateur, une interface web (FastAPI, Bootstrap), développée elle aussi pendant le stage, affiche l'état du robot (batteries, caméras, ré-identification) et permet la téléopération au joystick.
-  </TabItem>
-</Tabs>
+Le logiciel est découpé en un dépôt par bloc fonctionnel (pilotes matériels, description, navigation, perception, messages, interface web). Un dépôt racine les assemble en un espace de travail ROS 2 et référence aussi les firmwares, ce qui fige une combinaison cohérente de versions. Cet espace de travail fournit une image de base ROS 2 en deux variantes, l'une pour l'environnement de développement, l'autre pour le robot. Chaque paquet construit sa propre image à partir de cette base et la publie sur le registre de conteneurs de GitHub. Sur le robot, Docker Compose assemble les services ; chacun vérifie en continu que son nœud principal répond et redémarre seul en cas de panne.
+
+Toute la configuration du robot tient dans un seul fichier : nom du robot, simulation ou matériel réel, carte, monde simulé, paramètres de navigation. Chaque conteneur le lit au démarrage et le valide contre un schéma : une valeur absente ou mal formée arrête le lancement, au lieu de produire un comportement incohérent plus loin.
+
+Tous les dépôts partagent la même chaîne d'intégration continue : vérifications avant commit, compilation et tests ROS 2, analyse et publication de l'image Docker, nouvelle version publiée automatiquement quand le numéro du paquet change, mise à jour hebdomadaire des outils de vérification.
+
+### Description et simulation
+
+La description du robot est modulaire : base, module central, roues omnidirectionnelles modélisées rouleau par rouleau, deux caméras et trois LiDAR, chaque composant étant un bloc réutilisable placé par sa position. Elle est générée au lancement pour le robot réel comme pour la simulation, avec des erreurs explicites quand un fichier est mal formé.
+
+Le paquet de simulation lance Gazebo, y place le robot et relie les deux mondes : commandes de vitesse, odométrie, repères, états des articulations et mesures des LiDAR. Les mesures simulées sont republiées sous les mêmes noms et dans les mêmes repères que celles du robot réel. La navigation se lance donc à l'identique en simulation et sur le robot ; seul le fichier de configuration change.
+
+### Pilotes matériels
+
+Le paquet des pilotes regroupe tout ce qui parle au matériel : liaison avec le calculateur de la base, pilote des LiDAR (acquisition et configuration à distance), pilote des caméras, conversion de l'odométrie brute de la base en odométrie ROS 2 complète, fusion des images des deux caméras en nuage de points, et surveillance des caméras avec relance automatique quand un flux se fige. Un lancement unique, piloté par le fichier de configuration, démarre l'ensemble.
+
+Deux fonctions relient le logiciel au matériel du robot. L'arrêt sécurisé répond à une demande de la carte d'alimentation : tous les nœuds s'arrêtent proprement, puis le système s'éteint si l'option est activée. Les bandeaux LED se pilotent par un message ROS 2 dédié (effet, couleurs, luminosité, vitesse), que le contrôleur LED traduit en commandes.
+
+### Navigation
+
+La navigation repose sur Nav2 : localisation sur une carte, planification de trajectoire, évitement d'obstacles, surveillance des collisions et navigation par points de passage. La cartographie 2D est faite avec Cartographer, à partir des trois LiDAR et de l'odométrie, et la téléopération au clavier sert pendant les phases de cartographie. Le contrôleur MPPI a été retenu parce qu'il échantillonne directement des commandes en translation dans toutes les directions et en rotation : il exploite la cinématique holonome de la base, là où un contrôleur pensé pour un robot à deux roues motrices la bride.
+
+### Perception
+
+La perception a été développée en grande partie pendant un stage de fin d'études, sur des modèles fournis par le département IA du CATIE. Un nœud chef d'orchestre pilote des nœuds spécialisés (objets, personnes), qui lancent à leur tour les modèles : détection et segmentation d'objets, estimation de la pose, et ré-identification, qui garde une bibliothèque de signatures des personnes déjà rencontrées. Chaque modèle tourne dans son propre processus, avec ses propres dépendances, et redémarre seul s'il s'arrête. Une demande de perception renvoie un retour de progression jusqu'à son résultat. Les interfaces (demandes et messages) sont regroupées dans un paquet partagé par tous les blocs.
+
+### Embarqué et interface
+
+Les firmwares sont le travail de l'équipe électronique et embarqué. Le calculateur de la base, un microcontrôleur STM32 sous Zephyr, calcule la cinématique holonome, pilote les trois contrôleurs moteur, intègre l'odométrie et la publie par micro-ROS, avec l'état des deux batteries remonté par la carte d'alimentation. La carte d'alimentation gère le choix de la batterie, l'arrêt d'urgence et la demande d'extinction. Un module commun définit le protocole d'échange entre ces cartes. Côté opérateur, une interface web, développée elle aussi pendant le stage, affiche l'état du robot (batteries, caméras, personnes reconnues) et permet de le piloter au joystick.
 
 ## Décisions techniques
 
-- **Temps réel sur microcontrôleur, intelligence sur PC.** La boucle de commande des moteurs, l'arrêt d'urgence et la gestion des batteries ne dépendent ni de l'ordonnancement de Linux ni de l'état de la pile ROS 2. Un redémarrage du PC embarqué ou d'un conteneur ne laisse pas la base sans contrôle.
-- **micro-ROS sur Ethernet plutôt qu'une liaison série propriétaire.** L'ECU apparaît comme un nœud ROS 2 parmi d'autres : ses topics s'inspectent, s'enregistrent et se rejouent avec les outils standard. Le message d'odométrie publié par le microcontrôleur reste volontairement léger (pose horodatée, QoS best effort) ; la conversion en odométrie complète et la TF sont faites côté PC.
-- **Un dépôt et une image par bloc fonctionnel.** Chaque bloc se versionne, se teste et se déploie seul, ce qui permet à plusieurs équipes (embarqué, navigation, perception) d'avancer en parallèle sans bloquer les autres. Le workspace par sous-modules fige une combinaison cohérente de versions.
-- **Parité simulation / réel.** Mêmes noms de topics, mêmes repères, mêmes fichiers de lancement : le jumeau numérique permet de développer et de tester la navigation sur n'importe quel poste, sans mobiliser le robot.
-- **Perception à la demande.** Avec un calcul embarqué limité, les modèles ne tournent pas en permanence : chacun est activé quand la tâche en cours en a besoin, dans un processus isolé dont le crash n'emporte pas le reste de la perception.
+- **Temps réel sur microcontrôleur, intelligence sur PC.** La commande des moteurs, l'arrêt d'urgence et la gestion des batteries ne dépendent ni de Linux ni de l'état de ROS 2. Un redémarrage du PC embarqué ou d'un conteneur ne laisse jamais la base sans contrôle.
+- **micro-ROS sur Ethernet, à la place d'une liaison série maison.** La base apparaît comme un nœud ROS 2 parmi d'autres : ses données s'inspectent, s'enregistrent et se rejouent avec les outils standard. Le microcontrôleur n'envoie qu'une odométrie minimale ; l'odométrie complète et les repères sont calculés côté PC, où le calcul ne coûte rien.
+- **Un dépôt et une image par bloc fonctionnel.** Chaque bloc se versionne, se teste et se déploie seul. Les équipes embarqué, navigation et perception avancent ainsi en parallèle sans se bloquer.
+- **Simulation et robot réel interchangeables.** Mêmes noms de données, mêmes repères, mêmes lancements : le jumeau numérique permet de développer et de tester la navigation sur n'importe quel poste, sans mobiliser le robot.
+- **Perception à la demande.** Avec un calcul embarqué limité, les modèles ne tournent pas en permanence : chacun s'active quand la tâche en cours en a besoin, dans un processus isolé dont la panne n'emporte pas le reste.
 
-## Mon rôle
+## Rôle
 
-Sur la coordination technique : animation de la phase de spécification, découpage du robot en modules et en dépôts, définition des interfaces entre équipes (topics, messages, protocole), conventions communes (CI, pre-commit, changelog, documentation de chaque paquet), suivi de l'intégration. Sur le développement, j'ai été le contributeur principal des dépôts ROS 2 Python : workspace et déploiement Docker, bringup, description et simulation, navigation, ainsi que la structuration de la perception et des messages. Les firmwares, les modèles de perception et l'interface web sont le travail de collègues et de stagiaires, que j'ai accompagnés sur l'intégration ROS 2.
+Le projet est porté par le groupe de travail robotique du CATIE. Ma part couvre la coordination technique : animation de la phase de spécification et schémas d'architecture, découpage du robot en modules et en dépôts, interfaces entre les équipes, conventions communes (intégration continue, vérifications, journal des versions, documentation de chaque paquet) et suivi de l'intégration. Côté développement, j'ai conçu l'espace de travail et le déploiement Docker, la description et la simulation, les pilotes matériels avec l'arrêt sécurisé et le pilotage des LED, la mise en place de Nav2, ainsi que la structure de la perception et des messages. Un stagiaire a développé la perception, l'interface web, la surveillance et la fusion des caméras, la cartographie et le réglage de la navigation. Les firmwares viennent de l'équipe électronique et embarqué, les modèles de perception du département IA.
 
 ## Résultats
 
-- Une plateforme maîtrisée de bout en bout, de la carte d'alimentation jusqu'aux modèles d'IA, conçue et assemblée en interne.
-- Une base mobile holonome opérationnelle, pilotée depuis ROS 2 via micro-ROS, avec cartographie, localisation et navigation autonome.
-- Un jumeau numérique Gazebo qui reproduit les interfaces du robot réel, utilisé pour le développement et la prise en main par les nouveaux contributeurs.
-- Une pile entièrement conteneurisée et versionnée : le déploiement sur le robot consiste à mettre à jour un fichier de configuration et à tirer les images publiées par la CI.
-- Une perception modulaire (objets, pose, ré-identification) démontrée sur le robot.
+C-Rob est une plateforme maîtrisée de bout en bout, de la carte d'alimentation jusqu'à la perception, conçue et assemblée au CATIE. La base mobile holonome se pilote depuis ROS 2 et sait cartographier, se localiser et naviguer seule. Le jumeau numérique reproduit les interfaces du robot réel : il sert au développement et à la prise en main par les nouveaux contributeurs. Toute la pile est conteneurisée et versionnée, si bien qu'une mise à jour du robot consiste à changer le fichier de configuration et à récupérer les images publiées par l'intégration continue. La détection d'objets, l'estimation de pose et la ré-identification de personnes ont été démontrées sur le robot.
 
-## Limites et suite
+## Limites connues
 
-Au printemps 2026, plusieurs chantiers restent ouverts. Le module bras, spécifié dès 2024, n'est pas encore intégré. Le déploiement Compose ne couvre pas encore tous les blocs : la perception et la cartographie se lancent à part, et l'image de navigation n'embarque que Nav2. Les costmaps de navigation n'exploitent que les trois LiDAR : un obstacle hors de leur plan de balayage (plateau de table, objet posé en hauteur) n'est pas vu par Nav2 tant que les caméras RGB-D n'y sont pas branchées. Enfin, la chaîne vocale et les machines à états des épreuves RoboCup@Home, qui existaient sur la plateforme précédente, ne figurent pas encore dans le workspace C-Rob.
+- Le module bras, spécifié dès 2024, n'est pas intégré.
+- Docker Compose ne lance pas encore tous les blocs : la perception et la cartographie démarrent à part.
+- La navigation ne voit que ce que voient les trois LiDAR : un obstacle hors de leur plan (plateau de table, objet posé en hauteur) lui échappe tant que les caméras ne sont pas branchées sur l'évitement d'obstacles.
+- La reconnaissance vocale et les scénarios des épreuves RoboCup@Home, qui existaient sur la plateforme précédente, ne sont pas encore portés sur C-Rob.
 
 ## Liens
 

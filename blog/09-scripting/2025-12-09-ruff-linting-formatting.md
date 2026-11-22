@@ -217,6 +217,5 @@ Ruff regroupe le linting, le tri des imports et le formatage dans un seul binair
 ## Application / Projet lié
 
 <ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/standards-python" title="Standards Python">Ruff configuré comme linter et formateur standard du template Python, à la place de black, isort et flake8.</ProjectLink>
   <ProjectLink to="/docs/projects/professionnel/cicd" title="CI/CD">Workflow générique d'exécution des hooks pre-commit en CI, qui applique les vérifications Ruff des projets issus du template Python.</ProjectLink>
 </ProjectLinks>

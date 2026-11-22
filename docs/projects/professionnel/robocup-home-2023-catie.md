@@ -50,9 +50,9 @@ La difficulté de la RoboCup@Home ne vient pas seulement de la complexité des �
   </TabItem>
 </Tabs>
 
-## Mon rôle
+## Rôle
 
-Le rôle de Team Leader sur ce type de projet couvre deux dimensions. La coordination : définir les priorités techniques dans les semaines qui précèdent, arbitrer les choix d'architecture, organiser les sessions de test, piloter la rédaction du Team Description Paper, dont je suis le premier auteur. La dimension technique : j'ai été le principal contributeur sur **robot-manager**, le middleware central qui expose les capacités du robot à toutes les tâches : navigation, synthèse vocale, perception, bras, retours visuels (LEDs, écran). J'ai notamment conçu la gestion des états visuels du robot pour l'interaction avec le public, le système TTS, et contribué à plusieurs tâches dont Receptionist et Carry My Luggage.
+Le rôle de Team Leader sur ce type de projet couvre deux dimensions. La coordination : définir les priorités techniques dans les semaines qui précèdent, arbitrer les choix d'architecture, organiser les sessions de test, piloter la rédaction du Team Description Paper, dont j'ai été le premier auteur. La dimension technique : la part principale porte sur robot-manager, le middleware central qui expose les capacités du robot à toutes les tâches : navigation, synthèse vocale, perception, bras, retours visuels (LEDs, écran), avec en particulier la gestion des états visuels du robot pour l'interaction avec le public et le système TTS, ainsi qu'une contribution à plusieurs tâches dont Receptionist et Carry My Luggage.
 
 ## Résultats
 

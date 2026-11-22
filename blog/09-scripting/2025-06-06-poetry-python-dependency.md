@@ -271,9 +271,3 @@ En CI, la publication *Trusted Publishing* de PyPI (jeton OIDC émis par GitHub 
 ## Conclusion
 
 Poetry réunit déclaration, résolution, verrouillage, environnement virtuel et publication autour de `pyproject.toml`. Depuis la version 2.0, il s'aligne sur les standards de l'écosystème (section `[project]`, PEP 621), ce qui facilite l'interopérabilité et la migration vers d'autres outils. [uv](./2025-12-19-uv-python.md) propose aujourd'hui un périmètre comparable, avec une implémentation en Rust nettement plus rapide.
-
-## Application / Projet lié
-
-<ProjectLinks>
-  <ProjectLink to="/docs/projects/professionnel/standards-python" title="Standards Python">Template Python fondé sur Poetry pour la gestion des dépendances, les tests (pytest) et les releases.</ProjectLink>
-</ProjectLinks>
