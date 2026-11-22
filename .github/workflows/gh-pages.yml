@@ -122,7 +122,7 @@ jobs:
         with:
           folder: build
           clean-exclude: pr-preview/
-          force: false
+          force: true
           single-commit: true
           git-config-email: actions@github.com
           git-config-name: GitHub Actions
