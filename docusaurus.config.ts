@@ -14,6 +14,8 @@ const baseUrl = process.env.BASE_URL || "/";
 // être une URL encore servie.
 const movedPages: Record<string, string[]> = {
   "/blog": ["/blog/idea"],
+  "/docs/projects/personnel": ["/docs/projects/personnel/meeting-recorder"],
+  "/docs/projects/professionnel": ["/docs/projects/professionnel/standards-python"],
   "/roadmap": [
     "/blog/2024/01/01/devops-roadmap",
     "/blog/2024/02/02/devops-roadmap",
